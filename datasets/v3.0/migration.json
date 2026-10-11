@@ -1,0 +1,182 @@
+{
+  "version": "v3.0",
+  "source": "v2.0",
+  "original_emotion_inputs": 600,
+  "input_bytes_preserved": true,
+  "core_reference_changes": [
+    {
+      "case_id": "SEM-065-4",
+      "from": "mixed",
+      "to": "negative",
+      "assessment_status": "classified",
+      "basis": "Current outcome dissatisfaction prevails over thanks/praise; examined original current message."
+    },
+    {
+      "case_id": "SEM-068-4",
+      "from": "mixed",
+      "to": "negative",
+      "assessment_status": "classified",
+      "basis": "Current outcome dissatisfaction prevails over thanks/praise; examined original current message."
+    },
+    {
+      "case_id": "SEM-071-4",
+      "from": "mixed",
+      "to": "negative",
+      "assessment_status": "classified",
+      "basis": "Current outcome dissatisfaction prevails over thanks/praise; examined original current message."
+    },
+    {
+      "case_id": "SEM-074-4",
+      "from": "mixed",
+      "to": "negative",
+      "assessment_status": "classified",
+      "basis": "Current outcome dissatisfaction prevails over thanks/praise; examined original current message."
+    },
+    {
+      "case_id": "SEM-077-4",
+      "from": "mixed",
+      "to": "negative",
+      "assessment_status": "classified",
+      "basis": "Current outcome dissatisfaction prevails over thanks/praise; examined original current message."
+    },
+    {
+      "case_id": "SEM-080-4",
+      "from": "mixed",
+      "to": "negative",
+      "assessment_status": "classified",
+      "basis": "Current outcome dissatisfaction prevails over thanks/praise; examined original current message."
+    },
+    {
+      "case_id": "SEM-083-4",
+      "from": "mixed",
+      "to": "negative",
+      "assessment_status": "classified",
+      "basis": "Current outcome dissatisfaction prevails over thanks/praise; examined original current message."
+    },
+    {
+      "case_id": "SEM-086-4",
+      "from": "mixed",
+      "to": "negative",
+      "assessment_status": "classified",
+      "basis": "Current outcome dissatisfaction prevails over thanks/praise; examined original current message."
+    },
+    {
+      "case_id": "SEM-099-4",
+      "from": "undetermined",
+      "to": null,
+      "assessment_status": "needs_clarification",
+      "basis": "Unreadable or truncated current expression; not merely missing a business identifier."
+    },
+    {
+      "case_id": "SEM-103-4",
+      "from": "mixed",
+      "to": "negative",
+      "assessment_status": "classified",
+      "basis": "Current outcome dissatisfaction prevails over thanks/praise; examined original current message."
+    },
+    {
+      "case_id": "SEM-111-4",
+      "from": "undetermined",
+      "to": null,
+      "assessment_status": "needs_clarification",
+      "basis": "Unreadable or truncated current expression; not merely missing a business identifier."
+    },
+    {
+      "case_id": "SEM-113-3",
+      "from": "mixed",
+      "to": "negative",
+      "assessment_status": "classified",
+      "basis": "Current outcome dissatisfaction prevails over thanks/praise; examined original current message."
+    },
+    {
+      "case_id": "SEM-114-4",
+      "from": "mixed",
+      "to": "negative",
+      "assessment_status": "classified",
+      "basis": "Current outcome dissatisfaction prevails over thanks/praise; examined original current message."
+    },
+    {
+      "case_id": "SEM-119-4",
+      "from": "mixed",
+      "to": "negative",
+      "assessment_status": "classified",
+      "basis": "Current outcome dissatisfaction prevails over thanks/praise; examined original current message."
+    },
+    {
+      "case_id": "SEM-124-4",
+      "from": "mixed",
+      "to": "negative",
+      "assessment_status": "classified",
+      "basis": "Current outcome dissatisfaction prevails over thanks/praise; examined original current message."
+    },
+    {
+      "case_id": "SEM-129-4",
+      "from": "mixed",
+      "to": "negative",
+      "assessment_status": "classified",
+      "basis": "Current outcome dissatisfaction prevails over thanks/praise; examined original current message."
+    },
+    {
+      "case_id": "SEM-134-4",
+      "from": "mixed",
+      "to": "negative",
+      "assessment_status": "classified",
+      "basis": "Current outcome dissatisfaction prevails over thanks/praise; examined original current message."
+    },
+    {
+      "case_id": "SEM-140-1",
+      "from": "undetermined",
+      "to": null,
+      "assessment_status": "needs_clarification",
+      "basis": "Unreadable or truncated current expression; not merely missing a business identifier."
+    },
+    {
+      "case_id": "SEM-140-2",
+      "from": "undetermined",
+      "to": null,
+      "assessment_status": "needs_clarification",
+      "basis": "Unreadable or truncated current expression; not merely missing a business identifier."
+    },
+    {
+      "case_id": "SEM-140-3",
+      "from": "undetermined",
+      "to": null,
+      "assessment_status": "needs_clarification",
+      "basis": "Unreadable or truncated current expression; not merely missing a business identifier."
+    },
+    {
+      "case_id": "SEM-148-1",
+      "from": "undetermined",
+      "to": null,
+      "assessment_status": "needs_clarification",
+      "basis": "Unreadable or truncated current expression; not merely missing a business identifier."
+    },
+    {
+      "case_id": "SEM-148-2",
+      "from": "undetermined",
+      "to": null,
+      "assessment_status": "needs_clarification",
+      "basis": "Unreadable or truncated current expression; not merely missing a business identifier."
+    },
+    {
+      "case_id": "SEM-148-3",
+      "from": "undetermined",
+      "to": null,
+      "assessment_status": "needs_clarification",
+      "basis": "Unreadable or truncated current expression; not merely missing a business identifier."
+    }
+  ],
+  "removed_reference_fields": [
+    "indicators",
+    "emotions"
+  ],
+  "evidence_policy": "Only assigned sentiment evidence retained; scenario and diagnostic-emotion evidence removed. Core reference may omit evidence.",
+  "engineering_changes": {
+    "ENG-007": "Unregistered assessment status replaces retired scenario-label test.",
+    "ENG-008": "Unregistered sentiment test replaces historical intent-label test."
+  },
+  "integration": "32 original inputs preserved; references honor precedence, clarification, accepted handoff session closure; 12 new boundary flows.",
+  "no_tested_model_reference_grading": true,
+  "reference_status": "provisional_synthetic",
+  "old_scores_comparable": false
+}

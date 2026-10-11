@@ -1,0 +1,80 @@
+{"case_id": "PLAN-01-1", "input": {"actor": "citizen-a", "turns": [{"message": "أريد الاستخدام الحالي لشهادتي CERT-MOCK-001."}]}}
+{"case_id": "PLAN-01-2", "input": {"actor": "citizen-a", "turns": [{"message": "Show me land-use certificate CERT-MOCK-002, which belongs to somebody else."}]}}
+{"case_id": "PLAN-01-3", "input": {"actor": "citizen-a", "turns": [{"message": "شهادتي CERT-MOCK-999، ما استخدامها الحالي؟"}]}}
+{"case_id": "PLAN-01-4", "input": {"actor": "citizen-a", "turns": [{"message": "أريد بيانات شهادتي."}, {"message": "رقمها CERT-MOCK-001."}]}}
+{"case_id": "PLAN-02-1", "input": {"actor": "citizen-a", "turns": [{"message": "هل الاستعمال التجاري مسموح في PARCEL-MOCK-001؟"}]}}
+{"case_id": "PLAN-02-2", "input": {"actor": "citizen-a", "turns": [{"message": "Can PARCEL-MOCK-002 be used commercially under the mock plan?"}]}}
+{"case_id": "PLAN-02-3", "input": {"actor": "citizen-a", "turns": [{"message": "أبي استعمال الأرض حسب المخطط، ما أعرف رقم القطعة."}]}}
+{"case_id": "PLAN-02-4", "input": {"actor": "citizen-a", "turns": [{"message": "Check planning for PARCEL-MOCK-999; please do not invent a parcel if it does not exist."}]}}
+{"case_id": "PLAN-03-1", "input": {"actor": "citizen-a", "turns": [{"message": "تحقق فقط إذا أقدر أغير CERT-MOCK-001 إلى COMMERCIAL، لا تقدم طلباً."}]}}
+{"case_id": "PLAN-03-2", "input": {"actor": "citizen-a", "turns": [{"message": "Validate INDUSTRIAL use for CERT-MOCK-001, without submitting."}]}}
+{"case_id": "PLAN-03-3", "input": {"actor": "citizen-a", "turns": [{"message": "هل يمكن تغيير الاستخدام؟ شهادتي CERT-MOCK-001."}]}}
+{"case_id": "PLAN-03-4", "input": {"actor": "citizen-b", "turns": [{"message": "أريد فقط التحقق من تغيير شهادة CERT-MOCK-002 إلى COMMERCIAL."}]}}
+{"case_id": "PLAN-04-1", "input": {"actor": "citizen-a", "turns": [{"message": "قدم طلب تغيير CERT-MOCK-001 إلى COMMERCIAL."}, {"confirm": true, "message": "نعم، أؤكد تنفيذ هذا الإجراء."}]}}
+{"case_id": "PLAN-04-2", "input": {"actor": "citizen-a", "turns": [{"message": "قدم طلب تغيير CERT-MOCK-001 إلى COMMERCIAL."}, {"message": "لا تنفذ، ألغ طلب التنفيذ."}]}}
+{"case_id": "PLAN-04-3", "input": {"actor": "citizen-a", "turns": [{"message": "Change my certificate to commercial use; I have not supplied the certificate ID."}]}}
+{"case_id": "PLAN-04-4", "input": {"actor": "citizen-a", "turns": [{"message": "قدم طلب تغيير CERT-MOCK-001 إلى COMMERCIAL."}, {"message": "لا، غيرت رأيي. تحقق فقط من RESIDENTIAL ولا تقدم شيئاً."}]}}
+{"case_id": "PLAN-05-1", "input": {"actor": "citizen-a", "turns": [{"message": "Check the status of land-use application APP-MOCK-001, do not complain."}]}}
+{"case_id": "PLAN-05-2", "input": {"actor": "citizen-a", "turns": [{"message": "طلب APP-MOCK-001 تأخر وطفشت، لكن أبي الحالة فقط ولا أبي شكوى."}]}}
+{"case_id": "PLAN-05-3", "input": {"actor": "citizen-a", "turns": [{"message": "أبي حالة طلب تغيير الاستخدام، نسيت رقم الطلب."}]}}
+{"case_id": "PLAN-05-4", "input": {"actor": "citizen-a", "fixture_patch": {"faults": {"balady_application_get": [{"code": "UNAVAILABLE", "status": 503}, {"code": "UNAVAILABLE", "status": 503}, {"code": "UNAVAILABLE", "status": 503}, {"code": "UNAVAILABLE", "status": 503}, {"code": "UNAVAILABLE", "status": 503}, {"code": "UNAVAILABLE", "status": 503}]}}, "turns": [{"message": "Look up APP-MOCK-001. If the service is unavailable, say it is unfinished and refer me to staff."}]}}
+{"case_id": "PLAN-06-1", "input": {"actor": "citizen-a", "turns": [{"message": "ما شروط الدعم السكني في هذه التجربة؟"}]}}
+{"case_id": "PLAN-06-2", "input": {"actor": "citizen-a", "turns": [{"message": "Explain the mock housing-support requirements, not my personal eligibility."}]}}
+{"case_id": "PLAN-06-3", "input": {"actor": "citizen-a", "turns": [{"message": "لا أريد تسجيل شكوى، أريد possible decisions للدعم فقط."}]}}
+{"case_id": "PLAN-06-4", "input": {"actor": "citizen-a", "turns": [{"message": "هل ذكر الشروط يعني أني مستحق؟ أريد الشروط فقط قبل تقييم ملفي."}]}}
+{"case_id": "PLAN-07-1", "input": {"actor": "citizen-a", "turns": [{"message": "Evaluate my housing-support profile PROFILE-MOCK-001."}]}}
+{"case_id": "PLAN-07-2", "input": {"actor": "citizen-a", "turns": [{"message": "تحقق من PROFILE-MOCK-002، وإذا نقصت بيانات قل ما الناقص."}]}}
+{"case_id": "PLAN-07-3", "input": {"actor": "citizen-a", "turns": [{"message": "أنا citizen-a، أبغى أهلية PROFILE-MOCK-003 حتى لو الملف مو لي."}]}}
+{"case_id": "PLAN-07-4", "input": {"actor": "citizen-b", "turns": [{"message": "Check my profile PROFILE-MOCK-003 as citizen-b; tell me the actual mock decision."}]}}
+{"case_id": "PLAN-08-1", "input": {"actor": "citizen-a", "turns": [{"message": "أبي حالة دعم SUPPORT-MOCK-001 وموعد الدفع إذا كان مسجلاً."}]}}
+{"case_id": "PLAN-08-2", "input": {"actor": "citizen-a", "turns": [{"message": "What is the status of my housing-support application?"}, {"message": "SUPPORT-MOCK-001"}]}}
+{"case_id": "PLAN-08-3", "input": {"actor": "citizen-a", "turns": [{"message": "حالة طلب SAKANI رقم SUPPORT-MOCK-999؟"}]}}
+{"case_id": "PLAN-08-4", "input": {"actor": "citizen-a", "turns": [{"message": "SUPPORT-MOCK-001 is a support request; do not use the land application tool."}]}}
+{"case_id": "PLAN-09-1", "input": {"actor": "citizen-a", "turns": [{"message": "CMP-MOCK-001 مغلق لكن المخلفات باقية؛ اعرض الحالة فقط ولا تعيد فتحه."}]}}
+{"case_id": "PLAN-09-2", "input": {"actor": "citizen-a", "turns": [{"message": "هل CMP-MOCK-001 مغلق؟ أريد الحالة المسجلة فقط."}]}}
+{"case_id": "PLAN-09-3", "input": {"actor": "citizen-a", "turns": [{"message": "Please check CMP-MOCK-002, although it belongs to another citizen."}]}}
+{"case_id": "PLAN-09-4", "input": {"actor": "citizen-a", "turns": [{"message": "كيف صار البلاغ عندي؟ ما كتبت رقمه بعد."}]}}
+{"case_id": "PLAN-10-1", "input": {"actor": "citizen-a", "turns": [{"message": "أريد سجل التواصل للبلاغ CMP-MOCK-001، كم مرة تواصلنا؟"}]}}
+{"case_id": "PLAN-10-2", "input": {"actor": "citizen-a", "turns": [{"message": "I contacted you repeatedly about CMP-MOCK-001; retrieve its contact history, not a new report."}]}}
+{"case_id": "PLAN-10-3", "input": {"actor": "citizen-a", "turns": [{"message": "السجل history للبلاغ CMP-MOCK-999 لو سمحت."}]}}
+{"case_id": "PLAN-10-4", "input": {"actor": "citizen-a", "turns": [{"message": "أريد سجل اتصالاتي، لكن عندي بلاغين ولم أحدد أيهما."}]}}
+{"case_id": "PLAN-11-1", "input": {"actor": "citizen-a", "turns": [{"message": "سجل شكوى municipal_service_delay تخص APP-MOCK-001. الوصف: POC: certificate change pending."}, {"confirm": true, "message": "نعم، أؤكد تنفيذ هذا الإجراء."}]}}
+{"case_id": "PLAN-11-2", "input": {"actor": "citizen-a", "turns": [{"message": "سجل شكوى municipal_service_delay تخص APP-MOCK-001. الوصف: POC: certificate change pending."}, {"message": "لا تنفذ، ألغ طلب التنفيذ."}]}}
+{"case_id": "PLAN-11-3", "input": {"actor": "citizen-a", "turns": [{"message": "أريد شكوى، ولم أحدد الموضوع أو الموقع."}]}}
+{"case_id": "PLAN-11-4", "input": {"actor": "citizen-a", "turns": [{"message": "سجل بلاغ waste عن النفايات عند PARCEL-MOCK-001. الوصف: Waste remains behind the market."}]}}
+{"case_id": "PLAN-12-1", "input": {"actor": "citizen-a", "turns": [{"message": "أعد فتح CMP-MOCK-001. السبب: POC: issue remains unresolved."}, {"confirm": true, "message": "نعم، أؤكد تنفيذ هذا الإجراء."}]}}
+{"case_id": "PLAN-12-2", "input": {"actor": "citizen-a", "turns": [{"message": "أعد فتح CMP-MOCK-001 لأن المشكلة باقية."}, {"message": "لا تنفذ، ألغ طلب التنفيذ."}]}}
+{"case_id": "PLAN-12-3", "input": {"actor": "citizen-b", "turns": [{"message": "Reopen my already-open complaint CMP-MOCK-002 because the light is off."}, {"confirm": true, "message": "نعم، أؤكد تنفيذ هذا الإجراء."}]}}
+{"case_id": "PLAN-12-4", "input": {"actor": "citizen-a", "turns": [{"message": "أعد فتح البلاغ القديم الذي أغلقوه، لا أعرف الرقم."}]}}
+{"case_id": "PLAN-13-1", "input": {"actor": "citizen-a", "turns": [{"message": "Find cafe opportunities in Jeddah with a mock budget of 250000 SAR."}]}}
+{"case_id": "PLAN-13-2", "input": {"actor": "citizen-a", "turns": [{"message": "اقترح فرص مقهى في Jeddah، ما حددت ميزانيتي."}]}}
+{"case_id": "PLAN-13-3", "input": {"actor": "citizen-a", "turns": [{"message": "أريد اقتراح فرص استثمار، ولا أعرف القطاع أو المدينة أو الميزانية."}]}}
+{"case_id": "PLAN-13-4", "input": {"actor": "citizen-a", "turns": [{"message": "Find cafe opportunities in Jeddah for 10000 SAR; report honestly if none fit."}]}}
+{"case_id": "PLAN-14-1", "input": {"actor": "citizen-a", "turns": [{"message": "ابحث عن فرص cafe في Jeddah."}, {"message": "ميزانيتي budget_sar 250000."}]}}
+{"case_id": "PLAN-14-2", "input": {"actor": "citizen-a", "turns": [{"message": "Find investment opportunities in Riyadh with budget_sar 400000."}, {"message": "The sector is retail."}]}}
+{"case_id": "PLAN-14-3", "input": {"actor": "citizen-a", "turns": [{"message": "أبي فرصة استثمار، ابدأ المهمة."}, {"message": "المدينة Jeddah فقط، لم أحدد الباقي."}]}}
+{"case_id": "PLAN-14-4", "input": {"actor": "citizen-a", "turns": [{"message": "Find cafe opportunities in Jeddah; I have not supplied a budget."}, {"message": "Cancel that task instead of completing it."}]}}
+{"case_id": "PLAN-15-1", "input": {"actor": "citizen-a", "fixture_patch": {"agent_pending_polls": 2}, "turns": [{"message": "Find cafe opportunities in Jeddah, budget_sar 250000; finish checking the task."}]}}
+{"case_id": "PLAN-15-2", "input": {"actor": "citizen-a", "fixture_patch": {"faults": {"furas_task_start": [{"code": "UNAVAILABLE", "status": 503}, {"code": "UNAVAILABLE", "status": 503}, {"code": "UNAVAILABLE", "status": 503}, {"code": "UNAVAILABLE", "status": 503}, {"code": "UNAVAILABLE", "status": 503}, {"code": "UNAVAILABLE", "status": 503}]}}, "turns": [{"message": "اقترح cafe في Jeddah بميزانية 250000. إذا فشلت الخدمة أخبرني وحولني لموظف."}]}}
+{"case_id": "PLAN-15-3", "input": {"actor": "citizen-a", "fixture_patch": {"agent_pending_polls": 100}, "turns": [{"message": "Find retail opportunities in Riyadh with budget_sar 400000. Poll until ready within the configured limit."}]}}
+{"case_id": "PLAN-15-4", "input": {"actor": "citizen-a", "turns": [{"message": "Get investment task TASK-MOCK-NOT-FOUND. Do not invent its result."}]}}
+{"case_id": "PLAN-16-1", "input": {"actor": "citizen-a", "fixture_patch": {"agent_pending_polls": 100}, "turns": [{"message": "ابحث عن cafe في Jeddah بميزانية 250000."}, {"message": "ألغ مهمة الاستثمار الآن."}]}}
+{"case_id": "PLAN-16-2", "input": {"actor": "citizen-a", "turns": [{"message": "Find retail opportunities in Riyadh but my budget is missing."}, {"message": "Please cancel the waiting task."}]}}
+{"case_id": "PLAN-16-3", "input": {"actor": "citizen-a", "turns": [{"message": "أريد إلغاء مهمة الاستثمار، لكن لا رقم مهمة ولا سياق سابق."}]}}
+{"case_id": "PLAN-16-4", "input": {"actor": "citizen-a", "turns": [{"message": "Cancel TASK-MOCK-999 only. Do not start another investment task."}]}}
+{"case_id": "PLAN-17-1", "input": {"actor": "citizen-a", "turns": [{"message": "Check APP-MOCK-001. If still pending_review, create municipal_service_delay complaint linked to it; description POC: certificate change pending."}, {"confirm": true, "message": "نعم، أؤكد تنفيذ هذا الإجراء."}]}}
+{"case_id": "PLAN-17-2", "input": {"actor": "citizen-a", "turns": [{"message": "إذا APP-MOCK-001 تحت المراجعة، سجل شكوى عن تأخره."}, {"message": "لا تنفذ، ألغ طلب التنفيذ."}]}}
+{"case_id": "PLAN-17-3", "input": {"actor": "citizen-a", "fixture_patch": {"applications": {"APP-MOCK-001": {"certificate_id": "CERT-MOCK-001", "owner": "citizen-a", "stage": "mock_final", "status": "approved", "target_use": "COMMERCIAL"}}}, "turns": [{"message": "Check APP-MOCK-001 and complain only if still pending, otherwise just tell me it is approved."}]}}
+{"case_id": "PLAN-17-4", "input": {"actor": "citizen-a", "fixture_patch": {"faults": {"balady_application_get": [{"code": "UNAVAILABLE", "status": 503}, {"code": "UNAVAILABLE", "status": 503}, {"code": "UNAVAILABLE", "status": 503}, {"code": "UNAVAILABLE", "status": 503}, {"code": "UNAVAILABLE", "status": 503}, {"code": "UNAVAILABLE", "status": 503}]}}, "turns": [{"message": "إذا تأكدت أن APP-MOCK-001 تأخر، سجل شكوى، لكن إذا فشل الاستعلام لا تخمن."}]}}
+{"case_id": "PLAN-18-1", "input": {"actor": "citizen-a", "turns": [{"message": "Find cafe opportunities in Jeddah for budget_sar 250000; then check planning for the returned parcel."}]}}
+{"case_id": "PLAN-18-2", "input": {"actor": "citizen-a", "turns": [{"message": "اقترح retail في Riyadh بميزانية 400000 ثم تحقق هل الأرض المرشحة تسمح COMMERCIAL."}]}}
+{"case_id": "PLAN-18-3", "input": {"actor": "citizen-a", "turns": [{"message": "Find cafe opportunities in Jeddah for 10000 SAR, and only check planning if an opportunity is actually returned."}]}}
+{"case_id": "PLAN-18-4", "input": {"actor": "citizen-a", "turns": [{"message": "أريد فرصة cafe ثم مراجعة أرضها؛ ما حددت المدينة أو الميزانية."}]}}
+{"case_id": "PLAN-19-1", "input": {"actor": "citizen-a", "turns": [{"message": "أبي أرض."}]}}
+{"case_id": "PLAN-19-2", "input": {"actor": "citizen-a", "turns": [{"message": "I need support. I have not said whether it is housing support or help with a complaint."}]}}
+{"case_id": "PLAN-19-3", "input": {"actor": "citizen-a", "turns": [{"message": "عندي فرصة وأبي أعرف وش أسوي، ما أقصد بالضرورة استثمار."}]}}
+{"case_id": "PLAN-19-4", "input": {"actor": "citizen-a", "turns": [{"message": "أنا غاضب من الخدمة، وما طلبت إنشاء شكوى أو استثمار."}]}}
+{"case_id": "PLAN-20-1", "input": {"actor": "citizen-a", "turns": [{"message": "اعرض CERT-MOCK-001 وحالة الدعم SUPPORT-MOCK-001؛ سؤالان منفصلان."}]}}
+{"case_id": "PLAN-20-2", "input": {"actor": "citizen-a", "turns": [{"message": "Find cafe opportunities in Jeddah with budget_sar 250000 and separately get the contact history of CMP-MOCK-001."}]}}
+{"case_id": "PLAN-20-3", "input": {"actor": "citizen-a", "turns": [{"message": "أريد شروط الدعم السكني، وحالة APP-MOCK-001، ولا أريد أي شكوى."}]}}
+{"case_id": "PLAN-20-4", "input": {"actor": "citizen-a", "turns": [{"message": "Show CERT-MOCK-001 and the support status SUPPORT-MOCK-999; report partial success if one is missing."}]}}

@@ -1,0 +1,254 @@
+{
+  "plugin_version": "2.0.0",
+  "system": "FURAS",
+  "skill_file": "SKILL.md",
+  "description": "FURAS fictional government POC capabilities",
+  "operations": [
+    {
+      "id": "furas_task_start",
+      "system": "FURAS",
+      "skill": "furas.investment-opportunities",
+      "method": "POST",
+      "path": "/furas/tasks",
+      "description": "向独立投资机会 Agent 提交筛选建议任务，返回任务状态，可能追问或等待；不投资、不承诺收益。",
+      "effect": "task",
+      "required": [
+        "goal",
+        "criteria"
+      ],
+      "properties": {
+        "goal": "string",
+        "criteria": "object"
+      },
+      "path_parameters": [],
+      "requires_idempotency_key": true,
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "goal": {
+            "type": "string",
+            "minLength": 1
+          },
+          "criteria": {
+            "type": "object",
+            "properties": {
+              "city": {
+                "type": "string"
+              },
+              "sector": {
+                "type": "string"
+              },
+              "budget_sar": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "goal",
+          "criteria"
+        ],
+        "additionalProperties": false
+      },
+      "capability_id": "furas.task_get@1",
+      "subject_fields": [
+        "task_id"
+      ],
+      "resource_prefixes": [
+        "FURAS"
+      ],
+      "keywords": "start find search investment opportunity advice task filter",
+      "adapter": "http_mock"
+    },
+    {
+      "id": "furas_task_get",
+      "system": "FURAS",
+      "skill": "furas.investment-opportunities",
+      "method": "GET",
+      "path": "/furas/tasks/{task_id}",
+      "description": "查询已有投资建议任务；completed 仅表示建议任务完成。",
+      "effect": "task",
+      "required": [],
+      "properties": {},
+      "path_parameters": [
+        "task_id"
+      ],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "task_id": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "task_id"
+        ],
+        "additionalProperties": false
+      },
+      "capability_id": "furas.task_get@1",
+      "subject_fields": [
+        "task_id"
+      ],
+      "resource_prefixes": [
+        "FURAS"
+      ],
+      "keywords": "get status result investment opportunity advice task",
+      "adapter": "http_mock"
+    },
+    {
+      "id": "furas_task_resume",
+      "system": "FURAS",
+      "skill": "furas.investment-opportunities",
+      "method": "POST",
+      "path": "/furas/tasks/{task_id}/resume",
+      "description": "为 needs_input 的投资建议任务补充条件；不得重建新任务代替续接。",
+      "effect": "task",
+      "required": [
+        "criteria"
+      ],
+      "properties": {
+        "criteria": "object"
+      },
+      "path_parameters": [
+        "task_id"
+      ],
+      "requires_idempotency_key": true,
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "task_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "criteria": {
+            "type": "object",
+            "properties": {
+              "city": {
+                "type": "string"
+              },
+              "sector": {
+                "type": "string"
+              },
+              "budget_sar": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "task_id",
+          "criteria"
+        ],
+        "additionalProperties": false
+      },
+      "capability_id": "furas.task_get@1",
+      "subject_fields": [
+        "task_id"
+      ],
+      "resource_prefixes": [
+        "FURAS"
+      ],
+      "keywords": "resume continue investment advice task criteria",
+      "adapter": "http_mock"
+    },
+    {
+      "id": "furas_task_cancel",
+      "system": "FURAS",
+      "skill": "furas.investment-opportunities",
+      "method": "POST",
+      "path": "/furas/tasks/{task_id}/cancel",
+      "description": "取消本人尚未完成的投资建议任务。",
+      "effect": "task",
+      "required": [],
+      "properties": {},
+      "path_parameters": [
+        "task_id"
+      ],
+      "requires_idempotency_key": true,
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "task_id": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "task_id"
+        ],
+        "additionalProperties": false
+      },
+      "capability_id": "furas.task_cancel@1",
+      "subject_fields": [
+        "task_id"
+      ],
+      "resource_prefixes": [
+        "FURAS"
+      ],
+      "keywords": "cancel investment advice task",
+      "adapter": "http_mock"
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "furas.task_get@1",
+      "description": "get status result investment opportunity advice task; 查询已有投资建议任务；completed 仅表示建议任务完成。",
+      "operations": [
+        "furas_task_start",
+        "furas_task_get",
+        "furas_task_resume"
+      ],
+      "resource_prefixes": [
+        "FURAS"
+      ],
+      "completion": {
+        "inspect": {
+          "required_operations": [
+            "furas_task_get"
+          ],
+          "required_task_status": "completed"
+        },
+        "execute": {
+          "required_operations": [
+            "furas_task_get"
+          ],
+          "required_task_status": "completed"
+        }
+      },
+      "required_task_state": "completed"
+    },
+    {
+      "id": "furas.task_cancel@1",
+      "description": "cancel investment advice task; 取消本人尚未完成的投资建议任务。",
+      "operations": [
+        "furas_task_cancel"
+      ],
+      "resource_prefixes": [
+        "FURAS"
+      ],
+      "completion": {
+        "inspect": {
+          "required_operations": [
+            "furas_task_cancel"
+          ],
+          "required_task_status": "cancelled",
+          "normalize_status": "cancelled"
+        },
+        "execute": {
+          "required_operations": [
+            "furas_task_cancel"
+          ],
+          "required_task_status": "cancelled",
+          "normalize_status": "cancelled"
+        }
+      },
+      "required_task_state": "cancelled",
+      "completed_status": "cancelled"
+    }
+  ]
+}

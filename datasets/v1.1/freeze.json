@@ -1,0 +1,24 @@
+{
+  "dataset_version": "poc-dataset-v1.1.0",
+  "frozen_date": "2026-10-09",
+  "hash_algorithm": "SHA-256",
+  "release_digest": "8c21d1d38c7020dc346be7742d2fffbffbd299fdbbe6297763afecfe0690b7c7",
+  "files": {
+    "datasets/v1.1/engineering/inputs.jsonl": "9d1f41d1817403ec1750772b088cbca810311d3ab980e74806880b7a0f5b3a32",
+    "datasets/v1.1/engineering/manifest.jsonl": "833bc6ca1587c1dc2001b2154bb8559aedc8abc18bbe89eeea9a7342c300ca13",
+    "datasets/v1.1/engineering/references.jsonl": "e79a0da349305fdd8e4d4df75b5d8ad7a440613d7c26a089fe7c2ade22b4b77a",
+    "datasets/v1.1/planning/inputs.jsonl": "76615f2ded91fb4602329a3a27372c0d8253cece43e819e8cfa9ae28015ba543",
+    "datasets/v1.1/planning/manifest.jsonl": "8486650e6e9ec419ded7688b9c1ab158811ef91e44223b7acd7cfdbdbea686d0",
+    "datasets/v1.1/planning/references.jsonl": "95b9250533ba3e1fa48e689754db694fe4099065c4936e8c835bd8aab405517c",
+    "datasets/v1.1/semantic/inputs.jsonl": "c6f10a8c8783df500f447092d1063ae0606c58bef853673fc5d9f8d95617cfcf",
+    "datasets/v1.1/semantic/manifest.jsonl": "b8ee65301ea1d1afab5b370c4045b027d502f5688ee544e8863d6ea5718e85c2",
+    "datasets/v1.1/semantic/references.jsonl": "492922f633b888711ca40d34732185b2b08886ae480759d87271dd308c6a3d96",
+    "scripts/generate_datasets.py": "c6c32b987d1f367ce87dea50d908bbbebf75c69287e907d88585434078d90432",
+    "datasets/v1.1/README.md": "7096ab78447ff0e6266850eafc8b1f55094491d65d3b5f9cfc42f1aacf471eb8",
+    "datasets/v1.1/changelog.json": "6c9c10abcf0f2f097ce9695b2b023c175f67823785e729fa34241c4a7aad1ed6",
+    "scripts/generate_dataset_release.py": "26812283c1ece5a910afc917525f1746b04343813db4f6147184f96b2ade8f1c",
+    "scripts/generate_datasets_v1_0.py": "d15fc61c03dfb791dabe8bea99435b1a887ec89e4df158b455ccf10cf0faa538"
+  },
+  "reference_status": "provisional",
+  "provenance": "Codex authored synthetic scenarios, deterministic local generator; no tested-model generation or tested-model reference grading"
+}

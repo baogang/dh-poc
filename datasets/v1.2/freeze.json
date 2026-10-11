@@ -1,0 +1,25 @@
+{
+  "dataset_version": "poc-dataset-v1.2.0",
+  "frozen_date": "2026-10-09",
+  "hash_algorithm": "SHA-256",
+  "release_digest": "20319968aa0a6dc0022639c76c4a186603b52df6caeb3c79f850903c84c999fc",
+  "files": {
+    "datasets/v1.2/engineering/inputs.jsonl": "9d1f41d1817403ec1750772b088cbca810311d3ab980e74806880b7a0f5b3a32",
+    "datasets/v1.2/engineering/manifest.jsonl": "833bc6ca1587c1dc2001b2154bb8559aedc8abc18bbe89eeea9a7342c300ca13",
+    "datasets/v1.2/engineering/references.jsonl": "e79a0da349305fdd8e4d4df75b5d8ad7a440613d7c26a089fe7c2ade22b4b77a",
+    "datasets/v1.2/planning/inputs.jsonl": "76615f2ded91fb4602329a3a27372c0d8253cece43e819e8cfa9ae28015ba543",
+    "datasets/v1.2/planning/manifest.jsonl": "f5668f60912f31ebc7724219084f711e4105bbb3737df2a57d2f2869a6bed721",
+    "datasets/v1.2/planning/references.jsonl": "29f01e2e0b8d89f618fca441c29e8b576e6c880e1958f24fc0b6600a0cc1bea1",
+    "datasets/v1.2/semantic/inputs.jsonl": "c6f10a8c8783df500f447092d1063ae0606c58bef853673fc5d9f8d95617cfcf",
+    "datasets/v1.2/semantic/manifest.jsonl": "b8ee65301ea1d1afab5b370c4045b027d502f5688ee544e8863d6ea5718e85c2",
+    "datasets/v1.2/semantic/references.jsonl": "492922f633b888711ca40d34732185b2b08886ae480759d87271dd308c6a3d96",
+    "scripts/generate_datasets.py": "bbc9fc54a9bc5b1d78919e341bca835e543a7ab231f27c662cc2fd069023dfcb",
+    "datasets/v1.2/README.md": "dee4f6065e1673f41c5a3b6edd43031c77f2f7c86243cdc9c7d048936780b7c6",
+    "datasets/v1.2/changelog.json": "bbce242c989936fffe7d2ac65fbb5ebd027ce92462421e0dd79cd34b30a081bc",
+    "scripts/generate_dataset_release_v1_2.py": "606dbafbc8275cf86667cb0b1b75144f12f3d394c2ede0eb9027a766b24b2d98",
+    "scripts/generate_datasets_v1_1.py": "c6c32b987d1f367ce87dea50d908bbbebf75c69287e907d88585434078d90432",
+    "scripts/generate_datasets_v1_0.py": "d15fc61c03dfb791dabe8bea99435b1a887ec89e4df158b455ccf10cf0faa538"
+  },
+  "reference_status": "provisional",
+  "provenance": "Codex authored synthetic scenarios, deterministic local generator; no tested-model generation or tested-model reference grading"
+}

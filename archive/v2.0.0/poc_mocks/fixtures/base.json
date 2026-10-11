@@ -1,0 +1,40 @@
+{
+  "fixture_version":"poc-fixtures-v1",
+  "source_type":"mock",
+  "warning":"All identities, opportunities, rules and statuses are fictional. No official eligibility, API contract or investment return is represented.",
+  "actors":["citizen-a","citizen-b"],
+  "parcels":{
+    "PARCEL-MOCK-001":{"city":"Jeddah","allowed_uses":["RESIDENTIAL","COMMERCIAL"],"rule_version":"MOCK-PLAN-1"},
+    "PARCEL-MOCK-002":{"city":"Riyadh","allowed_uses":["RESIDENTIAL"],"rule_version":"MOCK-PLAN-1"}
+  },
+  "certificates":{
+    "CERT-MOCK-001":{"owner":"citizen-a","parcel_id":"PARCEL-MOCK-001","current_use":"RESIDENTIAL","version":1,"status":"active"},
+    "CERT-MOCK-002":{"owner":"citizen-b","parcel_id":"PARCEL-MOCK-002","current_use":"RESIDENTIAL","version":1,"status":"active"}
+  },
+  "applications":{
+    "APP-MOCK-001":{"owner":"citizen-a","certificate_id":"CERT-MOCK-001","target_use":"COMMERCIAL","status":"pending_review","stage":"mock_manual_review"}
+  },
+  "support_profiles":{
+    "PROFILE-MOCK-001":{"owner":"citizen-a","scenario_decision":"eligible","missing_fields":[]},
+    "PROFILE-MOCK-002":{"owner":"citizen-a","scenario_decision":"needs_input","missing_fields":["housing_history"]},
+    "PROFILE-MOCK-003":{"owner":"citizen-b","scenario_decision":"ineligible","missing_fields":[]}
+  },
+  "support_requests":{
+    "SUPPORT-MOCK-001":{"owner":"citizen-a","profile_id":"PROFILE-MOCK-001","status":"under_review","payment_status":"not_scheduled"}
+  },
+  "complaints":{
+    "CMP-MOCK-001":{"owner":"citizen-a","category":"waste","parcel_id":"PARCEL-MOCK-001","status":"closed","resolution_record":"crew_reported_cleaned","history":[{"event":"created"},{"event":"contact"},{"event":"contact"},{"event":"closed"}]},
+    "CMP-MOCK-002":{"owner":"citizen-b","category":"streetlight","parcel_id":"PARCEL-MOCK-002","status":"open","resolution_record":null,"history":[{"event":"created"}]}
+  },
+  "confirmations":{
+    "CONFIRM-MOCK-CHANGE-001":{"actor":"citizen-a","operation":"balady_change_submit","scope":{"certificate_id":"CERT-MOCK-001","target_use":"COMMERCIAL"}},
+    "CONFIRM-MOCK-CREATE-001":{"actor":"citizen-a","operation":"crm940_complaint_create","scope":{"category":"municipal_service_delay","related_application_id":"APP-MOCK-001","description":"POC: certificate change pending."}},
+    "CONFIRM-MOCK-REOPEN-001":{"actor":"citizen-a","operation":"crm940_complaint_reopen","scope":{"complaint_id":"CMP-MOCK-001","reason":"POC: issue remains unresolved."}}
+  },
+  "investment_opportunities":[
+    {"opportunity_id":"OPP-MOCK-001","city":"Jeddah","sector":"cafe","minimum_mock_budget_sar":200000,"parcel_id":"PARCEL-MOCK-001","source_ref":"fixture:OPP-MOCK-001"},
+    {"opportunity_id":"OPP-MOCK-002","city":"Riyadh","sector":"retail","minimum_mock_budget_sar":300000,"parcel_id":"PARCEL-MOCK-002","source_ref":"fixture:OPP-MOCK-002"}
+  ],
+  "agent_pending_polls":1,
+  "faults":{}
+}

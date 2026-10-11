@@ -1,0 +1,47 @@
+import test from 'node:test';
+import http from 'node:http';
+import { MockClient } from '../src/mock-client.mjs';
+import assert from 'node:assert/strict';
+import { mkdtemp,rm,readdir } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import { DatasetStore } from '../src/web-data.mjs';
+import { JobManager,atomicJSON } from '../src/web-jobs.mjs';
+import { createWebServer } from '../src/web-server.mjs';
+const root=await mkdtemp(join(tmpdir(),'poc-web-http-'));
+const store=new DatasetStore(join(root,'datasets'));await store.initialize();
+const models={ids:['deepseek-flash','deepseek-v4-pro'],defaultEmotion:'deepseek-flash',defaultPlanner:'deepseek-flash'};
+let actualAborted=false,started=0,resolveStarted;const startedPromise=new Promise(r=>resolveStarted=r);
+const jobs=new JobManager(store,models,{root:join(root,'jobs'),runner:async({signal,onProgress,runId})=>{
+ started++;resolveStarted();await onProgress({finished:1,total:60,active_case_ids:['ENG-002'],budget:{requests:1}});
+ await new Promise((resolve,reject)=>{const listener=()=>{actualAborted=true;reject(signal.reason);};if(signal.aborted)listener();else signal.addEventListener('abort',listener,{once:true});});
+ return {summary:{run_id:runId,status:'finished'}};
+}});await jobs.initialize();
+let app,url,csrf;
+test.before(async()=>{app=await createWebServer({store,models,jobs});await new Promise(r=>app.server.listen(0,'127.0.0.1',r));url='http://127.0.0.1:'+app.server.address().port;csrf=(await(await fetch(url+'/api/catalog')).json()).csrf;});
+const post=(path,payload,extra={})=>fetch(url+path,{method:'POST',headers:{'Content-Type':'application/json','X-POC-CSRF':csrf,...extra},body:JSON.stringify(payload)});
+test('HTTP serves UI, complete registry and four datasets without credentials',async()=>{const html=await(await fetch(url)).text();assert.match(html,/测试数据/);const cat=await(await fetch(url+'/api/catalog')).json();assert.equal(cat.plugins.length,4);assert.equal(cat.modules.length,4);assert.deepEqual(cat.modules.find(m=>m.id==='emotion').input_schema.required,['messages','current_message_id']);assert.equal(cat.datasets.reduce((n,x)=>n+x.cases,0),804);assert.equal(cat.plugins.reduce((n,x)=>n+x.operations.length,0),16);assert(!JSON.stringify(cat).includes('DEEPSEEK_API_KEY'));});
+test('HTTP rejects wrong origins, missing CSRF, path traversal and bad module',async()=>{assert.equal((await fetch(url+'/api/import/commit',{method:'POST',headers:{'Content-Type':'application/json'},body:'{}'})).status,403);assert.equal((await post('/api/import/preview',{}, {Origin:'https://example.com'})).status,403);assert.equal((await fetch(url+'/api/runs/bad/download/%2e%2e%2f.env')).status,400);assert.equal((await post('/api/runs',{suite:'planning',datasetId:'builtin-emotion',requestId:'invalid'})).status,400);});
+test('HTTP preview revalidates at commit and input-only dataset stays unscored',async()=>{const content=await store.template('planning',false),payload={format:'json',content};const p=await(await post('/api/import/preview',payload)).json();assert.equal(p.valid,true);assert.equal(p.scored,0);assert.equal(p.envelope,undefined);const d=await(await post('/api/import/commit',{...payload,digest:p.digest})).json();const data=await(await fetch(url+'/api/datasets/'+d.id)).json();assert.equal(data.items[0].grading,'unscored');assert.equal(data.items[0].reference,null);});
+test('real cancel sends AbortSignal, stops the active operation and durable state survives refresh',async()=>{
+ const payload={suite:'engineering',datasetId:'builtin-engineering',requestId:'http-cancel-test'};
+ const first=await(await post('/api/runs',payload)).json();const duplicate=await(await post('/api/runs',payload)).json();await startedPromise;assert.equal(first.run_id,duplicate.run_id);assert.equal(started,1);
+ jobs.get(first.run_id).case_ids.push('ENG-002');const refresh=await(await fetch(url+'/api/runs/'+first.run_id)).json();assert.equal(refresh.progress.finished,1);assert.equal(refresh.cases[0].execution_status,'running');
+ assert.equal((await post('/api/runs',{...payload,requestId:'second-active'})).status,409);
+ await post('/api/runs/'+first.run_id+'/cancel',{});
+ for(let i=0;i<50&&jobs.get(first.run_id).status!=='cancelled';i++)await new Promise(r=>setTimeout(r,10));
+ assert.equal(actualAborted,true);assert.equal(jobs.get(first.run_id).status,'cancelled');assert.equal(jobs.controllers.size,0);
+ const reloaded=new JobManager(store,models,{root:jobs.root});await reloaded.initialize();assert.equal(reloaded.get(first.run_id).status,'cancelled');assert.equal(reloaded.get(first.run_id).progress.finished,1);
+});
+test('run cancellation closes actual in-flight business and mock control HTTP requests',async()=>{
+ let count=0,resolveStarted,resolveClosed,closed=0;const began=new Promise(r=>resolveStarted=r),ended=new Promise(r=>resolveClosed=r);
+ const backend=http.createServer((req,res)=>{if(++count===2)resolveStarted();res.on('close',()=>{if(!res.writableEnded&&++closed===2)resolveClosed();});});
+ await new Promise(r=>backend.listen(0,'127.0.0.1',r));const controller=new AbortController();
+ const mock=new MockClient('http://127.0.0.1:'+backend.address().port,'test-token');mock.signal=controller.signal;
+ const requests=[mock.business('case','citizen-a',{method:'GET',path:'/slow',path_parameters:[]},{}),mock.control('/slow')];
+ await began;controller.abort();const outcomes=await Promise.allSettled(requests);await ended;
+ assert(outcomes.every(x=>x.status==='rejected'&&x.reason.name==='AbortError'));assert.equal(closed,2);
+ await new Promise(r=>backend.close(r));
+});
+test('server restart marks unfinished jobs interrupted without auto-repeating calls',async()=>{const id='interrupted-fixture';await atomicJSON(join(jobs.root,id+'.json'),{run_id:id,status:'running',request:{suite:'engineering',requestId:id},progress:{finished:2,total:60,active_case_ids:['ENG-003']},case_ids:['ENG-001','ENG-002']});const reloaded=new JobManager(store,models,{root:jobs.root});await reloaded.initialize();assert.equal(reloaded.get(id).status,'interrupted');assert.equal(started,1);});
+test.after(async()=>{await jobs.shutdown();await new Promise(r=>app.server.close(r));await rm(root,{recursive:true,force:true});});

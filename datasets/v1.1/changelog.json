@@ -1,0 +1,63 @@
+{
+  "dataset_version": "poc-dataset-v1.1.0",
+  "baseline_dataset_version": "poc-dataset-v1.0.0",
+  "baseline_release_digest": "45789235b83a22f077c410ba9ed9863a9e87a36bafe4d8ad91dadbbca1477a4c",
+  "semantic_gold_changed": false,
+  "changes": [
+    {
+      "case_id": "PLAN-04-2",
+      "file": "planning/references.jsonl",
+      "reason": "The host write tool can prepare an exact proposal without backend mutation; allow this invocation, retain no-mutation oracle assertions."
+    },
+    {
+      "case_id": "PLAN-04-4",
+      "file": "planning/references.jsonl",
+      "reason": "The host write tool can prepare an exact proposal without backend mutation; allow this invocation, retain no-mutation oracle assertions."
+    },
+    {
+      "case_id": "PLAN-04-4",
+      "file": "planning/references.jsonl",
+      "reason": "The final user message replaces the old submit goal with a fully specified validate-only goal; completion must refer to that new goal, not an unresolved old confirmation. The old reference already included completed; this revision makes the final-goal contract explicit."
+    },
+    {
+      "case_id": "PLAN-11-2",
+      "file": "planning/references.jsonl",
+      "reason": "The host write tool can prepare an exact proposal without backend mutation; allow this invocation, retain no-mutation oracle assertions."
+    },
+    {
+      "case_id": "PLAN-11-4",
+      "file": "planning/references.jsonl",
+      "reason": "The host write tool can prepare an exact proposal without backend mutation; allow this invocation, retain no-mutation oracle assertions."
+    },
+    {
+      "case_id": "PLAN-12-2",
+      "file": "planning/references.jsonl",
+      "reason": "The host write tool can prepare an exact proposal without backend mutation; allow this invocation, retain no-mutation oracle assertions."
+    },
+    {
+      "case_id": "PLAN-15-3",
+      "file": "planning/inputs.jsonl",
+      "reason": "Use legal fixture value 100 (allowed range 0..100) instead of 1000; it still exceeds the three-poll budget and preserves the intended pending/cancel test."
+    },
+    {
+      "case_id": "PLAN-16-1",
+      "file": "planning/inputs.jsonl",
+      "reason": "Use legal fixture value 100 (allowed range 0..100) instead of 1000; it still exceeds the three-poll budget and preserves the intended pending/cancel test."
+    },
+    {
+      "case_id": "ENG-054",
+      "file": "engineering/inputs.jsonl",
+      "reason": "Use legal fixture value 100 (allowed range 0..100) instead of 1000; it still exceeds the three-poll budget and preserves the intended pending/cancel test."
+    }
+  ],
+  "baseline_generator_archive": {
+    "original_path": "scripts/generate_datasets.py",
+    "archived_path": "scripts/generate_datasets_v1_0.py",
+    "sha256": "d15fc61c03dfb791dabe8bea99435b1a887ec89e4df158b455ccf10cf0faa538"
+  },
+  "independent_contract_inspection": [
+    "src/entry-agent.mjs executeBusiness saves a proposal before issuing a backend write",
+    "src/scoring.mjs scores all business tool invocations, including preparation",
+    "poc_mocks/server.py _MockHandler fixture validation restricts pending polls to 0..100"
+  ]
+}

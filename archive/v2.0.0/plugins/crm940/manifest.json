@@ -1,0 +1,280 @@
+{
+  "plugin_version": "2.0.0",
+  "system": "940",
+  "skill_file": "SKILL.md",
+  "description": "940 fictional government POC capabilities",
+  "operations": [
+    {
+      "id": "crm940_complaint_get",
+      "system": "940",
+      "skill": "crm940.municipal-complaint",
+      "method": "GET",
+      "path": "/crm940/complaints/{complaint_id}",
+      "description": "查询当前用户市政投诉状态；关闭状态不能证明现场问题已解决。",
+      "effect": "read",
+      "required": [],
+      "properties": {},
+      "path_parameters": [
+        "complaint_id"
+      ],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "complaint_id": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "complaint_id"
+        ],
+        "additionalProperties": false
+      },
+      "capability_id": "940.complaint_get@1",
+      "subject_fields": [
+        "complaint_id"
+      ],
+      "resource_prefixes": [
+        "CMP"
+      ],
+      "keywords": "complaint report status",
+      "adapter": "http_mock"
+    },
+    {
+      "id": "crm940_history_get",
+      "system": "940",
+      "skill": "crm940.municipal-complaint",
+      "method": "GET",
+      "path": "/crm940/complaints/{complaint_id}/history",
+      "description": "查询同一市政投诉的联系和处理历史；区分重复联系与新投诉。",
+      "effect": "read",
+      "required": [],
+      "properties": {},
+      "path_parameters": [
+        "complaint_id"
+      ],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "complaint_id": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "complaint_id"
+        ],
+        "additionalProperties": false
+      },
+      "capability_id": "940.history_get@1",
+      "subject_fields": [
+        "complaint_id"
+      ],
+      "resource_prefixes": [
+        "CMP"
+      ],
+      "keywords": "complaint contact history repeated",
+      "adapter": "http_mock"
+    },
+    {
+      "id": "crm940_complaint_create",
+      "system": "940",
+      "skill": "crm940.municipal-complaint",
+      "method": "POST",
+      "path": "/crm940/complaints",
+      "description": "模拟新建市政问题或 BALADY 服务延迟投诉；需用户确认，不办理住房补贴。",
+      "effect": "write",
+      "required": [
+        "category",
+        "description",
+        "confirmation_ref"
+      ],
+      "properties": {
+        "category": "string",
+        "description": "string",
+        "related_application_id": "string",
+        "parcel_id": "string",
+        "confirmation_ref": "string"
+      },
+      "path_parameters": [],
+      "requires_idempotency_key": true,
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "category": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          },
+          "related_application_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "parcel_id": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "category",
+          "description"
+        ],
+        "additionalProperties": false
+      },
+      "capability_id": "940.complaint_create@1",
+      "subject_fields": [
+        "complaint_id",
+        "parcel_id",
+        "related_application_id"
+      ],
+      "resource_prefixes": [
+        "APP",
+        "PARCEL"
+      ],
+      "keywords": "create municipal complaint report hazard",
+      "adapter": "http_mock"
+    },
+    {
+      "id": "crm940_complaint_reopen",
+      "system": "940",
+      "skill": "crm940.municipal-complaint",
+      "method": "POST",
+      "path": "/crm940/complaints/{complaint_id}/reopen",
+      "description": "凭模拟确认重开已关闭的本人投诉；重开不是实际问题修复。",
+      "effect": "write",
+      "required": [
+        "reason",
+        "confirmation_ref"
+      ],
+      "properties": {
+        "reason": "string",
+        "confirmation_ref": "string"
+      },
+      "path_parameters": [
+        "complaint_id"
+      ],
+      "requires_idempotency_key": true,
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "complaint_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "complaint_id",
+          "reason"
+        ],
+        "additionalProperties": false
+      },
+      "capability_id": "940.complaint_reopen@1",
+      "subject_fields": [
+        "complaint_id"
+      ],
+      "resource_prefixes": [
+        "CMP"
+      ],
+      "keywords": "reopen closed complaint unresolved",
+      "adapter": "http_mock"
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "940.complaint_get@1",
+      "description": "complaint report status; 查询当前用户市政投诉状态；关闭状态不能证明现场问题已解决。",
+      "operations": [
+        "crm940_complaint_get"
+      ],
+      "resource_prefixes": [
+        "CMP"
+      ],
+      "completion": {
+        "inspect": {
+          "required_operations": [
+            "crm940_complaint_get"
+          ]
+        },
+        "execute": {
+          "required_operations": [
+            "crm940_complaint_get"
+          ]
+        }
+      }
+    },
+    {
+      "id": "940.history_get@1",
+      "description": "complaint contact history repeated; 查询同一市政投诉的联系和处理历史；区分重复联系与新投诉。",
+      "operations": [
+        "crm940_history_get"
+      ],
+      "resource_prefixes": [
+        "CMP"
+      ],
+      "completion": {
+        "inspect": {
+          "required_operations": [
+            "crm940_history_get"
+          ]
+        },
+        "execute": {
+          "required_operations": [
+            "crm940_history_get"
+          ]
+        }
+      }
+    },
+    {
+      "id": "940.complaint_create@1",
+      "description": "create municipal complaint report hazard; 模拟新建市政问题或 BALADY 服务延迟投诉；需用户确认，不办理住房补贴。",
+      "operations": [
+        "crm940_complaint_create"
+      ],
+      "resource_prefixes": [
+        "APP",
+        "PARCEL"
+      ],
+      "completion": {
+        "inspect": {
+          "required_operations": [
+            "crm940_complaint_create"
+          ]
+        },
+        "execute": {
+          "required_operations": [
+            "crm940_complaint_create"
+          ]
+        }
+      }
+    },
+    {
+      "id": "940.complaint_reopen@1",
+      "description": "reopen closed complaint unresolved; 凭模拟确认重开已关闭的本人投诉；重开不是实际问题修复。",
+      "operations": [
+        "crm940_complaint_reopen"
+      ],
+      "resource_prefixes": [
+        "CMP"
+      ],
+      "completion": {
+        "inspect": {
+          "required_operations": [
+            "crm940_complaint_reopen"
+          ]
+        },
+        "execute": {
+          "required_operations": [
+            "crm940_complaint_reopen"
+          ]
+        }
+      }
+    }
+  ]
+}

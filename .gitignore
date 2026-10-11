@@ -7,7 +7,7 @@ artifacts/
 node_modules/
 .npm-cache/
 *.log
-reports/.running-*
-reports/history/
+reports/*
+!reports/.gitkeep
 deliverables/
 .DS_Store

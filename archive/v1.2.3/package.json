@@ -1,0 +1,24 @@
+{
+  "name": "momah-entry-poc",
+  "version": "1.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "test:mocks": "python3 -m unittest discover -s tests -v",
+    "check": "node scripts/check.mjs",
+    "poc": "node --env-file-if-exists=.env src/cli.mjs",
+    "eval:offline": "npm run poc -- eval --mode offline --suite engineering --split regression",
+    "eval:live": "npm run poc -- eval --mode live --suite all --split regression",
+    "probe": "npm run poc -- probe"
+  },
+  "dependencies": {
+    "@earendil-works/pi-agent-core": "1.1.0",
+    "@earendil-works/pi-ai": "1.1.0",
+    "@earendil-works/pi-coding-agent": "1.1.0",
+    "ajv": "8.20.0"
+  }
+}

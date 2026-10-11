@@ -1,0 +1,171 @@
+{
+  "plugin_version": "2.0.0",
+  "system": "SAKANI",
+  "skill_file": "SKILL.md",
+  "description": "SAKANI fictional government POC capabilities",
+  "operations": [
+    {
+      "id": "sakani_requirements_get",
+      "system": "SAKANI",
+      "skill": "sakani.housing-support",
+      "method": "GET",
+      "path": "/sakani/support/requirements",
+      "description": "查看本 POC 的虚构住房支持条件，不给出申请人资格结论。",
+      "effect": "read",
+      "required": [],
+      "properties": {},
+      "path_parameters": [],
+      "input_schema": {
+        "type": "object",
+        "properties": {},
+        "required": [],
+        "additionalProperties": false
+      },
+      "capability_id": "sakani.requirements_get@1",
+      "subject_fields": [],
+      "resource_prefixes": [],
+      "keywords": "housing support requirements conditions policy",
+      "adapter": "http_mock"
+    },
+    {
+      "id": "sakani_support_assess",
+      "system": "SAKANI",
+      "skill": "sakani.housing-support",
+      "method": "POST",
+      "path": "/sakani/support/assess",
+      "description": "按当前用户的模拟资料返回 eligible/ineligible/needs_input 场景结论；不是政府资格审批。",
+      "effect": "read",
+      "required": [
+        "profile_id"
+      ],
+      "properties": {
+        "profile_id": "string"
+      },
+      "path_parameters": [],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "profile_id": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "profile_id"
+        ],
+        "additionalProperties": false
+      },
+      "capability_id": "sakani.support_assess@1",
+      "subject_fields": [
+        "profile_id"
+      ],
+      "resource_prefixes": [
+        "PROFILE"
+      ],
+      "keywords": "housing support profile eligibility assessment evaluate",
+      "adapter": "http_mock"
+    },
+    {
+      "id": "sakani_request_get",
+      "system": "SAKANI",
+      "skill": "sakani.housing-support",
+      "method": "GET",
+      "path": "/sakani/requests/{request_id}",
+      "description": "查询已有住房支持申请和模拟付款状态，不查询土地变更或市政投诉。",
+      "effect": "read",
+      "required": [],
+      "properties": {},
+      "path_parameters": [
+        "request_id"
+      ],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "request_id": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "request_id"
+        ],
+        "additionalProperties": false
+      },
+      "capability_id": "sakani.request_get@1",
+      "subject_fields": [
+        "request_id"
+      ],
+      "resource_prefixes": [
+        "SUPPORT"
+      ],
+      "keywords": "housing support request status payment",
+      "adapter": "http_mock"
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "sakani.requirements_get@1",
+      "description": "housing support requirements conditions policy; 查看本 POC 的虚构住房支持条件，不给出申请人资格结论。",
+      "operations": [
+        "sakani_requirements_get"
+      ],
+      "resource_prefixes": [],
+      "completion": {
+        "inspect": {
+          "required_operations": [
+            "sakani_requirements_get"
+          ]
+        },
+        "execute": {
+          "required_operations": [
+            "sakani_requirements_get"
+          ]
+        }
+      }
+    },
+    {
+      "id": "sakani.support_assess@1",
+      "description": "housing support profile eligibility assessment evaluate; 按当前用户的模拟资料返回 eligible/ineligible/needs_input 场景结论；不是政府资格审批。",
+      "operations": [
+        "sakani_support_assess"
+      ],
+      "resource_prefixes": [
+        "PROFILE"
+      ],
+      "completion": {
+        "inspect": {
+          "required_operations": [
+            "sakani_support_assess"
+          ]
+        },
+        "execute": {
+          "required_operations": [
+            "sakani_support_assess"
+          ]
+        }
+      }
+    },
+    {
+      "id": "sakani.request_get@1",
+      "description": "housing support request status payment; 查询已有住房支持申请和模拟付款状态，不查询土地变更或市政投诉。",
+      "operations": [
+        "sakani_request_get"
+      ],
+      "resource_prefixes": [
+        "SUPPORT"
+      ],
+      "completion": {
+        "inspect": {
+          "required_operations": [
+            "sakani_request_get"
+          ]
+        },
+        "execute": {
+          "required_operations": [
+            "sakani_request_get"
+          ]
+        }
+      }
+    }
+  ]
+}

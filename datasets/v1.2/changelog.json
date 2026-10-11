@@ -1,0 +1,44 @@
+{
+  "dataset_version": "poc-dataset-v1.2.0",
+  "baseline_dataset_version": "poc-dataset-v1.1.0",
+  "baseline_release_digest": "8c21d1d38c7020dc346be7742d2fffbffbd299fdbbe6297763afecfe0690b7c7",
+  "semantic_gold_changed": false,
+  "changes": [
+    {
+      "case_id": "PLAN-08-4",
+      "reason": "The literal message declares a SAKANI request ID and excludes the land tool but does not ask for a specific action. Asking the goal is legitimate, while a contextual status lookup remains the original canonical path. Both retain the prohibition on housing-support approval claims."
+    },
+    {
+      "case_id": "PLAN-12-3",
+      "reason": "The mock permits reopening only closed complaints. A lookup proving CMP-MOCK-002 is already open is sufficient to report failed/handoff; do not force an unnecessary invalid write. Require at least one operation that observes or rejects this subject, keep open-state oracle and forbidden reopened claim."
+    },
+    {
+      "case_id": "PLAN-17-2",
+      "reason": "As with PLAN-11-2, the write Tool prepares a host proposal before confirmation. Its invocation is legal; the retained complaints-length oracle must show no committed write after refusal."
+    }
+  ],
+  "baseline_generator_archive": {
+    "original_path": "scripts/generate_datasets.py",
+    "archived_path": "scripts/generate_datasets_v1_1.py",
+    "sha256": "c6c32b987d1f367ce87dea50d908bbbebf75c69287e907d88585434078d90432"
+  },
+  "independent_contract_inspection": [
+    "src/entry-agent.mjs executeBusiness prepares proposal before backend mutation",
+    "poc_mocks/server.py crm940_complaint_reopen rejects any complaint not closed",
+    "Literal PLAN-08-4 input has no explicit requested action; original ID-only ambiguity was not model-specific"
+  ],
+  "audit_only_no_reference_change": [
+    {
+      "case_id": "PLAN-12-3",
+      "issue": "Second turn has confirm=true even when an already-open lookup ends in failed with no proposal. A runner must conditionally apply this confirmation action to a pending exact proposal; never manufacture authorization or score file existence as task success."
+    },
+    {
+      "case_id": "PLAN-11-3",
+      "issue": "Missing complaint subject/location remains a genuine clarification task; no relaxation of required category/description."
+    },
+    {
+      "case_id": "PLAN-20-3",
+      "issue": "Two explicit independent goals still require both SAKANI requirements and BALADY application calls; missing one remains a real failure."
+    }
+  ]
+}

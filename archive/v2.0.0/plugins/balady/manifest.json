@@ -1,0 +1,302 @@
+{
+  "plugin_version": "2.0.0",
+  "system": "BALADY",
+  "skill_file": "SKILL.md",
+  "description": "BALADY fictional government POC capabilities",
+  "operations": [
+    {
+      "id": "balady_planning_get",
+      "system": "BALADY",
+      "skill": "balady.land-use",
+      "method": "GET",
+      "path": "/balady/parcels/{parcel_id}/planning",
+      "description": "查询地块规划用途；用于核对地块，不用于查询个人证书或批准变更。",
+      "effect": "read",
+      "required": [],
+      "properties": {},
+      "path_parameters": [
+        "parcel_id"
+      ],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "parcel_id": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "parcel_id"
+        ],
+        "additionalProperties": false
+      },
+      "capability_id": "balady.planning_get@1",
+      "subject_fields": [
+        "parcel_id"
+      ],
+      "resource_prefixes": [
+        "PARCEL"
+      ],
+      "keywords": "parcel planning allowed uses zoning land",
+      "adapter": "http_mock"
+    },
+    {
+      "id": "balady_certificate_get",
+      "system": "BALADY",
+      "skill": "balady.land-use",
+      "method": "GET",
+      "path": "/balady/certificates/{certificate_id}",
+      "description": "查询当前用户的土地使用证书及用途版本，不修改证书。",
+      "effect": "read",
+      "required": [],
+      "properties": {},
+      "path_parameters": [
+        "certificate_id"
+      ],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "certificate_id": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "certificate_id"
+        ],
+        "additionalProperties": false
+      },
+      "capability_id": "balady.certificate_get@1",
+      "subject_fields": [
+        "certificate_id"
+      ],
+      "resource_prefixes": [
+        "CERT"
+      ],
+      "keywords": "certificate current land use personal",
+      "adapter": "http_mock"
+    },
+    {
+      "id": "balady_change_validate",
+      "system": "BALADY",
+      "skill": "balady.land-use",
+      "method": "POST",
+      "path": "/balady/changes/validate",
+      "description": "根据模拟规划规则预校验指定证书的目标用途；合格不等于批准。",
+      "effect": "read",
+      "required": [
+        "certificate_id",
+        "target_use"
+      ],
+      "properties": {
+        "certificate_id": "string",
+        "target_use": "string"
+      },
+      "path_parameters": [],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "certificate_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "target_use": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "certificate_id",
+          "target_use"
+        ],
+        "additionalProperties": false
+      },
+      "capability_id": "balady.change_submit@1",
+      "subject_fields": [
+        "certificate_id",
+        "validation_id"
+      ],
+      "resource_prefixes": [
+        "CERT"
+      ],
+      "keywords": "validate validation feasibility change use certificate",
+      "adapter": "http_mock"
+    },
+    {
+      "id": "balady_change_submit",
+      "system": "BALADY",
+      "skill": "balady.land-use",
+      "method": "POST",
+      "path": "/balady/changes",
+      "description": "凭预校验结果及模拟确认提交用途变更申请，返回申请回执；不直接改证书。",
+      "effect": "write",
+      "required": [
+        "validation_id",
+        "confirmation_ref"
+      ],
+      "properties": {
+        "validation_id": "string",
+        "confirmation_ref": "string"
+      },
+      "path_parameters": [],
+      "requires_idempotency_key": true,
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "validation_id": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "validation_id"
+        ],
+        "additionalProperties": false
+      },
+      "capability_id": "balady.change_submit@1",
+      "subject_fields": [
+        "validation_id"
+      ],
+      "resource_prefixes": [
+        "CERT"
+      ],
+      "keywords": "submit change application certificate",
+      "adapter": "http_mock",
+      "subject_dependencies": [
+        {
+          "argument": "validation_id",
+          "operation": "balady_change_validate",
+          "output_match": "validation_id",
+          "subject_argument": "certificate_id"
+        }
+      ]
+    },
+    {
+      "id": "balady_application_get",
+      "system": "BALADY",
+      "skill": "balady.land-use",
+      "method": "GET",
+      "path": "/balady/applications/{application_id}",
+      "description": "查询用途变更申请进度；申请提交或处理中不等于批准。",
+      "effect": "read",
+      "required": [],
+      "properties": {},
+      "path_parameters": [
+        "application_id"
+      ],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "application_id": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "application_id"
+        ],
+        "additionalProperties": false
+      },
+      "capability_id": "balady.application_get@1",
+      "subject_fields": [
+        "application_id"
+      ],
+      "resource_prefixes": [
+        "APP"
+      ],
+      "keywords": "application status progress",
+      "adapter": "http_mock"
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "balady.planning_get@1",
+      "description": "parcel planning allowed uses zoning land; 查询地块规划用途；用于核对地块，不用于查询个人证书或批准变更。",
+      "operations": [
+        "balady_planning_get"
+      ],
+      "resource_prefixes": [
+        "PARCEL"
+      ],
+      "completion": {
+        "inspect": {
+          "required_operations": [
+            "balady_planning_get"
+          ]
+        },
+        "execute": {
+          "required_operations": [
+            "balady_planning_get"
+          ]
+        }
+      }
+    },
+    {
+      "id": "balady.certificate_get@1",
+      "description": "certificate current land use personal; 查询当前用户的土地使用证书及用途版本，不修改证书。",
+      "operations": [
+        "balady_certificate_get"
+      ],
+      "resource_prefixes": [
+        "CERT"
+      ],
+      "completion": {
+        "inspect": {
+          "required_operations": [
+            "balady_certificate_get"
+          ]
+        },
+        "execute": {
+          "required_operations": [
+            "balady_certificate_get"
+          ]
+        }
+      }
+    },
+    {
+      "id": "balady.change_submit@1",
+      "description": "submit change application certificate; 凭预校验结果及模拟确认提交用途变更申请，返回申请回执；不直接改证书。",
+      "operations": [
+        "balady_change_validate",
+        "balady_change_submit"
+      ],
+      "resource_prefixes": [
+        "CERT"
+      ],
+      "completion": {
+        "inspect": {
+          "required_operations": [
+            "balady_change_validate"
+          ]
+        },
+        "execute": {
+          "required_operations": [
+            "balady_change_submit"
+          ]
+        }
+      }
+    },
+    {
+      "id": "balady.application_get@1",
+      "description": "application status progress; 查询用途变更申请进度；申请提交或处理中不等于批准。",
+      "operations": [
+        "balady_application_get"
+      ],
+      "resource_prefixes": [
+        "APP"
+      ],
+      "completion": {
+        "inspect": {
+          "required_operations": [
+            "balady_application_get"
+          ]
+        },
+        "execute": {
+          "required_operations": [
+            "balady_application_get"
+          ]
+        }
+      }
+    }
+  ]
+}

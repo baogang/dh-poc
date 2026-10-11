@@ -1,0 +1,223 @@
+{
+  "dataset_version": "poc-dataset-v1.2.0",
+  "passed": true,
+  "errors": [],
+  "reference_status": "synthetic provisional, no Arabic/native-domain review",
+  "sections": {
+    "semantic": {
+      "records": 600,
+      "families": 150,
+      "split_counts": {
+        "dev": 300,
+        "regression": 120,
+        "holdout": 180
+      },
+      "group_counts": {
+        "indicators": 252,
+        "emotions": 100,
+        "language": 100,
+        "multi_turn": 100,
+        "out_of_scope": 48
+      },
+      "exact_duplicate_groups": [],
+      "cross_split_family_count": 0,
+      "declared_language_counts": {
+        "arabic_english": 90,
+        "saudi_colloquial": 360,
+        "msa": 120,
+        "english": 30
+      },
+      "near_duplicate_audit": {
+        "metric": "Jaccard over lowercase word trigrams, Arabic diacritics removed",
+        "threshold": 0.8,
+        "pairs": [],
+        "cross_split_pairs": 0,
+        "note": "Lexical screening is not proof of semantic independence; shared rendering templates remain a documented limitation."
+      },
+      "sentiment_counts": {
+        "negative": 149,
+        "positive": 141,
+        "neutral": 287,
+        "mixed": 15,
+        "undetermined": 8
+      },
+      "emotion_positive_counts": {
+        "frustration": 75,
+        "satisfaction": 97,
+        "confusion": 43,
+        "gratitude": 70,
+        "worry": 32,
+        "disappointment": 39,
+        "anger": 18
+      },
+      "indicator_positive_counts": {
+        "SA01": 25,
+        "SA02": 40,
+        "SA03": 39,
+        "SA04": 33,
+        "SA05": 36
+      },
+      "intent_counts": {
+        "complaint_reopen": 66,
+        "complaint_status": 100,
+        "contact_history": 72,
+        "application_status": 39,
+        "support_status": 24,
+        "planning_query": 15,
+        "other": 72,
+        "support_eligibility": 14,
+        "investment_status": 7,
+        "complaint_create": 50,
+        "land_use_change": 7,
+        "certificate_query": 13,
+        "support_requirements": 12,
+        "investment_advice": 20,
+        "investment_cancel": 9,
+        "clarify": 26
+      },
+      "phenomenon_counts": {
+        "uncertainty": 13,
+        "historical_resolved": 25,
+        "different_events": 18,
+        "negation": 84,
+        "sarcasm": 13,
+        "hypothetical": 12,
+        "emotion_anchor": 100,
+        "closure-negation": 4,
+        "danger-negation": 4,
+        "recurrence-negation": 4,
+        "same-contact": 4,
+        "speed-sarcasm": 4,
+        "praise-sarcasm": 4,
+        "past-risk": 4,
+        "delay-quantity": 4,
+        "arabic-digits": 4,
+        "emoji-scope": 4,
+        "spelling-noise": 4,
+        "quote-citizen": 4,
+        "double-negation": 4,
+        "conditional": 4,
+        "mixed-language": 4,
+        "instruction-injection": 4,
+        "agent-wording": 4,
+        "repaired-v-reported": 4,
+        "anger-not-danger": 4,
+        "status-v-complaint": 4,
+        "land-ambiguity": 4,
+        "numbers-not-repeat": 4,
+        "hope-v-emotion": 4,
+        "risk-object": 4,
+        "confirmation-distinction": 4,
+        "emotion_deescalation": 5,
+        "emotion_escalation": 5,
+        "speaker_isolation": 5,
+        "different_targets": 5,
+        "coreference": 10,
+        "quoted_example": 5,
+        "entity_correction": 5,
+        "multiple_entities": 5,
+        "goal_change": 10,
+        "multi_intent": 5,
+        "current_overrides_history": 10,
+        "per_claim_evidence": 5,
+        "location_correction": 5,
+        "temporal_coreference": 5,
+        "perceived_delay": 5,
+        "advice_not_execution": 5
+      },
+      "multi_turn_cases": 106,
+      "indicator_counts_by_split": {
+        "dev": {
+          "SA01": 14,
+          "SA02": 25,
+          "SA03": 26,
+          "SA04": 18,
+          "SA05": 16
+        },
+        "regression": {
+          "SA01": 7,
+          "SA02": 6,
+          "SA03": 4,
+          "SA04": 8,
+          "SA05": 8
+        },
+        "holdout": {
+          "SA01": 4,
+          "SA02": 9,
+          "SA03": 9,
+          "SA04": 7,
+          "SA05": 12
+        }
+      }
+    },
+    "planning": {
+      "records": 80,
+      "families": 20,
+      "split_counts": {
+        "holdout": 24,
+        "dev": 32,
+        "regression": 24
+      },
+      "group_counts": {
+        "BALADY": 20,
+        "SAKANI": 12,
+        "940": 16,
+        "FURAS": 16,
+        "cross_domain": 12,
+        "ambiguity": 4
+      },
+      "exact_duplicate_groups": [],
+      "cross_split_family_count": 0,
+      "declared_language_counts": {
+        "arabic": 49,
+        "english": 29,
+        "arabic_english": 2
+      },
+      "near_duplicate_audit": {
+        "metric": "Jaccard over lowercase word trigrams, Arabic diacritics removed",
+        "threshold": 0.8,
+        "pairs": [],
+        "cross_split_pairs": 0,
+        "note": "Lexical screening is not proof of semantic independence; shared rendering templates remain a documented limitation."
+      },
+      "required_tool_coverage": [
+        "balady_application_get",
+        "balady_certificate_get",
+        "balady_change_submit",
+        "balady_change_validate",
+        "balady_planning_get",
+        "crm940_complaint_create",
+        "crm940_complaint_get",
+        "crm940_complaint_reopen",
+        "crm940_history_get",
+        "furas_task_cancel",
+        "furas_task_get",
+        "furas_task_resume",
+        "furas_task_start",
+        "sakani_request_get",
+        "sakani_requirements_get",
+        "sakani_support_assess"
+      ],
+      "missing_required_tool_coverage": [],
+      "multi_turn_cases": 18,
+      "trusted_confirmation_cases": 5
+    },
+    "engineering": {
+      "records": 60,
+      "families": 15,
+      "split_counts": {
+        "regression": 60
+      },
+      "group_counts": {
+        "semantic_contract": 16,
+        "tool_guard": 16,
+        "backend_fault": 12,
+        "session_isolation": 8,
+        "budget": 4,
+        "prompt_security": 4
+      },
+      "exact_duplicate_groups": [],
+      "cross_split_family_count": 0
+    }
+  }
+}

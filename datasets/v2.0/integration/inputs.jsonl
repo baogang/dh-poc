@@ -1,0 +1,32 @@
+{"case_id": "ROUTE-01-1", "input": {"actor": "citizen-a", "handoff_scenario": "queued", "turns": [{"message": "ما حالة الشكوى CMP-MOCK-001؟"}]}}
+{"case_id": "ROUTE-01-2", "input": {"actor": "citizen-a", "handoff_scenario": "queued", "turns": [{"message": "أريد معرفة حالة شكواي CMP-MOCK-001."}]}}
+{"case_id": "ROUTE-01-3", "input": {"actor": "citizen-a", "handoff_scenario": "queued", "turns": [{"message": "What is the status of my complaint CMP-MOCK-001?"}]}}
+{"case_id": "ROUTE-01-4", "input": {"actor": "citizen-a", "handoff_scenario": "queued", "turns": [{"message": "Check my municipal complaint CMP-MOCK-001 status."}]}}
+{"case_id": "ROUTE-02-1", "input": {"actor": "citizen-a", "handoff_scenario": "queued", "turns": [{"message": "أنا راضٍ عن خدمتكم وأشكركم، أريد معرفة حالة الشكوى CMP-MOCK-001."}]}}
+{"case_id": "ROUTE-02-2", "input": {"actor": "citizen-a", "handoff_scenario": "queued", "turns": [{"message": "خدمتكم ممتازة وأنا سعيد بها. ما حالة شكواي CMP-MOCK-001؟"}]}}
+{"case_id": "ROUTE-02-3", "input": {"actor": "citizen-a", "handoff_scenario": "queued", "turns": [{"message": "I am pleased with your excellent service. Please check complaint CMP-MOCK-001."}]}}
+{"case_id": "ROUTE-02-4", "input": {"actor": "citizen-a", "handoff_scenario": "queued", "turns": [{"message": "Thank you, your service has been wonderful. What is the status of CMP-MOCK-001?"}]}}
+{"case_id": "ROUTE-03-1", "input": {"actor": "citizen-a", "handoff_scenario": "queued", "turns": [{"message": "أنا غاضب من خدمتكم السيئة. ما حالة شكواي CMP-MOCK-001؟"}]}}
+{"case_id": "ROUTE-03-2", "input": {"actor": "citizen-a", "handoff_scenario": "queued", "turns": [{"message": "طفشت من خدمتكم، تعبت من الانتظار. أريد معرفة حالة CMP-MOCK-001."}]}}
+{"case_id": "ROUTE-03-3", "input": {"actor": "citizen-a", "handoff_scenario": "queued", "turns": [{"message": "I am angry about your terrible service. Check complaint CMP-MOCK-001."}]}}
+{"case_id": "ROUTE-03-4", "input": {"actor": "citizen-a", "handoff_scenario": "queued", "turns": [{"message": "Your service is disappointing and I am frustrated. Check CMP-MOCK-001."}]}}
+{"case_id": "ROUTE-04-1", "input": {"actor": "citizen-a", "handoff_scenario": "queued", "turns": [{"message": "أشكركم على الخدمة الممتازة سابقًا لكن خدمتكم اليوم سيئة ومخيبة. ما حالة CMP-MOCK-001؟"}]}}
+{"case_id": "ROUTE-04-2", "input": {"actor": "citizen-a", "handoff_scenario": "queued", "turns": [{"message": "أنا سعيد بتعاملكم السابق لكنني غاضب من خدمتكم الحالية."}]}}
+{"case_id": "ROUTE-04-3", "input": {"actor": "citizen-a", "handoff_scenario": "queued", "turns": [{"message": "I appreciate your excellent earlier help, but today your service is terrible and disappointing."}]}}
+{"case_id": "ROUTE-04-4", "input": {"actor": "citizen-a", "handoff_scenario": "queued", "turns": [{"message": "I am happy with the earlier support and angry about the current poor service."}]}}
+{"case_id": "ROUTE-05-1", "input": {"actor": "citizen-a", "handoff_scenario": "queued", "turns": [{"message": "..."}]}}
+{"case_id": "ROUTE-05-2", "input": {"actor": "citizen-a", "handoff_scenario": "queued", "turns": [{"message": "???"}]}}
+{"case_id": "ROUTE-05-3", "input": {"actor": "citizen-a", "handoff_scenario": "queued", "turns": [{"message": "asdf qwer zxcv"}]}}
+{"case_id": "ROUTE-05-4", "input": {"actor": "citizen-a", "handoff_scenario": "queued", "turns": [{"message": "%%%%"}]}}
+{"case_id": "ROUTE-06-1", "input": {"actor": "citizen-a", "handoff_scenario": "unavailable", "turns": [{"message": "أنا غاضب من خدمتكم السيئة. ما حالة شكواي CMP-MOCK-001؟"}]}}
+{"case_id": "ROUTE-06-2", "input": {"actor": "citizen-a", "handoff_scenario": "unavailable", "turns": [{"message": "طفشت من خدمتكم، تعبت من الانتظار. أريد معرفة حالة CMP-MOCK-001."}]}}
+{"case_id": "ROUTE-06-3", "input": {"actor": "citizen-a", "handoff_scenario": "unavailable", "turns": [{"message": "I am angry about your terrible service. Check complaint CMP-MOCK-001."}]}}
+{"case_id": "ROUTE-06-4", "input": {"actor": "citizen-a", "handoff_scenario": "unavailable", "turns": [{"message": "Your service is disappointing and I am frustrated. Check CMP-MOCK-001."}]}}
+{"case_id": "ROUTE-07-1", "input": {"actor": "citizen-a", "handoff_scenario": "queued", "turns": [{"message": "ما حالة الشكوى CMP-MOCK-001؟"}, {"message": "أنا غاضب من خدمتكم السيئة. ما حالة شكواي CMP-MOCK-001؟"}, {"message": "ما حالة الشكوى CMP-MOCK-001؟"}]}}
+{"case_id": "ROUTE-07-2", "input": {"actor": "citizen-a", "handoff_scenario": "queued", "turns": [{"message": "أريد معرفة حالة شكواي CMP-MOCK-001."}, {"message": "طفشت من خدمتكم، تعبت من الانتظار. أريد معرفة حالة CMP-MOCK-001."}, {"message": "أريد معرفة حالة شكواي CMP-MOCK-001."}]}}
+{"case_id": "ROUTE-07-3", "input": {"actor": "citizen-a", "handoff_scenario": "queued", "turns": [{"message": "What is the status of my complaint CMP-MOCK-001?"}, {"message": "I am angry about your terrible service. Check complaint CMP-MOCK-001."}, {"message": "What is the status of my complaint CMP-MOCK-001?"}]}}
+{"case_id": "ROUTE-07-4", "input": {"actor": "citizen-a", "handoff_scenario": "queued", "turns": [{"message": "Check my municipal complaint CMP-MOCK-001 status."}, {"message": "Your service is disappointing and I am frustrated. Check CMP-MOCK-001."}, {"message": "Check my municipal complaint CMP-MOCK-001 status."}]}}
+{"case_id": "ROUTE-08-1", "input": {"actor": "citizen-a", "handoff_scenario": "queued", "turns": [{"message": "أنا غاضب من خدمتكم السيئة. ما حالة شكواي CMP-MOCK-001؟"}, {"message": "ما حالة الشكوى CMP-MOCK-001؟", "resume": true}]}}
+{"case_id": "ROUTE-08-2", "input": {"actor": "citizen-a", "handoff_scenario": "queued", "turns": [{"message": "طفشت من خدمتكم، تعبت من الانتظار. أريد معرفة حالة CMP-MOCK-001."}, {"message": "أريد معرفة حالة شكواي CMP-MOCK-001.", "resume": true}]}}
+{"case_id": "ROUTE-08-3", "input": {"actor": "citizen-a", "handoff_scenario": "queued", "turns": [{"message": "I am angry about your terrible service. Check complaint CMP-MOCK-001."}, {"message": "What is the status of my complaint CMP-MOCK-001?", "resume": true}]}}
+{"case_id": "ROUTE-08-4", "input": {"actor": "citizen-a", "handoff_scenario": "queued", "turns": [{"message": "Your service is disappointing and I am frustrated. Check CMP-MOCK-001."}, {"message": "Check my municipal complaint CMP-MOCK-001 status.", "resume": true}]}}
