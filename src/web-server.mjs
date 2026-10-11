@@ -8,10 +8,12 @@ import { DatasetStore,MODULES,MODULE_INPUTS } from './web-data.mjs';
 import { JobManager } from './web-jobs.mjs';
 import { DEFAULT_REGISTRY } from './capability-registry.mjs';
 import { redact } from './util.mjs';
+import { createWebAccess,webConfigFromEnv } from './web-access.mjs';
 const assets={'/':'index.html','/index.html':'index.html','/app.js':'app.js','/style.css':'style.css'};
 async function body(req){let size=0;const chunks=[];for await(const chunk of req){size+=chunk.length;if(size>11*1024*1024)throw Object.assign(new Error('请求超过 11 MB'),{status:413});chunks.push(chunk);}try{return JSON.parse(Buffer.concat(chunks).toString('utf8'));}catch{throw new Error('请求应为合法 JSON');}}
 const bounded=(value,def,max)=>{const n=value===null?def:Number(value);return Number.isInteger(n)&&n>=0?Math.min(n,max):def;};
-export async function createWebServer({store,models,jobs}={}){
+export async function createWebServer({store,models,jobs,access}={}){
+ const gate=createWebAccess(access);
  if(!store){store=new DatasetStore();await store.initialize();}
  if(!models){const runtime=await ModelRuntime.create({credentials:new InMemoryCredentialStore(),modelsStore:new InMemoryModelsStore(),modelsPath:null,allowModelNetwork:false,refreshOnCreate:false});models={ids:runtime.getModels('deepseek').map(m=>m.id),defaultEmotion:process.env.EMOTION_MODEL??process.env.DEEPSEEK_MODEL??'deepseek-flash',defaultPlanner:process.env.PLANNER_MODEL??process.env.DEEPSEEK_MODEL??'deepseek-flash'};}
  if(!jobs){jobs=new JobManager(store,models);await jobs.initialize();}
@@ -21,11 +23,14 @@ export async function createWebServer({store,models,jobs}={}){
   res.setHeader('X-Content-Type-Options','nosniff');res.setHeader('Referrer-Policy','no-referrer');
   res.setHeader('Content-Security-Policy',"default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' data:; object-src 'none'; frame-ancestors 'none'; base-uri 'none'");
   try{
+   if(req.method==='GET'&&req.url==='/healthz'){json(200,{status:'ok'});return;}
    const port=server.address()?.port;
-   if(![`127.0.0.1:${port}`,`localhost:${port}`].includes(req.headers.host))throw Object.assign(new Error('仅接受本机访问'),{status:403});
-   const url=new URL(req.url,'http://'+req.headers.host),parts=url.pathname.split('/').filter(Boolean).map(decodeURIComponent),q=url.searchParams;
+   const origin=gate.originFor(req,port);
+   if(!gate.authenticated(req)){res.setHeader('WWW-Authenticate','Basic realm="SENTRA POC", charset="UTF-8"');json(401,{error:'请输入网站访问账号和密码'});return;}
+   if(!req.url.startsWith('/')||req.url.startsWith('//'))throw Object.assign(new Error('无效请求路径'),{status:400});
+   const url=new URL(req.url,origin),parts=url.pathname.split('/').filter(Boolean).map(decodeURIComponent),q=url.searchParams;
    if(req.method!=='GET'){
-    if(req.headers['x-poc-csrf']!==csrf||req.headers['content-type']?.split(';')[0]!=='application/json'||(req.headers.origin&&req.headers.origin!==url.origin))throw Object.assign(new Error('请从本机页面提交操作'),{status:403});
+    if(req.headers['x-poc-csrf']!==csrf||req.headers['content-type']?.split(';')[0]!=='application/json'||(req.headers.origin&&req.headers.origin!==origin))throw Object.assign(new Error('请从网站页面提交操作'),{status:403});
    }
    if(req.method==='GET'&&assets[url.pathname]){const file=assets[url.pathname],data=await readFile(new URL('../web/'+file,import.meta.url));res.writeHead(200,{'Content-Type':file.endsWith('.html')?'text/html; charset=utf-8':file.endsWith('.js')?'text/javascript; charset=utf-8':'text/css; charset=utf-8','Cache-Control':'no-cache'});res.end(data);return;}
    if(req.method==='GET'&&url.pathname==='/api/catalog'){
@@ -56,8 +61,8 @@ export async function createWebServer({store,models,jobs}={}){
  return {server,store,jobs,models};
 }
 if(process.argv[1]===fileURLToPath(import.meta.url)){
- const port=Number(process.env.POC_WEB_PORT??8787);if(!Number.isInteger(port)||port<1024||port>65535)throw new Error('POC_WEB_PORT must be 1024–65535');
- const app=await createWebServer();app.server.listen(port,'127.0.0.1',()=>console.log(`SENTRA Web: http://127.0.0.1:${port} · 数据、任务和报告保存在本地`));
+ const {port,host,access}=webConfigFromEnv();
+ const app=await createWebServer({access});app.server.listen(port,host,()=>console.log(`SENTRA Web: ${access.publicOrigin??`http://${host}:${port}`} · 数据、任务和报告保存在服务端文件系统`));
  app.server.on('error',error=>{console.error(error.code==='EADDRINUSE'?'端口已占用，请设置 POC_WEB_PORT 后重试':error.message);process.exitCode=1;});
  let stopping=false;async function stop(){if(stopping)return;stopping=true;app.server.close();await app.jobs.shutdown();process.exit(0);}process.on('SIGINT',stop);process.on('SIGTERM',stop);
 }

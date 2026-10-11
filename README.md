@@ -25,6 +25,10 @@ npm run poc -- chat
 
 人工系统返回接收回执后，本次 Agent 会话结束。后续消息由会话服务处理，不会重新分析或规划，旧版 `/resume` 不再恢复这个会话。交接失败会明确说明并暂停自动业务，不能当作成功接收。
 
+## 公网演示部署
+
+公网演示可使用 [Render Free 部署指南](docs/render-deploy.md)：通过根目录 `render.yaml` 创建带访问密码的 Docker Web Service。无需数据库；模型 Key 在 Render 中设置。免费服务的导入数据和报告会随重启、休眠或重新部署丢失，留存前请下载。
+
 ## 全量回归和报告
 
 ```bash
@@ -57,4 +61,4 @@ Sentiment Accuracy 的分母是参考为 classified 的案例；Macro-F1 是三�
 
 V3 的合成参考仍需语言与业务专家审核，既有 holdout 已查看，只能作为回归，不能宣称新盲测或生产准确率。完整流程模型和下游模型的替换需重跑同一冻结集及适配契约。
 
-旧 V1/V2 数据和历史报告保留原指标，不与新三类分数直接比较。原 V2 实现归档于 `archive/v2.0.0`；[历史 V2 报告](reports/latest-v2.md) 与 [历史 V2 设计](docs/government-entry-agent-poc-v2.md) 可继续查看。当前服务只监听本机，真实客服、会话服务接入、生产持久化与并发接管需要后续工程实现。
+旧 V1/V2 数据和历史报告保留原指标，不与新三类分数直接比较。原 V2 实现归档于 `archive/v2.0.0`；[历史 V2 报告](reports/latest-v2.md) 与 [历史 V2 设计](docs/government-entry-agent-poc-v2.md) 可继续查看。服务默认只监听本机；公网部署使用固定 HTTPS 域名和访问密码。真实客服、会话服务接入、生产持久化与并发接管需要后续工程实现。

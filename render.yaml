@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: dh-poc
+    runtime: docker
+    plan: free
+    region: singapore
+    branch: value
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /healthz
+    autoDeployTrigger: checksPass
+    envVars:
+      - key: POC_WEB_HOST
+        value: 0.0.0.0
+      - key: POC_AUTH_USERNAME
+        value: admin
+      - key: POC_AUTH_PASSWORD
+        generateValue: true
+      - key: DEEPSEEK_API_KEY
+        sync: false
+      - key: DEEPSEEK_BASE_URL
+        value: https://api.deepseek.com
+      - key: DEEPSEEK_MODEL
+        value: deepseek-flash
+      - key: EMOTION_MODEL
+        value: deepseek-flash
+      - key: PLANNER_MODEL
+        value: deepseek-flash
