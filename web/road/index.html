@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Road Service · PI Loop PoC</title><link rel="stylesheet" href="/style.css"><script type="module" src="/app.js"></script></head>
+<body><header><div class="brand"><span class="brand-icon">R</span><div><strong>ROAD SERVICE</strong><small>PI SDK · DeepSeek Flash</small></div></div><div class="header-right"><span class="tag">独立测试环境 · MOCK 数据</span><button id="new-session" class="secondary">新对话</button></div></header>
+<main><section class="chat-column"><div class="section-heading"><div><span class="eyebrow">CITIZEN ASSISTANT</span><h1>从对话到可审阅的行动</h1></div><span id="status" class="status">正在连接</span></div>
+<p class="intro">问答库优先回答；办理业务时，Agent 规划任务、等待确认，再根据结果继续执行。</p>
+<details id="account-panel" class="account" open><summary id="account-summary">登录模拟账号</summary><form id="login-form"><label>用户名<select name="username"><option value="demo">demo · 有登记地址</option><option value="demo-no-address">demo-no-address · 无登记地址</option><option value="demo-other">demo-other · 其他用户</option></select></label><label>密码<input type="password" name="password" value="demo" autocomplete="off"></label><button>登录 MOCK</button></form><p class="hint">三个账号均使用 demo。仅用于模拟；不要输入真实密码或个人资料。</p></details>
+<div class="examples"><button data-message="I want to report a new pothole near my home. It is deep and dangerous.">新坑洞报单</button><button data-message="The pothole beside the school I reported is still not fixed. Help me follow up and transfer to a human.">历史工单跟进</button><button data-message="Is the municipal fees invoice the same as the Civil Defense fees invoice?">试问答库</button></div>
+<div id="messages" class="messages" aria-live="polite"></div><div id="interaction"></div>
+<form id="chat-form" class="composer"><label class="sr-only" for="chat-message">消息</label><textarea id="chat-message" rows="3" maxlength="4000" placeholder="描述问题，或在等待确认时切换任务…"></textarea><div><span class="hint">支持中文、English、العربية · 文字描述</span><button type="button" id="stop" class="secondary">停止当前执行</button><button id="send">发送</button></div></form><div id="error" role="alert"></div></section>
+<aside><section class="panel"><div class="section-heading"><div><span class="eyebrow">DYNAMIC PLAN</span><h2>任务计划</h2></div><span id="plan-version" class="tag">尚无计划</span></div><div id="plan"></div><details><summary>历次计划</summary><div id="plan-history"></div></details></section>
+<section class="panel"><div class="section-heading"><div><span class="eyebrow">OBSERVABLE EXECUTION</span><h2>执行过程</h2></div><span id="event-count" class="tag">0</span></div><div id="events" class="events"></div></section>
+<section class="panel"><h2>实际 API 回执</h2><div id="receipts"></div></section>
+<details class="panel"><summary>模拟人工工作台</summary><p class="hint">受理 → 升级 → 完成人工处理。不会修改道路修复状态。</p><div id="human"></div></details>
+<details class="panel"><summary>问答库与测试信息</summary><div id="knowledge"></div><p class="hint">仅展示任务与工具事件，不展示模型私有思考。测试实例重启可能清空数据。</p></details>
+</aside></main><footer>J-01 新报单 · J-08 历史跟进 · 关闭 · 投诉 · 转人工</footer></body></html>

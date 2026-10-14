@@ -1,0 +1,79 @@
+{
+  "name": "digital-human-faq",
+  "source": "Road Pothole Service Assistant linked FAQ",
+  "retrieved_at": "2026-10-14",
+  "source_displayed_count": 26,
+  "migration_status": "verified-subset",
+  "entries": [
+    {
+      "id": "FAQ-001",
+      "source_scope": "civil-defense-fees",
+      "question": "Can the application be completed without paying the Civil Defense fees?",
+      "answer": "No. If Civil Defense fees are applicable to the application, they must be paid before the application process can be completed.",
+      "enabled": true
+    },
+    {
+      "id": "FAQ-002",
+      "source_scope": "civil-defense-fees",
+      "question": "Is the municipal fees invoice the same as the Civil Defense fees invoice?",
+      "answer": "No. The Civil Defense fees invoice is separate from the municipal fees invoice. Once it has been paid, the application moves to the municipal fees payment stage in accordance with the standard process.",
+      "enabled": true
+    },
+    {
+      "id": "FAQ-003",
+      "source_scope": "civil-defense-fees",
+      "question": "Does this change affect applications that do not require a Civil Defense license?",
+      "answer": "No. Applications for which Civil Defense fees are not required will continue through the standard process without a Civil Defense fees invoice being generated.",
+      "context_required": true,
+      "enabled": true
+    },
+    {
+      "id": "FAQ-004",
+      "source_scope": "infrastructure-permit",
+      "question": "What is the service for issuing a permit to carry out infrastructure work in a new development plan?",
+      "answer": "An e-service that allows service providers and their representatives to submit an application for a permit to construct infrastructure networks and projects within a new development plan, following a process that includes an initial review, followed by coordination, approval, and issuance of the permit.",
+      "enabled": true
+    },
+    {
+      "id": "FAQ-005",
+      "source_scope": "infrastructure-permit",
+      "question": "Who can apply for this service?",
+      "answer": "An authorized representative of the service provider may submit the request, and a representative of a contractor may also complete and submit the request in accordance with the authority granted to them.",
+      "context_required": true,
+      "enabled": true
+    },
+    {
+      "id": "FAQ-006",
+      "source_scope": "infrastructure-permit",
+      "question": "What is meant by “new development plan” in this service?",
+      "answer": "It is a plan that has received preliminary approval, and the intention is to construct networks or infrastructure within it before the completion of its development phases and final approval.",
+      "enabled": true
+    },
+    {
+      "id": "FAQ-007",
+      "source_scope": "infrastructure-permit",
+      "question": "What are the key details and requirements for applying?",
+      "answer": "\"The requirements include project data, details of the decision to approve the plan, work routes and locations, the work plan, the implementation team, and the required attachments, in addition to approval of the conditions and commitments. Among the most important attachments are: the title deed; the decision approving the plan as prepared by the Coordination Office; the general site plan; the plan for existing and future utilities; and the security and safety plan.” \"",
+      "context_required": true,
+      "enabled": true
+    },
+    {
+      "id": "FAQ-008",
+      "source_scope": "infrastructure-permit",
+      "question": "Are there any fees for issuing the permit?",
+      "answer": "The service is currently offered free of charge.",
+      "enabled": true,
+      "context_required": true
+    },
+    {
+      "id": "FAQ-009",
+      "source_scope": "balady-platform",
+      "question": "Does the Balady Platform personalize the services and content displayed to the beneficiary?",
+      "answer": "The Balady Platform may personalize the services and content displayed to the beneficiary based on the data and information associated with their account and their interactions with the platform's services, helping them access services that are more relevant to their needs.",
+      "enabled": true
+    }
+  ],
+  "verified_count": 9,
+  "scope_confirmed_at": "2026-10-14",
+  "missing_source_entries_note": "Source header displays 26, but only 9 complete entries were readable. User approved these 9 for the PoC; remainder awaits source export."
+}
