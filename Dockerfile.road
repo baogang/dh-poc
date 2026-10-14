@@ -1,11 +1,12 @@
-FROM node:24-alpine
+FROM node:24-bookworm-slim
 WORKDIR /app
 COPY package.json package-lock.json ./
-RUN npm ci --omit=dev
-COPY src ./src
-COPY web/road ./web/road
+RUN npm ci --omit=dev --ignore-scripts && npm cache clean --force
+COPY --chown=node:node src ./src
+COPY --chown=node:node web/road ./web/road
 ENV NODE_ENV=production
 ENV ROAD_STATE_DIR=/tmp/road-poc-state
 ENV POC_WEB_HOST=0.0.0.0
+USER node
 EXPOSE 10000
 CMD ["node", "src/road/server.mjs"]

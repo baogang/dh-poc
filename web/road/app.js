@@ -3,7 +3,7 @@ const labels={idle:'准备就绪',running:'正在执行',review:'待审阅计划
 const taskLabels={pending:'待执行',running:'执行中',waiting:'等待用户',completed:'已完成',failed:'失败'};
 const events={faq_lookup:'检索问答库',faq_hit:'问答库命中 · 直接回答',faq_miss:'问答库未命中 · 进入 Loop',faq_gate_error:'FAQ 检索异常',plan_proposed:'发布动态计划',plan_approved:'用户批准计划',tool_start:'调用工具',tool_end:'工具返回',api_start:'外部 MOCK API 请求',api_end:'外部 MOCK API 返回',input_required:'等待补充信息',input_received:'收到结构化信息',confirmation_required:'等待具体操作确认',operation_approved:'用户确认具体操作',receipt:'记录实际回执',turn_error:'执行错误',human_status:'人工状态更新',interrupted:'执行已中断',model_request:'请求 DeepSeek Flash',model_result:'模型返回工具调用',step_running:'任务开始',turn_started:'新一轮执行',turn_finished:'本轮结束',login:'登录成功'};
 const el=(tag,text,className)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(className)n.className=className;return n;};
-const json=(parent,value)=>{const d=el('details');d.append(el('summary','查看结构化数据'),el('pre',JSON.stringify(value,null,2)));parent.append(d);};
+const json=(parent,value)=>{const d=el('details');d.dataset.key=JSON.stringify(value);d.append(el('summary','查看结构化数据'),el('pre',JSON.stringify(value,null,2)));parent.append(d);};
 async function request(path,data){$('error').textContent='';const r=await fetch(path,{method:data?'POST':'GET',headers:data?{'content-type':'application/json','x-csrf-token':state?.csrf??''}:{},body:data?JSON.stringify(data):undefined});const value=await r.json();if(!r.ok)throw new Error(value.error?.message??'Request failed');return value;}
 async function act(path,data){try{state=await request(path,data);render();}catch(e){$('error').textContent=e.message;}}
 async function refresh(){try{state=await request('/api/state');render();}catch(e){$('error').textContent=e.message;}}
@@ -11,6 +11,8 @@ async function start(){try{state=await request('/api/state');}catch{state=await 
 function connect(){stream?.close();stream=new EventSource('/api/events?after='+(state.events.at(-1)?.seq??0));stream.onmessage=()=>refresh();stream.onerror=()=>{$('status').textContent='重新连接中…';};}
 function actionButton(text,path,data){const b=el('button',text);b.disabled=state.running;b.addEventListener('click',()=>act(path,data));return b;}
 function render(){
+  const openDetails=new Set([...document.querySelectorAll('details[open][data-key]')].map(d=>d.dataset.key));
+  const eventScroll=$('events').scrollTop;
   $('status').textContent=state.running?'正在执行':labels[state.status]??state.status;$('send').disabled=state.running;$('stop').disabled=!state.running&&!state.activePlanId;
   $('account-summary').textContent=state.user?`已登录 ${state.user.user_id} · ${state.user.username}`:'登录模拟账号';$('login-form').hidden=!!state.user;if(state.user)$('account-panel').open=false;
   const m=$('messages'),atBottom=m.scrollHeight-m.scrollTop-m.clientHeight<40;m.replaceChildren();for(const item of state.messages){const b=el('div',item.text,'bubble '+item.role);b.dir='auto';if(item.source)b.append(el('small',`问答库 ${item.source.id} · ${item.source.scope} · 原文答案`));if(item.receipt_ids?.length)b.append(el('small','依据回执：'+item.receipt_ids.map(x=>x.slice(0,16)).join('、')));m.append(b);}if(!state.messages.length)m.append(el('div','登录模拟账号后，可以从下面三个例子开始。问答库的问题无需登录。','empty'));if(atBottom)m.scrollTop=m.scrollHeight;
@@ -27,6 +29,8 @@ function render(){
   $('receipts').replaceChildren();for(const r of [...state.receipts].reverse()){const row=el('div',undefined,'receipt');row.append(el('strong',r.operation));if(r.result.ticket)row.append(el('p',`${r.result.ticket.ticket_id} · ${r.result.ticket.status} · ${r.result.ticket.address.city}, ${r.result.ticket.address.street}`));if(r.result.tickets)for(const t of r.result.tickets)row.append(el('p',`${t.ticket_id} · ${t.status} · ${t.description}`));if(r.result.complaint)row.append(el('p',`${r.result.complaint.complaint_id} · ${r.result.complaint.status}`));if(r.result.handoff)row.append(el('p',`${r.result.handoff.handoff_id} · ${r.result.handoff.status}（人工队列）`));json(row,r);$('receipts').append(row);}if(!state.receipts.length)$('receipts').append(el('p','提交或查询后，在这里核对 API 实际返回。','empty'));
   $('human').replaceChildren();for(const h of state.mock.handoffs){const row=el('div',undefined,'receipt');row.append(el('p',`${h.ticket_id} · ${h.status}`));const a={WAITING:['受理','accept'],ACCEPTED:['升级','escalate'],ESCALATED:['完成人工处理','complete']}[h.status];if(a)row.append(actionButton(a[0],'/api/human',{handoff_id:h.handoff_id,action:a[1]}));json(row,h);$('human').append(row);}
   $('knowledge').replaceChildren(el('p',`${state.faq.name} · 已加载 ${state.faq.entry_count} 条原始问答`,'hint'));if(state.faq.migration_status!=='complete')$('knowledge').append(el('p',`来源页面显示 ${state.faq.source_displayed_count} 条，当前可读 ${state.faq.entry_count} 条；数量尚待核对。`,'hint'));
+  for(const d of document.querySelectorAll('details[data-key]'))if(openDetails.has(d.dataset.key))d.open=true;
+  $('events').scrollTop=eventScroll;
 }
 $('chat-form').addEventListener('submit',async e=>{e.preventDefault();const message=$('chat-message').value.trim();if(!message)return;$('chat-message').value='';await act('/api/chat',{message});});
 $('chat-message').addEventListener('keydown',e=>{if(e.key==='Enter'&&(e.ctrlKey||e.metaKey))$('chat-form').requestSubmit();});

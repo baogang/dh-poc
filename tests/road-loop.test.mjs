@@ -7,7 +7,7 @@ import { fauxAssistantMessage,fauxToolCall } from '@earendil-works/pi-ai';
 import { controlledSession } from '../src/road/runtime.mjs';
 import { RoadStore } from '../src/road/store.mjs';
 import { RoadMocks } from '../src/road/mocks.mjs';
-import { RoadAgent } from '../src/road/agent.mjs';
+import { RoadAgent,receiptAnswer } from '../src/road/agent.mjs';
 import { RoadKnowledge } from '../src/road/knowledge.mjs';
 import { createRoadServer,mockHttpClient } from '../src/road/server.mjs';
 
@@ -87,6 +87,10 @@ test('closure and complaint use same generic registry with exact approval and ow
 test('unknown receipt cannot complete a business plan',async()=>{
   const {s,agent,queue}=await fixture();queue.push([plan([step('q','query_tickets')])]);await agent.chat(s,'History');
   queue.push([call('finish',{state:'completed',message:'Done',receipt_ids:['forged']}),call('finish',{state:'completed',message:'Done',receipt_ids:[]}),call('finish',{state:'blocked',message:'No completed query.',receipt_ids:[]})]);await agent.approvePlan(s,s.activePlanId);assert.equal(s.status,'blocked');assert(s.events.some(e=>e.result?.error==='UNKNOWN_RECEIPT'));assert(s.events.some(e=>e.result?.error==='UNFINISHED_PLAN'));
+});
+test('public completed result is rendered only from receipts, including empty history',()=>{
+  const answer=receiptAnswer([{operation:'query_tickets',result:{tickets:[]}}]);assert.equal(answer,'Mock operation results:\nTicket history: 0');
+  const created=receiptAnswer([{operation:'create_ticket',result:{ticket:{ticket_id:'T-REAL',status:'OPEN',address:{city:'Riyadh',street:'Test Road'}}}}],'zh');assert(created.includes('T-REAL · OPEN'));assert(!created.includes('repaired'));
 });
 test('mock mutation rejects wrong identity and late interrupted turn; response loss replays once',async()=>{
   const {s,mocks}=await fixture();const data={user_id:s.user.user_id,address:{city:'الرياض',street:'طريق الاختبار'},description:'حفرة'};
