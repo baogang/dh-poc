@@ -33,6 +33,14 @@ The page supports English, Arabic and Chinese messages. A new business request p
 
 Sending a business message while waiting invalidates outstanding approval and generates a new reviewed plan. FAQ questions preserve the pending plan/proposal. Stop interrupts the PI session and revokes authorizations; work already committed by a mock API cannot be undone. Refresh restores the current session and event history without rerunning operations.
 
+### Chat-only interaction
+
+Plans, task progress, missing-information forms, mock login, exact operation confirmations and receipts are all rendered as ordered cards inside the conversation. There is no right sidebar. The task list can be collapsed or hidden with **显示任务列表**; the assistant's explanation and necessary action buttons remain visible. Each completed task is crossed out, and final response tasks also complete when a fully executed plan finishes with an answer. API/model work displays an immediate progress bubble; connection failures display an actionable message in the same conversation.
+
+The renderer retains typed fields, focus, expanded cards and reading position across event updates. Report selection requires an explicit yes/no answer about whether the problem remains unresolved; an unchecked box is never silently interpreted as resolution. Operational traces and the fictional human console live under a collapsed **测试工具与运行记录** panel below chat.
+
+The chat revision passed 118 engineering tests, including 12 chat interaction/backend feedback regressions and six metric-scoring regressions. A separate new 16-case live-model regression run passed all cases (84 requests, estimated cost $0.0372): phase-aware tool selection TP=17, FP=0, FN=0; execution requirements 16/16; unauthorized writes 0. These remain synthetic development cases. Browser verification reproduces the original unlogged simple pothole request, then signs in, fills missing information, hides/shows tasks, confirms the mock submission and checks the completed task list and actual receipt inside chat.
+
 ## Knowledge routing
 
 `src/knowledge/road-faq.json` contains the **9 source entries individually verified and approved by the user**. The original UI displays 26; the remaining entries await a source export. Metadata retains this discrepancy. No replacement entries were invented. Source scopes include Civil Defense fees, infrastructure permits and the Balady platform; they are not all pothole policies.
@@ -65,13 +73,16 @@ npm run road:test
 npm run road:eval -- --split smoke
 npm run road:eval -- --split all
 npm run road:eval -- --case J08-HANDOFF --repeat 3
+node scripts/road-rescore.mjs original-report.json rescored-report.json
 ```
 
 The runner exercises the actual DeepSeek + PI SDK and the HTTP mocks. Each case has a separate session/fixture. It simulates reviewed plan approval and exact confirmation; injected fake UI markers still require actual structured events. JSON reports retain checks, plan, API/tool traces, receipts, latency, requests and estimated provider cost under ignored `reports/road/`.
 
-Metrics: case pass rate requires every applicable check; planning coverage checks required capabilities on the final plan without demanding identical step wording; tool selection precision includes all business tool attempts (including blocked incorrect attempts); HITL checks compare exact parameters and the chronological API invocation. Receipt checks verify selected ticket/address/identity and final result state. A safe blocked case can pass its expected refusal assertions; this is not counted as successful execution of an unavailable operation.
+Metrics: case pass rate requires every applicable check; planning coverage checks required capabilities on the final plan without demanding identical step wording. Tool selection P/R/F1 use one `(case, dialogue phase, business tool type)` as the unit; TP is a required type selected in its phase, FP is an unexpected type, FN is a required type never selected. Repeated proposals, confirmations and retries are deduplicated for these type scores; raw attempt precision is also retained. Successful-execution recall separately requires an actual receipt for each final required business tool type. FAQ-only cases have null tool recall rather than an artificial 100%. HITL checks compare exact parameters and chronological API invocation; parameter/identity checks remain separate. This tool-type metric does not independently count multiple resources operated on by the same tool.
 
-Recorded local validation on 2026-10-14: 99 engineering tests passed, including 12 new road tests. The 16-case real model run passed every case, required-capability coverage 100%, tool selection precision **96.3% (26/27 attempts)**, unauthorized writes 0. One extra attempt was blocked by a guard. These are small, synthetic regression results, not a production accuracy claim. Estimated model cost for that run was $0.0301.
+`SWITCH-DURING-HITL` has two independent references: create_ticket is a legitimate proposal before the user's change of intent; only query_tickets is expected afterward, with creation forbidden from executing. The 2026-10-14 original 96.3% attempt score compared all attempts to the final intent, incorrectly counting the earlier legitimate proposal as a mistake. That figure is deprecated; it was not a model tool-choice error. The unchanged recorded trace was rescored after explicitly correcting the phase references, without another model call. Full original reports remain preserved.
+
+Recorded validation on 2026-10-14: the original 100 engineering tests comprised 87 inherited regression tests and 13 new road tests, all passed. The 16-case evaluation-mode run passed every case: 15 cases actually called DeepSeek; the exact-FAQ case deliberately bypassed the model. The captured run used 74 model requests, estimated cost $0.0290. On the phase-aware rescore, tool-type TP=17, FP=0, FN=0 (P/R/F1 100%); all 27 business tool attempts match their phase references. Successful-execution coverage is 16/16 final tool requirements (100% recall), unauthorized writes 0. This round adds six scoring regression tests for FN/FP, repeated HITL calls, intent switching, empty/missing cases, receipt requirements and aggregation. These results are small synthetic developer regression checks, not production accuracy or unseen holdout performance.
 
 ## Independent Render service
 

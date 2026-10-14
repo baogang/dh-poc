@@ -18,6 +18,9 @@ export class RoadStore {
       if(!file.endsWith('.json'))continue;
       const s=JSON.parse(await readFile(join(this.directory,file),'utf8'));
       if(s.running){s.running=false;s.status='interrupted';s.epoch++;s.pendingOperation=null;s.authorizations={};}
+      const plan=s.plans.find(p=>p.id===s.activePlanId);
+      // Older answered turns left the final response task pending in the UI.
+      if(s.status==='answered'&&plan?.approved&&plan.steps.every(step=>step.capability==='respond'||step.status==='completed')){plan.steps.filter(step=>step.capability==='respond').forEach(step=>step.status='completed');plan.status='completed';}
       this.sessions.set(s.id,s);
     }
   }

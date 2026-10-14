@@ -1,40 +1,71 @@
-let state,stream;const $=id=>document.getElementById(id);
-const labels={idle:'准备就绪',running:'正在执行',review:'待审阅计划',input:'等待补充信息',confirmation:'等待提交确认',completed:'业务已完成',answered:'已回答',blocked:'执行受阻',failed:'执行失败',interrupted:'已中断',paused:'已暂停',approved:'已批准'};
-const taskLabels={pending:'待执行',running:'执行中',waiting:'等待用户',completed:'已完成',failed:'失败'};
-const events={faq_lookup:'检索问答库',faq_hit:'问答库命中 · 直接回答',faq_miss:'问答库未命中 · 进入 Loop',faq_gate_error:'FAQ 检索异常',plan_proposed:'发布动态计划',plan_approved:'用户批准计划',tool_start:'调用工具',tool_end:'工具返回',api_start:'外部 MOCK API 请求',api_end:'外部 MOCK API 返回',input_required:'等待补充信息',input_received:'收到结构化信息',confirmation_required:'等待具体操作确认',operation_approved:'用户确认具体操作',receipt:'记录实际回执',turn_error:'执行错误',human_status:'人工状态更新',interrupted:'执行已中断',model_request:'请求 DeepSeek Flash',model_result:'模型返回工具调用',step_running:'任务开始',turn_started:'新一轮执行',turn_finished:'本轮结束',login:'登录成功'};
-const el=(tag,text,className)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(className)n.className=className;return n;};
-const json=(parent,value)=>{const d=el('details');d.dataset.key=JSON.stringify(value);d.append(el('summary','查看结构化数据'),el('pre',JSON.stringify(value,null,2)));parent.append(d);};
-async function request(path,data){$('error').textContent='';const r=await fetch(path,{method:data?'POST':'GET',headers:data?{'content-type':'application/json','x-csrf-token':state?.csrf??''}:{},body:data?JSON.stringify(data):undefined});const value=await r.json();if(!r.ok)throw new Error(value.error?.message??'Request failed');return value;}
-async function act(path,data){try{state=await request(path,data);render();}catch(e){$('error').textContent=e.message;}}
-async function refresh(){try{state=await request('/api/state');render();}catch(e){$('error').textContent=e.message;}}
-async function start(){try{state=await request('/api/state');}catch{state=await request('/api/session',{});}connect();render();}
-function connect(){stream?.close();stream=new EventSource('/api/events?after='+(state.events.at(-1)?.seq??0));stream.onmessage=()=>refresh();stream.onerror=()=>{$('status').textContent='重新连接中…';};}
-function actionButton(text,path,data){const b=el('button',text);b.disabled=state.running;b.addEventListener('click',()=>act(path,data));return b;}
-function render(){
-  const openDetails=new Set([...document.querySelectorAll('details[open][data-key]')].map(d=>d.dataset.key));
-  const eventScroll=$('events').scrollTop;
-  $('status').textContent=state.running?'正在执行':labels[state.status]??state.status;$('send').disabled=state.running;$('stop').disabled=!state.running&&!state.activePlanId;
-  $('account-summary').textContent=state.user?`已登录 ${state.user.user_id} · ${state.user.username}`:'登录模拟账号';$('login-form').hidden=!!state.user;if(state.user)$('account-panel').open=false;
-  const m=$('messages'),atBottom=m.scrollHeight-m.scrollTop-m.clientHeight<40;m.replaceChildren();for(const item of state.messages){const b=el('div',item.text,'bubble '+item.role);b.dir='auto';if(item.source)b.append(el('small',`问答库 ${item.source.id} · ${item.source.scope} · 原文答案`));if(item.receipt_ids?.length)b.append(el('small','依据回执：'+item.receipt_ids.map(x=>x.slice(0,16)).join('、')));m.append(b);}if(!state.messages.length)m.append(el('div','登录模拟账号后，可以从下面三个例子开始。问答库的问题无需登录。','empty'));if(atBottom)m.scrollTop=m.scrollHeight;
-  const p=state.plans.find(x=>x.id===state.activePlanId);$('plan').replaceChildren();$('plan-version').textContent=p?'版本 '+p.version:'尚无计划';if(p){$('plan').append(el('strong',p.goal,'plan-goal'),el('p',p.summary,'plan-summary'));p.steps.forEach((step,i)=>{const row=el('div',undefined,'task'),body=el('div');body.append(el('strong',step.title),el('small',step.capability+(step.depends_on.length?' · 依赖 '+step.depends_on.join(', '):'')));if(Object.keys(step.parameters).length)json(body,step.parameters);row.append(el('div',String(i+1),'task-num'),body,el('span',taskLabels[step.status]??step.status,'task-state '+step.status));$('plan').append(row);});if(p.status==='review')$('plan').append(actionButton('批准计划并继续','/api/approve-plan',{plan_id:p.id}));if(['blocked','failed','interrupted'].includes(state.status)&&p.approved)$('plan').append(actionButton('重试 / 继续','/api/retry',{}));}else $('plan').append(el('p','办理业务时，Agent 会生成任务项供你审阅。','empty'));
-  $('plan-history').replaceChildren();for(const plan of state.plans){const d=el('details');d.append(el('summary',`版本 ${plan.version} · ${plan.status} · ${plan.goal}`),el('pre',JSON.stringify(plan.steps,null,2)));$('plan-history').append(d);}
-  const box=$('interaction');box.replaceChildren();
-  if(state.pendingOperation){const o=state.pendingOperation,card=el('div',undefined,'interaction');card.append(el('h3','确认具体操作：'+o.operation),el('p','请核对即将提交的内容。修改意图或参数后，此确认将失效。'));json(card,o.parameters);card.querySelector('details').open=true;card.append(actionButton('确认提交','/api/approve-operation',{proposal_id:o.id}),actionButton('取消当前任务','/api/cancel',{}));box.append(card);}
-  if(state.pendingInput){const x=state.pendingInput,card=el('div',undefined,'interaction'),f=el('form');card.append(el('h3',x.question));if(x.kind==='address'){for(const [name,title]of[['city','城市'],['street','街道']]){const l=el('label',title),i=el('input');i.name=name;i.required=true;l.append(i);f.append(l);}}
-    else if(x.kind==='ticket'){const l=el('label','选择对应工单'),select=el('select');select.name='ticket_id';for(const t of x.candidates){const opt=el('option',`${t.ticket_id} · ${t.status} · ${t.description} · ${t.address.city}, ${t.address.street}`);opt.value=t.ticket_id;select.append(opt);}l.append(select);f.append(l);for(const[name,title]of[['matched','确认是我要跟进的工单'],['unresolved','确认坑洞仍未修复']]){const label=el('label',title,'check'),i=el('input');i.type='checkbox';i.name=name;i.required=name==='matched';label.prepend(i);f.append(label);}}
-    else if(x.kind==='login'){f.append(el('p','请先使用上方模拟账号登录，再继续。'));$('account-panel').open=true;}
-    else{const i=el('textarea');i.name='text';i.required=true;i.placeholder='补充信息';f.append(i);}
-    const button=el('button','提交信息并继续');button.disabled=state.running;f.append(button);f.addEventListener('submit',e=>{e.preventDefault();const fd=new FormData(f),value=Object.fromEntries(fd);if(x.kind==='ticket'){value.matched=fd.has('matched');value.unresolved=fd.has('unresolved');}act('/api/input',{input_id:x.id,value});});card.append(f);box.append(card);}
-  const logs=state.events.filter(x=>!['message'].includes(x.type));$('event-count').textContent=logs.length;$('events').replaceChildren();for(const e of logs.slice(-100).reverse()){const row=el('div',undefined,'event');row.append(el('small',new Date(e.time).toLocaleTimeString()),el('span',(events[e.type]??e.type)+(e.name?' · '+e.name:'')+(e.call?.operation?' · '+e.call.operation:'')));const{seq,time,type,...data}=e;if(Object.keys(data).length)json(row,data);$('events').append(row);}
-  $('receipts').replaceChildren();for(const r of [...state.receipts].reverse()){const row=el('div',undefined,'receipt');row.append(el('strong',r.operation));if(r.result.ticket)row.append(el('p',`${r.result.ticket.ticket_id} · ${r.result.ticket.status} · ${r.result.ticket.address.city}, ${r.result.ticket.address.street}`));if(r.result.tickets)for(const t of r.result.tickets)row.append(el('p',`${t.ticket_id} · ${t.status} · ${t.description}`));if(r.result.complaint)row.append(el('p',`${r.result.complaint.complaint_id} · ${r.result.complaint.status}`));if(r.result.handoff)row.append(el('p',`${r.result.handoff.handoff_id} · ${r.result.handoff.status}（人工队列）`));json(row,r);$('receipts').append(row);}if(!state.receipts.length)$('receipts').append(el('p','提交或查询后，在这里核对 API 实际返回。','empty'));
-  $('human').replaceChildren();for(const h of state.mock.handoffs){const row=el('div',undefined,'receipt');row.append(el('p',`${h.ticket_id} · ${h.status}`));const a={WAITING:['受理','accept'],ACCEPTED:['升级','escalate'],ESCALATED:['完成人工处理','complete']}[h.status];if(a)row.append(actionButton(a[0],'/api/human',{handoff_id:h.handoff_id,action:a[1]}));json(row,h);$('human').append(row);}
-  $('knowledge').replaceChildren(el('p',`${state.faq.name} · 已加载 ${state.faq.entry_count} 条原始问答`,'hint'));if(state.faq.migration_status!=='complete')$('knowledge').append(el('p',`来源页面显示 ${state.faq.source_displayed_count} 条，当前可读 ${state.faq.entry_count} 条；数量尚待核对。`,'hint'));
-  for(const d of document.querySelectorAll('details[data-key]'))if(openDetails.has(d.dataset.key))d.open=true;
-  $('events').scrollTop=eventScroll;
+import {createChatRenderer} from './chat-ui.js';
+let state={id:null,running:false,status:'idle',user:null,messages:[],plans:[],activePlanId:null,pendingInput:null,pendingOperation:null,events:[],receipts:[],mock:{handoffs:[],calls:[]}},stream,generation=0,pollTimer,refreshing,refreshAgain=false;
+const $=id=>document.getElementById(id);
+const client={busy:false,connecting:true,pendingMessage:null,error:null};
+const labels={idle:'准备就绪',running:'正在处理',review:'等待你确认计划',input:'等待你补充信息',confirmation:'等待你确认提交',completed:'已完成',answered:'已回答',blocked:'需要调整任务',failed:'本轮未完成',interrupted:'已中断',paused:'已暂停',approved:'已确认计划'};
+let showTasks=true;try{showTasks=localStorage.getItem('road:showTasks')!=='false';}catch{}
+const el=(tag,text)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;return n;};
+const json=(parent,value)=>{const d=el('details');d.dataset.key=JSON.stringify(value);d.append(el('summary','查看数据'),el('pre',JSON.stringify(value,null,2)));parent.append(d);};
+async function request(path,data){
+  const response=await fetch(path,{method:data?'POST':'GET',headers:data?{'content-type':'application/json','x-csrf-token':state?.csrf??''}:{},body:data?JSON.stringify(data):undefined,signal:AbortSignal.timeout(20000)});
+  const value=await response.json();if(!response.ok)throw new Error(value.error?.message??'请求未能完成');return value;
 }
-$('chat-form').addEventListener('submit',async e=>{e.preventDefault();const message=$('chat-message').value.trim();if(!message)return;$('chat-message').value='';await act('/api/chat',{message});});
+function accept(value,owner){
+  if(owner!==generation)return;
+  const current=state.events.at(-1)?.seq??0,next=value.events.at(-1)?.seq??0;
+  if(state.id===value.id&&next<current)return;
+  state=value;client.connecting=false;render();
+}
+async function refresh(){
+  if(refreshing){refreshAgain=true;return refreshing;}
+  const owner=generation;
+  refreshing=request('/api/state').then(value=>accept(value,owner)).catch(e=>{if(owner===generation){client.error='连接暂时中断，正在尝试恢复。'+e.message;render();}}).finally(()=>{refreshing=null;if(refreshAgain){refreshAgain=false;refresh();}});
+  return refreshing;
+}
+async function act(path,data){
+  if(client.busy)return;const owner=generation;
+  client.busy=true;client.error=null;client.pendingMessage=path==='/api/chat'?data.message:null;render();
+  try{accept(await request(path,data),owner);}
+  catch(e){if(owner===generation){client.error='这次请求没有完成：'+e.message;if(path==='/api/chat')$('chat-message').value=data.message;}}
+  finally{if(owner===generation){client.busy=false;client.pendingMessage=null;render();refresh();}}
+}
+async function signIn(credentials,continuation){
+  await act('/api/login',credentials);if(client.error||!state.user)return;
+  if(continuation?.kind==='plan'&&state.activePlanId===continuation.id)await act('/api/approve-plan',{plan_id:continuation.id});
+  if(continuation?.kind==='input'&&state.pendingInput?.id===continuation.id)await act('/api/input',{input_id:continuation.id,value:{}});
+}
+const chat=createChatRenderer(document,$('messages'),{action:act,login:signIn,example:text=>{$('chat-message').value=text;$('chat-message').focus();},reconnect:()=>{client.error=null;client.connecting=true;render();start();}});
+function connect(){
+  stream?.close();clearInterval(pollTimer);const owner=generation;
+  stream=new EventSource('/api/events?after='+(state.events.at(-1)?.seq??0));
+  stream.onmessage=()=>{if(owner===generation)refresh();};
+  stream.onopen=()=>{if(owner===generation){client.error=null;refresh();}};
+  stream.onerror=()=>{if(owner===generation){client.error='连接暂时中断，正在重新连接。你已填写的内容会保留。';render();}};
+  pollTimer=setInterval(()=>{if(state.running||client.error)refresh();},3000);
+}
+async function start(){
+  const owner=generation;client.connecting=true;render();
+  try{const r=await fetch('/api/state',{signal:AbortSignal.timeout(20000)});if(r.status===401||r.status===404)accept(await request('/api/session',{}),owner);else{const v=await r.json();if(!r.ok)throw new Error(v.error?.message??'连接失败');accept(v,owner);}if(owner===generation)connect();}
+  catch(e){if(owner===generation){client.connecting=false;client.error='无法连接工单助手：'+e.message;render();}}
+}
+function render(){
+  const p=state.plans.find(x=>x.id===state.activePlanId),busy=client.busy||client.connecting;
+  $('status').textContent=client.connecting?'正在连接':state.running?'正在处理':labels[state.status]??state.status;
+  $('show-tasks').checked=showTasks;$('send').disabled=busy||state.running;$('new-session').disabled=busy;
+  $('stop').disabled=busy||!state.running&&!state.pendingInput&&!state.pendingOperation&&(!p||['completed','superseded','paused'].includes(p.status));
+  chat.render(state,{showTasks,busy,pendingMessage:client.pendingMessage&&state.messages.at(-1)?.text!==client.pendingMessage?client.pendingMessage:null,error:client.error,connecting:client.connecting});
+  const panels=$('test-tools');if(!panels.open)return;
+  const openKeys=new Set([...panels.querySelectorAll('details[open][data-key]')].map(d=>d.dataset.key));
+  $('events').replaceChildren();for(const e of state.events.slice(-80).reverse()){const row=el('div',new Date(e.time).toLocaleTimeString()+' · '+e.type);json(row,e);$('events').append(row);}
+  $('receipts').replaceChildren();for(const r of state.receipts)json($('receipts'),r);
+  $('human').replaceChildren();for(const h of state.mock.handoffs){const row=el('div',`${h.ticket_id} · ${h.status}`),next={WAITING:['受理','accept'],ACCEPTED:['升级','escalate'],ESCALATED:['完成人工处理','complete']}[h.status];if(next){const b=el('button',next[0]);b.disabled=busy||state.running;b.addEventListener('click',()=>act('/api/human',{handoff_id:h.handoff_id,action:next[1]}));row.append(b);}$('human').append(row);}
+  $('knowledge').replaceChildren(el('p',state.faq?`${state.faq.name} · 已加载 ${state.faq.entry_count} 条核实的问答`:'正在加载问答库信息'));
+  for(const d of panels.querySelectorAll('details[data-key]'))if(openKeys.has(d.dataset.key))d.open=true;
+}
+$('chat-form').addEventListener('submit',e=>{e.preventDefault();if(client.busy||state.running)return;const message=$('chat-message').value.trim();if(!message)return;$('chat-message').value='';act('/api/chat',{message});});
 $('chat-message').addEventListener('keydown',e=>{if(e.key==='Enter'&&(e.ctrlKey||e.metaKey))$('chat-form').requestSubmit();});
-$('login-form').addEventListener('submit',e=>{e.preventDefault();act('/api/login',Object.fromEntries(new FormData(e.target)));});
-$('new-session').addEventListener('click',async()=>{if(state?.running)await act('/api/cancel',{});state=await request('/api/session',{});connect();render();});
-$('stop').addEventListener('click',()=>act('/api/cancel',{}));for(const b of document.querySelectorAll('[data-message]'))b.addEventListener('click',()=>{$('chat-message').value=b.dataset.message;$('chat-message').focus();});
-start().catch(e=>{$('error').textContent=e.message;});
+$('show-tasks').addEventListener('change',()=>{showTasks=$('show-tasks').checked;try{localStorage.setItem('road:showTasks',String(showTasks));}catch{}render();});
+$('test-tools').addEventListener('toggle',()=>{if($('test-tools').open)render();});
+$('stop').addEventListener('click',()=>act('/api/cancel',{}));
+$('new-session').addEventListener('click',async()=>{if(client.busy)return;if(state.running)await act('/api/cancel',{});generation++;stream?.close();clearInterval(pollTimer);client.error=null;client.connecting=true;client.pendingMessage=null;render();try{accept(await request('/api/session',{}),generation);connect();}catch(e){client.connecting=false;client.error=e.message;render();}});
+start().catch(e=>{client.error=e.message;client.connecting=false;render();});

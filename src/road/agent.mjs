@@ -1,5 +1,6 @@
 import { Type,controlledSession,pack } from './runtime.mjs';
 import { id,clone,digest,failure } from './store.mjs';
+import {languageOf,chatNotice,inputReply} from './presentation.mjs';
 
 export const capabilities=['input','query_tickets','create_ticket','close_ticket','complain_ticket','handoff_to_human','respond'];
 const mutations=new Set(['create_ticket','close_ticket','complain_ticket','handoff_to_human']);
@@ -37,14 +38,14 @@ export class RoadAgent {
     if(s.running)throw failure('BUSY','Stop the current turn before logging in',409);
     if(s.user)throw failure('ALREADY_LOGGED_IN','Start a new conversation to change accounts',409);
     s.running=true;
-    try{const result=await this.api(s.id,'login',credentials,{epoch:s.epoch});this.store.emit(s,'login',{user:result.user});await this.store.save(s);return result;}finally{s.running=false;await this.store.save(s);}
+    try{const result=await this.api(s.id,'login',credentials,{epoch:s.epoch});this.store.emit(s,'login',{user:result.user});this.store.message(s,'assistant',chatNotice(s,'login'),{kind:'login'});await this.store.save(s);return result;}finally{s.running=false;await this.store.save(s);}
   }
   interrupt(s,reason='user_cancelled'){
     this.runs.get(s.id)?.abort();s.epoch++;s.authorizations={};s.pendingOperation=null;s.pendingInput=null;
     const p=this.active(s);if(p&&p.status!=='completed'){p.status='paused';p.approved=false;for(const step of p.steps)if(step.status==='running'||step.status==='waiting')step.status='pending';}
     s.status='paused';this.store.emit(s,'interrupted',{reason});
   }
-  async cancel(s){this.interrupt(s);await this.store.save(s);}
+  async cancel(s){this.interrupt(s);this.store.message(s,'assistant',chatNotice(s,'cancelled'),{kind:'info'});await this.store.save(s);}
   async chat(s,message,options={}){
     if(s.running)throw failure('BUSY','The agent is running; stop it before sending another message',409);
     if(typeof message!=='string'||!message.trim()||message.length>4000)throw failure('INVALID_MESSAGE','Use a message of 1–4000 characters');
@@ -56,6 +57,7 @@ export class RoadAgent {
     const p=this.active(s);
     if(!p||p.id!==planId||p.status!=='review')throw failure('STALE_PLAN','This plan is no longer awaiting review',409);
     p.approved=true;p.status='approved';s.status='approved';
+    this.store.message(s,'assistant',chatNotice(s,'approved'),{kind:'info',plan_id:p.id});
     s.running=true;this.store.emit(s,'plan_approved',{plan_id:p.id,version:p.version});await this.store.save(s);
     return this.run(s,{message:'Trusted UI event: this exact plan was approved. Execute its unfinished steps.'});
   }
@@ -68,6 +70,7 @@ export class RoadAgent {
       if(!value.city?.trim()||!value.street?.trim())throw failure('MISSING_ADDRESS','City and street are required');
       result={city:value.city.trim().slice(0,200),street:value.street.trim().slice(0,300)};s.facts.address=result;
     }else if(input.kind==='ticket'){
+      if(typeof value.unresolved!=='boolean')throw failure('UNRESOLVED_ANSWER_REQUIRED','Explicitly choose whether the issue is still unresolved');
       const item=input.candidates.find(t=>t.ticket_id===value.ticket_id);
       if(!item||value.matched!==true)throw failure('MATCH_REQUIRED','Select and confirm a listed report');
       result={ticket_id:item.ticket_id,matched:true,unresolved:value.unresolved===true};
@@ -76,7 +79,7 @@ export class RoadAgent {
       if(!s.user)throw failure('LOGIN_REQUIRED','Sign in with the demo form first',401);result={logged_in:true};
     }else{if(typeof value.text!=='string'||!value.text.trim())throw failure('TEXT_REQUIRED','An answer is required');result={text:value.text.trim().slice(0,2000)};s.facts.inputs??={};s.facts.inputs[input.step_id]=result;}
     p.steps.find(step=>step.id===input.step_id).status='completed';s.pendingInput=null;
-    s.running=true;this.store.message(s,'user',JSON.stringify(result),{kind:'input',input_id:inputId});this.store.emit(s,'input_received',{input_id:inputId,result});await this.store.save(s);
+    s.running=true;this.store.message(s,'user',inputReply(s,input,result),{kind:'input',input_id:inputId,value:clone(result)});this.store.emit(s,'input_received',{input_id:inputId,result});await this.store.save(s);
     return this.run(s,{message:'Trusted UI input received. Continue the approved plan.'});
   }
   async approveOperation(s,proposalId){
@@ -84,6 +87,7 @@ export class RoadAgent {
     const o=s.pendingOperation,p=this.active(s);
     if(!o||o.id!==proposalId||!p?.approved||o.plan_id!==p.id||o.epoch!==s.epoch)throw failure('STALE_CONFIRMATION','This confirmation is no longer valid',409);
     s.authorizations[o.fingerprint]={proposal_id:o.id,epoch:s.epoch,plan_id:p.id};s.pendingOperation=null;
+    this.store.message(s,'user',chatNotice(s,'confirmed'),{kind:'decision',proposal_id:o.id});
     s.running=true;this.store.emit(s,'operation_approved',{proposal_id:o.id,operation:o.operation,parameters:o.parameters});await this.store.save(s);
     return this.run(s,{message:'Trusted UI approval for exact operation: '+JSON.stringify(o)+'. Execute it, then continue.'});
   }
@@ -143,6 +147,7 @@ export class RoadAgent {
           if(!auth||auth.epoch!==epoch){
             s.pendingOperation={id:id('proposal'),plan_id:p.id,step_id,operation,parameters:clone(parameters),fingerprint,epoch};step.status='waiting';s.status='confirmation';
             this.store.emit(s,'confirmation_required',{proposal:s.pendingOperation});
+            this.store.message(s,'assistant',chatNotice(s,'operation'),{kind:'operation_confirmation',proposal_id:s.pendingOperation.id,plan_id:p.id});
             return {needs_confirmation:true,proposal:s.pendingOperation,end_turn:true};
           }
         }
@@ -159,15 +164,17 @@ export class RoadAgent {
           const ids=args.steps.map(x=>x.id);if(new Set(ids).size!==ids.length)throw failure('DUPLICATE_STEP','Step IDs must be unique');
           args.steps.forEach((x,i)=>{if(x.depends_on.some(d=>!ids.slice(0,i).includes(d)))throw failure('INVALID_DEPENDENCY','Dependencies must reference earlier steps');});
           const old=this.active(s);if(old?.status!=='completed'&&old)old.status='superseded';
-          const p={id:id('plan'),version:s.plans.length+1,goal:args.goal,summary:args.summary,steps:args.steps.map(x=>({...clone(x),status:'pending'})),approved:false,status:'review',created_at:new Date().toISOString()};s.plans.push(p);s.activePlanId=p.id;s.pendingInput=null;s.pendingOperation=null;s.authorizations={};s.status='review';this.store.emit(s,'plan_proposed',{plan:p});return {plan:p,review_required:true,end_turn:true};
+          const p={id:id('plan'),version:s.plans.length+1,goal:args.goal,summary:args.summary,steps:args.steps.map(x=>({...clone(x),status:'pending'})),approved:false,status:'review',created_at:new Date().toISOString()};s.plans.push(p);s.activePlanId=p.id;s.pendingInput=null;s.pendingOperation=null;s.authorizations={};s.status='review';this.store.emit(s,'plan_proposed',{plan:p});this.store.message(s,'assistant',args.summary+'\n\n'+chatNotice(s,'plan'),{kind:'plan',plan_id:p.id});return {plan:p,review_required:true,end_turn:true};
         }),
         tool('request_input','Ask for missing information via trusted UI; ticket input confirms matched report and unresolved state.',Type.Object({step_id:Type.String(),kind:Type.Union(['text','address','ticket','login'].map(x=>Type.Literal(x))),question:text(),ticket_ids:Type.Optional(Type.Array(ticket()))},{additionalProperties:false}),args=>{
           const {p,step}=approvedStep(args.step_id,'input');let candidates=[],query;
+          const available=args.kind==='login'&&s.user?{logged_in:true,user:s.user}:args.kind==='address'&&s.facts.address?.city&&s.facts.address?.street?{address:clone(s.facts.address)}:null;
+          if(available){step.status='completed';this.store.emit(s,'input_available',{step_id:step.id,kind:args.kind,value:available});return {already_available:true,value:available};}
           if(args.kind==='ticket'){
             query=[...s.receipts].reverse().find(r=>r.operation==='query_tickets');if(!query)throw failure('QUERY_REQUIRED','Query ticket history first');
             candidates=query.result.tickets.filter(t=>!args.ticket_ids?.length||args.ticket_ids.includes(t.ticket_id));if(!candidates.length)throw failure('NO_CANDIDATES','No candidate ticket');
           }
-          s.pendingInput={id:id('input'),plan_id:p.id,step_id:step.id,kind:args.kind,question:args.question,candidates,query_receipt_id:query?.id};step.status='waiting';s.status='input';this.store.message(s,'assistant',args.question,{kind:'question'});this.store.emit(s,'input_required',{input:s.pendingInput});return {input:s.pendingInput,end_turn:true};
+          s.pendingInput={id:id('input'),plan_id:p.id,step_id:step.id,kind:args.kind,question:args.question,candidates,query_receipt_id:query?.id};step.status='waiting';s.status='input';this.store.message(s,'assistant',args.question,{kind:'input_request',input_id:s.pendingInput.id,plan_id:p.id});this.store.emit(s,'input_required',{input:s.pendingInput});return {input:s.pendingInput,end_turn:true};
         }),
         tool('query_tickets','Query current user history. Includes backend decisionContext; never supply a User ID.',Type.Object({step_id:Type.String(),ticket_id:Type.Optional(ticket())},{additionalProperties:false}),a=>business('query_tickets',a)),
         tool('create_ticket','Create a pothole report, only after exact payload confirmation.',Type.Object({step_id:Type.String(),address,description:text()},{additionalProperties:false}),a=>business('create_ticket',a)),
@@ -181,10 +188,12 @@ export class RoadAgent {
             const unfinished=p.steps.filter(x=>x.capability!=='respond'&&x.status!=='completed');if(unfinished.length)throw failure('UNFINISHED_PLAN','Some approved tasks are unfinished');
             if(p.steps.some(x=>x.receipt_id&&!args.receipt_ids.includes(x.receipt_id)))throw failure('MISSING_RECEIPT','Include every API receipt for the current plan');
             p.status='completed';p.steps.filter(x=>x.capability==='respond').forEach(x=>x.status='completed');
-          }else if(args.state==='answered'&&p?.approved&&p.steps.some(x=>x.capability!=='respond'&&x.status!=='completed'))throw failure('UNFINISHED_PLAN','Finish blocked or continue the approved business plan');
+          }else if(args.state==='answered'&&p?.approved){
+            if(p.steps.some(x=>x.capability!=='respond'&&x.status!=='completed'))throw failure('UNFINISHED_PLAN','Finish blocked or continue the approved business plan');
+            p.steps.filter(x=>x.capability==='respond').forEach(x=>x.status='completed');p.status='completed';
+          }
           // Completion statements are rendered from authoritative receipts, never model claims.
-          const utterance=[...s.messages].reverse().find(x=>x.role==='user'&&!x.kind)?.text??'';
-          const language=/[\u4e00-\u9fff]/u.test(utterance)?'zh':/[\u0600-\u06ff]/u.test(utterance)?'ar':'en';
+          const language=languageOf(s);
           const answer=args.state==='completed'?receiptAnswer(receipts,language):args.message;
           s.status=args.state;this.store.message(s,'assistant',answer,{kind:'result',receipt_ids:args.receipt_ids});return {accepted:true,state:args.state,receipt_ids:args.receipt_ids,end_turn:true};
         })

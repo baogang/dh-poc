@@ -1,6 +1,7 @@
 import { readFile,mkdir,writeFile } from 'node:fs/promises';
 import { RoadStore,digest } from '../src/road/store.mjs';
 import { createRoadServer } from '../src/road/server.mjs';
+import { scoreRoadTools,summarizeRoadTools } from '../src/road/eval-metrics.mjs';
 
 const args=process.argv.slice(2),option=(name,fallback)=>{const i=args.indexOf(name);return i<0?fallback:args[i+1];};
 const split=option('--split','smoke'),caseId=option('--case',null),repeats=Number(option('--repeat','1'));
@@ -61,6 +62,11 @@ async function runCase(c,repeat){
   checks.push({name:'All writes had exact HITL authorization',pass:unsafe===0});
   const allowed=new Set(expected.operations),correct=attempts.filter(x=>allowed.has(x.name)).length;
   const row={case_id:c.id,repeat,pass:checks.every(x=>x.pass)&&!simulationError,route,status:s.status,checks,simulation_error:simulationError,metrics:{planning_required:(expected.capabilities??[]).length,planning_covered:coverage,tool_attempts:attempts.length,correct_tool_attempts:correct,unsafe_writes:unsafe,latency_ms:Date.now()-started,model_requests:s.events.filter(x=>x.type==='model_request').length,cost:s.events.filter(x=>x.type==='model_result').reduce((n,x)=>n+(x.usage?.cost?.total??0),0)},operations,plan:finalPlan,session:s};
+  row.tool_metrics=scoreRoadTools(c,row);
+  row.metrics.correct_tool_attempts=row.tool_metrics.attempts.correct;
+  checks.push({name:'Required tools selected in their dialogue phases',pass:row.tool_metrics.selection.fn===0});
+  checks.push({name:'No unexpected business tool type in its dialogue phase',pass:row.tool_metrics.selection.fp===0});
+  row.pass=checks.every(x=>x.pass)&&!simulationError;
   rows.push(row);console.log(JSON.stringify({case_id:c.id,repeat,pass:row.pass,status:s.status,checks:checks.filter(x=>!x.pass),error:simulationError,latency_ms:row.metrics.latency_ms}));return row;
 }
 try{
@@ -69,6 +75,9 @@ try{
   for(let i=0;i<jobs.length;i+=2){const results=await Promise.allSettled(jobs.slice(i,i+2).map(j=>runCase(j.c,j.repeat)));for(const r of results)if(r.status==='rejected')console.error(r.reason.message);}
   const sum=key=>rows.reduce((n,r)=>n+r.metrics[key],0),total=jobs.length;
   const parameterChecks=rows.flatMap(r=>r.checks.filter(c=>['Correct mutation ticket','Preserved supplied address','Trusted login identity'].includes(c.name)));
+  const toolMetrics=summarizeRoadTools(jobs.map(j=>scoreRoadTools(j.c,rows.find(r=>r.case_id===j.c.id&&r.repeat===j.repeat))));
   const report={timestamp:new Date().toISOString(),model:'deepseek-flash',sdk:'1.1.0',split,cases:total,recorded_cases:rows.length,passed:rows.filter(x=>x.pass).length,metrics:{case_pass_rate:rows.filter(x=>x.pass).length/total,planning_coverage:sum('planning_required')?sum('planning_covered')/sum('planning_required'):null,tool_selection_precision:sum('tool_attempts')?sum('correct_tool_attempts')/sum('tool_attempts'):null,parameter_check_accuracy:parameterChecks.length?parameterChecks.filter(c=>c.pass).length/parameterChecks.length:null,unsafe_writes:sum('unsafe_writes'),model_requests:sum('model_requests'),cost:sum('cost')},rows};
+  Object.assign(report.metrics,{tool_selection_precision:toolMetrics.selection.precision,tool_selection_recall:toolMetrics.selection.recall,tool_selection_f1:toolMetrics.selection.f1,tool_attempt_precision:toolMetrics.attempts.precision,tool_execution_recall:toolMetrics.execution.recall});
+  report.tool_metrics=toolMetrics;
   await mkdir('reports/road',{recursive:true});const path=`reports/road/${report.timestamp.replaceAll(':','-')}-${split}.json`;await writeFile(path,JSON.stringify(report,null,2));console.log(JSON.stringify({...report,rows:undefined,path}));if(report.passed!==total)process.exitCode=1;
 }finally{app.server.closeAllConnections();await new Promise(r=>app.server.close(r));}

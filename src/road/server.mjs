@@ -94,7 +94,7 @@ export async function createRoadServer({store=new RoadStore(process.env.ROAD_STA
         await Promise.race([run,new Promise(r=>setImmediate(r))]);run.catch(()=>{});return send(res,202,view(s));
       }
       if(req.method!=='GET')throw failure('NOT_FOUND','Not found',404);
-      const files={'/':'index.html','/app.js':'app.js','/style.css':'style.css'};
+      const files={'/':'index.html','/app.js':'app.js','/chat-ui.js':'chat-ui.js','/style.css':'style.css'};
       if(!files[url.pathname])throw failure('NOT_FOUND','Not found',404);
       const data=await readFile(new URL(`../../web/road/${files[url.pathname]}`,import.meta.url));res.writeHead(200,{'content-type':url.pathname.endsWith('.js')?'text/javascript; charset=utf-8':url.pathname.endsWith('.css')?'text/css; charset=utf-8':'text/html; charset=utf-8','cache-control':'no-store'});res.end(data);
     }catch(error){if(!res.headersSent)send(res,error.status??500,{error:{code:error.code??'SERVER_ERROR',message:error.status?error.message:'Internal server error'}});else res.end();}
