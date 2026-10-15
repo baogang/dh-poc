@@ -1,3 +1,4 @@
+// Preserve manual-plan compatibility fixtures; default automatic routing is tested in road-routing.test.mjs.
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { mkdtemp,rm,readFile } from 'node:fs/promises';
@@ -17,7 +18,7 @@ const plan=steps=>call('propose_plan',{goal:'Help this citizen',summary:'Review 
 async function fixture(){
   const store=new RoadStore(),s=store.create(),mocks=new RoadMocks(store),queue=[];
   const knowledge=await RoadKnowledge.load({runtimeFactory:options=>controlledSession({...options,fauxResponses:[call('select_faq',{entry_id:null,answerable:false,reason:'Business request'})]})});
-  const agent=new RoadAgent({store,knowledge,api:(...args)=>mocks.call(...args),runtimeFactory:options=>{assert(queue.length,'Missing scripted PI turn');return controlledSession({...options,fauxResponses:queue.shift()});}});
+  const agent=new RoadAgent({automaticPlans:false,emotion:{assess:async input=>({status:'classified',sentiment:'neutral',message_id:input.current_message_id,evidence:null,assessed_at:new Date().toISOString()})},store,knowledge,api:(...args)=>mocks.call(...args),runtimeFactory:options=>{assert(queue.length,'Missing scripted PI turn');return controlledSession({...options,fauxResponses:queue.shift()});}});
   await agent.login(s,{username:'demo',password:'demo'});return {store,s,mocks,agent,queue};
 }
 const complete=(s,message='Operation receipt received.')=>()=>call('finish',{state:'completed',message,receipt_ids:s.receipts.filter(r=>r.plan_id===s.activePlanId).map(r=>r.id)});

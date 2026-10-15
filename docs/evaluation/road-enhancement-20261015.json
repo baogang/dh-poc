@@ -1,0 +1,3447 @@
+{
+  "generated_at": "2026-10-15",
+  "model": "deepseek-flash",
+  "sdk": "1.1.0",
+  "emotion_version": "road-emotion-1.0.1",
+  "limitations": [
+    "Synthetic provisional reference labels; no native-language expert review.",
+    "Existing holdout inspected during diagnosis; all results are regression, not unseen validation.",
+    "12 legacy null references excluded from three-class accuracy and P/R/F1; protocol checks only.",
+    "Emotion module routing score is deterministic label-to-route mapping, not a claim of end-to-end API success.",
+    "Business metrics are type-level per case and dialogue phase; parameter/identity checks separate."
+  ],
+  "emotion_final_legacy": {
+    "timestamp": "2026-10-15T12:15:47.053Z",
+    "source": "legacy",
+    "split": "all",
+    "model": "deepseek-flash",
+    "sdk": "1.1.0",
+    "version": "road-emotion-1.0.1",
+    "prompt_hash": "af61c2cfea8ed08197551f1b95afa1f41ce0e98edf954ab1a3095f2f299ddffe",
+    "dataset_hash": "b4a9052ed3d0784965b04a2661182dd161ecc1cc5a8199f88e8f13b43acbebed",
+    "provenance": "synthetic provisional gold; no native-language expert review",
+    "elapsed_ms": 124280,
+    "metrics": {
+      "total": 620,
+      "scored": 608,
+      "unscored": 12,
+      "correct": 608,
+      "accuracy": 1,
+      "protocol_valid": 620,
+      "errors": 0,
+      "confusion": {
+        "positive": {
+          "positive": 144,
+          "negative": 0,
+          "neutral": 0,
+          "error": 0
+        },
+        "negative": {
+          "positive": 0,
+          "negative": 170,
+          "neutral": 0,
+          "error": 0
+        },
+        "neutral": {
+          "positive": 0,
+          "negative": 0,
+          "neutral": 294,
+          "error": 0
+        }
+      },
+      "per_class": {
+        "positive": {
+          "support": 144,
+          "tp": 144,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1,
+          "recall": 1,
+          "f1": 1
+        },
+        "negative": {
+          "support": 170,
+          "tp": 170,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1,
+          "recall": 1,
+          "f1": 1
+        },
+        "neutral": {
+          "support": 294,
+          "tp": 294,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1,
+          "recall": 1,
+          "f1": 1
+        }
+      },
+      "macro_f1": 1,
+      "routing_accuracy": 1
+    },
+    "by_language": {
+      "arabic_english": {
+        "total": 90,
+        "scored": 87,
+        "unscored": 3,
+        "correct": 87,
+        "accuracy": 1,
+        "protocol_valid": 90,
+        "errors": 0,
+        "confusion": {
+          "positive": {
+            "positive": 21,
+            "negative": 0,
+            "neutral": 0,
+            "error": 0
+          },
+          "negative": {
+            "positive": 0,
+            "negative": 24,
+            "neutral": 0,
+            "error": 0
+          },
+          "neutral": {
+            "positive": 0,
+            "negative": 0,
+            "neutral": 42,
+            "error": 0
+          }
+        },
+        "per_class": {
+          "positive": {
+            "support": 21,
+            "tp": 21,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1,
+            "recall": 1,
+            "f1": 1
+          },
+          "negative": {
+            "support": 24,
+            "tp": 24,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1,
+            "recall": 1,
+            "f1": 1
+          },
+          "neutral": {
+            "support": 42,
+            "tp": 42,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1,
+            "recall": 1,
+            "f1": 1
+          }
+        },
+        "macro_f1": 1,
+        "routing_accuracy": 1
+      },
+      "saudi_colloquial": {
+        "total": 360,
+        "scored": 359,
+        "unscored": 1,
+        "correct": 359,
+        "accuracy": 1,
+        "protocol_valid": 360,
+        "errors": 0,
+        "confusion": {
+          "positive": {
+            "positive": 88,
+            "negative": 0,
+            "neutral": 0,
+            "error": 0
+          },
+          "negative": {
+            "positive": 0,
+            "negative": 102,
+            "neutral": 0,
+            "error": 0
+          },
+          "neutral": {
+            "positive": 0,
+            "negative": 0,
+            "neutral": 169,
+            "error": 0
+          }
+        },
+        "per_class": {
+          "positive": {
+            "support": 88,
+            "tp": 88,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1,
+            "recall": 1,
+            "f1": 1
+          },
+          "negative": {
+            "support": 102,
+            "tp": 102,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1,
+            "recall": 1,
+            "f1": 1
+          },
+          "neutral": {
+            "support": 169,
+            "tp": 169,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1,
+            "recall": 1,
+            "f1": 1
+          }
+        },
+        "macro_f1": 1,
+        "routing_accuracy": 1
+      },
+      "msa": {
+        "total": 130,
+        "scored": 124,
+        "unscored": 6,
+        "correct": 124,
+        "accuracy": 1,
+        "protocol_valid": 130,
+        "errors": 0,
+        "confusion": {
+          "positive": {
+            "positive": 27,
+            "negative": 0,
+            "neutral": 0,
+            "error": 0
+          },
+          "negative": {
+            "positive": 0,
+            "negative": 32,
+            "neutral": 0,
+            "error": 0
+          },
+          "neutral": {
+            "positive": 0,
+            "negative": 0,
+            "neutral": 65,
+            "error": 0
+          }
+        },
+        "per_class": {
+          "positive": {
+            "support": 27,
+            "tp": 27,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1,
+            "recall": 1,
+            "f1": 1
+          },
+          "negative": {
+            "support": 32,
+            "tp": 32,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1,
+            "recall": 1,
+            "f1": 1
+          },
+          "neutral": {
+            "support": 65,
+            "tp": 65,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1,
+            "recall": 1,
+            "f1": 1
+          }
+        },
+        "macro_f1": 1,
+        "routing_accuracy": 1
+      },
+      "english": {
+        "total": 40,
+        "scored": 38,
+        "unscored": 2,
+        "correct": 38,
+        "accuracy": 1,
+        "protocol_valid": 40,
+        "errors": 0,
+        "confusion": {
+          "positive": {
+            "positive": 8,
+            "negative": 0,
+            "neutral": 0,
+            "error": 0
+          },
+          "negative": {
+            "positive": 0,
+            "negative": 12,
+            "neutral": 0,
+            "error": 0
+          },
+          "neutral": {
+            "positive": 0,
+            "negative": 0,
+            "neutral": 18,
+            "error": 0
+          }
+        },
+        "per_class": {
+          "positive": {
+            "support": 8,
+            "tp": 8,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1,
+            "recall": 1,
+            "f1": 1
+          },
+          "negative": {
+            "support": 12,
+            "tp": 12,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1,
+            "recall": 1,
+            "f1": 1
+          },
+          "neutral": {
+            "support": 18,
+            "tp": 18,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1,
+            "recall": 1,
+            "f1": 1
+          }
+        },
+        "macro_f1": 1,
+        "routing_accuracy": 1
+      }
+    },
+    "by_split": {
+      "dev": {
+        "total": 300,
+        "scored": 296,
+        "unscored": 4,
+        "correct": 296,
+        "accuracy": 1,
+        "protocol_valid": 300,
+        "errors": 0,
+        "confusion": {
+          "positive": {
+            "positive": 69,
+            "negative": 0,
+            "neutral": 0,
+            "error": 0
+          },
+          "negative": {
+            "positive": 0,
+            "negative": 86,
+            "neutral": 0,
+            "error": 0
+          },
+          "neutral": {
+            "positive": 0,
+            "negative": 0,
+            "neutral": 141,
+            "error": 0
+          }
+        },
+        "per_class": {
+          "positive": {
+            "support": 69,
+            "tp": 69,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1,
+            "recall": 1,
+            "f1": 1
+          },
+          "negative": {
+            "support": 86,
+            "tp": 86,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1,
+            "recall": 1,
+            "f1": 1
+          },
+          "neutral": {
+            "support": 141,
+            "tp": 141,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1,
+            "recall": 1,
+            "f1": 1
+          }
+        },
+        "macro_f1": 1,
+        "routing_accuracy": 1
+      },
+      "regression": {
+        "total": 140,
+        "scored": 135,
+        "unscored": 5,
+        "correct": 135,
+        "accuracy": 1,
+        "protocol_valid": 140,
+        "errors": 0,
+        "confusion": {
+          "positive": {
+            "positive": 39,
+            "negative": 0,
+            "neutral": 0,
+            "error": 0
+          },
+          "negative": {
+            "positive": 0,
+            "negative": 40,
+            "neutral": 0,
+            "error": 0
+          },
+          "neutral": {
+            "positive": 0,
+            "negative": 0,
+            "neutral": 56,
+            "error": 0
+          }
+        },
+        "per_class": {
+          "positive": {
+            "support": 39,
+            "tp": 39,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1,
+            "recall": 1,
+            "f1": 1
+          },
+          "negative": {
+            "support": 40,
+            "tp": 40,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1,
+            "recall": 1,
+            "f1": 1
+          },
+          "neutral": {
+            "support": 56,
+            "tp": 56,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1,
+            "recall": 1,
+            "f1": 1
+          }
+        },
+        "macro_f1": 1,
+        "routing_accuracy": 1
+      },
+      "holdout": {
+        "total": 180,
+        "scored": 177,
+        "unscored": 3,
+        "correct": 177,
+        "accuracy": 1,
+        "protocol_valid": 180,
+        "errors": 0,
+        "confusion": {
+          "positive": {
+            "positive": 36,
+            "negative": 0,
+            "neutral": 0,
+            "error": 0
+          },
+          "negative": {
+            "positive": 0,
+            "negative": 44,
+            "neutral": 0,
+            "error": 0
+          },
+          "neutral": {
+            "positive": 0,
+            "negative": 0,
+            "neutral": 97,
+            "error": 0
+          }
+        },
+        "per_class": {
+          "positive": {
+            "support": 36,
+            "tp": 36,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1,
+            "recall": 1,
+            "f1": 1
+          },
+          "negative": {
+            "support": 44,
+            "tp": 44,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1,
+            "recall": 1,
+            "f1": 1
+          },
+          "neutral": {
+            "support": 97,
+            "tp": 97,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1,
+            "recall": 1,
+            "f1": 1
+          }
+        },
+        "macro_f1": 1,
+        "routing_accuracy": 1
+      }
+    },
+    "model_requests": 620,
+    "cost": 0.08748164399999994,
+    "full_report_path": "reports/road/emotion-legacy-all-2026-10-15T12-15-47.053Z.json",
+    "full_report_sha256": "25e08b0b0da9a1284a3e3aa161392e63d27950ef42f883fad22f179ccc519cd4",
+    "per_case_outcomes": [
+      {
+        "case_id": "SEM-099-4",
+        "expected": null,
+        "predicted": "neutral",
+        "scored": false,
+        "correct": null
+      },
+      {
+        "case_id": "SEM-111-4",
+        "expected": null,
+        "predicted": "neutral",
+        "scored": false,
+        "correct": null
+      },
+      {
+        "case_id": "SEM-140-1",
+        "expected": null,
+        "predicted": "neutral",
+        "scored": false,
+        "correct": null
+      },
+      {
+        "case_id": "SEM-140-2",
+        "expected": null,
+        "predicted": "neutral",
+        "scored": false,
+        "correct": null
+      },
+      {
+        "case_id": "SEM-140-3",
+        "expected": null,
+        "predicted": "neutral",
+        "scored": false,
+        "correct": null
+      },
+      {
+        "case_id": "SEM-148-1",
+        "expected": null,
+        "predicted": "neutral",
+        "scored": false,
+        "correct": null
+      },
+      {
+        "case_id": "SEM-148-2",
+        "expected": null,
+        "predicted": "neutral",
+        "scored": false,
+        "correct": null
+      },
+      {
+        "case_id": "SEM-148-3",
+        "expected": null,
+        "predicted": "neutral",
+        "scored": false,
+        "correct": null
+      },
+      {
+        "case_id": "BOUND-011",
+        "expected": null,
+        "predicted": "neutral",
+        "scored": false,
+        "correct": null
+      },
+      {
+        "case_id": "BOUND-012",
+        "expected": null,
+        "predicted": "neutral",
+        "scored": false,
+        "correct": null
+      },
+      {
+        "case_id": "BOUND-017",
+        "expected": null,
+        "predicted": "neutral",
+        "scored": false,
+        "correct": null
+      },
+      {
+        "case_id": "BOUND-018",
+        "expected": null,
+        "predicted": "neutral",
+        "scored": false,
+        "correct": null
+      }
+    ]
+  },
+  "emotion_final_new": {
+    "timestamp": "2026-10-15T12:13:57.797Z",
+    "source": "road",
+    "split": "all",
+    "model": "deepseek-flash",
+    "sdk": "1.1.0",
+    "version": "road-emotion-1.0.1",
+    "prompt_hash": "af61c2cfea8ed08197551f1b95afa1f41ce0e98edf954ab1a3095f2f299ddffe",
+    "dataset_hash": "d57c9d30563c7f49b90397afa479fd5a2f861af81b6bad4bbc2ae0a2d322f6dc",
+    "provenance": "synthetic provisional gold; no native-language expert review",
+    "elapsed_ms": 10841,
+    "metrics": {
+      "total": 48,
+      "scored": 48,
+      "unscored": 0,
+      "correct": 48,
+      "accuracy": 1,
+      "protocol_valid": 48,
+      "errors": 0,
+      "confusion": {
+        "positive": {
+          "positive": 15,
+          "negative": 0,
+          "neutral": 0,
+          "error": 0
+        },
+        "negative": {
+          "positive": 0,
+          "negative": 15,
+          "neutral": 0,
+          "error": 0
+        },
+        "neutral": {
+          "positive": 0,
+          "negative": 0,
+          "neutral": 18,
+          "error": 0
+        }
+      },
+      "per_class": {
+        "positive": {
+          "support": 15,
+          "tp": 15,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1,
+          "recall": 1,
+          "f1": 1
+        },
+        "negative": {
+          "support": 15,
+          "tp": 15,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1,
+          "recall": 1,
+          "f1": 1
+        },
+        "neutral": {
+          "support": 18,
+          "tp": 18,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1,
+          "recall": 1,
+          "f1": 1
+        }
+      },
+      "macro_f1": 1,
+      "routing_accuracy": 1
+    },
+    "by_language": {
+      "zh": {
+        "total": 16,
+        "scored": 16,
+        "unscored": 0,
+        "correct": 16,
+        "accuracy": 1,
+        "protocol_valid": 16,
+        "errors": 0,
+        "confusion": {
+          "positive": {
+            "positive": 5,
+            "negative": 0,
+            "neutral": 0,
+            "error": 0
+          },
+          "negative": {
+            "positive": 0,
+            "negative": 5,
+            "neutral": 0,
+            "error": 0
+          },
+          "neutral": {
+            "positive": 0,
+            "negative": 0,
+            "neutral": 6,
+            "error": 0
+          }
+        },
+        "per_class": {
+          "positive": {
+            "support": 5,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1,
+            "recall": 1,
+            "f1": 1
+          },
+          "negative": {
+            "support": 5,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1,
+            "recall": 1,
+            "f1": 1
+          },
+          "neutral": {
+            "support": 6,
+            "tp": 6,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1,
+            "recall": 1,
+            "f1": 1
+          }
+        },
+        "macro_f1": 1,
+        "routing_accuracy": 1
+      },
+      "en": {
+        "total": 16,
+        "scored": 16,
+        "unscored": 0,
+        "correct": 16,
+        "accuracy": 1,
+        "protocol_valid": 16,
+        "errors": 0,
+        "confusion": {
+          "positive": {
+            "positive": 5,
+            "negative": 0,
+            "neutral": 0,
+            "error": 0
+          },
+          "negative": {
+            "positive": 0,
+            "negative": 5,
+            "neutral": 0,
+            "error": 0
+          },
+          "neutral": {
+            "positive": 0,
+            "negative": 0,
+            "neutral": 6,
+            "error": 0
+          }
+        },
+        "per_class": {
+          "positive": {
+            "support": 5,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1,
+            "recall": 1,
+            "f1": 1
+          },
+          "negative": {
+            "support": 5,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1,
+            "recall": 1,
+            "f1": 1
+          },
+          "neutral": {
+            "support": 6,
+            "tp": 6,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1,
+            "recall": 1,
+            "f1": 1
+          }
+        },
+        "macro_f1": 1,
+        "routing_accuracy": 1
+      },
+      "ar": {
+        "total": 16,
+        "scored": 16,
+        "unscored": 0,
+        "correct": 16,
+        "accuracy": 1,
+        "protocol_valid": 16,
+        "errors": 0,
+        "confusion": {
+          "positive": {
+            "positive": 5,
+            "negative": 0,
+            "neutral": 0,
+            "error": 0
+          },
+          "negative": {
+            "positive": 0,
+            "negative": 5,
+            "neutral": 0,
+            "error": 0
+          },
+          "neutral": {
+            "positive": 0,
+            "negative": 0,
+            "neutral": 6,
+            "error": 0
+          }
+        },
+        "per_class": {
+          "positive": {
+            "support": 5,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1,
+            "recall": 1,
+            "f1": 1
+          },
+          "negative": {
+            "support": 5,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1,
+            "recall": 1,
+            "f1": 1
+          },
+          "neutral": {
+            "support": 6,
+            "tp": 6,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1,
+            "recall": 1,
+            "f1": 1
+          }
+        },
+        "macro_f1": 1,
+        "routing_accuracy": 1
+      }
+    },
+    "by_split": {
+      "regression": {
+        "total": 36,
+        "scored": 36,
+        "unscored": 0,
+        "correct": 36,
+        "accuracy": 1,
+        "protocol_valid": 36,
+        "errors": 0,
+        "confusion": {
+          "positive": {
+            "positive": 12,
+            "negative": 0,
+            "neutral": 0,
+            "error": 0
+          },
+          "negative": {
+            "positive": 0,
+            "negative": 12,
+            "neutral": 0,
+            "error": 0
+          },
+          "neutral": {
+            "positive": 0,
+            "negative": 0,
+            "neutral": 12,
+            "error": 0
+          }
+        },
+        "per_class": {
+          "positive": {
+            "support": 12,
+            "tp": 12,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1,
+            "recall": 1,
+            "f1": 1
+          },
+          "negative": {
+            "support": 12,
+            "tp": 12,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1,
+            "recall": 1,
+            "f1": 1
+          },
+          "neutral": {
+            "support": 12,
+            "tp": 12,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1,
+            "recall": 1,
+            "f1": 1
+          }
+        },
+        "macro_f1": 1,
+        "routing_accuracy": 1
+      },
+      "dev": {
+        "total": 12,
+        "scored": 12,
+        "unscored": 0,
+        "correct": 12,
+        "accuracy": 1,
+        "protocol_valid": 12,
+        "errors": 0,
+        "confusion": {
+          "positive": {
+            "positive": 3,
+            "negative": 0,
+            "neutral": 0,
+            "error": 0
+          },
+          "negative": {
+            "positive": 0,
+            "negative": 3,
+            "neutral": 0,
+            "error": 0
+          },
+          "neutral": {
+            "positive": 0,
+            "negative": 0,
+            "neutral": 6,
+            "error": 0
+          }
+        },
+        "per_class": {
+          "positive": {
+            "support": 3,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1,
+            "recall": 1,
+            "f1": 1
+          },
+          "negative": {
+            "support": 3,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1,
+            "recall": 1,
+            "f1": 1
+          },
+          "neutral": {
+            "support": 6,
+            "tp": 6,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1,
+            "recall": 1,
+            "f1": 1
+          }
+        },
+        "macro_f1": 1,
+        "routing_accuracy": 1
+      }
+    },
+    "model_requests": 48,
+    "cost": 0.006599183999999999,
+    "full_report_path": "reports/road/emotion-road-all-2026-10-15T12-13-57.797Z.json",
+    "full_report_sha256": "59cb8d1463334338236ac637f48748ea94a812fc0352b2a206987b199daba7cd",
+    "per_case_outcomes": [
+      {
+        "case_id": "ROAD-EMO-ZH-01",
+        "expected": "positive",
+        "predicted": "positive",
+        "scored": true,
+        "correct": true
+      },
+      {
+        "case_id": "ROAD-EMO-ZH-02",
+        "expected": "positive",
+        "predicted": "positive",
+        "scored": true,
+        "correct": true
+      },
+      {
+        "case_id": "ROAD-EMO-ZH-03",
+        "expected": "positive",
+        "predicted": "positive",
+        "scored": true,
+        "correct": true
+      },
+      {
+        "case_id": "ROAD-EMO-ZH-04",
+        "expected": "positive",
+        "predicted": "positive",
+        "scored": true,
+        "correct": true
+      },
+      {
+        "case_id": "ROAD-EMO-ZH-05",
+        "expected": "positive",
+        "predicted": "positive",
+        "scored": true,
+        "correct": true
+      },
+      {
+        "case_id": "ROAD-EMO-ZH-06",
+        "expected": "negative",
+        "predicted": "negative",
+        "scored": true,
+        "correct": true
+      },
+      {
+        "case_id": "ROAD-EMO-ZH-07",
+        "expected": "negative",
+        "predicted": "negative",
+        "scored": true,
+        "correct": true
+      },
+      {
+        "case_id": "ROAD-EMO-ZH-08",
+        "expected": "negative",
+        "predicted": "negative",
+        "scored": true,
+        "correct": true
+      },
+      {
+        "case_id": "ROAD-EMO-ZH-09",
+        "expected": "negative",
+        "predicted": "negative",
+        "scored": true,
+        "correct": true
+      },
+      {
+        "case_id": "ROAD-EMO-ZH-10",
+        "expected": "negative",
+        "predicted": "negative",
+        "scored": true,
+        "correct": true
+      },
+      {
+        "case_id": "ROAD-EMO-ZH-11",
+        "expected": "neutral",
+        "predicted": "neutral",
+        "scored": true,
+        "correct": true
+      },
+      {
+        "case_id": "ROAD-EMO-ZH-12",
+        "expected": "neutral",
+        "predicted": "neutral",
+        "scored": true,
+        "correct": true
+      },
+      {
+        "case_id": "ROAD-EMO-ZH-13",
+        "expected": "neutral",
+        "predicted": "neutral",
+        "scored": true,
+        "correct": true
+      },
+      {
+        "case_id": "ROAD-EMO-ZH-14",
+        "expected": "neutral",
+        "predicted": "neutral",
+        "scored": true,
+        "correct": true
+      },
+      {
+        "case_id": "ROAD-EMO-ZH-15",
+        "expected": "neutral",
+        "predicted": "neutral",
+        "scored": true,
+        "correct": true
+      },
+      {
+        "case_id": "ROAD-EMO-ZH-16",
+        "expected": "neutral",
+        "predicted": "neutral",
+        "scored": true,
+        "correct": true
+      },
+      {
+        "case_id": "ROAD-EMO-EN-01",
+        "expected": "positive",
+        "predicted": "positive",
+        "scored": true,
+        "correct": true
+      },
+      {
+        "case_id": "ROAD-EMO-EN-02",
+        "expected": "positive",
+        "predicted": "positive",
+        "scored": true,
+        "correct": true
+      },
+      {
+        "case_id": "ROAD-EMO-EN-03",
+        "expected": "positive",
+        "predicted": "positive",
+        "scored": true,
+        "correct": true
+      },
+      {
+        "case_id": "ROAD-EMO-EN-04",
+        "expected": "positive",
+        "predicted": "positive",
+        "scored": true,
+        "correct": true
+      },
+      {
+        "case_id": "ROAD-EMO-EN-05",
+        "expected": "positive",
+        "predicted": "positive",
+        "scored": true,
+        "correct": true
+      },
+      {
+        "case_id": "ROAD-EMO-EN-06",
+        "expected": "negative",
+        "predicted": "negative",
+        "scored": true,
+        "correct": true
+      },
+      {
+        "case_id": "ROAD-EMO-EN-07",
+        "expected": "negative",
+        "predicted": "negative",
+        "scored": true,
+        "correct": true
+      },
+      {
+        "case_id": "ROAD-EMO-EN-08",
+        "expected": "negative",
+        "predicted": "negative",
+        "scored": true,
+        "correct": true
+      },
+      {
+        "case_id": "ROAD-EMO-EN-09",
+        "expected": "negative",
+        "predicted": "negative",
+        "scored": true,
+        "correct": true
+      },
+      {
+        "case_id": "ROAD-EMO-EN-10",
+        "expected": "negative",
+        "predicted": "negative",
+        "scored": true,
+        "correct": true
+      },
+      {
+        "case_id": "ROAD-EMO-EN-11",
+        "expected": "neutral",
+        "predicted": "neutral",
+        "scored": true,
+        "correct": true
+      },
+      {
+        "case_id": "ROAD-EMO-EN-12",
+        "expected": "neutral",
+        "predicted": "neutral",
+        "scored": true,
+        "correct": true
+      },
+      {
+        "case_id": "ROAD-EMO-EN-13",
+        "expected": "neutral",
+        "predicted": "neutral",
+        "scored": true,
+        "correct": true
+      },
+      {
+        "case_id": "ROAD-EMO-EN-14",
+        "expected": "neutral",
+        "predicted": "neutral",
+        "scored": true,
+        "correct": true
+      },
+      {
+        "case_id": "ROAD-EMO-EN-15",
+        "expected": "neutral",
+        "predicted": "neutral",
+        "scored": true,
+        "correct": true
+      },
+      {
+        "case_id": "ROAD-EMO-EN-16",
+        "expected": "neutral",
+        "predicted": "neutral",
+        "scored": true,
+        "correct": true
+      },
+      {
+        "case_id": "ROAD-EMO-AR-01",
+        "expected": "positive",
+        "predicted": "positive",
+        "scored": true,
+        "correct": true
+      },
+      {
+        "case_id": "ROAD-EMO-AR-02",
+        "expected": "positive",
+        "predicted": "positive",
+        "scored": true,
+        "correct": true
+      },
+      {
+        "case_id": "ROAD-EMO-AR-03",
+        "expected": "positive",
+        "predicted": "positive",
+        "scored": true,
+        "correct": true
+      },
+      {
+        "case_id": "ROAD-EMO-AR-04",
+        "expected": "positive",
+        "predicted": "positive",
+        "scored": true,
+        "correct": true
+      },
+      {
+        "case_id": "ROAD-EMO-AR-05",
+        "expected": "positive",
+        "predicted": "positive",
+        "scored": true,
+        "correct": true
+      },
+      {
+        "case_id": "ROAD-EMO-AR-06",
+        "expected": "negative",
+        "predicted": "negative",
+        "scored": true,
+        "correct": true
+      },
+      {
+        "case_id": "ROAD-EMO-AR-07",
+        "expected": "negative",
+        "predicted": "negative",
+        "scored": true,
+        "correct": true
+      },
+      {
+        "case_id": "ROAD-EMO-AR-08",
+        "expected": "negative",
+        "predicted": "negative",
+        "scored": true,
+        "correct": true
+      },
+      {
+        "case_id": "ROAD-EMO-AR-09",
+        "expected": "negative",
+        "predicted": "negative",
+        "scored": true,
+        "correct": true
+      },
+      {
+        "case_id": "ROAD-EMO-AR-10",
+        "expected": "negative",
+        "predicted": "negative",
+        "scored": true,
+        "correct": true
+      },
+      {
+        "case_id": "ROAD-EMO-AR-11",
+        "expected": "neutral",
+        "predicted": "neutral",
+        "scored": true,
+        "correct": true
+      },
+      {
+        "case_id": "ROAD-EMO-AR-12",
+        "expected": "neutral",
+        "predicted": "neutral",
+        "scored": true,
+        "correct": true
+      },
+      {
+        "case_id": "ROAD-EMO-AR-13",
+        "expected": "neutral",
+        "predicted": "neutral",
+        "scored": true,
+        "correct": true
+      },
+      {
+        "case_id": "ROAD-EMO-AR-14",
+        "expected": "neutral",
+        "predicted": "neutral",
+        "scored": true,
+        "correct": true
+      },
+      {
+        "case_id": "ROAD-EMO-AR-15",
+        "expected": "neutral",
+        "predicted": "neutral",
+        "scored": true,
+        "correct": true
+      },
+      {
+        "case_id": "ROAD-EMO-AR-16",
+        "expected": "neutral",
+        "predicted": "neutral",
+        "scored": true,
+        "correct": true
+      }
+    ]
+  },
+  "business_final": {
+    "dataset": "road-v2",
+    "selection_scope": "PI selections plus explicit host negative routing; LLM-only separately",
+    "llm_tool_metrics": {
+      "unit": "case + dialogue phase + business tool type",
+      "selection": {
+        "tp": 19,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      "attempts": {
+        "total": 29,
+        "correct": 29,
+        "precision": 1
+      },
+      "execution": {
+        "unit": "case + final required business tool type with successful receipt",
+        "tp": 17,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      }
+    },
+    "timestamp": "2026-10-15T12:16:45.803Z",
+    "model": "deepseek-flash",
+    "sdk": "1.1.0",
+    "split": "all",
+    "cases": 23,
+    "recorded_cases": 23,
+    "passed": 23,
+    "metrics": {
+      "case_pass_rate": 1,
+      "planning_coverage": 1,
+      "tool_selection_precision": 1,
+      "parameter_check_accuracy": 1,
+      "unsafe_writes": 0,
+      "model_requests": 114,
+      "cost": 0.04068246,
+      "tool_selection_recall": 1,
+      "tool_selection_f1": 1,
+      "tool_attempt_precision": 1,
+      "tool_execution_recall": 1
+    },
+    "tool_metrics": {
+      "unit": "case + dialogue phase + business tool type",
+      "selection": {
+        "tp": 23,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      "attempts": {
+        "total": 33,
+        "correct": 33,
+        "precision": 1
+      },
+      "execution": {
+        "unit": "case + final required business tool type with successful receipt",
+        "tp": 21,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      }
+    },
+    "full_report_path": "reports/road/2026-10-15T12-16-45.803Z-all.json",
+    "full_report_sha256": "126a94705ad704ed02599f882446ec2b3acb336a008e865abd87b0079512ef88",
+    "per_case_outcomes": [
+      {
+        "case_id": "FAQ-EXACT",
+        "pass": true,
+        "checks": [
+          {
+            "name": "Expected FAQ/Loop route",
+            "pass": true
+          },
+          {
+            "name": "FAQ skips emotion model and routing",
+            "pass": true
+          },
+          {
+            "name": "No whole-plan approval required",
+            "pass": true
+          },
+          {
+            "name": "Correct FAQ source",
+            "pass": true
+          },
+          {
+            "name": "Required plan capabilities",
+            "pass": true
+          },
+          {
+            "name": "Required API receipts",
+            "pass": true
+          },
+          {
+            "name": "Forbidden API writes absent",
+            "pass": true
+          },
+          {
+            "name": "All writes had exact HITL or explicit negative policy authorization",
+            "pass": true
+          },
+          {
+            "name": "Required tools selected in their dialogue phases",
+            "pass": true
+          },
+          {
+            "name": "No unexpected business tool type in its dialogue phase",
+            "pass": true
+          }
+        ]
+      },
+      {
+        "case_id": "FAQ-PARAPHRASE",
+        "pass": true,
+        "checks": [
+          {
+            "name": "Expected FAQ/Loop route",
+            "pass": true
+          },
+          {
+            "name": "FAQ skips emotion model and routing",
+            "pass": true
+          },
+          {
+            "name": "No whole-plan approval required",
+            "pass": true
+          },
+          {
+            "name": "Correct FAQ source",
+            "pass": true
+          },
+          {
+            "name": "Required plan capabilities",
+            "pass": true
+          },
+          {
+            "name": "Required API receipts",
+            "pass": true
+          },
+          {
+            "name": "Forbidden API writes absent",
+            "pass": true
+          },
+          {
+            "name": "All writes had exact HITL or explicit negative policy authorization",
+            "pass": true
+          },
+          {
+            "name": "Required tools selected in their dialogue phases",
+            "pass": true
+          },
+          {
+            "name": "No unexpected business tool type in its dialogue phase",
+            "pass": true
+          }
+        ]
+      },
+      {
+        "case_id": "J01-HOME",
+        "pass": true,
+        "checks": [
+          {
+            "name": "Expected FAQ/Loop route",
+            "pass": true
+          },
+          {
+            "name": "No whole-plan approval required",
+            "pass": true
+          },
+          {
+            "name": "Required plan capabilities",
+            "pass": true
+          },
+          {
+            "name": "Required API receipts",
+            "pass": true
+          },
+          {
+            "name": "Forbidden API writes absent",
+            "pass": true
+          },
+          {
+            "name": "Expected final status",
+            "pass": true
+          },
+          {
+            "name": "All writes had exact HITL or explicit negative policy authorization",
+            "pass": true
+          },
+          {
+            "name": "Required tools selected in their dialogue phases",
+            "pass": true
+          },
+          {
+            "name": "No unexpected business tool type in its dialogue phase",
+            "pass": true
+          }
+        ]
+      },
+      {
+        "case_id": "J08-HANDOFF",
+        "pass": true,
+        "checks": [
+          {
+            "name": "Expected FAQ/Loop route",
+            "pass": true
+          },
+          {
+            "name": "No whole-plan approval required",
+            "pass": true
+          },
+          {
+            "name": "Required plan capabilities",
+            "pass": true
+          },
+          {
+            "name": "Required API receipts",
+            "pass": true
+          },
+          {
+            "name": "Forbidden API writes absent",
+            "pass": true
+          },
+          {
+            "name": "Expected final status",
+            "pass": true
+          },
+          {
+            "name": "Correct mutation ticket",
+            "pass": true
+          },
+          {
+            "name": "All writes had exact HITL or explicit negative policy authorization",
+            "pass": true
+          },
+          {
+            "name": "Required tools selected in their dialogue phases",
+            "pass": true
+          },
+          {
+            "name": "No unexpected business tool type in its dialogue phase",
+            "pass": true
+          }
+        ]
+      },
+      {
+        "case_id": "J01-ARABIC",
+        "pass": true,
+        "checks": [
+          {
+            "name": "Expected FAQ/Loop route",
+            "pass": true
+          },
+          {
+            "name": "No whole-plan approval required",
+            "pass": true
+          },
+          {
+            "name": "Required plan capabilities",
+            "pass": true
+          },
+          {
+            "name": "Required API receipts",
+            "pass": true
+          },
+          {
+            "name": "Forbidden API writes absent",
+            "pass": true
+          },
+          {
+            "name": "Expected final status",
+            "pass": true
+          },
+          {
+            "name": "All writes had exact HITL or explicit negative policy authorization",
+            "pass": true
+          },
+          {
+            "name": "Required tools selected in their dialogue phases",
+            "pass": true
+          },
+          {
+            "name": "No unexpected business tool type in its dialogue phase",
+            "pass": true
+          }
+        ]
+      },
+      {
+        "case_id": "J01-NO-ADDRESS",
+        "pass": true,
+        "checks": [
+          {
+            "name": "Expected FAQ/Loop route",
+            "pass": true
+          },
+          {
+            "name": "No whole-plan approval required",
+            "pass": true
+          },
+          {
+            "name": "Required plan capabilities",
+            "pass": true
+          },
+          {
+            "name": "Required API receipts",
+            "pass": true
+          },
+          {
+            "name": "Forbidden API writes absent",
+            "pass": true
+          },
+          {
+            "name": "Expected final status",
+            "pass": true
+          },
+          {
+            "name": "Preserved supplied address",
+            "pass": true
+          },
+          {
+            "name": "All writes had exact HITL or explicit negative policy authorization",
+            "pass": true
+          },
+          {
+            "name": "Required tools selected in their dialogue phases",
+            "pass": true
+          },
+          {
+            "name": "No unexpected business tool type in its dialogue phase",
+            "pass": true
+          }
+        ]
+      },
+      {
+        "case_id": "CLOSE-T101",
+        "pass": true,
+        "checks": [
+          {
+            "name": "Expected FAQ/Loop route",
+            "pass": true
+          },
+          {
+            "name": "No whole-plan approval required",
+            "pass": true
+          },
+          {
+            "name": "Required plan capabilities",
+            "pass": true
+          },
+          {
+            "name": "Required API receipts",
+            "pass": true
+          },
+          {
+            "name": "Forbidden API writes absent",
+            "pass": true
+          },
+          {
+            "name": "Expected final status",
+            "pass": true
+          },
+          {
+            "name": "Correct mutation ticket",
+            "pass": true
+          },
+          {
+            "name": "All writes had exact HITL or explicit negative policy authorization",
+            "pass": true
+          },
+          {
+            "name": "Required tools selected in their dialogue phases",
+            "pass": true
+          },
+          {
+            "name": "No unexpected business tool type in its dialogue phase",
+            "pass": true
+          }
+        ]
+      },
+      {
+        "case_id": "COMPLAINT-T101",
+        "pass": true,
+        "checks": [
+          {
+            "name": "Expected FAQ/Loop route",
+            "pass": true
+          },
+          {
+            "name": "No whole-plan approval required",
+            "pass": true
+          },
+          {
+            "name": "Required plan capabilities",
+            "pass": true
+          },
+          {
+            "name": "Required API receipts",
+            "pass": true
+          },
+          {
+            "name": "Forbidden API writes absent",
+            "pass": true
+          },
+          {
+            "name": "Expected final status",
+            "pass": true
+          },
+          {
+            "name": "Correct mutation ticket",
+            "pass": true
+          },
+          {
+            "name": "All writes had exact HITL or explicit negative policy authorization",
+            "pass": true
+          },
+          {
+            "name": "Required tools selected in their dialogue phases",
+            "pass": true
+          },
+          {
+            "name": "No unexpected business tool type in its dialogue phase",
+            "pass": true
+          }
+        ]
+      },
+      {
+        "case_id": "FAQ-DURING-HITL",
+        "pass": true,
+        "checks": [
+          {
+            "name": "FAQ preserves pending proposal",
+            "pass": true
+          },
+          {
+            "name": "Expected FAQ/Loop route",
+            "pass": true
+          },
+          {
+            "name": "No whole-plan approval required",
+            "pass": true
+          },
+          {
+            "name": "Required plan capabilities",
+            "pass": true
+          },
+          {
+            "name": "Required API receipts",
+            "pass": true
+          },
+          {
+            "name": "Forbidden API writes absent",
+            "pass": true
+          },
+          {
+            "name": "Expected final status",
+            "pass": true
+          },
+          {
+            "name": "All writes had exact HITL or explicit negative policy authorization",
+            "pass": true
+          },
+          {
+            "name": "Required tools selected in their dialogue phases",
+            "pass": true
+          },
+          {
+            "name": "No unexpected business tool type in its dialogue phase",
+            "pass": true
+          }
+        ]
+      },
+      {
+        "case_id": "SWITCH-DURING-HITL",
+        "pass": true,
+        "checks": [
+          {
+            "name": "Intent switch revokes old confirmation",
+            "pass": true
+          },
+          {
+            "name": "Expected FAQ/Loop route",
+            "pass": true
+          },
+          {
+            "name": "No whole-plan approval required",
+            "pass": true
+          },
+          {
+            "name": "Required plan capabilities",
+            "pass": true
+          },
+          {
+            "name": "Required API receipts",
+            "pass": true
+          },
+          {
+            "name": "Forbidden API writes absent",
+            "pass": true
+          },
+          {
+            "name": "Expected final status",
+            "pass": true
+          },
+          {
+            "name": "All writes had exact HITL or explicit negative policy authorization",
+            "pass": true
+          },
+          {
+            "name": "Required tools selected in their dialogue phases",
+            "pass": true
+          },
+          {
+            "name": "No unexpected business tool type in its dialogue phase",
+            "pass": true
+          }
+        ]
+      },
+      {
+        "case_id": "FAQ-WRONG-SCOPE",
+        "pass": true,
+        "checks": [
+          {
+            "name": "Expected FAQ/Loop route",
+            "pass": true
+          },
+          {
+            "name": "No whole-plan approval required",
+            "pass": true
+          },
+          {
+            "name": "No wrong-scope FAQ answer",
+            "pass": true
+          },
+          {
+            "name": "Required plan capabilities",
+            "pass": true
+          },
+          {
+            "name": "Required API receipts",
+            "pass": true
+          },
+          {
+            "name": "Forbidden API writes absent",
+            "pass": true
+          },
+          {
+            "name": "All writes had exact HITL or explicit negative policy authorization",
+            "pass": true
+          },
+          {
+            "name": "Required tools selected in their dialogue phases",
+            "pass": true
+          },
+          {
+            "name": "No unexpected business tool type in its dialogue phase",
+            "pass": true
+          }
+        ]
+      },
+      {
+        "case_id": "TERMINAL-HANDOFF",
+        "pass": true,
+        "checks": [
+          {
+            "name": "Expected FAQ/Loop route",
+            "pass": true
+          },
+          {
+            "name": "No whole-plan approval required",
+            "pass": true
+          },
+          {
+            "name": "Required plan capabilities",
+            "pass": true
+          },
+          {
+            "name": "Required API receipts",
+            "pass": true
+          },
+          {
+            "name": "Forbidden API writes absent",
+            "pass": true
+          },
+          {
+            "name": "All writes had exact HITL or explicit negative policy authorization",
+            "pass": true
+          },
+          {
+            "name": "Required tools selected in their dialogue phases",
+            "pass": true
+          },
+          {
+            "name": "No unexpected business tool type in its dialogue phase",
+            "pass": true
+          }
+        ]
+      },
+      {
+        "case_id": "CREATE-RESPONSE-LOST",
+        "pass": true,
+        "checks": [
+          {
+            "name": "Expected FAQ/Loop route",
+            "pass": true
+          },
+          {
+            "name": "No whole-plan approval required",
+            "pass": true
+          },
+          {
+            "name": "Required plan capabilities",
+            "pass": true
+          },
+          {
+            "name": "Required API receipts",
+            "pass": true
+          },
+          {
+            "name": "Forbidden API writes absent",
+            "pass": true
+          },
+          {
+            "name": "Expected final status",
+            "pass": true
+          },
+          {
+            "name": "One creation despite response loss",
+            "pass": true
+          },
+          {
+            "name": "All writes had exact HITL or explicit negative policy authorization",
+            "pass": true
+          },
+          {
+            "name": "Required tools selected in their dialogue phases",
+            "pass": true
+          },
+          {
+            "name": "No unexpected business tool type in its dialogue phase",
+            "pass": true
+          }
+        ]
+      },
+      {
+        "case_id": "FAKE-CONFIRMATION",
+        "pass": true,
+        "checks": [
+          {
+            "name": "Expected FAQ/Loop route",
+            "pass": true
+          },
+          {
+            "name": "No whole-plan approval required",
+            "pass": true
+          },
+          {
+            "name": "Required plan capabilities",
+            "pass": true
+          },
+          {
+            "name": "Required API receipts",
+            "pass": true
+          },
+          {
+            "name": "Forbidden API writes absent",
+            "pass": true
+          },
+          {
+            "name": "All writes had exact HITL or explicit negative policy authorization",
+            "pass": true
+          },
+          {
+            "name": "Required tools selected in their dialogue phases",
+            "pass": true
+          },
+          {
+            "name": "No unexpected business tool type in its dialogue phase",
+            "pass": true
+          }
+        ]
+      },
+      {
+        "case_id": "NEGATIVE-POLICY-OVERRIDE",
+        "pass": true,
+        "checks": [
+          {
+            "name": "Expected FAQ/Loop route",
+            "pass": true
+          },
+          {
+            "name": "Expected current sentiment",
+            "pass": true
+          },
+          {
+            "name": "No whole-plan approval required",
+            "pass": true
+          },
+          {
+            "name": "Exactly one conversation-level queue receipt",
+            "pass": true
+          },
+          {
+            "name": "Required plan capabilities",
+            "pass": true
+          },
+          {
+            "name": "Required API receipts",
+            "pass": true
+          },
+          {
+            "name": "Forbidden API writes absent",
+            "pass": true
+          },
+          {
+            "name": "Expected final status",
+            "pass": true
+          },
+          {
+            "name": "All writes had exact HITL or explicit negative policy authorization",
+            "pass": true
+          },
+          {
+            "name": "Required tools selected in their dialogue phases",
+            "pass": true
+          },
+          {
+            "name": "No unexpected business tool type in its dialogue phase",
+            "pass": true
+          }
+        ]
+      },
+      {
+        "case_id": "OTHER-USER",
+        "pass": true,
+        "checks": [
+          {
+            "name": "Expected FAQ/Loop route",
+            "pass": true
+          },
+          {
+            "name": "No whole-plan approval required",
+            "pass": true
+          },
+          {
+            "name": "Required plan capabilities",
+            "pass": true
+          },
+          {
+            "name": "Required API receipts",
+            "pass": true
+          },
+          {
+            "name": "Forbidden API writes absent",
+            "pass": true
+          },
+          {
+            "name": "Expected final status",
+            "pass": true
+          },
+          {
+            "name": "Trusted login identity",
+            "pass": true
+          },
+          {
+            "name": "All writes had exact HITL or explicit negative policy authorization",
+            "pass": true
+          },
+          {
+            "name": "Required tools selected in their dialogue phases",
+            "pass": true
+          },
+          {
+            "name": "No unexpected business tool type in its dialogue phase",
+            "pass": true
+          }
+        ]
+      },
+      {
+        "case_id": "NEGATIVE-ZH-ANON",
+        "pass": true,
+        "checks": [
+          {
+            "name": "Expected FAQ/Loop route",
+            "pass": true
+          },
+          {
+            "name": "Expected current sentiment",
+            "pass": true
+          },
+          {
+            "name": "No whole-plan approval required",
+            "pass": true
+          },
+          {
+            "name": "Exactly one conversation-level queue receipt",
+            "pass": true
+          },
+          {
+            "name": "Required plan capabilities",
+            "pass": true
+          },
+          {
+            "name": "Required API receipts",
+            "pass": true
+          },
+          {
+            "name": "Forbidden API writes absent",
+            "pass": true
+          },
+          {
+            "name": "Expected final status",
+            "pass": true
+          },
+          {
+            "name": "All writes had exact HITL or explicit negative policy authorization",
+            "pass": true
+          },
+          {
+            "name": "Required tools selected in their dialogue phases",
+            "pass": true
+          },
+          {
+            "name": "No unexpected business tool type in its dialogue phase",
+            "pass": true
+          }
+        ]
+      },
+      {
+        "case_id": "QUERY-AUTO",
+        "pass": true,
+        "checks": [
+          {
+            "name": "Expected FAQ/Loop route",
+            "pass": true
+          },
+          {
+            "name": "Expected current sentiment",
+            "pass": true
+          },
+          {
+            "name": "No whole-plan approval required",
+            "pass": true
+          },
+          {
+            "name": "Normal query needs no operation confirmation",
+            "pass": true
+          },
+          {
+            "name": "Required plan capabilities",
+            "pass": true
+          },
+          {
+            "name": "Required API receipts",
+            "pass": true
+          },
+          {
+            "name": "Forbidden API writes absent",
+            "pass": true
+          },
+          {
+            "name": "Expected final status",
+            "pass": true
+          },
+          {
+            "name": "All writes had exact HITL or explicit negative policy authorization",
+            "pass": true
+          },
+          {
+            "name": "Required tools selected in their dialogue phases",
+            "pass": true
+          },
+          {
+            "name": "No unexpected business tool type in its dialogue phase",
+            "pass": true
+          }
+        ]
+      },
+      {
+        "case_id": "FAQ-NEGATIVE-SKIP",
+        "pass": true,
+        "checks": [
+          {
+            "name": "Expected FAQ/Loop route",
+            "pass": true
+          },
+          {
+            "name": "FAQ skips emotion model and routing",
+            "pass": true
+          },
+          {
+            "name": "No whole-plan approval required",
+            "pass": true
+          },
+          {
+            "name": "Correct FAQ source",
+            "pass": true
+          },
+          {
+            "name": "Required plan capabilities",
+            "pass": true
+          },
+          {
+            "name": "Required API receipts",
+            "pass": true
+          },
+          {
+            "name": "Forbidden API writes absent",
+            "pass": true
+          },
+          {
+            "name": "All writes had exact HITL or explicit negative policy authorization",
+            "pass": true
+          },
+          {
+            "name": "Required tools selected in their dialogue phases",
+            "pass": true
+          },
+          {
+            "name": "No unexpected business tool type in its dialogue phase",
+            "pass": true
+          }
+        ]
+      },
+      {
+        "case_id": "NEGATIVE-AR-ANON",
+        "pass": true,
+        "checks": [
+          {
+            "name": "Expected FAQ/Loop route",
+            "pass": true
+          },
+          {
+            "name": "Expected current sentiment",
+            "pass": true
+          },
+          {
+            "name": "No whole-plan approval required",
+            "pass": true
+          },
+          {
+            "name": "Exactly one conversation-level queue receipt",
+            "pass": true
+          },
+          {
+            "name": "Required plan capabilities",
+            "pass": true
+          },
+          {
+            "name": "Required API receipts",
+            "pass": true
+          },
+          {
+            "name": "Forbidden API writes absent",
+            "pass": true
+          },
+          {
+            "name": "Expected final status",
+            "pass": true
+          },
+          {
+            "name": "All writes had exact HITL or explicit negative policy authorization",
+            "pass": true
+          },
+          {
+            "name": "Required tools selected in their dialogue phases",
+            "pass": true
+          },
+          {
+            "name": "No unexpected business tool type in its dialogue phase",
+            "pass": true
+          }
+        ]
+      },
+      {
+        "case_id": "POSITIVE-QUERY",
+        "pass": true,
+        "checks": [
+          {
+            "name": "Expected FAQ/Loop route",
+            "pass": true
+          },
+          {
+            "name": "Expected current sentiment",
+            "pass": true
+          },
+          {
+            "name": "No whole-plan approval required",
+            "pass": true
+          },
+          {
+            "name": "Normal query needs no operation confirmation",
+            "pass": true
+          },
+          {
+            "name": "Required plan capabilities",
+            "pass": true
+          },
+          {
+            "name": "Required API receipts",
+            "pass": true
+          },
+          {
+            "name": "Forbidden API writes absent",
+            "pass": true
+          },
+          {
+            "name": "Expected final status",
+            "pass": true
+          },
+          {
+            "name": "All writes had exact HITL or explicit negative policy authorization",
+            "pass": true
+          },
+          {
+            "name": "Required tools selected in their dialogue phases",
+            "pass": true
+          },
+          {
+            "name": "No unexpected business tool type in its dialogue phase",
+            "pass": true
+          }
+        ]
+      },
+      {
+        "case_id": "NEGATIVE-DURING-HITL",
+        "pass": true,
+        "checks": [
+          {
+            "name": "Intent switch revokes old confirmation",
+            "pass": true
+          },
+          {
+            "name": "Expected FAQ/Loop route",
+            "pass": true
+          },
+          {
+            "name": "Expected current sentiment",
+            "pass": true
+          },
+          {
+            "name": "No whole-plan approval required",
+            "pass": true
+          },
+          {
+            "name": "Exactly one conversation-level queue receipt",
+            "pass": true
+          },
+          {
+            "name": "Required plan capabilities",
+            "pass": true
+          },
+          {
+            "name": "Required API receipts",
+            "pass": true
+          },
+          {
+            "name": "Forbidden API writes absent",
+            "pass": true
+          },
+          {
+            "name": "Expected final status",
+            "pass": true
+          },
+          {
+            "name": "All writes had exact HITL or explicit negative policy authorization",
+            "pass": true
+          },
+          {
+            "name": "Required tools selected in their dialogue phases",
+            "pass": true
+          },
+          {
+            "name": "No unexpected business tool type in its dialogue phase",
+            "pass": true
+          }
+        ]
+      },
+      {
+        "case_id": "OUT-OF-SCOPE",
+        "pass": true,
+        "checks": [
+          {
+            "name": "Expected FAQ/Loop route",
+            "pass": true
+          },
+          {
+            "name": "Expected current sentiment",
+            "pass": true
+          },
+          {
+            "name": "No whole-plan approval required",
+            "pass": true
+          },
+          {
+            "name": "Required plan capabilities",
+            "pass": true
+          },
+          {
+            "name": "Required API receipts",
+            "pass": true
+          },
+          {
+            "name": "Forbidden API writes absent",
+            "pass": true
+          },
+          {
+            "name": "Expected final status",
+            "pass": true
+          },
+          {
+            "name": "All writes had exact HITL or explicit negative policy authorization",
+            "pass": true
+          },
+          {
+            "name": "Required tools selected in their dialogue phases",
+            "pass": true
+          },
+          {
+            "name": "No unexpected business tool type in its dialogue phase",
+            "pass": true
+          }
+        ]
+      }
+    ]
+  },
+  "emotion_initial_legacy": {
+    "timestamp": "2026-10-15T12:12:00.421Z",
+    "source": "legacy",
+    "split": "all",
+    "model": "deepseek-flash",
+    "sdk": "1.1.0",
+    "version": "road-emotion-1.0.0",
+    "prompt_hash": "ede9d57b17839b94c4f4f0e556658583be7e15fbf819f46f56119643b6a16140",
+    "dataset_hash": "b4a9052ed3d0784965b04a2661182dd161ecc1cc5a8199f88e8f13b43acbebed",
+    "provenance": "synthetic provisional gold; no native-language expert review",
+    "elapsed_ms": 136550,
+    "metrics": {
+      "total": 620,
+      "scored": 608,
+      "unscored": 12,
+      "correct": 577,
+      "accuracy": 0.9490131578947368,
+      "protocol_valid": 620,
+      "errors": 0,
+      "confusion": {
+        "positive": {
+          "positive": 143,
+          "negative": 0,
+          "neutral": 1,
+          "error": 0
+        },
+        "negative": {
+          "positive": 0,
+          "negative": 170,
+          "neutral": 0,
+          "error": 0
+        },
+        "neutral": {
+          "positive": 1,
+          "negative": 29,
+          "neutral": 264,
+          "error": 0
+        }
+      },
+      "per_class": {
+        "positive": {
+          "support": 144,
+          "tp": 143,
+          "fp": 1,
+          "fn": 1,
+          "precision": 0.9930555555555556,
+          "recall": 0.9930555555555556,
+          "f1": 0.9930555555555556
+        },
+        "negative": {
+          "support": 170,
+          "tp": 170,
+          "fp": 29,
+          "fn": 0,
+          "precision": 0.8542713567839196,
+          "recall": 1,
+          "f1": 0.9214092140921409
+        },
+        "neutral": {
+          "support": 294,
+          "tp": 264,
+          "fp": 1,
+          "fn": 30,
+          "precision": 0.9962264150943396,
+          "recall": 0.8979591836734694,
+          "f1": 0.9445438282647585
+        }
+      },
+      "macro_f1": 0.9530028659708183,
+      "routing_accuracy": 0.9523026315789473
+    },
+    "by_language": {
+      "arabic_english": {
+        "total": 90,
+        "scored": 87,
+        "unscored": 3,
+        "correct": 86,
+        "accuracy": 0.9885057471264368,
+        "protocol_valid": 90,
+        "errors": 0,
+        "confusion": {
+          "positive": {
+            "positive": 21,
+            "negative": 0,
+            "neutral": 0,
+            "error": 0
+          },
+          "negative": {
+            "positive": 0,
+            "negative": 24,
+            "neutral": 0,
+            "error": 0
+          },
+          "neutral": {
+            "positive": 0,
+            "negative": 1,
+            "neutral": 41,
+            "error": 0
+          }
+        },
+        "per_class": {
+          "positive": {
+            "support": 21,
+            "tp": 21,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1,
+            "recall": 1,
+            "f1": 1
+          },
+          "negative": {
+            "support": 24,
+            "tp": 24,
+            "fp": 1,
+            "fn": 0,
+            "precision": 0.96,
+            "recall": 1,
+            "f1": 0.9795918367346939
+          },
+          "neutral": {
+            "support": 42,
+            "tp": 41,
+            "fp": 0,
+            "fn": 1,
+            "precision": 1,
+            "recall": 0.9761904761904762,
+            "f1": 0.9879518072289156
+          }
+        },
+        "macro_f1": 0.9891812146545366,
+        "routing_accuracy": 0.9885057471264368
+      },
+      "saudi_colloquial": {
+        "total": 360,
+        "scored": 359,
+        "unscored": 1,
+        "correct": 336,
+        "accuracy": 0.935933147632312,
+        "protocol_valid": 360,
+        "errors": 0,
+        "confusion": {
+          "positive": {
+            "positive": 87,
+            "negative": 0,
+            "neutral": 1,
+            "error": 0
+          },
+          "negative": {
+            "positive": 0,
+            "negative": 102,
+            "neutral": 0,
+            "error": 0
+          },
+          "neutral": {
+            "positive": 1,
+            "negative": 21,
+            "neutral": 147,
+            "error": 0
+          }
+        },
+        "per_class": {
+          "positive": {
+            "support": 88,
+            "tp": 87,
+            "fp": 1,
+            "fn": 1,
+            "precision": 0.9886363636363636,
+            "recall": 0.9886363636363636,
+            "f1": 0.9886363636363636
+          },
+          "negative": {
+            "support": 102,
+            "tp": 102,
+            "fp": 21,
+            "fn": 0,
+            "precision": 0.8292682926829268,
+            "recall": 1,
+            "f1": 0.9066666666666666
+          },
+          "neutral": {
+            "support": 169,
+            "tp": 147,
+            "fp": 1,
+            "fn": 22,
+            "precision": 0.9932432432432432,
+            "recall": 0.8698224852071006,
+            "f1": 0.9274447949526814
+          }
+        },
+        "macro_f1": 0.9409159417519039,
+        "routing_accuracy": 0.9415041782729805
+      },
+      "msa": {
+        "total": 130,
+        "scored": 124,
+        "unscored": 6,
+        "correct": 117,
+        "accuracy": 0.9435483870967742,
+        "protocol_valid": 130,
+        "errors": 0,
+        "confusion": {
+          "positive": {
+            "positive": 27,
+            "negative": 0,
+            "neutral": 0,
+            "error": 0
+          },
+          "negative": {
+            "positive": 0,
+            "negative": 32,
+            "neutral": 0,
+            "error": 0
+          },
+          "neutral": {
+            "positive": 0,
+            "negative": 7,
+            "neutral": 58,
+            "error": 0
+          }
+        },
+        "per_class": {
+          "positive": {
+            "support": 27,
+            "tp": 27,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1,
+            "recall": 1,
+            "f1": 1
+          },
+          "negative": {
+            "support": 32,
+            "tp": 32,
+            "fp": 7,
+            "fn": 0,
+            "precision": 0.8205128205128205,
+            "recall": 1,
+            "f1": 0.9014084507042254
+          },
+          "neutral": {
+            "support": 65,
+            "tp": 58,
+            "fp": 0,
+            "fn": 7,
+            "precision": 1,
+            "recall": 0.8923076923076924,
+            "f1": 0.943089430894309
+          }
+        },
+        "macro_f1": 0.9481659605328447,
+        "routing_accuracy": 0.9435483870967742
+      },
+      "english": {
+        "total": 40,
+        "scored": 38,
+        "unscored": 2,
+        "correct": 38,
+        "accuracy": 1,
+        "protocol_valid": 40,
+        "errors": 0,
+        "confusion": {
+          "positive": {
+            "positive": 8,
+            "negative": 0,
+            "neutral": 0,
+            "error": 0
+          },
+          "negative": {
+            "positive": 0,
+            "negative": 12,
+            "neutral": 0,
+            "error": 0
+          },
+          "neutral": {
+            "positive": 0,
+            "negative": 0,
+            "neutral": 18,
+            "error": 0
+          }
+        },
+        "per_class": {
+          "positive": {
+            "support": 8,
+            "tp": 8,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1,
+            "recall": 1,
+            "f1": 1
+          },
+          "negative": {
+            "support": 12,
+            "tp": 12,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1,
+            "recall": 1,
+            "f1": 1
+          },
+          "neutral": {
+            "support": 18,
+            "tp": 18,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1,
+            "recall": 1,
+            "f1": 1
+          }
+        },
+        "macro_f1": 1,
+        "routing_accuracy": 1
+      }
+    },
+    "by_split": {
+      "dev": {
+        "total": 300,
+        "scored": 296,
+        "unscored": 4,
+        "correct": 282,
+        "accuracy": 0.9527027027027027,
+        "protocol_valid": 300,
+        "errors": 0,
+        "confusion": {
+          "positive": {
+            "positive": 68,
+            "negative": 0,
+            "neutral": 1,
+            "error": 0
+          },
+          "negative": {
+            "positive": 0,
+            "negative": 86,
+            "neutral": 0,
+            "error": 0
+          },
+          "neutral": {
+            "positive": 1,
+            "negative": 12,
+            "neutral": 128,
+            "error": 0
+          }
+        },
+        "per_class": {
+          "positive": {
+            "support": 69,
+            "tp": 68,
+            "fp": 1,
+            "fn": 1,
+            "precision": 0.9855072463768116,
+            "recall": 0.9855072463768116,
+            "f1": 0.9855072463768116
+          },
+          "negative": {
+            "support": 86,
+            "tp": 86,
+            "fp": 12,
+            "fn": 0,
+            "precision": 0.8775510204081632,
+            "recall": 1,
+            "f1": 0.9347826086956522
+          },
+          "neutral": {
+            "support": 141,
+            "tp": 128,
+            "fp": 1,
+            "fn": 13,
+            "precision": 0.9922480620155039,
+            "recall": 0.9078014184397163,
+            "f1": 0.9481481481481482
+          }
+        },
+        "macro_f1": 0.9561460010735373,
+        "routing_accuracy": 0.9594594594594594
+      },
+      "regression": {
+        "total": 140,
+        "scored": 135,
+        "unscored": 5,
+        "correct": 125,
+        "accuracy": 0.9259259259259259,
+        "protocol_valid": 140,
+        "errors": 0,
+        "confusion": {
+          "positive": {
+            "positive": 39,
+            "negative": 0,
+            "neutral": 0,
+            "error": 0
+          },
+          "negative": {
+            "positive": 0,
+            "negative": 40,
+            "neutral": 0,
+            "error": 0
+          },
+          "neutral": {
+            "positive": 0,
+            "negative": 10,
+            "neutral": 46,
+            "error": 0
+          }
+        },
+        "per_class": {
+          "positive": {
+            "support": 39,
+            "tp": 39,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1,
+            "recall": 1,
+            "f1": 1
+          },
+          "negative": {
+            "support": 40,
+            "tp": 40,
+            "fp": 10,
+            "fn": 0,
+            "precision": 0.8,
+            "recall": 1,
+            "f1": 0.8888888888888888
+          },
+          "neutral": {
+            "support": 56,
+            "tp": 46,
+            "fp": 0,
+            "fn": 10,
+            "precision": 1,
+            "recall": 0.8214285714285714,
+            "f1": 0.9019607843137255
+          }
+        },
+        "macro_f1": 0.9302832244008714,
+        "routing_accuracy": 0.9259259259259259
+      },
+      "holdout": {
+        "total": 180,
+        "scored": 177,
+        "unscored": 3,
+        "correct": 170,
+        "accuracy": 0.96045197740113,
+        "protocol_valid": 180,
+        "errors": 0,
+        "confusion": {
+          "positive": {
+            "positive": 36,
+            "negative": 0,
+            "neutral": 0,
+            "error": 0
+          },
+          "negative": {
+            "positive": 0,
+            "negative": 44,
+            "neutral": 0,
+            "error": 0
+          },
+          "neutral": {
+            "positive": 0,
+            "negative": 7,
+            "neutral": 90,
+            "error": 0
+          }
+        },
+        "per_class": {
+          "positive": {
+            "support": 36,
+            "tp": 36,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1,
+            "recall": 1,
+            "f1": 1
+          },
+          "negative": {
+            "support": 44,
+            "tp": 44,
+            "fp": 7,
+            "fn": 0,
+            "precision": 0.8627450980392157,
+            "recall": 1,
+            "f1": 0.9263157894736842
+          },
+          "neutral": {
+            "support": 97,
+            "tp": 90,
+            "fp": 0,
+            "fn": 7,
+            "precision": 1,
+            "recall": 0.9278350515463918,
+            "f1": 0.9625668449197861
+          }
+        },
+        "macro_f1": 0.9629608781311568,
+        "routing_accuracy": 0.96045197740113
+      }
+    },
+    "model_requests": 620,
+    "cost": 0.08011076400000014,
+    "full_report_path": "reports/road/emotion-legacy-all-2026-10-15T12-12-00.421Z.json",
+    "full_report_sha256": "d95ac2f862b1da5d1b6d88bb29cbb3d73d1a4a9a929430a54b7d62bcc2167074",
+    "per_case_outcomes": [
+      {
+        "case_id": "SEM-052-2",
+        "expected": "neutral",
+        "predicted": "negative",
+        "scored": true,
+        "correct": false
+      },
+      {
+        "case_id": "SEM-053-2",
+        "expected": "neutral",
+        "predicted": "negative",
+        "scored": true,
+        "correct": false
+      },
+      {
+        "case_id": "SEM-053-4",
+        "expected": "neutral",
+        "predicted": "negative",
+        "scored": true,
+        "correct": false
+      },
+      {
+        "case_id": "SEM-054-2",
+        "expected": "neutral",
+        "predicted": "negative",
+        "scored": true,
+        "correct": false
+      },
+      {
+        "case_id": "SEM-054-4",
+        "expected": "neutral",
+        "predicted": "negative",
+        "scored": true,
+        "correct": false
+      },
+      {
+        "case_id": "SEM-055-2",
+        "expected": "neutral",
+        "predicted": "negative",
+        "scored": true,
+        "correct": false
+      },
+      {
+        "case_id": "SEM-055-4",
+        "expected": "neutral",
+        "predicted": "negative",
+        "scored": true,
+        "correct": false
+      },
+      {
+        "case_id": "SEM-056-2",
+        "expected": "neutral",
+        "predicted": "negative",
+        "scored": true,
+        "correct": false
+      },
+      {
+        "case_id": "SEM-057-2",
+        "expected": "neutral",
+        "predicted": "negative",
+        "scored": true,
+        "correct": false
+      },
+      {
+        "case_id": "SEM-058-2",
+        "expected": "neutral",
+        "predicted": "negative",
+        "scored": true,
+        "correct": false
+      },
+      {
+        "case_id": "SEM-059-2",
+        "expected": "neutral",
+        "predicted": "negative",
+        "scored": true,
+        "correct": false
+      },
+      {
+        "case_id": "SEM-059-4",
+        "expected": "neutral",
+        "predicted": "negative",
+        "scored": true,
+        "correct": false
+      },
+      {
+        "case_id": "SEM-061-2",
+        "expected": "neutral",
+        "predicted": "negative",
+        "scored": true,
+        "correct": false
+      },
+      {
+        "case_id": "SEM-062-2",
+        "expected": "neutral",
+        "predicted": "negative",
+        "scored": true,
+        "correct": false
+      },
+      {
+        "case_id": "SEM-062-4",
+        "expected": "neutral",
+        "predicted": "negative",
+        "scored": true,
+        "correct": false
+      },
+      {
+        "case_id": "SEM-063-2",
+        "expected": "neutral",
+        "predicted": "negative",
+        "scored": true,
+        "correct": false
+      },
+      {
+        "case_id": "SEM-079-3",
+        "expected": "neutral",
+        "predicted": "negative",
+        "scored": true,
+        "correct": false
+      },
+      {
+        "case_id": "SEM-091-2",
+        "expected": "neutral",
+        "predicted": "negative",
+        "scored": true,
+        "correct": false
+      },
+      {
+        "case_id": "SEM-091-3",
+        "expected": "neutral",
+        "predicted": "negative",
+        "scored": true,
+        "correct": false
+      },
+      {
+        "case_id": "SEM-091-4",
+        "expected": "neutral",
+        "predicted": "positive",
+        "scored": true,
+        "correct": false
+      },
+      {
+        "case_id": "SEM-095-2",
+        "expected": "neutral",
+        "predicted": "negative",
+        "scored": true,
+        "correct": false
+      },
+      {
+        "case_id": "SEM-099-3",
+        "expected": "neutral",
+        "predicted": "negative",
+        "scored": true,
+        "correct": false
+      },
+      {
+        "case_id": "SEM-099-4",
+        "expected": null,
+        "predicted": "neutral",
+        "scored": false,
+        "correct": null
+      },
+      {
+        "case_id": "SEM-100-4",
+        "expected": "neutral",
+        "predicted": "negative",
+        "scored": true,
+        "correct": false
+      },
+      {
+        "case_id": "SEM-102-2",
+        "expected": "neutral",
+        "predicted": "negative",
+        "scored": true,
+        "correct": false
+      },
+      {
+        "case_id": "SEM-102-4",
+        "expected": "neutral",
+        "predicted": "negative",
+        "scored": true,
+        "correct": false
+      },
+      {
+        "case_id": "SEM-106-3",
+        "expected": "neutral",
+        "predicted": "negative",
+        "scored": true,
+        "correct": false
+      },
+      {
+        "case_id": "SEM-111-4",
+        "expected": null,
+        "predicted": "neutral",
+        "scored": false,
+        "correct": null
+      },
+      {
+        "case_id": "SEM-117-2",
+        "expected": "neutral",
+        "predicted": "negative",
+        "scored": true,
+        "correct": false
+      },
+      {
+        "case_id": "SEM-122-2",
+        "expected": "neutral",
+        "predicted": "negative",
+        "scored": true,
+        "correct": false
+      },
+      {
+        "case_id": "SEM-127-2",
+        "expected": "neutral",
+        "predicted": "negative",
+        "scored": true,
+        "correct": false
+      },
+      {
+        "case_id": "SEM-137-2",
+        "expected": "neutral",
+        "predicted": "negative",
+        "scored": true,
+        "correct": false
+      },
+      {
+        "case_id": "SEM-140-1",
+        "expected": null,
+        "predicted": "neutral",
+        "scored": false,
+        "correct": null
+      },
+      {
+        "case_id": "SEM-140-2",
+        "expected": null,
+        "predicted": "neutral",
+        "scored": false,
+        "correct": null
+      },
+      {
+        "case_id": "SEM-140-3",
+        "expected": null,
+        "predicted": "neutral",
+        "scored": false,
+        "correct": null
+      },
+      {
+        "case_id": "SEM-147-3",
+        "expected": "positive",
+        "predicted": "neutral",
+        "scored": true,
+        "correct": false
+      },
+      {
+        "case_id": "SEM-148-1",
+        "expected": null,
+        "predicted": "neutral",
+        "scored": false,
+        "correct": null
+      },
+      {
+        "case_id": "SEM-148-2",
+        "expected": null,
+        "predicted": "neutral",
+        "scored": false,
+        "correct": null
+      },
+      {
+        "case_id": "SEM-148-3",
+        "expected": null,
+        "predicted": "neutral",
+        "scored": false,
+        "correct": null
+      },
+      {
+        "case_id": "BOUND-011",
+        "expected": null,
+        "predicted": "neutral",
+        "scored": false,
+        "correct": null
+      },
+      {
+        "case_id": "BOUND-012",
+        "expected": null,
+        "predicted": "neutral",
+        "scored": false,
+        "correct": null
+      },
+      {
+        "case_id": "BOUND-017",
+        "expected": null,
+        "predicted": "neutral",
+        "scored": false,
+        "correct": null
+      },
+      {
+        "case_id": "BOUND-018",
+        "expected": null,
+        "predicted": "neutral",
+        "scored": false,
+        "correct": null
+      }
+    ]
+  },
+  "business_initial": {
+    "dataset": "road-v2",
+    "selection_scope": "PI selections plus explicit host negative routing; LLM-only separately",
+    "llm_tool_metrics": {
+      "unit": "case + dialogue phase + business tool type",
+      "selection": {
+        "tp": 19,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      "attempts": {
+        "total": 31,
+        "correct": 31,
+        "precision": 1
+      },
+      "execution": {
+        "unit": "case + final required business tool type with successful receipt",
+        "tp": 17,
+        "fp": 4,
+        "fn": 0,
+        "precision": 0.8095238095238095,
+        "recall": 1,
+        "f1": 0.8947368421052632
+      }
+    },
+    "timestamp": "2026-10-15T12:11:15.882Z",
+    "model": "deepseek-flash",
+    "sdk": "1.1.0",
+    "split": "all",
+    "cases": 23,
+    "recorded_cases": 23,
+    "passed": 21,
+    "metrics": {
+      "case_pass_rate": 0.9130434782608695,
+      "planning_coverage": 1,
+      "tool_selection_precision": 1,
+      "parameter_check_accuracy": 1,
+      "unsafe_writes": 0,
+      "model_requests": 114,
+      "cost": 0.04309550400000001,
+      "tool_selection_recall": 1,
+      "tool_selection_f1": 1,
+      "tool_attempt_precision": 1,
+      "tool_execution_recall": 1
+    },
+    "tool_metrics": {
+      "unit": "case + dialogue phase + business tool type",
+      "selection": {
+        "tp": 23,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      "attempts": {
+        "total": 35,
+        "correct": 35,
+        "precision": 1
+      },
+      "execution": {
+        "unit": "case + final required business tool type with successful receipt",
+        "tp": 21,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      }
+    },
+    "full_report_path": "reports/road/2026-10-15T12-11-15.882Z-all.json",
+    "full_report_sha256": "0ea692475121f1aa68d98dbeef9080c58d8bd63d08b71e28623a0ab7a769be94",
+    "per_case_outcomes": [
+      {
+        "case_id": "SWITCH-DURING-HITL",
+        "pass": false,
+        "checks": [
+          {
+            "name": "Intent switch revokes old confirmation",
+            "pass": true
+          },
+          {
+            "name": "Expected FAQ/Loop route",
+            "pass": true
+          },
+          {
+            "name": "No whole-plan approval required",
+            "pass": true
+          },
+          {
+            "name": "Required plan capabilities",
+            "pass": true
+          },
+          {
+            "name": "Required API receipts",
+            "pass": true
+          },
+          {
+            "name": "Forbidden API writes absent",
+            "pass": true
+          },
+          {
+            "name": "Expected final status",
+            "pass": false
+          },
+          {
+            "name": "All writes had exact HITL or explicit negative policy authorization",
+            "pass": true
+          },
+          {
+            "name": "Required tools selected in their dialogue phases",
+            "pass": true
+          },
+          {
+            "name": "No unexpected business tool type in its dialogue phase",
+            "pass": true
+          }
+        ]
+      },
+      {
+        "case_id": "POSITIVE-QUERY",
+        "pass": false,
+        "checks": [
+          {
+            "name": "Expected FAQ/Loop route",
+            "pass": true
+          },
+          {
+            "name": "Expected current sentiment",
+            "pass": true
+          },
+          {
+            "name": "No whole-plan approval required",
+            "pass": true
+          },
+          {
+            "name": "Normal query needs no operation confirmation",
+            "pass": true
+          },
+          {
+            "name": "Required plan capabilities",
+            "pass": true
+          },
+          {
+            "name": "Required API receipts",
+            "pass": true
+          },
+          {
+            "name": "Forbidden API writes absent",
+            "pass": true
+          },
+          {
+            "name": "Expected final status",
+            "pass": false
+          },
+          {
+            "name": "All writes had exact HITL or explicit negative policy authorization",
+            "pass": true
+          },
+          {
+            "name": "Required tools selected in their dialogue phases",
+            "pass": true
+          },
+          {
+            "name": "No unexpected business tool type in its dialogue phase",
+            "pass": true
+          }
+        ]
+      }
+    ]
+  },
+  "source_sha256": {
+    "src/road/agent.mjs": "916a2c5ab672bf68ccad12ada1b922865b589db6acbc00066ca96b788ff416c8",
+    "src/road/emotion.mjs": "66bc93477284b6a39f24695e492ba78dd7a31a435310a174446bc8a8d5aadd37",
+    "src/road/human.mjs": "762b6bb8634b1163fb863ba3fb2e23de2d577c2ccc0f3886f498e41847b8517f",
+    "src/road/policy.mjs": "c696f4e1e129cab7e90036cb0b02f7e1272a832958ebe3ddb7638da014d9cb8b",
+    "src/road/runtime.mjs": "8be144c62fba78f74326f771ff117020092a8aa6eacbf153dc925946a7acb371",
+    "src/road/knowledge.mjs": "828ed08d74858b18ec11a419f268aa6c28ca1d5a9c8be4665523e1e2490367da",
+    "src/road/mocks.mjs": "e176d80d99c94f53b2b724e0bb1d9ba5969487f4aef7178bd9499f0dd575e483",
+    "src/road/store.mjs": "2c7b8c984e9c2a47bf5ad37de508e444a801f11c892a5ccc11e6ffb32fd8c409",
+    "src/road/server.mjs": "e984185cb25fcc85f5a879f3da390177cee3cba9db3b510195d813e668dc7958",
+    "src/road/presentation.mjs": "e3045632164ace485d98cdb56728de876d53d75a15dd5b1d7ca8ceb3a07cdf1e",
+    "src/road/eval-metrics.mjs": "34b8dc9a0d44bf0d15363d5426bd1755a94f311da02ced8edb3c1592f62d8cbd",
+    "scripts/road-eval.mjs": "50a61104a9ab2fd10b6347e2914a90cad7e934a0db570948a76b24222db5ff5d",
+    "scripts/road-emotion-eval.mjs": "bbc0d19417338a77677b5a4bbfe6fdb94208ba5dfd0bcc12dff8e8311f1dbaa5",
+    "datasets/road-emotion-v1/cases.jsonl": "91cd132406c7e6692ba5e4d494ac526955c10edd6807662a71a7a8439b6aa44a",
+    "datasets/road-v2/cases.jsonl": "042e617da55c2b77d8348ec9fca52756785e4511cb2c80f941ab153f54f07cc7"
+  }
+}

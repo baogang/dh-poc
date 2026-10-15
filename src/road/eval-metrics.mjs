@@ -4,7 +4,7 @@ export const BUSINESS_TOOLS=new Set(['query_tickets','create_ticket','close_tick
 const ratio=(a,b)=>b?a/b:null;
 const counts=(tp,fp,fn)=>({tp,fp,fn,precision:ratio(tp,tp+fp),recall:ratio(tp,tp+fn),f1:ratio(2*tp,2*tp+fp+fn)});
 
-export function scoreRoadTools(reference,row){
+export function scoreRoadTools(reference,row,{includeHostPolicy=false}={}){
   const expected=reference.expected.operations;
   const explicit=reference.expected.tool_phases;
   const events=row?.session?.events??[];
@@ -18,7 +18,7 @@ export function scoreRoadTools(reference,row){
   const details=phases.map(p=>{
     const required=new Set(p.operations);
     if([...required].some(t=>!BUSINESS_TOOLS.has(t)))throw Error('Unknown required business tool');
-    const calls=p.events.filter(e=>e.type==='tool_start'&&BUSINESS_TOOLS.has(e.name));
+    const calls=p.events.flatMap(e=>e.type==='tool_start'&&BUSINESS_TOOLS.has(e.name)?[e]:includeHostPolicy&&e.type==='policy_handoff_authorized'?[{name:'handoff_to_human',source:'host_policy'}]:[]);
     const seen=new Set(calls.map(e=>e.name));
     const matched=[...required].filter(t=>seen.has(t)),missing=[...required].filter(t=>!seen.has(t)),unexpected=[...seen].filter(t=>!required.has(t));
     tp+=matched.length;fp+=unexpected.length;fn+=missing.length;attempts+=calls.length;correctAttempts+=calls.filter(e=>required.has(e.name)).length;

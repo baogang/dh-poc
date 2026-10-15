@@ -1,6 +1,8 @@
 export function languageOf(s){const text=[...s.messages].reverse().find(m=>m.role==='user'&&!m.kind)?.text??'';return /[\u4e00-\u9fff]/u.test(text)?'zh':/[\u0600-\u06ff]/u.test(text)?'ar':'en';}
 export function chatNotice(s,kind){const language=languageOf(s);return {
   plan:{zh:'我会按下面的步骤处理。请在聊天中确认是否按此计划继续。',en:'I will follow the steps below. Please review the plan and choose Continue here in the chat.',ar:'سأتبع الخطوات أدناه. يرجى مراجعة الخطة واختيار المتابعة هنا في المحادثة.'},
+  autoPlan:{zh:'我会按这些步骤直接处理普通查询；写入数据或高危查询前，会在聊天中请你确认具体内容。',en:'I will start these steps now. Normal queries run automatically; writes and high-risk reads will ask for confirmation of their exact details.',ar:'سأبدأ هذه الخطوات الآن. تنفذ الاستعلامات العادية تلقائياً، وسأطلب تأكيد التفاصيل قبل الكتابة أو الاستعلام عالي المخاطر.'},
+  highRiskRead:{zh:'此查询被后端标记为高危读取。请核对查询内容并确认；确认前不会读取数据。',en:'The host marks this query as a high-risk read. Review the query details and confirm before data is retrieved.',ar:'صنف النظام هذا الاستعلام كقراءة عالية المخاطر. راجع التفاصيل وأكد قبل جلب البيانات.'},
   operation:{zh:'已整理好要提交的内容。请核对下面的信息，再确认提交；确认之前不会执行这个操作。',en:'The details are ready. Please review them below and confirm submission here. This operation will wait for your confirmation.',ar:'التفاصيل جاهزة. يرجى مراجعتها أدناه وتأكيد الإرسال هنا. لن يتم تنفيذ العملية قبل تأكيدك.'},
   approved:{zh:'已确认计划，我开始处理。',en:'Plan confirmed. I will start now.',ar:'تم تأكيد الخطة. سأبدأ الآن.'},
   confirmed:{zh:'我已确认提交以上内容。',en:'I confirm submitting the details above.',ar:'أؤكد إرسال التفاصيل الموضحة أعلاه.'},

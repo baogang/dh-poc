@@ -14,7 +14,7 @@ class Element {
   insertBefore(node,before){node.remove();node.parentElement=this;const i=this.children.indexOf(before);if(i<0)this.children.push(node);else this.children.splice(i,0,node);}
   get firstChild(){return this.children[0]??null;}get nextSibling(){const p=this.parentElement;return p?.children[p.children.indexOf(this)+1]??null;}
   setAttribute(k,v){this.attrs[k]=String(v);}getAttribute(k){return this.attrs[k]??null;}
-  addEventListener(type,fn){this.listeners[type]=fn;}async fire(type){return this.listeners[type]?.({preventDefault(){},target:this});}
+  addEventListener(type,fn){this.listeners[type]=fn;}async fire(type,props={}){const event={defaultPrevented:false,preventDefault(){this.defaultPrevented=true;},target:this,...props};await this.listeners[type]?.(event);return event;} requestSubmit(){return this.fire('submit');}
   matches(selector){return selector.split(',').some(s=>{s=s.trim();if(s.startsWith('.'))return this.className.split(' ').includes(s.slice(1));const tag=s.match(/^[a-z]+/i)?.[0];if(tag&&this.tagName!==tag.toUpperCase())return false;for(const a of s.matchAll(/\[([^\]=]+)(?:="([^"]*)")?\]/g)){const key=a[1],value=key==='open'?this.open:key.startsWith('data-')?this.dataset[key.slice(5).replace(/-([a-z])/g,(_,c)=>c.toUpperCase())]:this[key]??this.attrs[key];if(!value||a[2]!==undefined&&String(value)!==a[2])return false;}return !!tag||s.startsWith('[');});}
   querySelectorAll(s){const list=this.children.flatMap(c=>[...(c.matches(s)?[c]:[]),...c.querySelectorAll(s)]);list.includes=undefined;return list;}querySelector(s){return this.querySelectorAll(s)[0]??null;}
   closest(s){return this.matches(s)?this:this.parentElement?.closest(s)??null;}focus(){this.document.activeElement=this;}setSelectionRange(a,b){this.selectionStart=a;this.selectionEnd=b;}
@@ -23,11 +23,11 @@ const source=await readFile(new URL('../web/road/app.js',import.meta.url),'utf8'
 const fixture=()=>({id:'session',running:false,status:'review',user:null,messages:[{id:'m1',role:'user',text:'There is a big pothole in front of my house',time:'2026-10-14T14:00:00Z'}],plans:[{id:'p1',version:1,goal:'Report this pothole',summary:'Collect the location, then create the report.',created_at:'2026-10-14T14:00:01Z',status:'review',approved:false,steps:[{id:'address',title:'Collect pothole location',capability:'input',depends_on:[],parameters:{},status:'pending'},{id:'create',title:'Create pothole report',capability:'create_ticket',depends_on:['address'],parameters:{},status:'pending'}]}],activePlanId:'p1',pendingInput:null,pendingOperation:null,events:[],receipts:[],mock:{calls:[],handoffs:[]},faq:{name:'test',entry_count:9,source_displayed_count:26,migration_status:'verified-subset'}});
 async function harness(){
   const nodes=new Map(),doc={activeElement:null,getElementById(id){if(!nodes.has(id)){const e=new Element();e.document=doc;nodes.set(id,e);}return nodes.get(id);},createElement(tag){const e=new Element(tag);e.document=doc;return e;},querySelectorAll(s){return [...nodes.values()].flatMap(e=>e.querySelectorAll(s));}};
-  const storage=new Map();const context=vm.createContext({document:doc,console,localStorage:{getItem:k=>storage.get(k)??null,setItem:(k,v)=>storage.set(k,String(v))},requestAnimationFrame:fn=>fn(),setTimeout,clearTimeout,setInterval:()=>0,clearInterval,AbortSignal,FormData,fetch:async()=>({ok:true,status:200,json:async()=>fixture()}),EventSource:class{close(){}}});
+  const requests=[];const storage=new Map();const context=vm.createContext({document:doc,console,localStorage:{getItem:k=>storage.get(k)??null,setItem:(k,v)=>storage.set(k,String(v))},requestAnimationFrame:fn=>fn(),setTimeout,clearTimeout,setInterval:()=>0,clearInterval,AbortSignal,FormData,fetch:async(path,options={})=>{requests.push({path,...options});return {ok:true,status:200,json:async()=>fixture()};},EventSource:class{close(){}}});
   // New renderer stays importable for tests without a browser or server.
   if(source.startsWith('import ')){const {createChatRenderer}=await import('../web/road/chat-ui.js');context.createChatRenderer=createChatRenderer;}
   vm.runInContext(source.replace(/^import .*;\n/gm,'').replace(/start\(\)\.catch\([\s\S]*?\);\s*$/,"globalThis.testUI={render,setState(value){state=value;if(typeof client!=='undefined')client.connecting=false;}};"),context);
-  const state=fixture();context.testUI.setState(state);context.testUI.render();return {nodes,doc,state,render(){context.testUI.setState(state);context.testUI.render();},chat:doc.getElementById('messages')};
+  const state=fixture();context.testUI.setState(state);context.testUI.render();return {nodes,doc,state,requests,render(){context.testUI.setState(state);context.testUI.render();},chat:doc.getElementById('messages')};
 }
 test('plan reply and next action are inside the conversation, so a chatbot-only user can continue',async()=>{
   const h=await harness();assert(h.chat.textContent.includes('Collect the location, then create the report.'));
@@ -64,4 +64,20 @@ test('while the model is running the conversation shows progress, and ticket res
 });
 test('a text clarification renders using native-like readonly textarea properties',async()=>{
   const h=await harness();h.state.pendingInput={id:'text-1',kind:'text',question:'Can you clarify the location?',candidates:[]};h.render();assert(h.chat.textContent.includes('Can you clarify the location?'));assert(h.chat.querySelectorAll('textarea').some(t=>t.name==='text'));assert(h.chat.querySelectorAll('button').some(b=>b.textContent==='提交信息并继续'));
+});
+
+const settle=()=>new Promise(r=>setImmediate(r));
+test('Enter submits once; Shift+Enter, IME composition, repeats and busy state do not send',async()=>{
+ const h=await harness(),input=h.doc.getElementById('chat-message');input.value='Show ticket history';const e=await input.fire('keydown',{key:'Enter'});await settle();assert(e.defaultPrevented);assert.equal(h.requests.filter(r=>r.path==='/api/chat').length,1);assert.equal(JSON.parse(h.requests.find(r=>r.path==='/api/chat').body).message,'Show ticket history');
+ for(const props of [{shiftKey:true},{isComposing:true},{keyCode:229},{repeat:true}]){input.value='Must not send';await input.fire('keydown',{key:'Enter',...props});}await settle();assert.equal(h.requests.filter(r=>r.path==='/api/chat').length,1);
+ h.state.running=true;h.render();await input.fire('keydown',{key:'Enter'});await settle();assert.equal(h.requests.filter(r=>r.path==='/api/chat').length,1);
+});
+test('automatic plans have no whole-plan continue button and keep the exact write confirmation visible',async()=>{
+ const h=await harness();h.state.plans[0].approved=true;h.state.plans[0].status='approved';h.state.pendingOperation={id:'o1',operation:'create_ticket',parameters:{address:{city:'Riyadh',street:'Test Road'},description:'Pothole'}};h.render();assert(!h.chat.querySelectorAll('button').some(b=>/按计划继续/.test(b.textContent)));assert(h.chat.querySelectorAll('button').some(b=>b.textContent==='确认提交'));
+});
+test('task toggle controls sentiment and human simulation details while essential handoff status stays usable',async()=>{
+ const h=await harness();h.state.emotion={status:'classified',sentiment:'negative',message_id:'m1',evidence:{quote:'I am disappointed'}};h.state.activeHandoffId='h1';h.state.mock.handoffs=[{handoff_id:'h1',scope:'conversation',status:'WAITING'}];h.state.status='human_waiting';h.render();
+ assert(h.doc.getElementById('emotion-status').textContent.includes('negative'));assert(h.chat.textContent.includes('I am disappointed'));assert(h.chat.querySelectorAll('button').some(b=>/模拟人工受理/.test(b.textContent)));
+ h.state.emotion.sentiment='neutral';h.render();assert(h.chat.textContent.includes('当前处于模拟人工会话，自动业务保持暂停。'));const toggle=h.doc.getElementById('show-tasks');toggle.checked=false;await toggle.fire('change');assert(h.doc.getElementById('emotion-status').hidden);assert(!h.chat.textContent.includes('I am disappointed'));assert(!h.chat.querySelectorAll('button').some(b=>/模拟人工受理/.test(b.textContent)));assert(h.chat.textContent.includes('排队中，尚未受理'));
+ h.state.mock.handoffs[0].status='COMPLETED';h.render();assert(h.chat.querySelectorAll('button').some(b=>b.textContent==='返回智能助手'));
 });

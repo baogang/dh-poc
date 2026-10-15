@@ -15,12 +15,15 @@ export function conversationItems(s){
   const operations=s.events.filter(e=>e.type==='confirmation_required').map(e=>({proposal:e.proposal,time:e.time}));if(s.pendingOperation&&!operations.some(x=>x.proposal.id===s.pendingOperation.id))operations.push({proposal:s.pendingOperation,time:s.messages.at(-1)?.time});
   for(const {proposal:o,time}of operations){const m=s.messages.find(m=>m.kind==='operation_confirmation'&&m.proposal_id===o.id);rows.push({id:'operation:'+o.id,kind:'operation',time:m?.time??time,proposal:o,text:m?.text??'提交内容已准备好。请核对信息，再确认提交；确认前不会执行。',active:s.pendingOperation?.id===o.id,approved:s.events.some(e=>e.type==='operation_approved'&&e.proposal_id===o.id)});}
   for(const r of s.receipts)rows.push({id:'receipt:'+r.id,kind:'receipt',time:r.time,receipt:r});
-  for(const e of s.events.filter(e=>e.type==='human_status'))rows.push({id:'human:'+e.seq,kind:'human',time:e.time,handoff:e.handoff});
+  if(s.emotion?.status==='classified')rows.push({id:'emotion:'+s.emotion.message_id,kind:'emotion',time:s.emotion.assessed_at,emotion:s.emotion,humanActive:!!s.activeHandoffId});
+  for(const h of s.mock.handoffs.filter(h=>h.scope==='conversation'))rows.push({id:'human-desk:'+h.handoff_id,kind:'human_desk',time:h.created_at,handoff:h,active:s.activeHandoffId===h.handoff_id});
+  for(const e of s.events.filter(e=>e.type==='human_status'&&e.handoff.scope!=='conversation'))rows.push({id:'human:'+e.seq,kind:'human',time:e.time,handoff:e.handoff});
   return rows.sort((a,b)=>(a.time??'').localeCompare(b.time??''));
 }
 
 export function progressText(s){
   const start=s.events.findLastIndex(e=>e.type==='turn_started');const current=s.events.slice(Math.max(0,start));
+  if(current.some(e=>e.type==='emotion_started')&&!current.some(e=>e.type==='emotion_assessed'||e.type==='emotion_error'))return '问答库未直接命中，正在识别你当前的情绪…';
   const api=[...current].reverse().find(e=>e.type==='api_start');
   if(api)return {login:'正在验证模拟账号…',query_tickets:'正在查询你的工单记录…',create_ticket:'正在提交已确认的工单…',close_ticket:'正在关闭已确认的工单…',complain_ticket:'正在提交已确认的投诉…',handoff_to_human:'正在转交已确认的人工请求…'}[api.call.operation]??'正在处理你的请求…';
   if(current.some(e=>e.type==='faq_miss'))return '正在整理处理步骤，稍后会在这里说明下一步…';
@@ -67,7 +70,7 @@ export function createChatRenderer(document,container,actions){
       }else n.append(el('small',p.status==='completed'?'这份计划已处理完成。':p.status==='superseded'?'已按新意图调整计划，这份计划停止执行。':p.status==='paused'?'这份计划已暂停。':['blocked','failed','interrupted'].includes(item.outcome)?'这份计划还没有完成，可以调整任务或重试。':'我正在按这份计划处理。'));
     }else if(item.kind==='operation'){
       const o=item.proposal;n.append(el('div','请确认 · '+(operationLabels[o.operation]??'提交操作'),'card-caption'),el('p',item.text));payload(n,o.parameters);
-      if(item.active)n.append(button('确认提交',()=>actions.action('/api/approve-operation',{proposal_id:o.id}),busy),button('取消这个任务',()=>actions.action('/api/cancel',{}),busy));
+      if(item.active)n.append(button(o.operation==='query_tickets'?'确认查询':'确认提交',()=>actions.action('/api/approve-operation',{proposal_id:o.id}),busy),button('取消这个任务',()=>actions.action('/api/cancel',{}),busy));
       else n.append(el('small',item.approved?'你已确认以上内容。':'此确认已失效，以上内容不会继续提交。'));
     }else if(item.kind==='input'){
       const x=item.input;n.append(el('p',x.question,'message-text'));
@@ -81,12 +84,26 @@ export function createChatRenderer(document,container,actions){
         for(const [value,label]of[['yes','是，仍未解决'],['no','否，已经解决']]){const l=el('label',label,'check'),radio=el('input');radio.type='radio';radio.name='unresolved';radio.value=value;radio.required=true;l.prepend(radio);f.append(l);}
       }else field(f,'补充信息','text','textarea');
       const b=el('button','提交信息并继续');b.disabled=busy;f.append(b);f.addEventListener('submit',e=>{e.preventDefault();if(busy)return;const fd=new FormData(f),value=Object.fromEntries(fd);if(x.kind==='ticket'){if(!['yes','no'].includes(fd.get('unresolved')))return;value.matched=fd.has('matched');value.unresolved=fd.get('unresolved')==='yes';}actions.action('/api/input',{input_id:x.id,value});});n.append(f);
+    }else if(item.kind==='emotion'){
+      const e=item.emotion;n.append(el('div','情绪识别 · FAQ 未命中后','card-caption'),el('strong','当前情绪：'+({positive:'正向 · positive',negative:'负向 · negative',neutral:'中性 · neutral'}[e.sentiment])));
+      if(e.evidence?.quote)n.append(el('p',e.evidence.quote,'emotion-quote'));
+      n.append(el('small',item.humanActive?'当前处于模拟人工会话，自动业务保持暂停。':e.sentiment==='negative'?'负向情绪触发会话转人工，自动业务暂停。':'普通查询可直接执行，写入与高危读取仍需确认。'));
+    }else if(item.kind==='human_desk'){
+      const h=item.handoff,labels={WAITING:'排队中，尚未受理',ACCEPTED:'模拟人工已受理',ESCALATED:'已升级至模拟主管',COMPLETED:'模拟人工处理已结束'};
+      n.append(el('div','模拟人工接管','card-caption'),el('strong',labels[h.status]??h.status));
+      if(showTasks){const d=el('details',undefined,'human-progress');d.dataset.key='human:'+h.handoff_id;d.open=true;d.append(el('summary','人工处理进度与模拟操作'),el('p','会话编号：'+h.handoff_id),el('p','排队 → 人工受理 → 可选升级 → 处理完成'));
+        if(h.agent_name)d.append(el('p','当前客服：'+h.agent_name));
+        if(item.active){const call=action=>actions.action('/api/human',{handoff_id:h.handoff_id,action});if(h.status==='WAITING')d.append(button('模拟人工受理',()=>call('accept'),busy));if(h.status==='ACCEPTED')d.append(button('模拟升级主管',()=>call('escalate'),busy));if(['ACCEPTED','ESCALATED'].includes(h.status))d.append(button('结束模拟人工处理',()=>call('complete'),busy));}
+        n.append(d);
+      }
+      if(item.active&&h.status==='COMPLETED')n.append(button('返回智能助手',()=>actions.action('/api/human',{handoff_id:h.handoff_id,action:'resume'}),busy));
+      n.append(el('small','这是模拟人工流程；不会自动修改或关闭你的工单。'));
     }else if(item.kind==='receipt'){
       const r=item.receipt,v=r.result;let text='已完成'+(operationLabels[r.operation]??'当前操作')+'。';
       if(v.tickets)text=`已查到 ${v.tickets.length} 张属于你的工单。`;
       if(v.ticket)text=`${r.operation==='close_ticket'?'已关闭':'已创建'}工单 ${v.ticket.ticket_id} · ${v.ticket.status}`;
       if(v.complaint)text=`投诉已提交：${v.complaint.complaint_id} · ${v.complaint.status}`;
-      if(v.handoff)text=`已转交人工队列：${v.handoff.ticket_id} · ${v.handoff.status}，正在等待人工受理。`;
+      if(v.handoff)text=`已转交人工队列：${v.handoff.ticket_id??'当前会话'} · ${v.handoff.status}，正在等待人工受理。`;
       n.append(el('p',text,'receipt-text'));
     }else if(item.kind==='human')n.append(el('p',({ACCEPTED:'人工已受理。',ESCALATED:'人工处理已升级。',COMPLETED:'人工处理已完成；这不表示道路已经修复。'})[item.handoff.status]??'人工状态：'+item.handoff.status));
     else if(item.kind==='retry'){n.append(el('p','本轮还没有完成。你可以重试这份计划，或告诉我你想怎么调整。'),button('重试这份计划',()=>actions.action('/api/retry',{}),busy),button('取消这个任务',()=>actions.action('/api/cancel',{}),busy));}
@@ -105,13 +122,13 @@ export function createChatRenderer(document,container,actions){
   }
   return {render(state,{showTasks=true,busy=false,pendingMessage,error,connecting=false}={}){
     const atBottom=container.scrollHeight-container.scrollTop-container.clientHeight<70,scroll=container.scrollTop;
-    const rows=[{id:'welcome',kind:'welcome',loggedIn:!!state.user},...conversationItems(state)];
+    const rows=[{id:'welcome',kind:'welcome',loggedIn:!!state.user},...conversationItems(state).filter(item=>showTasks||item.kind!=='emotion')];
     if(pendingMessage)rows.push({id:'optimistic-user',kind:'message',message:{role:'user',text:pendingMessage}});
     const plan=state.plans.find(p=>p.id===state.activePlanId);if(!state.running&&plan?.approved&&['failed','blocked','interrupted'].includes(state.status))rows.push({id:'retry:'+plan.id,kind:'retry'});
     if(state.running||busy||connecting)rows.push({id:'working',kind:'working',text:connecting?'正在连接工单助手…':state.running?progressText(state):'收到，正在发送你的请求…'});
     if(error)rows.push({id:'error',kind:'error',text:error});
     const keep=new Set();let cursor=container.firstChild;
-    for(const item of rows){keep.add(item.id);const interactive=['welcome','plan','input','operation','error','retry'].includes(item.kind);const signature=JSON.stringify([item,interactive?busy||state.running:false,item.kind==='plan'?showTasks:null]);let old=cached.get(item.id),node,memory;
+    for(const item of rows){keep.add(item.id);const interactive=['welcome','plan','input','operation','error','retry','human_desk'].includes(item.kind);const signature=JSON.stringify([item,interactive?busy||state.running:false,['plan','human_desk'].includes(item.kind)?showTasks:null]);let old=cached.get(item.id),node,memory;
       if(old?.signature===signature)node=old.node;
       else{memory=old?remember(old.node):null;node=build(item,{busy:busy||state.running,showTasks});if(old?.node===cursor)cursor=old.node.nextSibling;old?.node.remove();cached.set(item.id,{node,signature});}
       if(node!==cursor)container.insertBefore(node,cursor);else cursor=node.nextSibling;

@@ -16,6 +16,7 @@ export class RoadMocks {
   constructor(store){this.store=store;}
   async call(sid,operation,body,context={}){
     const s=this.store.get(sid);
+    const conversation=operation==='handoff_to_human'&&body.scope==='conversation';
     if(!MOCK_API_NAMES.includes(operation))throw failure('UNKNOWN_API','Unknown mock API',404);
     // Credentials never enter the audit log or the model context.
     const safeBody=operation==='login'?{username:body.username}:clone(body);
@@ -25,7 +26,7 @@ export class RoadMocks {
       const fault=s.mock.faults[operation];
       if(fault?.delay_before_commit_ms)await wait(fault.delay_before_commit_ms);
       if(operation!=='login'){
-        if(!s.user||body.user_id!==s.user.user_id)throw failure('IDENTITY_MISMATCH','Mock user identity mismatch',403);
+        if((!conversation&&!s.user)||body.user_id!==s.user?.user_id)throw failure('IDENTITY_MISMATCH','Mock user identity mismatch',403);
         if(context.epoch!==undefined&&context.epoch!==s.epoch)throw failure('STALE_TURN','The request belongs to an interrupted turn',409);
       }
       if(fault?.failures>0){fault.failures--;throw failure('MOCK_UNAVAILABLE','Injected mock API failure',503);}
@@ -48,6 +49,20 @@ export class RoadMocks {
       }else if(operation==='query_tickets'){
         const tickets=s.mock.tickets.filter(t=>t.user_id===body.user_id&&(!body.ticket_id||t.ticket_id===body.ticket_id));
         result={success:true,tickets:clone(tickets),handoffs:clone(s.mock.handoffs.filter(h=>tickets.some(t=>t.ticket_id===h.ticket_id))),complaints:clone(s.mock.complaints.filter(h=>tickets.some(t=>t.ticket_id===h.ticket_id))),source_type:'mock'};
+      }else if(conversation){
+        const action=body.action??'create';
+        if(action==='create'){
+          if(context.authorization!=='negative_sentiment_policy'||s.emotion?.status!=='classified'||s.emotion.sentiment!=='negative'||body.emotion_message_id!==s.emotion.message_id)throw failure('POLICY_HANDOFF_REQUIRED','Conversation handoff requires current trusted negative-sentiment routing',403);
+          const previous=s.mock.handoffs.find(h=>h.scope==='conversation'&&h.status!=='COMPLETED');
+          const handoff=previous??{handoff_id:id('H'),scope:'conversation',conversation_id:s.id,status:'WAITING',reason:'negative_sentiment',emotion:clone(s.emotion),conversation_summary:body.conversation_summary,queue_position:1,messages:[],created_at:new Date().toISOString()};
+          if(!previous)s.mock.handoffs.push(handoff);s.activeHandoffId=handoff.handoff_id;result={success:true,handoff:clone(handoff),reused:!!previous,source_type:'mock'};
+        }else{
+          if(context.authorization!=='human_simulator')throw failure('HUMAN_SIMULATOR_REQUIRED','Use the mock human desk controls',403);
+          const h=s.mock.handoffs.find(h=>h.handoff_id===body.handoff_id&&h.scope==='conversation');if(!h)throw failure('HANDOFF_NOT_FOUND','Conversation handoff not found',404);
+          const next={accept:{from:['WAITING'],to:'ACCEPTED'},escalate:{from:['ACCEPTED'],to:'ESCALATED'},complete:{from:['ACCEPTED','ESCALATED'],to:'COMPLETED'}}[action];
+          if(!next||!next.from.includes(h.status))throw failure('INVALID_HANDOFF_TRANSITION','Invalid simulated human transition',409);
+          h.status=next.to;h.updated_at=new Date().toISOString();if(action==='accept')h.agent_name='Mock roads agent';result={success:true,handoff:clone(h),source_type:'mock'};
+        }
       }else if(operation==='create_ticket'){
         if(!body.address?.city?.trim()||!body.address?.street?.trim()||!body.description?.trim())throw failure('MISSING_FIELDS','City, street and description are required');
         const ticket={ticket_id:id('T'),user_id:body.user_id,topic:'ROAD_POTHOLE',address:clone(body.address),description:body.description,status:'OPEN',created_at:new Date().toISOString(),decisionContext:{intentCode:'COMPLAINT_FOLLOW_UP',slaStatus:'WITHIN_SLA',repeatContact:false,decision:'REVIEW_REQUIRED',reportedAgeDays:0,confidence:0.94,demoRule:true}};

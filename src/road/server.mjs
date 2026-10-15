@@ -8,6 +8,8 @@ import { RoadStore,failure,id } from './store.mjs';
 import { RoadMocks,MOCK_API_NAMES } from './mocks.mjs';
 import { RoadKnowledge } from './knowledge.mjs';
 import { RoadAgent } from './agent.mjs';
+import {parseHighRiskReads} from './policy.mjs';
+import {humanNotice} from './human.mjs';
 
 const equal=(a,b)=>typeof a==='string'&&typeof b==='string'&&a.length===b.length&&timingSafeEqual(Buffer.from(a),Buffer.from(b));
 async function body(req){
@@ -30,7 +32,7 @@ export function mockHttpClient({origin,key}){
   };
 }
 
-export async function createRoadServer({store=new RoadStore(process.env.ROAD_STATE_DIR??'.road-state'),knowledge,agentFactory,config=webConfigFromEnv(),mockKey=randomBytes(32).toString('hex')}={}){
+export async function createRoadServer({store=new RoadStore(process.env.ROAD_STATE_DIR??'.road-state'),knowledge,agentFactory,config=webConfigFromEnv(),mockKey=randomBytes(32).toString('hex'),highRiskReads=parseHighRiskReads(process.env.ROAD_HIGH_RISK_READS??'')}={}){
   await store.initialize();knowledge??=await RoadKnowledge.load();const mocks=new RoadMocks(store);const access=createWebAccess(config.access);let agent;
   const send=(res,status,value)=>{res.writeHead(status,{'content-type':'application/json; charset=utf-8','cache-control':'no-store'});res.end(JSON.stringify(value));};
   const getSession=req=>{const cookie=(req.headers.cookie??'').split(';').map(x=>x.trim()).find(x=>x.startsWith('road_session='));if(!cookie)throw failure('SESSION_REQUIRED','Start a conversation',401);return store.get(cookie.slice(13));};
@@ -73,8 +75,14 @@ export async function createRoadServer({store=new RoadStore(process.env.ROAD_STA
         if(s.running)throw failure('BUSY','Stop the current turn before another action',409);
         if(url.pathname==='/api/login'){await agent.login(s,input);return send(res,200,view(s));}
         if(url.pathname==='/api/human'){
-          const h=s.mock.handoffs.find(x=>x.handoff_id===input.handoff_id);if(!h||!['accept','escalate','complete'].includes(input.action))throw failure('INVALID_HUMAN_ACTION','Select a mock handoff and valid action');
-          const result=await agent.api(s.id,'handoff_to_human',{user_id:s.user.user_id,ticket_id:h.ticket_id,handoff_id:h.handoff_id,action:input.action},{epoch:s.epoch,idempotency_key:`human:${h.handoff_id}:${input.action}`});
+          const h=s.mock.handoffs.find(x=>x.handoff_id===input.handoff_id);if(!h||!['accept','escalate','complete','resume'].includes(input.action))throw failure('INVALID_HUMAN_ACTION','Select a mock handoff and valid action');
+          if(input.action==='resume'){
+            if(h.scope!=='conversation'||h.status!=='COMPLETED'||s.activeHandoffId!==h.handoff_id)throw failure('HUMAN_NOT_COMPLETED','Complete this human conversation before returning to the assistant',409);
+            s.activeHandoffId=null;s.status='answered';store.emit(s,'human_resumed',{handoff_id:h.handoff_id});store.message(s,'assistant',humanNotice(s,'resumed'),{kind:'human_notice'});await store.save(s);return send(res,200,view(s));
+          }
+          const result=await agent.api(s.id,'handoff_to_human',{...(s.user?{user_id:s.user.user_id}:{}),...(h.scope==='conversation'?{scope:'conversation'}:{ticket_id:h.ticket_id}),handoff_id:h.handoff_id,action:input.action},{epoch:s.epoch,idempotency_key:`human:${h.handoff_id}:${input.action}`,authorization:'human_simulator'});
+          if(h.scope==='conversation'&&s.activeHandoffId===h.handoff_id){s.status=h.status==='WAITING'?'human_waiting':h.status==='COMPLETED'?'human_completed':'human_active';store.message(s,'assistant',humanNotice(s,{accept:'accepted',escalate:'escalated',complete:'completed'}[input.action]),{kind:'human_notice',handoff_id:h.handoff_id});}
+
           store.emit(s,'human_status',{handoff:result.handoff});await store.save(s);return send(res,200,view(s));
         }
         let run;
@@ -107,7 +115,7 @@ export async function createRoadServer({store=new RoadStore(process.env.ROAD_STA
   });
   const ready=async()=>{
     const addr=server.address(),api=mockHttpClient({origin:`http://127.0.0.1:${addr.port}`,key:mockKey});
-    agent=agentFactory?await agentFactory({store,api,knowledge}):new RoadAgent({store,api,knowledge});
+    agent=agentFactory?await agentFactory({store,api,knowledge,highRiskReads}):new RoadAgent({store,api,knowledge,highRiskReads});
   };
   return {server,store,mocks,get agent(){return agent;},ready,view};
 }

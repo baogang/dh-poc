@@ -30,3 +30,8 @@ test('micro aggregation uses counts and excludes control tools from business too
   const a=scoreRoadTools(reference(['query_tickets','close_ticket']),row(['query_tickets'])),b=scoreRoadTools(reference(['create_ticket']),row(['propose_plan','create_ticket','finish'],['create_ticket']));
   const s=summarizeRoadTools([a,b]);assert.equal(s.selection.recall,2/3);assert.equal(s.selection.precision,1);assert.equal(s.attempts.total,2);
 });
+
+test('host negative routing is separate from LLM selections and is counted only when explicitly requested',()=>{
+ const reference={expected:{operations:['handoff_to_human']}},row={operations:['handoff_to_human'],session:{events:[{type:'policy_handoff_authorized',policy:'negative_sentiment_v1'}]}};
+ assert.equal(scoreRoadTools(reference,row).selection.fn,1);const score=scoreRoadTools(reference,row,{includeHostPolicy:true});assert.equal(score.selection.tp,1);assert.equal(score.selection.fn,0);assert.equal(score.execution.recall,1);
+});

@@ -1,5 +1,7 @@
 # SENTRA 感知引擎 V3
 
+工单客服独立演示：[Road PI SDK PoC](docs/road-pothole-pi-poc.md)，使用 FAQ → 三分类情绪 → PI Loop / 模拟人工路由，支持普通查询自动执行及精确操作 HITL。运行 `npm run road:web`；本页其余内容介绍原 SENTRA 评测工作台。
+
 SENTRA 是本 POC 的名称，覆盖情绪识别、动态规划与自动化评测。
 
 已实现独立情感分析、独立 Pi 动态规划及完整情感路由。当前输出三类 Sentiment 与独立 `assessment_status`；保留七类 Emotions 供运行调试，当前效果评测只检查核心情感、澄清、路由与工具任务。规划从用户原话、上下文和版本化插件目录理解目标，不维护中央业务意图枚举。

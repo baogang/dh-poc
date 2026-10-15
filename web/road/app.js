@@ -2,7 +2,7 @@ import {createChatRenderer} from './chat-ui.js';
 let state={id:null,running:false,status:'idle',user:null,messages:[],plans:[],activePlanId:null,pendingInput:null,pendingOperation:null,events:[],receipts:[],mock:{handoffs:[],calls:[]}},stream,generation=0,pollTimer,refreshing,refreshAgain=false;
 const $=id=>document.getElementById(id);
 const client={busy:false,connecting:true,pendingMessage:null,error:null};
-const labels={idle:'准备就绪',running:'正在处理',review:'等待你确认计划',input:'等待你补充信息',confirmation:'等待你确认提交',completed:'已完成',answered:'已回答',blocked:'需要调整任务',failed:'本轮未完成',interrupted:'已中断',paused:'已暂停',approved:'已确认计划'};
+const labels={idle:'准备就绪',running:'正在处理',review:'等待你确认计划',input:'等待你补充信息',confirmation:'等待你确认提交',completed:'已完成',answered:'已回答',blocked:'需要调整任务',failed:'本轮未完成',interrupted:'已中断',paused:'已暂停',approved:'已确认计划',human_waiting:'等待人工受理',human_active:'模拟人工处理中',human_completed:'人工处理已结束'};
 let showTasks=true;try{showTasks=localStorage.getItem('road:showTasks')!=='false';}catch{}
 const el=(tag,text)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;return n;};
 const json=(parent,value)=>{const d=el('details');d.dataset.key=JSON.stringify(value);d.append(el('summary','查看数据'),el('pre',JSON.stringify(value,null,2)));parent.append(d);};
@@ -51,6 +51,9 @@ async function start(){
 function render(){
   const p=state.plans.find(x=>x.id===state.activePlanId),busy=client.busy||client.connecting;
   $('status').textContent=client.connecting?'正在连接':state.running?'正在处理':labels[state.status]??state.status;
+  const emotion=state.emotion,emotionNode=$('emotion-status');emotionNode.hidden=!showTasks;emotionNode.className='emotion-status '+(emotion?.sentiment??'');
+  emotionNode.textContent=emotion?.status==='classified'?'当前情绪：'+({positive:'正向 · positive',negative:'负向 · negative',neutral:'中性 · neutral'}[emotion.sentiment]):emotion?.status==='pending_faq'?'当前情绪：等待 FAQ 判定':emotion?.status==='analyzing'?'当前情绪：识别中…':emotion?.status==='skipped'?'当前情绪：FAQ 直答，未分析':emotion?.status==='error'?'当前情绪：识别暂不可用':'当前情绪：尚未识别';
+  $('human-section').hidden=!showTasks;
   $('show-tasks').checked=showTasks;$('send').disabled=busy||state.running;$('new-session').disabled=busy;
   $('stop').disabled=busy||!state.running&&!state.pendingInput&&!state.pendingOperation&&(!p||['completed','superseded','paused'].includes(p.status));
   chat.render(state,{showTasks,busy,pendingMessage:client.pendingMessage&&state.messages.at(-1)?.text!==client.pendingMessage?client.pendingMessage:null,error:client.error,connecting:client.connecting});
@@ -58,12 +61,12 @@ function render(){
   const openKeys=new Set([...panels.querySelectorAll('details[open][data-key]')].map(d=>d.dataset.key));
   $('events').replaceChildren();for(const e of state.events.slice(-80).reverse()){const row=el('div',new Date(e.time).toLocaleTimeString()+' · '+e.type);json(row,e);$('events').append(row);}
   $('receipts').replaceChildren();for(const r of state.receipts)json($('receipts'),r);
-  $('human').replaceChildren();for(const h of state.mock.handoffs){const row=el('div',`${h.ticket_id} · ${h.status}`),next={WAITING:['受理','accept'],ACCEPTED:['升级','escalate'],ESCALATED:['完成人工处理','complete']}[h.status];if(next){const b=el('button',next[0]);b.disabled=busy||state.running;b.addEventListener('click',()=>act('/api/human',{handoff_id:h.handoff_id,action:next[1]}));row.append(b);}$('human').append(row);}
+  $('human').replaceChildren();for(const h of state.mock.handoffs){const row=el('div',`${h.ticket_id??'当前会话'} · ${h.status}`),next={WAITING:['受理','accept'],ACCEPTED:['升级','escalate'],ESCALATED:['完成人工处理','complete']}[h.status];if(next){const b=el('button',next[0]);b.disabled=busy||state.running;b.addEventListener('click',()=>act('/api/human',{handoff_id:h.handoff_id,action:next[1]}));row.append(b);}$('human').append(row);}
   $('knowledge').replaceChildren(el('p',state.faq?`${state.faq.name} · 已加载 ${state.faq.entry_count} 条核实的问答`:'正在加载问答库信息'));
   for(const d of panels.querySelectorAll('details[data-key]'))if(openKeys.has(d.dataset.key))d.open=true;
 }
 $('chat-form').addEventListener('submit',e=>{e.preventDefault();if(client.busy||state.running)return;const message=$('chat-message').value.trim();if(!message)return;$('chat-message').value='';act('/api/chat',{message});});
-$('chat-message').addEventListener('keydown',e=>{if(e.key==='Enter'&&(e.ctrlKey||e.metaKey))$('chat-form').requestSubmit();});
+$('chat-message').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey&&!e.altKey&&!e.isComposing&&e.keyCode!==229){e.preventDefault();if(!e.repeat&&!$('send').disabled)$('chat-form').requestSubmit();}});
 $('show-tasks').addEventListener('change',()=>{showTasks=$('show-tasks').checked;try{localStorage.setItem('road:showTasks',String(showTasks));}catch{}render();});
 $('test-tools').addEventListener('toggle',()=>{if($('test-tools').open)render();});
 $('stop').addEventListener('click',()=>act('/api/cancel',{}));
