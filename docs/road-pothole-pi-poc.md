@@ -20,6 +20,10 @@ The reference chat is “Review Road Pothole Service”, `01a13a09-deda-77c1-a98
 
 Acceptance checks cover new report, historical follow-up, FAQ hit/miss, Arabic and English, missing address, multiple candidates, cancellation, intent changes while awaiting approval, stale/duplicate approval, forged application events, identity isolation, tool failures, commit-response-loss retries, browser refresh, and actual Render model/API connectivity. Evaluation references are never provided to the tested model.
 
+## Implementation flow diagrams
+
+[Road Service implementation flow](road-agent-flow.html) is a self-contained HTML document with two diagrams: chat/FAQ routing and plan review, followed by the PI tool loop, Harness checks, HITL and observation feedback. It includes the five business tools, the separate login API and code references. Open the HTML file in a browser to view it. The diagram records implementation commit `14b2b9242a93`; its snapshot ID is intentionally fixed.
+
 ## Run and use
 
 ```sh
