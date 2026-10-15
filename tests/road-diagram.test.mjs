@@ -6,7 +6,7 @@ import { RoadStore } from '../src/road/store.mjs';
 
 test('diagram URL serves both figures after website login with valid scoped styles and no chat session',async()=>{
   const password='diagram-test-only-password';
-  const app=await createRoadServer({store:new RoadStore(),config:{port:10000,host:'127.0.0.1',access:{password}}});
+  const app=await createRoadServer({store:new RoadStore(),demoUI:false,config:{port:10000,host:'127.0.0.1',access:{password}}});
   await new Promise(resolve=>app.server.listen(0,'127.0.0.1',resolve));await app.ready();
   const origin=`http://127.0.0.1:${app.server.address().port}`;
   const headers={authorization:'Basic '+Buffer.from('admin:'+password).toString('base64')};
@@ -26,6 +26,7 @@ test('diagram URL serves both figures after website login with valid scoped styl
     response=await fetch(origin+'/',{headers});assert.equal(response.status,200);assert(response.headers.get('content-security-policy').includes("style-src 'self'"));
     response=await fetch(origin+'/i18n.js');assert.equal(response.status,401);
     response=await fetch(origin+'/i18n.js',{headers});assert.equal(response.status,200);assert.match(response.headers.get('content-type'),/^text\/javascript/);assert((await response.text()).includes('resolveLocale'));
+    response=await fetch(origin+'/api/session',{method:'POST',headers});assert.equal(response.status,201);assert.equal((await response.json()).demo_ui,false);
     response=await fetch(origin+'/docs/road-pothole-pi-poc.md',{headers});assert.equal(response.status,404);
   }finally{app.server.closeAllConnections();await new Promise(resolve=>app.server.close(resolve));}
 });

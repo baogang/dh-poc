@@ -51,15 +51,26 @@ async function start(){
   try{const r=await fetch('/api/state',{signal:AbortSignal.timeout(20000)});if(r.status===401||r.status===404)accept(await request('/api/session',{}),owner);else{const v=await r.json();if(!r.ok)throw Object.assign(new Error(v.error?.message??t('连接失败')),{code:v.error?.code});accept(v,owner);}if(owner===generation)connect();}
   catch(e){if(owner===generation){client.connecting=false;client.error={key:'无法连接政务服务助手：',code:e.code,detail:e.message};render();}}
 }
-const shellCopy={'brand-title':'政务服务','brand-meta':'PI SDK · DeepSeek Flash · MOCK 测试','new-session':'新对话','app-title':'政务服务助手','locale-caption':'界面语言','show-tasks-label':'显示任务列表','toolbar-hint':'计划、情绪和确认都在聊天中','message-label':'消息','composer-hint':'Enter 发送 · Shift+Enter 换行 · 中文 / English / العربية','stop':'停止','send':'发送','test-tools-label':'测试工具与运行记录','test-tools-hint':'仅用于测试查看；工单处理所需的操作均在聊天中。','human-title':'模拟人工工作台','knowledge-title':'问答库','receipts-title':'实际 API 回执','events-title':'执行记录'};
+const shellCopy={'brand-title':'政务服务','brand-meta':'PI SDK · DeepSeek Flash · MOCK 测试','new-session':'新对话','app-title':'政务服务助手','locale-caption':'界面语言','show-tasks-label':'显示任务列表','toolbar-hint':'计划与操作确认都在聊天中','message-label':'消息','composer-hint':'Enter 发送 · Shift+Enter 换行 · 中文 / English / العربية','stop':'停止','send':'发送','test-tools-label':'测试工具与运行记录','test-tools-hint':'仅用于测试查看；工单处理所需的操作均在聊天中。','human-title':'模拟人工工作台','knowledge-title':'问答库','receipts-title':'实际 API 回执','events-title':'执行记录'};
 function render(){
   t=translator(locale);document.documentElement.setAttribute('lang',locale==='en'?'en':'zh-CN');document.title=t('政务服务助手');
   for(const [id,key]of Object.entries(shellCopy))$(id).textContent=t(key);
   $('ui-language').value=locale;$('ui-language').setAttribute('aria-label',t('界面语言'));$('messages').setAttribute('aria-label',t('对话、任务计划与操作确认'));$('chat-message').placeholder=t('描述问题，或告诉我你想改变什么…');$('show-tasks-control').title=t('在聊天中显示任务计划');
   const p=state.plans.find(x=>x.id===state.activePlanId),busy=client.busy||client.connecting;
   $('status').textContent=t(client.connecting?'正在连接':state.running?'正在处理':labels[state.status]??state.status);
-  const emotion=state.emotion,emotionNode=$('emotion-status');emotionNode.hidden=!showTasks;emotionNode.className='emotion-status '+(emotion?.sentiment??'');
-  emotionNode.textContent=t('当前情绪：{value}',{value:t(emotion?.status==='classified'?({positive:'正向 · positive',negative:'负向 · negative',neutral:'中性 · neutral'}[emotion.sentiment]):emotion?.status==='pending_faq'?'等待 FAQ 判定':emotion?.status==='analyzing'?'识别中…':emotion?.status==='skipped'?'FAQ 直答，未分析':emotion?.status==='error'?'识别暂不可用':'尚未识别')});
+  // Demo observation is independent of task-list visibility and has no effect on routing.
+  const demo=state.demo_ui===true,emotion=state.emotion;
+  $('emotion-sidebar').hidden=!demo;$('app-layout').className='app-layout'+(demo?'':' demo-disabled');
+  const moods={positive:['正向','用户表达了满意、感谢或认可。','M16 27 Q24 37 32 27'],neutral:['中性','用户正在咨询或描述情况。','M16 29 Q24 29 32 29'],negative:['负向','用户表达了不满、焦虑或失望。','M16 32 Q24 22 32 32']};
+  const mood=emotion?.status==='classified'?moods[emotion.sentiment]:null;
+  const pending={pending_faq:['等待 FAQ 判定','等待本轮问答库判定。'],analyzing:['识别中…','正在识别本轮消息的情绪。'],skipped:['FAQ 直答，未分析','本轮由问答库直接回答，未进行情绪识别。'],error:['识别暂不可用','暂时无法识别，请以用户原话为准。']};
+  const view=mood??pending[emotion?.status]??['尚未识别','开始聊天后，这里会展示识别结果。'];
+  $('emotion-title').textContent=t('用户当前情绪');$('emotion-demo-note').textContent=t('仅供演示观察，不在正式用户界面展示。');
+  $('emotion-card').dataset.sentiment=demo&&mood?emotion.sentiment:'unclassified';
+  $('emotion-status').textContent=demo?t(view[0]):'';$('emotion-description').textContent=demo?t(view[1]):'';
+  $('emotion-mouth').setAttribute('d',mood?.[2]??moods.neutral[2]);
+  const quote=demo&&mood?emotion.evidence?.quote:null;
+  $('emotion-evidence').hidden=!quote;$('emotion-evidence-label').textContent=t('查看识别依据');$('emotion-quote').textContent=quote??'';
   $('human-section').hidden=!showTasks;
   $('show-tasks').checked=showTasks;$('send').disabled=busy||state.running;$('new-session').disabled=busy;
   $('stop').disabled=busy||!state.running&&!state.pendingInput&&!state.pendingOperation&&(!p||['completed','superseded','paused'].includes(p.status));

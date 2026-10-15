@@ -32,11 +32,11 @@ export function mockHttpClient({origin,key}){
   };
 }
 
-export async function createRoadServer({store=new RoadStore(process.env.ROAD_STATE_DIR??'.road-state'),knowledge,agentFactory,config=webConfigFromEnv(),mockKey=randomBytes(32).toString('hex'),highRiskReads=parseHighRiskReads(process.env.ROAD_HIGH_RISK_READS??'')}={}){
+export async function createRoadServer({store=new RoadStore(process.env.ROAD_STATE_DIR??'.road-state'),knowledge,agentFactory,config=webConfigFromEnv(),mockKey=randomBytes(32).toString('hex'),demoUI=process.env.ROAD_DEMO_UI!=='false',highRiskReads=parseHighRiskReads(process.env.ROAD_HIGH_RISK_READS??'')}={}){
   await store.initialize();knowledge??=await RoadKnowledge.load();const mocks=new RoadMocks(store);const access=createWebAccess(config.access);let agent;
   const send=(res,status,value)=>{res.writeHead(status,{'content-type':'application/json; charset=utf-8','cache-control':'no-store'});res.end(JSON.stringify(value));};
   const getSession=req=>{const cookie=(req.headers.cookie??'').split(';').map(x=>x.trim()).find(x=>x.startsWith('road_session='));if(!cookie)throw failure('SESSION_REQUIRED','Start a conversation',401);return store.get(cookie.slice(13));};
-  const view=s=>({...store.view(s),faq:{name:knowledge.document.name,entry_count:knowledge.entries.length,source_displayed_count:knowledge.document.source_displayed_count,migration_status:knowledge.document.migration_status},model:'deepseek-flash',runtime:'PI SDK 1.1.0'});
+  const view=s=>({...store.view(s),demo_ui:demoUI===true,faq:{name:knowledge.document.name,entry_count:knowledge.entries.length,source_displayed_count:knowledge.document.source_displayed_count,migration_status:knowledge.document.migration_status},model:'deepseek-flash',runtime:'PI SDK 1.1.0'});
   const server=createServer(async(req,res)=>{
     res.setHeader('x-content-type-options','nosniff');res.setHeader('referrer-policy','no-referrer');res.setHeader('content-security-policy',"default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' data:; frame-ancestors 'none'; base-uri 'none'; form-action 'self'");
     try{

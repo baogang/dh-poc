@@ -16,7 +16,6 @@ export function conversationItems(s){
   const operations=s.events.filter(e=>e.type==='confirmation_required').map(e=>({proposal:e.proposal,time:e.time}));if(s.pendingOperation&&!operations.some(x=>x.proposal.id===s.pendingOperation.id))operations.push({proposal:s.pendingOperation,time:s.messages.at(-1)?.time});
   for(const {proposal:o,time}of operations){const m=s.messages.find(m=>m.kind==='operation_confirmation'&&m.proposal_id===o.id);rows.push({id:'operation:'+o.id,kind:'operation',time:m?.time??time,proposal:o,text:m?.text,active:s.pendingOperation?.id===o.id,approved:s.events.some(e=>e.type==='operation_approved'&&e.proposal_id===o.id)});}
   for(const r of s.receipts)rows.push({id:'receipt:'+r.id,kind:'receipt',time:r.time,receipt:r});
-  if(s.emotion?.status==='classified')rows.push({id:'emotion:'+s.emotion.message_id,kind:'emotion',time:s.emotion.assessed_at,emotion:s.emotion,humanActive:!!s.activeHandoffId});
   for(const h of s.mock.handoffs.filter(h=>h.scope==='conversation'))rows.push({id:'human-desk:'+h.handoff_id,kind:'human_desk',time:h.created_at,handoff:h,active:s.activeHandoffId===h.handoff_id});
   for(const e of s.events.filter(e=>e.type==='human_status'&&e.handoff.scope!=='conversation'))rows.push({id:'human:'+e.seq,kind:'human',time:e.time,handoff:e.handoff});
   return rows.sort((a,b)=>(a.time??'').localeCompare(b.time??''));
@@ -89,10 +88,6 @@ export function createChatRenderer(document,container,actions){
         for(const [value,label]of[['yes',t('是，仍未解决')],['no',t('否，已经解决')]]){const l=el('label',label,'check'),radio=el('input');radio.type='radio';radio.name='unresolved';radio.value=value;radio.required=true;l.prepend(radio);f.append(l);}
       }else field(f,t('补充信息'),'text','textarea');
       const b=el('button',t('提交信息并继续'));b.disabled=busy;f.append(b);f.addEventListener('submit',e=>{e.preventDefault();if(busy)return;const fd=new FormData(f),value=Object.fromEntries(fd);if(x.kind==='ticket'){if(!['yes','no'].includes(fd.get('unresolved')))return;value.matched=fd.has('matched');value.unresolved=fd.get('unresolved')==='yes';}actions.action('/api/input',{input_id:x.id,value});});n.append(f);
-    }else if(item.kind==='emotion'){
-      const e=item.emotion;n.append(el('div',t('情绪识别 · FAQ 未命中后'),'card-caption'),el('strong',t('当前情绪：{value}',{value:t({positive:t('正向 · positive'),negative:t('负向 · negative'),neutral:t('中性 · neutral')}[e.sentiment])})));
-      if(e.evidence?.quote)n.append(el('p',e.evidence.quote,'emotion-quote'));
-      n.append(el('small',item.humanActive?t('当前处于模拟人工会话，自动业务保持暂停。'):e.sentiment==='negative'?t('负向情绪触发会话转人工，自动业务暂停。'):t('普通查询可直接执行，写入与高危读取仍需确认。')));
     }else if(item.kind==='human_desk'){
       const h=item.handoff,labels={WAITING:t('排队中，尚未受理'),ACCEPTED:t('模拟人工已受理'),ESCALATED:t('已升级至模拟主管'),COMPLETED:t('模拟人工处理已结束')};
       n.append(el('div',t('模拟人工接管'),'card-caption'),el('strong',labels[h.status]??h.status));
@@ -128,7 +123,7 @@ export function createChatRenderer(document,container,actions){
   return {render(state,{showTasks=true,busy=false,pendingMessage,error,connecting=false,locale='zh'}={}){
     t=translator(locale);
     const atBottom=container.scrollHeight-container.scrollTop-container.clientHeight<70,scroll=container.scrollTop;
-    const rows=[{id:'welcome',kind:'welcome',loggedIn:!!state.user},...conversationItems(state).filter(item=>showTasks||item.kind!=='emotion')];
+    const rows=[{id:'welcome',kind:'welcome',loggedIn:!!state.user},...conversationItems(state)];
     if(pendingMessage)rows.push({id:'optimistic-user',kind:'message',message:{role:'user',text:pendingMessage}});
     const plan=state.plans.find(p=>p.id===state.activePlanId);if(!state.running&&plan?.approved&&['failed','blocked','interrupted'].includes(state.status))rows.push({id:'retry:'+plan.id,kind:'retry'});
     if(state.running||busy||connecting)rows.push({id:'working',kind:'working',text:connecting?t('正在连接政务服务助手…'):state.running?progressText(state,locale):t('收到，正在发送你的请求…')});
