@@ -1,5 +1,5 @@
 import { createServer } from 'node:http';
-import { randomBytes,timingSafeEqual } from 'node:crypto';
+import { createHash,randomBytes,timingSafeEqual } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { resolve } from 'node:path';
@@ -92,6 +92,12 @@ export async function createRoadServer({store=new RoadStore(process.env.ROAD_STA
         else throw failure('NOT_FOUND','Unknown endpoint',404);
         // All handlers set running synchronously before their first run await, or reject validation.
         await Promise.race([run,new Promise(r=>setImmediate(r))]);run.catch(()=>{});return send(res,202,view(s));
+      }
+      if(req.method==='GET'&&url.pathname==='/docs/road-agent-flow.html'){
+        const html=await readFile(new URL('../../docs/road-agent-flow.html',import.meta.url),'utf8');
+        const styleHashes=[...html.matchAll(/<style\b[^>]*>([\s\S]*?)<\/style>/gi)].map(match=>"'sha256-"+createHash('sha256').update(match[1]).digest('base64')+"'");
+        res.setHeader('content-security-policy',"default-src 'none'; script-src 'none'; style-src "+styleHashes.join(' ')+" https://fonts.googleapis.com; style-src-attr 'none'; font-src https://fonts.gstatic.com; img-src 'self' data:; frame-ancestors 'none'; base-uri 'none'; form-action 'none'");
+        res.writeHead(200,{'content-type':'text/html; charset=utf-8','cache-control':'no-store'});return res.end(html);
       }
       if(req.method!=='GET')throw failure('NOT_FOUND','Not found',404);
       const files={'/':'index.html','/app.js':'app.js','/chat-ui.js':'chat-ui.js','/style.css':'style.css'};

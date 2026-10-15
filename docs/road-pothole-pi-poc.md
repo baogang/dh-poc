@@ -24,6 +24,8 @@ Acceptance checks cover new report, historical follow-up, FAQ hit/miss, Arabic a
 
 [Road Service implementation flow](road-agent-flow.html) is a self-contained HTML document with two diagrams: chat/FAQ routing and plan review, followed by the PI tool loop, Harness checks, HITL and observation feedback. It includes the five business tools, the separate login API and code references. Open the HTML file in a browser to view it. The diagram records implementation commit `14b2b9242a93`; its snapshot ID is intentionally fixed.
 
+Published view: https://road-pothole-pi-poc.onrender.com/docs/road-agent-flow.html . Both diagrams are on this page, with `#overview` and `#execution` anchors. It uses the existing website login and does not require a mock account or a chat session. The container includes only this allowlisted HTML document; its inline stylesheet is authorized by a page-specific CSP hash.
+
 ## Run and use
 
 ```sh
