@@ -39,6 +39,14 @@ The page supports English, Arabic and Chinese messages. Enter sends the message;
 
 Sending a new business message while waiting invalidates outstanding approval and generates a new automatically started plan. Negative sentiment pauses business and revokes pending submission authorizations before conversation handoff. FAQ questions preserve the pending plan/proposal. Stop interrupts the PI session and revokes authorizations; work already committed by a mock API cannot be undone. Refresh restores the current session and event history without rerunning operations.
 
+### Interface language
+
+The header offers **中文 / English**. An explicit selection is saved in browser local storage (`road:locale`); without a saved selection, an English browser starts in English and other browsers use the existing Chinese default. New conversations and refreshes retain the interface choice.
+
+The switch covers page labels, accessibility labels, progress, task state, login and information forms, exact confirmation cards, sentiment, receipts, errors and simulated human controls. Locale changes preserve typed values, focus, expanded cards and reading position. New fixed host notices carry semantic keys so their display can switch languages without changing stored evidence. User messages, model-generated plan titles/summaries and replies, FAQ source answers, addresses and ticket content remain in their original language. The assistant still follows the user's conversation language, including Arabic. Language selection never approves a plan or operation, reruns a tool, changes an API payload or resets a conversation.
+
+Localization regression: 146 engineering tests pass, including English/browser preference, remembered selection, switching with address drafts and exact approvals, localized sentiment/human/receipt/progress states, dictionary coverage and placeholder parity. Translation strings are in `web/road/i18n.js`; its HTTP route uses the same website authentication and CSP as the rest of the app.
+
 ### Chat-only interaction
 
 Plans, task progress, missing-information forms, mock login, exact operation confirmations and receipts are all rendered as ordered cards inside the conversation. There is no right sidebar. The task list can be collapsed or hidden with **显示任务列表**; the assistant's explanation and necessary action buttons remain visible. Each completed task is crossed out, and final response tasks also complete when a fully executed plan finishes with an answer. API/model work displays an immediate progress bubble; connection failures display an actionable message in the same conversation.

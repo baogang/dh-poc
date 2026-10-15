@@ -12,7 +12,7 @@ export async function queueNegativeHandoff(agent,s,{signal}={}){
   signal?.throwIfAborted();
   s.activeHandoffId=result.handoff.handoff_id;s.status='human_waiting';
   const receipt={id:id('receipt'),operation:'handoff_to_human',parameters:clone(parameters),result,time:new Date().toISOString(),source:'negative_sentiment_policy'};s.receipts.push(receipt);agent.store.emit(s,'receipt',{receipt});
-  agent.store.emit(s,'conversation_handoff',{handoff:result.handoff});agent.store.message(s,'assistant',humanNotice(s,'queued'),{kind:'human_notice',handoff_id:s.activeHandoffId});
+  agent.store.emit(s,'conversation_handoff',{handoff:result.handoff});agent.store.message(s,'assistant',humanNotice(s,'queued'),{kind:'human_notice',handoff_id:s.activeHandoffId,notice:'human.queued'});
   return result.handoff;
 }
 export function routeHumanMessage(agent,s,message){
@@ -20,5 +20,5 @@ export function routeHumanMessage(agent,s,message){
   h.messages??=[];h.messages.push({role:'user',text:message,time:new Date().toISOString()});
   const text=humanNotice(s,h.status==='WAITING'?'waiting':h.status==='COMPLETED'?'done':'reply');
   if(['ACCEPTED','ESCALATED'].includes(h.status))h.messages.push({role:'agent',text,time:new Date().toISOString(),agent_name:h.agent_name??'Mock roads agent'});
-  agent.store.emit(s,'human_message',{handoff_id:h.handoff_id,status:h.status});agent.store.message(s,'assistant',text,{kind:'human_reply',handoff_id:h.handoff_id});s.status=h.status==='WAITING'?'human_waiting':h.status==='COMPLETED'?'human_completed':'human_active';return true;
+  agent.store.emit(s,'human_message',{handoff_id:h.handoff_id,status:h.status});agent.store.message(s,'assistant',text,{kind:'human_reply',handoff_id:h.handoff_id,notice:'human.'+(h.status==='WAITING'?'waiting':h.status==='COMPLETED'?'done':'reply')});s.status=h.status==='WAITING'?'human_waiting':h.status==='COMPLETED'?'human_completed':'human_active';return true;
 }

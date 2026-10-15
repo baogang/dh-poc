@@ -40,14 +40,14 @@ export class RoadAgent {
     if(s.running)throw failure('BUSY','Stop the current turn before logging in',409);
     if(s.user)throw failure('ALREADY_LOGGED_IN','Start a new conversation to change accounts',409);
     s.running=true;
-    try{const result=await this.api(s.id,'login',credentials,{epoch:s.epoch});this.store.emit(s,'login',{user:result.user});this.store.message(s,'assistant',chatNotice(s,'login'),{kind:'login'});await this.store.save(s);return result;}finally{s.running=false;await this.store.save(s);}
+    try{const result=await this.api(s.id,'login',credentials,{epoch:s.epoch});this.store.emit(s,'login',{user:result.user});this.store.message(s,'assistant',chatNotice(s,'login'),{kind:'login',notice:'login'});await this.store.save(s);return result;}finally{s.running=false;await this.store.save(s);}
   }
   interrupt(s,reason='user_cancelled'){
     this.runs.get(s.id)?.abort();s.epoch++;s.authorizations={};s.pendingOperation=null;s.pendingInput=null;
     const p=this.active(s);if(p&&p.status!=='completed'){p.status='paused';p.approved=false;for(const step of p.steps)if(step.status==='running'||step.status==='waiting')step.status='pending';}
     s.status='paused';this.store.emit(s,'interrupted',{reason});
   }
-  async cancel(s){this.interrupt(s);this.store.message(s,'assistant',chatNotice(s,'cancelled'),{kind:'info'});await this.store.save(s);}
+  async cancel(s){this.interrupt(s);this.store.message(s,'assistant',chatNotice(s,'cancelled'),{kind:'info',notice:'cancelled'});await this.store.save(s);}
   async chat(s,message,options={}){
     if(s.running)throw failure('BUSY','The agent is running; stop it before sending another message',409);
     if(typeof message!=='string'||!message.trim()||message.length>4000)throw failure('INVALID_MESSAGE','Use a message of 1–4000 characters');
@@ -59,7 +59,7 @@ export class RoadAgent {
     const p=this.active(s);
     if(!p||p.id!==planId||p.status!=='review')throw failure('STALE_PLAN','This plan is no longer awaiting review',409);
     p.approved=true;p.status='approved';s.status='approved';
-    this.store.message(s,'assistant',chatNotice(s,'approved'),{kind:'info',plan_id:p.id});
+    this.store.message(s,'assistant',chatNotice(s,'approved'),{kind:'info',plan_id:p.id,notice:'approved'});
     s.running=true;this.store.emit(s,'plan_approved',{plan_id:p.id,version:p.version});await this.store.save(s);
     return this.run(s,{message:'Trusted UI event: this exact plan was approved. Execute its unfinished steps.'});
   }
@@ -89,7 +89,7 @@ export class RoadAgent {
     const o=s.pendingOperation,p=this.active(s);
     if(!o||o.id!==proposalId||!p?.approved||o.plan_id!==p.id||o.epoch!==s.epoch)throw failure('STALE_CONFIRMATION','This confirmation is no longer valid',409);
     s.authorizations[o.fingerprint]={proposal_id:o.id,epoch:s.epoch,plan_id:p.id};s.pendingOperation=null;
-    this.store.message(s,'user',chatNotice(s,'confirmed'),{kind:'decision',proposal_id:o.id});
+    this.store.message(s,'user',chatNotice(s,'confirmed'),{kind:'decision',proposal_id:o.id,notice:'confirmed'});
     s.running=true;this.store.emit(s,'operation_approved',{proposal_id:o.id,operation:o.operation,parameters:o.parameters});await this.store.save(s);
     return this.run(s,{message:'Trusted UI approval for exact operation: '+JSON.stringify(o)+'. Execute it, then continue.'});
   }
@@ -227,7 +227,7 @@ export class RoadAgent {
       try{await runtime.session.prompt(JSON.stringify({event:message,capability_registry:capabilities,tool_policy:policyRegistry(this.highRiskReads),user:s.user,facts:s.facts,current_plan:this.active(s),pending_input:s.pendingInput,pending_operation:s.pendingOperation,authorizations:s.authorizations,receipts:s.receipts,conversation:s.messages.slice(-30)}));}finally{controller.signal.removeEventListener('abort',abort);}
       alive();if(!ended)throw failure('INCOMPLETE_TURN','Agent ended without a valid control outcome');
     }catch(error){
-      if(s.epoch===epoch){s.status=controller.signal.aborted?'interrupted':'failed';this.store.emit(s,'turn_error',{code:error.code??'AGENT_ERROR',message:error.message});this.store.message(s,'assistant','Agent could not complete this turn. '+(error.code??'AGENT_ERROR'),{kind:'error'});}
+      if(s.epoch===epoch){s.status=controller.signal.aborted?'interrupted':'failed';this.store.emit(s,'turn_error',{code:error.code??'AGENT_ERROR',message:error.message});this.store.message(s,'assistant','Agent could not complete this turn. '+(error.code??'AGENT_ERROR'),{kind:'error',notice:'turnError',notice_values:{code:error.code??'AGENT_ERROR'}});}
     }finally{
       clearTimeout(timeout);runtime?.session.dispose();s.running=false;if(this.runs.get(s.id)===controller)this.runs.delete(s.id);this.store.emit(s,'turn_finished',{status:s.status});await this.store.save(s);
     }

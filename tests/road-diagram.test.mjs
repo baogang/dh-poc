@@ -24,6 +24,8 @@ test('diagram URL serves both figures after website login with valid scoped styl
     assert(policy.includes("script-src 'none'"));assert(policy.includes("style-src-attr 'none'"));assert(!policy.includes("'unsafe-inline'"));
     assert.equal(app.store.sessions.size,0);
     response=await fetch(origin+'/',{headers});assert.equal(response.status,200);assert(response.headers.get('content-security-policy').includes("style-src 'self'"));
+    response=await fetch(origin+'/i18n.js');assert.equal(response.status,401);
+    response=await fetch(origin+'/i18n.js',{headers});assert.equal(response.status,200);assert.match(response.headers.get('content-type'),/^text\/javascript/);assert((await response.text()).includes('resolveLocale'));
     response=await fetch(origin+'/docs/road-pothole-pi-poc.md',{headers});assert.equal(response.status,404);
   }finally{app.server.closeAllConnections();await new Promise(resolve=>app.server.close(resolve));}
 });

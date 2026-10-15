@@ -78,10 +78,10 @@ export async function createRoadServer({store=new RoadStore(process.env.ROAD_STA
           const h=s.mock.handoffs.find(x=>x.handoff_id===input.handoff_id);if(!h||!['accept','escalate','complete','resume'].includes(input.action))throw failure('INVALID_HUMAN_ACTION','Select a mock handoff and valid action');
           if(input.action==='resume'){
             if(h.scope!=='conversation'||h.status!=='COMPLETED'||s.activeHandoffId!==h.handoff_id)throw failure('HUMAN_NOT_COMPLETED','Complete this human conversation before returning to the assistant',409);
-            s.activeHandoffId=null;s.status='answered';store.emit(s,'human_resumed',{handoff_id:h.handoff_id});store.message(s,'assistant',humanNotice(s,'resumed'),{kind:'human_notice'});await store.save(s);return send(res,200,view(s));
+            s.activeHandoffId=null;s.status='answered';store.emit(s,'human_resumed',{handoff_id:h.handoff_id});store.message(s,'assistant',humanNotice(s,'resumed'),{kind:'human_notice',notice:'human.resumed'});await store.save(s);return send(res,200,view(s));
           }
           const result=await agent.api(s.id,'handoff_to_human',{...(s.user?{user_id:s.user.user_id}:{}),...(h.scope==='conversation'?{scope:'conversation'}:{ticket_id:h.ticket_id}),handoff_id:h.handoff_id,action:input.action},{epoch:s.epoch,idempotency_key:`human:${h.handoff_id}:${input.action}`,authorization:'human_simulator'});
-          if(h.scope==='conversation'&&s.activeHandoffId===h.handoff_id){s.status=h.status==='WAITING'?'human_waiting':h.status==='COMPLETED'?'human_completed':'human_active';store.message(s,'assistant',humanNotice(s,{accept:'accepted',escalate:'escalated',complete:'completed'}[input.action]),{kind:'human_notice',handoff_id:h.handoff_id});}
+          if(h.scope==='conversation'&&s.activeHandoffId===h.handoff_id){s.status=h.status==='WAITING'?'human_waiting':h.status==='COMPLETED'?'human_completed':'human_active';store.message(s,'assistant',humanNotice(s,{accept:'accepted',escalate:'escalated',complete:'completed'}[input.action]),{kind:'human_notice',handoff_id:h.handoff_id,notice:'human.'+{accept:'accepted',escalate:'escalated',complete:'completed'}[input.action]});}
 
           store.emit(s,'human_status',{handoff:result.handoff});await store.save(s);return send(res,200,view(s));
         }
@@ -108,7 +108,7 @@ export async function createRoadServer({store=new RoadStore(process.env.ROAD_STA
         res.writeHead(200,{'content-type':'text/html; charset=utf-8','cache-control':'no-store'});return res.end(html);
       }
       if(req.method!=='GET')throw failure('NOT_FOUND','Not found',404);
-      const files={'/':'index.html','/app.js':'app.js','/chat-ui.js':'chat-ui.js','/style.css':'style.css'};
+      const files={'/':'index.html','/app.js':'app.js','/chat-ui.js':'chat-ui.js','/i18n.js':'i18n.js','/style.css':'style.css'};
       if(!files[url.pathname])throw failure('NOT_FOUND','Not found',404);
       const data=await readFile(new URL(`../../web/road/${files[url.pathname]}`,import.meta.url));res.writeHead(200,{'content-type':url.pathname.endsWith('.js')?'text/javascript; charset=utf-8':url.pathname.endsWith('.css')?'text/css; charset=utf-8':'text/html; charset=utf-8','cache-control':'no-store'});res.end(data);
     }catch(error){if(!res.headersSent)send(res,error.status??500,{error:{code:error.code??'SERVER_ERROR',message:error.status?error.message:'Internal server error'}});else res.end();}
