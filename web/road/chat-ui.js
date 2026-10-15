@@ -59,7 +59,7 @@ export function createChatRenderer(document,container,actions){
       if(item.message.kind==='input'){try{const value=item.message.value??JSON.parse(text);if(value.ticket_id)text=t('已选择工单 {id}；{state}。',{id:value.ticket_id,state:t(value.unresolved?t('问题仍未解决'):t('问题已解决'))});else if(value.city&&value.street)text=t('工单地址：{city}, {street}',{city:value.city,street:value.street});else if(value.text)text=value.text;}catch{}}
       n.append(el('div',text,'message-text'));if(item.message.source)n.append(el('small',t('问答库来源：{id}',{id:item.message.source.id})));
     }else if(item.kind==='welcome'){
-      n.append(el('strong',t('你好，我是工单助手。')),el('p',t('你可以描述道路坑洞，查询历史工单、投诉、关闭工单或请求转人工。我会在聊天中展示下一步，涉及提交时先请你确认。')));
+      n.append(el('strong',t('您好，欢迎使用政务服务助手！')),el('p',t('您可以咨询已支持的政务服务、提交服务申请、查询办理进度、反馈投诉或联系人工客服。请告诉我您需要什么帮助，我会在聊天中说明下一步，并在提交操作前请您确认。')));
       const examples=el('div',undefined,'examples');for(const [label,text]of[[t('新坑洞报单'),'There is a big pothole in the road in front of my house'],[t('历史工单跟进'),'The school pothole I reported is still unresolved. Please help me follow up.'],[t('试问答库'),'Is the municipal fees invoice the same as the Civil Defense fees invoice?']])examples.append(button(label,()=>actions.example(text),busy));n.append(examples);
       if(!item.loggedIn){const d=el('details',undefined,'welcome-login');d.dataset.key='welcome-login';d.append(el('summary',t('模拟登录 · 办理个人工单时需要')),loginForm(null,busy));n.append(d);}
     }else if(item.kind==='plan'){
@@ -131,7 +131,7 @@ export function createChatRenderer(document,container,actions){
     const rows=[{id:'welcome',kind:'welcome',loggedIn:!!state.user},...conversationItems(state).filter(item=>showTasks||item.kind!=='emotion')];
     if(pendingMessage)rows.push({id:'optimistic-user',kind:'message',message:{role:'user',text:pendingMessage}});
     const plan=state.plans.find(p=>p.id===state.activePlanId);if(!state.running&&plan?.approved&&['failed','blocked','interrupted'].includes(state.status))rows.push({id:'retry:'+plan.id,kind:'retry'});
-    if(state.running||busy||connecting)rows.push({id:'working',kind:'working',text:connecting?t('正在连接工单助手…'):state.running?progressText(state,locale):t('收到，正在发送你的请求…')});
+    if(state.running||busy||connecting)rows.push({id:'working',kind:'working',text:connecting?t('正在连接政务服务助手…'):state.running?progressText(state,locale):t('收到，正在发送你的请求…')});
     if(error)rows.push({id:'error',kind:'error',text:error});
     const keep=new Set();let cursor=container.firstChild;
     for(const item of rows){keep.add(item.id);const interactive=['welcome','plan','input','operation','error','retry','human_desk'].includes(item.kind);const signature=JSON.stringify([locale,item,interactive?busy||state.running:false,['plan','human_desk'].includes(item.kind)?showTasks:null]);let old=cached.get(item.id),node,memory;

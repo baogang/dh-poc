@@ -49,11 +49,11 @@ function connect(){
 async function start(){
   const owner=generation;client.connecting=true;render();
   try{const r=await fetch('/api/state',{signal:AbortSignal.timeout(20000)});if(r.status===401||r.status===404)accept(await request('/api/session',{}),owner);else{const v=await r.json();if(!r.ok)throw Object.assign(new Error(v.error?.message??t('连接失败')),{code:v.error?.code});accept(v,owner);}if(owner===generation)connect();}
-  catch(e){if(owner===generation){client.connecting=false;client.error={key:'无法连接工单助手：',code:e.code,detail:e.message};render();}}
+  catch(e){if(owner===generation){client.connecting=false;client.error={key:'无法连接政务服务助手：',code:e.code,detail:e.message};render();}}
 }
-const shellCopy={'brand-meta':'PI SDK · DeepSeek Flash · MOCK 测试','new-session':'新对话','app-title':'工单助手','locale-caption':'界面语言','show-tasks-label':'显示任务列表','toolbar-hint':'计划、情绪和确认都在聊天中','message-label':'消息','composer-hint':'Enter 发送 · Shift+Enter 换行 · 中文 / English / العربية','stop':'停止','send':'发送','test-tools-label':'测试工具与运行记录','test-tools-hint':'仅用于测试查看；工单处理所需的操作均在聊天中。','human-title':'模拟人工工作台','knowledge-title':'问答库','receipts-title':'实际 API 回执','events-title':'执行记录'};
+const shellCopy={'brand-title':'政务服务','brand-meta':'PI SDK · DeepSeek Flash · MOCK 测试','new-session':'新对话','app-title':'政务服务助手','locale-caption':'界面语言','show-tasks-label':'显示任务列表','toolbar-hint':'计划、情绪和确认都在聊天中','message-label':'消息','composer-hint':'Enter 发送 · Shift+Enter 换行 · 中文 / English / العربية','stop':'停止','send':'发送','test-tools-label':'测试工具与运行记录','test-tools-hint':'仅用于测试查看；工单处理所需的操作均在聊天中。','human-title':'模拟人工工作台','knowledge-title':'问答库','receipts-title':'实际 API 回执','events-title':'执行记录'};
 function render(){
-  t=translator(locale);document.documentElement.setAttribute('lang',locale==='en'?'en':'zh-CN');document.title='Road Service · '+t('工单助手');
+  t=translator(locale);document.documentElement.setAttribute('lang',locale==='en'?'en':'zh-CN');document.title=t('政务服务助手');
   for(const [id,key]of Object.entries(shellCopy))$(id).textContent=t(key);
   $('ui-language').value=locale;$('ui-language').setAttribute('aria-label',t('界面语言'));$('messages').setAttribute('aria-label',t('对话、任务计划与操作确认'));$('chat-message').placeholder=t('描述问题，或告诉我你想改变什么…');$('show-tasks-control').title=t('在聊天中显示任务计划');
   const p=state.plans.find(x=>x.id===state.activePlanId),busy=client.busy||client.connecting;

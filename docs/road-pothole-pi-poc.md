@@ -39,6 +39,10 @@ The page supports English, Arabic and Chinese messages. Enter sends the message;
 
 Sending a new business message while waiting invalidates outstanding approval and generates a new automatically started plan. Negative sentiment pauses business and revokes pending submission authorizations before conversation handoff. FAQ questions preserve the pending plan/proposal. Stop interrupts the PI session and revokes authorizations; work already committed by a mock API cannot be undone. Refresh restores the current session and event history without rerunning operations.
 
+### Assistant identity and welcome
+
+The public interface and the business agent use **政务服务助手 / Government Services Assistant**. Opening the page immediately shows a localized welcome in the chat, an overview of supported government service assistance, and the requirement to confirm submissions. The welcome remains available in new conversations and switches with the interface language without making a model request. Broad branding does not expand the capability registry: the current PoC still uses its six mock APIs and nine verified FAQ entries. Unsupported requests explain the current service limit without presenting the assistant as a pothole-only product or claiming unconnected services. Existing conversation and FAQ evidence remain verbatim.
+
 ### Interface language
 
 The header offers **中文 / English**. An explicit selection is saved in browser local storage (`road:locale`); without a saved selection, an English browser starts in English and other browsers use the existing Chinese default. New conversations and refreshes retain the interface choice.
