@@ -21,12 +21,14 @@
     "road:web": "node --env-file-if-exists=.env src/road/server.mjs",
     "road:test": "node --test tests/road-*.test.mjs",
     "road:eval": "node --env-file-if-exists=.env scripts/road-eval.mjs",
-    "road:emotion-eval": "node --env-file-if-exists=.env scripts/road-emotion-eval.mjs"
+    "road:emotion-eval": "node --env-file-if-exists=.env scripts/road-emotion-eval.mjs",
+    "road:feedback-export": "node --env-file-if-exists=.env scripts/road-feedback-export.mjs"
   },
   "dependencies": {
     "@earendil-works/pi-agent-core": "1.1.0",
     "@earendil-works/pi-ai": "1.1.0",
     "@earendil-works/pi-coding-agent": "1.1.0",
-    "ajv": "8.20.0"
+    "ajv": "8.20.0",
+    "pg": "8.23.1"
   }
 }

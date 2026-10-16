@@ -1,5 +1,23 @@
 // UI copy only. Never translate user data, ticket parameters or model-generated replies.
 const en={
+  "评价这个回答": "Rate this response",
+  "满意": "Satisfied",
+  "不满意": "Not satisfied",
+  "正在保存反馈…": "Saving feedback…",
+  "评价已更新，请重试。": "The rating changed. Please retry.",
+  "反馈未保存，请重试。": "Feedback was not saved. Please retry.",
+  "感谢反馈": "Thanks for your feedback",
+  "重试反馈": "Retry feedback",
+  "回答反馈数据": "Response feedback data",
+  "导出 CSV": "Export CSV",
+  "导出 JSONL": "Export JSONL",
+  "统计与导出当前浏览器收集的反馈；集中数据已保存在云端。": "View and export feedback collected in this browser. Central records are stored in the cloud.",
+  "已收集 {total} 条 · 满意 {yes} · 不满意 {no} · 满意率 {rate}": "{total} ratings · {yes} satisfied · {no} not satisfied · Satisfaction {rate}",
+  "暂无可导出的反馈。": "No saved feedback to export.",
+  "云端保存不受影响，但浏览器备份不可用，请及时导出。": "Cloud storage is unaffected, but browser backup is unavailable. Export your data.",
+  "云端暂时不可用，已保留的浏览器备份仍可导出。": "Cloud storage is unavailable. Existing browser backups can still be exported.",
+  "仅已保存的评价计入统计；未评价不等于不满意。": "Only saved ratings are counted. Unrated answers are not counted as dissatisfied.",
+
   "新对话": "New chat",
   "政务服务助手": "Government Services Assistant",
   "政务服务": "Government Services",

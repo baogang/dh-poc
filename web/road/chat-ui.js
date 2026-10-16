@@ -57,6 +57,13 @@ export function createChatRenderer(document,container,actions){
       else if(['human_notice','human_reply'].includes(m.kind))text=t(text);
       if(item.message.kind==='input'){try{const value=item.message.value??JSON.parse(text);if(value.ticket_id)text=t('已选择工单 {id}；{state}。',{id:value.ticket_id,state:t(value.unresolved?t('问题仍未解决'):t('问题已解决'))});else if(value.city&&value.street)text=t('工单地址：{city}, {street}',{city:value.city,street:value.street});else if(value.text)text=value.text;}catch{}}
       n.append(el('div',text,'message-text'));if(item.message.source)n.append(el('small',t('问答库来源：{id}',{id:item.message.source.id})));
+      if(item.feedback){
+        const f=item.feedback,controls=el('div',undefined,'answer-feedback');controls.setAttribute('role','group');controls.setAttribute('aria-label',t('评价这个回答'));
+        for(const [rating,icon,label]of [['satisfied','👍',t('满意')],['unsatisfied','👎',t('不满意')]]){const b=button(icon,()=>actions.rate(m.id,rating),f.pending);b.className='feedback-vote'+(f.rating===rating?' selected':'');b.setAttribute('aria-label',label);b.setAttribute('title',label);b.setAttribute('aria-pressed',String(f.rating===rating));controls.append(b);}
+        const status=el('span',f.pending?t('正在保存反馈…'):f.error?t(f.error==='FEEDBACK_CONFLICT'?'评价已更新，请重试。':'反馈未保存，请重试。'):f.rating?t('感谢反馈'):'','feedback-status');status.setAttribute('role','status');controls.append(status);
+        if(f.error)controls.append(button(t('重试反馈'),()=>actions.rate(m.id,f.requested)));
+        n.append(controls);
+      }
     }else if(item.kind==='welcome'){
       n.append(el('strong',t('您好，欢迎使用政务服务助手！')),el('p',t('您可以咨询已支持的政务服务、提交服务申请、查询办理进度、反馈投诉或联系人工客服。请告诉我您需要什么帮助，我会在聊天中说明下一步，并在提交操作前请您确认。')));
       const examples=el('div',undefined,'examples');for(const [label,text]of[[t('新坑洞报单'),'There is a big pothole in the road in front of my house'],[t('历史工单跟进'),'The school pothole I reported is still unresolved. Please help me follow up.'],[t('试问答库'),'Is the municipal fees invoice the same as the Civil Defense fees invoice?']])examples.append(button(label,()=>actions.example(text),busy));n.append(examples);
@@ -120,7 +127,7 @@ export function createChatRenderer(document,container,actions){
     for(const d of node.querySelectorAll('details[data-key]')){const entry=memory.details.find(x=>x[0]===d.dataset.key);if(entry)d.open=entry[1];}
     for(const form of node.querySelectorAll('form[data-form-key]'))for(const f of form.querySelectorAll('input,select,textarea')){const old=memory.values.find(v=>v.form===form.dataset.formKey&&v.name===f.name&&(!(f.type==='radio')||v.value===f.value));if(old){if(f.type==='radio'||f.type==='checkbox')f.checked=old.checked;else f.value=old.value;}if(memory.focus?.form===form.dataset.formKey&&memory.focus.name===f.name&&(f.type!=='radio'||f.value===memory.focus.value)){f.focus({preventScroll:true});if(typeof memory.focus.start==='number'&&f.setSelectionRange&&f.type!=='select-one')f.setSelectionRange(memory.focus.start,memory.focus.end);}}
   }
-  return {render(state,{showTasks=true,busy=false,pendingMessage,error,connecting=false,locale='zh'}={}){
+  return {render(state,{showTasks=true,busy=false,pendingMessage,error,connecting=false,locale='zh',feedback={enabled:false,items:{}}}={}){
     t=translator(locale);
     const atBottom=container.scrollHeight-container.scrollTop-container.clientHeight<70,scroll=container.scrollTop;
     const rows=[{id:'welcome',kind:'welcome',loggedIn:!!state.user},...conversationItems(state)];
@@ -129,7 +136,7 @@ export function createChatRenderer(document,container,actions){
     if(state.running||busy||connecting)rows.push({id:'working',kind:'working',text:connecting?t('正在连接政务服务助手…'):state.running?progressText(state,locale):t('收到，正在发送你的请求…')});
     if(error)rows.push({id:'error',kind:'error',text:error});
     const keep=new Set();let cursor=container.firstChild;
-    for(const item of rows){keep.add(item.id);const interactive=['welcome','plan','input','operation','error','retry','human_desk'].includes(item.kind);const signature=JSON.stringify([locale,item,interactive?busy||state.running:false,['plan','human_desk'].includes(item.kind)?showTasks:null]);let old=cached.get(item.id),node,memory;
+    for(const item of rows){if(item.kind==='message'&&item.message.role==='assistant'&&item.message.rateable&&feedback.enabled)item.feedback=feedback.items[item.message.id]??{};keep.add(item.id);const interactive=['welcome','plan','input','operation','error','retry','human_desk'].includes(item.kind);const signature=JSON.stringify([locale,item,interactive?busy||state.running:false,['plan','human_desk'].includes(item.kind)?showTasks:null]);let old=cached.get(item.id),node,memory;
       if(old?.signature===signature)node=old.node;
       else{memory=old?remember(old.node):null;node=build(item,{busy:busy||state.running,showTasks});if(old?.node===cursor)cursor=old.node.nextSibling;old?.node.remove();cached.set(item.id,{node,signature});}
       if(node!==cursor)container.insertBefore(node,cursor);else cursor=node.nextSibling;

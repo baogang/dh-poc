@@ -1,4 +1,5 @@
 import { Type,controlledSession,pack } from './runtime.mjs';
+import {captureAnswer} from './feedback-context.mjs';
 import { id,clone,digest,failure } from './store.mjs';
 import {languageOf,chatNotice,inputReply} from './presentation.mjs';
 import {RoadEmotion} from './emotion.mjs';
@@ -36,6 +37,11 @@ Finish business execution only with actual receipt_ids for completed API steps. 
 export class RoadAgent {
   constructor({store,api,knowledge,runtimeFactory=controlledSession,emotion=new RoadEmotion(),automaticPlans=true,highRiskReads=[]}){Object.assign(this,{store,api,knowledge,runtimeFactory,emotion,automaticPlans});this.highRiskReads=parseHighRiskReads(highRiskReads);this.runs=new Map();}
   active(s){return s.plans.find(p=>p.id===s.activePlanId);}
+  answer(s,text,extra,context){
+    const answer=this.store.message(s,'assistant',text,extra);
+    captureAnswer(s,answer,{...context,promptHash:digest(ROAD_SYSTEM),faqVersion:digest(this.knowledge?.document)});
+    return answer;
+  }
   async login(s,credentials){
     if(s.running)throw failure('BUSY','Stop the current turn before logging in',409);
     if(s.user)throw failure('ALREADY_LOGGED_IN','Start a new conversation to change accounts',409);
@@ -100,16 +106,17 @@ export class RoadAgent {
   }
   async run(s,{message,faq=false,fauxResponses,faqResponses,emotionResponses,emotionMessageId}={}){
     s.running=true;const controller=new AbortController();this.runs.set(s.id,controller);let runtime,ended=false;
+    const questionId=faq?s.messages.findLast(m=>m.role==='user'&&!m.kind)?.id:this.active(s)?.origin_message_id??s.messages.findLast(m=>m.role==='user'&&!m.kind)?.id;let turnSeq;
     let epoch=s.epoch;const alive=()=>{if(controller.signal.aborted||s.epoch!==epoch)throw failure('TURN_CANCELLED','Turn interrupted',409);};
     const emit=e=>{const {type,...rest}=e;this.store.emit(s,type,rest);};
     const timeout=setTimeout(()=>controller.abort(failure('TURN_TIMEOUT','Turn time limit reached',504)),180000);timeout.unref();
     try{
       if(faq)s.emotion={status:'pending_faq',sentiment:null,message_id:[...s.messages].reverse().find(m=>m.role==='user'&&!m.kind)?.id};
-      this.store.emit(s,'turn_started',{epoch,route:faq?'faq_first':'resume'});await this.store.save(s);
+      turnSeq=this.store.emit(s,'turn_started',{epoch,route:faq?'faq_first':'resume'}).seq;await this.store.save(s);
       if(faq){
         const hit=await this.knowledge.answer(message,{context:{user:s.user,pending_input:s.pendingInput,pending_operation:s.pendingOperation,plan:this.active(s),recent_messages:s.messages.slice(-8)},signal:controller.signal,onEvent:emit,fauxResponses:faqResponses});alive();
         const current=[...s.messages].reverse().find(m=>m.role==='user'&&!m.kind);
-        if(hit){s.emotion={status:'skipped',sentiment:null,message_id:current?.id,reason:'faq_hit'};this.store.emit(s,'emotion_skipped',{reason:'faq_hit',message_id:current?.id});this.store.message(s,'assistant',hit.answer,{kind:'faq',source:{id:hit.entry.id,question:hit.entry.question,scope:hit.entry.source_scope}});ended=true;return;}
+        if(hit){s.emotion={status:'skipped',sentiment:null,message_id:current?.id,reason:'faq_hit'};this.store.emit(s,'emotion_skipped',{reason:'faq_hit',message_id:current?.id});this.answer(s,hit.answer,{kind:'faq',source:{id:hit.entry.id,question:hit.entry.question,scope:hit.entry.source_scope}},{questionId:current?.id,turnSeq});ended=true;return;}
       }
       if(faq||emotionMessageId){
         const current=emotionMessageId?s.messages.find(m=>m.id===emotionMessageId):[...s.messages].reverse().find(m=>m.role==='user'&&!m.kind);
@@ -185,7 +192,7 @@ export class RoadAgent {
           const ids=args.steps.map(x=>x.id);if(new Set(ids).size!==ids.length)throw failure('DUPLICATE_STEP','Step IDs must be unique');
           args.steps.forEach((x,i)=>{if(x.depends_on.some(d=>!ids.slice(0,i).includes(d)))throw failure('INVALID_DEPENDENCY','Dependencies must reference earlier steps');});
           const old=this.active(s);if(old?.status!=='completed'&&old)old.status='superseded';
-          const p={id:id('plan'),version:s.plans.length+1,goal:args.goal,summary:args.summary,steps:args.steps.map(x=>({...clone(x),status:'pending'})),approved:this.automaticPlans,status:this.automaticPlans?'approved':'review',approval_source:this.automaticPlans?'host_risk_policy':null,created_at:new Date().toISOString()};s.plans.push(p);s.activePlanId=p.id;s.pendingInput=null;s.pendingOperation=null;s.authorizations={};s.status=this.automaticPlans?'running':'review';this.store.emit(s,'plan_proposed',{plan:p});this.store.message(s,'assistant',args.summary+'\n\n'+chatNotice(s,this.automaticPlans?'autoPlan':'plan'),{kind:'plan',plan_id:p.id});if(this.automaticPlans){this.store.emit(s,'plan_auto_started',{plan_id:p.id,policy:policyRegistry(this.highRiskReads)});return {plan:p,auto_execute:true,policy:policyRegistry(this.highRiskReads)};}return {plan:p,review_required:true,end_turn:true};
+          const p={id:id('plan'),origin_message_id:questionId,version:s.plans.length+1,goal:args.goal,summary:args.summary,steps:args.steps.map(x=>({...clone(x),status:'pending'})),approved:this.automaticPlans,status:this.automaticPlans?'approved':'review',approval_source:this.automaticPlans?'host_risk_policy':null,created_at:new Date().toISOString()};s.plans.push(p);s.activePlanId=p.id;s.pendingInput=null;s.pendingOperation=null;s.authorizations={};s.status=this.automaticPlans?'running':'review';this.store.emit(s,'plan_proposed',{plan:p});this.store.message(s,'assistant',args.summary+'\n\n'+chatNotice(s,this.automaticPlans?'autoPlan':'plan'),{kind:'plan',plan_id:p.id});if(this.automaticPlans){this.store.emit(s,'plan_auto_started',{plan_id:p.id,policy:policyRegistry(this.highRiskReads)});return {plan:p,auto_execute:true,policy:policyRegistry(this.highRiskReads)};}return {plan:p,review_required:true,end_turn:true};
         }),
         tool('request_input','Ask for missing information via trusted UI; ticket input confirms matched report and unresolved state.',Type.Object({step_id:Type.String(),kind:Type.Union(['text','address','ticket','login'].map(x=>Type.Literal(x))),question:text(),ticket_ids:Type.Optional(Type.Array(ticket()))},{additionalProperties:false}),args=>{
           const {p,step}=approvedStep(args.step_id,'input');let candidates=[],query;
@@ -219,7 +226,7 @@ export class RoadAgent {
           // Completion statements are rendered from authoritative receipts, never model claims.
           const language=languageOf(s);
           const answer=args.state==='completed'?receiptAnswer(receipts,language):args.message;
-          s.status=args.state;this.store.message(s,'assistant',answer,{kind:'result',receipt_ids:args.receipt_ids});return {accepted:true,state:args.state,receipt_ids:args.receipt_ids,end_turn:true};
+          s.status=args.state;this.answer(s,answer,{kind:'result',receipt_ids:args.receipt_ids},{questionId,turnSeq,planId:p?.origin_message_id===questionId?p.id:null});return {accepted:true,state:args.state,receipt_ids:args.receipt_ids,end_turn:true};
         })
       ];
       runtime=await this.runtimeFactory({system:ROAD_SYSTEM,tools,maxRequests:12,fauxResponses,onEvent:emit});alive();
@@ -227,7 +234,7 @@ export class RoadAgent {
       try{await runtime.session.prompt(JSON.stringify({event:message,capability_registry:capabilities,tool_policy:policyRegistry(this.highRiskReads),user:s.user,facts:s.facts,current_plan:this.active(s),pending_input:s.pendingInput,pending_operation:s.pendingOperation,authorizations:s.authorizations,receipts:s.receipts,conversation:s.messages.slice(-30)}));}finally{controller.signal.removeEventListener('abort',abort);}
       alive();if(!ended)throw failure('INCOMPLETE_TURN','Agent ended without a valid control outcome');
     }catch(error){
-      if(s.epoch===epoch){s.status=controller.signal.aborted?'interrupted':'failed';this.store.emit(s,'turn_error',{code:error.code??'AGENT_ERROR',message:error.message});this.store.message(s,'assistant','Agent could not complete this turn. '+(error.code??'AGENT_ERROR'),{kind:'error',notice:'turnError',notice_values:{code:error.code??'AGENT_ERROR'}});}
+      if(s.epoch===epoch){s.status=controller.signal.aborted?'interrupted':'failed';this.store.emit(s,'turn_error',{code:error.code??'AGENT_ERROR',message:error.message});this.answer(s,'Agent could not complete this turn. '+(error.code??'AGENT_ERROR'),{kind:'error',notice:'turnError',notice_values:{code:error.code??'AGENT_ERROR'}},{questionId,turnSeq,planId:this.active(s)?.origin_message_id===questionId?this.active(s).id:null});}
     }finally{
       clearTimeout(timeout);runtime?.session.dispose();s.running=false;if(this.runs.get(s.id)===controller)this.runs.delete(s.id);this.store.emit(s,'turn_finished',{status:s.status});await this.store.save(s);
     }

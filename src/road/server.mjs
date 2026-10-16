@@ -10,6 +10,8 @@ import { RoadKnowledge } from './knowledge.mjs';
 import { RoadAgent } from './agent.mjs';
 import {parseHighRiskReads} from './policy.mjs';
 import {humanNotice} from './human.mjs';
+import {FeedbackRepository,feedbackRecord} from './feedback.mjs';
+import {feedbackExport} from '../../web/road/feedback-data.js';
 
 const equal=(a,b)=>typeof a==='string'&&typeof b==='string'&&a.length===b.length&&timingSafeEqual(Buffer.from(a),Buffer.from(b));
 async function body(req){
@@ -32,11 +34,11 @@ export function mockHttpClient({origin,key}){
   };
 }
 
-export async function createRoadServer({store=new RoadStore(process.env.ROAD_STATE_DIR??'.road-state'),knowledge,agentFactory,config=webConfigFromEnv(),mockKey=randomBytes(32).toString('hex'),demoUI=process.env.ROAD_DEMO_UI!=='false',highRiskReads=parseHighRiskReads(process.env.ROAD_HIGH_RISK_READS??'')}={}){
-  await store.initialize();knowledge??=await RoadKnowledge.load();const mocks=new RoadMocks(store);const access=createWebAccess(config.access);let agent;
+export async function createRoadServer({store=new RoadStore(process.env.ROAD_STATE_DIR??'.road-state'),knowledge,agentFactory,feedback=new FeedbackRepository(),config=webConfigFromEnv(),mockKey=randomBytes(32).toString('hex'),demoUI=process.env.ROAD_DEMO_UI!=='false',highRiskReads=parseHighRiskReads(process.env.ROAD_HIGH_RISK_READS??'')}={}){
+  await store.initialize();await feedback.initialize().catch(()=>console.warn('Feedback database is temporarily unavailable'));knowledge??=await RoadKnowledge.load();const mocks=new RoadMocks(store);const access=createWebAccess(config.access);let agent;
   const send=(res,status,value)=>{res.writeHead(status,{'content-type':'application/json; charset=utf-8','cache-control':'no-store'});res.end(JSON.stringify(value));};
   const getSession=req=>{const cookie=(req.headers.cookie??'').split(';').map(x=>x.trim()).find(x=>x.startsWith('road_session='));if(!cookie)throw failure('SESSION_REQUIRED','Start a conversation',401);return store.get(cookie.slice(13));};
-  const view=s=>({...store.view(s),demo_ui:demoUI===true,faq:{name:knowledge.document.name,entry_count:knowledge.entries.length,source_displayed_count:knowledge.document.source_displayed_count,migration_status:knowledge.document.migration_status},model:'deepseek-flash',runtime:'PI SDK 1.1.0'});
+  const view=s=>({...store.view(s),demo_ui:demoUI===true,feedback:{enabled:feedback.enabled,items:feedback.cached(s.id)},faq:{name:knowledge.document.name,entry_count:knowledge.entries.length,source_displayed_count:knowledge.document.source_displayed_count,migration_status:knowledge.document.migration_status},model:'deepseek-flash',runtime:'PI SDK 1.1.0'});
   const server=createServer(async(req,res)=>{
     res.setHeader('x-content-type-options','nosniff');res.setHeader('referrer-policy','no-referrer');res.setHeader('content-security-policy',"default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' data:; frame-ancestors 'none'; base-uri 'none'; form-action 'self'");
     try{
@@ -60,7 +62,16 @@ export async function createRoadServer({store=new RoadStore(process.env.ROAD_STA
       }
       if(url.pathname.startsWith('/api/')){
         const s=getSession(req);
-        if(req.method==='GET'&&url.pathname==='/api/state')return send(res,200,view(s));
+        if(req.method==='GET'&&url.pathname==='/api/state'){feedback.load(s.id).catch(()=>{});return send(res,200,view(s));}
+        if(req.method==='GET'&&url.pathname==='/api/feedback'){
+          if(!feedback.enabled)return send(res,200,{records:[]});
+          try{return send(res,200,{records:(await feedback.list(s.id)).map(feedbackRecord)});}catch{throw failure('FEEDBACK_UNAVAILABLE','Feedback storage is temporarily unavailable',503);}
+        }
+        if(req.method==='GET'&&url.pathname==='/api/feedback/export'){
+          const format=url.searchParams.get('format')??'jsonl';if(!['csv','jsonl'].includes(format))throw failure('INVALID_FEEDBACK','Use csv or jsonl');
+          let rows;try{rows=(await feedback.list(s.id)).map(feedbackRecord);}catch{throw failure('FEEDBACK_UNAVAILABLE','Feedback export is temporarily unavailable',503);}
+          res.writeHead(200,{'content-type':format==='csv'?'text/csv; charset=utf-8':'application/x-ndjson; charset=utf-8','content-disposition':`attachment; filename="answer-feedback.${format}"`,'cache-control':'no-store'});return res.end(feedbackExport(rows,format));
+        }
         if(req.method==='GET'&&url.pathname==='/api/events'){
           const after=Number(req.headers['last-event-id']??url.searchParams.get('after')??0);
           res.writeHead(200,{'content-type':'text/event-stream','cache-control':'no-cache','connection':'keep-alive','x-accel-buffering':'no'});
@@ -71,6 +82,12 @@ export async function createRoadServer({store=new RoadStore(process.env.ROAD_STA
         if(req.method!=='POST')throw failure('METHOD_NOT_ALLOWED','Method not allowed',405);
         if(!equal(req.headers['x-csrf-token'],s.csrf))throw failure('CSRF_REQUIRED','Missing session confirmation token',403);
         const input=await body(req);
+        if(url.pathname==='/api/feedback'){
+          const message=s.messages.find(m=>m.id===input.answer_message_id&&m.role==='assistant');
+          const snapshot=s.answerSnapshots?.[input.answer_message_id];
+          if(!message||!snapshot||!['faq','result','error'].includes(message.kind))throw failure('FEEDBACK_TARGET_NOT_FOUND','Select an answer in this conversation',404);
+          return send(res,200,{record:await feedback.submit(s.id,input,snapshot)});
+        }
         if(url.pathname==='/api/cancel'){await agent.cancel(s);return send(res,200,view(s));}
         if(s.running)throw failure('BUSY','Stop the current turn before another action',409);
         if(url.pathname==='/api/login'){await agent.login(s,input);return send(res,200,view(s));}
@@ -108,21 +125,21 @@ export async function createRoadServer({store=new RoadStore(process.env.ROAD_STA
         res.writeHead(200,{'content-type':'text/html; charset=utf-8','cache-control':'no-store'});return res.end(html);
       }
       if(req.method!=='GET')throw failure('NOT_FOUND','Not found',404);
-      const files={'/':'index.html','/app.js':'app.js','/chat-ui.js':'chat-ui.js','/i18n.js':'i18n.js','/style.css':'style.css'};
+      const files={'/':'index.html','/app.js':'app.js','/chat-ui.js':'chat-ui.js','/i18n.js':'i18n.js','/feedback-ui.js':'feedback-ui.js','/feedback-data.js':'feedback-data.js','/style.css':'style.css'};
       if(!files[url.pathname])throw failure('NOT_FOUND','Not found',404);
       const data=await readFile(new URL(`../../web/road/${files[url.pathname]}`,import.meta.url));res.writeHead(200,{'content-type':url.pathname.endsWith('.js')?'text/javascript; charset=utf-8':url.pathname.endsWith('.css')?'text/css; charset=utf-8':'text/html; charset=utf-8','cache-control':'no-store'});res.end(data);
-    }catch(error){if(!res.headersSent)send(res,error.status??500,{error:{code:error.code??'SERVER_ERROR',message:error.status?error.message:'Internal server error'}});else res.end();}
+    }catch(error){if(!res.headersSent)send(res,error.status??500,{error:{code:error.code??'SERVER_ERROR',message:error.status?error.message:'Internal server error',...(error.current?{current:error.current}:{})}});else res.end();}
   });
   const ready=async()=>{
     const addr=server.address(),api=mockHttpClient({origin:`http://127.0.0.1:${addr.port}`,key:mockKey});
     agent=agentFactory?await agentFactory({store,api,knowledge,highRiskReads}):new RoadAgent({store,api,knowledge,highRiskReads});
   };
-  return {server,store,mocks,get agent(){return agent;},ready,view};
+  return {server,store,mocks,feedback,get agent(){return agent;},ready,view};
 }
 
 if(process.argv[1]&&resolve(process.argv[1])===fileURLToPath(import.meta.url)){
   const config=webConfigFromEnv();const app=await createRoadServer({config});
   app.server.listen(config.port,config.host,async()=>{await app.ready();console.log(`Road PoC listening on ${config.host}:${config.port}`);});
-  const stop=()=>{for(const s of app.store.sessions.values())if(s.running)app.agent.interrupt(s,'server_shutdown');app.server.close(()=>process.exit(0));setTimeout(()=>process.exit(0),10000).unref();};
+  const stop=()=>{for(const s of app.store.sessions.values())if(s.running)app.agent.interrupt(s,'server_shutdown');app.server.close(()=>app.feedback.close().finally(()=>process.exit(0)));setTimeout(()=>process.exit(0),10000).unref();};
   process.on('SIGTERM',stop);process.on('SIGINT',stop);
 }

@@ -5,7 +5,7 @@ import {translator,resolveLocale,UI_MESSAGES,uiError} from '../web/road/i18n.js'
 import {progressText} from '../web/road/chat-ui.js';
 
 test('every fixed Chinese UI literal has an English translation with matching placeholders',async()=>{
- for(const file of ['app.js','chat-ui.js']){const source=await readFile(new URL('../web/road/'+file,import.meta.url),'utf8');for(const match of source.matchAll(/'([^'\n]*[\u4e00-\u9fff][^'\n]*)'/g))assert(Object.hasOwn(UI_MESSAGES.en,match[1]),file+': missing English copy for '+match[1]);}
+ for(const file of ['app.js','chat-ui.js','feedback-ui.js']){const source=await readFile(new URL('../web/road/'+file,import.meta.url),'utf8');for(const match of source.matchAll(/'([^'\n]*[\u4e00-\u9fff][^'\n]*)'/g))assert(Object.hasOwn(UI_MESSAGES.en,match[1]),file+': missing English copy for '+match[1]);}
  for(const [key,value]of Object.entries(UI_MESSAGES.en)){assert(value.trim(),key);const source=UI_MESSAGES.zh[key]??key,variables=s=>[...s.matchAll(/\{(\w+)\}/g)].map(m=>m[1]).sort();assert.deepEqual(variables(value),variables(source),key+' placeholders');}
  const t=translator('en');assert.equal(t('工单地址：{city}, {street}',{city:'الرياض',street:'原样 Road'}),'Ticket address: الرياض, 原样 Road');
 });

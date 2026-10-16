@@ -51,6 +51,34 @@ The switch covers page labels, accessibility labels, progress, task state, login
 
 Localization regression: 146 engineering tests pass, including English/browser preference, remembered selection, switching with address drafts and exact approvals, localized sentiment/human/receipt/progress states, dictionary coverage and placeholder parity. Translation strings are in `web/road/i18n.js`; its HTTP route uses the same website authentication and CSP as the rest of the app.
 
+### Answer satisfaction feedback
+
+Formal FAQ answers, final agent replies (including refusals and blocked outcomes), and terminal agent errors offer **满意 / 不满意** (Satisfied / Not satisfied) directly beneath the answer. Welcome, plans, forms, submission confirmations and simulated human notices do not offer ratings. No tags, comment form or configuration dashboard are required. A rating can be changed, is counted once per answer, and is independent of sentiment, task visibility and HITL. It may be submitted while another turn is running. Failed writes remain visibly unsaved and can be retried.
+
+The backend uses `ROAD_FEEDBACK_DATABASE_URL` for a TLS-verified PostgreSQL connection to Neon. The URL is backend-only, excluded from Git and browser assets. `ROAD_FEEDBACK_ENABLED=false` disables collection. Startup creates two additive tables: `road_answer_feedback` (latest opinion and immutable evidence) and `road_answer_feedback_events` (request IDs and revision history). Parameterized queries, a transaction and a locked answer row provide idempotency and version checks. A retry with the same request ID does not create a second event; an old version cannot overwrite a newer opinion. Database failure never changes a ticket or starts an agent task.
+
+Each newly generated eligible answer captures its original question, triggering message, up to 20 related preceding messages, FAQ/source and prompt hashes, application/model versions, plan and tool-outcome summaries, current emotion and usage evidence. Plan origin IDs preserve the business question across missing information, approval and intervening FAQs. Captures exclude login credentials, CSRF, transport keys and authorization objects; recognized credential text is redacted. Source snapshots and votes are not sent back to the model. Existing answers without a reliable snapshot remain readable but are not retroactively labeled.
+
+`POST /api/feedback` accepts `answer_message_id`, `rating` (`satisfied` or `unsatisfied`), `request_id` and `expected_version`. It uses the existing session cookie/CSRF and verifies answer ownership before persistence. `/api/state` includes only own-session rating summaries; `GET /api/feedback` and `/api/feedback/export?format=jsonl|csv` only return the current session's saved records. There is no public all-session data endpoint.
+
+Under **测试工具与运行记录 → 回答反馈数据**, the browser shows totals and downloads CSV or JSONL for records collected in this browser. IndexedDB retains acknowledged records across refresh and new conversations; backup failure is reported separately from cloud write success. Unrated answers are not negative ratings. Revisions are merged by feedback ID, using the highest version. CSV is UTF-8 with BOM, quoted fields and spreadsheet formula protection; JSONL keeps structured multilingual evidence.
+
+For a complete centrally stored dataset, use the backend-only exporter on a machine configured with the same ignored `.env`:
+
+```sh
+npm run road:feedback-export -- --format jsonl --output reports/road/feedback.jsonl
+npm run road:feedback-export -- --format csv --output reports/road/feedback.csv
+# Optional: --session session-...
+```
+
+Exports default to `review_status: unreviewed`. Ratings are satisfaction labels, not verified correct answers; training data requires manual review, privacy checks and, when needed, corrected target answers. Only feedback already saved to Neon survives Render sleep/redeploy. Current chat/mock sessions still use the existing ephemeral state directory; this feature does not migrate the entire conversation runtime to PostgreSQL.
+
+Real database regression (isolated disposable schema, never the production feedback tables):
+
+```sh
+node --env-file-if-exists=.env --test tests/road-feedback.postgres.mjs
+```
+
 ### Chat-only interaction
 
 Plans, task progress, missing-information forms, mock login, exact operation confirmations and receipts are all rendered as ordered cards inside the conversation. Only demo sentiment observation uses a separate right sidebar. The task list can be collapsed or hidden with **显示任务列表**; the assistant's explanation and necessary action buttons remain visible. Each completed task is crossed out, and final response tasks also complete when a fully executed plan finishes with an answer. API/model work displays an immediate progress bubble; connection failures display an actionable message in the same conversation.
