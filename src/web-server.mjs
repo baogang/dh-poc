@@ -12,7 +12,7 @@ import { createWebAccess,webConfigFromEnv } from './web-access.mjs';
 const assets={'/':'index.html','/index.html':'index.html','/app.js':'app.js','/style.css':'style.css'};
 async function body(req){let size=0;const chunks=[];for await(const chunk of req){size+=chunk.length;if(size>11*1024*1024)throw Object.assign(new Error('请求超过 11 MB'),{status:413});chunks.push(chunk);}try{return JSON.parse(Buffer.concat(chunks).toString('utf8'));}catch{throw new Error('请求应为合法 JSON');}}
 const bounded=(value,def,max)=>{const n=value===null?def:Number(value);return Number.isInteger(n)&&n>=0?Math.min(n,max):def;};
-export async function createWebServer({store,models,jobs,access}={}){
+export async function createWebServer({store,models,jobs,access,emotionReportDownloads=process.env.POC_EMOTION_REPORT_DOWNLOADS==='true'}={}){
  const gate=createWebAccess(access);
  if(!store){store=new DatasetStore();await store.initialize();}
  if(!models){const runtime=await ModelRuntime.create({credentials:new InMemoryCredentialStore(),modelsStore:new InMemoryModelsStore(),modelsPath:null,allowModelNetwork:false,refreshOnCreate:false});models={ids:runtime.getModels('deepseek').map(m=>m.id),defaultEmotion:process.env.EMOTION_MODEL??process.env.DEEPSEEK_MODEL??'deepseek-flash',defaultPlanner:process.env.PLANNER_MODEL??process.env.DEEPSEEK_MODEL??'deepseek-flash'};}
@@ -35,7 +35,7 @@ export async function createWebServer({store,models,jobs,access}={}){
    if(req.method==='GET'&&assets[url.pathname]){const file=assets[url.pathname],data=await readFile(new URL('../web/'+file,import.meta.url));res.writeHead(200,{'Content-Type':file.endsWith('.html')?'text/html; charset=utf-8':file.endsWith('.js')?'text/javascript; charset=utf-8':'text/css; charset=utf-8','Cache-Control':'no-cache'});res.end(data);return;}
    if(req.method==='GET'&&url.pathname==='/api/catalog'){
     const plugins=await Promise.all(DEFAULT_REGISTRY.plugins.map(async({skillPath,manifestPath,...p})=>({...p,skill:await readFile(skillPath,'utf8')})));
-    json(200,{modules:MODULES.map(m=>({...m,input_schema:m.id==='engineering'?store.validateEngineering.schema:MODULE_INPUTS[m.id]})),plugins,registry_hash:DEFAULT_REGISTRY.hash,models:{...models,provider:'deepseek',credential_configured:!!process.env.DEEPSEEK_API_KEY,catalog_source:'pinned Pi SDK 1.1.0'},datasets:store.list(),csrf,knowledge_base:false});return;
+    json(200,{modules:MODULES.map(m=>({...m,input_schema:m.id==='engineering'?store.validateEngineering.schema:MODULE_INPUTS[m.id]})),plugins,registry_hash:DEFAULT_REGISTRY.hash,models:{...models,provider:'deepseek',credential_configured:!!process.env.DEEPSEEK_API_KEY,catalog_source:'pinned Pi SDK 1.1.0'},datasets:store.list(),csrf,knowledge_base:false,features:{emotion_report_downloads:emotionReportDownloads}});return;
    }
    if(req.method==='GET'&&url.pathname==='/api/datasets'){json(200,store.list());return;}
    if(req.method==='GET'&&parts[0]==='api'&&parts[1]==='datasets'&&parts.length===3){const d=store.get(parts[2]);json(200,{dataset:store.list().find(x=>x.id===d.id),...store.cases(d.id,{q:q.get('q')??'',split:q.get('split')??'all',language:q.get('language')??'all',offset:bounded(q.get('offset'),0,5000),limit:bounded(q.get('limit'),25,100)})});return;}
@@ -51,7 +51,7 @@ export async function createWebServer({store,models,jobs,access}={}){
     if(req.method==='POST'&&parts.length===4&&parts[3]==='cancel'){json(200,await jobs.cancel(parts[2]));return;}
     if(req.method==='GET'&&parts.length===5&&parts[3]==='cases'){json(200,await jobs.case(parts[2],parts[4]));return;}
     if(req.method==='GET'&&parts.length===5&&parts[3]==='download'){
-     const data=await jobs.download(parts[2],parts[4]);res.writeHead(200,{'Content-Type':parts[4].endsWith('.md')?'text/markdown; charset=utf-8':'application/json; charset=utf-8','Content-Disposition':`attachment; filename="${parts[2]}-${parts[4]}"`});res.end(data);return;
+     const data=await jobs.download(parts[2],parts[4],{emotionReportDownloads});res.writeHead(200,{'Content-Type':parts[4].endsWith('.md')?'text/markdown; charset=utf-8':'application/json; charset=utf-8','Content-Disposition':`attachment; filename="${parts[2]}-${parts[4]}"`});res.end(data);return;
     }
    }
    throw Object.assign(new Error('页面或记录不存在'),{status:404});
