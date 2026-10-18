@@ -27,9 +27,15 @@ async function harness({storedLocale,browserLanguage='zh-CN',respond}={}){
   const requests=[];const storage=new Map(storedLocale?[['road:locale',storedLocale]]:[]);const context=vm.createContext({document:doc,console,navigator:{language:browserLanguage},localStorage:{getItem:k=>storage.get(k)??null,setItem:(k,v)=>storage.set(k,String(v))},requestAnimationFrame:fn=>fn(),setTimeout,clearTimeout,setInterval:()=>0,clearInterval,AbortSignal,FormData,fetch:async(path,options={})=>{requests.push({path,...options});return {ok:true,status:200,json:async()=>respond?respond(path,options):fixture()};},EventSource:class{close(){}}});
   // New renderer stays importable for tests without a browser or server.
   if(source.startsWith('import ')){const {createChatRenderer}=await import('../web/road/chat-ui.js');context.createChatRenderer=createChatRenderer;Object.assign(context,await import('../web/road/i18n.js'),await import('../web/road/feedback-ui.js'));}
-  vm.runInContext(source.replace(/^import .*;\n/gm,'').replace(/start\(\)\.catch\([\s\S]*?\);\s*$/,"globalThis.testUI={render,setState(value){state=value;if(typeof client!=='undefined')client.connecting=false;}};"),context);
-  const state=fixture();context.testUI.setState(state);context.testUI.render();return {nodes,doc,state,requests,storage,render(){context.testUI.setState(state);context.testUI.render();},chat:doc.getElementById('messages')};
+  vm.runInContext(source.replace(/^import .*;\n/gm,'').replace(/start\(\)\.catch\([\s\S]*?\);\s*$/,"globalThis.testUI={render,expire(){expired({code:'SESSION_EXPIRED'});render();},setState(value){state=value;if(typeof client!=='undefined')client.connecting=false;}};"),context);
+  const state=fixture();context.testUI.setState(state);context.testUI.render();return {nodes,doc,state,requests,storage,expire:()=>context.testUI.expire(),render(){context.testUI.setState(state);context.testUI.render();},chat:doc.getElementById('messages')};
 }
+test('expired conversations revoke old cards, preserve drafts and allow a fresh conversation',async()=>{
+  const h=await harness();h.state.pendingOperation={id:'old-proposal',operation:'create_ticket',parameters:{}};h.state.running=true;h.render();h.nodes.get('chat-message').value='Keep my unsent draft';h.expire();
+  assert(h.chat.textContent.includes('会话已过期'));assert.equal(h.nodes.get('send').disabled,true);assert.equal(h.nodes.get('stop').disabled,true);assert.equal(h.nodes.get('new-session').disabled,false);assert.equal(h.state.pendingOperation,null);assert.equal(h.state.plans[0].status,'paused');
+  await h.nodes.get('chat-form').fire('submit');assert.equal(h.requests.length,0);assert.equal(h.nodes.get('chat-message').value,'Keep my unsent draft');
+  await h.nodes.get('new-session').fire('click');assert(h.requests.some(r=>r.path==='/api/session'));assert.equal(h.nodes.get('send').disabled,false);
+});
 test('plan reply and next action are inside the conversation, so a chatbot-only user can continue',async()=>{
   const h=await harness();assert(h.chat.textContent.includes('Collect the location, then create the report.'));
   assert(h.chat.querySelectorAll('button').some(b=>/继续|Continue/.test(b.textContent)),'plan approval must be inside messages');

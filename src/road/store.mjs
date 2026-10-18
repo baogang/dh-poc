@@ -8,8 +8,15 @@ export const digest=value=>createHash('sha256').update(JSON.stringify(canonical(
 export const clone=value=>structuredClone(value);
 export const failure=(code,message,status=400)=>Object.assign(new Error(message),{code,status});
 
+export function interruptSession(s){
+  s.running=false;s.status='interrupted';s.epoch++;s.pendingOperation=null;s.authorizations={};
+  const plan=s.plans.find(p=>p.id===s.activePlanId);
+  if(plan&&plan.status!=='completed'){plan.approved=false;plan.status='paused';for(const step of plan.steps)if(['running','waiting'].includes(step.status))step.status='pending';}
+  return s;
+}
+
 export class RoadStore {
-  constructor(directory){this.directory=directory;this.sessions=new Map();this.listeners=new Map();this.writes=new Map();}
+  constructor(directory){this.directory=directory;this.storage=directory?'file':'memory';this.sessions=new Map();this.listeners=new Map();this.writes=new Map();this.leases=new Set();}
   async initialize(){
     if(!this.directory)return;
     await mkdir(this.directory,{recursive:true});
@@ -17,7 +24,7 @@ export class RoadStore {
     for(const file of await readdir(this.directory)){
       if(!file.endsWith('.json'))continue;
       const s=JSON.parse(await readFile(join(this.directory,file),'utf8'));
-      if(s.running){s.running=false;s.status='interrupted';s.epoch++;s.pendingOperation=null;s.authorizations={};}
+      if(s.running)interruptSession(s);
       const plan=s.plans.find(p=>p.id===s.activePlanId);
       // Older answered turns left the final response task pending in the UI.
       if(s.status==='answered'&&plan?.approved&&plan.steps.every(step=>step.capability==='respond'||step.status==='completed')){plan.steps.filter(step=>step.capability==='respond').forEach(step=>step.status='completed');plan.status='completed';}
@@ -29,6 +36,14 @@ export class RoadStore {
     this.sessions.set(s.id,s);return s;
   }
   get(sid){const s=this.sessions.get(sid);if(!s)throw failure('SESSION_NOT_FOUND','Session not found',404);return s;}
+  async load(sid){return this.get(sid);}
+  owns(sid){return this.leases.has(sid);}
+  async acquire(sid){
+    const session=this.get(sid);if(this.leases.has(sid)||session.running)throw failure('BUSY','Stop the current turn before another action',409);
+    this.leases.add(sid);return {session,release:async()=>{this.leases.delete(sid);}};
+  }
+  async flush(sid){await this.writes.get(sid);}
+  async close(){await Promise.allSettled(this.writes.values());}
   async save(s){
     if(!this.directory)return;
     const data=JSON.stringify(s),path=join(this.directory,`${s.id}.json`);

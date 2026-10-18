@@ -1,0 +1,90 @@
+{
+  "generated_at": "2026-10-17T12:11:01.794Z",
+  "branch": "codex/road-pothole-pi-poc",
+  "base_head": "a1b52184374db83ef7515c7f915b5d07d256a64d",
+  "uncommitted_implementation": true,
+  "deployed_to_render": false,
+  "validation": {
+    "node_tests": {
+      "passed": 156,
+      "failed": 0,
+      "command": "npm test"
+    },
+    "neon_tests": {
+      "passed": 19,
+      "failed": 0,
+      "command": "npm run road:test:postgres",
+      "isolation": "Disposable schemas, cleaned after tests"
+    },
+    "python_tests": {
+      "passed": 26,
+      "failed": 0,
+      "command": "npm run test:mocks"
+    },
+    "source_checks": "passed",
+    "credential_scan": "passed",
+    "capacity_checks": "passed"
+  },
+  "migration": {
+    "storage": "neon",
+    "imported_sessions": 3,
+    "messages_preserved": 56,
+    "source_files_preserved": true,
+    "idempotent_default_startup": {
+      "imported": 0,
+      "existing": 3
+    },
+    "identities_and_cookie_tokens_verified": true
+  },
+  "render": {
+    "workspace": "poc",
+    "service": "road-pothole-pi-poc",
+    "plan": "free",
+    "instances": 1,
+    "region": "singapore",
+    "metrics_query": "empty; production capacity not validated"
+  },
+  "capacity": [
+    {
+      "path": "docs/evaluation/road-session-capacity-8k-20261017.json",
+      "sha256": "6b90a46054a58dcbbafda912fe8fe0dcf99f6f4406464f5718df3d20f6309b66",
+      "history_target_kib": 8,
+      "completed": true,
+      "durable_sessions": 500,
+      "max_measured_online": 500,
+      "synthetic_turns_accepted": 8,
+      "synthetic_turns_rejected": 8
+    },
+    {
+      "path": "docs/evaluation/road-session-capacity-64k-20261017.json",
+      "sha256": "92d0cc9272dfe451325a8780113bb06e3caf215078ab463802aa787c593ff658",
+      "history_target_kib": 64,
+      "completed": true,
+      "durable_sessions": 500,
+      "max_measured_online": 500,
+      "synthetic_turns_accepted": 8,
+      "synthetic_turns_rejected": 8
+    }
+  ],
+  "limitations": [
+    "Local load generator and independent local server process; remote real Neon, not Render load testing.",
+    "FAQ fixture waits 5 seconds; no real model requests, throughput or account quotas measured.",
+    "15-second idle stages; not a long-duration soak or maximum-capacity certification.",
+    "Capacity runs preceded final expiry/SSE recovery fixes in the same refactor.",
+    "Cross-instance cancellation and operation ledger remain documented prerequisites for full horizontal operation."
+  ],
+  "final_source_fingerprints": {
+    "src/road/database.mjs": "d4d3a9e3e804d305034fcf7a15874d8a2b60f880cb949a1c59c62aa8bdff924f",
+    "src/road/neon-store.mjs": "aca56e10269921236eb25d1ec3d5b5f672d83917d15e356f33f140d00517efbf",
+    "src/road/store.mjs": "259b6b35296be68bccccbd2255b142fb21b4b681f5cba33198787e5a1d695f67",
+    "src/road/server.mjs": "634c5c8507c10bd82ffcb73494ce9d454daa062aeb5cf704a1a73469f60d6a40",
+    "src/road/feedback.mjs": "f82e820db72c305ec3a99c4faaa5b4f0b4c9c84a598ca53e997b329649bc029d",
+    "web/road/app.js": "7d31a6338bd3ca448d7fe90234924803a41996d30cc758f2703a08b98e1dcda0",
+    "web/road/i18n.js": "53e1626b7b71bf027f0b40114c4a28eb5ed1087132aa5ffc5eb68f996cb29654",
+    "scripts/road-session-migrate.mjs": "47a24f9edd1fb0bf6bf46d8b28d19afa0226e15c714bf579701534c4a342405e",
+    "scripts/road-capacity.mjs": "cfc65cd2ca441fca73612776531f805c98f70039442acf4fa977d735a7cc923a",
+    "tests/road-session.postgres.mjs": "8a9e5905c4007317fd19e0ad4f5779941fa6228e7dfe2d18e3990b9580ad7883",
+    "tests/road-chat-ui.test.mjs": "56ddd8f9a31c21621b03ece0ec9a218d34ac8eae4504fe82cbfbc3d45629ef16",
+    "tests/road-feedback.test.mjs": "60a79757dfd0fab974a2bfb8c4252409bed0f425f8ff1aafe9534c87a71cc8e9"
+  }
+}

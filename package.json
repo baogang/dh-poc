@@ -20,6 +20,9 @@
     "web": "node --env-file-if-exists=.env src/web-server.mjs",
     "road:web": "node --env-file-if-exists=.env src/road/server.mjs",
     "road:test": "node --test tests/road-*.test.mjs",
+    "road:test:postgres": "node --env-file-if-exists=.env --test tests/road-session.postgres.mjs tests/road-feedback.postgres.mjs",
+    "road:session-migrate": "node --env-file-if-exists=.env scripts/road-session-migrate.mjs",
+    "road:capacity": "node --env-file-if-exists=.env scripts/road-capacity.mjs",
     "road:eval": "node --env-file-if-exists=.env scripts/road-eval.mjs",
     "road:emotion-eval": "node --env-file-if-exists=.env scripts/road-emotion-eval.mjs",
     "road:feedback-export": "node --env-file-if-exists=.env scripts/road-feedback-export.mjs"

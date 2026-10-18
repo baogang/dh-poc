@@ -1,0 +1,140 @@
+{
+  "validated_at": "2026-10-18T17:40:51.303803+00:00",
+  "user_timezone": "Asia/Shanghai",
+  "release_date": "2026-10-19",
+  "phase": "pre_deploy_passed",
+  "base_commit": "a1b52184374db83ef7515c7f915b5d07d256a64d",
+  "checks": {
+    "main_node": {
+      "passed": 156,
+      "failed": 0
+    },
+    "main_python": {
+      "passed": 26,
+      "failed": 0
+    },
+    "neon": {
+      "passed": 19,
+      "failed": 0
+    },
+    "offline_engineering": {
+      "passed": 60,
+      "failed": 0
+    },
+    "live_business": {
+      "passed": 23,
+      "failed": 0,
+      "tool_precision": 1,
+      "tool_recall": 1,
+      "unsafe_writes": 0
+    },
+    "live_emotion": {
+      "passed": 48,
+      "failed": 0
+    },
+    "value_branch_node": {
+      "passed": 87,
+      "failed": 0
+    },
+    "value_branch_python": {
+      "passed": 26,
+      "failed": 0
+    },
+    "download_http_each_branch": {
+      "passed": 18,
+      "failed": 0
+    },
+    "syntax_and_credential_scan": "passed"
+  },
+  "capacity": {
+    "8k": {
+      "path": "docs/evaluation/road-session-capacity-8k-20261019.json",
+      "checks": {
+        "durable_sessions": true,
+        "bounded_cache": true,
+        "all_streams_connected": true,
+        "no_request_errors": true,
+        "turn_admission": true,
+        "turns_released": true,
+        "stream_limit": true,
+        "streams_released": true
+      },
+      "sha256": "bb8c75a9da51ad99bb524d3ea9790d06ee2f02cc060470c0f721312f3178244b",
+      "stages": [
+        {
+          "online": 100,
+          "rss_mib": 140.41,
+          "read_p95_ms": 1600
+        },
+        {
+          "online": 250,
+          "rss_mib": 166.3,
+          "read_p95_ms": 924
+        },
+        {
+          "online": 500,
+          "rss_mib": 169.23,
+          "read_p95_ms": 1119
+        }
+      ]
+    },
+    "64k": {
+      "path": "docs/evaluation/road-session-capacity-64k-20261019.json",
+      "checks": {
+        "durable_sessions": true,
+        "bounded_cache": true,
+        "all_streams_connected": true,
+        "no_request_errors": true,
+        "turn_admission": true,
+        "turns_released": true,
+        "stream_limit": true,
+        "streams_released": true
+      },
+      "sha256": "a1d012c0d9fd423a8b4ab35011d544d691a6130cbd5710a469922217a0b635a9",
+      "stages": [
+        {
+          "online": 100,
+          "rss_mib": 171.96,
+          "read_p95_ms": 2073
+        },
+        {
+          "online": 250,
+          "rss_mib": 206.28,
+          "read_p95_ms": 1075
+        },
+        {
+          "online": 500,
+          "rss_mib": 239.61,
+          "read_p95_ms": 751
+        }
+      ]
+    }
+  },
+  "rollout": {
+    "road_branch": "codex/road-pothole-pi-poc",
+    "evaluation_branch": "value",
+    "road_limits": {
+      "turns": 2,
+      "streams": 50
+    },
+    "history_import": "No new local historical conversation import in this release; separate authorization required. Existing Neon feedback retained.",
+    "online_validation": "To be recorded separately after deployment."
+  },
+  "limitations": [
+    "Synthetic cases with provisional gold, no population-wide accuracy claim.",
+    "Capacity was local server + real Neon, not a Render Free production capacity certification.",
+    "Cross-instance cancellation and real external-API operation ledger remain future work."
+  ],
+  "source_sha256": {
+    "src/road/database.mjs": "d4d3a9e3e804d305034fcf7a15874d8a2b60f880cb949a1c59c62aa8bdff924f",
+    "src/road/neon-store.mjs": "aca56e10269921236eb25d1ec3d5b5f672d83917d15e356f33f140d00517efbf",
+    "src/road/store.mjs": "259b6b35296be68bccccbd2255b142fb21b4b681f5cba33198787e5a1d695f67",
+    "src/road/server.mjs": "634c5c8507c10bd82ffcb73494ce9d454daa062aeb5cf704a1a73469f60d6a40",
+    "src/road/feedback.mjs": "f82e820db72c305ec3a99c4faaa5b4f0b4c9c84a598ca53e997b329649bc029d",
+    "web/road/app.js": "7d31a6338bd3ca448d7fe90234924803a41996d30cc758f2703a08b98e1dcda0",
+    "web/road/i18n.js": "53e1626b7b71bf027f0b40114c4a28eb5ed1087132aa5ffc5eb68f996cb29654",
+    "src/web-jobs.mjs": "0c7a06ea96fc9e0a1683118d26404f122810201e8395961fbf3f28b49e69c780",
+    "src/web-server.mjs": "71d12b89588a6b744bf57275d45359d000b2e205d83fb21cb27136d68b0a7d47",
+    "web/app.js": "34bb400d0e746d2921de90b0b3aa9f04550daf79fb3a8686ed414325d3b3ea62"
+  }
+}

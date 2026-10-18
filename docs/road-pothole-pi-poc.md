@@ -35,6 +35,8 @@ npm run road:web
 
 Open `http://127.0.0.1:8787`. DeepSeek credentials are loaded from the existing `.env`; the model is `deepseek-flash`. Select `demo` (registered address), `demo-no-address`, or `demo-other`; all fictional account passwords are `demo`. Credentials go to the login mock, never to the model. The legacy evaluation dashboard remains available through `npm run web` on another port.
 
+Road conversations require Neon/PostgreSQL. Set `ROAD_SESSION_DATABASE_URL`, or reuse the existing `ROAD_FEEDBACK_DATABASE_URL`. Startup creates the additive `road_sessions` table and imports legacy `ROAD_STATE_DIR` JSON files without deleting them. No database configuration means startup fails; a database outage returns an explicit error. See [session management, measured capacity and horizontal scaling](road-session-management.md) for configuration, lifecycle and rollout steps.
+
 The page supports English, Arabic and Chinese messages. Enter sends the message; Shift+Enter inserts a newline, and IME composition does not send prematurely. A new business request publishes and starts a plan automatically. Normal reads execute directly; every business mutation and configured high-risk read publishes an **exact operation confirmation** before the API runs. Address and report selection use structured input cards. A ticket selection records both matched-report confirmation and unresolved status. Existing status must be nonterminal for unresolved handoff. Use the mock human console to advance WAITING → ACCEPTED → ESCALATED → COMPLETED. Those transitions describe human handling, not physical road repair.
 
 Sending a new business message while waiting invalidates outstanding approval and generates a new automatically started plan. Negative sentiment pauses business and revokes pending submission authorizations before conversation handoff. FAQ questions preserve the pending plan/proposal. Stop interrupts the PI session and revokes authorizations; work already committed by a mock API cannot be undone. Refresh restores the current session and event history without rerunning operations.
@@ -71,7 +73,7 @@ npm run road:feedback-export -- --format csv --output reports/road/feedback.csv
 # Optional: --session session-...
 ```
 
-Exports default to `review_status: unreviewed`. Ratings are satisfaction labels, not verified correct answers; training data requires manual review, privacy checks and, when needed, corrected target answers. Only feedback already saved to Neon survives Render sleep/redeploy. Current chat/mock sessions still use the existing ephemeral state directory; this feature does not migrate the entire conversation runtime to PostgreSQL.
+Exports default to `review_status: unreviewed`. Ratings are satisfaction labels, not verified correct answers; training data requires manual review, privacy checks and, when needed, corrected target answers. Both acknowledged feedback and conversation/mock state are now saved to Neon. Sessions use renewable ownership leases, version checks and bounded working caches; an interrupted agent turn is recovered as paused work and is never silently replayed. Ordinary sessions expire after 30 idle minutes; unfinished conversation-level human handoffs remain protected. The SENTRA emotion evaluation report download pause is separate from these answer feedback exports.
 
 Real database regression (isolated disposable schema, never the production feedback tables):
 

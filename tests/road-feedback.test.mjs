@@ -9,9 +9,16 @@ import {captureAnswer} from '../src/road/feedback-context.mjs';
 import {createRoadServer} from '../src/road/server.mjs';
 import {createFeedbackController} from '../web/road/feedback-ui.js';
 import {feedbackStats,feedbackExport} from '../web/road/feedback-data.js';
+import {FeedbackRepository} from '../src/road/feedback.mjs';
 const call=(name,args)=>fauxAssistantMessage(fauxToolCall(name,args),{stopReason:'toolUse'});
 const backup=()=>({rows:new Map(),async all(){return [...this.rows.values()];},async put(row){this.rows.set(row.feedback_id,row);}});
 const record=(rating='satisfied',version=1)=>({feedback_id:'f1',answer_message_id:'a1',session_id:'s1',rating,version,created_at:'2026-10-16T00:00:00Z',updated_at:'2026-10-16T00:00:00Z',snapshot:{question:'Question',answer:'Answer'},review_status:'unreviewed'});
+test('feedback cache is bounded, reloads evicted sessions and refreshes another instance revisions',async()=>{
+ const repository=new FeedbackRepository({pool:{},cacheLimit:2,cacheTtlMs:0});let revision=1;
+ repository.list=async()=>[{...record('satisfied',revision)}];
+ await repository.load('one');await repository.load('two');await repository.load('three');assert.equal(repository.cache.size,2);assert.equal(repository.loadedAt.size,2);assert.equal(repository.loads.size,0);assert.deepEqual(repository.cached('one'),{});
+ revision=2;await repository.load('one');assert.equal(repository.cached('one').a1.version,2);assert.equal(repository.cache.size,2);revision=1;repository.remember('one',record('satisfied',1));assert.equal(repository.cached('one').a1.version,2);
+});
 
 test('business feedback keeps the original question through a FAQ interruption and exact HITL resume',async()=>{
  const store=new RoadStore(),s=store.create(),mocks=new RoadMocks(store),queue=[];

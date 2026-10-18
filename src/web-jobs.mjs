@@ -70,5 +70,10 @@ export class JobManager {
   return {run_id:id,status:job?.status??summary?.status??'interrupted',request:job?.request,dataset:job?.dataset,config,summary,progress:job?.progress,error:job?.error,cases,can_rerun:!!(config?.analyzer_version==='emotion-v3.0.0'&&config?.dataset_id&&this.store.cache.has(config.dataset_id)&&(this.store.get(config.dataset_id).builtin||this.store.get(config.dataset_id).contract_version==='v3.0'))};
  }
  async case(id,caseId){if(!safe(id)||!safe(caseId))throw new Error('无效 ID');return readJSON(`reports/history/${id}/cases/${caseId}.json`);}
- async download(id,kind){if(!safe(id)||!['config.json','summary.json','results.json','report.md'].includes(kind))throw new Error('无效报告');return readFile(`reports/history/${id}/${kind}`);}
+ async download(id,kind,{emotionReportDownloads=false}={}){
+  if(!safe(id)||!['config.json','summary.json','results.json','report.md'].includes(kind))throw new Error('无效报告');
+  const suite=this.jobs.get(id)?.request?.suite??(await readJSON(`reports/history/${id}/config.json`)).suite;
+  if(suite==='emotion'&&!emotionReportDownloads)throw Object.assign(new Error('情绪报告下载暂未开放，请在线查看结果。'),{status:403});
+  return readFile(`reports/history/${id}/${kind}`);
+ }
 }

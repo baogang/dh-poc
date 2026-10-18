@@ -1,20 +1,16 @@
-import pg from 'pg';
 import {digest,failure} from './store.mjs';
+import {databasePool} from './database.mjs';
 
 export const feedbackSummary=row=>({feedback_id:row.feedback_id,answer_message_id:row.answer_message_id,rating:row.rating,version:row.version,created_at:new Date(row.created_at).toISOString(),updated_at:new Date(row.updated_at).toISOString()});
 export const feedbackRecord=row=>({...feedbackSummary(row),schema_version:1,session_id:row.session_id,snapshot:row.snapshot,review_status:'unreviewed'});
 export function feedbackPool(connectionString){
-  const url=new URL(connectionString);if(!['postgres:','postgresql:'].includes(url.protocol))throw Error('PostgreSQL URL required');
-  // Avoid connection-string options replacing certificate verification in pg.
-  for(const key of ['sslmode','channel_binding','sslcert','sslkey','sslrootcert'])url.searchParams.delete(key);
-  const pool=new pg.Pool({connectionString:url.toString(),ssl:{rejectUnauthorized:true},enableChannelBinding:true,max:3,idleTimeoutMillis:10000,connectionTimeoutMillis:12000,statement_timeout:12000,application_name:'government-answer-feedback'});
-  pool.on('error',()=>console.warn('Feedback database connection interrupted'));
-  return pool;
+  return databasePool(connectionString,{max:3,applicationName:'government-answer-feedback'});
 }
 export class FeedbackRepository{
-  constructor({connectionString=process.env.ROAD_FEEDBACK_DATABASE_URL,pool,schema='public'}={}){
+  constructor({connectionString=process.env.ROAD_FEEDBACK_DATABASE_URL,pool,schema='public',cacheLimit=128,cacheTtlMs=5000}={}){
     if(!/^[a-z][a-z0-9_]{0,62}$/.test(schema))throw Error('Invalid feedback schema');
-    this.pool=pool??(connectionString?feedbackPool(connectionString):null);this.schema=schema;this.enabled=!!this.pool&&process.env.ROAD_FEEDBACK_ENABLED!=='false';this.cache=new Map();this.loads=new Map();
+    if(!Number.isInteger(cacheLimit)||cacheLimit<1||!Number.isInteger(cacheTtlMs)||cacheTtlMs<0)throw Error('Invalid feedback cache settings');
+    this.pool=pool??(connectionString?feedbackPool(connectionString):null);this.schema=schema;this.enabled=!!this.pool&&process.env.ROAD_FEEDBACK_ENABLED!=='false';this.cache=new Map();this.loads=new Map();this.loadedAt=new Map();this.cacheLimit=cacheLimit;this.cacheTtlMs=cacheTtlMs;
     this.answers=`"${schema}".road_answer_feedback`;this.events=`"${schema}".road_answer_feedback_events`;
   }
   async initialize(){
@@ -32,11 +28,13 @@ export class FeedbackRepository{
     return this.ready;
   }
   cached(sessionId){return this.cache.get(sessionId)??{};}
-  remember(sessionId,row){const next={...this.cached(sessionId),[row.answer_message_id]:feedbackSummary(row)};this.cache.set(sessionId,next);}
+  trim(){while(this.cache.size>this.cacheLimit){const sid=this.cache.keys().next().value;this.cache.delete(sid);this.loadedAt.delete(sid);}}
+  remember(sessionId,row){const old=this.cached(sessionId),current=old[row.answer_message_id];if(current&&current.version>row.version)return;const next={...old,[row.answer_message_id]:feedbackSummary(row)};this.cache.delete(sessionId);this.cache.set(sessionId,next);this.trim();}
   async load(sessionId){
     if(!this.enabled)return;
     if(this.loads.has(sessionId))return this.loads.get(sessionId);
-    const promise=this.list(sessionId).then(rows=>{for(const row of rows){const old=this.cached(sessionId)[row.answer_message_id];if(!old||old.version<=row.version)this.remember(sessionId,row);}}).catch(e=>{this.loads.delete(sessionId);throw e;});this.loads.set(sessionId,promise);return promise;
+    if(this.loadedAt.has(sessionId)&&Date.now()-this.loadedAt.get(sessionId)<this.cacheTtlMs)return;
+    const promise=this.list(sessionId).then(rows=>{if(!this.cache.has(sessionId))this.cache.set(sessionId,{});for(const row of rows)this.remember(sessionId,row);this.loadedAt.set(sessionId,Date.now());this.trim();}).finally(()=>this.loads.delete(sessionId));this.loads.set(sessionId,promise);return promise;
   }
   async list(sessionId){await this.initialize();if(!this.enabled)return [];const r=await this.pool.query(`SELECT * FROM ${this.answers} WHERE version>0 ${sessionId?'AND session_id=$1':''} ORDER BY created_at,feedback_id`,sessionId?[sessionId]:[]);return r.rows;}
   async submit(sessionId,input,snapshot){

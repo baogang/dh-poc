@@ -1,0 +1,318 @@
+{
+  "measured_at": "2026-10-17T11:56:16.803Z",
+  "scope": "Local isolated Node server + real Neon; no production traffic or LLM",
+  "host": {
+    "platform": "darwin",
+    "arch": "x64",
+    "node": "v24.4.1",
+    "cpu": "Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz",
+    "cpu_count": 12,
+    "memory_mib": 32768
+  },
+  "settings": {
+    "worker_heap_limit_mib": 256,
+    "cache_limit": 128,
+    "pool_size": 5,
+    "max_turns": 8,
+    "max_streams": 500,
+    "history_target_kib": 64,
+    "stage_seconds": 15
+  },
+  "stages": [
+    {
+      "online": 100,
+      "create": {
+        "count": 100,
+        "p50_ms": 883,
+        "p95_ms": 2361,
+        "max_ms": 2703
+      },
+      "state_read": {
+        "count": 100,
+        "p50_ms": 1649,
+        "p95_ms": 3562,
+        "max_ms": 4389
+      },
+      "after_connect": {
+        "rss_mib": 170.38,
+        "heap_mib": 47.88,
+        "cpu_core_percent": 4.57,
+        "event_loop_p95_ms": 22.05,
+        "storage": "neon",
+        "cached_sessions": 100,
+        "owned_sessions": 0,
+        "event_subscriptions": 100,
+        "pool_total": 5,
+        "pool_idle": 4,
+        "pool_waiting": 0,
+        "turns": 0,
+        "streams": 100,
+        "maxTurns": 8,
+        "maxStreams": 500
+      },
+      "idle": {
+        "rss_mib": 170.38,
+        "heap_mib": 48.27,
+        "cpu_core_percent": 0.31,
+        "event_loop_p95_ms": 22.07,
+        "storage": "neon",
+        "cached_sessions": 100,
+        "owned_sessions": 0,
+        "event_subscriptions": 100,
+        "pool_total": 1,
+        "pool_idle": 1,
+        "pool_waiting": 0,
+        "turns": 0,
+        "streams": 100,
+        "maxTurns": 8,
+        "maxStreams": 500
+      },
+      "after_reads": {
+        "rss_mib": 174.04,
+        "heap_mib": 50.61,
+        "cpu_core_percent": 3.07,
+        "event_loop_p95_ms": 21.94,
+        "storage": "neon",
+        "cached_sessions": 100,
+        "owned_sessions": 0,
+        "event_subscriptions": 100,
+        "pool_total": 5,
+        "pool_idle": 5,
+        "pool_waiting": 0,
+        "turns": 0,
+        "streams": 100,
+        "maxTurns": 8,
+        "maxStreams": 500
+      },
+      "session_payload": {
+        "average_bytes": 66385,
+        "max_bytes": 66385
+      },
+      "errors": []
+    },
+    {
+      "online": 250,
+      "create": {
+        "count": 150,
+        "p50_ms": 674,
+        "p95_ms": 856,
+        "max_ms": 1067
+      },
+      "state_read": {
+        "count": 250,
+        "p50_ms": 4737,
+        "p95_ms": 6391,
+        "max_ms": 8273
+      },
+      "after_connect": {
+        "rss_mib": 209.36,
+        "heap_mib": 43.61,
+        "cpu_core_percent": 2.66,
+        "event_loop_p95_ms": 21.92,
+        "storage": "neon",
+        "cached_sessions": 128,
+        "owned_sessions": 0,
+        "event_subscriptions": 250,
+        "pool_total": 5,
+        "pool_idle": 5,
+        "pool_waiting": 0,
+        "turns": 0,
+        "streams": 250,
+        "maxTurns": 8,
+        "maxStreams": 500
+      },
+      "idle": {
+        "rss_mib": 209.39,
+        "heap_mib": 44.34,
+        "cpu_core_percent": 0.4,
+        "event_loop_p95_ms": 22.04,
+        "storage": "neon",
+        "cached_sessions": 128,
+        "owned_sessions": 0,
+        "event_subscriptions": 250,
+        "pool_total": 1,
+        "pool_idle": 0,
+        "pool_waiting": 0,
+        "turns": 0,
+        "streams": 250,
+        "maxTurns": 8,
+        "maxStreams": 500
+      },
+      "after_reads": {
+        "rss_mib": 211.71,
+        "heap_mib": 45.96,
+        "cpu_core_percent": 1.47,
+        "event_loop_p95_ms": 21.91,
+        "storage": "neon",
+        "cached_sessions": 128,
+        "owned_sessions": 0,
+        "event_subscriptions": 250,
+        "pool_total": 5,
+        "pool_idle": 5,
+        "pool_waiting": 0,
+        "turns": 0,
+        "streams": 250,
+        "maxTurns": 8,
+        "maxStreams": 500
+      },
+      "session_payload": {
+        "average_bytes": 66385,
+        "max_bytes": 66385
+      },
+      "errors": []
+    },
+    {
+      "online": 500,
+      "create": {
+        "count": 250,
+        "p50_ms": 690,
+        "p95_ms": 1085,
+        "max_ms": 2029
+      },
+      "state_read": {
+        "count": 500,
+        "p50_ms": 4653,
+        "p95_ms": 6200,
+        "max_ms": 8003
+      },
+      "after_connect": {
+        "rss_mib": 249.07,
+        "heap_mib": 47.21,
+        "cpu_core_percent": 1.56,
+        "event_loop_p95_ms": 21.92,
+        "storage": "neon",
+        "cached_sessions": 128,
+        "owned_sessions": 0,
+        "event_subscriptions": 500,
+        "pool_total": 5,
+        "pool_idle": 5,
+        "pool_waiting": 0,
+        "turns": 0,
+        "streams": 500,
+        "maxTurns": 8,
+        "maxStreams": 500
+      },
+      "idle": {
+        "rss_mib": 249.09,
+        "heap_mib": 47.15,
+        "cpu_core_percent": 0.53,
+        "event_loop_p95_ms": 21.87,
+        "storage": "neon",
+        "cached_sessions": 128,
+        "owned_sessions": 0,
+        "event_subscriptions": 500,
+        "pool_total": 1,
+        "pool_idle": 1,
+        "pool_waiting": 0,
+        "turns": 0,
+        "streams": 500,
+        "maxTurns": 8,
+        "maxStreams": 500
+      },
+      "after_reads": {
+        "rss_mib": 255.05,
+        "heap_mib": 48.47,
+        "cpu_core_percent": 1.54,
+        "event_loop_p95_ms": 21.92,
+        "storage": "neon",
+        "cached_sessions": 128,
+        "owned_sessions": 0,
+        "event_subscriptions": 500,
+        "pool_total": 5,
+        "pool_idle": 5,
+        "pool_waiting": 0,
+        "turns": 0,
+        "streams": 500,
+        "maxTurns": 8,
+        "maxStreams": 500
+      },
+      "session_payload": {
+        "average_bytes": 66385,
+        "max_bytes": 66385
+      },
+      "errors": []
+    }
+  ],
+  "baseline": {
+    "rss_mib": 133.9,
+    "heap_mib": 37.56,
+    "cpu_core_percent": 58.45,
+    "event_loop_p95_ms": 0,
+    "storage": "neon",
+    "cached_sessions": 0,
+    "owned_sessions": 0,
+    "event_subscriptions": 0,
+    "pool_total": 1,
+    "pool_idle": 1,
+    "pool_waiting": 0,
+    "turns": 0,
+    "streams": 0,
+    "maxTurns": 8,
+    "maxStreams": 500
+  },
+  "active_turn_burst": {
+    "requests": 16,
+    "accepted": 8,
+    "rejected_busy": 8,
+    "other_statuses": [],
+    "response": {
+      "count": 16,
+      "p50_ms": 12060,
+      "p95_ms": 12526,
+      "max_ms": 12929
+    },
+    "during": {
+      "rss_mib": 255.54,
+      "heap_mib": 51.11,
+      "cpu_core_percent": 1.54,
+      "event_loop_p95_ms": 21.89,
+      "storage": "neon",
+      "cached_sessions": 128,
+      "owned_sessions": 11,
+      "event_subscriptions": 500,
+      "pool_total": 5,
+      "pool_idle": 1,
+      "pool_waiting": 0,
+      "turns": 8,
+      "streams": 500,
+      "maxTurns": 8,
+      "maxStreams": 500
+    },
+    "after": {
+      "rss_mib": 255.7,
+      "heap_mib": 54.86,
+      "cpu_core_percent": 0.85,
+      "event_loop_p95_ms": 21.97,
+      "storage": "neon",
+      "cached_sessions": 128,
+      "owned_sessions": 0,
+      "event_subscriptions": 500,
+      "pool_total": 5,
+      "pool_idle": 5,
+      "pool_waiting": 0,
+      "turns": 0,
+      "streams": 500,
+      "maxTurns": 8,
+      "maxStreams": 500
+    }
+  },
+  "stream_overflow_status": 429,
+  "rows": 500,
+  "after_disconnect": {
+    "rss_mib": 256.15,
+    "heap_mib": 60.15,
+    "cpu_core_percent": 2.21,
+    "event_loop_p95_ms": 21.94,
+    "storage": "neon",
+    "cached_sessions": 128,
+    "owned_sessions": 0,
+    "event_subscriptions": 0,
+    "pool_total": 5,
+    "pool_idle": 5,
+    "pool_waiting": 0,
+    "turns": 0,
+    "streams": 0,
+    "maxTurns": 8,
+    "maxStreams": 500
+  }
+}
