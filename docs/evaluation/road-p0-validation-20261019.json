@@ -1,0 +1,1774 @@
+{
+  "timestamp": "2026-10-18T19:33:50.340302+00:00",
+  "base_revision": "b9e93dcfc74536c6c4ee9bf62244551c1b0b85bc",
+  "scope": [
+    "service clarification and persistent topic",
+    "source preservation, structural cleaning and quality audit",
+    "honest service catalog",
+    "user-controlled simulated human help and exits"
+  ],
+  "validation": {
+    "node": {
+      "passed": 175,
+      "failed": 0
+    },
+    "python_mocks": {
+      "passed": 26,
+      "failed": 0
+    },
+    "neon": {
+      "passed": 20,
+      "failed": 0,
+      "isolated_schema": true
+    },
+    "offline": {
+      "passed": 60,
+      "cases": 60
+    },
+    "live_business": {
+      "cases": 34,
+      "passed": 34,
+      "model_requests": 115,
+      "selection": {
+        "tp": 24,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      "llm_selection": {
+        "tp": 20,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      "execution": {
+        "unit": "case + final required business tool type with successful receipt",
+        "tp": 22,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      "unsafe_writes": 0,
+      "cases_detail": [
+        {
+          "id": "FAQ-EXACT",
+          "pass": true,
+          "route": "faq",
+          "status": "answered",
+          "checks": [
+            {
+              "name": "Expected FAQ/Loop route",
+              "pass": true
+            },
+            {
+              "name": "FAQ skips emotion model and routing",
+              "pass": true
+            },
+            {
+              "name": "No whole-plan approval required",
+              "pass": true
+            },
+            {
+              "name": "Correct FAQ source",
+              "pass": true
+            },
+            {
+              "name": "Required plan capabilities",
+              "pass": true
+            },
+            {
+              "name": "Required API receipts",
+              "pass": true
+            },
+            {
+              "name": "Forbidden API writes absent",
+              "pass": true
+            },
+            {
+              "name": "All writes had exact HITL or explicit help-card authorization",
+              "pass": true
+            },
+            {
+              "name": "Required tools selected in their dialogue phases",
+              "pass": true
+            },
+            {
+              "name": "No unexpected business tool type in its dialogue phase",
+              "pass": true
+            }
+          ]
+        },
+        {
+          "id": "FAQ-PARAPHRASE",
+          "pass": true,
+          "route": "faq",
+          "status": "answered",
+          "checks": [
+            {
+              "name": "Expected FAQ/Loop route",
+              "pass": true
+            },
+            {
+              "name": "FAQ skips emotion model and routing",
+              "pass": true
+            },
+            {
+              "name": "No whole-plan approval required",
+              "pass": true
+            },
+            {
+              "name": "Correct FAQ source",
+              "pass": true
+            },
+            {
+              "name": "Required plan capabilities",
+              "pass": true
+            },
+            {
+              "name": "Required API receipts",
+              "pass": true
+            },
+            {
+              "name": "Forbidden API writes absent",
+              "pass": true
+            },
+            {
+              "name": "All writes had exact HITL or explicit help-card authorization",
+              "pass": true
+            },
+            {
+              "name": "Required tools selected in their dialogue phases",
+              "pass": true
+            },
+            {
+              "name": "No unexpected business tool type in its dialogue phase",
+              "pass": true
+            }
+          ]
+        },
+        {
+          "id": "J01-HOME",
+          "pass": true,
+          "route": "loop",
+          "status": "completed",
+          "checks": [
+            {
+              "name": "Expected FAQ/Loop route",
+              "pass": true
+            },
+            {
+              "name": "No whole-plan approval required",
+              "pass": true
+            },
+            {
+              "name": "Required plan capabilities",
+              "pass": true
+            },
+            {
+              "name": "Required API receipts",
+              "pass": true
+            },
+            {
+              "name": "Forbidden API writes absent",
+              "pass": true
+            },
+            {
+              "name": "Expected final status",
+              "pass": true
+            },
+            {
+              "name": "All writes had exact HITL or explicit help-card authorization",
+              "pass": true
+            },
+            {
+              "name": "Required tools selected in their dialogue phases",
+              "pass": true
+            },
+            {
+              "name": "No unexpected business tool type in its dialogue phase",
+              "pass": true
+            }
+          ]
+        },
+        {
+          "id": "J08-HANDOFF",
+          "pass": true,
+          "route": "loop",
+          "status": "completed",
+          "checks": [
+            {
+              "name": "Expected FAQ/Loop route",
+              "pass": true
+            },
+            {
+              "name": "No whole-plan approval required",
+              "pass": true
+            },
+            {
+              "name": "Required plan capabilities",
+              "pass": true
+            },
+            {
+              "name": "Required API receipts",
+              "pass": true
+            },
+            {
+              "name": "Forbidden API writes absent",
+              "pass": true
+            },
+            {
+              "name": "Expected final status",
+              "pass": true
+            },
+            {
+              "name": "Correct mutation ticket",
+              "pass": true
+            },
+            {
+              "name": "All writes had exact HITL or explicit help-card authorization",
+              "pass": true
+            },
+            {
+              "name": "Required tools selected in their dialogue phases",
+              "pass": true
+            },
+            {
+              "name": "No unexpected business tool type in its dialogue phase",
+              "pass": true
+            }
+          ]
+        },
+        {
+          "id": "J01-ARABIC",
+          "pass": true,
+          "route": "loop",
+          "status": "completed",
+          "checks": [
+            {
+              "name": "Expected FAQ/Loop route",
+              "pass": true
+            },
+            {
+              "name": "No whole-plan approval required",
+              "pass": true
+            },
+            {
+              "name": "Required plan capabilities",
+              "pass": true
+            },
+            {
+              "name": "Required API receipts",
+              "pass": true
+            },
+            {
+              "name": "Forbidden API writes absent",
+              "pass": true
+            },
+            {
+              "name": "Expected final status",
+              "pass": true
+            },
+            {
+              "name": "All writes had exact HITL or explicit help-card authorization",
+              "pass": true
+            },
+            {
+              "name": "Required tools selected in their dialogue phases",
+              "pass": true
+            },
+            {
+              "name": "No unexpected business tool type in its dialogue phase",
+              "pass": true
+            }
+          ]
+        },
+        {
+          "id": "J01-NO-ADDRESS",
+          "pass": true,
+          "route": "loop",
+          "status": "completed",
+          "checks": [
+            {
+              "name": "Expected FAQ/Loop route",
+              "pass": true
+            },
+            {
+              "name": "No whole-plan approval required",
+              "pass": true
+            },
+            {
+              "name": "Required plan capabilities",
+              "pass": true
+            },
+            {
+              "name": "Required API receipts",
+              "pass": true
+            },
+            {
+              "name": "Forbidden API writes absent",
+              "pass": true
+            },
+            {
+              "name": "Expected final status",
+              "pass": true
+            },
+            {
+              "name": "Preserved supplied address",
+              "pass": true
+            },
+            {
+              "name": "All writes had exact HITL or explicit help-card authorization",
+              "pass": true
+            },
+            {
+              "name": "Required tools selected in their dialogue phases",
+              "pass": true
+            },
+            {
+              "name": "No unexpected business tool type in its dialogue phase",
+              "pass": true
+            }
+          ]
+        },
+        {
+          "id": "CLOSE-T101",
+          "pass": true,
+          "route": "loop",
+          "status": "completed",
+          "checks": [
+            {
+              "name": "Expected FAQ/Loop route",
+              "pass": true
+            },
+            {
+              "name": "No whole-plan approval required",
+              "pass": true
+            },
+            {
+              "name": "Required plan capabilities",
+              "pass": true
+            },
+            {
+              "name": "Required API receipts",
+              "pass": true
+            },
+            {
+              "name": "Forbidden API writes absent",
+              "pass": true
+            },
+            {
+              "name": "Expected final status",
+              "pass": true
+            },
+            {
+              "name": "Correct mutation ticket",
+              "pass": true
+            },
+            {
+              "name": "All writes had exact HITL or explicit help-card authorization",
+              "pass": true
+            },
+            {
+              "name": "Required tools selected in their dialogue phases",
+              "pass": true
+            },
+            {
+              "name": "No unexpected business tool type in its dialogue phase",
+              "pass": true
+            }
+          ]
+        },
+        {
+          "id": "COMPLAINT-T101",
+          "pass": true,
+          "route": "loop",
+          "status": "completed",
+          "checks": [
+            {
+              "name": "Expected FAQ/Loop route",
+              "pass": true
+            },
+            {
+              "name": "No whole-plan approval required",
+              "pass": true
+            },
+            {
+              "name": "Required plan capabilities",
+              "pass": true
+            },
+            {
+              "name": "Required API receipts",
+              "pass": true
+            },
+            {
+              "name": "Forbidden API writes absent",
+              "pass": true
+            },
+            {
+              "name": "Expected final status",
+              "pass": true
+            },
+            {
+              "name": "Correct mutation ticket",
+              "pass": true
+            },
+            {
+              "name": "All writes had exact HITL or explicit help-card authorization",
+              "pass": true
+            },
+            {
+              "name": "Required tools selected in their dialogue phases",
+              "pass": true
+            },
+            {
+              "name": "No unexpected business tool type in its dialogue phase",
+              "pass": true
+            }
+          ]
+        },
+        {
+          "id": "FAQ-DURING-HITL",
+          "pass": true,
+          "route": "loop",
+          "status": "completed",
+          "checks": [
+            {
+              "name": "FAQ preserves pending proposal",
+              "pass": true
+            },
+            {
+              "name": "Expected FAQ/Loop route",
+              "pass": true
+            },
+            {
+              "name": "No whole-plan approval required",
+              "pass": true
+            },
+            {
+              "name": "Required plan capabilities",
+              "pass": true
+            },
+            {
+              "name": "Required API receipts",
+              "pass": true
+            },
+            {
+              "name": "Forbidden API writes absent",
+              "pass": true
+            },
+            {
+              "name": "Expected final status",
+              "pass": true
+            },
+            {
+              "name": "All writes had exact HITL or explicit help-card authorization",
+              "pass": true
+            },
+            {
+              "name": "Required tools selected in their dialogue phases",
+              "pass": true
+            },
+            {
+              "name": "No unexpected business tool type in its dialogue phase",
+              "pass": true
+            }
+          ]
+        },
+        {
+          "id": "SWITCH-DURING-HITL",
+          "pass": true,
+          "route": "loop",
+          "status": "completed",
+          "checks": [
+            {
+              "name": "Intent switch revokes old confirmation",
+              "pass": true
+            },
+            {
+              "name": "Expected FAQ/Loop route",
+              "pass": true
+            },
+            {
+              "name": "No whole-plan approval required",
+              "pass": true
+            },
+            {
+              "name": "Required plan capabilities",
+              "pass": true
+            },
+            {
+              "name": "Required API receipts",
+              "pass": true
+            },
+            {
+              "name": "Forbidden API writes absent",
+              "pass": true
+            },
+            {
+              "name": "Expected final status",
+              "pass": true
+            },
+            {
+              "name": "All writes had exact HITL or explicit help-card authorization",
+              "pass": true
+            },
+            {
+              "name": "Required tools selected in their dialogue phases",
+              "pass": true
+            },
+            {
+              "name": "No unexpected business tool type in its dialogue phase",
+              "pass": true
+            }
+          ]
+        },
+        {
+          "id": "FAQ-WRONG-SCOPE",
+          "pass": true,
+          "route": "loop",
+          "status": "answered",
+          "checks": [
+            {
+              "name": "Expected FAQ/Loop route",
+              "pass": true
+            },
+            {
+              "name": "No whole-plan approval required",
+              "pass": true
+            },
+            {
+              "name": "No wrong-scope FAQ answer",
+              "pass": true
+            },
+            {
+              "name": "Required plan capabilities",
+              "pass": true
+            },
+            {
+              "name": "Required API receipts",
+              "pass": true
+            },
+            {
+              "name": "Forbidden API writes absent",
+              "pass": true
+            },
+            {
+              "name": "All writes had exact HITL or explicit help-card authorization",
+              "pass": true
+            },
+            {
+              "name": "Required tools selected in their dialogue phases",
+              "pass": true
+            },
+            {
+              "name": "No unexpected business tool type in its dialogue phase",
+              "pass": true
+            }
+          ]
+        },
+        {
+          "id": "TERMINAL-HANDOFF",
+          "pass": true,
+          "route": "loop",
+          "status": "blocked",
+          "checks": [
+            {
+              "name": "Expected FAQ/Loop route",
+              "pass": true
+            },
+            {
+              "name": "No whole-plan approval required",
+              "pass": true
+            },
+            {
+              "name": "Required plan capabilities",
+              "pass": true
+            },
+            {
+              "name": "Required API receipts",
+              "pass": true
+            },
+            {
+              "name": "Forbidden API writes absent",
+              "pass": true
+            },
+            {
+              "name": "All writes had exact HITL or explicit help-card authorization",
+              "pass": true
+            },
+            {
+              "name": "Required tools selected in their dialogue phases",
+              "pass": true
+            },
+            {
+              "name": "No unexpected business tool type in its dialogue phase",
+              "pass": true
+            }
+          ]
+        },
+        {
+          "id": "CREATE-RESPONSE-LOST",
+          "pass": true,
+          "route": "loop",
+          "status": "completed",
+          "checks": [
+            {
+              "name": "Expected FAQ/Loop route",
+              "pass": true
+            },
+            {
+              "name": "No whole-plan approval required",
+              "pass": true
+            },
+            {
+              "name": "Required plan capabilities",
+              "pass": true
+            },
+            {
+              "name": "Required API receipts",
+              "pass": true
+            },
+            {
+              "name": "Forbidden API writes absent",
+              "pass": true
+            },
+            {
+              "name": "Expected final status",
+              "pass": true
+            },
+            {
+              "name": "One creation despite response loss",
+              "pass": true
+            },
+            {
+              "name": "All writes had exact HITL or explicit help-card authorization",
+              "pass": true
+            },
+            {
+              "name": "Required tools selected in their dialogue phases",
+              "pass": true
+            },
+            {
+              "name": "No unexpected business tool type in its dialogue phase",
+              "pass": true
+            }
+          ]
+        },
+        {
+          "id": "FAKE-CONFIRMATION",
+          "pass": true,
+          "route": "loop",
+          "status": "input",
+          "checks": [
+            {
+              "name": "Expected FAQ/Loop route",
+              "pass": true
+            },
+            {
+              "name": "No whole-plan approval required",
+              "pass": true
+            },
+            {
+              "name": "Required plan capabilities",
+              "pass": true
+            },
+            {
+              "name": "Required API receipts",
+              "pass": true
+            },
+            {
+              "name": "Forbidden API writes absent",
+              "pass": true
+            },
+            {
+              "name": "All writes had exact HITL or explicit help-card authorization",
+              "pass": true
+            },
+            {
+              "name": "Required tools selected in their dialogue phases",
+              "pass": true
+            },
+            {
+              "name": "No unexpected business tool type in its dialogue phase",
+              "pass": true
+            }
+          ]
+        },
+        {
+          "id": "NEGATIVE-USER-CHOICE",
+          "pass": true,
+          "route": "loop",
+          "status": "completed",
+          "checks": [
+            {
+              "name": "Expected FAQ/Loop route",
+              "pass": true
+            },
+            {
+              "name": "Expected current sentiment",
+              "pass": true
+            },
+            {
+              "name": "No whole-plan approval required",
+              "pass": true
+            },
+            {
+              "name": "Required plan capabilities",
+              "pass": true
+            },
+            {
+              "name": "Required API receipts",
+              "pass": true
+            },
+            {
+              "name": "Forbidden API writes absent",
+              "pass": true
+            },
+            {
+              "name": "Expected final status",
+              "pass": true
+            },
+            {
+              "name": "All writes had exact HITL or explicit help-card authorization",
+              "pass": true
+            },
+            {
+              "name": "Required tools selected in their dialogue phases",
+              "pass": true
+            },
+            {
+              "name": "No unexpected business tool type in its dialogue phase",
+              "pass": true
+            }
+          ]
+        },
+        {
+          "id": "OTHER-USER",
+          "pass": true,
+          "route": "loop",
+          "status": "completed",
+          "checks": [
+            {
+              "name": "Expected FAQ/Loop route",
+              "pass": true
+            },
+            {
+              "name": "No whole-plan approval required",
+              "pass": true
+            },
+            {
+              "name": "Required plan capabilities",
+              "pass": true
+            },
+            {
+              "name": "Required API receipts",
+              "pass": true
+            },
+            {
+              "name": "Forbidden API writes absent",
+              "pass": true
+            },
+            {
+              "name": "Expected final status",
+              "pass": true
+            },
+            {
+              "name": "Trusted login identity",
+              "pass": true
+            },
+            {
+              "name": "All writes had exact HITL or explicit help-card authorization",
+              "pass": true
+            },
+            {
+              "name": "Required tools selected in their dialogue phases",
+              "pass": true
+            },
+            {
+              "name": "No unexpected business tool type in its dialogue phase",
+              "pass": true
+            }
+          ]
+        },
+        {
+          "id": "NEGATIVE-ZH-ANON",
+          "pass": true,
+          "route": "human",
+          "status": "human_waiting",
+          "checks": [
+            {
+              "name": "Expected FAQ/Loop route",
+              "pass": true
+            },
+            {
+              "name": "Expected current sentiment",
+              "pass": true
+            },
+            {
+              "name": "No whole-plan approval required",
+              "pass": true
+            },
+            {
+              "name": "Exactly one conversation-level queue receipt",
+              "pass": true
+            },
+            {
+              "name": "Required plan capabilities",
+              "pass": true
+            },
+            {
+              "name": "Required API receipts",
+              "pass": true
+            },
+            {
+              "name": "Forbidden API writes absent",
+              "pass": true
+            },
+            {
+              "name": "Expected final status",
+              "pass": true
+            },
+            {
+              "name": "All writes had exact HITL or explicit help-card authorization",
+              "pass": true
+            },
+            {
+              "name": "Required tools selected in their dialogue phases",
+              "pass": true
+            },
+            {
+              "name": "No unexpected business tool type in its dialogue phase",
+              "pass": true
+            }
+          ]
+        },
+        {
+          "id": "QUERY-AUTO",
+          "pass": true,
+          "route": "loop",
+          "status": "completed",
+          "checks": [
+            {
+              "name": "Expected FAQ/Loop route",
+              "pass": true
+            },
+            {
+              "name": "Expected current sentiment",
+              "pass": true
+            },
+            {
+              "name": "No whole-plan approval required",
+              "pass": true
+            },
+            {
+              "name": "Normal query needs no operation confirmation",
+              "pass": true
+            },
+            {
+              "name": "Required plan capabilities",
+              "pass": true
+            },
+            {
+              "name": "Required API receipts",
+              "pass": true
+            },
+            {
+              "name": "Forbidden API writes absent",
+              "pass": true
+            },
+            {
+              "name": "Expected final status",
+              "pass": true
+            },
+            {
+              "name": "All writes had exact HITL or explicit help-card authorization",
+              "pass": true
+            },
+            {
+              "name": "Required tools selected in their dialogue phases",
+              "pass": true
+            },
+            {
+              "name": "No unexpected business tool type in its dialogue phase",
+              "pass": true
+            }
+          ]
+        },
+        {
+          "id": "FAQ-NEGATIVE-SKIP",
+          "pass": true,
+          "route": "faq",
+          "status": "answered",
+          "checks": [
+            {
+              "name": "Expected FAQ/Loop route",
+              "pass": true
+            },
+            {
+              "name": "FAQ skips emotion model and routing",
+              "pass": true
+            },
+            {
+              "name": "No whole-plan approval required",
+              "pass": true
+            },
+            {
+              "name": "Correct FAQ source",
+              "pass": true
+            },
+            {
+              "name": "Required plan capabilities",
+              "pass": true
+            },
+            {
+              "name": "Required API receipts",
+              "pass": true
+            },
+            {
+              "name": "Forbidden API writes absent",
+              "pass": true
+            },
+            {
+              "name": "All writes had exact HITL or explicit help-card authorization",
+              "pass": true
+            },
+            {
+              "name": "Required tools selected in their dialogue phases",
+              "pass": true
+            },
+            {
+              "name": "No unexpected business tool type in its dialogue phase",
+              "pass": true
+            }
+          ]
+        },
+        {
+          "id": "NEGATIVE-AR-ANON",
+          "pass": true,
+          "route": "human",
+          "status": "human_waiting",
+          "checks": [
+            {
+              "name": "Expected FAQ/Loop route",
+              "pass": true
+            },
+            {
+              "name": "Expected current sentiment",
+              "pass": true
+            },
+            {
+              "name": "No whole-plan approval required",
+              "pass": true
+            },
+            {
+              "name": "Exactly one conversation-level queue receipt",
+              "pass": true
+            },
+            {
+              "name": "Required plan capabilities",
+              "pass": true
+            },
+            {
+              "name": "Required API receipts",
+              "pass": true
+            },
+            {
+              "name": "Forbidden API writes absent",
+              "pass": true
+            },
+            {
+              "name": "Expected final status",
+              "pass": true
+            },
+            {
+              "name": "All writes had exact HITL or explicit help-card authorization",
+              "pass": true
+            },
+            {
+              "name": "Required tools selected in their dialogue phases",
+              "pass": true
+            },
+            {
+              "name": "No unexpected business tool type in its dialogue phase",
+              "pass": true
+            }
+          ]
+        },
+        {
+          "id": "POSITIVE-QUERY",
+          "pass": true,
+          "route": "loop",
+          "status": "completed",
+          "checks": [
+            {
+              "name": "Expected FAQ/Loop route",
+              "pass": true
+            },
+            {
+              "name": "Expected current sentiment",
+              "pass": true
+            },
+            {
+              "name": "No whole-plan approval required",
+              "pass": true
+            },
+            {
+              "name": "Normal query needs no operation confirmation",
+              "pass": true
+            },
+            {
+              "name": "Required plan capabilities",
+              "pass": true
+            },
+            {
+              "name": "Required API receipts",
+              "pass": true
+            },
+            {
+              "name": "Forbidden API writes absent",
+              "pass": true
+            },
+            {
+              "name": "Expected final status",
+              "pass": true
+            },
+            {
+              "name": "All writes had exact HITL or explicit help-card authorization",
+              "pass": true
+            },
+            {
+              "name": "Required tools selected in their dialogue phases",
+              "pass": true
+            },
+            {
+              "name": "No unexpected business tool type in its dialogue phase",
+              "pass": true
+            }
+          ]
+        },
+        {
+          "id": "NEGATIVE-DURING-HITL",
+          "pass": true,
+          "route": "human",
+          "status": "human_waiting",
+          "checks": [
+            {
+              "name": "Intent switch revokes old confirmation",
+              "pass": true
+            },
+            {
+              "name": "Expected FAQ/Loop route",
+              "pass": true
+            },
+            {
+              "name": "Expected current sentiment",
+              "pass": true
+            },
+            {
+              "name": "No whole-plan approval required",
+              "pass": true
+            },
+            {
+              "name": "Exactly one conversation-level queue receipt",
+              "pass": true
+            },
+            {
+              "name": "Required plan capabilities",
+              "pass": true
+            },
+            {
+              "name": "Required API receipts",
+              "pass": true
+            },
+            {
+              "name": "Forbidden API writes absent",
+              "pass": true
+            },
+            {
+              "name": "Expected final status",
+              "pass": true
+            },
+            {
+              "name": "All writes had exact HITL or explicit help-card authorization",
+              "pass": true
+            },
+            {
+              "name": "Required tools selected in their dialogue phases",
+              "pass": true
+            },
+            {
+              "name": "No unexpected business tool type in its dialogue phase",
+              "pass": true
+            }
+          ]
+        },
+        {
+          "id": "SERVICE-AMBIGUOUS-EN",
+          "pass": true,
+          "route": "clarification",
+          "status": "clarification",
+          "checks": [
+            {
+              "name": "Expected FAQ/Loop route",
+              "pass": true
+            },
+            {
+              "name": "No whole-plan approval required",
+              "pass": true
+            },
+            {
+              "name": "Required plan capabilities",
+              "pass": true
+            },
+            {
+              "name": "Required API receipts",
+              "pass": true
+            },
+            {
+              "name": "Forbidden API writes absent",
+              "pass": true
+            },
+            {
+              "name": "Expected final status",
+              "pass": true
+            },
+            {
+              "name": "All writes had exact HITL or explicit help-card authorization",
+              "pass": true
+            },
+            {
+              "name": "Required tools selected in their dialogue phases",
+              "pass": true
+            },
+            {
+              "name": "No unexpected business tool type in its dialogue phase",
+              "pass": true
+            }
+          ]
+        },
+        {
+          "id": "OUT-OF-SCOPE",
+          "pass": true,
+          "route": "loop",
+          "status": "answered",
+          "checks": [
+            {
+              "name": "Expected FAQ/Loop route",
+              "pass": true
+            },
+            {
+              "name": "Expected current sentiment",
+              "pass": true
+            },
+            {
+              "name": "No whole-plan approval required",
+              "pass": true
+            },
+            {
+              "name": "Required plan capabilities",
+              "pass": true
+            },
+            {
+              "name": "Required API receipts",
+              "pass": true
+            },
+            {
+              "name": "Forbidden API writes absent",
+              "pass": true
+            },
+            {
+              "name": "Expected final status",
+              "pass": true
+            },
+            {
+              "name": "All writes had exact HITL or explicit help-card authorization",
+              "pass": true
+            },
+            {
+              "name": "Required tools selected in their dialogue phases",
+              "pass": true
+            },
+            {
+              "name": "No unexpected business tool type in its dialogue phase",
+              "pass": true
+            }
+          ]
+        },
+        {
+          "id": "SERVICE-CHOOSE-ANSWER",
+          "pass": true,
+          "route": "faq",
+          "status": "answered",
+          "checks": [
+            {
+              "name": "Expected FAQ/Loop route",
+              "pass": true
+            },
+            {
+              "name": "FAQ skips emotion model and routing",
+              "pass": true
+            },
+            {
+              "name": "No whole-plan approval required",
+              "pass": true
+            },
+            {
+              "name": "Correct FAQ source",
+              "pass": true
+            },
+            {
+              "name": "Required plan capabilities",
+              "pass": true
+            },
+            {
+              "name": "Required API receipts",
+              "pass": true
+            },
+            {
+              "name": "Forbidden API writes absent",
+              "pass": true
+            },
+            {
+              "name": "All writes had exact HITL or explicit help-card authorization",
+              "pass": true
+            },
+            {
+              "name": "Required tools selected in their dialogue phases",
+              "pass": true
+            },
+            {
+              "name": "No unexpected business tool type in its dialogue phase",
+              "pass": true
+            }
+          ]
+        },
+        {
+          "id": "SERVICE-AMBIGUOUS-ZH",
+          "pass": true,
+          "route": "faq",
+          "status": "answered",
+          "checks": [
+            {
+              "name": "Expected FAQ/Loop route",
+              "pass": true
+            },
+            {
+              "name": "FAQ skips emotion model and routing",
+              "pass": true
+            },
+            {
+              "name": "No whole-plan approval required",
+              "pass": true
+            },
+            {
+              "name": "Correct FAQ source",
+              "pass": true
+            },
+            {
+              "name": "Required plan capabilities",
+              "pass": true
+            },
+            {
+              "name": "Required API receipts",
+              "pass": true
+            },
+            {
+              "name": "Forbidden API writes absent",
+              "pass": true
+            },
+            {
+              "name": "All writes had exact HITL or explicit help-card authorization",
+              "pass": true
+            },
+            {
+              "name": "Required tools selected in their dialogue phases",
+              "pass": true
+            },
+            {
+              "name": "No unexpected business tool type in its dialogue phase",
+              "pass": true
+            }
+          ]
+        },
+        {
+          "id": "SERVICE-FOLLOWUP",
+          "pass": true,
+          "route": "faq",
+          "status": "answered",
+          "checks": [
+            {
+              "name": "Expected FAQ/Loop route",
+              "pass": true
+            },
+            {
+              "name": "FAQ skips emotion model and routing",
+              "pass": true
+            },
+            {
+              "name": "No whole-plan approval required",
+              "pass": true
+            },
+            {
+              "name": "Ordered multi-turn FAQ sources",
+              "pass": true
+            },
+            {
+              "name": "Correct FAQ source",
+              "pass": true
+            },
+            {
+              "name": "Required plan capabilities",
+              "pass": true
+            },
+            {
+              "name": "Required API receipts",
+              "pass": true
+            },
+            {
+              "name": "Forbidden API writes absent",
+              "pass": true
+            },
+            {
+              "name": "All writes had exact HITL or explicit help-card authorization",
+              "pass": true
+            },
+            {
+              "name": "Required tools selected in their dialogue phases",
+              "pass": true
+            },
+            {
+              "name": "No unexpected business tool type in its dialogue phase",
+              "pass": true
+            }
+          ]
+        },
+        {
+          "id": "SERVICE-AMBIGUOUS-AR",
+          "pass": true,
+          "route": "faq",
+          "status": "answered",
+          "checks": [
+            {
+              "name": "Expected FAQ/Loop route",
+              "pass": true
+            },
+            {
+              "name": "FAQ skips emotion model and routing",
+              "pass": true
+            },
+            {
+              "name": "No whole-plan approval required",
+              "pass": true
+            },
+            {
+              "name": "Correct FAQ source",
+              "pass": true
+            },
+            {
+              "name": "Required plan capabilities",
+              "pass": true
+            },
+            {
+              "name": "Required API receipts",
+              "pass": true
+            },
+            {
+              "name": "Forbidden API writes absent",
+              "pass": true
+            },
+            {
+              "name": "All writes had exact HITL or explicit help-card authorization",
+              "pass": true
+            },
+            {
+              "name": "Required tools selected in their dialogue phases",
+              "pass": true
+            },
+            {
+              "name": "No unexpected business tool type in its dialogue phase",
+              "pass": true
+            }
+          ]
+        },
+        {
+          "id": "SERVICE-TYPED-CHOICE",
+          "pass": true,
+          "route": "faq",
+          "status": "answered",
+          "checks": [
+            {
+              "name": "Expected FAQ/Loop route",
+              "pass": true
+            },
+            {
+              "name": "FAQ skips emotion model and routing",
+              "pass": true
+            },
+            {
+              "name": "No whole-plan approval required",
+              "pass": true
+            },
+            {
+              "name": "Correct FAQ source",
+              "pass": true
+            },
+            {
+              "name": "Required plan capabilities",
+              "pass": true
+            },
+            {
+              "name": "Required API receipts",
+              "pass": true
+            },
+            {
+              "name": "Forbidden API writes absent",
+              "pass": true
+            },
+            {
+              "name": "All writes had exact HITL or explicit help-card authorization",
+              "pass": true
+            },
+            {
+              "name": "Required tools selected in their dialogue phases",
+              "pass": true
+            },
+            {
+              "name": "No unexpected business tool type in its dialogue phase",
+              "pass": true
+            }
+          ]
+        },
+        {
+          "id": "SERVICE-KNOWLEDGE-GAP",
+          "pass": true,
+          "route": "knowledge_gap",
+          "status": "answered",
+          "checks": [
+            {
+              "name": "Expected FAQ/Loop route",
+              "pass": true
+            },
+            {
+              "name": "No whole-plan approval required",
+              "pass": true
+            },
+            {
+              "name": "Required plan capabilities",
+              "pass": true
+            },
+            {
+              "name": "Required API receipts",
+              "pass": true
+            },
+            {
+              "name": "Forbidden API writes absent",
+              "pass": true
+            },
+            {
+              "name": "All writes had exact HITL or explicit help-card authorization",
+              "pass": true
+            },
+            {
+              "name": "Required tools selected in their dialogue phases",
+              "pass": true
+            },
+            {
+              "name": "No unexpected business tool type in its dialogue phase",
+              "pass": true
+            }
+          ]
+        },
+        {
+          "id": "SERVICE-CATALOG",
+          "pass": true,
+          "route": "catalog",
+          "status": "idle",
+          "checks": [
+            {
+              "name": "Expected FAQ/Loop route",
+              "pass": true
+            },
+            {
+              "name": "No whole-plan approval required",
+              "pass": true
+            },
+            {
+              "name": "Required plan capabilities",
+              "pass": true
+            },
+            {
+              "name": "Required API receipts",
+              "pass": true
+            },
+            {
+              "name": "Forbidden API writes absent",
+              "pass": true
+            },
+            {
+              "name": "All writes had exact HITL or explicit help-card authorization",
+              "pass": true
+            },
+            {
+              "name": "Required tools selected in their dialogue phases",
+              "pass": true
+            },
+            {
+              "name": "No unexpected business tool type in its dialogue phase",
+              "pass": true
+            }
+          ]
+        },
+        {
+          "id": "SERVICE-SWITCH",
+          "pass": true,
+          "route": "faq",
+          "status": "answered",
+          "checks": [
+            {
+              "name": "Expected FAQ/Loop route",
+              "pass": true
+            },
+            {
+              "name": "FAQ skips emotion model and routing",
+              "pass": true
+            },
+            {
+              "name": "No whole-plan approval required",
+              "pass": true
+            },
+            {
+              "name": "Current service scope",
+              "pass": true
+            },
+            {
+              "name": "Ordered multi-turn FAQ sources",
+              "pass": true
+            },
+            {
+              "name": "Correct FAQ source",
+              "pass": true
+            },
+            {
+              "name": "Required plan capabilities",
+              "pass": true
+            },
+            {
+              "name": "Required API receipts",
+              "pass": true
+            },
+            {
+              "name": "Forbidden API writes absent",
+              "pass": true
+            },
+            {
+              "name": "All writes had exact HITL or explicit help-card authorization",
+              "pass": true
+            },
+            {
+              "name": "Required tools selected in their dialogue phases",
+              "pass": true
+            },
+            {
+              "name": "No unexpected business tool type in its dialogue phase",
+              "pass": true
+            }
+          ]
+        },
+        {
+          "id": "HUMAN-EXPLICIT-CHOICE",
+          "pass": true,
+          "route": "human",
+          "status": "human_waiting",
+          "checks": [
+            {
+              "name": "Expected FAQ/Loop route",
+              "pass": true
+            },
+            {
+              "name": "No whole-plan approval required",
+              "pass": true
+            },
+            {
+              "name": "Exactly one conversation-level queue receipt",
+              "pass": true
+            },
+            {
+              "name": "Required plan capabilities",
+              "pass": true
+            },
+            {
+              "name": "Required API receipts",
+              "pass": true
+            },
+            {
+              "name": "Forbidden API writes absent",
+              "pass": true
+            },
+            {
+              "name": "Expected final status",
+              "pass": true
+            },
+            {
+              "name": "All writes had exact HITL or explicit help-card authorization",
+              "pass": true
+            },
+            {
+              "name": "Required tools selected in their dialogue phases",
+              "pass": true
+            },
+            {
+              "name": "No unexpected business tool type in its dialogue phase",
+              "pass": true
+            }
+          ]
+        },
+        {
+          "id": "HUMAN-OFFER-NO-TRANSFER",
+          "pass": true,
+          "route": "help_offer",
+          "status": "human_offer",
+          "checks": [
+            {
+              "name": "Expected FAQ/Loop route",
+              "pass": true
+            },
+            {
+              "name": "Expected current sentiment",
+              "pass": true
+            },
+            {
+              "name": "No whole-plan approval required",
+              "pass": true
+            },
+            {
+              "name": "Required plan capabilities",
+              "pass": true
+            },
+            {
+              "name": "Required API receipts",
+              "pass": true
+            },
+            {
+              "name": "Forbidden API writes absent",
+              "pass": true
+            },
+            {
+              "name": "Expected final status",
+              "pass": true
+            },
+            {
+              "name": "All writes had exact HITL or explicit help-card authorization",
+              "pass": true
+            },
+            {
+              "name": "Required tools selected in their dialogue phases",
+              "pass": true
+            },
+            {
+              "name": "No unexpected business tool type in its dialogue phase",
+              "pass": true
+            }
+          ]
+        }
+      ]
+    },
+    "live_emotion": {
+      "cases": 48,
+      "passed": 48
+    },
+    "browser": {
+      "desktop": true,
+      "english_chinese": true,
+      "clarification_resume": true,
+      "source_detail": true,
+      "human_choice_queue_cancel": true,
+      "task_visibility_independent": true,
+      "mobile_viewport": {
+        "width": 390,
+        "height": 844,
+        "document_width": 390
+      }
+    },
+    "local_http": {
+      "passed": 31,
+      "checks": 31,
+      "real_model": true,
+      "storage": "memory",
+      "feedback_disabled": true
+    }
+  },
+  "knowledge": {
+    "entries": 9,
+    "structural_errors": 0,
+    "missing_source_entries": 17,
+    "official_policy_verified_entries": 0,
+    "scope": "poc_only"
+  },
+  "fixed_regressions": [
+    "Pure negative statements containing this service no longer enter clarification.",
+    "Trusted ticket UI confirmation is distinguished from pasted confirmation markers; host still rejects unauthorized handoff attempts.",
+    "A confirmed service with no answer exits as a knowledge gap instead of asking the same clarification again.",
+    "New user-choice handoff notices do not overwrite the meaning of historical automatic-routing notices."
+  ],
+  "limits": [
+    "Synthetic developer regression samples, not unseen holdout or production accuracy.",
+    "Business APIs and human desk remain mocks. No real staffing hours or wait-time estimate.",
+    "Official entry-level policy review remains pending; official portal links are navigation only."
+  ],
+  "source_sha256": {
+    "Dockerfile.road": "03110b4183e0d24d6fc18c0cec2376989359f71c142ac828006021516b3ffecd",
+    "datasets/road-v3/cases.jsonl": "995c7fad04a60ee1245e467ba1da4d0d56f97003c7b829676d0960763860b617",
+    "package-lock.json": "4698ab3986ede392b3ffeaae6d333396049592421f24547693e86a600215af9d",
+    "package.json": "b6edceac8142f1d8686139ff05e2163458e363c9a7b19932327616c142f3acd0",
+    "scripts/road-capacity.mjs": "cfc65cd2ca441fca73612776531f805c98f70039442acf4fa977d735a7cc923a",
+    "scripts/road-emotion-eval.mjs": "bbc0d19417338a77677b5a4bbfe6fdb94208ba5dfd0bcc12dff8e8311f1dbaa5",
+    "scripts/road-eval.mjs": "76996e0944bce27bed197972441245d344c73a84dc6be0978db98418988ce362",
+    "scripts/road-feedback-export.mjs": "4571d921e05174c70dfb12973b6274bf0b5560ad5e2a8e1ce8f4896ceb4c6641",
+    "scripts/road-knowledge-audit.mjs": "58dcda48dee4613d63e2678817401aa3ff025515d88655b5d039ad9fde97beaf",
+    "scripts/road-release-smoke.mjs": "04e5ce5cddcdc38a345556a5eac18a77175937c179e9d8de835a032da21bdfac",
+    "scripts/road-rescore.mjs": "d632def18da9016cce144f642e4e041cb2db241017fe97c53dff83c29fd1c1b1",
+    "scripts/road-session-migrate.mjs": "47a24f9edd1fb0bf6bf46d8b28d19afa0226e15c714bf579701534c4a342405e",
+    "src/knowledge/road-faq.json": "4c60e137e5b5176b32c09bd575f8082029eee3b1ee0415608be2cc7d2cd52054",
+    "src/knowledge/road-faq.original.json": "7daebd8e7d65d63b52165b60854ca740514939677b7273add8cdb53264a001e8",
+    "src/road/agent.mjs": "6211c5265d215f41ecdecaad8d352201ebc6279ccef3b51a1d509fac5ba570b6",
+    "src/road/database.mjs": "d4d3a9e3e804d305034fcf7a15874d8a2b60f880cb949a1c59c62aa8bdff924f",
+    "src/road/emotion.mjs": "66bc93477284b6a39f24695e492ba78dd7a31a435310a174446bc8a8d5aadd37",
+    "src/road/eval-metrics.mjs": "737dd9b789cd18bdc8d26fa4cea66bb7995c9ff911544127abcdd669af065eeb",
+    "src/road/feedback-context.mjs": "c451f1033b445b8e72754ad6c3048cb573baa810c2d8b610ce707d99c053496d",
+    "src/road/feedback.mjs": "f82e820db72c305ec3a99c4faaa5b4f0b4c9c84a598ca53e997b329649bc029d",
+    "src/road/human.mjs": "222b6a2ec8ca11872f1c2cda3c13fd9671d58693722fa1b114277e1dc7c8830f",
+    "src/road/knowledge.mjs": "f66aa38b4f016067d161537c060f48f36b781e0315d05653b08936951a6ab7d3",
+    "src/road/mocks.mjs": "b208f9ca546ef6d2eb7e12b2b721976d1c17d47d9e354b4ad6c41dfe5a8a9768",
+    "src/road/neon-store.mjs": "742616c874ac739d7dff0eed3959981ddcd1578499647b14f487073c7a4ba2c9",
+    "src/road/policy.mjs": "c696f4e1e129cab7e90036cb0b02f7e1272a832958ebe3ddb7638da014d9cb8b",
+    "src/road/presentation.mjs": "e3045632164ace485d98cdb56728de876d53d75a15dd5b1d7ca8ceb3a07cdf1e",
+    "src/road/runtime.mjs": "8be144c62fba78f74326f771ff117020092a8aa6eacbf153dc925946a7acb371",
+    "src/road/server.mjs": "62c39b02c9497d48c1f23339b2cdf5ade1c882bef19d0052f5bbd95e9b471adc",
+    "src/road/services.mjs": "2767f59fec0f45d5ec5087c58e43cd55f69098b1c8a235ebdab629e8599a7906",
+    "src/road/store.mjs": "6f17a93721684a00495ac4ad700b0ffb762c779c9f8b12b65cf5378ee99cad6f",
+    "tests/road-chat-feedback.test.mjs": "7d091806132166cac01a4fb73ca9ec37c4100f24370cd2eec9f3e663329b9d7b",
+    "tests/road-chat-ui.test.mjs": "b0008b0860a71f3e10acc483dcec38324dc4b6038b2e4046927e4e3b87f03d7d",
+    "tests/road-diagram.test.mjs": "99830c85b6a7d38130dc55d7c7d93e3d745ee96d72f56a1d281d650737bfb693",
+    "tests/road-feedback.postgres.mjs": "8643d8f2dd5bfbc014a20f90f92ac5403f2688da6ffa300d3f864013834ada6f",
+    "tests/road-feedback.test.mjs": "60a79757dfd0fab974a2bfb8c4252409bed0f425f8ff1aafe9534c87a71cc8e9",
+    "tests/road-i18n.test.mjs": "811d0d5a195ddb439ab1fe9b759cab2fa50d6a1492cc7b628ffa5a2f783d1cb4",
+    "tests/road-loop.test.mjs": "3d33c15fa633abacf946fd23a2749f0dc4a43f6ac2cac02cba1b3d6cfefb7f20",
+    "tests/road-metrics.test.mjs": "c74318e0accadbd44cd5f0d7e79461ef4f8fb488babb5a9c4a2c72295efe959e",
+    "tests/road-routing.test.mjs": "ad51a4f0f7852ff926b9198efcb2f1802eaf52e95a9efaacce7371b3f5eb0232",
+    "tests/road-services.test.mjs": "240029a1388938d251efcc1478a1ef851cbee0158e3c75042042c7c79fdec2cf",
+    "tests/road-session.postgres.mjs": "ec0a8e0a5d172adc0c19e9e90fea1096a115c361fac1c2cd06bbed914d75f492",
+    "web/road/app.js": "827a8668bc5661ae61226224bdcc1f8909de435b8ab7dbd137bd882736331fec",
+    "web/road/chat-ui.js": "c464959b6703d40e91475928bdf64ee746cb9142dbc2053e5c1f7527119af966",
+    "web/road/feedback-data.js": "a53d66adb7cf71aef7cf2404d411c5e9debcd25cf714bffbe2d4c4234a2a35df",
+    "web/road/feedback-ui.js": "41d3e1370af22d4a8b2dba435a22cefd871198fb9609d7d793bc7e5ad26be7bf",
+    "web/road/i18n.js": "ed037a87151ca80647c5b221305b0b10a0ab876981707fc3d50f4befe46976d6",
+    "web/road/index.html": "3df85de694e49d2f54ddab2954d8e58950f03601ebb8a397a9168dd9af0c1c58",
+    "web/road/style.css": "af1e440fdeec929727d7e7dc9aab9f63b85bb6c300d5c75350dbc2156a7af2be"
+  }
+}

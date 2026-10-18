@@ -4,7 +4,7 @@ import {RoadStore,clone,id,failure,interruptSession} from './store.mjs';
 import {databasePool} from './database.mjs';
 
 const validId=value=>typeof value==='string'&&/^[A-Za-z0-9_-]{1,120}$/.test(value);
-const protectedSession=s=>!!s.activeHandoffId&&s.mock.handoffs.some(h=>h.handoff_id===s.activeHandoffId&&h.status!=='COMPLETED');
+const protectedSession=s=>!!s.activeHandoffId&&s.mock.handoffs.some(h=>h.handoff_id===s.activeHandoffId&&!['COMPLETED','CANCELLED'].includes(h.status));
 const positive=(value,fallback,min=1,max=86400000)=>{const n=value===undefined?fallback:Number(value);if(!Number.isInteger(n)||n<min||n>max)throw Error(`Session setting must be an integer between ${min} and ${max}`);return n;};
 const unavailable=()=>failure('SESSION_STORAGE_UNAVAILABLE','Conversation storage is temporarily unavailable. Please retry.',503);
 

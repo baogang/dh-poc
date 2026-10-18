@@ -32,7 +32,7 @@ export class RoadStore {
     }
   }
   create(){
-    const s={id:id('session'),createdAt:new Date().toISOString(),epoch:0,running:false,status:'idle',emotion:null,activeHandoffId:null,user:null,facts:{},messages:[],plans:[],activePlanId:null,pendingInput:null,pendingOperation:null,authorizations:{},receipts:[],events:[],mock:{tickets:[],complaints:[],handoffs:[],calls:[],idempotency:{},faults:{}}};
+    const s={id:id('session'),createdAt:new Date().toISOString(),epoch:0,running:false,status:'idle',emotion:null,serviceContext:null,pendingKnowledge:null,pendingHelp:null,activeHandoffId:null,user:null,facts:{},messages:[],plans:[],activePlanId:null,pendingInput:null,pendingOperation:null,authorizations:{},receipts:[],events:[],mock:{tickets:[],complaints:[],handoffs:[],calls:[],idempotency:{},faults:{}}};
     this.sessions.set(s.id,s);return s;
   }
   get(sid){const s=this.sessions.get(sid);if(!s)throw failure('SESSION_NOT_FOUND','Session not found',404);return s;}

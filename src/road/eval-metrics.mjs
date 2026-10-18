@@ -18,7 +18,7 @@ export function scoreRoadTools(reference,row,{includeHostPolicy=false}={}){
   const details=phases.map(p=>{
     const required=new Set(p.operations);
     if([...required].some(t=>!BUSINESS_TOOLS.has(t)))throw Error('Unknown required business tool');
-    const calls=p.events.flatMap(e=>e.type==='tool_start'&&BUSINESS_TOOLS.has(e.name)?[e]:includeHostPolicy&&e.type==='policy_handoff_authorized'?[{name:'handoff_to_human',source:'host_policy'}]:[]);
+    const calls=p.events.flatMap(e=>e.type==='tool_start'&&BUSINESS_TOOLS.has(e.name)?[e]:includeHostPolicy&&['policy_handoff_authorized','user_handoff_authorized'].includes(e.type)?[{name:'handoff_to_human',source:e.type==='user_handoff_authorized'?'user_choice':'host_policy'}]:[]);
     const seen=new Set(calls.map(e=>e.name));
     const matched=[...required].filter(t=>seen.has(t)),missing=[...required].filter(t=>!seen.has(t)),unexpected=[...seen].filter(t=>!required.has(t));
     tp+=matched.length;fp+=unexpected.length;fn+=missing.length;attempts+=calls.length;correctAttempts+=calls.filter(e=>required.has(e.name)).length;

@@ -25,7 +25,8 @@
     "road:capacity": "node --env-file-if-exists=.env scripts/road-capacity.mjs",
     "road:eval": "node --env-file-if-exists=.env scripts/road-eval.mjs",
     "road:emotion-eval": "node --env-file-if-exists=.env scripts/road-emotion-eval.mjs",
-    "road:feedback-export": "node --env-file-if-exists=.env scripts/road-feedback-export.mjs"
+    "road:feedback-export": "node --env-file-if-exists=.env scripts/road-feedback-export.mjs",
+    "road:knowledge-audit": "node scripts/road-knowledge-audit.mjs"
   },
   "dependencies": {
     "@earendil-works/pi-agent-core": "1.1.0",

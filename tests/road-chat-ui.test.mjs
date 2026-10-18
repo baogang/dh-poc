@@ -123,3 +123,20 @@ test('answer rating controls survive language and task toggles, save while the a
  await switchLocale(h,'en');buttons=h.chat.querySelectorAll('button').filter(b=>['Satisfied','Not satisfied'].includes(b.getAttribute('aria-label')));assert.equal(buttons[0].getAttribute('aria-pressed'),'true');await buttons[1].fire('click');assert.equal(h.chat.querySelectorAll('button').find(b=>b.getAttribute('aria-label')==='Not satisfied').getAttribute('aria-pressed'),'true');assert(h.chat.textContent.includes('Thanks for your feedback'));const toggle=h.doc.getElementById('show-tasks');toggle.checked=false;await toggle.fire('change');assert.equal(h.chat.querySelectorAll('button').filter(b=>b.className.startsWith('feedback-vote')).length,2);
  h.state.feedback.enabled=false;h.render();assert.equal(h.chat.querySelectorAll('button').filter(b=>b.className.startsWith('feedback-vote')).length,0);
 });
+
+test('catalog and help controls stay visible when task details are hidden',async()=>{
+ const h=await harness();h.state.catalog=(await import('../src/road/services.mjs')).services;h.state.messages.push({id:'catalog',role:'assistant',text:'',kind:'service_catalog'});h.render();
+ h.nodes.get('show-tasks').checked=false;await h.nodes.get('show-tasks').fire('change');assert(h.chat.textContent.includes('基础设施施工许可'));assert(h.chat.textContent.includes('仅知识咨询'));assert(!h.nodes.get('service-catalog').hidden);assert(!h.nodes.get('human-help').hidden);
+ await h.nodes.get('human-help').fire('click');assert(h.requests.some(r=>r.path==='/api/help'&&JSON.parse(r.body).action==='offer'));
+});
+test('service clarification buttons carry the exact question token and preserve the original question',async()=>{
+ const h=await harness();h.state.catalog=(await import('../src/road/services.mjs')).services;h.state.pendingKnowledge={id:'clarify-1'};h.state.messages.push({id:'ask',role:'assistant',text:'',kind:'knowledge_clarification',clarification:{id:'clarify-1',question:'Who can apply for this service?',candidate_scopes:['infrastructure-permit']}});h.render();assert(h.chat.textContent.includes('Who can apply for this service?'));
+ await h.chat.querySelectorAll('button').find(b=>b.textContent==='选择并回答原问题').fire('click');const r=h.requests.find(r=>r.path==='/api/service');assert.equal(JSON.parse(r.body).scope,'infrastructure-permit');assert.equal(JSON.parse(r.body).clarification_id,'clarify-1');
+});
+test('FAQ source detail distinguishes original evidence from official policy verification',async()=>{
+ const h=await harness();h.state.catalog=(await import('../src/road/services.mjs')).services;h.state.messages.push({id:'faq',role:'assistant',text:'Source answer',kind:'faq',source:{id:'FAQ-005',scope:'infrastructure-permit',original_question:'Who can apply for this service?',original_answer:'Original answer',provenance:{collection:'digital-human-faq',captured_at:'2026-10-14',official_url:null}}});h.render();assert(h.chat.textContent.includes('政策内容待官方复核'));assert(h.chat.textContent.includes('Original answer'));assert(h.chat.querySelectorAll('details').some(d=>d.dataset.key==='source:faq'));
+});
+test('human choice and waiting exits are independent of task visibility and unavailable desks cannot queue',async()=>{
+ const h=await harness();h.state.pendingHelp={id:'help-1'};h.state.human_support={available:false,official_url:'https://balady.gov.sa/en'};h.state.messages.push({id:'offer',role:'assistant',kind:'help_offer',text:'',request_id:'help-1'});h.render();h.nodes.get('show-tasks').checked=false;await h.nodes.get('show-tasks').fire('change');assert(h.chat.querySelectorAll('button').find(b=>b.textContent==='加入模拟人工队列').disabled);assert(!h.chat.querySelectorAll('button').find(b=>b.textContent==='继续使用智能助手').disabled);
+ h.state.pendingHelp=null;h.state.activeHandoffId='H1';h.state.human_support.wait_expired=true;h.state.mock.handoffs=[{handoff_id:'H1',scope:'conversation',status:'WAITING',conversation_summary:'Summary',created_at:'2026-10-19'}];h.render();assert(h.chat.textContent.includes('模拟等待已超时'));assert(h.chat.querySelectorAll('button').some(b=>b.textContent==='取消排队并返回助手'));
+});

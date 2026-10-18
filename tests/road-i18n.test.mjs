@@ -17,3 +17,7 @@ test('working progress is localized for FAQ, sentiment, every API operation and 
  const state=events=>({events});assert.match(progressText(state([{type:'turn_started',route:'faq_first'}]),'en'),/Checking the FAQ/);assert.match(progressText(state([{type:'emotion_started'}]),'en'),/Analyzing/);assert.match(progressText(state([{type:'turn_started',route:'resume'}]),'en'),/Continuing/);
  for(const operation of ['login','query_tickets','create_ticket','close_ticket','complain_ticket','handoff_to_human'])assert(!/[\u4e00-\u9fff]/.test(progressText(state([{type:'api_start',call:{operation}}]),'en')));
 });
+
+test('user-selected human help never claims that sentiment forced the transfer',()=>{
+ assert.match(translator('en')('notice.human.queuedChoice'),/You chose/);assert(!translator('en')('notice.human.queuedChoice').includes('detected'));assert.match(translator('zh')('notice.human.queuedChoice'),/你的选择/);
+});

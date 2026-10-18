@@ -33,6 +33,13 @@ test('Neon session persistence, ownership, recovery, lifecycle and real HTTP com
       const c=make();await c.initialize();assert.equal(c.sessions.size,0);const restored=await c.load(first);
       assert.equal(restored.user.user_id,'U001');assert.equal(restored.messages.at(-1).text,'Keep this history');assert.equal(restored.pendingOperation.id,'proposal-1');assert.equal(restored.answerSnapshots['answer-1'].answer,'Answer');assert.equal(restored.receipts[0].id,'receipt-1');
     });
+    await t.test('service scope, original clarification question and help choice survive store replacement',async()=>{
+      const {session:s,release}=await a.acquire(first);
+      s.serviceContext={scope:'infrastructure-permit',origin:'user_choice'};
+      s.pendingKnowledge={id:'knowledge-choice',question:'Who can apply for this service?',question_message_id:'original-question',candidate_scopes:['infrastructure-permit']};
+      s.pendingHelp={id:'help-choice',reason:'user_request'};await a.save(s);await release();
+      const next=await b.load(first);assert.equal(next.serviceContext.scope,'infrastructure-permit');assert.equal(next.pendingKnowledge.question_message_id,'original-question');assert.equal(next.pendingHelp.id,'help-choice');
+    });
     await t.test('one row lease permits only one writer and rejects unleased stale state',async()=>{
       const stale=await b.load(first),lease=await a.acquire(first);await assert.rejects(b.acquire(first),{code:'BUSY'});
       stale.facts.address.city='Wrong';await assert.rejects(b.save(stale),{code:'SESSION_LEASE_LOST'});

@@ -10,7 +10,8 @@ import { RoadMocks,MOCK_API_NAMES } from './mocks.mjs';
 import { RoadKnowledge } from './knowledge.mjs';
 import { RoadAgent } from './agent.mjs';
 import {parseHighRiskReads} from './policy.mjs';
-import {humanNotice} from './human.mjs';
+import {humanNotice,humanWaitExpired} from './human.mjs';
+import {services} from './services.mjs';
 import {FeedbackRepository,feedbackRecord} from './feedback.mjs';
 import {feedbackExport} from '../../web/road/feedback-data.js';
 
@@ -35,7 +36,8 @@ export function mockHttpClient({origin,key}){
   };
 }
 
-export async function createRoadServer({store,knowledge,agentFactory,feedback=new FeedbackRepository(),config=webConfigFromEnv(),mockKey=randomBytes(32).toString('hex'),demoUI=process.env.ROAD_DEMO_UI!=='false',highRiskReads=parseHighRiskReads(process.env.ROAD_HIGH_RISK_READS??''),maxTurns=Number(process.env.ROAD_MAX_INFLIGHT_TURNS??8),maxStreams=Number(process.env.ROAD_MAX_EVENT_STREAMS??500)}={}){
+export async function createRoadServer({store,knowledge,agentFactory,feedback=new FeedbackRepository(),config=webConfigFromEnv(),mockKey=randomBytes(32).toString('hex'),demoUI=process.env.ROAD_DEMO_UI!=='false',highRiskReads=parseHighRiskReads(process.env.ROAD_HIGH_RISK_READS??''),humanSupport={available:process.env.ROAD_HUMAN_AVAILABLE!=='false',wait_limit_ms:Number(process.env.ROAD_HUMAN_WAIT_LIMIT_MS??180000)},maxTurns=Number(process.env.ROAD_MAX_INFLIGHT_TURNS??8),maxStreams=Number(process.env.ROAD_MAX_EVENT_STREAMS??500)}={}){
+  if(typeof humanSupport.available!=='boolean'||!Number.isInteger(humanSupport.wait_limit_ms)||humanSupport.wait_limit_ms<1)throw Error('Invalid simulated human support configuration');
   if(!Number.isInteger(maxTurns)||maxTurns<1||!Number.isInteger(maxStreams)||maxStreams<1)throw Error('Road concurrency limits must be positive integers');
   const injectedStore=!!store;store??=NeonRoadStore.fromEnv();await store.initialize();
   const migration=!injectedStore?await store.importDirectory(process.env.ROAD_STATE_DIR??'.road-state'):null;
@@ -44,7 +46,7 @@ export async function createRoadServer({store,knowledge,agentFactory,feedback=ne
   const permit=kind=>{const max=kind==='turns'?maxTurns:maxStreams;if(admission[kind]>=max)throw failure('SERVER_BUSY','The service is busy. Please retry shortly.',429);admission[kind]++;let released=false;return()=>{if(!released){released=true;admission[kind]--;}};};
   const send=(res,status,value)=>{res.writeHead(status,{'content-type':'application/json; charset=utf-8','cache-control':'no-store'});res.end(JSON.stringify(value));};
   const sessionId=req=>{const cookie=(req.headers.cookie??'').split(';').map(x=>x.trim()).find(x=>x.startsWith('road_session='));if(!cookie)throw failure('SESSION_REQUIRED','Start a conversation',401);return cookie.slice(13);};
-  const view=s=>({...store.view(s),demo_ui:demoUI===true,feedback:{enabled:feedback.enabled,items:feedback.cached(s.id)},faq:{name:knowledge.document.name,entry_count:knowledge.entries.length,source_displayed_count:knowledge.document.source_displayed_count,migration_status:knowledge.document.migration_status},model:'deepseek-flash',runtime:'PI SDK 1.1.0'});
+  const view=s=>({...store.view(s),catalog:services,human_support:{...humanSupport,mode:'simulated',hours_configured:false,official_url:'https://balady.gov.sa/en',wait_expired:humanWaitExpired(s.mock.handoffs.find(h=>h.handoff_id===s.activeHandoffId))},demo_ui:demoUI===true,feedback:{enabled:feedback.enabled,items:feedback.cached(s.id)},faq:{name:knowledge.document.name,entry_count:knowledge.entries.length,source_displayed_count:knowledge.document.source_displayed_count,migration_status:knowledge.document.migration_status,quality:knowledge.document.quality},model:'deepseek-flash',runtime:'PI SDK 1.1.0'});
   const server=createServer(async(req,res)=>{
     res.setHeader('x-content-type-options','nosniff');res.setHeader('referrer-policy','no-referrer');res.setHeader('content-security-policy',"default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' data:; frame-ancestors 'none'; base-uri 'none'; form-action 'self'");
     let release,turnPermit;
@@ -105,8 +107,20 @@ export async function createRoadServer({store,knowledge,agentFactory,feedback=ne
         if(url.pathname==='/api/cancel'){await agent.cancel(s);await unlock();return send(res,200,view(s));}
         if(s.running)throw failure('BUSY','Stop the current turn before another action',409);
         if(url.pathname==='/api/login'){await agent.login(s,input);await unlock();return send(res,200,view(s));}
+        if(url.pathname==='/api/catalog'){await agent.catalog(s);await unlock();return send(res,200,view(s));}
+        if(url.pathname==='/api/help'&&input.action!=='continue'){
+          if(input.action==='offer')await agent.offerHelp(s);
+          else if(input.action==='queue')await agent.helpChoice(s,input.request_id,'queue');
+          else throw failure('INVALID_HELP_ACTION','Choose offer, queue or continue');
+          await unlock();return send(res,200,view(s));
+        }
         if(url.pathname==='/api/human'){
-          const h=s.mock.handoffs.find(x=>x.handoff_id===input.handoff_id);if(!h||!['accept','escalate','complete','resume'].includes(input.action))throw failure('INVALID_HUMAN_ACTION','Select a mock handoff and valid action');
+          const h=s.mock.handoffs.find(x=>x.handoff_id===input.handoff_id);if(!h||!['accept','escalate','complete','resume','cancel'].includes(input.action))throw failure('INVALID_HUMAN_ACTION','Select a mock handoff and valid action');
+          if(input.action==='cancel'){
+            if(h.scope!=='conversation'||s.activeHandoffId!==h.handoff_id||!['WAITING','ACCEPTED','ESCALATED'].includes(h.status))throw failure('INVALID_HUMAN_ACTION','Select the active conversation',409);
+            await agent.api(s.id,'handoff_to_human',{...(s.user?{user_id:s.user.user_id}:{}),scope:'conversation',handoff_id:h.handoff_id,action:'cancel'},{epoch:s.epoch,idempotency_key:`human:${h.handoff_id}:cancel`,authorization:'user_help_choice'});
+            s.activeHandoffId=null;s.pendingHelp=null;s.status='answered';store.emit(s,'human_cancelled',{handoff_id:h.handoff_id});store.message(s,'assistant',humanNotice(s,'resumed'),{kind:'human_notice',notice:'human.resumed'});await store.save(s);await unlock();return send(res,200,view(s));
+          }
           if(input.action==='resume'){
             if(h.scope!=='conversation'||h.status!=='COMPLETED'||s.activeHandoffId!==h.handoff_id)throw failure('HUMAN_NOT_COMPLETED','Complete this human conversation before returning to the assistant',409);
             s.activeHandoffId=null;s.status='answered';store.emit(s,'human_resumed',{handoff_id:h.handoff_id});store.message(s,'assistant',humanNotice(s,'resumed'),{kind:'human_notice',notice:'human.resumed'});await store.save(s);await unlock();return send(res,200,view(s));
@@ -116,7 +130,9 @@ export async function createRoadServer({store,knowledge,agentFactory,feedback=ne
           store.emit(s,'human_status',{handoff:result.handoff});await store.save(s);await unlock();return send(res,200,view(s));
         }
         let run;turnPermit=permit('turns');
-        if(url.pathname==='/api/chat'){
+        if(url.pathname==='/api/service')run=agent.selectService(s,input.scope,input.clarification_id);
+        else if(url.pathname==='/api/help')run=agent.helpChoice(s,input.request_id,'continue');
+        else if(url.pathname==='/api/chat'){
           if(typeof input.message!=='string'||!input.message.trim()||input.message.length>4000)throw failure('INVALID_MESSAGE','Message must be 1–4000 characters');run=agent.chat(s,input.message);
         }else if(url.pathname==='/api/approve-plan'){
           const p=agent.active(s);if(!p||p.id!==input.plan_id||p.status!=='review')throw failure('STALE_PLAN','Plan is no longer awaiting review',409);run=agent.approvePlan(s,input.plan_id);
@@ -146,7 +162,7 @@ export async function createRoadServer({store,knowledge,agentFactory,feedback=ne
   });
   const ready=async()=>{
     const addr=server.address(),api=mockHttpClient({origin:`http://127.0.0.1:${addr.port}`,key:mockKey});
-    agent=agentFactory?await agentFactory({store,api,knowledge,highRiskReads}):new RoadAgent({store,api,knowledge,highRiskReads});
+    agent=agentFactory?await agentFactory({store,api,knowledge,highRiskReads,humanSupport}):new RoadAgent({store,api,knowledge,highRiskReads,humanSupport});agent.humanSupport=humanSupport;
     store.onLeaseLost=s=>{if(s?.running)agent.interrupt(s,'ownership_lost');};
   };
   const close=async()=>{

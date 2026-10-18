@@ -1,0 +1,117 @@
+{
+  "version": "road-knowledge-v3",
+  "timestamp": "2026-10-18T19:17:52.540Z",
+  "source_hash": "c36b0b74dc6a4e7d248942f7170a171b349dedd713d02d4313f5e8a954ec7a0f",
+  "cleaned_hash": "3746a092818ab617c03b003463dcf18258ecf74b598e39aca5632ceabc6094da",
+  "entries": 9,
+  "source_displayed_count": 26,
+  "missing_source_entries": 17,
+  "structural_errors": 0,
+  "policy_verified_entries": 0,
+  "policy_status": "pending_official_verification",
+  "publication_scope": "poc_only",
+  "rows": [
+    {
+      "id": "FAQ-001",
+      "service": "civil-defense-fees",
+      "question": "Can the application be completed without paying the Civil Defense fees?",
+      "errors": [],
+      "warnings": [
+        "official_policy_verification_pending"
+      ],
+      "changes": []
+    },
+    {
+      "id": "FAQ-002",
+      "service": "civil-defense-fees",
+      "question": "Is the municipal fees invoice the same as the Civil Defense fees invoice?",
+      "errors": [],
+      "warnings": [
+        "official_policy_verification_pending"
+      ],
+      "changes": []
+    },
+    {
+      "id": "FAQ-003",
+      "service": "civil-defense-fees",
+      "question": "Does the Civil Defense fee invoice change affect applications that do not require a Civil Defense license?",
+      "errors": [],
+      "warnings": [
+        "official_policy_verification_pending"
+      ],
+      "changes": [
+        "service context made explicit"
+      ]
+    },
+    {
+      "id": "FAQ-004",
+      "service": "infrastructure-permit",
+      "question": "What is the service for issuing a permit to carry out infrastructure work in a new development plan?",
+      "errors": [],
+      "warnings": [
+        "official_policy_verification_pending"
+      ],
+      "changes": []
+    },
+    {
+      "id": "FAQ-005",
+      "service": "infrastructure-permit",
+      "question": "Who can apply for an infrastructure works permit in a new development plan?",
+      "errors": [],
+      "warnings": [
+        "official_policy_verification_pending"
+      ],
+      "changes": [
+        "service context made explicit"
+      ]
+    },
+    {
+      "id": "FAQ-006",
+      "service": "infrastructure-permit",
+      "question": "What is meant by a new development plan for the infrastructure works permit service?",
+      "errors": [],
+      "warnings": [
+        "official_policy_verification_pending"
+      ],
+      "changes": [
+        "service context made explicit"
+      ]
+    },
+    {
+      "id": "FAQ-007",
+      "service": "infrastructure-permit",
+      "question": "What details and documents are required for an infrastructure works permit in a new development plan?",
+      "errors": [],
+      "warnings": [
+        "official_policy_verification_pending"
+      ],
+      "changes": [
+        "service context made explicit",
+        "removed malformed outer quotation marks"
+      ]
+    },
+    {
+      "id": "FAQ-008",
+      "service": "infrastructure-permit",
+      "question": "Are there any fees for an infrastructure works permit in a new development plan?",
+      "errors": [],
+      "warnings": [
+        "official_policy_verification_pending",
+        "time_sensitive_answer_without_policy_date"
+      ],
+      "changes": [
+        "service context made explicit"
+      ]
+    },
+    {
+      "id": "FAQ-009",
+      "service": "balady-platform",
+      "question": "Does the Balady Platform personalize the services and content displayed to the beneficiary?",
+      "errors": [],
+      "warnings": [
+        "official_policy_verification_pending"
+      ],
+      "changes": []
+    }
+  ]
+}

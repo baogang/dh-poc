@@ -52,14 +52,15 @@ export class RoadMocks {
       }else if(conversation){
         const action=body.action??'create';
         if(action==='create'){
-          if(context.authorization!=='negative_sentiment_policy'||s.emotion?.status!=='classified'||s.emotion.sentiment!=='negative'||body.emotion_message_id!==s.emotion.message_id)throw failure('POLICY_HANDOFF_REQUIRED','Conversation handoff requires current trusted negative-sentiment routing',403);
-          const previous=s.mock.handoffs.find(h=>h.scope==='conversation'&&h.status!=='COMPLETED');
-          const handoff=previous??{handoff_id:id('H'),scope:'conversation',conversation_id:s.id,status:'WAITING',reason:'negative_sentiment',emotion:clone(s.emotion),conversation_summary:body.conversation_summary,queue_position:1,messages:[],created_at:new Date().toISOString()};
+          if(context.authorization!=='user_help_choice'||!s.pendingHelp||body.request_id!==s.pendingHelp.id)throw failure('POLICY_HANDOFF_REQUIRED','Conversation handoff requires a current trusted user choice',403);
+          const previous=s.mock.handoffs.find(h=>h.scope==='conversation'&&!['COMPLETED','CANCELLED'].includes(h.status));
+          const handoff=previous??{handoff_id:id('H'),scope:'conversation',conversation_id:s.id,status:'WAITING',reason:'user_requested_help',emotion:clone(s.emotion),conversation_summary:body.conversation_summary,queue_position:1,messages:[],created_at:new Date().toISOString()};
           if(!previous)s.mock.handoffs.push(handoff);s.activeHandoffId=handoff.handoff_id;result={success:true,handoff:clone(handoff),reused:!!previous,source_type:'mock'};
         }else{
-          if(context.authorization!=='human_simulator')throw failure('HUMAN_SIMULATOR_REQUIRED','Use the mock human desk controls',403);
+          if(context.authorization!==(action==='cancel'?'user_help_choice':'human_simulator'))throw failure('HUMAN_SIMULATOR_REQUIRED','Use the mock human desk controls',403);
           const h=s.mock.handoffs.find(h=>h.handoff_id===body.handoff_id&&h.scope==='conversation');if(!h)throw failure('HANDOFF_NOT_FOUND','Conversation handoff not found',404);
-          const next={accept:{from:['WAITING'],to:'ACCEPTED'},escalate:{from:['ACCEPTED'],to:'ESCALATED'},complete:{from:['ACCEPTED','ESCALATED'],to:'COMPLETED'}}[action];
+          const next={accept:{from:['WAITING'],to:'ACCEPTED'},escalate:{from:['ACCEPTED'],to:'ESCALATED'},complete:{from:['ACCEPTED','ESCALATED'],to:'COMPLETED'},cancel:{from:['WAITING','ACCEPTED','ESCALATED'],to:'CANCELLED'}}[action];
+          if(action==='accept'&&h.wait_deadline&&Date.parse(h.wait_deadline)<=Date.now())throw failure('HUMAN_WAIT_EXPIRED','The simulated queue wait limit elapsed',409);
           if(!next||!next.from.includes(h.status))throw failure('INVALID_HANDOFF_TRANSITION','Invalid simulated human transition',409);
           h.status=next.to;h.updated_at=new Date().toISOString();if(action==='accept')h.agent_name='Mock roads agent';result={success:true,handoff:clone(h),source_type:'mock'};
         }

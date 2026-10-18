@@ -10,70 +10,246 @@
       "source_scope": "civil-defense-fees",
       "question": "Can the application be completed without paying the Civil Defense fees?",
       "answer": "No. If Civil Defense fees are applicable to the application, they must be paid before the application process can be completed.",
-      "enabled": true
+      "enabled": true,
+      "original_question": "Can the application be completed without paying the Civil Defense fees?",
+      "original_answer": "No. If Civil Defense fees are applicable to the application, they must be paid before the application process can be completed.",
+      "aliases": [
+        "Can the application be completed without paying the Civil Defense fees?"
+      ],
+      "context_required": false,
+      "provenance": {
+        "collection": "digital-human-faq",
+        "source_entry_id": "FAQ-001",
+        "captured_at": "2026-10-14",
+        "raw_sha256": "28922fbf8a9d642b3f51cf4692050befae84362496b5a0ab4ea45f1ba12bae33",
+        "official_url": null,
+        "policy_verified_at": null,
+        "review_status": "structure_checked_policy_pending",
+        "cleaned_at": "2026-10-19",
+        "cleaning_version": "road-knowledge-v3",
+        "changes": []
+      }
     },
     {
       "id": "FAQ-002",
       "source_scope": "civil-defense-fees",
       "question": "Is the municipal fees invoice the same as the Civil Defense fees invoice?",
       "answer": "No. The Civil Defense fees invoice is separate from the municipal fees invoice. Once it has been paid, the application moves to the municipal fees payment stage in accordance with the standard process.",
-      "enabled": true
+      "enabled": true,
+      "original_question": "Is the municipal fees invoice the same as the Civil Defense fees invoice?",
+      "original_answer": "No. The Civil Defense fees invoice is separate from the municipal fees invoice. Once it has been paid, the application moves to the municipal fees payment stage in accordance with the standard process.",
+      "aliases": [
+        "Is the municipal fees invoice the same as the Civil Defense fees invoice?"
+      ],
+      "context_required": false,
+      "provenance": {
+        "collection": "digital-human-faq",
+        "source_entry_id": "FAQ-002",
+        "captured_at": "2026-10-14",
+        "raw_sha256": "538e1a9bb2e6d2834c009c57dc0d9cb422e1242ede74b788911e99a78f3b6b08",
+        "official_url": null,
+        "policy_verified_at": null,
+        "review_status": "structure_checked_policy_pending",
+        "cleaned_at": "2026-10-19",
+        "cleaning_version": "road-knowledge-v3",
+        "changes": []
+      }
     },
     {
       "id": "FAQ-003",
       "source_scope": "civil-defense-fees",
-      "question": "Does this change affect applications that do not require a Civil Defense license?",
+      "question": "Does the Civil Defense fee invoice change affect applications that do not require a Civil Defense license?",
       "answer": "No. Applications for which Civil Defense fees are not required will continue through the standard process without a Civil Defense fees invoice being generated.",
-      "context_required": true,
-      "enabled": true
+      "context_required": false,
+      "enabled": true,
+      "original_question": "Does this change affect applications that do not require a Civil Defense license?",
+      "original_answer": "No. Applications for which Civil Defense fees are not required will continue through the standard process without a Civil Defense fees invoice being generated.",
+      "aliases": [
+        "Does this change affect applications that do not require a Civil Defense license?"
+      ],
+      "provenance": {
+        "collection": "digital-human-faq",
+        "source_entry_id": "FAQ-003",
+        "captured_at": "2026-10-14",
+        "raw_sha256": "8ac73ab502774295b64409e7052fdbd9865f2343b877941aff7bb90f75e622fe",
+        "official_url": null,
+        "policy_verified_at": null,
+        "review_status": "structure_checked_policy_pending",
+        "cleaned_at": "2026-10-19",
+        "cleaning_version": "road-knowledge-v3",
+        "changes": [
+          "service context made explicit"
+        ]
+      }
     },
     {
       "id": "FAQ-004",
       "source_scope": "infrastructure-permit",
       "question": "What is the service for issuing a permit to carry out infrastructure work in a new development plan?",
       "answer": "An e-service that allows service providers and their representatives to submit an application for a permit to construct infrastructure networks and projects within a new development plan, following a process that includes an initial review, followed by coordination, approval, and issuance of the permit.",
-      "enabled": true
+      "enabled": true,
+      "original_question": "What is the service for issuing a permit to carry out infrastructure work in a new development plan?",
+      "original_answer": "An e-service that allows service providers and their representatives to submit an application for a permit to construct infrastructure networks and projects within a new development plan, following a process that includes an initial review, followed by coordination, approval, and issuance of the permit.",
+      "aliases": [
+        "What is the service for issuing a permit to carry out infrastructure work in a new development plan?"
+      ],
+      "context_required": false,
+      "provenance": {
+        "collection": "digital-human-faq",
+        "source_entry_id": "FAQ-004",
+        "captured_at": "2026-10-14",
+        "raw_sha256": "cc8689552e4a5ac43776169b16f716b6ac55bb615d20a9e684341be7e7e1070b",
+        "official_url": null,
+        "policy_verified_at": null,
+        "review_status": "structure_checked_policy_pending",
+        "cleaned_at": "2026-10-19",
+        "cleaning_version": "road-knowledge-v3",
+        "changes": []
+      }
     },
     {
       "id": "FAQ-005",
       "source_scope": "infrastructure-permit",
-      "question": "Who can apply for this service?",
+      "question": "Who can apply for an infrastructure works permit in a new development plan?",
       "answer": "An authorized representative of the service provider may submit the request, and a representative of a contractor may also complete and submit the request in accordance with the authority granted to them.",
-      "context_required": true,
-      "enabled": true
+      "context_required": false,
+      "enabled": true,
+      "original_question": "Who can apply for this service?",
+      "original_answer": "An authorized representative of the service provider may submit the request, and a representative of a contractor may also complete and submit the request in accordance with the authority granted to them.",
+      "aliases": [
+        "Who can apply for this service?"
+      ],
+      "provenance": {
+        "collection": "digital-human-faq",
+        "source_entry_id": "FAQ-005",
+        "captured_at": "2026-10-14",
+        "raw_sha256": "60020ae5531c3833b24ae35301bcf97e828d1e3eb22e61326ed294abde1fa999",
+        "official_url": null,
+        "policy_verified_at": null,
+        "review_status": "structure_checked_policy_pending",
+        "cleaned_at": "2026-10-19",
+        "cleaning_version": "road-knowledge-v3",
+        "changes": [
+          "service context made explicit"
+        ]
+      }
     },
     {
       "id": "FAQ-006",
       "source_scope": "infrastructure-permit",
-      "question": "What is meant by “new development plan” in this service?",
+      "question": "What is meant by a new development plan for the infrastructure works permit service?",
       "answer": "It is a plan that has received preliminary approval, and the intention is to construct networks or infrastructure within it before the completion of its development phases and final approval.",
-      "enabled": true
+      "enabled": true,
+      "original_question": "What is meant by “new development plan” in this service?",
+      "original_answer": "It is a plan that has received preliminary approval, and the intention is to construct networks or infrastructure within it before the completion of its development phases and final approval.",
+      "aliases": [
+        "What is meant by “new development plan” in this service?"
+      ],
+      "context_required": false,
+      "provenance": {
+        "collection": "digital-human-faq",
+        "source_entry_id": "FAQ-006",
+        "captured_at": "2026-10-14",
+        "raw_sha256": "9906c350bf35ce8239331dff4b13ee49f34d4a66121bcd0442744a6d7e70a42d",
+        "official_url": null,
+        "policy_verified_at": null,
+        "review_status": "structure_checked_policy_pending",
+        "cleaned_at": "2026-10-19",
+        "cleaning_version": "road-knowledge-v3",
+        "changes": [
+          "service context made explicit"
+        ]
+      }
     },
     {
       "id": "FAQ-007",
       "source_scope": "infrastructure-permit",
-      "question": "What are the key details and requirements for applying?",
-      "answer": "\"The requirements include project data, details of the decision to approve the plan, work routes and locations, the work plan, the implementation team, and the required attachments, in addition to approval of the conditions and commitments. Among the most important attachments are: the title deed; the decision approving the plan as prepared by the Coordination Office; the general site plan; the plan for existing and future utilities; and the security and safety plan.” \"",
-      "context_required": true,
-      "enabled": true
+      "question": "What details and documents are required for an infrastructure works permit in a new development plan?",
+      "answer": "The requirements include project data, details of the decision to approve the plan, work routes and locations, the work plan, the implementation team, and the required attachments, in addition to approval of the conditions and commitments. Among the most important attachments are: the title deed; the decision approving the plan as prepared by the Coordination Office; the general site plan; the plan for existing and future utilities; and the security and safety plan.",
+      "context_required": false,
+      "enabled": true,
+      "original_question": "What are the key details and requirements for applying?",
+      "original_answer": "\"The requirements include project data, details of the decision to approve the plan, work routes and locations, the work plan, the implementation team, and the required attachments, in addition to approval of the conditions and commitments. Among the most important attachments are: the title deed; the decision approving the plan as prepared by the Coordination Office; the general site plan; the plan for existing and future utilities; and the security and safety plan.” \"",
+      "aliases": [
+        "What are the key details and requirements for applying?"
+      ],
+      "provenance": {
+        "collection": "digital-human-faq",
+        "source_entry_id": "FAQ-007",
+        "captured_at": "2026-10-14",
+        "raw_sha256": "444aabfeb179b41143ee9d2a424e44322e89d0ab9fa8b6c753c6839e8946fdb4",
+        "official_url": null,
+        "policy_verified_at": null,
+        "review_status": "structure_checked_policy_pending",
+        "cleaned_at": "2026-10-19",
+        "cleaning_version": "road-knowledge-v3",
+        "changes": [
+          "service context made explicit",
+          "removed malformed outer quotation marks"
+        ]
+      }
     },
     {
       "id": "FAQ-008",
       "source_scope": "infrastructure-permit",
-      "question": "Are there any fees for issuing the permit?",
+      "question": "Are there any fees for an infrastructure works permit in a new development plan?",
       "answer": "The service is currently offered free of charge.",
       "enabled": true,
-      "context_required": true
+      "context_required": false,
+      "original_question": "Are there any fees for issuing the permit?",
+      "original_answer": "The service is currently offered free of charge.",
+      "aliases": [
+        "Are there any fees for issuing the permit?"
+      ],
+      "provenance": {
+        "collection": "digital-human-faq",
+        "source_entry_id": "FAQ-008",
+        "captured_at": "2026-10-14",
+        "raw_sha256": "a25fb8255d602175f7ff2c8662167329c5b0f3fd89060ba33586c7cb7a55e05a",
+        "official_url": null,
+        "policy_verified_at": null,
+        "review_status": "structure_checked_policy_pending",
+        "cleaned_at": "2026-10-19",
+        "cleaning_version": "road-knowledge-v3",
+        "changes": [
+          "service context made explicit"
+        ]
+      }
     },
     {
       "id": "FAQ-009",
       "source_scope": "balady-platform",
       "question": "Does the Balady Platform personalize the services and content displayed to the beneficiary?",
       "answer": "The Balady Platform may personalize the services and content displayed to the beneficiary based on the data and information associated with their account and their interactions with the platform's services, helping them access services that are more relevant to their needs.",
-      "enabled": true
+      "enabled": true,
+      "original_question": "Does the Balady Platform personalize the services and content displayed to the beneficiary?",
+      "original_answer": "The Balady Platform may personalize the services and content displayed to the beneficiary based on the data and information associated with their account and their interactions with the platform's services, helping them access services that are more relevant to their needs.",
+      "aliases": [
+        "Does the Balady Platform personalize the services and content displayed to the beneficiary?"
+      ],
+      "context_required": false,
+      "provenance": {
+        "collection": "digital-human-faq",
+        "source_entry_id": "FAQ-009",
+        "captured_at": "2026-10-14",
+        "raw_sha256": "cba41d5487ca188367910fa6c88ffb84d3be64ed696da2e6f7a3fcc4875d21fe",
+        "official_url": null,
+        "policy_verified_at": null,
+        "review_status": "structure_checked_policy_pending",
+        "cleaned_at": "2026-10-19",
+        "cleaning_version": "road-knowledge-v3",
+        "changes": []
+      }
     }
   ],
   "verified_count": 9,
   "scope_confirmed_at": "2026-10-14",
-  "missing_source_entries_note": "Source header displays 26, but only 9 complete entries were readable. User approved these 9 for the PoC; remainder awaits source export."
+  "missing_source_entries_note": "Source header displays 26, but only 9 complete entries were readable. User approved these 9 for the PoC; remainder awaits source export.",
+  "quality": {
+    "version": "road-knowledge-v3",
+    "scope": "poc_only",
+    "policy_status": "pending_official_verification",
+    "missing_entries": 17,
+    "note": "The 9 complete source records were structurally reviewed. This does not verify their policy accuracy. No missing source records or official citations have been invented."
+  }
 }

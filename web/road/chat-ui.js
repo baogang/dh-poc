@@ -33,10 +33,16 @@ export function progressText(s,locale='zh'){
 }
 
 export function createChatRenderer(document,container,actions){
-  const cached=new Map();let t=translator();
+  const cached=new Map();let t=translator(),uiLocale='zh';
   const el=(tag,text,className)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(className)n.className=className;return n;};
   const button=(text,fn,busy=false)=>{const n=el('button',text);n.type='button';n.disabled=busy;n.addEventListener('click',fn);return n;};
   const field=(form,label,name,type='text')=>{const l=el('label',label),i=el(type==='textarea'?'textarea':'input');i.name=name;if(type!=='textarea')i.type=type;i.required=true;i.maxLength=2000;l.append(i);form.append(l);return i;};
+  const name=service=>service?.title?.[uiLocale]??service?.title?.en??'';
+  function officialLink(parent,url){if(!/^https:\/\/(?:www\.)?balady\.gov\.sa(?:\/|$)/.test(url??''))return;const a=el('a',t('访问官方平台'));a.href=url;a.target='_blank';a.rel='noopener noreferrer';parent.append(a);}
+  function serviceCard(parent,service,item,busy){
+    const card=el('section',undefined,'service-option');card.append(el('strong',name(service)),el('small',service.department?.[uiLocale]??service.department?.en),el('span',t(service.mode==='mock_transaction'?'模拟办理':'仅知识咨询'),'service-mode'),el('p',service.description?.[uiLocale]??service.description?.en));
+    if(item.choiceActive!==false)card.append(button(t(item.clarificationId?'选择并回答原问题':'查看此服务'),()=>actions.action('/api/service',{scope:service.id,...(item.clarificationId?{clarification_id:item.clarificationId}:{})}),busy));officialLink(card,service.official_url);parent.append(card);
+  }
   function loginForm(continuation,busy){
     const form=el('form',undefined,'inline-form login-form');form.dataset.formKey='login:'+(continuation?.id??'welcome');
     const l=el('label',t('模拟账号')),select=el('select');select.name='username';for(const [value,title]of[['demo',t('demo · 有登记地址')],['demo-no-address',t('demo-no-address · 无登记地址')],['demo-other',t('demo-other · 另一用户')]]){const o=el('option',title);o.value=value;select.append(o);}select.value='demo';l.append(select);form.append(l);field(form,t('模拟密码'),'password','password').value='demo';
@@ -52,11 +58,41 @@ export function createChatRenderer(document,container,actions){
     const n=el('article',undefined,item.kind==='message'?'bubble '+item.message.role:'bubble assistant '+item.kind+'-card');n.dataset.chatId=item.id;n.dir='auto';
     if(item.kind==='message'){
       const m=item.message;let text=m.text;
+      if(['service_catalog','service_overview','knowledge_clarification'].includes(m.kind)){
+        n.append(el('strong',t(m.kind==='knowledge_clarification'?'你指的是哪项服务？':m.kind==='service_overview'?'服务详情':'服务目录')));
+        if(m.kind==='knowledge_clarification'){n.append(el('p',t('选择服务后，我会直接回答你刚才的问题，无需重复输入。')));n.append(el('blockquote',m.clarification.question));if(!item.choiceActive){n.append(el('small',t('此服务选择已结束。')));return n;}}
+        else n.append(el('p',t('这里显示当前已支持的范围；官方平台链接是查询入口，不代表本助手已接入该服务。')));
+        const list=m.kind==='service_overview'?item.catalog.filter(s=>s.id===m.scope):m.kind==='knowledge_clarification'?item.catalog.filter(s=>m.clarification.candidate_scopes.includes(s.id)):item.catalog;
+        for(const service of list)serviceCard(n,service,item,busy);
+        return n;
+      }
+      if(['knowledge_missing','knowledge_unavailable'].includes(m.kind)){
+        n.append(el('p',t(m.kind==='knowledge_missing'?'已确认服务，但现有问答没有足够依据回答这个问题。':'知识查询暂时不可用，这不代表问答库没有答案。')));
+        n.append(button(t('查看服务目录'),()=>actions.action('/api/catalog',{}),busy),button(t('人工帮助'),()=>actions.action('/api/help',{action:'offer'}),busy));if(m.kind==='knowledge_unavailable'&&m.question)n.append(button(t('重试知识查询'),()=>actions.action('/api/chat',{message:m.question}),busy));officialLink(n,item.humanSupport.official_url);return n;
+      }
+      if(m.kind==='help_offer'){
+        n.append(el('strong',t('需要人工帮助吗？')),el('p',t('可以选择模拟人工或继续使用智能助手。未确认的提交已暂停，原来的提交授权已失效。')));
+        n.append(el('small',t('当前为人工演示，无真实客服排班或预计接入时间。')));
+        if(item.helpActive){
+          n.append(el('p',t(item.humanSupport.available?'模拟人工可排队；排队成功不代表已经受理。':'模拟人工暂不可用。你可以继续使用助手或访问官方平台。')));
+          n.append(button(t('加入模拟人工队列'),()=>actions.action('/api/help',{action:'queue',request_id:m.request_id}),busy||!item.humanSupport.available),button(t('继续使用智能助手'),()=>actions.action('/api/help',{action:'continue',request_id:m.request_id}),busy));
+          n.append(el('small',t('交接将携带最近的对话、当前服务与任务摘要，不会重复办理业务。')));
+        }else n.append(el('small',t('此帮助选择已结束。')));
+        officialLink(n,item.humanSupport.official_url);return n;
+      }
       const notice=m.notice??(m.kind==='login'?'login':m.kind==='decision'?'confirmed':m.kind==='info'?(m.plan_id?'approved':'cancelled'):null);
       if(notice)text=t('notice.'+notice,m.notice_values??{});
       else if(['human_notice','human_reply'].includes(m.kind))text=t(text);
       if(item.message.kind==='input'){try{const value=item.message.value??JSON.parse(text);if(value.ticket_id)text=t('已选择工单 {id}；{state}。',{id:value.ticket_id,state:t(value.unresolved?t('问题仍未解决'):t('问题已解决'))});else if(value.city&&value.street)text=t('工单地址：{city}, {street}',{city:value.city,street:value.street});else if(value.text)text=value.text;}catch{}}
-      n.append(el('div',text,'message-text'));if(item.message.source)n.append(el('small',t('问答库来源：{id}',{id:item.message.source.id})));
+      n.append(el('div',text,'message-text'));
+      if(m.knowledge_state){n.append(button(t('查看服务目录'),()=>actions.action('/api/catalog',{}),busy),button(t('人工帮助'),()=>actions.action('/api/help',{action:'offer'}),busy));if(m.knowledge_state==='unavailable')n.append(button(t('重试知识查询'),()=>actions.action('/api/chat',{message:m.question}),busy));officialLink(n,item.humanSupport.official_url);}
+      if(item.message.source){
+        const source=m.source;n.append(el('small',t('问答库来源：{id}',{id:source.id})));
+        if(source.provenance){const d=el('details',undefined,'knowledge-source');d.dataset.key='source:'+m.id;d.append(el('summary',t('查看来源与适用范围')),el('p',name(item.catalog.find(s=>s.id===source.scope))));
+          d.append(el('p',t('原始来源：{collection} · {id}',{collection:source.provenance.collection,id:source.id})),el('p',t('采集日期：{date}',{date:source.provenance.captured_at})),el('p',t('POC 问答已做结构清洗，政策内容待官方复核；尚无逐条官方依据。'),'knowledge-warning'),el('p',t('原始问题')),el('blockquote',source.original_question),el('p',source.original_answer,'message-text'));
+          officialLink(d,source.provenance.official_url);n.append(d);
+        }
+      }
       if(item.feedback){
         const f=item.feedback,controls=el('div',undefined,'answer-feedback');controls.setAttribute('role','group');controls.setAttribute('aria-label',t('评价这个回答'));
         for(const [rating,icon,label]of [['satisfied','👍',t('满意')],['unsatisfied','👎',t('不满意')]]){const b=button(icon,()=>actions.rate(m.id,rating),f.pending);b.className='feedback-vote'+(f.rating===rating?' selected':'');b.setAttribute('aria-label',label);b.setAttribute('title',label);b.setAttribute('aria-pressed',String(f.rating===rating));controls.append(b);}
@@ -66,6 +102,7 @@ export function createChatRenderer(document,container,actions){
       }
     }else if(item.kind==='welcome'){
       n.append(el('strong',t('您好，欢迎使用政务服务助手！')),el('p',t('您可以咨询已支持的政务服务、提交服务申请、查询办理进度、反馈投诉或联系人工客服。请告诉我您需要什么帮助，我会在聊天中说明下一步，并在提交操作前请您确认。')));
+      n.append(el('small',t('办理功能使用模拟数据；其他服务当前仅支持已有知识咨询。')),button(t('查看服务目录'),()=>actions.action('/api/catalog',{}),busy),button(t('人工帮助'),()=>actions.action('/api/help',{action:'offer'}),busy));
       const examples=el('div',undefined,'examples');for(const [label,text]of[[t('新坑洞报单'),'There is a big pothole in the road in front of my house'],[t('历史工单跟进'),'The school pothole I reported is still unresolved. Please help me follow up.'],[t('试问答库'),'Is the municipal fees invoice the same as the Civil Defense fees invoice?']])examples.append(button(label,()=>actions.example(text),busy));n.append(examples);
       if(!item.loggedIn){const d=el('details',undefined,'welcome-login');d.dataset.key='welcome-login';d.append(el('summary',t('模拟登录 · 办理个人工单时需要')),loginForm(null,busy));n.append(d);}
     }else if(item.kind==='plan'){
@@ -96,11 +133,17 @@ export function createChatRenderer(document,container,actions){
       }else field(f,t('补充信息'),'text','textarea');
       const b=el('button',t('提交信息并继续'));b.disabled=busy;f.append(b);f.addEventListener('submit',e=>{e.preventDefault();if(busy)return;const fd=new FormData(f),value=Object.fromEntries(fd);if(x.kind==='ticket'){if(!['yes','no'].includes(fd.get('unresolved')))return;value.matched=fd.has('matched');value.unresolved=fd.get('unresolved')==='yes';}actions.action('/api/input',{input_id:x.id,value});});n.append(f);
     }else if(item.kind==='human_desk'){
-      const h=item.handoff,labels={WAITING:t('排队中，尚未受理'),ACCEPTED:t('模拟人工已受理'),ESCALATED:t('已升级至模拟主管'),COMPLETED:t('模拟人工处理已结束')};
+      const h=item.handoff,labels={CANCELLED:t('已取消人工交接'),WAITING:t('排队中，尚未受理'),ACCEPTED:t('模拟人工已受理'),ESCALATED:t('已升级至模拟主管'),COMPLETED:t('模拟人工处理已结束')};
       n.append(el('div',t('模拟人工接管'),'card-caption'),el('strong',labels[h.status]??h.status));
+      if(item.active){
+        n.append(el('p',t('当前为人工演示，无真实客服排班或预计接入时间。')));
+        if(h.status==='WAITING'){n.append(el('p',t(item.humanSupport.wait_expired?'模拟等待已超时，尚未有人受理。':'尚未有人工受理，你可以随时取消排队并返回助手。')));}
+        if(['WAITING','ACCEPTED','ESCALATED'].includes(h.status))n.append(button(t(h.status==='WAITING'?'取消排队并返回助手':'结束人工并返回助手'),()=>actions.action('/api/human',{handoff_id:h.handoff_id,action:'cancel'}),busy));
+        const d=el('details',undefined,'handoff-summary');d.dataset.key='handoff-summary:'+h.handoff_id;d.append(el('summary',t('查看交接摘要')),el('pre',h.conversation_summary));n.append(d);officialLink(n,item.humanSupport.official_url);
+      }
       if(showTasks){const d=el('details',undefined,'human-progress');d.dataset.key='human:'+h.handoff_id;d.open=true;d.append(el('summary',t('人工处理进度与模拟操作')),el('p',t('会话编号：{id}',{id:h.handoff_id})),el('p',t('排队 → 人工受理 → 可选升级 → 处理完成')));
         if(h.agent_name)d.append(el('p',t('当前客服：{name}',{name:h.agent_name})));
-        if(item.active){const call=action=>actions.action('/api/human',{handoff_id:h.handoff_id,action});if(h.status==='WAITING')d.append(button(t('模拟人工受理'),()=>call('accept'),busy));if(h.status==='ACCEPTED')d.append(button(t('模拟升级主管'),()=>call('escalate'),busy));if(['ACCEPTED','ESCALATED'].includes(h.status))d.append(button(t('结束模拟人工处理'),()=>call('complete'),busy));}
+        if(item.active){const call=action=>actions.action('/api/human',{handoff_id:h.handoff_id,action});if(h.status==='WAITING')d.append(button(t('模拟人工受理'),()=>call('accept'),busy||item.humanSupport.wait_expired));if(h.status==='ACCEPTED')d.append(button(t('模拟升级主管'),()=>call('escalate'),busy));if(['ACCEPTED','ESCALATED'].includes(h.status))d.append(button(t('结束模拟人工处理'),()=>call('complete'),busy));}
         n.append(d);
       }
       if(item.active&&h.status==='COMPLETED')n.append(button(t('返回智能助手'),()=>actions.action('/api/human',{handoff_id:h.handoff_id,action:'resume'}),busy));
@@ -128,15 +171,16 @@ export function createChatRenderer(document,container,actions){
     for(const form of node.querySelectorAll('form[data-form-key]'))for(const f of form.querySelectorAll('input,select,textarea')){const old=memory.values.find(v=>v.form===form.dataset.formKey&&v.name===f.name&&(!(f.type==='radio')||v.value===f.value));if(old){if(f.type==='radio'||f.type==='checkbox')f.checked=old.checked;else f.value=old.value;}if(memory.focus?.form===form.dataset.formKey&&memory.focus.name===f.name&&(f.type!=='radio'||f.value===memory.focus.value)){f.focus({preventScroll:true});if(typeof memory.focus.start==='number'&&f.setSelectionRange&&f.type!=='select-one')f.setSelectionRange(memory.focus.start,memory.focus.end);}}
   }
   return {render(state,{showTasks=true,busy=false,pendingMessage,error,connecting=false,locale='zh',feedback={enabled:false,items:{}}}={}){
-    t=translator(locale);
+    t=translator(locale);uiLocale=locale;
     const atBottom=container.scrollHeight-container.scrollTop-container.clientHeight<70,scroll=container.scrollTop;
     const rows=[{id:'welcome',kind:'welcome',loggedIn:!!state.user},...conversationItems(state)];
+    for(const item of rows){item.catalog=state.catalog??[];item.humanSupport=state.human_support??{};item.helpActive=!!state.pendingHelp&&item.message?.request_id===state.pendingHelp.id;item.clarificationId=state.pendingKnowledge?.id;item.choiceActive=item.message?.kind==='knowledge_clarification'?state.pendingKnowledge?.id===item.message.clarification.id:true;}
     if(pendingMessage)rows.push({id:'optimistic-user',kind:'message',message:{role:'user',text:pendingMessage}});
     const plan=state.plans.find(p=>p.id===state.activePlanId);if(!state.running&&plan?.approved&&['failed','blocked','interrupted'].includes(state.status))rows.push({id:'retry:'+plan.id,kind:'retry'});
     if(state.running||busy||connecting)rows.push({id:'working',kind:'working',text:connecting?t('正在连接政务服务助手…'):state.running?progressText(state,locale):t('收到，正在发送你的请求…')});
     if(error)rows.push({id:'error',kind:'error',text:error});
     const keep=new Set();let cursor=container.firstChild;
-    for(const item of rows){if(item.kind==='message'&&item.message.role==='assistant'&&item.message.rateable&&feedback.enabled)item.feedback=feedback.items[item.message.id]??{};keep.add(item.id);const interactive=['welcome','plan','input','operation','error','retry','human_desk'].includes(item.kind);const signature=JSON.stringify([locale,item,interactive?busy||state.running:false,['plan','human_desk'].includes(item.kind)?showTasks:null]);let old=cached.get(item.id),node,memory;
+    for(const item of rows){if(item.kind==='message'&&item.message.role==='assistant'&&item.message.rateable&&feedback.enabled)item.feedback=feedback.items[item.message.id]??{};keep.add(item.id);const interactive=['welcome','plan','input','operation','error','retry','human_desk'].includes(item.kind)||['service_catalog','service_overview','knowledge_clarification','knowledge_missing','knowledge_unavailable','help_offer'].includes(item.message?.kind)||!!item.message?.knowledge_state;const signature=JSON.stringify([locale,item,interactive?busy||state.running:false,['plan','human_desk'].includes(item.kind)?showTasks:null]);let old=cached.get(item.id),node,memory;
       if(old?.signature===signature)node=old.node;
       else{memory=old?remember(old.node):null;node=build(item,{busy:busy||state.running,showTasks});if(old?.node===cursor)cursor=old.node.nextSibling;old?.node.remove();cached.set(item.id,{node,signature});}
       if(node!==cursor)container.insertBefore(node,cursor);else cursor=node.nextSibling;

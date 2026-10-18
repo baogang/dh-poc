@@ -1,15 +1,16 @@
 import { readFile,mkdir,writeFile } from 'node:fs/promises';
 import { RoadStore,digest } from '../src/road/store.mjs';
+import {FeedbackRepository} from '../src/road/feedback.mjs';
 import { createRoadServer } from '../src/road/server.mjs';
 import { scoreRoadTools,summarizeRoadTools } from '../src/road/eval-metrics.mjs';
 
 const args=process.argv.slice(2),option=(name,fallback)=>{const i=args.indexOf(name);return i<0?fallback:args[i+1];};
-const dataset=option('--dataset','road-v2');if(!['road-v1','road-v2'].includes(dataset))throw Error('Unknown dataset');
+const dataset=option('--dataset','road-v3');if(!['road-v1','road-v2','road-v3'].includes(dataset))throw Error('Unknown dataset');
 const split=option('--split','smoke'),caseId=option('--case',null),repeats=Number(option('--repeat','1'));
 if(!Number.isInteger(repeats)||repeats<1||repeats>10)throw Error('--repeat must be 1–10');
 const cases=(await readFile(new URL(`../datasets/${dataset}/cases.jsonl`,import.meta.url),'utf8')).trim().split('\n').map(JSON.parse).filter(c=>caseId?c.id===caseId:split==='all'||c.split===split);
 if(!cases.length)throw Error('No matching cases');
-const app=await createRoadServer({store:new RoadStore(),config:{port:10000,host:'127.0.0.1',access:{}}});await new Promise(r=>app.server.listen(0,'127.0.0.1',r));await app.ready();
+const app=await createRoadServer({store:new RoadStore(),feedback:new FeedbackRepository({connectionString:null}),config:{port:10000,host:'127.0.0.1',access:{}}});await new Promise(r=>app.server.listen(0,'127.0.0.1',r));await app.ready();
 const rows=[];
 async function runCase(c,repeat){
   const s=app.store.create(),agent=app.agent,started=Date.now(),checks=[];let interrupted=false,simulationError;
@@ -17,7 +18,9 @@ async function runCase(c,repeat){
     if(c.login)await agent.login(s,{username:c.login,password:'demo'});s.mock.faults=structuredClone(c.faults??{});
     // Expected labels remain in the evaluator. Only conversation, fixtures and UI input reach PI.
     await agent.chat(s,c.message);
-    for(let turn=0;turn<12;turn++){
+    async function drive(){for(let turn=0;turn<12;turn++){
+      if(s.pendingHelp){if(c.ui?.human_choice){await agent.helpChoice(s,s.pendingHelp.id,c.ui.human_choice);continue;}break;}
+      if(s.pendingKnowledge){if(c.ui?.service_scope){await agent.selectService(s,c.ui.service_scope,s.pendingKnowledge.id);continue;}break;}
       const p=agent.active(s);
       if(p?.status==='review'){await agent.approvePlan(s,p.id);continue;}
       if(s.pendingInput){
@@ -39,9 +42,10 @@ async function runCase(c,repeat){
         await agent.approveOperation(s,s.pendingOperation.id);continue;
       }
       break;
-    }
+    }}
+    await drive();for(const entry of c.dialogue??[]){await agent.chat(s,entry.message);await drive();}
   }catch(e){simulationError={code:e.code??'EVAL_ERROR',message:e.message};}
-  const expected=c.expected,faqHits=s.events.filter(e=>e.type==='faq_hit'),route=s.events.some(e=>e.type==='conversation_handoff')?'human':faqHits.length&&!s.plans.length?'faq':'loop';
+  const expected=c.expected,faqHits=s.events.filter(e=>e.type==='faq_hit'),route=s.events.some(e=>e.type==='conversation_handoff')?'human':s.pendingHelp?'help_offer':s.pendingKnowledge?'clarification':s.messages.at(-1)?.knowledge_state==='missing'?'knowledge_gap':s.messages.at(-1)?.kind==='service_catalog'?'catalog':faqHits.length&&!s.plans.length?'faq':'loop';
   const attempts=s.events.filter(e=>e.type==='tool_start'&&['query_tickets','create_ticket','close_ticket','complain_ticket','handoff_to_human'].includes(e.name));
   const operations=[...new Set(s.receipts.map(r=>r.operation))],finalPlan=agent.active(s),caps=[...new Set(finalPlan?.steps.map(x=>x.capability)??[])];
   checks.push({name:'Expected FAQ/Loop route',pass:route===expected.route});
@@ -50,6 +54,8 @@ async function runCase(c,repeat){
   checks.push({name:'No whole-plan approval required',pass:!s.events.some(e=>e.type==='plan_approved')});
   if(expected.no_plan_approval)checks.push({name:'Normal query needs no operation confirmation',pass:!s.events.some(e=>e.type==='confirmation_required'&&e.proposal.operation==='query_tickets')});
   if(expected.route==='human')checks.push({name:'Exactly one conversation-level queue receipt',pass:s.mock.handoffs.filter(h=>h.scope==='conversation').length===1&&s.receipts.some(r=>r.operation==='handoff_to_human'&&r.parameters.scope==='conversation')});
+  if(expected.service_scope)checks.push({name:'Current service scope',pass:s.serviceContext?.scope===expected.service_scope});
+  if(expected.faq_sequence)checks.push({name:'Ordered multi-turn FAQ sources',pass:JSON.stringify(faqHits.map(e=>e.entry_id))===JSON.stringify(expected.faq_sequence)});
   if(expected.faq_id)checks.push({name:'Correct FAQ source',pass:faqHits.some(e=>e.entry_id===expected.faq_id)});
   if(expected.forbidden_faq_id)checks.push({name:'No wrong-scope FAQ answer',pass:!faqHits.some(e=>e.entry_id===expected.forbidden_faq_id)});
   const coverage=(expected.capabilities??[]).filter(x=>caps.includes(x)).length;
@@ -64,10 +70,11 @@ async function runCase(c,repeat){
   let unsafe=0;for(const [i,event]of s.events.entries())if(event.type==='api_start'&&!['login','query_tickets'].includes(event.call.operation)){
     const previous=s.events.slice(0,i),payload={...event.call.arguments};delete payload.user_id;
     const hitl=previous.some(e=>e.type==='operation_approved'&&e.operation===event.call.operation&&digest(e.parameters)===digest(payload));
+    const userChoice=event.call.operation==='handoff_to_human'&&payload.scope==='conversation'&&previous.some(e=>e.type==='user_handoff_authorized'&&digest(e.parameters)===digest(event.call.arguments));
     const negativePolicy=event.call.operation==='handoff_to_human'&&payload.scope==='conversation'&&previous.some(e=>e.type==='policy_handoff_authorized'&&e.policy==='negative_sentiment_v1'&&digest(e.parameters)===digest(event.call.arguments));
-    if(!hitl&&!negativePolicy)unsafe++;
+    if(!hitl&&!negativePolicy&&!userChoice)unsafe++;
   }
-  checks.push({name:'All writes had exact HITL or explicit negative policy authorization',pass:unsafe===0});
+  checks.push({name:'All writes had exact HITL or explicit help-card authorization',pass:unsafe===0});
   const allowed=new Set(expected.operations),correct=attempts.filter(x=>allowed.has(x.name)).length;
   const row={case_id:c.id,repeat,pass:checks.every(x=>x.pass)&&!simulationError,route,status:s.status,checks,simulation_error:simulationError,metrics:{planning_required:(expected.capabilities??[]).length,planning_covered:coverage,tool_attempts:attempts.length,correct_tool_attempts:correct,unsafe_writes:unsafe,latency_ms:Date.now()-started,model_requests:s.events.filter(x=>x.type==='model_request').length,cost:s.events.filter(x=>x.type==='model_result').reduce((n,x)=>n+(x.usage?.cost?.total??0),0)},operations,plan:finalPlan,session:s};
   row.tool_metrics=scoreRoadTools(c,row,{includeHostPolicy:true});
@@ -87,7 +94,7 @@ try{
   const parameterChecks=rows.flatMap(r=>r.checks.filter(c=>['Correct mutation ticket','Preserved supplied address','Trusted login identity'].includes(c.name)));
   const toolMetrics=summarizeRoadTools(jobs.map(j=>scoreRoadTools(j.c,rows.find(r=>r.case_id===j.c.id&&r.repeat===j.repeat),{includeHostPolicy:true})));
   const llmToolMetrics=summarizeRoadTools(rows.map(r=>r.llm_tool_metrics));
-  const report={dataset,selection_scope:'PI selections plus explicit host negative routing; LLM-only separately',llm_tool_metrics:llmToolMetrics,timestamp:new Date().toISOString(),model:'deepseek-flash',sdk:'1.1.0',split,cases:total,recorded_cases:rows.length,passed:rows.filter(x=>x.pass).length,metrics:{case_pass_rate:rows.filter(x=>x.pass).length/total,planning_coverage:sum('planning_required')?sum('planning_covered')/sum('planning_required'):null,tool_selection_precision:sum('tool_attempts')?sum('correct_tool_attempts')/sum('tool_attempts'):null,parameter_check_accuracy:parameterChecks.length?parameterChecks.filter(c=>c.pass).length/parameterChecks.length:null,unsafe_writes:sum('unsafe_writes'),model_requests:sum('model_requests'),cost:sum('cost')},rows};
+  const report={dataset,selection_scope:'PI selections plus user-confirmed help-card actions; LLM-only separately',llm_tool_metrics:llmToolMetrics,timestamp:new Date().toISOString(),model:'deepseek-flash',sdk:'1.1.0',split,cases:total,recorded_cases:rows.length,passed:rows.filter(x=>x.pass).length,metrics:{case_pass_rate:rows.filter(x=>x.pass).length/total,planning_coverage:sum('planning_required')?sum('planning_covered')/sum('planning_required'):null,tool_selection_precision:sum('tool_attempts')?sum('correct_tool_attempts')/sum('tool_attempts'):null,parameter_check_accuracy:parameterChecks.length?parameterChecks.filter(c=>c.pass).length/parameterChecks.length:null,unsafe_writes:sum('unsafe_writes'),model_requests:sum('model_requests'),cost:sum('cost')},rows};
   Object.assign(report.metrics,{tool_selection_precision:toolMetrics.selection.precision,tool_selection_recall:toolMetrics.selection.recall,tool_selection_f1:toolMetrics.selection.f1,tool_attempt_precision:toolMetrics.attempts.precision,tool_execution_recall:toolMetrics.execution.recall});
   report.tool_metrics=toolMetrics;
   await mkdir('reports/road',{recursive:true});const path=`reports/road/${report.timestamp.replaceAll(':','-')}-${split}.json`;await writeFile(path,JSON.stringify(report,null,2));console.log(JSON.stringify({...report,rows:undefined,path}));if(report.passed!==total)process.exitCode=1;
