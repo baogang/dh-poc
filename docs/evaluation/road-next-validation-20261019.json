@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-10-18T20:09:25.754746+00:00",
+  "timestamp": "2026-10-18T20:17:10.447959+00:00",
   "base_revision": "2698734ba04242538c85516b719085bf59622180",
   "scope": [
     "edit unsubmitted report and complaint details with renewed exact HITL",
@@ -9,7 +9,7 @@
   ],
   "validation": {
     "engineering_node": {
-      "passed": 196,
+      "passed": 198,
       "failed": 0
     },
     "python_mocks": {
@@ -45,8 +45,8 @@
         "f1": 1
       },
       "unsafe_writes": 0,
-      "model_requests": 116,
-      "raw_report": "reports/road/2026-10-18T20-04-53.968Z-all.json"
+      "model_requests": 115,
+      "raw_report": "reports/road/2026-10-18T20-15-45.682Z-all.json"
     },
     "live_v4": {
       "passed": 15,
@@ -58,7 +58,7 @@
         "precision": 1,
         "recall": 1
       },
-      "raw_report": "reports/road/2026-10-18T20-08-40.751Z-matters.json",
+      "raw_report": "reports/road/2026-10-18T20-15-33.515Z-matters.json",
       "checks": [
         {
           "id": "DRAFT-02",
@@ -584,7 +584,8 @@
     "local_http": {
       "passed": 53,
       "total": 53,
-      "reference": "workspace outputs/road-next-local-http.json"
+      "reference": "workspace outputs/road-next-local-http.json",
+      "phase": "Before async HTTP acknowledgement fix; final route rechecked with delayed-preflight Node test, Neon regression and post-deploy smoke"
     },
     "browser": [
       "Chinese UI edit, old-card expiry, save, new conversation login, restore, exact confirmation, actual receipt, timeline",
@@ -592,7 +593,22 @@
       "390x844 viewport: innerWidth=390, document.scrollWidth=390; reset after test",
       "English UI labels, actions and draft preservation covered by DOM regressions"
     ],
-    "source_checks": "passed"
+    "source_checks": "passed",
+    "release_issue_fixed": {
+      "initial_commit": "8df9a69da9d5af8b5e4e0393df3ffd5732b78007",
+      "issue": "HTTP 202 could expose the idle preflight snapshot while asynchronous draft validation was pending; the single mock write completed later.",
+      "fix": "Await draft validation and durable authorization before dispatch/202; revalidate cancellation epoch after awaits. Apply the same preflight boundary to retries.",
+      "regression_tests": [
+        "HTTP approval waits for async draft validation before acknowledging a persisted running turn",
+        "cancel during asynchronous confirmation validation cannot authorize the old payload"
+      ],
+      "initial_smoke": {
+        "passed": 30,
+        "total": 31,
+        "failed_check": "Confirmed mock submission completes once"
+      },
+      "post_deploy_verification": "Recorded separately after final deployment in workspace outputs/road-next-render-live-check-20261019.json"
+    }
   },
   "limitations": [
     "Synthetic small regression sets; no production/holdout accuracy claim.",
@@ -613,8 +629,8 @@
     "src/road/runtime.mjs": "8be144c62fba78f74326f771ff117020092a8aa6eacbf153dc925946a7acb371",
     "src/road/store.mjs": "e178432db0653773c03ce5418f975a2a76ff241d0d59b9e025aee84af7290b1b",
     "src/road/policy.mjs": "c696f4e1e129cab7e90036cb0b02f7e1272a832958ebe3ddb7638da014d9cb8b",
-    "src/road/server.mjs": "cc993cd9cb3cdbf47ebfdb2cf4d1ad343898e0adbf7022ac5f36d6d6e8cb5b11",
-    "src/road/agent.mjs": "ae4922821b4b219b881248bd25b3b80e4a11a7abc68017e478dd2906715849fa",
+    "src/road/server.mjs": "6b2195b8efb4d9b95df6c92604c2a8179b968ab5e167dfdaae663fbf78f6d09f",
+    "src/road/agent.mjs": "e172127f97fa961acc3fd0908b022e527f475f4c686d1b5598842c23757e3459",
     "src/road/knowledge.mjs": "f66aa38b4f016067d161537c060f48f36b781e0315d05653b08936951a6ab7d3",
     "src/road/matters.mjs": "0908043bebd4d8d52dabb6208bcd237c983d71e4d2bf4ee4c5afe343a3e46a75",
     "src/road/presentation.mjs": "e3045632164ace485d98cdb56728de876d53d75a15dd5b1d7ca8ceb3a07cdf1e",

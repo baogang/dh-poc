@@ -150,8 +150,8 @@ export async function createRoadServer({store,knowledge,agentFactory,feedback=ne
         }else if(url.pathname==='/api/input'){
           if(!s.pendingInput||s.pendingInput.id!==input.input_id)throw failure('STALE_INPUT','Input is no longer current',409);run=agent.answerInput(s,input.input_id,input.value??{});
         }else if(url.pathname==='/api/approve-operation'){
-          if(!s.pendingOperation||s.pendingOperation.id!==input.proposal_id)throw failure('STALE_CONFIRMATION','Operation is no longer current',409);run=agent.approveOperation(s,input.proposal_id);
-        }else if(url.pathname==='/api/retry')run=agent.retry(s);
+          if(!s.pendingOperation||s.pendingOperation.id!==input.proposal_id)throw failure('STALE_CONFIRMATION','Operation is no longer current',409);const operation=await agent.authorizeOperation(s,input.proposal_id);run=agent.continueAuthorizedOperation(s,operation);
+        }else if(url.pathname==='/api/retry'){await agent.prepareRetry(s);run=agent.continueRetry(s);}
         else throw failure('NOT_FOUND','Unknown endpoint',404);
         const freeTurn=turnPermit,freeLease=release;turnPermit=null;release=null;
         const done=run.finally(async()=>{try{await freeLease();}finally{freeTurn();runs.delete(done);}});runs.add(done);done.catch(()=>{});

@@ -132,16 +132,20 @@ export class RoadAgent {
     s.running=true;const reply=this.store.message(s,'user',inputReply(s,input,result),{kind:'input',input_id:inputId,value:clone(result)});this.store.emit(s,'input_received',{input_id:inputId,result});await this.store.save(s);
     return this.run(s,{message:'Trusted UI input received. Continue the approved plan.',emotionMessageId:input.kind==='text'?reply.id:undefined});
   }
-  async approveOperation(s,proposalId){
+  async authorizeOperation(s,proposalId){
     if(s.running)throw failure('BUSY','Agent is running',409);
     const o=s.pendingOperation,p=this.active(s);
     if(!o||o.id!==proposalId||!p?.approved||o.plan_id!==p.id||o.epoch!==s.epoch)throw failure('STALE_CONFIRMATION','This confirmation is no longer valid',409);
     if(o.operation==='create_ticket'&&s.currentDraft?.plan_id===p.id)await this.matters.getDraft(s,s.currentDraft.id,s.currentDraft.version);
+    if(s.pendingOperation?.id!==o.id||s.epoch!==o.epoch||!p.approved)throw failure('STALE_CONFIRMATION','Approval was cancelled during validation',409);
     s.authorizations[o.fingerprint]={proposal_id:o.id,epoch:s.epoch,plan_id:p.id};s.pendingOperation=null;
     this.store.message(s,'user',chatNotice(s,'confirmed'),{kind:'decision',proposal_id:o.id,notice:'confirmed'});
     s.running=true;this.store.emit(s,'operation_approved',{proposal_id:o.id,operation:o.operation,parameters:o.parameters});await this.store.save(s);
-    return this.run(s,{message:'Trusted UI approval for exact operation: '+JSON.stringify(o)+'. Execute it, then continue.'});
+    if(s.epoch!==o.epoch||!p.approved){s.running=false;await this.store.save(s);throw failure('STALE_CONFIRMATION','Approval was cancelled before dispatch',409);}
+    return o;
   }
+  continueAuthorizedOperation(s,o){return this.run(s,{message:'Trusted UI approval for exact operation: '+JSON.stringify(o)+'. Execute it, then continue.'});}
+  async approveOperation(s,proposalId){const o=await this.authorizeOperation(s,proposalId);return this.continueAuthorizedOperation(s,o);}
   async showMatters(s){
     if(!s.user){this.store.message(s,'assistant','',{kind:'matters_login'});await this.store.save(s);return;}
     s.mattersView=await this.matters.list(s);this.store.message(s,'assistant','',{kind:'matters'});await this.store.save(s);
@@ -193,11 +197,12 @@ export class RoadAgent {
     }
     s.uncertainOperation=null;this.store.emit(s,'operation_reconciled',{state:result.state,operation_key:o.key});this.store.message(s,'assistant','',{kind:'reconciled',reconcile_state:result.state});await this.store.save(s);
   }
-  async retry(s){
+  async prepareRetry(s){
     if(s.running)throw failure('BUSY','Agent is running',409);
     await this.reconcileOperation(s);const p=this.active(s);if(!p?.approved)throw failure('REVIEW_REQUIRED','Send a new request to replan paused or changed work',409);
-    return this.run(s,{message:'User requests retry/continue the current approved plan. Reuse the same parameters and idempotency keys; inspect receipts before doing anything.'});
   }
+  continueRetry(s){return this.run(s,{message:'User requests retry/continue the current approved plan. Reuse the same parameters and idempotency keys; inspect receipts before doing anything.'});}
+  async retry(s){await this.prepareRetry(s);return this.continueRetry(s);}
   async run(s,{message,faq=false,fauxResponses,faqResponses,emotionResponses,emotionMessageId,originalQuestionId,serviceChoice=false}={}){
     s.running=true;const controller=new AbortController();this.runs.set(s.id,controller);let runtime,ended=false;
     const questionId=originalQuestionId??(faq?s.messages.findLast(m=>m.role==='user'&&!m.kind)?.id:this.active(s)?.origin_message_id??s.messages.findLast(m=>m.role==='user'&&!m.kind)?.id);let turnSeq;

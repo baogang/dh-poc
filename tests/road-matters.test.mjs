@@ -106,3 +106,21 @@ test('restoring a saved draft after an unrelated plan gets its own feedback ques
   const f=await fixture(),d=await draft(f);const unrelated=f.store.message(f.s,'user','Show my history only');f.s.plans.push({id:'other',status:'completed',approved:true,origin_message_id:unrelated.id,steps:[]});f.s.activePlanId='other';await f.agent.resumeDraft(f.s,d.id,d.version);
   const origin=f.s.messages.find(m=>m.id===f.agent.active(f.s).origin_message_id);assert.equal(origin.kind,'draft_restore');assert.notEqual(origin.id,unrelated.id);assert(origin.text.includes('Test Draft Road'));
 });
+
+test('HTTP approval waits for async draft validation before acknowledging a persisted running turn',async()=>{
+  const {createRoadServer}=await import('../src/road/server.mjs');const {FeedbackRepository}=await import('../src/road/feedback.mjs');const store=new RoadStore(),queue=[];
+  const app=await createRoadServer({store,knowledge:{document:{name:'test'},entries:[]},feedback:new FeedbackRepository({connectionString:null}),config:{port:10000,host:'127.0.0.1',access:{}},agentFactory:({store,api})=>new RoadAgent({store,api,knowledge:{},runtimeFactory:o=>controlledSession({...o,fauxResponses:queue.shift()})})});await new Promise(r=>app.server.listen(0,'127.0.0.1',r));await app.ready();
+  try{const s=store.create();s.csrf='test-csrf';await app.agent.login(s,{username:'demo',password:'demo'});const d=await app.agent.matters.draft(s,payload);await app.agent.prepareDraft(s,d);const original=s.pendingOperation.id;
+    let enter,release;const entered=new Promise(r=>enter=r),gate=new Promise(r=>release=r),get=app.agent.matters.getDraft.bind(app.agent.matters);app.agent.matters.getDraft=async(...args)=>{enter();await gate;return get(...args);};
+    queue.push([call('create_ticket',{step_id:'create',...payload}),()=>call('finish',{state:'completed',message:'Done',receipt_ids:s.receipts.map(r=>r.id)})]);
+    const origin='http://127.0.0.1:'+app.server.address().port,headers={cookie:'road_session='+s.id,'content-type':'application/json','x-csrf-token':s.csrf};let acknowledged=false;
+    const response=fetch(origin+'/api/approve-operation',{method:'POST',headers,body:JSON.stringify({proposal_id:original})}).then(r=>{acknowledged=true;return r;});await entered;await new Promise(r=>setTimeout(r,30));assert.equal(acknowledged,false,'202 must not report the pre-validation idle snapshot');release();
+    const r=await response,value=await r.json();assert.equal(r.status,202);assert(!value.pendingOperation);assert(value.running||value.status==='completed');for(let i=0;app.admission.turns&&i<100;i++)await new Promise(r=>setTimeout(r,10));assert.equal(s.receipts.length,1);
+    const other=await app.agent.matters.draft(s,payload);await app.agent.prepareDraft(s,other);const stale=s.pendingOperation.id;await app.agent.matters.draft(s,payload,{draftId:other.id,version:other.version});const denied=await fetch(origin+'/api/approve-operation',{method:'POST',headers,body:JSON.stringify({proposal_id:stale})});assert.equal(denied.status,409);assert.equal((await denied.json()).error.code,'STALE_DRAFT');assert.equal(s.receipts.length,1);
+  }finally{await app.close();}
+});
+
+test('cancel during asynchronous confirmation validation cannot authorize the old payload',async()=>{
+  const f=await fixture();await draft(f);const old=f.s.pendingOperation.id;let enter,release;const entered=new Promise(r=>enter=r),gate=new Promise(r=>release=r),get=f.agent.matters.getDraft.bind(f.agent.matters);
+  f.agent.matters.getDraft=async(...x)=>{enter();await gate;return get(...x);};const pending=f.agent.authorizeOperation(f.s,old);await entered;await f.agent.cancel(f.s);release();await assert.rejects(pending,{code:'STALE_CONFIRMATION'});assert.deepEqual(f.s.authorizations,{});assert.equal(f.s.pendingOperation,null);assert(!f.s.mock.calls.some(c=>c.operation==='create_ticket'));
+});
