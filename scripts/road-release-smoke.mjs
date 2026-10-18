@@ -46,18 +46,41 @@ try{
   await action(s,'/api/chat',{message:'Synthetic demo: please keep the service question in the handoff.'});check('Human-stage messages do not start business',s.state.messages.at(-1).kind==='human_reply'&&s.state.plans.length===0);
   await action(s,'/api/human',{handoff_id:handoff,action:'cancel'});check('User can cancel waiting and return to AI',!s.state.activeHandoffId&&s.state.mock.handoffs[0].status==='CANCELLED');
   if(s.state.feedback.enabled){const rating={answer_message_id:answer.id,rating:'satisfied',request_id:'p0-synthetic-regression',expected_version:0};const r=await request('/api/feedback',{s,data:rating}),saved=await r.json();check('Existing thumbs feedback persists with original-question attribution',r.ok&&saved.record.version===1&&saved.record.snapshot.question_message_id===original);}
-  const business=await session();await action(business,'/api/login',{username:'demo',password:'demo'});
+  const business=await session();await action(business,'/api/login',{username:'demo',password:'demo'});const initialTickets=business.state.mock.tickets.length,initialHandoffs=business.state.mock.handoffs.length;
   await action(business,'/api/chat',{message:'Create a new deep pothole report at my registered home address. This is synthetic demo test data.'});const proposal=business.state.pendingOperation?.id;
-  check('Existing creation still stops at exact HITL',!!proposal&&business.state.mock.tickets.length===3&&!business.state.mock.calls.some(c=>c.operation==='create_ticket'));
+  check('Existing creation still stops at exact HITL',!!proposal&&business.state.mock.tickets.length===initialTickets&&!business.state.mock.calls.some(c=>c.operation==='create_ticket'));
   await action(business,'/api/chat',{message:'Who can apply for this service?'});check('Clarification during HITL preserves the exact pending proposal',!!business.state.pendingKnowledge&&business.state.pendingOperation?.id===proposal);
   await action(business,'/api/service',{scope:'infrastructure-permit',clarification_id:business.state.pendingKnowledge.id});check('Answering side question preserves pending business approval',business.state.pendingOperation?.id===proposal);
-  await action(business,'/api/approve-operation',{proposal_id:proposal});check('Confirmed mock submission completes once',business.state.status==='completed'&&business.state.mock.tickets.length===4);
+  await action(business,'/api/approve-operation',{proposal_id:proposal});check('Confirmed mock submission completes once',business.state.status==='completed'&&business.state.mock.tickets.length===initialTickets+1);
   check('Duplicate old approval remains invalid',(await request('/api/approve-operation',{s:business,data:{proposal_id:proposal}})).status===409);
   check('Exactly one mock creation receipt remains',business.state.receipts.filter(r=>r.operation==='create_ticket').length===1);
   await action(business,'/api/chat',{message:'I am very disappointed with this service. Show my ticket history only; do not transfer me.'});
-  check('Negative sentiment offers help without an automatic transfer',business.state.status==='human_offer'&&!!business.state.pendingHelp&&business.state.mock.handoffs.length===0);
+  check('Negative sentiment offers help without an automatic transfer',business.state.status==='human_offer'&&!!business.state.pendingHelp&&business.state.mock.handoffs.length===initialHandoffs);
   await action(business,'/api/help',{action:'continue',request_id:business.state.pendingHelp.id});
-  check('Choosing AI resumes the original status-only request',business.state.status==='completed'&&business.state.receipts.some(r=>r.operation==='query_tickets')&&business.state.mock.handoffs.length===0&&business.state.mock.tickets.length===4);
+  check('Choosing AI resumes the original status-only request',business.state.status==='completed'&&business.state.receipts.some(r=>r.operation==='query_tickets')&&business.state.mock.handoffs.length===initialHandoffs&&business.state.mock.tickets.length===initialTickets+1);
+  const draftSession=await session();
+  await action(draftSession,'/api/matters',{action:'list'});check('Anonymous My matters asks for login inside chat',draftSession.state.messages.at(-1).kind==='matters_login');
+  await action(draftSession,'/api/login',{username:'demo-no-address',password:'demo',show_matters:true});const originalCount=draftSession.state.mock.tickets.length;
+  check('My matters exposes current account records',!!draftSession.state.mattersView&&draftSession.state.messages.at(-1).kind==='matters');
+  check('Matters mutations enforce CSRF',(await request('/api/matters',{s:draftSession,data:{action:'read',ids:[]},csrf:false})).status===403);
+  await action(draftSession,'/api/chat',{message:'Please report a deep pothole beside the synthetic library in Riyadh, Test Cedar Road.'});const oldDraftProposal=draftSession.state.pendingOperation?.id;
+  check('New report automatically saves an unsubmitted draft',!!oldDraftProposal&&!!draftSession.state.currentDraft&&draftSession.state.mock.tickets.length===originalCount);
+  await action(draftSession,'/api/edit-operation',{proposal_id:oldDraftProposal,value:{address:{city:'Riyadh',street:'Test Maple Road'},description:'Synthetic release regression pothole beside the test library.'}});
+  check('Editing preserves no old approval',draftSession.state.pendingOperation?.id!==oldDraftProposal&&draftSession.state.pendingOperation?.parameters.address.street==='Test Maple Road');
+  check('Old payload confirmation cannot be reused',(await request('/api/approve-operation',{s:draftSession,data:{proposal_id:oldDraftProposal}})).status===409);
+  const saved=structuredClone(draftSession.state.currentDraft);await action(draftSession,'/api/save-draft',{proposal_id:draftSession.state.pendingOperation.id});check('Save for later pauses and revokes confirmation',!draftSession.state.pendingOperation&&draftSession.state.status==='paused');
+  const restored=await session();await action(restored,'/api/login',{username:'demo-no-address',password:'demo',show_matters:true});check('New login restores the same account draft',restored.state.mattersView.drafts.some(d=>d.id===saved.id&&d.status==='draft'));
+  const foreign=await session();await action(foreign,'/api/login',{username:'demo-other',password:'demo'});check('Another account cannot restore the draft',(await request('/api/matters',{s:foreign,data:{action:'resume',draft_id:saved.id,version:saved.version}})).status===409);
+  await action(restored,'/api/matters',{action:'resume',draft_id:saved.id,version:saved.version});const current=restored.state.pendingOperation.id;
+  check('Restored draft needs fresh exact confirmation',restored.state.currentDraft.version===saved.version+1&&restored.state.pendingOperation.parameters.address.street==='Test Maple Road'&&restored.state.mock.tickets.length===originalCount);
+  check('Stale saved draft version is rejected',(await request('/api/matters',{s:draftSession,data:{action:'resume',draft_id:saved.id,version:saved.version}})).status===409);
+  await action(restored,'/api/approve-operation',{proposal_id:current});const created=restored.state.receipts.find(r=>r.operation==='create_ticket')?.result.ticket;
+  check('Restored draft creates one corrected report',restored.state.status==='completed'&&created?.address.street==='Test Maple Road'&&restored.state.mock.tickets.length===originalCount+1);
+  await action(restored,'/api/matters',{action:'list'});check('Submitted draft cannot become a second submission',restored.state.mattersView.drafts.find(d=>d.id===saved.id)?.status==='submitted'&&(await request('/api/matters',{s:restored,data:{action:'resume',draft_id:saved.id,version:restored.state.currentDraft.version}})).status===409);
+  for(const status of ['IN_PROGRESS','RESOLVED']){await action(restored,'/api/matters',{action:'simulate',ticket_id:created.ticket_id});check('Demo timeline advances to '+status,restored.state.mattersView.tickets.find(t=>t.ticket_id===created.ticket_id)?.status===status);}
+  const timeline=restored.state.mattersView.timeline.filter(e=>e.ticket_id===created.ticket_id),notifications=restored.state.mattersView.notifications.filter(e=>e.ticket_id===created.ticket_id);
+  check('One receipt reference and one reminder per actual mock change',timeline.length===3&&timeline.every(e=>e.reference_id&&e.source_type==='mock')&&notifications.length===3);
+  await action(restored,'/api/matters',{action:'read',ids:notifications.map(n=>n.id)});await refresh(restored);check('Read markers survive refresh',restored.state.mattersView.notifications.filter(n=>n.ticket_id===created.ticket_id).every(n=>n.read));
   check('Private mock transport remains inaccessible',(await request('/mock/query_tickets',{data:{}})).status===403);
 }catch(e){error=e.message;}
 const report={timestamp:new Date().toISOString(),url:base,synthetic_data:true,passed:checks.filter(c=>c.pass).length,total:checks.length,error,checks};

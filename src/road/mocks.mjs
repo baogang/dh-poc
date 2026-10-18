@@ -1,4 +1,5 @@
 import { id,clone,digest,failure } from './store.mjs';
+import {RoadAccounts,copyAccountToSession,recordChange} from './matters.mjs';
 
 export const MOCK_API_NAMES=['login','create_ticket','query_tickets','close_ticket','complain_ticket','handoff_to_human'];
 const terminal=new Set(['COMPLETED','RESOLVED','CLOSED','CANCELLED']);
@@ -13,7 +14,7 @@ export function seedTickets(userId){
 }
 
 export class RoadMocks {
-  constructor(store){this.store=store;}
+  constructor(store){this.store=store;this.accounts=new RoadAccounts(store);}
   async call(sid,operation,body,context={}){
     const s=this.store.get(sid);
     const conversation=operation==='handoff_to_human'&&body.scope==='conversation';
@@ -43,10 +44,11 @@ export class RoadMocks {
       if(operation==='login'){
         if(!['demo','demo-no-address','demo-other'].includes(body.username)||body.password!=='demo')throw failure('INVALID_LOGIN','Use a fictional demo account',401);
         const user_id=body.username==='demo-other'?'U002':body.username==='demo-no-address'?'U003':'U001';
-        s.user={user_id,username:body.username,name:'Demo citizen',registeredAddress:body.username==='demo-no-address'?null:{city:'Riyadh',street:'Test Citizen Road',fullAddress:'Riyadh, Test Citizen Road'},source_type:'mock'};
-        s.facts.address=clone(s.user.registeredAddress);s.mock.tickets=seedTickets(user_id);
+        const user={user_id,username:body.username,name:'Demo citizen',registeredAddress:body.username==='demo-no-address'?null:{city:'Riyadh',street:'Test Citizen Road',fullAddress:'Riyadh, Test Citizen Road'},source_type:'mock'};
+        await this.accounts.update(user_id,a=>{if(!a.initialized){a.initialized=true;a.tickets=seedTickets(user_id);}copyAccountToSession(s,a);});s.user=user;s.facts.address=clone(user.registeredAddress);
         result={success:true,user:clone(s.user)};
       }else if(operation==='query_tickets'){
+        await this.accounts.update(body.user_id,a=>{if(!a.initialized){a.initialized=true;a.tickets=clone(s.mock.tickets.length?s.mock.tickets:seedTickets(body.user_id));a.complaints=clone(s.mock.complaints);a.handoffs=clone(s.mock.handoffs.filter(h=>h.scope!=='conversation'));}copyAccountToSession(s,a);});
         const tickets=s.mock.tickets.filter(t=>t.user_id===body.user_id&&(!body.ticket_id||t.ticket_id===body.ticket_id));
         result={success:true,tickets:clone(tickets),handoffs:clone(s.mock.handoffs.filter(h=>tickets.some(t=>t.ticket_id===h.ticket_id))),complaints:clone(s.mock.complaints.filter(h=>tickets.some(t=>t.ticket_id===h.ticket_id))),source_type:'mock'};
       }else if(conversation){
@@ -64,7 +66,14 @@ export class RoadMocks {
           if(!next||!next.from.includes(h.status))throw failure('INVALID_HANDOFF_TRANSITION','Invalid simulated human transition',409);
           h.status=next.to;h.updated_at=new Date().toISOString();if(action==='accept')h.agent_name='Mock roads agent';result={success:true,handoff:clone(h),source_type:'mock'};
         }
-      }else if(operation==='create_ticket'){
+      }else{
+        result=await this.accounts.update(body.user_id,a=>{
+          if(context.epoch!==undefined&&context.epoch!==s.epoch)throw failure('STALE_TURN','Turn interrupted before account commit',409);
+          if(!a.initialized){a.initialized=true;a.tickets=clone(s.mock.tickets.length?s.mock.tickets:seedTickets(body.user_id));}
+          const replay=a.idempotency[key];if(replay){if(replay.fingerprint!==fingerprint)throw failure('IDEMPOTENCY_CONFLICT','Parameters changed',409);call.replayed=true;copyAccountToSession(s,a);return replay.result;}
+          if(context.draft_id){const d=a.drafts.find(d=>d.id===context.draft_id);if(!d||d.status!=='draft'||d.version!==context.draft_version||digest(d.parameters)!==digest({address:body.address,description:body.description}))throw failure('STALE_DRAFT','Draft changed or already submitted',409);}
+          copyAccountToSession(s,a);let result;
+          if(operation==='create_ticket'){
         if(!body.address?.city?.trim()||!body.address?.street?.trim()||!body.description?.trim())throw failure('MISSING_FIELDS','City, street and description are required');
         const ticket={ticket_id:id('T'),user_id:body.user_id,topic:'ROAD_POTHOLE',address:clone(body.address),description:body.description,status:'OPEN',created_at:new Date().toISOString(),decisionContext:{intentCode:'COMPLAINT_FOLLOW_UP',slaStatus:'WITHIN_SLA',repeatContact:false,decision:'REVIEW_REQUIRED',reportedAgeDays:0,confidence:0.94,demoRule:true}};
         s.mock.tickets.push(ticket);result={success:true,ticket:clone(ticket),source_type:'mock'};
@@ -92,6 +101,15 @@ export class RoadMocks {
             handoff.status=next[1];if(action==='accept')handoff.agent_name='Mock roads agent';result={success:true,handoff:clone(handoff),source_type:'mock'};
           }
         }
+        }
+          const ticketId=result.ticket?.ticket_id??result.complaint?.ticket_id??result.handoff?.ticket_id;
+          const referenceId=result.ticket?.ticket_id??result.complaint?.complaint_id??result.handoff?.handoff_id;
+          a.tickets=clone(s.mock.tickets);a.complaints=clone(s.mock.complaints);a.handoffs=clone(s.mock.handoffs.filter(h=>h.scope!=='conversation'));
+          a.idempotency[key]={fingerprint,result:clone(result)};
+          if(!result.already_closed)recordChange(a,{ticket_id:ticketId,kind:operation,status:result.ticket?.status??result.complaint?.status??result.handoff?.status,reference_id:referenceId});
+          if(context.draft_id){const d=a.drafts.find(d=>d.id===context.draft_id);if(d){d.status='submitted';d.ticket_id=ticketId;d.updated_at=new Date().toISOString();}}
+          return result;
+        });
       }
       if(write)s.mock.idempotency[key]={fingerprint,result:clone(result)};
       if(fault?.drop_response_after_commit){fault.drop_response_after_commit=false;throw failure('RESPONSE_LOST','Mock committed, then dropped its response',503);}

@@ -1,0 +1,639 @@
+{
+  "timestamp": "2026-10-18T20:09:25.754746+00:00",
+  "base_revision": "2698734ba04242538c85516b719085bf59622180",
+  "scope": [
+    "edit unsubmitted report and complaint details with renewed exact HITL",
+    "account-scoped complete report drafts and My matters across sessions",
+    "receipt-backed timeline and in-app demo notifications",
+    "persist-before-dispatch uncertainty and mock operation-ledger reconciliation"
+  ],
+  "validation": {
+    "engineering_node": {
+      "passed": 196,
+      "failed": 0
+    },
+    "python_mocks": {
+      "passed": 26,
+      "failed": 0
+    },
+    "postgres": {
+      "passed": 21,
+      "failed": 0,
+      "isolated_schema": true
+    },
+    "offline": {
+      "passed": 60,
+      "total": 60
+    },
+    "live_v3": {
+      "passed": 34,
+      "total": 34,
+      "selection": {
+        "tp": 20,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      "combined_ui_selection": {
+        "tp": 24,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      "unsafe_writes": 0,
+      "model_requests": 116,
+      "raw_report": "reports/road/2026-10-18T20-04-53.968Z-all.json"
+    },
+    "live_v4": {
+      "passed": 15,
+      "total": 15,
+      "selection": {
+        "tp": 18,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      },
+      "raw_report": "reports/road/2026-10-18T20-08-40.751Z-matters.json",
+      "checks": [
+        {
+          "id": "DRAFT-02",
+          "pass": true,
+          "checks": [
+            {
+              "name": "step 1: old payload rejected",
+              "pass": true
+            },
+            {
+              "name": "step 2: exact confirmation exists",
+              "pass": true
+            },
+            {
+              "name": "Expected unique created records",
+              "pass": true
+            },
+            {
+              "name": "Exact corrected address",
+              "pass": true
+            },
+            {
+              "name": "Forbidden operations absent",
+              "pass": true
+            },
+            {
+              "name": "Tool precision and recall",
+              "pass": true
+            },
+            {
+              "name": "No unconfirmed writes",
+              "pass": true
+            }
+          ]
+        },
+        {
+          "id": "DRAFT-01",
+          "pass": true,
+          "checks": [
+            {
+              "name": "step 1: old payload rejected",
+              "pass": true
+            },
+            {
+              "name": "step 2: exact confirmation exists",
+              "pass": true
+            },
+            {
+              "name": "Expected unique created records",
+              "pass": true
+            },
+            {
+              "name": "Exact corrected address",
+              "pass": true
+            },
+            {
+              "name": "Forbidden operations absent",
+              "pass": true
+            },
+            {
+              "name": "Tool precision and recall",
+              "pass": true
+            },
+            {
+              "name": "No unconfirmed writes",
+              "pass": true
+            }
+          ]
+        },
+        {
+          "id": "DRAFT-04",
+          "pass": true,
+          "checks": [
+            {
+              "name": "Save revokes confirmation",
+              "pass": true
+            },
+            {
+              "name": "Restoration requires fresh approval",
+              "pass": true
+            },
+            {
+              "name": "Expected unique created records",
+              "pass": true
+            },
+            {
+              "name": "Unsubmitted restored confirmation",
+              "pass": true
+            },
+            {
+              "name": "Forbidden operations absent",
+              "pass": true
+            },
+            {
+              "name": "Tool precision and recall",
+              "pass": true
+            },
+            {
+              "name": "No unconfirmed writes",
+              "pass": true
+            }
+          ]
+        },
+        {
+          "id": "DRAFT-03",
+          "pass": true,
+          "checks": [
+            {
+              "name": "Save revokes confirmation",
+              "pass": true
+            },
+            {
+              "name": "Restoration requires fresh approval",
+              "pass": true
+            },
+            {
+              "name": "step 4: exact confirmation exists",
+              "pass": true
+            },
+            {
+              "name": "Expected unique created records",
+              "pass": true
+            },
+            {
+              "name": "Forbidden operations absent",
+              "pass": true
+            },
+            {
+              "name": "Tool precision and recall",
+              "pass": true
+            },
+            {
+              "name": "No unconfirmed writes",
+              "pass": true
+            }
+          ]
+        },
+        {
+          "id": "DRAFT-06",
+          "pass": true,
+          "checks": [
+            {
+              "name": "Save revokes confirmation",
+              "pass": true
+            },
+            {
+              "name": "Foreign account cannot restore draft",
+              "pass": true
+            },
+            {
+              "name": "Foreign account has no draft",
+              "pass": true
+            },
+            {
+              "name": "Expected unique created records",
+              "pass": true
+            },
+            {
+              "name": "Forbidden operations absent",
+              "pass": true
+            },
+            {
+              "name": "Tool precision and recall",
+              "pass": true
+            },
+            {
+              "name": "No unconfirmed writes",
+              "pass": true
+            }
+          ]
+        },
+        {
+          "id": "DRAFT-05",
+          "pass": true,
+          "checks": [
+            {
+              "name": "Restoration requires fresh approval",
+              "pass": true
+            },
+            {
+              "name": "Original tab cannot submit claimed draft",
+              "pass": true
+            },
+            {
+              "name": "step 5: exact confirmation exists",
+              "pass": true
+            },
+            {
+              "name": "Expected unique created records",
+              "pass": true
+            },
+            {
+              "name": "Forbidden operations absent",
+              "pass": true
+            },
+            {
+              "name": "Tool precision and recall",
+              "pass": true
+            },
+            {
+              "name": "No unconfirmed writes",
+              "pass": true
+            }
+          ]
+        },
+        {
+          "id": "DRAFT-07",
+          "pass": true,
+          "checks": [
+            {
+              "name": "Discarded draft cannot resume",
+              "pass": true
+            },
+            {
+              "name": "Discarded proposal cannot submit",
+              "pass": true
+            },
+            {
+              "name": "Expected unique created records",
+              "pass": true
+            },
+            {
+              "name": "Forbidden operations absent",
+              "pass": true
+            },
+            {
+              "name": "Tool precision and recall",
+              "pass": true
+            },
+            {
+              "name": "No unconfirmed writes",
+              "pass": true
+            }
+          ]
+        },
+        {
+          "id": "DRAFT-08",
+          "pass": true,
+          "checks": [
+            {
+              "name": "Invalid edit rejected",
+              "pass": true
+            },
+            {
+              "name": "Valid proposal survives invalid edit",
+              "pass": true
+            },
+            {
+              "name": "step 2: exact confirmation exists",
+              "pass": true
+            },
+            {
+              "name": "Expected unique created records",
+              "pass": true
+            },
+            {
+              "name": "Forbidden operations absent",
+              "pass": true
+            },
+            {
+              "name": "Tool precision and recall",
+              "pass": true
+            },
+            {
+              "name": "No unconfirmed writes",
+              "pass": true
+            }
+          ]
+        },
+        {
+          "id": "RECOVERY-01",
+          "pass": true,
+          "checks": [
+            {
+              "name": "step 2: exact confirmation exists",
+              "pass": true
+            },
+            {
+              "name": "Expected unique created records",
+              "pass": true
+            },
+            {
+              "name": "Exact receipt-based timeline count",
+              "pass": true
+            },
+            {
+              "name": "Exactly one notification per change",
+              "pass": true
+            },
+            {
+              "name": "Forbidden operations absent",
+              "pass": true
+            },
+            {
+              "name": "Tool precision and recall",
+              "pass": true
+            },
+            {
+              "name": "No unconfirmed writes",
+              "pass": true
+            }
+          ]
+        },
+        {
+          "id": "RECOVERY-02",
+          "pass": true,
+          "checks": [
+            {
+              "name": "step 2: exact confirmation exists",
+              "pass": true
+            },
+            {
+              "name": "Unknown result is visible",
+              "pass": true
+            },
+            {
+              "name": "Authoritative absent result checked",
+              "pass": true
+            },
+            {
+              "name": "Expected unique created records",
+              "pass": true
+            },
+            {
+              "name": "Forbidden operations absent",
+              "pass": true
+            },
+            {
+              "name": "Tool precision and recall",
+              "pass": true
+            },
+            {
+              "name": "No unconfirmed writes",
+              "pass": true
+            }
+          ]
+        },
+        {
+          "id": "TIMELINE-01",
+          "pass": true,
+          "checks": [
+            {
+              "name": "step 1: exact confirmation exists",
+              "pass": true
+            },
+            {
+              "name": "Expected unique created records",
+              "pass": true
+            },
+            {
+              "name": "Actual current ticket status",
+              "pass": true
+            },
+            {
+              "name": "Exact receipt-based timeline count",
+              "pass": true
+            },
+            {
+              "name": "Exactly one notification per change",
+              "pass": true
+            },
+            {
+              "name": "Read markers survive login",
+              "pass": true
+            },
+            {
+              "name": "Forbidden operations absent",
+              "pass": true
+            },
+            {
+              "name": "Tool precision and recall",
+              "pass": true
+            },
+            {
+              "name": "No unconfirmed writes",
+              "pass": true
+            }
+          ]
+        },
+        {
+          "id": "TIMELINE-02",
+          "pass": true,
+          "checks": [
+            {
+              "name": "step 1: old payload rejected",
+              "pass": true
+            },
+            {
+              "name": "step 2: exact confirmation exists",
+              "pass": true
+            },
+            {
+              "name": "Expected unique created records",
+              "pass": true
+            },
+            {
+              "name": "Corrected complaint reason",
+              "pass": true
+            },
+            {
+              "name": "Forbidden operations absent",
+              "pass": true
+            },
+            {
+              "name": "Tool precision and recall",
+              "pass": true
+            },
+            {
+              "name": "No unconfirmed writes",
+              "pass": true
+            }
+          ]
+        },
+        {
+          "id": "TIMELINE-03",
+          "pass": true,
+          "checks": [
+            {
+              "name": "step 1: exact confirmation exists",
+              "pass": true
+            },
+            {
+              "name": "Expected unique created records",
+              "pass": true
+            },
+            {
+              "name": "Exact receipt-based timeline count",
+              "pass": true
+            },
+            {
+              "name": "Closed status persisted",
+              "pass": true
+            },
+            {
+              "name": "Forbidden operations absent",
+              "pass": true
+            },
+            {
+              "name": "Tool precision and recall",
+              "pass": true
+            },
+            {
+              "name": "No unconfirmed writes",
+              "pass": true
+            }
+          ]
+        },
+        {
+          "id": "BOUNDARY-01",
+          "pass": true,
+          "checks": [
+            {
+              "name": "step 1: exact confirmation exists",
+              "pass": true
+            },
+            {
+              "name": "Expected unique created records",
+              "pass": true
+            },
+            {
+              "name": "Submitted record was not silently amended",
+              "pass": true
+            },
+            {
+              "name": "Forbidden operations absent",
+              "pass": true
+            },
+            {
+              "name": "Tool precision and recall",
+              "pass": true
+            },
+            {
+              "name": "No unconfirmed writes",
+              "pass": true
+            }
+          ]
+        },
+        {
+          "id": "DRAFT-09",
+          "pass": true,
+          "checks": [
+            {
+              "name": "Save revokes confirmation",
+              "pass": true
+            },
+            {
+              "name": "Restoration requires fresh approval",
+              "pass": true
+            },
+            {
+              "name": "step 4: exact confirmation exists",
+              "pass": true
+            },
+            {
+              "name": "Expected unique created records",
+              "pass": true
+            },
+            {
+              "name": "Restored draft feedback uses its own request",
+              "pass": true
+            },
+            {
+              "name": "Forbidden operations absent",
+              "pass": true
+            },
+            {
+              "name": "Tool precision and recall",
+              "pass": true
+            },
+            {
+              "name": "No unconfirmed writes",
+              "pass": true
+            }
+          ]
+        }
+      ]
+    },
+    "live_emotion": {
+      "passed": 48,
+      "total": 48,
+      "raw_report": "reports/road/emotion-road-all-2026-10-18T19-58-27.080Z.json"
+    },
+    "local_http": {
+      "passed": 53,
+      "total": 53,
+      "reference": "workspace outputs/road-next-local-http.json"
+    },
+    "browser": [
+      "Chinese UI edit, old-card expiry, save, new conversation login, restore, exact confirmation, actual receipt, timeline",
+      "Show tasks disabled throughout critical operations",
+      "390x844 viewport: innerWidth=390, document.scrollWidth=390; reset after test",
+      "English UI labels, actions and draft preservation covered by DOM regressions"
+    ],
+    "source_checks": "passed"
+  },
+  "limitations": [
+    "Synthetic small regression sets; no production/holdout accuracy claim.",
+    "Restore uses host-reconstructed known steps and is not scored as autonomous model planning.",
+    "Drafts begin when complete report payload reaches submission confirmation. Partial-input conversation recovery still uses the original session.",
+    "Mock account IDs and mock password are demo authentication only.",
+    "No real staff notification, SMS, email, push, department API or submitted-ticket amendment.",
+    "Atomicity is within the same mock account database; real external APIs require a separate reconciliation contract.",
+    "All legacy sessions are not scanned or merged into the new account record."
+  ],
+  "source_sha256": {
+    "src/road/human.mjs": "222b6a2ec8ca11872f1c2cda3c13fd9671d58693722fa1b114277e1dc7c8830f",
+    "src/road/neon-store.mjs": "742616c874ac739d7dff0eed3959981ddcd1578499647b14f487073c7a4ba2c9",
+    "src/road/eval-metrics.mjs": "737dd9b789cd18bdc8d26fa4cea66bb7995c9ff911544127abcdd669af065eeb",
+    "src/road/emotion.mjs": "66bc93477284b6a39f24695e492ba78dd7a31a435310a174446bc8a8d5aadd37",
+    "src/road/feedback.mjs": "f82e820db72c305ec3a99c4faaa5b4f0b4c9c84a598ca53e997b329649bc029d",
+    "src/road/mocks.mjs": "883cf85bcd8cc23933366c3b01ab145033dd5a129e022627a4a599a904885ad4",
+    "src/road/runtime.mjs": "8be144c62fba78f74326f771ff117020092a8aa6eacbf153dc925946a7acb371",
+    "src/road/store.mjs": "e178432db0653773c03ce5418f975a2a76ff241d0d59b9e025aee84af7290b1b",
+    "src/road/policy.mjs": "c696f4e1e129cab7e90036cb0b02f7e1272a832958ebe3ddb7638da014d9cb8b",
+    "src/road/server.mjs": "cc993cd9cb3cdbf47ebfdb2cf4d1ad343898e0adbf7022ac5f36d6d6e8cb5b11",
+    "src/road/agent.mjs": "ae4922821b4b219b881248bd25b3b80e4a11a7abc68017e478dd2906715849fa",
+    "src/road/knowledge.mjs": "f66aa38b4f016067d161537c060f48f36b781e0315d05653b08936951a6ab7d3",
+    "src/road/matters.mjs": "0908043bebd4d8d52dabb6208bcd237c983d71e4d2bf4ee4c5afe343a3e46a75",
+    "src/road/presentation.mjs": "e3045632164ace485d98cdb56728de876d53d75a15dd5b1d7ca8ceb3a07cdf1e",
+    "src/road/database.mjs": "d4d3a9e3e804d305034fcf7a15874d8a2b60f880cb949a1c59c62aa8bdff924f",
+    "src/road/services.mjs": "2767f59fec0f45d5ec5087c58e43cd55f69098b1c8a235ebdab629e8599a7906",
+    "src/road/feedback-context.mjs": "9797d117a70f880f96de312f52affbdc942737b824fdb85016f040cf13b5e30b",
+    "web/road/index.html": "ec447f48a903289d154d6815f6a042a0cd9f5e88ed4609984c6dc5d727f17808",
+    "web/road/chat-ui.js": "de63724a5dc54fedac6f4eb47ee775b5ff6ee232213fe65e31d934a29f9bff90",
+    "web/road/feedback-data.js": "a53d66adb7cf71aef7cf2404d411c5e9debcd25cf714bffbe2d4c4234a2a35df",
+    "web/road/style.css": "985eb09c13147afd6c12cf23885f5f661c38b0f7d74647f2f9aa20f7a515256d",
+    "web/road/feedback-ui.js": "41d3e1370af22d4a8b2dba435a22cefd871198fb9609d7d793bc7e5ad26be7bf",
+    "web/road/i18n.js": "5a161a7833e118692265d01abd17f8b7a26ef7d34ca67a317446ec6b8162128a",
+    "web/road/app.js": "b2a255421cc4372d2303c2cc2eed8a2824a5386ad696c7c3568b13d976afda3b",
+    "src/knowledge/road-faq.json": "4c60e137e5b5176b32c09bd575f8082029eee3b1ee0415608be2cc7d2cd52054",
+    "src/knowledge/road-faq.original.json": "7daebd8e7d65d63b52165b60854ca740514939677b7273add8cdb53264a001e8",
+    "datasets/road-v3/cases.jsonl": "995c7fad04a60ee1245e467ba1da4d0d56f97003c7b829676d0960763860b617",
+    "datasets/road-v4/cases.jsonl": "e6684c9af1cc1308e76fbfb8f30401bd90d588ffba521d1f725731fb476730d9",
+    "scripts/road-eval.mjs": "f43c79da378d88974b87d7e1313964baf2bbdd2c68d9f6654c14a8f385d7a143",
+    "scripts/road-matters-eval.mjs": "2a435fb60e3884fd69e9c117a3d9d664aa2b13dbbe11fd1d617eb492b4ec4bbd",
+    "scripts/road-release-smoke.mjs": "831c6972fb2c3b2f461eb172a2a247a23bd508f24b5bd9fe931a8dd49a80471b"
+  }
+}

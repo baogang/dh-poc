@@ -10,6 +10,8 @@ import {RoadStore} from '../src/road/store.mjs';
 import {createRoadServer} from '../src/road/server.mjs';
 import {FeedbackRepository} from '../src/road/feedback.mjs';
 import {RoadAgent} from '../src/road/agent.mjs';
+import {RoadMocks} from '../src/road/mocks.mjs';
+import {RoadMatters} from '../src/road/matters.mjs';
 import {controlledSession} from '../src/road/runtime.mjs';
 import {fauxAssistantMessage,fauxToolCall} from '@earendil-works/pi-ai';
 
@@ -121,6 +123,18 @@ test('Neon session persistence, ownership, recovery, lifecycle and real HTTP com
       queue.push([call('create_ticket',args),()=>call('finish',{state:'completed',message:'Done',receipt_ids:app.store.get(sid).receipts.map(r=>r.id)})]);
       assert.equal((await post('/api/approve-operation',{proposal_id:proposal.id})).status,202);const final=await idle();assert.equal(final.status,'completed');assert.equal(final.mock.tickets.length,4);assert.equal(final.receipts.filter(r=>r.operation==='create_ticket').length,1);assert.equal(final.pendingOperation,null);
       const duplicate=await post('/api/approve-operation',{proposal_id:proposal.id});assert.equal(duplicate.status,409);assert.equal((await app.store.load(sid)).mock.tickets.length,4);
+    });
+    await t.test('account drafts, cross-store claim versions, concurrent receipts and reminders persist separately from sessions',async()=>{
+      const aa=make(),bb=make();await aa.initialize();await bb.initialize();
+      let sa=aa.create(),sb=bb.create();await aa.save(sa);await bb.save(sb);const leaseA=await aa.acquire(sa.id),leaseB=await bb.acquire(sb.id);sa=leaseA.session;sb=leaseB.session;const ma=new RoadMocks(aa),mb=new RoadMocks(bb),fa=new RoadMatters(aa),fb=new RoadMatters(bb);
+      await ma.call(sa.id,'login',{username:'demo-other',password:'demo'});await mb.call(sb.id,'login',{username:'demo-other',password:'demo'});
+      const parameters={address:{city:'Test City',street:'Postgres test road'},description:'Synthetic cross-store draft'};
+      const draft=await fa.draft(sa,parameters);assert.equal((await fb.list(sb)).drafts.at(-1).id,draft.id);
+      const claimed=await fb.draft(sb,parameters,{draftId:draft.id,version:draft.version});await assert.rejects(fa.getDraft(sa,draft.id,draft.version),{code:'STALE_DRAFT'});
+      const body={...parameters,user_id:'U002'},context={idempotency_key:'pg-account-key',draft_id:claimed.id,draft_version:claimed.version};
+      const results=await Promise.all([ma.call(sa.id,'create_ticket',body,context),mb.call(sb.id,'create_ticket',body,context)]);assert.equal(results[0].ticket.ticket_id,results[1].ticket.ticket_id);
+      const list=await fb.list(sb);assert.equal(list.timeline.length,1);assert.equal(list.drafts.at(-1).status,'submitted');await fa.markRead(sa,list.notifications.map(n=>n.id));assert((await fb.list(sb)).notifications.every(n=>n.read));
+      await leaseA.release();await leaseB.release();const replacement=make();await replacement.initialize();const fresh=replacement.create();await new RoadMocks(replacement).call(fresh.id,'login',{username:'demo-other',password:'demo'});assert.equal(fresh.mock.tickets.filter(t=>t.ticket_id===results[0].ticket.ticket_id).length,1);
     });
   }finally{
     await Promise.allSettled(apps.map(app=>app.close()));await Promise.allSettled(stores.map(store=>store.close()));await pool.query(`DROP SCHEMA IF EXISTS "${schema}" CASCADE`);await pool.end();

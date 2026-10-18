@@ -14,6 +14,20 @@ Requirements confirmed on 2026-10-14, updated by the 2026-10-19 product review:
 
 The original local source had no Git metadata. Its files matched `baogang/dh-poc` branch `value`. Git metadata was restored from that remote without replacing working files, and development uses `codex/road-pothole-pi-poc`.
 
+## 2026-10-19：更正、我的事项与时间线
+
+- 创建确认卡新增“修改信息”和“保存，稍后继续”；修改城市、街道、描述会创建新版本，撤销旧确认。投诉确认可更正原因。所有关键操作在聊天中，独立于“显示任务列表”。
+- 新报单内容齐全进入确认时自动保存账号草稿。新对话重新登录同一模拟账号，通过“我的事项”恢复并重新核对；旧会话授权、确认卡和密码不随草稿迁移。多个窗口恢复/修改时按版本校验，已提交或已删除草稿不可再次提交。
+- 三个 MOCK 账号各自保存草稿、工单、投诉、人工工单、操作幂等账本、状态时间线和提醒。登录不再重置记录。同账号的浏览器窗口共享事项；“新对话”不等于清空账号。
+- 线上复用已有 Neon，并按需建立独立 `road_accounts` JSONB 表；短事务和账户行锁保护版本、业务记录、幂等结果、时间线和提醒的一致性。会话仍由原来的 `road_sessions` 管理。
+- 提交前先持久化待核对操作。响应丢失、取消或会话保存故障后，先按原幂等键查询模拟账本，已成功则恢复回执，未提交才允许继续。未知结果未澄清时阻止业务调用；普通聊天或重新规划不能绕过。
+- “我的事项”显示实际模拟状态、变化引用和未读提醒，支持已读。只显示有证据的变化，不补写历史流程。“演示：推进一个状态”明确模拟 OPEN → IN_PROGRESS → RESOLVED；`ROAD_DEMO_UI=false` 同时禁用该按钮与后端入口。
+- 初始计划仍由 PI 动态生成；恢复完整结构化草稿时，宿主恢复已知的创建/回执步骤，重新进入精确 HITL，不把这一过程作为模型规划得分。恢复后的结果仍可评价，反馈保留恢复请求及工具结果证据。
+
+边界：尚未收齐信息的对话仍保存在原会话，跨会话草稿从确认阶段开始；不支持修改已提交工单、不连接真实部门进度、无短信/邮件/推送。模拟账号不是生产身份认证。旧版本会话第一次访问账号数据时，可导入该会话已有的 MOCK 记录；不会扫描并合并全部历史会话，也不会伪造缺失的历史时间线。连接真实外部接口仍需独立认证、授权、幂等及对账协议。
+
+新增 [15 条场景数据及手工验收步骤](../datasets/road-v4/README.md)，与 road-v3 的 34 条业务回归和 48 条情绪集合一起验收。发布结果见 [本轮回归摘要](evaluation/road-next-validation-20261019.json)。
+
 ## Source and acceptance
 
 The reference chat is “Review Road Pothole Service”, `01a13a09-deda-77c1-a984-4bd257118fa5`. Its captured original prompt is retained in the review chat workspace. The source FAQ is `digital-human-faq`; source row counts and migration completeness must be verified separately from the displayed collection count.
@@ -35,7 +49,7 @@ npm run road:web
 
 Open `http://127.0.0.1:8787`. DeepSeek credentials are loaded from the existing `.env`; the model is `deepseek-flash`. Select `demo` (registered address), `demo-no-address`, or `demo-other`; all fictional account passwords are `demo`. Credentials go to the login mock, never to the model. The legacy evaluation dashboard remains available through `npm run web` on another port.
 
-Road conversations require Neon/PostgreSQL. Set `ROAD_SESSION_DATABASE_URL`, or reuse the existing `ROAD_FEEDBACK_DATABASE_URL`. Startup creates the additive `road_sessions` table and imports legacy `ROAD_STATE_DIR` JSON files without deleting them. No database configuration means startup fails; a database outage returns an explicit error. See [session management, measured capacity and horizontal scaling](road-session-management.md) for configuration, lifecycle and rollout steps.
+Road conversations require Neon/PostgreSQL. Set `ROAD_SESSION_DATABASE_URL`, or reuse the existing `ROAD_FEEDBACK_DATABASE_URL`. Startup creates the additive `road_sessions` table; account access creates `road_accounts` and imports legacy `ROAD_STATE_DIR` JSON files without deleting them. No database configuration means startup fails; a database outage returns an explicit error. See [session management, measured capacity and horizontal scaling](road-session-management.md) for configuration, lifecycle and rollout steps.
 
 The page supports English, Arabic and Chinese messages. Enter sends the message; Shift+Enter inserts a newline, and IME composition does not send prematurely. A new business request publishes and starts a plan automatically. Normal reads execute directly; every business mutation and configured high-risk read publishes an **exact operation confirmation** before the API runs. Address and report selection use structured input cards. A ticket selection records both matched-report confirmation and unresolved status. Existing status must be nonterminal for unresolved handoff. Use the mock human console to advance WAITING → ACCEPTED → ESCALATED → COMPLETED. Those transitions describe human handling, not physical road repair.
 

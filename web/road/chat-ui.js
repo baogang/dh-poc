@@ -54,11 +54,49 @@ export function createChatRenderer(document,container,actions){
     if(parameters.address)add(t('工单地址'),[parameters.address.city,parameters.address.street].filter(Boolean).join(', '));
     add(t('问题描述'),parameters.description);add(t('工单编号'),parameters.ticket_id);add(t('原因'),parameters.reason);add(t('交接摘要'),parameters.conversation_summary);parent.append(dl);
   }
+  function mattersCard(n,item,busy){
+    const data=item.matters;
+    n.append(el('strong',t('我的事项')));
+    if(!item.latestMatters){n.append(el('p',t('请查看下方最新的事项列表。')));return;}
+    n.append(el('p',t('仅显示当前模拟账号的事项；所有办理和提醒均为演示。')));
+    n.append(button(t('刷新事项'),()=>actions.action('/api/matters',{action:'list'}),busy));
+    if(!data)return;
+    const unread=data.notifications.filter(x=>!x.read);n.append(el('h3',t('站内提醒 · {count} 条未读',{count:unread.length})));
+    if(unread.length)n.append(button(t('全部标为已读'),()=>actions.action('/api/matters',{action:'read',ids:unread.map(x=>x.id).slice(0,200)}),busy));
+    const notices=el('ul',undefined,'matter-notices');for(const x of data.notifications.slice(-8).reverse())notices.append(el('li',`${x.read?'✓':'●'} ${x.ticket_id} · ${t(operationLabels[x.kind]??(x.kind==='demo_status'?'模拟状态更新':x.kind))} · ${t('matter.status.'+x.status)}`));n.append(notices);
+    n.append(el('h3',t('待继续的草稿')));const drafts=data.drafts.filter(d=>d.status==='draft');
+    if(!drafts.length)n.append(el('p',t('暂无待继续的草稿。')));
+    for(const d of drafts){const section=el('section',undefined,'matter-item');section.append(el('strong',t('报单草稿 · 版本 {version}',{version:d.version})));payload(section,d.parameters);
+      section.append(button(t('恢复并核对'),()=>actions.action('/api/matters',{action:'resume',draft_id:d.id,version:d.version}),busy),button(t('删除草稿'),()=>actions.action('/api/matters',{action:'discard',draft_id:d.id,version:d.version}),busy));n.append(section);}
+    n.append(el('h3',t('已提交的事项')));if(!data.tickets.length)n.append(el('p',t('暂无已提交的事项。')));
+    for(const ticket of data.tickets){const section=el('section',undefined,'matter-item');section.append(el('strong',`${ticket.ticket_id} · ${t('matter.status.'+ticket.status)}`),el('p',ticket.description));payload(section,{address:ticket.address});
+      const d=el('details',undefined,'matter-timeline');d.dataset.key='timeline:'+ticket.ticket_id;d.append(el('summary',t('查看办理时间线')));
+      d.append(el('p',t('当前状态来自模拟业务记录；未提供的历史过程不会补写。'),'hint'));const list=el('ol');
+      for(const change of data.timeline.filter(x=>x.ticket_id===ticket.ticket_id)){const row=el('li');row.append(el('time',new Date(change.time).toLocaleString(uiLocale==='en'?'en-GB':'zh-CN')),el('p',`${t(operationLabels[change.kind]??(change.kind==='demo_status'?'模拟状态更新':change.kind))} · ${t('matter.status.'+change.status)}`),el('small',t('模拟回执：{id}',{id:change.reference_id})));list.append(row);}
+      if(!list.children.length)d.append(el('p',t('这是已有模拟记录，暂无本次演示的状态变化。')));else d.append(list);section.append(d);
+      if(item.demoUI&&['OPEN','IN_PROGRESS'].includes(ticket.status))section.append(button(t('演示：推进一个状态'),()=>actions.action('/api/matters',{action:'simulate',ticket_id:ticket.ticket_id}),busy));n.append(section);
+    }
+  }
+  function editForm(n,o,busy){
+    if(!['create_ticket','complain_ticket'].includes(o.operation))return;
+    const details=el('details',undefined,'operation-edit');details.dataset.key='edit:'+o.id;details.append(el('summary',t('修改信息')));
+    const form=el('form',undefined,'inline-form');form.dataset.formKey='edit:'+o.id;
+    if(o.operation==='create_ticket'){field(form,t('城市'),'city').value=o.parameters.address?.city??'';field(form,t('街道'),'street').value=o.parameters.address?.street??'';field(form,t('问题描述'),'description','textarea').value=o.parameters.description;}
+    else field(form,t('原因'),'reason','textarea').value=o.parameters.reason;
+    const submit=el('button',t('保存修改并重新核对'));submit.disabled=busy;form.append(submit,el('p',t('修改后旧确认立即失效；不会自动提交。'),'hint'));
+    form.addEventListener('submit',e=>{e.preventDefault();if(busy)return;const data=Object.fromEntries(new FormData(form));actions.action('/api/edit-operation',{proposal_id:o.id,value:o.operation==='create_ticket'?{address:{city:data.city,street:data.street},description:data.description}:{reason:data.reason}});});details.append(form);n.append(details);
+  }
   function build(item,{busy,showTasks}){
     const n=el('article',undefined,item.kind==='message'?'bubble '+item.message.role:'bubble assistant '+item.kind+'-card');n.dataset.chatId=item.id;n.dir='auto';
     if(item.kind==='message'){
       const m=item.message;let text=m.text;
-      if(['service_catalog','service_overview','knowledge_clarification'].includes(m.kind)){
+      if(m.kind==='matters'){mattersCard(n,item,busy);return n;}
+      if(m.kind==='matters_login'){if(item.loggedIn)n.append(el('p',t('当前模拟账号已登录。')));else n.append(el('p',t('登录后可查看已保存的草稿、事项与站内提醒。')),loginForm({kind:'matters'},busy));return n;}
+      if(m.kind==='draft_saved'){n.append(el('p',t('草稿已保存。下次登录同一模拟账号，在“我的事项”中继续。')));return n;}
+      if(m.kind==='draft_restore'){n.append(el('p',t('已恢复报单草稿，请核对下方信息。')));return n;}
+      if(m.kind==='reconciled'){n.append(el('p',t(m.reconcile_state==='committed'?'已核实操作成功，已恢复实际回执，不会重复提交。':'已核实模拟系统未提交该操作，可以重新核对后继续。')));return n;}
+
+      if(['matters','matters_login','service_catalog','service_overview','knowledge_clarification'].includes(m.kind)){
         n.append(el('strong',t(m.kind==='knowledge_clarification'?'你指的是哪项服务？':m.kind==='service_overview'?'服务详情':'服务目录')));
         if(m.kind==='knowledge_clarification'){n.append(el('p',t('选择服务后，我会直接回答你刚才的问题，无需重复输入。')));n.append(el('blockquote',m.clarification.question));if(!item.choiceActive){n.append(el('small',t('此服务选择已结束。')));return n;}}
         else n.append(el('p',t('这里显示当前已支持的范围；官方平台链接是查询入口，不代表本助手已接入该服务。')));
@@ -102,7 +140,7 @@ export function createChatRenderer(document,container,actions){
       }
     }else if(item.kind==='welcome'){
       n.append(el('strong',t('您好，欢迎使用政务服务助手！')),el('p',t('您可以咨询已支持的政务服务、提交服务申请、查询办理进度、反馈投诉或联系人工客服。请告诉我您需要什么帮助，我会在聊天中说明下一步，并在提交操作前请您确认。')));
-      n.append(el('small',t('办理功能使用模拟数据；其他服务当前仅支持已有知识咨询。')),button(t('查看服务目录'),()=>actions.action('/api/catalog',{}),busy),button(t('人工帮助'),()=>actions.action('/api/help',{action:'offer'}),busy));
+      n.append(el('small',t('办理功能使用模拟数据；其他服务当前仅支持已有知识咨询。')),button(t('查看服务目录'),()=>actions.action('/api/catalog',{}),busy),button(t('人工帮助'),()=>actions.action('/api/help',{action:'offer'}),busy),button(t('我的事项'),()=>actions.action('/api/matters',{action:'list'}),busy));
       const examples=el('div',undefined,'examples');for(const [label,text]of[[t('新坑洞报单'),'There is a big pothole in the road in front of my house'],[t('历史工单跟进'),'The school pothole I reported is still unresolved. Please help me follow up.'],[t('试问答库'),'Is the municipal fees invoice the same as the Civil Defense fees invoice?']])examples.append(button(label,()=>actions.example(text),busy));n.append(examples);
       if(!item.loggedIn){const d=el('details',undefined,'welcome-login');d.dataset.key='welcome-login';d.append(el('summary',t('模拟登录 · 办理个人工单时需要')),loginForm(null,busy));n.append(d);}
     }else if(item.kind==='plan'){
@@ -118,7 +156,7 @@ export function createChatRenderer(document,container,actions){
       }else n.append(el('small',p.status==='completed'?t('这份计划已处理完成。'):p.status==='superseded'?t('已按新意图调整计划，这份计划停止执行。'):p.status==='paused'?t('这份计划已暂停。'):['blocked','failed','interrupted'].includes(item.outcome)?t('这份计划还没有完成，可以调整任务或重试。'):t('我正在按这份计划处理。')));
     }else if(item.kind==='operation'){
       const o=item.proposal;n.append(el('div',t('请确认 · {operation}',{operation:t(operationLabels[o.operation]??t('提交操作'))}),'card-caption'),el('p',t(o.confirmation_reason==='high_risk_read'?'notice.highRiskRead':'notice.operation')));payload(n,o.parameters);
-      if(item.active)n.append(button(o.operation==='query_tickets'?t('确认查询'):t('确认提交'),()=>actions.action('/api/approve-operation',{proposal_id:o.id}),busy),button(t('取消这个任务'),()=>actions.action('/api/cancel',{}),busy));
+      if(item.active){n.append(button(o.operation==='query_tickets'?t('确认查询'):t('确认提交'),()=>actions.action('/api/approve-operation',{proposal_id:o.id}),busy),button(t('取消这个任务'),()=>actions.action('/api/cancel',{}),busy));editForm(n,o,busy);if(o.operation==='create_ticket')n.append(button(t('保存，稍后继续'),()=>actions.action('/api/save-draft',{proposal_id:o.id}),busy));}
       else n.append(el('small',item.approved?t('你已确认以上内容。'):t('此确认已失效，以上内容不会继续提交。')));
     }else if(item.kind==='input'){
       const x=item.input;n.append(el('p',x.question,'message-text'));
@@ -157,6 +195,7 @@ export function createChatRenderer(document,container,actions){
       n.append(el('p',text,'receipt-text'));
     }else if(item.kind==='human')n.append(el('p',({ACCEPTED:t('人工已受理。'),ESCALATED:t('人工处理已升级。'),COMPLETED:t('人工处理已完成；这不表示道路已经修复。')})[item.handoff.status]??t('人工状态：{status}',{status:item.handoff.status})));
     else if(item.kind==='retry'){n.append(el('p',t('本轮还没有完成。你可以重试这份计划，或告诉我你想怎么调整。')),button(t('重试这份计划'),()=>actions.action('/api/retry',{}),busy),button(t('取消这个任务'),()=>actions.action('/api/cancel',{}),busy));}
+    else if(item.kind==='uncertain'){n.setAttribute('role','alert');n.append(el('strong',t('正在核对提交结果')),el('p',t('尚未确认是否提交成功。请先核对结果，避免重复提交。')),button(t('核对提交结果'),()=>actions.action('/api/reconcile',{}),busy));}
     else if(item.kind==='working'){n.setAttribute('role','status');n.append(el('span','◌','working-icon'),el('span',item.text));}
     else if(item.kind==='error'){n.setAttribute('role','alert');n.append(el('p',item.text),button(t('重新连接'),()=>actions.reconnect(),busy));}
     return n;
@@ -174,13 +213,14 @@ export function createChatRenderer(document,container,actions){
     t=translator(locale);uiLocale=locale;
     const atBottom=container.scrollHeight-container.scrollTop-container.clientHeight<70,scroll=container.scrollTop;
     const rows=[{id:'welcome',kind:'welcome',loggedIn:!!state.user},...conversationItems(state)];
-    for(const item of rows){item.catalog=state.catalog??[];item.humanSupport=state.human_support??{};item.helpActive=!!state.pendingHelp&&item.message?.request_id===state.pendingHelp.id;item.clarificationId=state.pendingKnowledge?.id;item.choiceActive=item.message?.kind==='knowledge_clarification'?state.pendingKnowledge?.id===item.message.clarification.id:true;}
+    for(const item of rows){item.loggedIn=!!state.user;item.matters=state.mattersView;item.demoUI=state.demo_ui===true;item.latestMatters=item.message?.id===state.messages.findLast(m=>m.kind==='matters')?.id;item.catalog=state.catalog??[];item.humanSupport=state.human_support??{};item.helpActive=!!state.pendingHelp&&item.message?.request_id===state.pendingHelp.id;item.clarificationId=state.pendingKnowledge?.id;item.choiceActive=item.message?.kind==='knowledge_clarification'?state.pendingKnowledge?.id===item.message.clarification.id:true;}
+    if(state.uncertainOperation)rows.push({id:'uncertain:'+state.uncertainOperation.key,kind:'uncertain'});
     if(pendingMessage)rows.push({id:'optimistic-user',kind:'message',message:{role:'user',text:pendingMessage}});
     const plan=state.plans.find(p=>p.id===state.activePlanId);if(!state.running&&plan?.approved&&['failed','blocked','interrupted'].includes(state.status))rows.push({id:'retry:'+plan.id,kind:'retry'});
     if(state.running||busy||connecting)rows.push({id:'working',kind:'working',text:connecting?t('正在连接政务服务助手…'):state.running?progressText(state,locale):t('收到，正在发送你的请求…')});
     if(error)rows.push({id:'error',kind:'error',text:error});
     const keep=new Set();let cursor=container.firstChild;
-    for(const item of rows){if(item.kind==='message'&&item.message.role==='assistant'&&item.message.rateable&&feedback.enabled)item.feedback=feedback.items[item.message.id]??{};keep.add(item.id);const interactive=['welcome','plan','input','operation','error','retry','human_desk'].includes(item.kind)||['service_catalog','service_overview','knowledge_clarification','knowledge_missing','knowledge_unavailable','help_offer'].includes(item.message?.kind)||!!item.message?.knowledge_state;const signature=JSON.stringify([locale,item,interactive?busy||state.running:false,['plan','human_desk'].includes(item.kind)?showTasks:null]);let old=cached.get(item.id),node,memory;
+    for(const item of rows){if(item.kind==='message'&&item.message.role==='assistant'&&item.message.rateable&&feedback.enabled)item.feedback=feedback.items[item.message.id]??{};keep.add(item.id);const interactive=['welcome','plan','input','operation','error','retry','human_desk','uncertain'].includes(item.kind)||['matters','matters_login','service_catalog','service_overview','knowledge_clarification','knowledge_missing','knowledge_unavailable','help_offer'].includes(item.message?.kind)||!!item.message?.knowledge_state;const signature=JSON.stringify([locale,item,interactive?busy||state.running:false,['plan','human_desk'].includes(item.kind)?showTasks:null]);let old=cached.get(item.id),node,memory;
       if(old?.signature===signature)node=old.node;
       else{memory=old?remember(old.node):null;node=build(item,{busy:busy||state.running,showTasks});if(old?.node===cursor)cursor=old.node.nextSibling;old?.node.remove();cached.set(item.id,{node,signature});}
       if(node!==cursor)container.insertBefore(node,cursor);else cursor=node.nextSibling;

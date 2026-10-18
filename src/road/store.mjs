@@ -43,7 +43,7 @@ export class RoadStore {
     this.leases.add(sid);return {session,release:async()=>{this.leases.delete(sid);}};
   }
   async flush(sid){await this.writes.get(sid);}
-  async close(){await Promise.allSettled(this.writes.values());}
+  async close(){await Promise.allSettled([...this.writes.values(),...(this.accountWrites?.values()??[])]);}
   async save(s){
     if(!this.directory)return;
     const data=JSON.stringify(s),path=join(this.directory,`${s.id}.json`);

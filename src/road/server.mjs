@@ -70,7 +70,7 @@ export async function createRoadServer({store,knowledge,agentFactory,feedback=ne
       }
       if(url.pathname.startsWith('/api/')){
         const sid=sessionId(req);let s=await store.load(sid);
-        if(req.method==='GET'&&url.pathname==='/api/state'){feedback.load(s.id).catch(()=>{});return send(res,200,view(s));}
+        if(req.method==='GET'&&url.pathname==='/api/state'){if(s.user&&s.mattersView)s.mattersView=await agent.matters.list(s);feedback.load(s.id).catch(()=>{});return send(res,200,view(s));}
         if(req.method==='GET'&&url.pathname==='/api/feedback'){
           if(!feedback.enabled)return send(res,200,{records:[]});
           try{return send(res,200,{records:(await feedback.list(s.id)).map(feedbackRecord)});}catch{throw failure('FEEDBACK_UNAVAILABLE','Feedback storage is temporarily unavailable',503);}
@@ -106,7 +106,18 @@ export async function createRoadServer({store,knowledge,agentFactory,feedback=ne
         if(!equal(req.headers['x-csrf-token'],s.csrf))throw failure('CSRF_REQUIRED','Missing session confirmation token',403);
         if(url.pathname==='/api/cancel'){await agent.cancel(s);await unlock();return send(res,200,view(s));}
         if(s.running)throw failure('BUSY','Stop the current turn before another action',409);
-        if(url.pathname==='/api/login'){await agent.login(s,input);await unlock();return send(res,200,view(s));}
+        if(url.pathname==='/api/login'){await agent.login(s,input);if(input.show_matters)await agent.showMatters(s);await unlock();return send(res,200,view(s));}
+        if(url.pathname==='/api/matters'){
+          if(input.action==='resume')await agent.resumeDraft(s,input.draft_id,input.version);
+          else if(input.action==='discard'){await agent.matters.remove(s,input.draft_id,input.version);if(s.currentDraft?.id===input.draft_id)agent.interrupt(s,'draft_discarded');}
+          else if(input.action==='read')await agent.matters.markRead(s,input.ids);
+          else if(input.action==='simulate'){if(!demoUI)throw failure('DEMO_DISABLED','Demo tools disabled',403);await agent.matters.simulate(s,input.ticket_id);}
+          else if(input.action!=='list')throw failure('INVALID_MATTERS_ACTION','Choose a matters action');
+          await agent.showMatters(s);await unlock();return send(res,200,view(s));
+        }
+        if(url.pathname==='/api/edit-operation'){await agent.editOperation(s,input.proposal_id,input.value??{});await unlock();return send(res,200,view(s));}
+        if(url.pathname==='/api/save-draft'){await agent.saveForLater(s,input.proposal_id);await unlock();return send(res,200,view(s));}
+        if(url.pathname==='/api/reconcile'){await agent.reconcileOperation(s);await agent.showMatters(s);await unlock();return send(res,200,view(s));}
         if(url.pathname==='/api/catalog'){await agent.catalog(s);await unlock();return send(res,200,view(s));}
         if(url.pathname==='/api/help'&&input.action!=='continue'){
           if(input.action==='offer')await agent.offerHelp(s);

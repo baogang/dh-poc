@@ -140,3 +140,19 @@ test('human choice and waiting exits are independent of task visibility and unav
  const h=await harness();h.state.pendingHelp={id:'help-1'};h.state.human_support={available:false,official_url:'https://balady.gov.sa/en'};h.state.messages.push({id:'offer',role:'assistant',kind:'help_offer',text:'',request_id:'help-1'});h.render();h.nodes.get('show-tasks').checked=false;await h.nodes.get('show-tasks').fire('change');assert(h.chat.querySelectorAll('button').find(b=>b.textContent==='加入模拟人工队列').disabled);assert(!h.chat.querySelectorAll('button').find(b=>b.textContent==='继续使用智能助手').disabled);
  h.state.pendingHelp=null;h.state.activeHandoffId='H1';h.state.human_support.wait_expired=true;h.state.mock.handoffs=[{handoff_id:'H1',scope:'conversation',status:'WAITING',conversation_summary:'Summary',created_at:'2026-10-19'}];h.render();assert(h.chat.textContent.includes('模拟等待已超时'));assert(h.chat.querySelectorAll('button').some(b=>b.textContent==='取消排队并返回助手'));
 });
+
+test('editing and saving controls remain in chat when the task list is hidden',async()=>{
+  const h=await harness({storedLocale:'en'});h.state.user={user_id:'U001'};h.state.pendingOperation={id:'edit-one',operation:'create_ticket',parameters:{address:{city:'Riyadh',street:'Original Street'},description:'Pothole'}};
+  h.render();const toggle=h.doc.getElementById('show-tasks');toggle.checked=false;await toggle.fire('change');
+  assert(h.chat.textContent.includes('Edit details'));assert(h.chat.textContent.includes('Save for later'));assert(h.chat.querySelectorAll('form').some(x=>x.dataset.formKey==='edit:edit-one'));
+  const form=h.chat.querySelectorAll('form').find(x=>x.dataset.formKey==='edit:edit-one');form.querySelectorAll('input').find(x=>x.name==='street').value='New Street';h.state.running=true;h.render();assert.equal(h.chat.querySelectorAll('form').find(x=>x.dataset.formKey==='edit:edit-one').querySelectorAll('input').find(x=>x.name==='street').value,'New Street');
+});
+test('My matters has drafts, timeline and unread reminders independent of task visibility',async()=>{
+  const h=await harness({storedLocale:'en'});h.state.user={user_id:'U001'};h.state.messages=[{id:'matters',kind:'matters',role:'assistant'}];h.state.mattersView={drafts:[{id:'d',status:'draft',version:2,parameters:{address:{city:'Riyadh',street:'Draft Street'},description:'Synthetic'}}],tickets:[{ticket_id:'T999',status:'OPEN',description:'Synthetic',address:{city:'Riyadh',street:'Draft Street'}}],timeline:[{ticket_id:'T999',kind:'create_ticket',status:'OPEN',reference_id:'T999',time:'2026-10-19T01:00:00Z'}],notifications:[{id:'n',ticket_id:'T999',kind:'create_ticket',status:'OPEN',read:false}]};h.render();
+  const toggle=h.doc.getElementById('show-tasks');toggle.checked=false;await toggle.fire('change');assert(h.chat.textContent.includes('Restore and review'));assert(h.chat.textContent.includes('View status timeline'));assert(h.chat.textContent.includes('1 unread'));assert(h.chat.querySelectorAll('button').some(x=>x.textContent==='Demo: advance one status'));
+  await h.chat.querySelectorAll('button').find(x=>x.textContent==='Restore and review').fire('click');assert(h.requests.some(x=>x.path==='/api/matters'&&JSON.parse(x.body).version===2));
+  h.state.demo_ui=false;h.render();assert(!h.chat.querySelectorAll('button').some(x=>x.textContent==='Demo: advance one status'));
+});
+test('uncertain submission has a visible result check instead of silently encouraging repeat submission',async()=>{
+  const h=await harness();h.state.uncertainOperation={key:'unknown'};h.render();assert(h.chat.textContent.includes('避免重复提交'));await h.chat.querySelectorAll('button').find(x=>x.textContent==='核对提交结果').fire('click');assert(h.requests.some(x=>x.path==='/api/reconcile'));
+});

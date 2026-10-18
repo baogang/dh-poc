@@ -10,9 +10,10 @@ const split=option('--split','smoke'),caseId=option('--case',null),repeats=Numbe
 if(!Number.isInteger(repeats)||repeats<1||repeats>10)throw Error('--repeat must be 1–10');
 const cases=(await readFile(new URL(`../datasets/${dataset}/cases.jsonl`,import.meta.url),'utf8')).trim().split('\n').map(JSON.parse).filter(c=>caseId?c.id===caseId:split==='all'||c.split===split);
 if(!cases.length)throw Error('No matching cases');
-const app=await createRoadServer({store:new RoadStore(),feedback:new FeedbackRepository({connectionString:null}),config:{port:10000,host:'127.0.0.1',access:{}}});await new Promise(r=>app.server.listen(0,'127.0.0.1',r));await app.ready();
 const rows=[];
 async function runCase(c,repeat){
+  const app=await createRoadServer({store:new RoadStore(),feedback:new FeedbackRepository({connectionString:null}),config:{port:10000,host:'127.0.0.1',access:{}}});await new Promise(r=>app.server.listen(0,'127.0.0.1',r));await app.ready();
+  try{
   const s=app.store.create(),agent=app.agent,started=Date.now(),checks=[];let interrupted=false,simulationError;
   try{
     if(c.login)await agent.login(s,{username:c.login,password:'demo'});s.mock.faults=structuredClone(c.faults??{});
@@ -85,8 +86,9 @@ async function runCase(c,repeat){
   checks.push({name:'No unexpected business tool type in its dialogue phase',pass:row.tool_metrics.selection.fp===0});
   row.pass=checks.every(x=>x.pass)&&!simulationError;
   rows.push(row);console.log(JSON.stringify({case_id:c.id,repeat,pass:row.pass,status:s.status,checks:checks.filter(x=>!x.pass),error:simulationError,latency_ms:row.metrics.latency_ms}));return row;
+  }finally{await app.close();}
 }
-try{
+{
   const jobs=[];for(let repeat=1;repeat<=repeats;repeat++)for(const c of cases)jobs.push({c,repeat});
   // Independent sessions run in pairs; within a PI turn tool execution remains sequential.
   for(let i=0;i<jobs.length;i+=2){const results=await Promise.allSettled(jobs.slice(i,i+2).map(j=>runCase(j.c,j.repeat)));for(const r of results)if(r.status==='rejected')console.error(r.reason.message);}
@@ -98,4 +100,4 @@ try{
   Object.assign(report.metrics,{tool_selection_precision:toolMetrics.selection.precision,tool_selection_recall:toolMetrics.selection.recall,tool_selection_f1:toolMetrics.selection.f1,tool_attempt_precision:toolMetrics.attempts.precision,tool_execution_recall:toolMetrics.execution.recall});
   report.tool_metrics=toolMetrics;
   await mkdir('reports/road',{recursive:true});const path=`reports/road/${report.timestamp.replaceAll(':','-')}-${split}.json`;await writeFile(path,JSON.stringify(report,null,2));console.log(JSON.stringify({...report,rows:undefined,path}));if(report.passed!==total)process.exitCode=1;
-}finally{app.server.closeAllConnections();await new Promise(r=>app.server.close(r));}
+}
