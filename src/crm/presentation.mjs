@@ -118,3 +118,7 @@ export function presentCrmMessage(message,receipts){
   }catch{return message;}
   return {...message,text:message.text.slice(0,start)};
 }
+// Supplemental explanations add goal/limitation context; host summaries already
+// render the receipt rows. Reject the format before model review so a repeated
+// table cannot be approved as a merely factually correct explanation.
+export function explanationHasTable(text){return normalizeCustomerText(text).split(/\r?\n/u).some(line=>/^\s*\|?\s*:?-{3,}:?\s*(?:\|\s*:?-{3,}:?\s*)+\|?\s*$/u.test(line));}
