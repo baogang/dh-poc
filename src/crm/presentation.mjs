@@ -3,6 +3,18 @@ import {isDeepStrictEqual} from 'node:util';
 import {failure} from '../road/store.mjs';
 
 export const CASE_GUIDANCE=['not_found','needs_choice','access_limited','action_unavailable','location_unavailable','reason_not_returned','file_unavailable','offer_separate_complaint'];
+
+// A real failed read is different from an unconnected capability. It does not
+// undo an earlier write or prove that a mutation should be repeated.
+export function readFailureOutcome(failures,{language='en',hasSubmission=false}={}){
+  if(!failures.length)return null;
+  const words={
+    zh:['有查询未能完成，本轮没有取得该项查询的结果。','已经成功提交的内容以保留的回执为准，不要因查询失败而重复提交。'],
+    en:['A query did not complete, so its result was not obtained in this turn.','Successful submissions are recorded in the retained receipts. Do not repeat a submission because a query failed.'],
+    ar:['لم يكتمل أحد الاستعلامات، لذا لم تُجلب نتيجته في هذه الجولة.','الإرسالات الناجحة مثبتة في الإيصالات المحفوظة. لا تكرر الإرسال بسبب فشل استعلام.']
+  }[language];
+  return [words[0],hasSubmission?words[1]:null].filter(Boolean).join('\n\n');
+}
 export function caseStatusLabel(value,language){
   return ({zh:{Open:'未结案',InProgress:'处理中',Resolved:'已解决',Rejected:'未受理'},en:{Open:'Open',InProgress:'In progress',Resolved:'Resolved',Rejected:'Rejected'},ar:{Open:'مفتوح',InProgress:'قيد المعالجة',Resolved:'تم الحل',Rejected:'مرفوض'}}[language]??{})[value]??value;
 }
