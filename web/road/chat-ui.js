@@ -1,4 +1,4 @@
-import {translator,serviceChoiceCopy} from './i18n.js';
+import {translator,serviceChoiceCopy,blockedStepLabel} from './i18n.js';
 import {markdown} from './markdown.js';
 import {crmReview,crmEditor} from './crm-review.js';
 const special=new Set(['plan','input_request','operation_confirmation']);
@@ -169,7 +169,7 @@ export function createChatRenderer(document,container,actions){
       const p=item.plan,complete=p.steps.filter(x=>x.status==='completed').length;
       n.append(el('div',t('处理进度'),'card-caption'),el('strong',p.goal,'plan-goal'));
       const d=el('details',undefined,'task-list');d.dataset.key='tasks:'+p.id;d.open=false;d.hidden=!showTasks;d.append(el('summary',t('处理步骤 · {done}/{total} 已完成',{done:complete,total:p.steps.length})));const list=el('ol',undefined,'tasks');
-      for(const step of p.steps){const row=el('li',undefined,'task '+step.status),mark=el('span',step.status==='completed'?'✓':step.status==='running'?'◌':step.status==='waiting'?'⏸':'○','task-mark');const title=el(step.status==='completed'?'s':'span',step.title,'task-title');row.append(mark,title,el('small',t(step.status==='waiting'&&step.capability==='input'?'等待你补充信息':taskLabels[step.status]??step.status),'task-state'));list.append(row);}d.append(list);n.append(d);
+      for(const step of p.steps){const row=el('li',undefined,'task '+step.status),mark=el('span',step.status==='completed'?'✓':step.status==='running'?'◌':step.status==='waiting'?'⏸':'○','task-mark');const title=el(step.status==='completed'?'s':'span',step.title,'task-title');row.append(mark,title,el('small',step.status==='blocked'?blockedStepLabel(p.goal+' '+step.title,uiLocale):t(step.status==='waiting'&&step.capability==='input'?'等待你补充信息':taskLabels[step.status]??step.status),'task-state'));list.append(row);}d.append(list);n.append(d);
       if(!showTasks)n.append(el('small',t('任务列表已隐藏 · {done}/{total} 已完成',{done:complete,total:p.steps.length})));
       if(item.active&&p.status==='review'){
         if(!item.loggedIn&&p.steps.some(x=>!['input','respond'].includes(x.capability))){n.append(el('p',t('处理个人工单前，需要先确认模拟账号。登录后就会按这份计划继续。'),'next-action'),loginForm({kind:'plan',id:p.id},busy));}

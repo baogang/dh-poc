@@ -451,3 +451,6 @@ export function serviceChoiceCopy(question,locale='zh',purpose='service'){
   const messages=purpose==='case'?caseChoiceMessages:serviceChoiceMessages;
   return messages[language]??messages.zh;
 }
+export function blockedStepLabel(text,locale='zh'){
+  return {zh:'暂时无法继续',en:'Cannot continue yet',ar:'تعذرت المتابعة حالياً'}[serviceChoiceCopy(text,locale).language];
+}
