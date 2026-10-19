@@ -454,3 +454,6 @@ export function serviceChoiceCopy(question,locale='zh',purpose='service'){
 export function blockedStepLabel(text,locale='zh'){
   return {zh:'暂时无法继续',en:'Cannot continue yet',ar:'تعذرت المتابعة حالياً'}[serviceChoiceCopy(text,locale).language];
 }
+export function locationLimitLabel(text,locale='zh'){
+  return {zh:'当前助理缺少所需的行政地区地点解析能力，这份计划无法继续。请查看本轮答复中的办理限制。',en:'This plan cannot continue because the required administrative location resolution is unavailable. See the current reply for this limitation.',ar:'لا يمكن متابعة هذه الخطة لأن خدمة تحديد الموقع الإداري المطلوبة غير متاحة. راجع الرد الحالي لمعرفة هذا القيد.'}[serviceChoiceCopy(text,locale).language];
+}

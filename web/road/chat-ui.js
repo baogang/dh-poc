@@ -1,9 +1,10 @@
-import {translator,serviceChoiceCopy,blockedStepLabel} from './i18n.js';
+import {translator,serviceChoiceCopy,blockedStepLabel,locationLimitLabel} from './i18n.js';
 import {markdown} from './markdown.js';
 import {crmReview,crmEditor} from './crm-review.js';
 const special=new Set(['plan','input_request','operation_confirmation']);
 const taskLabels={pending:'待执行',running:'执行中',waiting:'等待你确认',completed:'已完成',failed:'执行失败'};
 const operationLabels={crm_create_form_request:'提交咨询、建议或投诉',crm_create_municipal_service:'提交市政服务请求',crm_create_inquiry:'提交咨询',crm_create_daem_ticket:'提交技术支持请求',crm_upload_attachment:'上传附件',crm_upload_file:'上传工单附件',create_ticket:'创建工单',query_tickets:'查询工单',close_ticket:'关闭工单',complain_ticket:'提交投诉',handoff_to_human:'转交人工'};
+const hasLocationLimit=(state,plan)=>state.status==='blocked'&&!!plan?.origin_message_id&&Object.values(state.facts?.hostConstraints?.[plan.origin_message_id]??{}).some(c=>c.origin_message_id===plan.origin_message_id&&c.capability==='administrative_location_resolution'&&c.available===false&&c.code==='LOCATION_METADATA_UNAVAILABLE');
 
 export function conversationItems(s){
   const rows=[];
@@ -175,7 +176,7 @@ export function createChatRenderer(document,container,actions){
         if(!item.loggedIn&&p.steps.some(x=>!['input','respond'].includes(x.capability))){n.append(el('p',t('处理个人工单前，需要先确认模拟账号。登录后就会按这份计划继续。'),'next-action'),loginForm({kind:'plan',id:p.id},busy));}
         else n.append(el('p',t('请确认是否按这个计划继续；提交操作还会单独请你核对。'),'next-action'),button(t('按计划继续'),()=>actions.action('/api/approve-plan',{plan_id:p.id}),busy));
         n.append(button(t('取消这个任务'),()=>actions.action('/api/cancel',{}),busy));
-      }else n.append(el('small',p.status==='completed'?t('本轮步骤已结束，请查看答复中的办理结果与限制。'):p.status==='superseded'?t('已更新处理步骤，这份计划不再执行。'):p.status==='paused'?t('这份计划已暂停。'):['blocked','failed','interrupted'].includes(item.outcome)?t('这份计划还没有完成，可以调整任务或重试。'):t('我正在按这份计划处理。')));
+      }else n.append(el('small',item.locationLimit?locationLimitLabel(p.goal,uiLocale):p.status==='completed'?t('本轮步骤已结束，请查看答复中的办理结果与限制。'):p.status==='superseded'?t('已更新处理步骤，这份计划不再执行。'):p.status==='paused'?t('这份计划已暂停。'):['blocked','failed','interrupted'].includes(item.outcome)?t('这份计划还没有完成，可以调整任务或重试。'):t('我正在按这份计划处理。')));
     }else if(item.kind==='operation'){
       const o=item.proposal;n.append(el('div',t('请确认 · {operation}',{operation:t(operationLabels[o.operation]??o.title??'提交操作')}),'card-caption'),el('p',t(o.confirmation_reason==='high_risk_read'?'notice.highRiskRead':'notice.operation')));payload(n,o.parameters);
       if(item.active){n.append(button(o.operation==='query_tickets'?t('确认查询'):t('确认提交'),()=>actions.action('/api/approve-operation',{proposal_id:o.id}),busy),button(t('取消这个任务'),()=>actions.action('/api/cancel',{}),busy));editForm(n,o,busy);if(o.operation==='create_ticket')n.append(button(t('保存，稍后继续'),()=>actions.action('/api/save-draft',{proposal_id:o.id}),busy));}
@@ -254,10 +255,11 @@ export function createChatRenderer(document,container,actions){
     t=translator(locale);uiLocale=locale;
     const atBottom=container.scrollHeight-container.scrollTop-container.clientHeight<70,scroll=container.scrollTop;
     const rows=[{id:'welcome',kind:'welcome',loggedIn:!!state.user},...conversationItems(state)];
+    for(const item of rows)if(item.kind==='plan')item.locationLimit=item.active&&hasLocationLimit(state,item.plan);
     for(const item of rows){item.loggedIn=!!state.user;item.matters=state.mattersView;item.demoUI=state.demo_ui===true;item.latestMatters=item.message?.id===state.messages.findLast(m=>m.kind==='matters')?.id;item.catalog=state.catalog??[];item.humanSupport=state.human_support??{};item.helpActive=!!state.pendingHelp&&item.message?.request_id===state.pendingHelp.id;item.clarificationId=state.pendingKnowledge?.id;item.choiceActive=item.message?.kind==='knowledge_clarification'?state.pendingKnowledge?.id===item.message.clarification.id:true;}
     if(state.uncertainOperation)rows.push({id:'uncertain:'+state.uncertainOperation.key,kind:'uncertain'});
     if(pendingMessage)rows.push({id:'optimistic-user',kind:'message',message:{role:'user',text:pendingMessage}});
-    const plan=state.plans.find(p=>p.id===state.activePlanId);if(!state.running&&plan?.approved&&['failed','blocked','interrupted'].includes(state.status))rows.push({id:'retry:'+plan.id,kind:'retry'});
+    const plan=state.plans.find(p=>p.id===state.activePlanId);if(!state.running&&plan?.approved&&['failed','blocked','interrupted'].includes(state.status)&&!hasLocationLimit(state,plan))rows.push({id:'retry:'+plan.id,kind:'retry'});
     if(state.running||busy||connecting)rows.push({id:'working',kind:'working',text:connecting?t('正在连接政务服务助手…'):state.running?progressText(state,locale):t('收到，正在发送你的请求…')});
     if(error)rows.push({id:'error',kind:'error',text:error});
     const keep=new Set();let cursor=container.firstChild;
