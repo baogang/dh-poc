@@ -365,5 +365,117 @@
     },
     "all_input_reference_fixture_hashes_unchanged": true,
     "independent_business_review": "pending"
+  },
+  "final_v8_regression": {
+    "status": "v8 independent all-40 semantic review complete: two P2 findings, release criteria not met",
+    "candidate_commit": "b548a1cd797540847803d214cdd72b3ca6d6e8a4",
+    "aggregate": "docs/evaluation/balady-crm-final-regression-20261020.json",
+    "immutable_automatic_snapshot": "docs/evaluation/balady-crm-final-v8-automatic-20261020.json",
+    "engineering": {
+      "report": "docs/evaluation/balady-crm-v8-draft-language-engineering-20261020.json",
+      "tests": 183,
+      "passed": 183,
+      "failed": 0,
+      "source_changed_during_run": [],
+      "candidate_runtime_hashes_match": true
+    },
+    "contract_report": "reports/crm/2026-10-19T19-33-45.477Z/summary.json",
+    "contract_passed": 70,
+    "contract_cases": 70,
+    "contract_unsafe_writes": 0,
+    "natural_report": "reports/crm-journeys/final-regression-20261020-v8-final/summary.json",
+    "natural_automatic": {
+      "cases": 40,
+      "passed": 39,
+      "failed": 0,
+      "needs_review": 1,
+      "pass_rate": 0.975,
+      "failed_checks": {},
+      "deferred_checks": 2
+    },
+    "natural_semantic_review": {
+      "report": "docs/evaluation/balady-crm-business-v8-review-20261020.json",
+      "goal_reasonable_at_observed_boundary": 39,
+      "goal_cases": 40,
+      "facts_and_language_including_public_drafts_passed": 39,
+      "delivered_final_facts_and_language_passed": 40,
+      "presentation_passed": 40,
+      "combined_passed": 38,
+      "cases": 40,
+      "remaining_categories": [
+        "A supplied full name was copied into both first-name and family-name fields in an unapproved public draft; cancellation prevented any write.",
+        "Standalone alternative-service guidance omitted that the original catalog-backed request remained uncompleted."
+      ],
+      "actual_outcome_counts": {
+        "own_case_reads": 16,
+        "reference_catalog_reads": 2,
+        "successful_read_receipts": 29,
+        "simulated_form_submissions": 3,
+        "simulated_write_receipts": 3,
+        "actual_file_uploads": 0,
+        "waiting_for_facts_or_choice": 10,
+        "explicit_capability_limits": 18,
+        "cancelled_or_unauthorized_requests": 7,
+        "social": 1,
+        "official_submissions": 0
+      },
+      "actual_outcome_counts_may_overlap": true,
+      "host_fact_text_is_not_free_model_accuracy": true,
+      "release_criteria_met": false,
+      "coverage_gaps": [
+        "One private future target clarification was never actually sent. Current choice guidance is reviewed, but downstream target-selection assertions stay deferred, not automatically passed.",
+        "The sole natural file case stops at a real file-kind picker. It proves neither actual bytes upload nor a completed attached form; use separate HTTP/browser evidence for that chain.",
+        "The 40 cases do not execute every cross-origin old-read/old-write receipt reuse transition; separate engineering tests provide that evidence.",
+        "No government transaction, actual dispatch, real geocoding, official notification, refund, rating or permit action is established.",
+        "Only two cases read reference catalogs. Physical issue cases commonly stop at required location facts; they are not completed physical service requests.",
+        "Unexecuted model defaults in known_parameters are not proven correct eventual business values. Source-aware checks must still hold before any later write."
+      ],
+      "prior_name_source_review_caveat": "The duplicate full-name draft also existed in earlier v6/v7 runs but was missed by their cancellation-focused review. Those original historical scores remain unchanged; v8 expanded public-draft review disclosed the gap."
+    },
+    "response_review": {
+      "started": 107,
+      "completed": 63,
+      "rejected_attempts": 42,
+      "passed_gates": 147,
+      "corrected": 0,
+      "model_requests": 191
+    },
+    "raw_tool_errors": {
+      "contract": {
+        "USER_INPUT_REQUIRED": 1
+      },
+      "natural": {
+        "UNVERIFIED_CUSTOMER_CLAIMS": 42,
+        "INPUT_FIELDS_NOT_MISSING": 1,
+        "RESPONSE_GUARD_UNAVAILABLE": 2,
+        "KNOWN_PARAMETERS_REQUIRED": 4,
+        "INVALID_INPUT_FIELDS": 1,
+        "STEP_MISMATCH": 1,
+        "PLAN_PARAMETERS_CHANGED": 1
+      }
+    },
+    "final_output_sources": {
+      "host_case": 15,
+      "awaiting_input:text": 6,
+      "host_guidance": 12,
+      "host_submission": 3,
+      "awaiting_input:login": 1,
+      "awaiting_input:file": 1,
+      "verified_model": 2
+    },
+    "presentation_parts": {
+      "host_case": 15,
+      "host_guidance": 12,
+      "host_submission": 3
+    },
+    "actual_simulated_form_writes": 3,
+    "actual_file_uploads": 0,
+    "source_changed_during_run": {
+      "contract": [],
+      "natural": []
+    },
+    "all_input_reference_fixture_hashes_unchanged": true,
+    "interpretation": "Public HTTP with FAQ, sentiment, primary planner, two fresh real verdict gates, local documented CRM simulator and frozen synthetic multi-owner fixtures. Actual outcomes include records, waiting, limits and local writes. Host-generated facts/guidance are not free-model semantic accuracy; no official government operations occurred. All old scores and needs_review preserved.",
+    "immutable_semantic_snapshot": "docs/evaluation/balady-crm-final-v8-regression-20261020.json"
   }
 }

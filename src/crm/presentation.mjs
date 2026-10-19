@@ -18,7 +18,7 @@ export function normalizeCustomerText(text){
 
 // The same typed capability guidance is meaningful without a case lookup. It
 // must not fall back to arbitrary promises merely because no API ran.
-export function guidanceOutcome(receipts,{language='en',mode='simulation',guidance=[]}={}){
+export function guidanceOutcome(receipts,{language='en',mode='simulation',guidance=[],incomplete=false}={}){
   const selected=[...new Set(guidance)];if(!selected.length)return null;
   if(selected.some(code=>['not_found','needs_choice','reason_not_returned'].includes(code)))throw failure('GUIDANCE_EVIDENCE_REQUIRED','A case search or candidate choice needs actual query receipts. Do not imply that a search occurred without evidence.');
   if(selected.includes('file_unavailable')&&receipts.some(r=>r.operation==='crm_download_file'&&r.result?.data?.result?.AttachmentStream))throw failure('GUIDANCE_EVIDENCE_MISMATCH','Actual file content is cited; do not report file_unavailable.');
@@ -27,7 +27,8 @@ export function guidanceOutcome(receipts,{language='en',mode='simulation',guidan
     en:mode==='simulation'?'This environment keeps local simulation records only. Nothing is forwarded to a government body, department or staff for verification or handling; no real refund, payment, permit or notification is performed. Real transactions require a separate official channel, where local numbers cannot be used for tracking.':'This describes only the connected capabilities. Actions, handoffs, notifications and subsequent handling without receipt evidence have not been verified.',
     ar:mode==='simulation'?'تحتفظ هذه البيئة بسجلات محاكاة محلية فقط. لا يُحال شيء إلى جهة حكومية أو قسم أو موظف للتحقق أو المعالجة، ولا تُنفَّذ عمليات حقيقية للاسترداد أو الدفع أو الترخيص أو الإشعارات. تتطلب المعاملات الحقيقية قناة رسمية مستقلة، ولا تُستخدم الأرقام المحلية للتتبع فيها.':'هذا وصف للقدرات المتصلة فقط. لم يتم التحقق من الإجراءات أو الإحالات أو الإشعارات أو المعالجة اللاحقة دون دليل من الإيصالات.'
   }[language];
-  return [...selected.map(code=>words[code]),scope].filter(Boolean).join('\n\n');
+  const partial={zh:'本次请求尚未完成；下方说明不代表原事项已经登记或办理。',en:'This request is not complete. The information below does not mean that the original matter was registered or carried out.',ar:'لم يكتمل هذا الطلب. لا يعني التوضيح أدناه أن الطلب الأصلي قد سُجل أو نُفذ.'}[language];
+  return [incomplete?partial:null,...selected.map(code=>words[code]),scope].filter(Boolean).join('\n\n');
 }
 
 // Case facts are rendered from actual returned fields. A language model can

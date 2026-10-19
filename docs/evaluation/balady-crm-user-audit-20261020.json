@@ -1280,5 +1280,159 @@
     "completed_checks": 3,
     "actual_local_writes": 1,
     "result_summary": "Same natural Chinese refund-to-local-complaint flow passed on b7bc28/c1d58/873354: Chinese description, exact English title/name/contact, no internal wire code in public plans, one language-correct confirmation and one actual local write. Earlier two P2 evidence retained as historical; two dependency-pending planning retries recovered without exposing wrong/duplicate executable cards. No extra businesses or file chooser tested."
+  },
+  "v9_name_blocked_regression": {
+    "status": "complete_failed_plan_guard_name_unreached",
+    "candidate": {
+      "agent": "47e8fa4806a5cc6445f7d8e106f4baee7b715c7584f9fb53b23d514acaf0dfae",
+      "presentation": "b0f76a1dc02b4a565d4b4b5e8f3a0bf23f55fc3dbd5b945e86e46ec34bfd9ade",
+      "guard": "5f809f975c46ba119b88af8ccba76d6407765a7e861132c2af562db50842394e",
+      "source": "Parent reported restarted v9 preview hashes."
+    },
+    "url": "http://127.0.0.1:8788/",
+    "browser": "Chrome",
+    "method": "Independent proxy-user visible UI with independent synthetic Chinese name 林舟; no holdout wording or API sequence inserted. Only fullname draft and natural blocked facility outcome. Historical v8 evidence is retained, not overwritten.",
+    "steps": [
+      {
+        "id": "V9-01",
+        "case": "Independent complete natural Chinese suggestion with one fullname 林舟",
+        "input": "我想提个建议，社区公园的步道旁能不能多放几张长椅。标题用“公园长椅建议”。我叫林舟，电话 0500000002，邮箱 lin.zhou@example.test，没有照片。提交前先让我核对一下。",
+        "result": "fail_turn_before_name_card",
+        "priority": "P1",
+        "observed": "Four0/2 plan versions then visible 本轮未完成 / BALADY assistant could not complete this turn: INCOMPLETE_TURN with retry/cancel. No native card and no genuine name-split clarification. Name split itself not reached or evaluated;0 writes.",
+        "evidence": "assets/balady-user-20261020/89-v9-single-fullname-incomplete.png",
+        "name_mapping_coverage": "unreached",
+        "latest_original_plan": {
+          "seq": 206,
+          "time": "2026-10-19T19:46:04.483Z",
+          "name": "propose_plan",
+          "arguments": {
+            "goal": "提交一条建议：希望社区公园的步道旁多放几张长椅；标题为“公园长椅建议”。",
+            "summary": "建议正文：希望社区公园的步道旁能多放几张长椅。联系人：林舟，电话 0500000002，邮箱 lin.zhou@example.test；没有照片，因此不附照片。提交前会请用户核对。这是本地模拟，不会同步到官方系统。",
+            "steps": [
+              {
+                "capability": "crm_create_form_request",
+                "depends_on": [],
+                "id": "submit",
+                "title": "提交“公园长椅建议”：步道旁增设长椅"
+              },
+              {
+                "capability": "respond",
+                "depends_on": [
+                  "submit"
+                ],
+                "id": "reply",
+                "title": "告诉您这条建议的本地模拟记录结果，并说明未同步到官方系统"
+              }
+            ]
+          }
+        },
+        "visible_rejection": {
+          "seq": 210,
+          "time": "2026-10-19T19:46:05.812Z",
+          "scope": "facts",
+          "issues": [
+            "第2条称“提交前会请用户核对”，但用户已要求先核对；该表述把待办说成已完成/既定流程，且与本次核对请求重复，应删除或改为仅陈述事实。",
+            "第2条“这是本地模拟，不会同步到官方系统”属能力说明，可保留，但不应与用户事实混在同一建议正文中；建议正文应只含用户提供的建议内容。",
+            "第4条“告诉您这条建议的本地模拟记录结果”预设了提交成功，但当前无任何实际回执，属未完成结果的断言，应改为条件性表述。"
+          ]
+        },
+        "tool_end": {
+          "seq": 211,
+          "name": "propose_plan",
+          "error": "UNVERIFIED_CUSTOMER_CLAIMS"
+        },
+        "assessment": "Guard treated prospective plan/summary and dependent result step as completed claims. This is a planning-review blocker, not evidence of incorrect fullname parameters.",
+        "later_verification": "v9_name_guard_retry NG01–NG03 on870d/97513/6de3 reached a genuine name clarification then correct card FirstName舟/LastName林 and cancelled0write. Original89 failure preserved, not overwritten."
+      },
+      {
+        "id": "V9-02",
+        "case": "Natural park drinking-facility repair request blocked after real catalogue reads",
+        "input": "社区公园入口旁的饮水设施坏了，完全不出水。地点在利雅得测试榆树街，能帮我登记维修吗？我不知道设施编号。",
+        "followup": "还是用中文回复。地址就是利雅得测试榆树街的社区公园入口旁。我不知道正式社区名称和经纬度，也没有照片。",
+        "result": "pass_visible_current_not_registered_fixed_branch_unproven",
+        "observed": "Asked ordinary location/language/photo details, then native demo login. Three actual catalog-only reads returned public space/road surface/road damage, no drinking facility match. Final response states 这条维修记录目前无法在这里登记, cites category mismatch and no location geocoding, refuses mismatched classification. No registration/confirmation/write or real dispatch; later options require user choice, no new local complaint auto-created.",
+        "actual_read_receipts": [
+          {
+            "operation": "crm_get_main_classifications",
+            "receipt_id": "receipt-43ce4910-2edb-4868-a650-f8a2f1ee778e"
+          },
+          {
+            "operation": "crm_get_sub_classifications",
+            "receipt_id": "receipt-daefe215-fd8a-46fd-8242-dae0f12b6fe0"
+          },
+          {
+            "operation": "crm_get_special_classifications",
+            "receipt_id": "receipt-33f4fe09-3200-49a0-b38a-6a44e5847899"
+          }
+        ],
+        "message_metadata": {
+          "seq": 306,
+          "time": "2026-10-19T19:49:55.252Z",
+          "message_id": "message-95ca31c6-9dcb-499e-a056-de88c09c7327",
+          "presentation_source": "verified_model"
+        },
+        "coverage_limit": "Catalog-only read context occurred, but final was ordinary verified_model, not a proven fixed host catalog-only-blocked presentation branch. No forced API ordering or synthetic enum prompt used. Only semantic current not-registered outcome is accepted here; exact internal fixed branch requires separate engineering evidence.",
+        "evidence": "assets/balady-user-20261020/90-v9-facility-not-registered.png",
+        "actual_business_writes": 0
+      }
+    ],
+    "file_transport": "No chooser/upload; extension file permission unchanged.",
+    "source_difference_note": {
+      "loaded_preview_agent": "47e8fa4806a5cc6445f7d8e106f4baee7b715c7584f9fb53b23d514acaf0dfae",
+      "later_disk_agent_root_reported": "58d7faa671090ee403f7878953911df35a47730e6aaf902056e07cda1e031a0e",
+      "difference_root_reported": "Only civic-audience scoping of name prompts/control metadata; integration-test contract remains pure. Public logic/toolset/prompt same as preview.",
+      "coverage": "This browser phase loaded47e8 only. It does not claim final58d7 full hash browser verification."
+    },
+    "completed_cases": 2,
+    "actual_business_writes": 0,
+    "result_summary": "Two requested natural cases completed on actual preview47e8/b0f76/5f809. Independent fullname suggestion failed before card because plan-review guard rejected prospective workflow claims; name split not evaluated. Facility flow queried3 real catalogs and clearly could not register,0 writes, ordinary verified-model reply; fixed host catalog-only blocked branch unproven. Not an overall pass or final58d7 browser acceptance. Historical38/40/business and older screenshots left intact."
+  },
+  "v9_name_guard_retry": {
+    "status": "complete_focused_pass_with_genuine_clarification",
+    "candidate": {
+      "agent": "870d70005de89da74a3193bc1ae186986258022cb96842189915d70cbfb49ddf",
+      "presentation": "97513bad8bc8f92d774edb733760a60d8527035c47b48f07222b60e1e253c939",
+      "guard": "6de324ce7d05ccead9532bb4ddcc10071d9c1f779e77e796b93ab4817b13b9ed",
+      "source": "Parent reported actual final preview restarted health200; browser reloaded after that notification."
+    },
+    "url": "http://127.0.0.1:8788/",
+    "browser": "Chrome",
+    "scope": "Only exact original natural 公园长椅建议/林舟 prompt to readable correct name card, then cancel0write. Independent retry, no other business or forced API order. Old89 plan-review failure retained.",
+    "steps": [
+      {
+        "id": "NG01",
+        "case": "Exact original 林舟 full-name suggestion after scope-specific guard fix",
+        "result": "pass_progress_genuine_name_clarification",
+        "observed": "No previous INCOMPLETE_TURN or plan-review factual-claim blocker. Four plan versions, old ones explicitly superseded, then a real ordinary question asking separate given/family names with 林/舟 example. No card or write yet. User naturally answered 我姓林，名字是舟。 per allowed real clarification.",
+        "evidence": "assets/balady-user-20261020/91-v9-name-genuine-clarification.png",
+        "name_clarification_reply": "我姓林，名字是舟。",
+        "coverage_note": "Does not claim zero replanning; verifies recovered workflow reached genuine clarification rather than terminal plan error. Name-card mapping checked next."
+      },
+      {
+        "id": "NG02",
+        "case": "Readable confirmation after real Chinese name clarification",
+        "result": "pass_correct_name_once",
+        "observed": "One native confirmation with title 公园长椅建议, Chinese suggestion description, 名字舟/姓氏林 (full name 林舟 exactly once across correct parts),0500000002,lin.zhou@example.test,no attachments. No duplicated 林舟 in both fields. Previous terminal INCOMPLETE_TURN not reproduced.",
+        "name_fields": {
+          "FirstName": "舟",
+          "LastName": "林",
+          "full_name_in_chinese_order": "林舟"
+        },
+        "evidence": "assets/balady-user-20261020/92-v9-name-correct-card.png"
+      },
+      {
+        "id": "NG03",
+        "case": "Cancel only approved name card without business write",
+        "result": "pass_zero_write",
+        "observed": "Clicked native cancel, card states invalid/above contents will not continue submission; status paused and current task stopped. No actual API receipt/business write or replacement complaint created.",
+        "actual_business_writes": 0,
+        "evidence": "assets/balady-user-20261020/93-v9-name-cancelled-no-write.png"
+      }
+    ],
+    "completed_flows": 1,
+    "completed_checks": 3,
+    "actual_business_writes": 0,
+    "result_summary": "Only exact original natural 林舟 suggestion retested after actual final preview reload870d/97513/6de3. Legitimate given/family-name question answered naturally, correct readable name parts card, then cancel0write. Old89 plan-review blocker did not recur; four plan versions remain visible and are not falsely reported as no-replanning. Old89/90 and all earlier evidence preserved. No new business/file chooser/extra scope."
   }
 }

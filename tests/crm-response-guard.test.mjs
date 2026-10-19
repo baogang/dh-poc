@@ -17,7 +17,7 @@ function reviewers(verdicts,inspect=()=>{}){
   const guard=new CrmResponseGuard({runtimeFactory:async options=>{
     assert.deepEqual(options.tools.map(x=>x.name),['review_message'],'Verifiers cannot receive business tools');
     const index=runtimes.length;assert.ok(index<verdicts.length,'No unplanned verification pass');
-    const runtime=await controlledSession({...options,fauxResponses:[context=>{const input=inputOf(context);prompts.push(input);inspect(input,context,index);return call(verdicts[index]);}]});runtimes.push(runtime);return runtime;
+    const runtime=await controlledSession({...options,fauxResponses:[context=>{const input=inputOf(context);prompts.push(input);inspect(input,context,index,options.system);return call(verdicts[index]);}]});runtimes.push(runtime);return runtime;
   }});
   return {guard,prompts,runtimes};
 }
@@ -66,4 +66,18 @@ test('empty-prose submission review verifies exact payload metadata while retain
   snapshot.crmFiles={'file-private':{name:'Citizen Memo.txt',base64}};snapshot.facts.files=[{id:'file-private',name:'Citizen Memo.txt',media_type:'text/plain',size:52}];
   const verifier=reviewers([{approved:true,issues:[]},{approved:true,issues:[]}],(input,context)=>{assert.deepEqual(input.texts,[]);assert.equal(input.context.kind,'submission_draft');assert.equal(input.context.parameters.body.pxAttachName,parameters.body.pxAttachName);assert.equal(input.context.parameters.body.pyMemo,parameters.body.pyMemo);assert.equal(input.context.parameters.body.AttachStream,'[file bytes retained by host]');assert.equal(input.context.previous_draft.parameters.body.AttachStream,'[file bytes retained by host]');assert.ok(!JSON.stringify(context).includes(base64));});
   const result=await verifier.guard.review({texts:[],session:snapshot,mode:'simulation',language:'en',context:{kind:'submission_draft',operation:'crm_upload_attachment',parameters,previous_draft:{operation:'crm_upload_attachment',parameters}}});assert.deepEqual(result,{texts:[],issues:[]});assert.equal(parameters.body.AttachStream,base64);assert.equal(verifier.prompts.length,2);
+});
+
+test('plan, missing-fact question and exact draft reviews receive only their own task-specific instructions',async()=>{
+  const rules={plan:/Review an intended action plan/u,missing_information:/Omitting a delivered fact from known_parameters/u,submission_draft:/Review context\.parameters as the exact proposed payload/u};
+  for(const kind of Object.keys(rules)){const snapshot=session();snapshot.receipts=[];snapshot.messages=[{role:'user',text:'Please prepare a local complaint. My full name is Test Citizen.'}];const texts=kind==='submission_draft'?[]:kind==='plan'?['I will prepare the local draft, show the host confirmation card before submitting, and explain the resulting local receipt.']:['Which part of Test Citizen is your given name, and which is your family name?'];
+    const context={kind,...(kind==='submission_draft'?{operation:'crm_create_form_request',parameters:{body:{CustomerInformation:{FirstName:'Test',LastName:'Citizen'},Type:'T03'}}}:{})};
+    const verifier=reviewers([{approved:true,issues:[]},{approved:true,issues:[]}],(input,modelContext,index,system)=>{assert.equal(input.context.kind,kind);assert.equal(input.review_scope,['facts','capability_language'][index]);assert.equal(input.actual_receipts.length,0);assert.match(system,rules[kind]);for(const [other,rule]of Object.entries(rules))if(other!==kind)assert.doesNotMatch(system,rule,'A '+kind+' review must not receive '+other+'-only instructions');assert.equal(modelContext.messages.filter(x=>x.role==='user').length,1);if(kind==='plan')assert.match(system,/intentions do not require an already-completed receipt/u);if(kind==='missing_information')assert.match(system,/unclear given\/family split/u);if(kind==='submission_draft')assert.deepEqual(input.context.parameters,context.parameters);});
+    assert.deepEqual(await verifier.guard.review({texts,session:snapshot,mode:'simulation',language:'en',context}),{texts,issues:[]});assert.equal(verifier.runtimes.length,2);assert.notEqual(verifier.runtimes[0].session,verifier.runtimes[1].session);
+  }
+});
+
+test('an intended-plan context still fails closed on a verifier finding instead of receiving an unconditional plan exemption',async()=>{
+  const snapshot=session();snapshot.receipts=[];const verifier=reviewers([{approved:true,issues:[]},{approved:false,issues:['A claim that the official submission already succeeded has no actual receipt.']}]);
+  await assert.rejects(()=>verifier.guard.review({texts:['The official submission is already complete.'],session:snapshot,mode:'simulation',language:'en',context:{kind:'plan',operations:['crm_create_form_request','respond']}}),error=>error.code==='UNVERIFIED_CUSTOMER_CLAIMS');assert.equal(verifier.runtimes.length,2);assert.equal(snapshot.receipts.length,0);
 });

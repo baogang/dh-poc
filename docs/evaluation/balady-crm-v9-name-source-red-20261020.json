@@ -1,0 +1,16 @@
+{
+  "stage": "public HTTP complete-known-parameters name quote evidence forwarding regression",
+  "exit_code": 1,
+  "selected_tests": 1,
+  "expected": "one exact confirmation with source metadata retained internally and omitted from CRM payload",
+  "observed": "request_input drops customer_name_source when internally calling business; host fails instead of showing confirmation",
+  "source_sha256": {
+    "src/crm/agent.mjs": "58d7faa671090ee403f7878953911df35a47730e6aaf902056e07cda1e031a0e",
+    "src/crm/presentation.mjs": "b0f76a1dc02b4a565d4b4b5e8f3a0bf23f55fc3dbd5b945e86e46ec34bfd9ade",
+    "src/crm/response-guard.mjs": "5f809f975c46ba119b88af8ccba76d6407765a7e861132c2af562db50842394e",
+    "tests/crm-integration.test.mjs": "a9c597286320184f71f47bc3e27276273fd2507d38f0e769731c432d2a6d7c9f"
+  },
+  "source_changed_during_run": [],
+  "raw_tap": "docs/evaluation/balady-crm-v9-name-source-red-20261020.tap",
+  "scoring_oracle_changed": false
+}
