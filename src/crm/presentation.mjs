@@ -3,6 +3,9 @@ import {isDeepStrictEqual} from 'node:util';
 import {failure} from '../road/store.mjs';
 
 export const CASE_GUIDANCE=['not_found','needs_choice','access_limited','action_unavailable','reason_not_returned','file_unavailable','offer_separate_complaint'];
+export function caseStatusLabel(value,language){
+  return ({zh:{Open:'未结案',InProgress:'处理中',Resolved:'已解决',Rejected:'未受理'},en:{Open:'Open',InProgress:'In progress',Resolved:'Resolved',Rejected:'Rejected'},ar:{Open:'مفتوح',InProgress:'قيد المعالجة',Resolved:'تم الحل',Rejected:'مرفوض'}}[language]??{})[value]??value;
+}
 
 const guidanceWords=(language,mode='simulation')=>({
     zh:{not_found:'尚未在本次可见记录中确认你所指的事项。下表如有记录，仅为可见候选；可以补充问题描述、地点或时间帮助区分。',needs_choice:'有多个候选，尚未确认你指的是哪件。请用问题描述或记录日期说明；以下不代表已选定其中一件。',access_limited:'我只能查询当前登录账号可见的记录，不能提供他人的投诉或联系方式。',action_unavailable:'你请求的这项操作当前未接入，本次没有执行该操作。',reason_not_returned:'这些回执未证实结案原因，不能从状态推断具体原因或现场情况。',file_unavailable:'尚未取得你要找回的文件内容，暂不能提供下载；这不代表文件已取回。',offer_separate_complaint:mode==='simulation'?'如果你愿意，可以另起一条本地模拟的公众投诉；这属于新的本地记录，需要你选择并单独核对，不会更改原事项，也不会投递给真实部门核实处理。':'如果你愿意，可以另起一条公众投诉，需要你选择并单独核对；是否会进一步转办或处理尚未核实。'},
@@ -49,10 +52,9 @@ export function caseReadOutcome(receipts,{language='en',mode='simulation',guidan
     ar:{heading:'تحتوي إيصالات الاستعلام المشار إليها على السجلات التالية:',headers:['رقم السجل','وصف المشكلة','الحالة المسجلة','علامة المرفقات'],missing:'لم يُرجع',yes:'توجد علامة مرفقات',no:'لا توجد علامة مرفقات',empty:'لا تحتوي إيصالات الاستعلام المشار إليها على سجلات.',status:'هذه حالات مسجلة فقط، ولا تثبت إصلاح الموقع أو إرسال فريق أو موعد المعالجة.',attachments:'علامة المرفقات لا تثبت عدد الملفات أو نوعها أو من رفعها. لا تحتوي الإيصالات المشار إليها على محتوى ملف، لذا لا يتوفر تنزيل حالياً.',download:'تتوفر استجابة المرفق في الإيصالات المشار إليها. يظهر رابط التنزيل المتاح أسفل الإيصال.',choose:'لمتابعة أحد هذه السجلات، صف المشكلة التي تقصدها.',scope:'هذه سجلات محاكاة محلية لم تُرسل إلى أنظمة حكومية، ولا يمكن البحث عنها بهذه الأرقام المحلية عبر القنوات الرسمية.',real:'تُعرض سجلات الواجهة الفعلية فقط. لم يتم التحقق من حالة الموقع أو الإشعارات اللاحقة.'}
   }[language];
   const instructions=guidanceWords(language,mode);
-  const status={zh:{Open:'未结案',InProgress:'处理中',Resolved:'已解决',Rejected:'未受理'},en:{Open:'Open',InProgress:'In progress',Resolved:'Resolved',Rejected:'Rejected'},ar:{Open:'مفتوح',InProgress:'قيد المعالجة',Resolved:'تم الحل',Rejected:'مرفوض'}}[language];
   const safe=value=>String(value??words.missing).replace(/[\\`*_[\]<>|]/gu,'\\$&').replace(/[\r\n]+/gu,' ');
   const issue=row=>{const description=row.Description??row.IncidentInformation?.IssueDescription,date=row.pxCreateDateTime??row.CreatedAt??row.CreatedDate??row.CreateDateTime??row.ReportedDate??row.CreatedOn;return date?[description??words.missing,date].join(' · '):description;};
-  const table=rows.length?'| '+words.headers.join(' | ')+' |\n|---|---|---|---|\n'+rows.map(row=>'| '+[row.pyID,issue(row),status[row.pyStatusWork]??row.pyStatusWork,typeof row.hasAttachments==='boolean'?(row.hasAttachments?words.yes:words.no):words.missing].map(safe).join(' | ')+' |').join('\n'):words.empty;
+  const table=rows.length?'| '+words.headers.join(' | ')+' |\n|---|---|---|---|\n'+rows.map(row=>'| '+[row.pyID,issue(row),caseStatusLabel(row.pyStatusWork,language),typeof row.hasAttachments==='boolean'?(row.hasAttachments?words.yes:words.no):words.missing].map(safe).join(' | ')+' |').join('\n'):words.empty;
   const downloaded=receipts.some(r=>r.operation==='crm_download_file'&&r.result?.data?.result?.AttachmentStream);
   if(selected.has('file_unavailable')&&downloaded)throw failure('GUIDANCE_EVIDENCE_MISMATCH','The cited receipts include downloaded file content. Do not report file_unavailable.');
   const partial={zh:'部分请求尚未完成；以下仅为已取得的记录，不能视为全部办理成功。',en:'Part of the request is incomplete. Only the records already obtained are shown; this is not completion of the whole request.',ar:'لم يكتمل جزء من الطلب. تُعرض السجلات التي جُلبت فقط، وهذا لا يعني اكتمال الطلب كله.'}[language];

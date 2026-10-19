@@ -441,7 +441,13 @@ const serviceChoiceMessages={
   en:{language:'en',direction:'ltr',legend:'Choose how to continue',notice:'This choice does not submit a request. You will review the exact details separately before any submission.',continue:'Continue with this choice',cancel:'Cancel this task',required:'Choose one way to continue.',retry:'Your choice could not be saved. Please retry.',received:'Your service choice has been received.',expired:'This service choice has ended.'},
   ar:{language:'ar',direction:'rtl',legend:'اختر طريقة المتابعة',notice:'لا يؤدي هذا الاختيار إلى تقديم أي طلب. ستراجع التفاصيل بشكل منفصل قبل أي إرسال.',continue:'متابعة بهذا الاختيار',cancel:'إلغاء هذه المهمة',required:'اختر طريقة واحدة للمتابعة.',retry:'تعذر حفظ اختيارك. حاول مرة أخرى.',received:'تم تسجيل اختيار الخدمة.',expired:'انتهى طلب اختيار الخدمة هذا.'}
 };
-export function serviceChoiceCopy(question,locale='zh'){
+const caseChoiceMessages={
+  zh:{language:'zh',direction:'ltr',legend:'选择一件报告',notice:'此选择只用于确定你所说的记录，不会提交业务，也不代表批准任何操作。',continue:'选择后继续',cancel:'取消这个任务',required:'请选择一件报告，或选择“这些都不是”。',retry:'报告选择暂未保存，请重试。',received:'已记录你的报告选择。',expired:'此报告选择已结束。'},
+  en:{language:'en',direction:'ltr',legend:'Choose a report',notice:'This choice identifies the report record you mean. It does not submit a request or approve any action.',continue:'Continue with this report',cancel:'Cancel this task',required:'Choose a report, or choose “None of these”.',retry:'Your report choice could not be saved. Please retry.',received:'Your report choice has been received.',expired:'This report choice has ended.'},
+  ar:{language:'ar',direction:'rtl',legend:'اختر بلاغًا',notice:'هذا الاختيار يحدد السجل الذي تقصده ولا يرسل أي طلب ولا يوافق على أي إجراء.',continue:'متابعة بهذا البلاغ',cancel:'إلغاء هذه المهمة',required:'اختر بلاغًا أو اختر «لا شيء من هذه البلاغات».',retry:'تعذر حفظ اختيار البلاغ. حاول مرة أخرى.',received:'تم استلام اختيار البلاغ.',expired:'انتهى طلب اختيار البلاغ هذا.'}
+};
+export function serviceChoiceCopy(question,locale='zh',purpose='service'){
   const text=String(question??''),language=/\p{Script=Arabic}/u.test(text)?'ar':/\p{Script=Han}/u.test(text)?'zh':/[A-Za-z]/u.test(text)?'en':locale;
-  return serviceChoiceMessages[language]??serviceChoiceMessages.zh;
+  const messages=purpose==='case'?caseChoiceMessages:serviceChoiceMessages;
+  return messages[language]??messages.zh;
 }

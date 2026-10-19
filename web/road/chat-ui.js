@@ -182,10 +182,10 @@ export function createChatRenderer(document,container,actions){
       else n.append(el('small',item.approved?t('你已确认以上内容。'):t('此确认已失效，以上内容不会继续提交。')));
     }else if(item.kind==='input'){
       const x=item.input;n.append(el('p',x.question,'message-text'));
-      if(!item.active){const copy=x.kind==='choice'?serviceChoiceCopy(x.question,uiLocale):null;n.append(el('small',copy?item.received?copy.received:copy.expired:item.received?t('已收到你补充的信息。'):t('此信息请求已结束。')));return n;}
+      if(!item.active){const copy=x.kind==='choice'?serviceChoiceCopy(x.question,uiLocale,x.purpose):null;n.append(el('small',copy?item.received?copy.received:copy.expired:item.received?t('已收到你补充的信息。'):t('此信息请求已结束。')));return n;}
       if(x.kind==='login'){if(!item.loggedIn)n.append(loginForm({kind:'input',id:x.id},busy));else n.append(button(t('已登录，继续'),()=>actions.action('/api/input',{input_id:x.id,value:{}}),busy));return n;}
       if(x.kind==='choice'){
-        const copy=serviceChoiceCopy(x.question,uiLocale),form=el('form',undefined,'inline-form service-choice-form');form.dataset.formKey='input:'+x.id;form.dir=copy.direction;form.lang=copy.language;
+        const copy=serviceChoiceCopy(x.question,uiLocale,x.purpose),form=el('form',undefined,'inline-form service-choice-form');form.dataset.formKey='input:'+x.id;form.dir=copy.direction;form.lang=copy.language;
         const group=el('fieldset',undefined,'service-choice-options');group.disabled=busy;group.append(el('legend',copy.legend));
         for(const choice of x.choices??[]){const label=el('label',undefined,'service-choice-option'),radio=el('input'),text=el('span',undefined,'service-choice-text');label.dir='auto';radio.type='radio';radio.name='choice_id';radio.value=choice.id;radio.required=true;radio.disabled=busy;text.append(el('strong',choice.label));if(choice.description)text.append(el('span',choice.description,'service-choice-description'));label.append(radio,text);group.append(label);}
         const notice=el('p',copy.notice,'service-choice-notice'),error=el('p','','input-error');error.setAttribute('role','alert');const controls=el('div',undefined,'service-choice-actions'),submit=el('button',copy.continue),cancel=button(copy.cancel,()=>actions.action('/api/cancel',{}),busy);submit.type='submit';submit.disabled=busy;cancel.className='secondary';controls.append(submit,cancel);form.append(group,notice,error,controls);
