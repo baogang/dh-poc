@@ -435,3 +435,13 @@ export const UI_MESSAGES=Object.freeze({zh:Object.freeze(zh),en:Object.freeze(en
 export function resolveLocale(stored,browserLanguage=''){return UI_LOCALES.includes(stored)?stored:/^en(?:-|$)/i.test(browserLanguage)?'en':'zh';}
 export function translator(locale='zh'){const dict=locale==='en'?en:zh;return (key,values={})=>String(dict[key]??key).replace(/\{(\w+)\}/g,(_,name)=>values[name]===undefined?'{'+name+'}':String(values[name]));}
 export function uiError(error,locale='zh'){if(!error)return null;if(typeof error==='string')return error;const t=translator(locale),detail=(UI_MESSAGES[locale]?.['error.'+error.code]??error.detail??'');return t(error.key)+(detail?' '+detail:'');}
+
+const serviceChoiceMessages={
+  zh:{language:'zh',direction:'ltr',legend:'选择办理方式',notice:'此选择只用于确定办理方式，尚未提交任何业务。提交前仍会请你核对具体内容。',continue:'选择后继续',cancel:'取消这个任务',required:'请选择一种办理方式。',retry:'选择暂未保存，请重试。',received:'已记录你的服务选择。',expired:'此服务选择已结束。'},
+  en:{language:'en',direction:'ltr',legend:'Choose how to continue',notice:'This choice does not submit a request. You will review the exact details separately before any submission.',continue:'Continue with this choice',cancel:'Cancel this task',required:'Choose one way to continue.',retry:'Your choice could not be saved. Please retry.',received:'Your service choice has been received.',expired:'This service choice has ended.'},
+  ar:{language:'ar',direction:'rtl',legend:'اختر طريقة المتابعة',notice:'لا يؤدي هذا الاختيار إلى تقديم أي طلب. ستراجع التفاصيل بشكل منفصل قبل أي إرسال.',continue:'متابعة بهذا الاختيار',cancel:'إلغاء هذه المهمة',required:'اختر طريقة واحدة للمتابعة.',retry:'تعذر حفظ اختيارك. حاول مرة أخرى.',received:'تم تسجيل اختيار الخدمة.',expired:'انتهى طلب اختيار الخدمة هذا.'}
+};
+export function serviceChoiceCopy(question,locale='zh'){
+  const text=String(question??''),language=/\p{Script=Arabic}/u.test(text)?'ar':/\p{Script=Han}/u.test(text)?'zh':/[A-Za-z]/u.test(text)?'en':locale;
+  return serviceChoiceMessages[language]??serviceChoiceMessages.zh;
+}

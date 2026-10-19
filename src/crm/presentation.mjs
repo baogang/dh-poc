@@ -13,7 +13,7 @@ const guidanceWords=(language,mode='simulation')=>({
 // Normalize prose paragraph/list separators, leaving code and literal paths
 // alone. API parameters, user messages and stored evidence are never rewritten.
 export function normalizeCustomerText(text){
-  return text.split(/(```[\s\S]*?```|`[^`\n]+`)/gu).map((part,index)=>index%2?part:part.replace(/(?<!\\)(?:\\n){2,}/gu,separator=>'\n'.repeat(separator.length/2)).replace(/(?<!\\)\\n(?=\s*(?:[-*+] |\d+[.)] |#{1,6} |\|))/gu,'\n')).join('');
+  return text.split(/(```[\s\S]*?```|`[^`\n]+`)/gu).map((part,index)=>index%2?part:part.replace(/(?<!\\)(?:\\n){2,}/gu,separator=>'\n'.repeat(separator.length/2)).replace(/(?<!\\)\\n(?=\s*(?:[-*+·•] |\d+[.)] |#{1,6} |\|))/gu,'\n')).join('');
 }
 
 // The same typed capability guidance is meaningful without a case lookup. It
