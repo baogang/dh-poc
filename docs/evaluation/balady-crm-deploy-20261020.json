@@ -1,0 +1,51 @@
+{
+  "date_local": "2026-10-20",
+  "timezone": "Asia/Shanghai",
+  "workspace": "poc",
+  "workspace_id": "tea-db5ogtd9fdbs73ditg1g",
+  "service": "road-pothole-pi-poc",
+  "service_id": "srv-db7p0lbbc2fs73fvlkhg",
+  "url": "https://road-pothole-pi-poc.onrender.com",
+  "branch": "balady-crm",
+  "source_commit": "f50118c3cb65d3da4c80482e86fd26353e3845eb",
+  "dockerfile": "Dockerfile.road",
+  "deploy_id": "dep-dbb4hijncjis73der690",
+  "deploy_status": "live",
+  "deploy_trigger": "service_updated: branch updated",
+  "started_at": "2026-10-19T16:43:54.664674Z",
+  "finished_at": "2026-10-19T16:44:40.578882Z",
+  "verification": {
+    "render_mcp_status": "live",
+    "dashboard_status": "Deploy succeeded | Live",
+    "health_http_status": 200,
+    "health": {
+      "ok": true,
+      "service": "balady-crm",
+      "contract_version": "1.13.0",
+      "tools": 35,
+      "api_mode": "simulation",
+      "release": "f50118c3cb65d3da4c80482e86fd26353e3845eb",
+      "session_storage": "neon",
+      "model_configured": true
+    },
+    "local_real_browser": "Chinese/English identity; FAQ miss and neutral routing; dynamic plan; full exact payload confirmation; one simulated write and actual success receipt",
+    "online_authenticated_browser": "Not inspected: existing website Basic Auth remains enabled; Chrome navigation reported invalid stored credentials. No credentials were retrieved or changed. Online deployment and public health were verified independently.",
+    "screenshot": "assets/balady-crm-render-live-20261020.png"
+  },
+  "pre_deploy_checks": {
+    "engineering_tests": {"passed":59,"failed":0},
+    "live_model_scenarios": {"tool":50,"planning":20,"passed":70,"failed":0},
+    "tool_selection_precision":1,
+    "tool_selection_recall":1,
+    "dynamic_plan_exact_accuracy":1,
+    "unauthorized_writes":0,
+    "openapi_schema_and_refs":"passed",
+    "source_syntax_and_credential_scan":"passed",
+    "regression_report":"balady-crm-regression-20261020.json"
+  },
+  "constraints": [
+    "Synthetic regression; not blind, production or official BALADY API compatibility results.",
+    "No government staging/production business calls were made.",
+    "Existing service, region, plan, website access control and database settings were retained."
+  ]
+}

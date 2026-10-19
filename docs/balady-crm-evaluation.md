@@ -24,3 +24,5 @@
 这些是调试后复用的合成回归案例，不是盲测、官方验收或生产准确率。规划评测隔离了 FAQ/情绪路由，因此不能用这里的分数声称端到端情绪准确率或真实 BALADY 后端兼容率。真实适配器的认证、字段冲突仍需要接口提供方确认。
 
 真实浏览器另行核验了中文/英文 BALADY 标题与欢迎语、FAQ miss → 中性情绪 → 动态计划、确认卡完整展示 IncidentID 与数字 Status、用户确认后的一次写调用与实际 MMRH-00000 回执。可见证据：[本地网页核验](evaluation/assets/balady-crm-local-20261020.png)。在线发布核验另行记录实际 deploy ID 和 commit。
+
+Render 已发布 `f50118c`，deploy `dep-dbb4hijncjis73der690` 为 Live。线上 `/healthz` 返回同一 release、35 个工具、simulation 和 Neon 存储；[部署记录](evaluation/balady-crm-deploy-20261020.json) 与 [Live 截图](evaluation/assets/balady-crm-render-live-20261020.png) 已保存。线上网站保留原访问认证；本次未读取或修改密码，Chrome 中缓存凭证不可用，因此认证后的界面交互在本机完成，线上以实际发布和公开健康端点核验。
