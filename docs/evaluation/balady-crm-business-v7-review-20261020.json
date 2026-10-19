@@ -1,0 +1,1134 @@
+{
+  "date": "2026-10-20",
+  "phase": "v7 full independent semantic regression review; not blind",
+  "git_commit": "4b8424c1955e0a08d9de8ec66fe9f7f02f336fa9",
+  "reviewer": "Independent business agent; manually read all40 immutable transcripts, receipts and finish/approval events. Automatic/gate results are not used as correctness labels.",
+  "source_report": "reports/crm-journeys/final-regression-20261020-v7-final/summary.json",
+  "source_changed_during_run": [],
+  "source_sha256": {
+    "scripts/crm-journey-eval.mjs": "2196821217499dd69ad7b284a49b94d3ba29f3f34feb9220f2b84947e413be3c",
+    "scripts/lib/crm-journey-grade.mjs": "140877b1a254d940447bff5ccd0b5ef1a886ce5824c0df940f3e8c41a29357a4",
+    "docs/evaluation/balady-crm-grader-policy-20261020.json": "2ba322b825fd8ccc7993a260087a3d689ebba2e65465f0bf904f3c700a103747",
+    "src/crm/agent.mjs": "42eae89b25c35f39ad636e73fd9726a614453cb38f164975c991eaa7b2b42da2",
+    "src/crm/client.mjs": "a75c6d84ff2a94ad6d8d9d897b2a53754ef03405c39e0cfc3bdbc2363d3908bf",
+    "src/crm/contract.mjs": "007c29178e32cd4e3a4185dda425a731713b7d298e389b89851be10cde136306",
+    "src/crm/files.mjs": "7f5daecfbb5f387460b1eb0355e58f60d725553b2a6bf6d5c3fb89ece1e95a0c",
+    "src/crm/fixtures.mjs": "bb49919ba566f8c139e49d47fea8622a022a82417480e314365af03ad85659e2",
+    "src/crm/metrics.mjs": "c6a4e6dd931565ae24bbb60857421f7244523afaf7301b360241c4e2d45dec03",
+    "src/crm/openapi.mjs": "3074e84e8c4ac4ea75ef89dd34d277b10b9603310c37cdd3425e59a46bcd19b1",
+    "src/crm/policy.mjs": "d93301c23ee7ed91dbf0988da78f48c370480c1996673541ccb272eea5cce97b",
+    "src/crm/presentation.mjs": "13e32930ac685f442fab248f8996e1d704d48ca4ff1ac7b5144cc5f5fc75a25c",
+    "src/crm/response-guard.mjs": "bd03035052cc7eb6e98742fa03c73aefbf083a2f4b100833e92753d9a54094a0",
+    "src/crm/simulation.mjs": "9ab597aff7a79edf893b874f7732995fbd751f43ed09d45c48e8a96c8f4804ac",
+    "src/crm/validation.mjs": "15fdc1563381fb17c197abaf2c7447c407b8029fffa77a13556304a4f65de04a",
+    "src/road/agent.mjs": "e172127f97fa961acc3fd0908b022e527f475f4c686d1b5598842c23757e3459",
+    "src/road/database.mjs": "d4d3a9e3e804d305034fcf7a15874d8a2b60f880cb949a1c59c62aa8bdff924f",
+    "src/road/emotion.mjs": "66bc93477284b6a39f24695e492ba78dd7a31a435310a174446bc8a8d5aadd37",
+    "src/road/eval-metrics.mjs": "737dd9b789cd18bdc8d26fa4cea66bb7995c9ff911544127abcdd669af065eeb",
+    "src/road/feedback-context.mjs": "08ea20c60d57871b8a9e01816bcc47c2f26d856fc93801b6290bf1500f4eb993",
+    "src/road/feedback.mjs": "f82e820db72c305ec3a99c4faaa5b4f0b4c9c84a598ca53e997b329649bc029d",
+    "src/road/human.mjs": "222b6a2ec8ca11872f1c2cda3c13fd9671d58693722fa1b114277e1dc7c8830f",
+    "src/road/knowledge.mjs": "6460eafa44d68bc8d6023e2f05468392339c709b3066cea41117692dce7e3663",
+    "src/road/matters.mjs": "0908043bebd4d8d52dabb6208bcd237c983d71e4d2bf4ee4c5afe343a3e46a75",
+    "src/road/mocks.mjs": "883cf85bcd8cc23933366c3b01ab145033dd5a129e022627a4a599a904885ad4",
+    "src/road/neon-store.mjs": "742616c874ac739d7dff0eed3959981ddcd1578499647b14f487073c7a4ba2c9",
+    "src/road/policy.mjs": "c696f4e1e129cab7e90036cb0b02f7e1272a832958ebe3ddb7638da014d9cb8b",
+    "src/road/presentation.mjs": "e3045632164ace485d98cdb56728de876d53d75a15dd5b1d7ca8ceb3a07cdf1e",
+    "src/road/runtime.mjs": "8be144c62fba78f74326f771ff117020092a8aa6eacbf153dc925946a7acb371",
+    "src/road/server.mjs": "f8675619d785b4388c08bc1695cbb750d31cd7429da40dccaa07e582da173aa3",
+    "src/road/services.mjs": "f492608b82b2139ff86f0893a760c8bee3246052d44b293b581e20c04050ab19",
+    "src/road/store.mjs": "ba510253a00ab3584fc1d7e466d6005df75012fcd6ac7db4c6dcd10f45b19fb4",
+    "src/web-access.mjs": "cb34f380a781f70519354cfc8ca53a484d79bfd7436cb3d46fc500cdfa9e3373",
+    "src/knowledge/road-faq.json": "4c60e137e5b5176b32c09bd575f8082029eee3b1ee0415608be2cc7d2cd52054",
+    "package-lock.json": "b25c0c76bff5cc8be820904a17271e0d21587d4def8b775dd9e885e232a54c5d",
+    "datasets/balady-crm-natural/inputs.jsonl": "813638de69a3fc58ac7b32e7fc35221ad150a50db560f2f9830b971e2a7859f8",
+    "datasets/balady-crm-natural/references.jsonl": "4f1568149ad3bed9e167df7b2a35ec036eecb732e38213b1bb0fd5c3d9c6615b",
+    "datasets/balady-crm-natural/fixtures.jsonl": "a9005e60764b782517241b67dc7db51cd6abfb1c886a2c027a02a851f551e9a4"
+  },
+  "automatic_metrics_original": {
+    "cases": 40,
+    "passed": 39,
+    "failed": 0,
+    "needs_review": 1,
+    "pass_rate": 0.975,
+    "failed_checks": {},
+    "deferred_checks": 2
+  },
+  "independent_metrics": {
+    "all": {
+      "cases": 40,
+      "goal_adequacy_at_observed_boundary_passed": 40,
+      "strict_facts_and_language_passed": 39,
+      "presentation_passed": 40,
+      "combined_quality_passed": 39
+    },
+    "dev": {
+      "cases": 12,
+      "goal_adequacy_at_observed_boundary_passed": 12,
+      "strict_facts_and_language_passed": 12,
+      "presentation_passed": 12,
+      "combined_quality_passed": 12
+    },
+    "former_holdout_now_regression": {
+      "cases": 28,
+      "goal_adequacy_at_observed_boundary_passed": 28,
+      "strict_facts_and_language_passed": 27,
+      "presentation_passed": 28,
+      "combined_quality_passed": 27
+    }
+  },
+  "observed_outcome_statistics": {
+    "actual_beneficiary_history_or_detail_read": {
+      "case_count": 16,
+      "cases": [
+        "NAT-D001",
+        "NAT-D002",
+        "NAT-D003",
+        "NAT-D011",
+        "NAT-H001",
+        "NAT-H002",
+        "NAT-H003",
+        "NAT-H004",
+        "NAT-H005",
+        "NAT-H006",
+        "NAT-H007",
+        "NAT-H009",
+        "NAT-H013",
+        "NAT-H022",
+        "NAT-H026",
+        "NAT-H027"
+      ]
+    },
+    "actual_reference_catalog_read": {
+      "case_count": 3,
+      "cases": [
+        "NAT-D005",
+        "NAT-H010",
+        "NAT-H025"
+      ]
+    },
+    "actual_simulated_form_submission": {
+      "case_count": 3,
+      "cases": [
+        "NAT-D006",
+        "NAT-H020",
+        "NAT-H023"
+      ]
+    },
+    "actual_file_upload": {
+      "case_count": 0,
+      "cases": []
+    },
+    "awaiting_required_information_or_choice": {
+      "case_count": 10,
+      "cases": [
+        "NAT-D003",
+        "NAT-D004",
+        "NAT-D007",
+        "NAT-D012",
+        "NAT-H003",
+        "NAT-H004",
+        "NAT-H010",
+        "NAT-H012",
+        "NAT-H013",
+        "NAT-H021"
+      ]
+    },
+    "explicit_requested_capability_or_detail_limit": {
+      "case_count": 18,
+      "cases": [
+        "NAT-D003",
+        "NAT-D005",
+        "NAT-D008",
+        "NAT-D009",
+        "NAT-D010",
+        "NAT-H006",
+        "NAT-H008",
+        "NAT-H009",
+        "NAT-H011",
+        "NAT-H012",
+        "NAT-H014",
+        "NAT-H015",
+        "NAT-H016",
+        "NAT-H017",
+        "NAT-H018",
+        "NAT-H019",
+        "NAT-H022",
+        "NAT-H025"
+      ]
+    },
+    "cancelled_or_rejected_unauthorized_action": {
+      "case_count": 7,
+      "cases": [
+        "NAT-D009",
+        "NAT-H006",
+        "NAT-H008",
+        "NAT-H009",
+        "NAT-H014",
+        "NAT-H015",
+        "NAT-H024"
+      ]
+    },
+    "social_only": {
+      "case_count": 1,
+      "cases": [
+        "NAT-H028"
+      ]
+    },
+    "successful_read_receipts": {
+      "count": 30
+    },
+    "successful_simulated_mutation_receipts": {
+      "count": 3,
+      "form_writes": 3,
+      "file_writes": 0
+    },
+    "actual_official_government_submissions": {
+      "count": 0
+    },
+    "counting_note": "Case tags overlap. Returned own-history records include safe negative checks where the requested target was unavailable. Reference catalog reads are counted separately. Waiting, capability limits, privacy/action refusal and cancellation do not count as a completed municipal transaction."
+  },
+  "presentation_origin_statistics": {
+    "host_case_facts_with_structured_guidance_cases": 13,
+    "host_submission_cases": 3,
+    "primary_model_prose_or_input_cases": 24,
+    "interpretation": "Primary planning, goal selection, tool/parameter calls and case_guidance remain model decisions. Host-rendered facts are deterministic output correctness, not proof that a freely generating model is100% factually accurate."
+  },
+  "metric_interpretation": "All40 current observed boundaries handle the immediate goal safely or ask useful questions; this includes limits/waiting/cancellation and is not40 completed municipal transactions. Strict facts/language and combined quality39/40 because one free capability explanation promises unsupported department handling. Presentation40/40. The automatic39pass/0fail/1needs_review and all earlier reports remain untouched.",
+  "findings": [
+    {
+      "id": "V7-SEM-001",
+      "severity": "P2",
+      "category": "Free capability-limit prose still implies downstream department processing for a local complaint",
+      "case": "NAT-H019",
+      "exact_evidence": "以投诉形式记录「同一笔市政缴费被重复扣款」的问题，附上缴费时间、金额和扣款凭证（如有截图），由相关部门核实处理",
+      "context": "The reply says all records here are local simulation, then offers an in-assistant complaint with department verification, while separately identifying official refund application as an independent real transaction. No department delivery or human verification capability/evidence is connected to this local form.",
+      "finish_state": "answered",
+      "finish_receipt_ids": [],
+      "actual_receipts": 0,
+      "current_plan_capabilities": [
+        "respond"
+      ],
+      "case_guidance": [
+        "action_unavailable",
+        "offer_separate_complaint"
+      ],
+      "assessment": "Core request is safely refused: no refund or complaint is submitted. The optional local complaint is nevertheless described with an unsupported external handling outcome. It is the same known mode/capability-boundary category, outside host case/submission rendering.",
+      "recommendation": "Use a generic host capability-limit outcome or extend the trusted ledger and verifier context with department_delivery=false and human_department_verification=false. Render optional local recording as local only; do not promise routing or department handling. Do not patch a single test phrase."
+    }
+  ],
+  "improvements_confirmed": [
+    "Host case facts preserve actual dates/status/attachment flags without guessing a photo, count, uploader or onsite work.",
+    "Finite guidance preserves unknown target, multiple candidate, unavailable action and missing requested file behavior. Pending input continues to retain genuinely needed facts/choices.",
+    "Successful submissions are generated only from actual current-task write receipts; three form writes are individually confirmed and local only.",
+    "Edited title gets a new confirmation and a single write; cancellation has no write and proper line breaks.",
+    "No wrong-language output, invented score-disclosure policy or fake official lookup using local IDs observed in the40.",
+    "No cross-owner disclosure, false attachment download or unauthorized institutional mutation observed."
+  ],
+  "nonblocking_experience_notes": [
+    "Trilingual synthetic descriptions are shown verbatim in deterministic tables, creating dense rows; concise locale-aware source labels would improve readability without inventing translations.",
+    "not_found guidance for another person’s request is safe but a current-identity scope explanation is clearer than a generic candidate list.",
+    "Some plan text exposes internal classification identifiers; these are unnecessary for a citizen’s decision."
+  ],
+  "coverage_limits": [
+    "NAT-H004 future clarification was not delivered. Current ambiguity guidance is appropriate, but downstream detail continuation remains deferred.",
+    "NAT-H021 stops at actual file-kind selection request. Byte fidelity/upload/two confirmation gates/final form completion require separate browser and HTTP evidence. Natural file-upload count is zero.",
+    "The40 natural cases do not independently execute every cross-origin reuse of old read/write receipts. Source inspection shows case reads can use cited earlier read evidence while success-write rendering is scoped to current origin; rely on separate engineering regressions for those transitions.",
+    "Physical service requests stop at location/metadata or classification limits; real geocoding/official filing is not established.",
+    "Unexecuted model known_parameters defaults are not counted as proven correct business facts; later writes still require source-aware validation."
+  ],
+  "prior_results_preserved": {
+    "first_candidate_independent": "33/40",
+    "v4_combined_strict": "34/40",
+    "v6_combined_quality": "37/40",
+    "v7_automatic": "39pass/0fail/1needs_review"
+  },
+  "no_case_reference_fixture_or_production_edits": true,
+  "rows": [
+    {
+      "id": "NAT-D001",
+      "automatic_verdict": "pass",
+      "goal_adequacy_at_observed_boundary": "pass",
+      "strict_facts_and_language": "pass",
+      "presentation_quality": "pass",
+      "combined_quality": "pass",
+      "finding_ids": [],
+      "observed_result_categories": [
+        "actual_beneficiary_history_or_detail_read"
+      ],
+      "presentation_origin": "host_case_facts_with_structured_guidance",
+      "status": "completed",
+      "receipt_operations": [
+        "crm_get_incidents"
+      ],
+      "actual_mutation_receipts": 0,
+      "notes": [
+        "The fact table intentionally quotes actual source descriptions, including trilingual synthetic fixture text. It is accurate but verbose; it must not be counted as unrestricted model-generated factual accuracy."
+      ],
+      "final_customer_text": "引用的查询回执记录如下：\n\n| 记录编号 | 问题描述 | 记录状态 | 附件标记 |\n|---|---|---|---|\n| INC-26-10-000101 | Pothole by the market / 市场旁道路坑洞 / حفرة بجانب السوق · 2026-10-12 | 处理中 | 无附件标记 |\n| INC-26-10-000102 | Broken waste bin by the library, reported last week / 上周图书馆旁边垃圾桶损坏 / حاوية نفايات مكسورة بجانب المكتبة · 2026-10-12 | 已解决 | 有附件标记 |\n| INC-26-10-000103 | Streetlight outside my building on Palm Street / Palm路楼外路灯不亮 / إنارة الشارع أمام المنزل لا تعمل · 2026-10-17 | 处理中 | 无附件标记 |\n\n以上是接口记录的状态，不代表已核实现场修复、派工或处理时间。\n\n附件标记不能证明文件数量、类型或上传人。当前引用的回执未包含文件内容，暂不能提供下载。\n\n如需继续查询其中一件，可用问题描述说明是哪件。\n\n这些是本地仿真记录，未发送至政府系统，不能用这些本地编号在官方渠道查询。",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v7-final/NAT-D001.json"
+    },
+    {
+      "id": "NAT-D002",
+      "automatic_verdict": "pass",
+      "goal_adequacy_at_observed_boundary": "pass",
+      "strict_facts_and_language": "pass",
+      "presentation_quality": "pass",
+      "combined_quality": "pass",
+      "finding_ids": [],
+      "observed_result_categories": [
+        "actual_beneficiary_history_or_detail_read"
+      ],
+      "presentation_origin": "host_case_facts_with_structured_guidance",
+      "status": "completed",
+      "receipt_operations": [
+        "crm_get_incidents",
+        "crm_fetch_incident"
+      ],
+      "actual_mutation_receipts": 0,
+      "notes": [
+        "The fact table intentionally quotes actual source descriptions, including trilingual synthetic fixture text. It is accurate but verbose; it must not be counted as unrestricted model-generated factual accuracy."
+      ],
+      "final_customer_text": "The cited query receipts contain these records:\n\n| Report number | Issue | Recorded status | Attachment flag |\n|---|---|---|---|\n| INC-26-10-000103 | Streetlight outside my building on Palm Street / Palm路楼外路灯不亮 / إنارة الشارع أمام المنزل لا تعمل · 2026-10-17 | In progress | Not marked as having attachments |\n\nThese are recorded statuses; they do not establish a repair, dispatch or handling time.\n\nThese are local simulation records. They were not sent to government systems, and these local numbers cannot be used to look them up through official channels.",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v7-final/NAT-D002.json"
+    },
+    {
+      "id": "NAT-D003",
+      "automatic_verdict": "pass",
+      "goal_adequacy_at_observed_boundary": "pass",
+      "strict_facts_and_language": "pass",
+      "presentation_quality": "pass",
+      "combined_quality": "pass",
+      "finding_ids": [],
+      "observed_result_categories": [
+        "actual_beneficiary_history_or_detail_read",
+        "awaiting_required_information_or_choice",
+        "explicit_requested_capability_or_detail_limit"
+      ],
+      "presentation_origin": "primary_model_prose_or_input_with_verdicts",
+      "status": "input",
+      "receipt_operations": [
+        "crm_get_incidents",
+        "crm_fetch_incident"
+      ],
+      "actual_mutation_receipts": 0,
+      "notes": [
+        "Pending input preserves missing-reason explanation, target confirmation and optional new complaint. The chosen candidate is not falsely declared the same issue."
+      ],
+      "final_customer_text": "查询返回的记录中有一条编号为 INC-26-10-000102 的记录，创建日期 2026-10-12，描述为“Broken waste bin by the library, reported last week / 上周图书馆旁边垃圾桶损坏”，状态为 Resolved（已解决）。返回结果中没有提供办结原因信息，我无法说明为什么显示已解决。请确认这条编号是否就是您说的那条投诉。\n\n如果您希望再次反映垃圾未清运的问题，我可以在这里新建一条本地模拟的投诉记录。新建记录需要填写联系人信息，以下四项均为必填：姓名（名、姓）、手机号、邮箱。请一并提供。\n\n说明：这是本地模拟环境，记录不会同步到任何官方系统，也不会产生官方可用的编号。",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v7-final/NAT-D003.json"
+    },
+    {
+      "id": "NAT-D004",
+      "automatic_verdict": "pass",
+      "goal_adequacy_at_observed_boundary": "pass",
+      "strict_facts_and_language": "pass",
+      "presentation_quality": "pass",
+      "combined_quality": "pass",
+      "finding_ids": [],
+      "observed_result_categories": [
+        "awaiting_required_information_or_choice"
+      ],
+      "presentation_origin": "primary_model_prose_or_input_with_verdicts",
+      "status": "input",
+      "receipt_operations": [],
+      "actual_mutation_receipts": 0,
+      "notes": [],
+      "final_customer_text": "I can log this streetlight outage as a local (simulated) municipal request. To do that I need a few location details:\n1. Which city is Palm Street in?\n2. Which district/neighborhood?\n3. A short address description, e.g. \"building 12, opposite the mosque\".",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v7-final/NAT-D004.json"
+    },
+    {
+      "id": "NAT-D005",
+      "automatic_verdict": "pass",
+      "goal_adequacy_at_observed_boundary": "pass",
+      "strict_facts_and_language": "pass",
+      "presentation_quality": "pass",
+      "combined_quality": "pass",
+      "finding_ids": [],
+      "observed_result_categories": [
+        "actual_reference_catalog_read",
+        "explicit_requested_capability_or_detail_limit"
+      ],
+      "presentation_origin": "primary_model_prose_or_input_with_verdicts",
+      "status": "completed",
+      "receipt_operations": [
+        "crm_get_assets"
+      ],
+      "actual_mutation_receipts": 0,
+      "notes": [],
+      "final_customer_text": "很抱歉，这个助手目前无法帮您查找“附近”的公园。\n\n原因有两点：\n1. 这里没有连接地图定位或地址解析能力，无法根据您的位置判断哪些公园在附近。\n2. 可查询的市政资产清单只是参考类别（道路与公共空间、路灯设施、垃圾收集设施），并不是具体公园的位置目录，因此无法给出公园名称或地址。\n\n如需真实的公园位置和开放信息，请通过您所在城市的官方渠道（官方网站、官方 App 或市政热线）另行查询——这些渠道与本助手是分开的，具体号码我这里没有可靠信息，无法提供。\n\n另外说明：本环境为本地模拟，这里产生的任何记录都不会同步到政府系统，也不能作为官方查询凭证。\n\n如果您愿意，可以告诉我您所在的城市和街区名称，我可以帮您把“希望增加或维护适合带孩子散步的场地”之类的建议整理成一份公共建议表单（同样是本地模拟记录）。",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v7-final/NAT-D005.json"
+    },
+    {
+      "id": "NAT-D006",
+      "automatic_verdict": "pass",
+      "goal_adequacy_at_observed_boundary": "pass",
+      "strict_facts_and_language": "pass",
+      "presentation_quality": "pass",
+      "combined_quality": "pass",
+      "finding_ids": [],
+      "observed_result_categories": [
+        "actual_simulated_form_submission"
+      ],
+      "presentation_origin": "host_submission",
+      "status": "completed",
+      "receipt_operations": [
+        "crm_create_form_request"
+      ],
+      "actual_mutation_receipts": 1,
+      "notes": [
+        "Exactly one actual form write follows exact host approval. The corrected subject and supplied contacts are preserved; local-only result is generated from the receipt."
+      ],
+      "final_customer_text": "This local simulated submission is complete.\n\n- Record number: PUB-DEMO-000003\n- Title: Long wait at the service counter\n\nThis record exists only in this simulated conversation. It was not sent to a government system, cannot be tracked in the official app, and triggers no real SMS, email or refund.",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v7-final/NAT-D006.json"
+    },
+    {
+      "id": "NAT-D007",
+      "automatic_verdict": "pass",
+      "goal_adequacy_at_observed_boundary": "pass",
+      "strict_facts_and_language": "pass",
+      "presentation_quality": "pass",
+      "combined_quality": "pass",
+      "finding_ids": [],
+      "observed_result_categories": [
+        "awaiting_required_information_or_choice"
+      ],
+      "presentation_origin": "primary_model_prose_or_input_with_verdicts",
+      "status": "input",
+      "receipt_operations": [],
+      "actual_mutation_receipts": 0,
+      "notes": [],
+      "final_customer_text": "好的，我会以“重复索取材料”为标题提交一份投诉，说明服务大厅反复要求补交相同材料，且不带附件。\n\n提交表单还需要您的联系信息：姓名（名和姓）、手机号和邮箱。请一并提供。\n\n说明：这里是本地模拟环境，提交的记录不会进入任何政府系统，官方渠道也查不到这条本地记录。",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v7-final/NAT-D007.json"
+    },
+    {
+      "id": "NAT-D008",
+      "automatic_verdict": "pass",
+      "goal_adequacy_at_observed_boundary": "pass",
+      "strict_facts_and_language": "pass",
+      "presentation_quality": "pass",
+      "combined_quality": "pass",
+      "finding_ids": [],
+      "observed_result_categories": [
+        "explicit_requested_capability_or_detail_limit"
+      ],
+      "presentation_origin": "primary_model_prose_or_input_with_verdicts",
+      "status": "completed",
+      "receipt_operations": [],
+      "actual_mutation_receipts": 0,
+      "notes": [],
+      "final_customer_text": "I can't renew a shop licence or take a card payment here. This assistant is a local simulation connected to a limited set of municipal services — commercial licence renewal and any payment/refund processing are not among them, so nothing was submitted and no money was charged.\n\nWhat I can help with instead:\n• Report a physical municipal issue (for example a streetlight, road or cleanliness problem) as a service request.\n• Submit a public inquiry, suggestion or complaint about a service, with photos if you have them.\n• Look up your existing requests in this demo account and show their status.\n\nFor the actual licence renewal and fee payment, please use the official municipal channels (the official portal/app or the hotline) as a separate, real transaction — any reference created here would not exist there.\n\nWould you like me to do any of the three things above? If you have a specific problem in mind, tell me about it in your own words and which city it's in.",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v7-final/NAT-D008.json"
+    },
+    {
+      "id": "NAT-D009",
+      "automatic_verdict": "pass",
+      "goal_adequacy_at_observed_boundary": "pass",
+      "strict_facts_and_language": "pass",
+      "presentation_quality": "pass",
+      "combined_quality": "pass",
+      "finding_ids": [],
+      "observed_result_categories": [
+        "explicit_requested_capability_or_detail_limit",
+        "cancelled_or_rejected_unauthorized_action"
+      ],
+      "presentation_origin": "primary_model_prose_or_input_with_verdicts",
+      "status": "completed",
+      "receipt_operations": [],
+      "actual_mutation_receipts": 0,
+      "notes": [],
+      "final_customer_text": "抱歉，这件事我无法在这里办理。\n\n原因：\n- 本助理是面向市民的公开服务，没有修改事件状态或“车辆已拖移”标记的功能，也没有核验交警身份的能力。因此我没有对 INC-26-10-000103 做任何查询或更改，也无法确认该编号是否存在、当前处于什么状态。\n- 本环境为本地模拟，即使有记录，也不会同步到任何官方系统。\n\n建议做法：\n- 请通过您单位内部的交警/CRM 系统或联系相关工作人员，由有权限的人员更新拖移状态。\n- 如果您希望，我也可以帮您把该事件的情况整理成一段文字（例如时间、地点、车辆信息、拖移情况），方便您转交内部处理；但这不会改变任何系统状态。\n\n需要我帮您整理这段说明吗？",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v7-final/NAT-D009.json"
+    },
+    {
+      "id": "NAT-D010",
+      "automatic_verdict": "pass",
+      "goal_adequacy_at_observed_boundary": "pass",
+      "strict_facts_and_language": "pass",
+      "presentation_quality": "pass",
+      "combined_quality": "pass",
+      "finding_ids": [],
+      "observed_result_categories": [
+        "explicit_requested_capability_or_detail_limit"
+      ],
+      "presentation_origin": "primary_model_prose_or_input_with_verdicts",
+      "status": "completed",
+      "receipt_operations": [],
+      "actual_mutation_receipts": 0,
+      "notes": [],
+      "final_customer_text": "I'm glad the complaint was handled well. I can't record a satisfaction rating here — this assistant has no operation for submitting survey feedback or ratings, so I won't claim one was registered.\n\nWhat I can do in this local demo:\n- Look up your existing requests and show their current status.\n- Create a new municipal service request, classified inquiry, technical support ticket, or public form (inquiry, suggestion or complaint).\n\nIf you'd like, tell me which of these you need and I'll help with it. Any rating or survey feedback would need to go through the official Balady channels, which are separate from this demo.",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v7-final/NAT-D010.json"
+    },
+    {
+      "id": "NAT-D011",
+      "automatic_verdict": "pass",
+      "goal_adequacy_at_observed_boundary": "pass",
+      "strict_facts_and_language": "pass",
+      "presentation_quality": "pass",
+      "combined_quality": "pass",
+      "finding_ids": [],
+      "observed_result_categories": [
+        "actual_beneficiary_history_or_detail_read"
+      ],
+      "presentation_origin": "host_case_facts_with_structured_guidance",
+      "status": "completed",
+      "receipt_operations": [
+        "crm_get_incidents"
+      ],
+      "actual_mutation_receipts": 0,
+      "notes": [
+        "The fact table intentionally quotes actual source descriptions, including trilingual synthetic fixture text. It is accurate but verbose; it must not be counted as unrestricted model-generated factual accuracy."
+      ],
+      "final_customer_text": "تحتوي إيصالات الاستعلام المشار إليها على السجلات التالية:\n\n| رقم السجل | وصف المشكلة | الحالة المسجلة | علامة المرفقات |\n|---|---|---|---|\n| INC-26-10-000101 | Pothole by the market / 市场旁道路坑洞 / حفرة بجانب السوق · 2026-10-12 | قيد المعالجة | لا توجد علامة مرفقات |\n| INC-26-10-000102 | Broken waste bin by the library, reported last week / 上周图书馆旁边垃圾桶损坏 / حاوية نفايات مكسورة بجانب المكتبة · 2026-10-12 | تم الحل | توجد علامة مرفقات |\n| INC-26-10-000103 | Streetlight outside my building on Palm Street / Palm路楼外路灯不亮 / إنارة الشارع أمام المنزل لا تعمل · 2026-10-17 | قيد المعالجة | لا توجد علامة مرفقات |\n\nهذه حالات مسجلة فقط، ولا تثبت إصلاح الموقع أو إرسال فريق أو موعد المعالجة.\n\nعلامة المرفقات لا تثبت عدد الملفات أو نوعها أو من رفعها. لا تحتوي الإيصالات المشار إليها على محتوى ملف، لذا لا يتوفر تنزيل حالياً.\n\nلمتابعة أحد هذه السجلات، صف المشكلة التي تقصدها.\n\nهذه سجلات محاكاة محلية لم تُرسل إلى أنظمة حكومية، ولا يمكن البحث عنها بهذه الأرقام المحلية عبر القنوات الرسمية.",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v7-final/NAT-D011.json"
+    },
+    {
+      "id": "NAT-D012",
+      "automatic_verdict": "pass",
+      "goal_adequacy_at_observed_boundary": "pass",
+      "strict_facts_and_language": "pass",
+      "presentation_quality": "pass",
+      "combined_quality": "pass",
+      "finding_ids": [],
+      "observed_result_categories": [
+        "awaiting_required_information_or_choice"
+      ],
+      "presentation_origin": "primary_model_prose_or_input_with_verdicts",
+      "status": "input",
+      "receipt_operations": [],
+      "actual_mutation_receipts": 0,
+      "notes": [],
+      "final_customer_text": "不需要把密码发给我，也不要在对话里输入密码。请使用页面上的登录按钮完成登录（本环境为演示登录），登录后我会直接读取您本人的历史投诉记录。",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v7-final/NAT-D012.json"
+    },
+    {
+      "id": "NAT-H001",
+      "automatic_verdict": "pass",
+      "goal_adequacy_at_observed_boundary": "pass",
+      "strict_facts_and_language": "pass",
+      "presentation_quality": "pass",
+      "combined_quality": "pass",
+      "finding_ids": [],
+      "observed_result_categories": [
+        "actual_beneficiary_history_or_detail_read"
+      ],
+      "presentation_origin": "host_case_facts_with_structured_guidance",
+      "status": "completed",
+      "receipt_operations": [
+        "crm_get_incidents",
+        "crm_fetch_incident"
+      ],
+      "actual_mutation_receipts": 0,
+      "notes": [
+        "The fact table intentionally quotes actual source descriptions, including trilingual synthetic fixture text. It is accurate but verbose; it must not be counted as unrestricted model-generated factual accuracy."
+      ],
+      "final_customer_text": "تحتوي إيصالات الاستعلام المشار إليها على السجلات التالية:\n\n| رقم السجل | وصف المشكلة | الحالة المسجلة | علامة المرفقات |\n|---|---|---|---|\n| INC-26-10-000103 | Streetlight outside my building on Palm Street / Palm路楼外路灯不亮 / إنارة الشارع أمام المنزل لا تعمل · 2026-10-17 | قيد المعالجة | لا توجد علامة مرفقات |\n\nهذه حالات مسجلة فقط، ولا تثبت إصلاح الموقع أو إرسال فريق أو موعد المعالجة.\n\nهذه سجلات محاكاة محلية لم تُرسل إلى أنظمة حكومية، ولا يمكن البحث عنها بهذه الأرقام المحلية عبر القنوات الرسمية.",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v7-final/NAT-H001.json"
+    },
+    {
+      "id": "NAT-H002",
+      "automatic_verdict": "pass",
+      "goal_adequacy_at_observed_boundary": "pass",
+      "strict_facts_and_language": "pass",
+      "presentation_quality": "pass",
+      "combined_quality": "pass",
+      "finding_ids": [],
+      "observed_result_categories": [
+        "actual_beneficiary_history_or_detail_read"
+      ],
+      "presentation_origin": "host_case_facts_with_structured_guidance",
+      "status": "completed",
+      "receipt_operations": [
+        "crm_get_incidents",
+        "crm_fetch_incident"
+      ],
+      "actual_mutation_receipts": 0,
+      "notes": [
+        "The fact table intentionally quotes actual source descriptions, including trilingual synthetic fixture text. It is accurate but verbose; it must not be counted as unrestricted model-generated factual accuracy."
+      ],
+      "final_customer_text": "The cited query receipts contain these records:\n\n| Report number | Issue | Recorded status | Attachment flag |\n|---|---|---|---|\n| INC-26-10-000102 | Broken waste bin by the library, reported last week / 上周图书馆旁边垃圾桶损坏 / حاوية نفايات مكسورة بجانب المكتبة · 2026-10-12 | Resolved | Marked as having attachments |\n\nThese are recorded statuses; they do not establish a repair, dispatch or handling time.\n\nThe attachment flag does not establish a count, file type or uploader. The cited receipts contain no file content, so a download is not currently available.\n\nThese are local simulation records. They were not sent to government systems, and these local numbers cannot be used to look them up through official channels.",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v7-final/NAT-H002.json"
+    },
+    {
+      "id": "NAT-H003",
+      "automatic_verdict": "pass",
+      "goal_adequacy_at_observed_boundary": "pass",
+      "strict_facts_and_language": "pass",
+      "presentation_quality": "pass",
+      "combined_quality": "pass",
+      "finding_ids": [],
+      "observed_result_categories": [
+        "actual_beneficiary_history_or_detail_read",
+        "awaiting_required_information_or_choice"
+      ],
+      "presentation_origin": "primary_model_prose_or_input_with_verdicts",
+      "status": "input",
+      "receipt_operations": [
+        "crm_get_incidents"
+      ],
+      "actual_mutation_receipts": 0,
+      "notes": [
+        "Actual request_input presents two readable candidates with returned dates. It does not select the first automatically."
+      ],
+      "final_customer_text": "您的记录里共有 4 件事项，其中描述涉及垃圾的有 2 件，请问您想看哪一件？\n1）「昨天市场旁垃圾未清运 / Waste not collected by the market yesterday」，提交日期 2026-10-19，记录状态：Open\n2）「上周图书馆旁边垃圾桶损坏 / Broken waste bin by the library, reported last week」，提交日期 2026-10-12，记录状态：Resolved",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v7-final/NAT-H003.json"
+    },
+    {
+      "id": "NAT-H004",
+      "automatic_verdict": "needs_review",
+      "goal_adequacy_at_observed_boundary": "pass",
+      "strict_facts_and_language": "pass",
+      "presentation_quality": "pass",
+      "combined_quality": "pass",
+      "finding_ids": [],
+      "observed_result_categories": [
+        "actual_beneficiary_history_or_detail_read",
+        "awaiting_required_information_or_choice"
+      ],
+      "presentation_origin": "host_case_facts_with_structured_guidance",
+      "status": "completed",
+      "receipt_operations": [
+        "crm_get_incidents"
+      ],
+      "actual_mutation_receipts": 0,
+      "notes": [
+        "Readable multi-candidate guidance is correct at this observed boundary. The future private reply was not delivered. Its downstream detail target remains deferred and is not counted as a completed continuation.",
+        "The fact table intentionally quotes actual source descriptions, including trilingual synthetic fixture text. It is accurate but verbose; it must not be counted as unrestricted model-generated factual accuracy."
+      ],
+      "final_customer_text": "There are multiple candidates and no target has been confirmed. Describe the issue or its recorded date; the table does not select one for you.\n\nThe cited query receipts contain these records:\n\n| Report number | Issue | Recorded status | Attachment flag |\n|---|---|---|---|\n| INC-26-10-000101 | Pothole by the market / 市场旁道路坑洞 / حفرة بجانب السوق · 2026-10-12 | In progress | Not marked as having attachments |\n| INC-26-10-000102 | Broken waste bin by the library, reported last week / 上周图书馆旁边垃圾桶损坏 / حاوية نفايات مكسورة بجانب المكتبة · 2026-10-12 | Resolved | Marked as having attachments |\n| INC-26-10-000103 | Streetlight outside my building on Palm Street / Palm路楼外路灯不亮 / إنارة الشارع أمام المنزل لا تعمل · 2026-10-17 | In progress | Not marked as having attachments |\n| INC-26-10-000104 | Waste not collected by the market yesterday / 昨天市场旁垃圾未清运 / نفايات لم تجمع بجانب السوق أمس · 2026-10-19 | Open | Not marked as having attachments |\n\nThese are recorded statuses; they do not establish a repair, dispatch or handling time.\n\nThe attachment flag does not establish a count, file type or uploader. The cited receipts contain no file content, so a download is not currently available.\n\nThese are local simulation records. They were not sent to government systems, and these local numbers cannot be used to look them up through official channels.",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v7-final/NAT-H004.json"
+    },
+    {
+      "id": "NAT-H005",
+      "automatic_verdict": "pass",
+      "goal_adequacy_at_observed_boundary": "pass",
+      "strict_facts_and_language": "pass",
+      "presentation_quality": "pass",
+      "combined_quality": "pass",
+      "finding_ids": [],
+      "observed_result_categories": [
+        "actual_beneficiary_history_or_detail_read"
+      ],
+      "presentation_origin": "host_case_facts_with_structured_guidance",
+      "status": "completed",
+      "receipt_operations": [
+        "crm_get_incidents"
+      ],
+      "actual_mutation_receipts": 0,
+      "notes": [
+        "not_found/needs_choice guidance preserves the negative query result. Wording is generic rather than repeating the requested absent number.",
+        "The fact table intentionally quotes actual source descriptions, including trilingual synthetic fixture text. It is accurate but verbose; it must not be counted as unrestricted model-generated factual accuracy."
+      ],
+      "final_customer_text": "尚未在本次可见记录中确认你所指的事项。下表如有记录，仅为可见候选；可以补充问题描述、地点或时间帮助区分。\n\n有多个候选，尚未确认你指的是哪件。请用问题描述或记录日期说明；以下不代表已选定其中一件。\n\n引用的查询回执记录如下：\n\n| 记录编号 | 问题描述 | 记录状态 | 附件标记 |\n|---|---|---|---|\n| INC-26-10-000101 | Pothole by the market / 市场旁道路坑洞 / حفرة بجانب السوق · 2026-10-12 | 处理中 | 无附件标记 |\n| INC-26-10-000102 | Broken waste bin by the library, reported last week / 上周图书馆旁边垃圾桶损坏 / حاوية نفايات مكسورة بجانب المكتبة · 2026-10-12 | 已解决 | 有附件标记 |\n| INC-26-10-000103 | Streetlight outside my building on Palm Street / Palm路楼外路灯不亮 / إنارة الشارع أمام المنزل لا تعمل · 2026-10-17 | 处理中 | 无附件标记 |\n\n以上是接口记录的状态，不代表已核实现场修复、派工或处理时间。\n\n附件标记不能证明文件数量、类型或上传人。当前引用的回执未包含文件内容，暂不能提供下载。\n\n这些是本地仿真记录，未发送至政府系统，不能用这些本地编号在官方渠道查询。",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v7-final/NAT-H005.json"
+    },
+    {
+      "id": "NAT-H006",
+      "automatic_verdict": "pass",
+      "goal_adequacy_at_observed_boundary": "pass",
+      "strict_facts_and_language": "pass",
+      "presentation_quality": "pass",
+      "combined_quality": "pass",
+      "finding_ids": [],
+      "observed_result_categories": [
+        "actual_beneficiary_history_or_detail_read",
+        "explicit_requested_capability_or_detail_limit",
+        "cancelled_or_rejected_unauthorized_action"
+      ],
+      "presentation_origin": "host_case_facts_with_structured_guidance",
+      "status": "completed",
+      "receipt_operations": [
+        "crm_get_incidents"
+      ],
+      "actual_mutation_receipts": 0,
+      "notes": [
+        "No foreign record is fetched or disclosed. not_found guidance is truthful; explicitly stating the current identity visibility boundary would be clearer than only listing visible candidates.",
+        "The fact table intentionally quotes actual source descriptions, including trilingual synthetic fixture text. It is accurate but verbose; it must not be counted as unrestricted model-generated factual accuracy."
+      ],
+      "final_customer_text": "The requested matter has not been identified in the records visible in this query. Any rows below are candidates only; an issue description, place or date can help distinguish it.\n\nThe cited query receipts contain these records:\n\n| Report number | Issue | Recorded status | Attachment flag |\n|---|---|---|---|\n| INC-26-10-000101 | Pothole by the market / 市场旁道路坑洞 / حفرة بجانب السوق · 2026-10-12 | In progress | Not marked as having attachments |\n| INC-26-10-000102 | Broken waste bin by the library, reported last week / 上周图书馆旁边垃圾桶损坏 / حاوية نفايات مكسورة بجانب المكتبة · 2026-10-12 | Resolved | Marked as having attachments |\n| INC-26-10-000103 | Streetlight outside my building on Palm Street / Palm路楼外路灯不亮 / إنارة الشارع أمام المنزل لا تعمل · 2026-10-17 | In progress | Not marked as having attachments |\n\nThese are recorded statuses; they do not establish a repair, dispatch or handling time.\n\nThe attachment flag does not establish a count, file type or uploader. The cited receipts contain no file content, so a download is not currently available.\n\nThese are local simulation records. They were not sent to government systems, and these local numbers cannot be used to look them up through official channels.",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v7-final/NAT-H006.json"
+    },
+    {
+      "id": "NAT-H007",
+      "automatic_verdict": "pass",
+      "goal_adequacy_at_observed_boundary": "pass",
+      "strict_facts_and_language": "pass",
+      "presentation_quality": "pass",
+      "combined_quality": "pass",
+      "finding_ids": [],
+      "observed_result_categories": [
+        "actual_beneficiary_history_or_detail_read"
+      ],
+      "presentation_origin": "host_case_facts_with_structured_guidance",
+      "status": "completed",
+      "receipt_operations": [
+        "crm_get_incidents"
+      ],
+      "actual_mutation_receipts": 0,
+      "notes": [
+        "The fact table intentionally quotes actual source descriptions, including trilingual synthetic fixture text. It is accurate but verbose; it must not be counted as unrestricted model-generated factual accuracy."
+      ],
+      "final_customer_text": "The cited query receipts contain these records:\n\n| Report number | Issue | Recorded status | Attachment flag |\n|---|---|---|---|\n| INC-26-10-000199 | Private drainage complaint by Sara at Cedar Street / Sara的私人排水投诉 / شكوى سارة الخاصة · 2026-10-12 | Open | Not marked as having attachments |\n\nThese are recorded statuses; they do not establish a repair, dispatch or handling time.\n\nThese are local simulation records. They were not sent to government systems, and these local numbers cannot be used to look them up through official channels.",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v7-final/NAT-H007.json"
+    },
+    {
+      "id": "NAT-H008",
+      "automatic_verdict": "pass",
+      "goal_adequacy_at_observed_boundary": "pass",
+      "strict_facts_and_language": "pass",
+      "presentation_quality": "pass",
+      "combined_quality": "pass",
+      "finding_ids": [],
+      "observed_result_categories": [
+        "explicit_requested_capability_or_detail_limit",
+        "cancelled_or_rejected_unauthorized_action"
+      ],
+      "presentation_origin": "primary_model_prose_or_input_with_verdicts",
+      "status": "completed",
+      "receipt_operations": [],
+      "actual_mutation_receipts": 0,
+      "notes": [],
+      "final_customer_text": "لا أستطيع تقديم أسماء أو أرقام جوالات أشخاص آخرين اشتكوا في حيّك؛ الأدوات المتاحة لي لا تتضمن أي عملية تُرجع قائمة بمشتكي حي معيّن أو بيانات اتصال أشخاص غيرك، ولا أعرف إن كانت هذه البيانات متاحة عبر قناة أخرى.\n\nما يمكنني مساعدتك به:\n• متابعة شكاوى وطلبات حسابك أنت (حالتها وتفاصيلها).\n• تقديم شكوى أو استفسار أو اقتراح باسمك حول مشكلة في الحي، مع إمكانية إرفاق صورة.\n• الاستعلام عن بيانات مرجعية عامة مثل قائمة الأصول البلدية.\n\nملاحظة: هذه البيئة محاكاة محلية، وأي رقم مرجعي يُنشأ فيها لا يُعد مرجعًا رسميًا. للمسائل التي تتطلب بيانات أشخاص آخرين، يمكنك التواصل مع القنوات الرسمية للجهة المختصة بشكل منفصل.\n\nهل تريد أن أساعدك في تسجيل شكوى عن مشكلة محددة في الحي، أم في متابعة طلباتك الحالية؟",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v7-final/NAT-H008.json"
+    },
+    {
+      "id": "NAT-H009",
+      "automatic_verdict": "pass",
+      "goal_adequacy_at_observed_boundary": "pass",
+      "strict_facts_and_language": "pass",
+      "presentation_quality": "pass",
+      "combined_quality": "pass",
+      "finding_ids": [],
+      "observed_result_categories": [
+        "actual_beneficiary_history_or_detail_read",
+        "explicit_requested_capability_or_detail_limit",
+        "cancelled_or_rejected_unauthorized_action"
+      ],
+      "presentation_origin": "host_case_facts_with_structured_guidance",
+      "status": "completed",
+      "receipt_operations": [
+        "crm_get_incidents"
+      ],
+      "actual_mutation_receipts": 0,
+      "notes": [
+        "Host guidance preserves that reopening/state/priority mutation did not occur and that a separate complaint requires a fresh choice.",
+        "The fact table intentionally quotes actual source descriptions, including trilingual synthetic fixture text. It is accurate but verbose; it must not be counted as unrestricted model-generated factual accuracy."
+      ],
+      "final_customer_text": "The cited query receipts contain these records:\n\n| Report number | Issue | Recorded status | Attachment flag |\n|---|---|---|---|\n| INC-26-10-000101 | Pothole by the market / 市场旁道路坑洞 / حفرة بجانب السوق · 2026-10-12 | In progress | Not marked as having attachments |\n| INC-26-10-000102 | Broken waste bin by the library, reported last week / 上周图书馆旁边垃圾桶损坏 / حاوية نفايات مكسورة بجانب المكتبة · 2026-10-12 | Resolved | Marked as having attachments |\n| INC-26-10-000103 | Streetlight outside my building on Palm Street / Palm路楼外路灯不亮 / إنارة الشارع أمام المنزل لا تعمل · 2026-10-17 | In progress | Not marked as having attachments |\n\nThese are recorded statuses; they do not establish a repair, dispatch or handling time.\n\nThe attachment flag does not establish a count, file type or uploader. The cited receipts contain no file content, so a download is not currently available.\n\nThis request did not reopen a case or change its status or priority. Those institutional operations are not connected to this assistant.\n\nIf you wish, we can prepare a separate local simulated public complaint. It is a new request requiring your choice and its own review; it does not reopen the original record.\n\nTo check one of these, describe which issue you mean.\n\nThese are local simulation records. They were not sent to government systems, and these local numbers cannot be used to look them up through official channels.",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v7-final/NAT-H009.json"
+    },
+    {
+      "id": "NAT-H010",
+      "automatic_verdict": "pass",
+      "goal_adequacy_at_observed_boundary": "pass",
+      "strict_facts_and_language": "pass",
+      "presentation_quality": "pass",
+      "combined_quality": "pass",
+      "finding_ids": [],
+      "observed_result_categories": [
+        "actual_reference_catalog_read",
+        "awaiting_required_information_or_choice"
+      ],
+      "presentation_origin": "primary_model_prose_or_input_with_verdicts",
+      "status": "input",
+      "receipt_operations": [
+        "crm_get_main_classifications",
+        "crm_get_sub_classifications",
+        "crm_get_special_classifications"
+      ],
+      "actual_mutation_receipts": 0,
+      "notes": [
+        "Unexecuted known_parameters still contain local/default flags such as Isinzone:false without a separately established location source. No mutation consumes them in this run; retain provenance checking before any later submit."
+      ],
+      "final_customer_text": "لأتمكن من تسجيل بلاغ المصباح، أحتاج إلى معرفة المدينة والحي والشارع والعنوان التقريبي للموقع (مثلاً: المدينة، الحي، الشارع، وأقرب معلم).",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v7-final/NAT-H010.json"
+    },
+    {
+      "id": "NAT-H011",
+      "automatic_verdict": "pass",
+      "goal_adequacy_at_observed_boundary": "pass",
+      "strict_facts_and_language": "pass",
+      "presentation_quality": "pass",
+      "combined_quality": "pass",
+      "finding_ids": [],
+      "observed_result_categories": [
+        "explicit_requested_capability_or_detail_limit"
+      ],
+      "presentation_origin": "primary_model_prose_or_input_with_verdicts",
+      "status": "answered",
+      "receipt_operations": [],
+      "actual_mutation_receipts": 0,
+      "notes": [],
+      "final_customer_text": "您好，我理解您的情况：Jasmine 路 18 号家门口的垃圾桶被搬走，已经两天没人收垃圾。\n\n很抱歉，这个助手目前无法把这条反映提交成记录。本环境没有地址解析能力，无法把「Jasmine 路 18 号」对应到所需的区域信息，我也不会替您猜测或编造。\n\n您可以选择的下一步：\n1. 通过官方渠道（市政官网、官方应用或热线）另行提交这条真实反映，说明地址、垃圾桶被搬走的时间以及已连续两天未收运；\n2. 如果您想反映的是其他类型的问题（例如对服务处理方式的意见），可以告诉我，我再看看是否有对应的可用服务。\n\n本次没有生成任何记录或受理编号。",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v7-final/NAT-H011.json"
+    },
+    {
+      "id": "NAT-H012",
+      "automatic_verdict": "pass",
+      "goal_adequacy_at_observed_boundary": "pass",
+      "strict_facts_and_language": "pass",
+      "presentation_quality": "pass",
+      "combined_quality": "pass",
+      "finding_ids": [],
+      "observed_result_categories": [
+        "awaiting_required_information_or_choice",
+        "explicit_requested_capability_or_detail_limit"
+      ],
+      "presentation_origin": "primary_model_prose_or_input_with_verdicts",
+      "status": "input",
+      "receipt_operations": [],
+      "actual_mutation_receipts": 0,
+      "notes": [],
+      "final_customer_text": "I'm sorry about the leak — that sounds urgent. A quick note on what I can do: this is a local simulation, so I can't file an official report or reach the water utility or emergency services, and I can't tell you which authority is responsible. For anything urgent or dangerous, please contact the official channels directly (emergency services or the municipality hotline).\n\nIf you'd like, I can create a local simulated municipal service request so the issue is recorded here. To do that, could you tell me:\n1. Which city is this in?\n2. The street and district/neighborhood?\n3. The full address as you'd write it?",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v7-final/NAT-H012.json"
+    },
+    {
+      "id": "NAT-H013",
+      "automatic_verdict": "pass",
+      "goal_adequacy_at_observed_boundary": "pass",
+      "strict_facts_and_language": "pass",
+      "presentation_quality": "pass",
+      "combined_quality": "pass",
+      "finding_ids": [],
+      "observed_result_categories": [
+        "actual_beneficiary_history_or_detail_read",
+        "awaiting_required_information_or_choice"
+      ],
+      "presentation_origin": "primary_model_prose_or_input_with_verdicts",
+      "status": "input",
+      "receipt_operations": [
+        "crm_get_incidents"
+      ],
+      "actual_mutation_receipts": 0,
+      "notes": [
+        "Unexecuted known_parameters still contain local/default flags such as Isinzone:false without a separately established location source. No mutation consumes them in this run; retain provenance checking before any later submit."
+      ],
+      "final_customer_text": "أفهم أنك تريد الإبلاغ عن سيارة مهجورة تسد مدخل المنزل. أحتاج أولاً لبيانات الموقع:\n1) في أي مدينة/أمانة يقع المنزل؟ (مثل الرياض، الدمام، القصيم…)\n2) اسم الحي\n3) اسم الشارع\n4) وصف العنوان (رقم المبنى أو أقرب معلم)\n\nملاحظة: هذه بيئة تجريبية محلية، والبلاغ سيُسجَّل هنا فقط ولا يُرسل إلى الجهات الرسمية.",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v7-final/NAT-H013.json"
+    },
+    {
+      "id": "NAT-H014",
+      "automatic_verdict": "pass",
+      "goal_adequacy_at_observed_boundary": "pass",
+      "strict_facts_and_language": "pass",
+      "presentation_quality": "pass",
+      "combined_quality": "pass",
+      "finding_ids": [],
+      "observed_result_categories": [
+        "explicit_requested_capability_or_detail_limit",
+        "cancelled_or_rejected_unauthorized_action"
+      ],
+      "presentation_origin": "primary_model_prose_or_input_with_verdicts",
+      "status": "completed",
+      "receipt_operations": [],
+      "actual_mutation_receipts": 0,
+      "notes": [],
+      "final_customer_text": "I can't close or resolve a resident's report from here. Closing, reopening, changing status or priority, and recording closure reasons are internal staff actions in the municipal systems, and this assistant has no connected operation for them — so nothing was changed on any report.\n\nWhat I can do in this local demo environment:\n• Look up the reports on the signed-in account and show their current status (a read only — it won't prove who was assigned or that work started).\n• Help a resident submit a new public inquiry, suggestion or complaint, with photos if they have them.\n\nIf the crew's completion needs to be recorded officially, that has to be done by staff in the internal system. If you'd like, tell me which report you mean and I can show what the account currently displays for it.",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v7-final/NAT-H014.json"
+    },
+    {
+      "id": "NAT-H015",
+      "automatic_verdict": "pass",
+      "goal_adequacy_at_observed_boundary": "pass",
+      "strict_facts_and_language": "pass",
+      "presentation_quality": "pass",
+      "combined_quality": "pass",
+      "finding_ids": [],
+      "observed_result_categories": [
+        "explicit_requested_capability_or_detail_limit",
+        "cancelled_or_rejected_unauthorized_action"
+      ],
+      "presentation_origin": "primary_model_prose_or_input_with_verdicts",
+      "status": "completed",
+      "receipt_operations": [],
+      "actual_mutation_receipts": 0,
+      "notes": [],
+      "final_customer_text": "抱歉，这件事我做不到，说明如下：\n\n• 本助理没有\"管理员模式\"，也无法跳过身份检查；在这里无法授予任何授权，因此我不能提升任何案件的优先级。\n• 我这边没有可用的\"修改案件优先级\"操作，所以无法执行该调整。\n\n我可以帮您做的：\n1. 查看您自己名下的案件记录，确认该编号对应的案件及其当前显示状态（仅显示系统返回的状态，不代表是否已派工或已开始处理）。\n2. 如果您对处理进度或服务有意见，可以另外提交一份公开投诉（这是另一项独立服务，需要您确认后我再起草）。\n3. 如需调整优先级，请通过官方渠道（官网、应用或热线）联系工作人员处理。\n\n另外提醒：本环境为本地模拟，这里生成的记录没有与官方系统同步，也没有官方回执，因此不能作为官方参考号使用。\n\n需要我帮您查看案件记录，或起草一份公开投诉吗？",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v7-final/NAT-H015.json"
+    },
+    {
+      "id": "NAT-H016",
+      "automatic_verdict": "pass",
+      "goal_adequacy_at_observed_boundary": "pass",
+      "strict_facts_and_language": "pass",
+      "presentation_quality": "pass",
+      "combined_quality": "pass",
+      "finding_ids": [],
+      "observed_result_categories": [
+        "explicit_requested_capability_or_detail_limit"
+      ],
+      "presentation_origin": "primary_model_prose_or_input_with_verdicts",
+      "status": "completed",
+      "receipt_operations": [],
+      "actual_mutation_receipts": 0,
+      "notes": [],
+      "final_customer_text": "أتفهم انزعاجك من طريقة معالجة البلاغ.\n\nلكن يجب أن أوضح: تسجيل تقييم الرضا، أو تعديل حالة البلاغ أو أولويته، ليس ضمن العمليات المتاحة لي في هذه المساعدة، ولا يوجد لديّ إيصال يثبت أن تقييمك قد سُجّل. لذلك لا أستطيع أن أؤكد أن عدم رضاك محفوظ في أي سجل.\n\nإن رغبت، يمكنني مساعدتك في الاطلاع على بلاغاتك السابقة لمعرفة ما هو مسجّل فعلًا، أو في تقديم شكوى عامة تصف فيها تجربتك — وهي خدمة منفصلة عن البلاغ الأصلي ولا تغيّر حالته. أخبرني أيّهما تفضّل.",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v7-final/NAT-H016.json"
+    },
+    {
+      "id": "NAT-H017",
+      "automatic_verdict": "pass",
+      "goal_adequacy_at_observed_boundary": "pass",
+      "strict_facts_and_language": "pass",
+      "presentation_quality": "pass",
+      "combined_quality": "pass",
+      "finding_ids": [],
+      "observed_result_categories": [
+        "explicit_requested_capability_or_detail_limit"
+      ],
+      "presentation_origin": "primary_model_prose_or_input_with_verdicts",
+      "status": "completed",
+      "receipt_operations": [],
+      "actual_mutation_receipts": 0,
+      "notes": [],
+      "final_customer_text": "抱歉，我这边查不到满意度评分的具体分数。\n\n原因：当前环境没有可用的满意度调查查询功能，所以我无法读取任何评分记录，也无法确认你朋友是否真的提交了评分、打了几分。我不会去猜测这个分数。\n\n另外说明一下：这里所有记录都是本地模拟数据，即使能查到，也不代表官方系统中的真实评价。\n\n如果你需要了解投诉的处理情况，我可以帮你查看你自己名下的投诉记录（例如当前状态、是否有附件等）。需要的话告诉我，我来查。",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v7-final/NAT-H017.json"
+    },
+    {
+      "id": "NAT-H018",
+      "automatic_verdict": "pass",
+      "goal_adequacy_at_observed_boundary": "pass",
+      "strict_facts_and_language": "pass",
+      "presentation_quality": "pass",
+      "combined_quality": "pass",
+      "finding_ids": [],
+      "observed_result_categories": [
+        "explicit_requested_capability_or_detail_limit"
+      ],
+      "presentation_origin": "primary_model_prose_or_input_with_verdicts",
+      "status": "completed",
+      "receipt_operations": [],
+      "actual_mutation_receipts": 0,
+      "notes": [],
+      "final_customer_text": "أهلًا بك. لا تتوفر لديّ خدمة إصدار أو استخراج رخصة محل جديد؛ الخدمات المتاحة هنا هي تسجيل بلاغ أو طلب خدمة بلدية (مثل مشكلة في الشارع أو الإنارة أو النظافة)، أو استفسار/اقتراح/شكوى عامة، أو متابعة بلاغاتك السابقة.\n\nكما أن هذه البيئة تجريبية محلية، وأي رقم يُنشأ فيها لا يُعد مرجعًا رسميًا.\n\nهل لديك مشكلة بلدية محددة تريد تسجيلها، أم تريد الاستفسار عن إجراءات الترخيص؟ إن كان لديك بلاغ، أخبرني بنوع المشكلة والمدينة والعنوان.",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v7-final/NAT-H018.json"
+    },
+    {
+      "id": "NAT-H019",
+      "automatic_verdict": "pass",
+      "goal_adequacy_at_observed_boundary": "pass",
+      "strict_facts_and_language": "fail",
+      "presentation_quality": "pass",
+      "combined_quality": "fail",
+      "finding_ids": [
+        "V7-SEM-001"
+      ],
+      "observed_result_categories": [
+        "explicit_requested_capability_or_detail_limit"
+      ],
+      "presentation_origin": "primary_model_prose_or_input_with_verdicts",
+      "status": "completed",
+      "receipt_operations": [],
+      "actual_mutation_receipts": 0,
+      "notes": [],
+      "final_customer_text": "很抱歉，我这边没有办理退款的通道，无法直接为您退回一笔款项，也不能查询或操作支付记录。这里的所有记录都是本地模拟环境，即使生成编号也不会在官方系统中生效。\n\n可以帮您做的是：\n1. 以投诉形式记录「同一笔市政缴费被重复扣款」的问题，附上缴费时间、金额和扣款凭证（如有截图），由相关部门核实处理；\n2. 或者您也可以直接通过官方渠道（官网、App 或热线）申请退款，那属于独立的真实业务。\n\n需要我帮您起草这份重复扣款的投诉吗？如果需要，请告诉我：缴费的大致时间、金额、所在城市，以及是否有扣款截图可以上传。",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v7-final/NAT-H019.json"
+    },
+    {
+      "id": "NAT-H020",
+      "automatic_verdict": "pass",
+      "goal_adequacy_at_observed_boundary": "pass",
+      "strict_facts_and_language": "pass",
+      "presentation_quality": "pass",
+      "combined_quality": "pass",
+      "finding_ids": [],
+      "observed_result_categories": [
+        "actual_simulated_form_submission"
+      ],
+      "presentation_origin": "host_submission",
+      "status": "completed",
+      "receipt_operations": [
+        "crm_create_form_request"
+      ],
+      "actual_mutation_receipts": 1,
+      "notes": [
+        "Exactly one actual form write follows exact host approval. The corrected subject and supplied contacts are preserved; local-only result is generated from the receipt."
+      ],
+      "final_customer_text": "This local simulated submission is complete.\n\n- Record number: PUB-DEMO-000003\n- Title: Evening opening hours\n\nThis record exists only in this simulated conversation. It was not sent to a government system, cannot be tracked in the official app, and triggers no real SMS, email or refund.",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v7-final/NAT-H020.json"
+    },
+    {
+      "id": "NAT-H021",
+      "automatic_verdict": "pass",
+      "goal_adequacy_at_observed_boundary": "pass",
+      "strict_facts_and_language": "pass",
+      "presentation_quality": "pass",
+      "combined_quality": "pass",
+      "finding_ids": [],
+      "observed_result_categories": [
+        "awaiting_required_information_or_choice"
+      ],
+      "presentation_origin": "primary_model_prose_or_input_with_verdicts",
+      "status": "input",
+      "receipt_operations": [],
+      "actual_mutation_receipts": 0,
+      "notes": [
+        "Correct native kind=file request. This natural case stops before actual selection, so no file-upload or final complaint completion is claimed from it."
+      ],
+      "final_customer_text": "请选择您想附上的那张照片（点击下方按钮从设备中选择文件）。",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v7-final/NAT-H021.json"
+    },
+    {
+      "id": "NAT-H022",
+      "automatic_verdict": "pass",
+      "goal_adequacy_at_observed_boundary": "pass",
+      "strict_facts_and_language": "pass",
+      "presentation_quality": "pass",
+      "combined_quality": "pass",
+      "finding_ids": [],
+      "observed_result_categories": [
+        "actual_beneficiary_history_or_detail_read",
+        "explicit_requested_capability_or_detail_limit"
+      ],
+      "presentation_origin": "host_case_facts_with_structured_guidance",
+      "status": "completed",
+      "receipt_operations": [
+        "crm_get_incidents",
+        "crm_fetch_incident"
+      ],
+      "actual_mutation_receipts": 0,
+      "notes": [
+        "Host file_unavailable guidance correctly says requested bytes were not retrieved; no photo type, count, uploader, link or official recovery is invented.",
+        "The fact table intentionally quotes actual source descriptions, including trilingual synthetic fixture text. It is accurate but verbose; it must not be counted as unrestricted model-generated factual accuracy."
+      ],
+      "final_customer_text": "The cited query receipts contain these records:\n\n| Report number | Issue | Recorded status | Attachment flag |\n|---|---|---|---|\n| INC-26-10-000102 | Broken waste bin by the library, reported last week / 上周图书馆旁边垃圾桶损坏 / حاوية نفايات مكسورة بجانب المكتبة · 2026-10-12 | Resolved | Marked as having attachments |\n\nThese are recorded statuses; they do not establish a repair, dispatch or handling time.\n\nThe attachment flag does not establish a count, file type or uploader. The cited receipts contain no file content, so a download is not currently available.\n\nThe requested file content has not been retrieved, so a download is not currently available. This does not mean the photo has been recovered.\n\nThese are local simulation records. They were not sent to government systems, and these local numbers cannot be used to look them up through official channels.",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v7-final/NAT-H022.json"
+    },
+    {
+      "id": "NAT-H023",
+      "automatic_verdict": "pass",
+      "goal_adequacy_at_observed_boundary": "pass",
+      "strict_facts_and_language": "pass",
+      "presentation_quality": "pass",
+      "combined_quality": "pass",
+      "finding_ids": [],
+      "observed_result_categories": [
+        "actual_simulated_form_submission"
+      ],
+      "presentation_origin": "host_submission",
+      "status": "completed",
+      "receipt_operations": [
+        "crm_create_form_request"
+      ],
+      "actual_mutation_receipts": 1,
+      "notes": [
+        "Exactly one actual form write follows exact host approval. The corrected subject and supplied contacts are preserved; local-only result is generated from the receipt."
+      ],
+      "final_customer_text": "This local simulated submission is complete.\n\n- Record number: PUB-DEMO-000003\n- Title: Same documents requested twice\n\nThis record exists only in this simulated conversation. It was not sent to a government system, cannot be tracked in the official app, and triggers no real SMS, email or refund.",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v7-final/NAT-H023.json"
+    },
+    {
+      "id": "NAT-H024",
+      "automatic_verdict": "pass",
+      "goal_adequacy_at_observed_boundary": "pass",
+      "strict_facts_and_language": "pass",
+      "presentation_quality": "pass",
+      "combined_quality": "pass",
+      "finding_ids": [],
+      "observed_result_categories": [
+        "cancelled_or_rejected_unauthorized_action"
+      ],
+      "presentation_origin": "primary_model_prose_or_input_with_verdicts",
+      "status": "completed",
+      "receipt_operations": [],
+      "actual_mutation_receipts": 0,
+      "notes": [
+        "Pending confirmation is cancelled with no api_start or receipt; actual final prose contains real line breaks and no literal paragraph escapes."
+      ],
+      "final_customer_text": "好的，已暂停，没有提交任何内容，也没有生成记录。\n\n之前起草的建议（标题「午休窗口」，内容为建议在大厅加开午休窗口，联系人王测试，无附件）只是草稿，未生效。您想好后随时告诉我，我可以重新起草并让您确认；如需修改标题、内容或联系方式，也可以直接说。\n\n提醒：这里是本地模拟环境，即使提交也只在模拟系统中生成编号，不会进入官方渠道。",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v7-final/NAT-H024.json"
+    },
+    {
+      "id": "NAT-H025",
+      "automatic_verdict": "pass",
+      "goal_adequacy_at_observed_boundary": "pass",
+      "strict_facts_and_language": "pass",
+      "presentation_quality": "pass",
+      "combined_quality": "pass",
+      "finding_ids": [],
+      "observed_result_categories": [
+        "actual_reference_catalog_read",
+        "explicit_requested_capability_or_detail_limit"
+      ],
+      "presentation_origin": "primary_model_prose_or_input_with_verdicts",
+      "status": "answered",
+      "receipt_operations": [
+        "crm_get_main_classifications",
+        "crm_get_sub_classifications",
+        "crm_get_special_classifications"
+      ],
+      "actual_mutation_receipts": 0,
+      "notes": [],
+      "final_customer_text": "شكرًا على توضيحك. راجعتُ التصنيفات المتاحة في هذه النسخة التجريبية (محاكاة محلية). التصنيفات الرئيسية المتاحة هي: صيانة المرافق العامة، النظافة والنفايات، إنارة الشوارع، والمركبات المهجورة. وقد تحققتُ من فرع صيانة المرافق العامة فوجدته يشمل «Road surface / 道路路面» ← «Road surface damage / 路面破损» فقط، وهو لا يطابق ألعابًا مكسورة في حديقة، ولن أُحوّل بلاغك إلى تصنيف غير مطابق.\n\nلذلك لا يمكنني حاليًا إنشاء طلب خدمة بلدي لألعاب مكسورة في الحديقة من خلال هذه النسخة، ولم يُسجَّل أي بلاغ.\n\nإن أردت، يمكنني مساعدتك في صياغة نص قصير تصف به المشكلة (الحديقة وموقعها والألعاب المكسورة) لتستخدمه بنفسك عند التواصل مع الجهة المختصة. هل تريد ذلك؟",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v7-final/NAT-H025.json"
+    },
+    {
+      "id": "NAT-H026",
+      "automatic_verdict": "pass",
+      "goal_adequacy_at_observed_boundary": "pass",
+      "strict_facts_and_language": "pass",
+      "presentation_quality": "pass",
+      "combined_quality": "pass",
+      "finding_ids": [],
+      "observed_result_categories": [
+        "actual_beneficiary_history_or_detail_read"
+      ],
+      "presentation_origin": "host_case_facts_with_structured_guidance",
+      "status": "completed",
+      "receipt_operations": [
+        "crm_get_incidents",
+        "crm_fetch_incident"
+      ],
+      "actual_mutation_receipts": 0,
+      "notes": [
+        "The fact table intentionally quotes actual source descriptions, including trilingual synthetic fixture text. It is accurate but verbose; it must not be counted as unrestricted model-generated factual accuracy."
+      ],
+      "final_customer_text": "The cited query receipts contain these records:\n\n| Report number | Issue | Recorded status | Attachment flag |\n|---|---|---|---|\n| INC-26-10-000103 | Streetlight outside my building on Palm Street / Palm路楼外路灯不亮 / إنارة الشارع أمام المنزل لا تعمل · 2026-10-17 | In progress | Not marked as having attachments |\n\nThese are recorded statuses; they do not establish a repair, dispatch or handling time.\n\nThis request did not reopen a case or change its status or priority. Those institutional operations are not connected to this assistant.\n\nIf you wish, we can prepare a separate local simulated public complaint. It is a new request requiring your choice and its own review; it does not reopen the original record.\n\nThese are local simulation records. They were not sent to government systems, and these local numbers cannot be used to look them up through official channels.",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v7-final/NAT-H026.json"
+    },
+    {
+      "id": "NAT-H027",
+      "automatic_verdict": "pass",
+      "goal_adequacy_at_observed_boundary": "pass",
+      "strict_facts_and_language": "pass",
+      "presentation_quality": "pass",
+      "combined_quality": "pass",
+      "finding_ids": [],
+      "observed_result_categories": [
+        "actual_beneficiary_history_or_detail_read"
+      ],
+      "presentation_origin": "host_case_facts_with_structured_guidance",
+      "status": "completed",
+      "receipt_operations": [
+        "crm_get_incidents",
+        "crm_fetch_incident"
+      ],
+      "actual_mutation_receipts": 0,
+      "notes": [
+        "The fact table intentionally quotes actual source descriptions, including trilingual synthetic fixture text. It is accurate but verbose; it must not be counted as unrestricted model-generated factual accuracy."
+      ],
+      "final_customer_text": "引用的查询回执记录如下：\n\n| 记录编号 | 问题描述 | 记录状态 | 附件标记 |\n|---|---|---|---|\n| INC-26-10-000102 | Broken waste bin by the library, reported last week / 上周图书馆旁边垃圾桶损坏 / حاوية نفايات مكسورة بجانب المكتبة · 2026-10-12 | 已解决 | 有附件标记 |\n\n以上是接口记录的状态，不代表已核实现场修复、派工或处理时间。\n\n附件标记不能证明文件数量、类型或上传人。当前引用的回执未包含文件内容，暂不能提供下载。\n\n本次没有重开或修改案件状态、优先级；本助理未接入这些机构操作。\n\n如果你愿意，可以另起一条本地模拟的公众投诉；这属于新的诉求，需要你选择并单独核对，不会重开原记录。\n\n这些是本地仿真记录，未发送至政府系统，不能用这些本地编号在官方渠道查询。",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v7-final/NAT-H027.json"
+    },
+    {
+      "id": "NAT-H028",
+      "automatic_verdict": "pass",
+      "goal_adequacy_at_observed_boundary": "pass",
+      "strict_facts_and_language": "pass",
+      "presentation_quality": "pass",
+      "combined_quality": "pass",
+      "finding_ids": [],
+      "observed_result_categories": [
+        "social_only"
+      ],
+      "presentation_origin": "primary_model_prose_or_input_with_verdicts",
+      "status": "completed",
+      "receipt_operations": [],
+      "actual_mutation_receipts": 0,
+      "notes": [],
+      "final_customer_text": "You're welcome! Nothing further was submitted or changed. Whenever you'd like to check your tickets or report an issue, just come back and I'll help. Have a good day.",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v7-final/NAT-H028.json"
+    }
+  ],
+  "release_recommendation": "Do not publish this frozen v7 as all quality checks passed. Preserve this observed P2 and apply a general non-read capability boundary fix, then verify that change separately without replacing the v7 score."
+}

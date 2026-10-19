@@ -1029,7 +1029,7 @@
     "result_summary": "AL01 visible login behavior and AL02 resume/mixed facts passed. AL03 required host_case presentation after same-question Arabic replanning failed; not approved for final acceptance. No new business write or file transport. Previous evidence preserved."
   },
   "followup_read_fix": {
-    "status": "running",
+    "status": "complete_visible_pass_separate_engineering_branch_evidence",
     "candidate": {
       "agent": "42eae89b...",
       "presentation": "13e32930...",
@@ -1048,7 +1048,237 @@
         "result": "pass",
         "observed": "Single login flow then original plan4/4. Four-column table for waste record2, recorded resolved and attachment flag; quoted-query receipt heading, no site repair inference, reason unknown and original not reopened, optional separate complaint requires user choice. No write.",
         "evidence": "assets/balady-user-20261020/80-followup-read-zh-facts.png"
+      },
+      {
+        "id": "FR02",
+        "case": "Identical Arabic followup after Chinese authenticated query",
+        "input": "القمامة ما زالت في المكان. لماذا أُغلق بلاغي؟ أريد إعادة فتح البلاغ نفسه، وليس تقديم بلاغ جديد.",
+        "result": "pass_host_case_visible_old_read_branch_unexercised",
+        "observed": "Four-column Arabic host table, recorded resolved/attachment flag; fixed reason_not_returned/action_unavailable/offer_separate_complaint guidance and local-only official limits. Heading explicitly refers to cited query receipts. No reopening or new complaint.",
+        "arabic_visible_message_metadata": {
+          "seq": 160,
+          "time": "2026-10-19T19:07:57.369Z",
+          "message_id": "message-2c20a10a-2eef-4525-b598-8f7fd562cbaf",
+          "presentation_source": "host_case",
+          "receipt_ids": [
+            "receipt-3377e5f8-2681-438f-af49-9f932bf1f6dc",
+            "receipt-893e02e6-4b2a-41aa-b460-cdf4aeca2374"
+          ],
+          "case_guidance": [
+            "action_unavailable",
+            "reason_not_returned",
+            "offer_separate_complaint"
+          ]
+        },
+        "chinese_visible_message_metadata": {
+          "seq": 84,
+          "time": "2026-10-19T19:07:17.889Z",
+          "message_id": "message-3a10147a-9793-4f29-9654-772de2eb50ee",
+          "presentation_source": "host_case",
+          "receipt_ids": [
+            "receipt-9dcd13b6-2c6e-4920-a3b2-74ca4d6e3d35",
+            "receipt-c0daeb85-9109-4525-b86c-d9ec2d02af49"
+          ],
+          "case_guidance": [
+            "action_unavailable",
+            "reason_not_returned",
+            "offer_separate_complaint"
+          ]
+        },
+        "coverage_limit": "Same natural Arabic utterance created a3/3 plan and re-queried actual case reads; receipt IDs differ from Chinese prior answer. Therefore visible host_case path passed, but the cross-user-message old-read-reuse branch was not exercised by this sample. Must not claim it was. No broader cases run.",
+        "evidence": "assets/balady-user-20261020/81-followup-read-ar-host-case.png"
       }
-    ]
+    ],
+    "completed_steps": 2,
+    "result_summary": "Two natural visible browser cases passed on42eae89b/13e32930/bd030. Arabic used fresh reads, so old-read reuse branch not exercised here; parent reports separate HTTP regression for that path. Browser and engineering evidence explicitly separated. Ready for parent full110v7 and later actual Render UI acceptance; no claim of deployed state.",
+    "separate_engineering_evidence": {
+      "source": "Parent/root report after browser phase; not executed by this proxy-user agent",
+      "coverage": "Cross-new-origin explicit old read receipt path covered by independent HTTP regression",
+      "engineering_tests": "176 passed as reported by root",
+      "candidate_commit": "4b8424c as reported by root",
+      "browser_scope": "Natural identical Arabic followup re-queried, host_case content passed. No forced tool-order prompt used to manufacture branch coverage."
+    }
+  },
+  "standalone_mixed_guidance_regression": {
+    "status": "complete_operation_boundaries_pass_language_copy_pending_fix",
+    "candidate": {
+      "agent": "b0bc7137fe91b4d020959586d734fc00d84ffd5a01803d4807ab15d6fe1c2e35",
+      "presentation": "c1d58d27e5a5f8fe83ae7d16b8546e49aa40c08bc4acdccfcf77b63b3cb8f5be",
+      "guard": "8051b490dab7663f3d1a9ce550736c0aac18d5b4e674e6d5b57a83a8aa8cb2f0",
+      "source": "Parent reported restarted isolated memory preview source hashes."
+    },
+    "url": "http://127.0.0.1:8788/",
+    "browser": "Chrome",
+    "method": "Independent proxy user via visible UI, new session. Standalone unsupported capability then explicit opt-in to one synthetic local public complaint; no actual government or financial request. Separate phase counts.",
+    "steps": [
+      {
+        "id": "SG01",
+        "case": "No-receipt duplicate-fee refund capability inquiry",
+        "input": "我在 BALADY 交的费用被重复扣了，你能直接帮我退款吗？",
+        "result": "pass_zero_write",
+        "observed": "Requested action not connected, none performed; separate new local complaint only if user chooses and separately confirms. Explicitly no government/department/staff delivery for verification or handling, no real refunds/payments/licenses/notifications; local IDs cannot be used officially. No actual receipt and no write.",
+        "message_metadata": {
+          "seq": 29,
+          "time": "2026-10-19T19:24:39.611Z",
+          "presentation_source": "host_guidance",
+          "presentation_parts": [
+            "host_guidance"
+          ],
+          "receipt_ids": [],
+          "case_guidance": [
+            "action_unavailable",
+            "offer_separate_complaint"
+          ]
+        },
+        "evidence": "assets/balady-user-20261020/82-standalone-refund-guidance.png"
+      },
+      {
+        "id": "SG02",
+        "case": "Explicit opt-in to separate local complaint and native confirmation",
+        "input": "那就帮我提一条本地投诉，说明费用被重复扣款，希望退还重复收取的费用。标题用“Repeated Fee Charge”。我叫 Test Citizen，电话 0500000000，邮箱 citizen@example.test，没有照片。提交前给我看一下。",
+        "result": "pass_local_write_with_language_copy_issue",
+        "observed": "Direct readable host confirmation with complaint type, desired title, faithful duplicate-fee/refund-request description, supplied synthetic contacts, no attachments. No repeated text gate. Tester clicked native confirm exactly once after review.",
+        "evidence": "assets/balady-user-20261020/83-standalone-optin-local-confirmation.png",
+        "receipt_outcome": {
+          "id": "PUB-DEMO-000003",
+          "title": "Repeated Fee Charge",
+          "operation": "crm_create_form_request",
+          "receipt_id": "receipt-6bfc2a8a-9803-457a-9b51-763a412ac54f",
+          "responseId": "SIM-000004",
+          "visible_receipts": 1,
+          "native_confirm_clicks": 1,
+          "summary": "Actual local simulated record, no government submission, official App, real SMS/email or refund."
+        },
+        "message_metadata": {
+          "seq": 78,
+          "time": "2026-10-19T19:26:16.058Z",
+          "presentation_source": "host_submission",
+          "presentation_parts": [
+            "host_submission"
+          ],
+          "receipt_ids": [
+            "receipt-6bfc2a8a-9803-457a-9b51-763a412ac54f"
+          ]
+        },
+        "receipt_evidence": "assets/balady-user-20261020/84-standalone-local-receipt.png",
+        "coverage_limit": "Primary model did not include case_guidance in this write finish, so combined host_submission+host_guidance parts branch not exercised. Actual host submission summary includes capability limits and real PUB receipt."
+      },
+      {
+        "id": "SG03",
+        "case": "Arabic different unsupported capability: renew shop licence/pay fees",
+        "input": "هل تستطيع تجديد رخصة متجري هنا ودفع رسومها؟",
+        "result": "pass_zero_write",
+        "observed": "Generic requested-operation-unconnected wording in Arabic, no execution. Explicit no government/department/staff handoff for verification/processing, no true refunds/payments/licensing/notifications and local IDs not official. No auto local complaint, no service-picker detour,0 actual receipts/write.",
+        "message_metadata": {
+          "seq": 29,
+          "time": "2026-10-19T19:27:25.719Z",
+          "presentation_source": "host_guidance",
+          "presentation_parts": [
+            "host_guidance"
+          ],
+          "receipt_ids": [],
+          "case_guidance": [
+            "action_unavailable"
+          ]
+        },
+        "dom_checks": {
+          "dir": "auto",
+          "direction": "rtl",
+          "literalEscapedNewline": false
+        },
+        "evidence": "assets/balady-user-20261020/85-standalone-ar-license-guidance.png"
+      }
+    ],
+    "file_transport": "File chooser not called; extension file URL permission remains unchanged and browser upload unverified.",
+    "minor_ux_observations": [
+      {
+        "priority": "P2",
+        "observed": "Chinese utterance/interface produced an English description in the confirmation, although semantically faithful. Plan goal also exposed internal T03 label. Local operation still correctly typed and reviewable; recorded as language/technical-copy polish, not evidence of an incorrect refund execution.",
+        "evidence": "assets/balady-user-20261020/83-standalone-optin-local-confirmation.png",
+        "status": "Parent accepted as issues to fix before final freeze, not merely deferred polish. Original83 evidence retained; later focused retry will be separate.",
+        "later_verification": "draft_language_regression DL02-DL03 on b7bc28/c1d58/873354 passed Chinese description/exact English values/noT03 in plans; historical83 screenshot retained."
+      }
+    ],
+    "completed_flows": 3,
+    "actual_local_writes": 1,
+    "result_summary": "Three focused flows completed: zero-receipt refund capability host_guidance, explicit opt-in public complaint with native confirmation and one actual local PUB write, Arabic different unsupported licence/payment host_guidance. All exercised operation/receipt/capability boundaries passed. Chinese description translated to English and T03 leaked into plan remain accepted P2 issues for parent fix; this phase not final acceptance. No file chooser or external government/financial operation.",
+    "next_scope": "After parent restart, only same natural local complaint flow to verify Chinese draft language/no wire code; no broad browser rerun requested."
+  },
+  "draft_language_regression": {
+    "status": "complete_focused_pass",
+    "candidate": {
+      "agent": "b7bc28e30220fb49103da180bd5b42ec6166f178bdc3d3c9a9130af2b3077080",
+      "presentation": "c1d58d27e5a5f8fe83ae7d16b8546e49aa40c08bc4acdccfcf77b63b3cb8f5be",
+      "guard": "8733542d4872ee2ce67b89158a5fc3a53582183778e8fe2f20bd833f1a15fbdb",
+      "source": "Parent reported restarted isolated preview."
+    },
+    "url": "http://127.0.0.1:8788/",
+    "browser": "Chrome",
+    "scope": "Only same natural Chinese refund question, explicit local complaint with specified English title and synthetic English name/contact/no photos, Chinese draft and human plan/no wire codes, one native confirmation/write. Original83 P2 evidence retained.",
+    "method": "Independent proxy-user visible browser UI, new session, no code reads to adjust input. No file chooser or extra businesses.",
+    "steps": [
+      {
+        "id": "DL01",
+        "case": "Original Chinese refund capability inquiry",
+        "input": "我在 BALADY 交的费用被重复扣了，你能直接帮我退款吗？",
+        "result": "pass_zero_write",
+        "observed": "Action unavailable, none performed. Separate local complaint only optional and separately confirmed; no government/staff verification or processing, true refund/payment/licensing/notification. No receipt or write.",
+        "evidence": "assets/balady-user-20261020/86-draft-language-refund-boundary.png"
+      },
+      {
+        "id": "DL02",
+        "case": "Same opt-in Chinese complaint retains language, requested English title and synthetic contacts",
+        "input": "那就帮我提一条本地投诉，说明费用被重复扣款，希望退还重复收取的费用。标题用“Repeated Fee Charge”。我叫 Test Citizen，电话 0500000000，邮箱 citizen@example.test，没有照片。提交前给我看一下。",
+        "result": "pass_approved_card",
+        "observed": "One unique native confirmation card. Description Chinese: 我在 BALADY 缴纳费用时被重复扣款，同一笔费用被收取了两次。希望核实重复收取的费用并退还多收的部分。 Title Repeated Fee Charge, Test/Citizen,0500000000,citizen@example.test retained exactly; no attachments. All public plan goals used ordinary Chinese, no T03/wire operation names. Native confirm clicked exactly once.",
+        "ui_counts": {
+          "confirmation_cards": 1,
+          "complaint_plan_versions": 3,
+          "earlier_complaint_plans_superseded": 2,
+          "confirm_clicks": 1
+        },
+        "process_note": "Two earlier complaint plans marked 已更新处理步骤，这份计划不再执行。 Visible tool results show crm_create_form_request returned DEPENDENCY_PENDING twice before model replanned. No old confirmation cards existed or remained executable; only one correct card. This is a recovered dependency-planning sequence, not evidence of a draft-language guard rejection and not classified as a new bug from version count alone.",
+        "evidence": "assets/balady-user-20261020/87-draft-language-chinese-confirmation.png",
+        "visible_retry_causes": [
+          {
+            "seq": 77,
+            "time": "2026-10-19T19:29:50.332Z",
+            "name": "crm_create_form_request",
+            "result": {
+              "error": "DEPENDENCY_PENDING",
+              "message": "Complete prerequisite steps first"
+            }
+          },
+          {
+            "seq": 96,
+            "time": "2026-10-19T19:29:54.221Z",
+            "name": "crm_create_form_request",
+            "result": {
+              "error": "DEPENDENCY_PENDING",
+              "message": "Complete prerequisite steps first"
+            }
+          }
+        ]
+      },
+      {
+        "id": "DL03",
+        "case": "Confirm language-correct local draft once and read actual receipt",
+        "result": "pass_one_local_write",
+        "observed": "One native confirm click, approved card remains visible with same Chinese description and exact requested title/contacts. One actual public-form receipt, local record PUB-DEMO-000003 and title Repeated Fee Charge. Host summary states local only, no government or official App synchronization, real SMS/email/refund. No new fact requests or repeated authorization.",
+        "actual_receipt": {
+          "operation": "crm_create_form_request",
+          "receipt_id": "receipt-27e7e7e0-387a-4953-873e-35cb55f347b9",
+          "responseId": "SIM-000004",
+          "id": "PUB-DEMO-000003",
+          "visible_receipts": 1,
+          "native_confirm_clicks": 1
+        },
+        "evidence": "assets/balady-user-20261020/88-draft-language-local-receipt.png"
+      }
+    ],
+    "completed_flows": 1,
+    "completed_checks": 3,
+    "actual_local_writes": 1,
+    "result_summary": "Same natural Chinese refund-to-local-complaint flow passed on b7bc28/c1d58/873354: Chinese description, exact English title/name/contact, no internal wire code in public plans, one language-correct confirmation and one actual local write. Earlier two P2 evidence retained as historical; two dependency-pending planning retries recovered without exposing wrong/duplicate executable cards. No extra businesses or file chooser tested."
   }
 }

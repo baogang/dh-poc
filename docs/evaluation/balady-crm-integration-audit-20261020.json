@@ -123,7 +123,7 @@
     "interpretation": "The omission limits exact historical reproducibility. It is not repaired by inserting current hashes into an old report."
   },
   "next_regression": {
-    "status": "awaiting host-managed SSO prerequisite repair and independent browser mixed-goal confirmation before v7",
+    "status": "v7 complete 110 on committed candidate; independent semantic review pending",
     "engineering_http_cases": 33,
     "grading_engineering_cases": 8,
     "natural_grader_version": 2,
@@ -323,5 +323,47 @@
     "passed": 169,
     "source_changed_during_run": [],
     "limitation": "The subsequently discovered unauthenticated SSO planning loop is not part of this passing evidence; two host-auth tests have been authored pending implementation."
+  },
+  "final_v7_regression": {
+    "summary": "docs/evaluation/balady-crm-final-regression-20261020.json",
+    "candidate_commit": "4b8424c1955e0a08d9de8ec66fe9f7f02f336fa9",
+    "contract": {
+      "report": "reports/crm/2026-10-19T19-09-40.297Z/summary.json",
+      "cases": 70,
+      "passed": 70,
+      "failed": 0,
+      "source_changed_during_run": []
+    },
+    "natural": {
+      "report": "reports/crm-journeys/final-regression-20261020-v7-final/summary.json",
+      "cases": 40,
+      "automatic_passed": 39,
+      "failed": 0,
+      "needs_review": 1,
+      "source_changed_during_run": [],
+      "response_review": {
+        "started": 119,
+        "completed": 73,
+        "rejected_attempts": 46,
+        "passed_gates": 157,
+        "corrected": 0,
+        "model_requests": 203
+      },
+      "final_output_source_counts": {
+        "host_case": 13,
+        "awaiting_input:text": 7,
+        "verified_model": 15,
+        "host_submission": 3,
+        "awaiting_input:login": 1,
+        "awaiting_input:file": 1
+      }
+    },
+    "engineering": {
+      "report": "docs/evaluation/balady-crm-v7-candidate-engineering-20261020.json",
+      "tests": 176,
+      "passed": 176
+    },
+    "all_input_reference_fixture_hashes_unchanged": true,
+    "independent_business_review": "pending"
   }
 }
