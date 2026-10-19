@@ -1,0 +1,36 @@
+{
+  "active": [{"id":"balady-crm","enabled":true,"tool_cases":"balady-crm/tool-cases.jsonl","planning_cases":"balady-crm/planning-cases.jsonl"}],
+  "legacy_reason": "Previous synthetic APIs were replaced by CRM Services V1.13.0. Preserve their scenarios and test sources, but exclude them from the active CRM test/evaluation commands.",
+  "disabled": [
+    {"id":"road-v1","enabled":false},
+    {"id":"road-v2","enabled":false},
+    {"id":"road-v3","enabled":false},
+    {"id":"road-v4","enabled":false},
+    {"id":"v1","enabled":false},
+    {"id":"v1.1","enabled":false},
+    {"id":"v1.2","enabled":false},
+    {"id":"v2.0","enabled":false},
+    {"id":"v3.0","enabled":false}
+  ],
+  "independent": [{"id":"road-emotion-v1","enabled":true,"purpose":"Independent sentiment benchmark; does not call business APIs"}],
+  "disabled_test_files": [
+    "tests/core.test.mjs",
+    "tests/regression-gate.test.mjs",
+    "tests/road-chat-feedback.test.mjs",
+    "tests/road-chat-ui.test.mjs",
+    "tests/road-diagram.test.mjs",
+    "tests/road-feedback.test.mjs",
+    "tests/road-i18n.test.mjs",
+    "tests/road-loop.test.mjs",
+    "tests/road-matters.test.mjs",
+    "tests/road-metrics.test.mjs",
+    "tests/road-routing.test.mjs",
+    "tests/road-services.test.mjs",
+    "tests/v2-modules.test.mjs",
+    "tests/v3-contract.test.mjs",
+    "tests/web-deployment.test.mjs",
+    "tests/web-http.test.mjs",
+    "tests/web-ui.test.mjs",
+    "tests/web.test.mjs"
+  ]
+}

@@ -1,0 +1,3696 @@
+{
+  "run_id": "2026-10-19T16-32-31.017Z",
+  "started_at": "2026-10-19T16:32:31.017Z",
+  "kind": "live-model-regression",
+  "is_blind": false,
+  "provider": "deepseek",
+  "model": "deepseek-flash",
+  "api_backend": "local CRM simulation over documented HTTP paths",
+  "routing": "isolated business planner; emotion/FAQ evaluated separately",
+  "case_ids": [
+    "CRM-T-001",
+    "CRM-T-002",
+    "CRM-T-003",
+    "CRM-T-004",
+    "CRM-T-005",
+    "CRM-T-006",
+    "CRM-T-007",
+    "CRM-T-008",
+    "CRM-T-009",
+    "CRM-T-010",
+    "CRM-T-011",
+    "CRM-T-012",
+    "CRM-T-013",
+    "CRM-T-014",
+    "CRM-T-015",
+    "CRM-T-016",
+    "CRM-T-017",
+    "CRM-T-018",
+    "CRM-T-019",
+    "CRM-T-020",
+    "CRM-T-021",
+    "CRM-T-022",
+    "CRM-T-023",
+    "CRM-T-024",
+    "CRM-T-025",
+    "CRM-T-026",
+    "CRM-T-027",
+    "CRM-T-028",
+    "CRM-T-029",
+    "CRM-T-030",
+    "CRM-T-031",
+    "CRM-T-032",
+    "CRM-T-033",
+    "CRM-T-034",
+    "CRM-T-035",
+    "CRM-T-036",
+    "CRM-T-037",
+    "CRM-T-038",
+    "CRM-T-039",
+    "CRM-T-040",
+    "CRM-T-041",
+    "CRM-T-042",
+    "CRM-T-043",
+    "CRM-T-044",
+    "CRM-T-045",
+    "CRM-T-046",
+    "CRM-T-047",
+    "CRM-T-048",
+    "CRM-T-049",
+    "CRM-T-050",
+    "CRM-P-001",
+    "CRM-P-002",
+    "CRM-P-003",
+    "CRM-P-004",
+    "CRM-P-005",
+    "CRM-P-006",
+    "CRM-P-007",
+    "CRM-P-008",
+    "CRM-P-009",
+    "CRM-P-010",
+    "CRM-P-011",
+    "CRM-P-012",
+    "CRM-P-013",
+    "CRM-P-014",
+    "CRM-P-015",
+    "CRM-P-016",
+    "CRM-P-017",
+    "CRM-P-018",
+    "CRM-P-019",
+    "CRM-P-020"
+  ],
+  "concurrency": 3,
+  "git_commit": "c1c95db8b63940f0aa1b67621fa65c63a606b4b1",
+  "source_sha256": {
+    "src/crm/contract.mjs": "bb4d1f4b34655a670605fc83fe6bb2d426ae9c966e4f312d5949d123b7754f4e",
+    "src/crm/agent.mjs": "ed3c63b8f37dd7509c0bd995beb3e3e104d880dff4d350ac26fe3ead7f5a2cb4",
+    "src/crm/simulation.mjs": "5cfc5f8ca91d575df68c192b2cf545c3f71e95cf9c3f476c19ebf5b9f1be739a",
+    "src/crm/client.mjs": "a75c6d84ff2a94ad6d8d9d897b2a53754ef03405c39e0cfc3bdbc2363d3908bf",
+    "src/crm/validation.mjs": "a8fe1a2fad3428a909498dc37422bc974fc77ce0cae8e9808e0667798188b21e",
+    "src/crm/metrics.mjs": "c6a4e6dd931565ae24bbb60857421f7244523afaf7301b360241c4e2d45dec03",
+    "scripts/crm-eval.mjs": "b963eff85b9766779b240f9b537141c3f5a4a9b290934598d789246d0ab9993b",
+    "src/road/runtime.mjs": "8be144c62fba78f74326f771ff117020092a8aa6eacbf153dc925946a7acb371",
+    "src/road/server.mjs": "7ef7db990995446bd516c387d85c551a79098c90ad0cb73fef67b7f7ca2e51ed",
+    "datasets/balady-crm/tool-cases.jsonl": "9d533410ceb6210aedef4baabecaa5236030510bfde6ac8cc25debeffc5f050f",
+    "datasets/balady-crm/planning-cases.jsonl": "d64af1b9f95f911a317786c26ff35a499bbf58be4474f5d04d24daccc0182881"
+  },
+  "completed_at": "2026-10-19T16:34:36.103Z",
+  "planned_cases": 70,
+  "metrics": {
+    "cases": 70,
+    "passed": 70,
+    "case_pass_rate": 1,
+    "tool_selection": {
+      "tp": 86,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1,
+      "f1": 1
+    },
+    "tool_execution": {
+      "tp": 86,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1,
+      "f1": 1
+    },
+    "planning": {
+      "tp": 96,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1,
+      "f1": 1
+    },
+    "dynamic_plan_exact_accuracy": 1,
+    "tool_argument_schema_accuracy": 1,
+    "reference_parameter_accuracy": 1,
+    "clarification_field_recall": 1,
+    "unsafe_writes": 0
+  },
+  "by_suite": {
+    "tool": {
+      "cases": 50,
+      "passed": 50,
+      "case_pass_rate": 1,
+      "tool_selection": {
+        "tp": 44,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      "tool_execution": {
+        "tp": 44,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      "planning": {
+        "tp": 54,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      "dynamic_plan_exact_accuracy": 1,
+      "tool_argument_schema_accuracy": 1,
+      "reference_parameter_accuracy": 1,
+      "clarification_field_recall": 1,
+      "unsafe_writes": 0
+    },
+    "planning": {
+      "cases": 20,
+      "passed": 20,
+      "case_pass_rate": 1,
+      "tool_selection": {
+        "tp": 42,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      "tool_execution": {
+        "tp": 42,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      "planning": {
+        "tp": 42,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      "dynamic_plan_exact_accuracy": 1,
+      "tool_argument_schema_accuracy": 1,
+      "reference_parameter_accuracy": 1,
+      "clarification_field_recall": null,
+      "unsafe_writes": 0
+    }
+  },
+  "model_requests": 270,
+  "model_cost": 0.11829348,
+  "rows": [
+    {
+      "id": "CRM-T-002",
+      "suite": "tool",
+      "title": "Record generated Medallia survey URL",
+      "score": {
+        "pass": true,
+        "status": "completed",
+        "selection": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_update_survey_url"
+        ],
+        "selected": [
+          "crm_update_survey_url"
+        ],
+        "planned": [
+          "crm_update_survey_url"
+        ],
+        "parameter_checks": [
+          {
+            "operation": "crm_update_survey_url",
+            "pass": true
+          }
+        ],
+        "dependency_checks": [],
+        "clarification_checks": [],
+        "valid_attempts": 2,
+        "attempts": 2,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 6965,
+      "model_requests": 4,
+      "model_cost": 0.0016889639999999998
+    },
+    {
+      "id": "CRM-T-003",
+      "suite": "tool",
+      "title": "Submit Medallia evaluation using explicit response code 2",
+      "score": {
+        "pass": true,
+        "status": "completed",
+        "selection": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_submit_survey_evaluation"
+        ],
+        "selected": [
+          "crm_submit_survey_evaluation"
+        ],
+        "planned": [
+          "crm_submit_survey_evaluation"
+        ],
+        "parameter_checks": [
+          {
+            "operation": "crm_submit_survey_evaluation",
+            "pass": true
+          }
+        ],
+        "dependency_checks": [],
+        "clarification_checks": [],
+        "valid_attempts": 2,
+        "attempts": 2,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 7251,
+      "model_requests": 4,
+      "model_cost": 0.001705464
+    },
+    {
+      "id": "CRM-T-001",
+      "suite": "tool",
+      "title": "Record MOI vehicle withdrawal outcome",
+      "score": {
+        "pass": true,
+        "status": "completed",
+        "selection": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_update_vehicle_status"
+        ],
+        "selected": [
+          "crm_update_vehicle_status"
+        ],
+        "planned": [
+          "crm_update_vehicle_status"
+        ],
+        "parameter_checks": [
+          {
+            "operation": "crm_update_vehicle_status",
+            "pass": true
+          }
+        ],
+        "dependency_checks": [],
+        "clarification_checks": [],
+        "valid_attempts": 2,
+        "attempts": 2,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 7782,
+      "model_requests": 4,
+      "model_cost": 0.001533096
+    },
+    {
+      "id": "CRM-T-004",
+      "suite": "tool",
+      "title": "List main municipal assets",
+      "score": {
+        "pass": true,
+        "status": "completed",
+        "selection": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_get_assets"
+        ],
+        "selected": [
+          "crm_get_assets"
+        ],
+        "planned": [
+          "crm_get_assets"
+        ],
+        "parameter_checks": [
+          {
+            "operation": "crm_get_assets",
+            "pass": true
+          }
+        ],
+        "dependency_checks": [],
+        "clarification_checks": [],
+        "valid_attempts": 1,
+        "attempts": 1,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 2896,
+      "model_requests": 3,
+      "model_cost": 0.0009405119999999999
+    },
+    {
+      "id": "CRM-T-005",
+      "suite": "tool",
+      "title": "Get municipal asset details for main asset MA-DEMO-1",
+      "score": {
+        "pass": true,
+        "status": "completed",
+        "selection": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_get_asset_details"
+        ],
+        "selected": [
+          "crm_get_asset_details"
+        ],
+        "planned": [
+          "crm_get_asset_details"
+        ],
+        "parameter_checks": [
+          {
+            "operation": "crm_get_asset_details",
+            "pass": true
+          }
+        ],
+        "dependency_checks": [],
+        "clarification_checks": [],
+        "valid_attempts": 1,
+        "attempts": 1,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 3443,
+      "model_requests": 3,
+      "model_cost": 0.001003848
+    },
+    {
+      "id": "CRM-T-006",
+      "suite": "tool",
+      "title": "Read only the version timestamp of this Pega case",
+      "score": {
+        "pass": true,
+        "status": "completed",
+        "selection": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_get_case"
+        ],
+        "selected": [
+          "crm_get_case"
+        ],
+        "planned": [
+          "crm_get_case"
+        ],
+        "parameter_checks": [
+          {
+            "operation": "crm_get_case",
+            "pass": true
+          }
+        ],
+        "dependency_checks": [],
+        "clarification_checks": [],
+        "valid_attempts": 1,
+        "attempts": 1,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 3820,
+      "model_requests": 3,
+      "model_cost": 0.000993216
+    },
+    {
+      "id": "CRM-T-008",
+      "suite": "tool",
+      "title": "Record CIS received incident inspection outcome",
+      "score": {
+        "pass": true,
+        "status": "completed",
+        "selection": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_update_cis_incident"
+        ],
+        "selected": [
+          "crm_update_cis_incident"
+        ],
+        "planned": [
+          "crm_update_cis_incident"
+        ],
+        "parameter_checks": [
+          {
+            "operation": "crm_update_cis_incident",
+            "pass": true
+          }
+        ],
+        "dependency_checks": [],
+        "clarification_checks": [],
+        "valid_attempts": 2,
+        "attempts": 2,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 4963,
+      "model_requests": 4,
+      "model_cost": 0.0018991679999999997
+    },
+    {
+      "id": "CRM-T-007",
+      "suite": "tool",
+      "title": "Set case urgency to 60 with supplied current etag",
+      "score": {
+        "pass": true,
+        "status": "completed",
+        "selection": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_get_case",
+          "crm_update_case"
+        ],
+        "selected": [
+          "crm_get_case",
+          "crm_update_case"
+        ],
+        "planned": [
+          "crm_get_case",
+          "crm_update_case"
+        ],
+        "parameter_checks": [
+          {
+            "operation": "crm_update_case",
+            "pass": true
+          }
+        ],
+        "dependency_checks": [],
+        "clarification_checks": [],
+        "valid_attempts": 3,
+        "attempts": 3,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 5833,
+      "model_requests": 5,
+      "model_cost": 0.0022674239999999997
+    },
+    {
+      "id": "CRM-T-009",
+      "suite": "tool",
+      "title": "Record external entity inspection in progress",
+      "score": {
+        "pass": true,
+        "status": "completed",
+        "selection": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_update_external_incident"
+        ],
+        "selected": [
+          "crm_update_external_incident"
+        ],
+        "planned": [
+          "crm_update_external_incident"
+        ],
+        "parameter_checks": [
+          {
+            "operation": "crm_update_external_incident",
+            "pass": true
+          }
+        ],
+        "dependency_checks": [],
+        "clarification_checks": [],
+        "valid_attempts": 2,
+        "attempts": 2,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 4984,
+      "model_requests": 4,
+      "model_cost": 0.0018721319999999997
+    },
+    {
+      "id": "CRM-T-010",
+      "suite": "tool",
+      "title": "List new classifications associated with my authenticated external entity",
+      "score": {
+        "pass": true,
+        "status": "completed",
+        "selection": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_get_external_new_classifications"
+        ],
+        "selected": [
+          "crm_get_external_new_classifications"
+        ],
+        "planned": [
+          "crm_get_external_new_classifications"
+        ],
+        "parameter_checks": [
+          {
+            "operation": "crm_get_external_new_classifications",
+            "pass": true
+          }
+        ],
+        "dependency_checks": [],
+        "clarification_checks": [],
+        "valid_attempts": 1,
+        "attempts": 1,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 3197,
+      "model_requests": 3,
+      "model_cost": 0.001059312
+    },
+    {
+      "id": "CRM-T-011",
+      "suite": "tool",
+      "title": "List special classifications associated with my authenticated external entity; not mobile classification lookup",
+      "score": {
+        "pass": true,
+        "status": "completed",
+        "selection": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_get_external_special_classifications"
+        ],
+        "selected": [
+          "crm_get_external_special_classifications"
+        ],
+        "planned": [
+          "crm_get_external_special_classifications"
+        ],
+        "parameter_checks": [
+          {
+            "operation": "crm_get_external_special_classifications",
+            "pass": true
+          }
+        ],
+        "dependency_checks": [],
+        "clarification_checks": [],
+        "valid_attempts": 1,
+        "attempts": 1,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 3311,
+      "model_requests": 3,
+      "model_cost": 0.0010464119999999998
+    },
+    {
+      "id": "CRM-T-012",
+      "suite": "tool",
+      "title": "As CIS, reopen this resolved visual pollution incident",
+      "score": {
+        "pass": true,
+        "status": "completed",
+        "selection": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_reopen_incident"
+        ],
+        "selected": [
+          "crm_reopen_incident"
+        ],
+        "planned": [
+          "crm_reopen_incident"
+        ],
+        "parameter_checks": [
+          {
+            "operation": "crm_reopen_incident",
+            "pass": true
+          }
+        ],
+        "dependency_checks": [],
+        "clarification_checks": [],
+        "valid_attempts": 2,
+        "attempts": 2,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 5172,
+      "model_requests": 5,
+      "model_cost": 0.001827348
+    },
+    {
+      "id": "CRM-T-014",
+      "suite": "tool",
+      "title": "Upload a file to this existing case through the SSO file upload service",
+      "score": {
+        "pass": true,
+        "status": "completed",
+        "selection": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_upload_file"
+        ],
+        "selected": [
+          "crm_upload_file"
+        ],
+        "planned": [
+          "crm_upload_file"
+        ],
+        "parameter_checks": [
+          {
+            "operation": "crm_upload_file",
+            "pass": true
+          }
+        ],
+        "dependency_checks": [],
+        "clarification_checks": [],
+        "valid_attempts": 2,
+        "attempts": 2,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 4474,
+      "model_requests": 4,
+      "model_cost": 0.001760964
+    },
+    {
+      "id": "CRM-T-013",
+      "suite": "tool",
+      "title": "Send incident status version 2 operator comments without changing status code",
+      "score": {
+        "pass": true,
+        "status": "completed",
+        "selection": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_update_incident_status_v2"
+        ],
+        "selected": [
+          "crm_update_incident_status_v2"
+        ],
+        "planned": [
+          "crm_update_incident_status_v2"
+        ],
+        "parameter_checks": [
+          {
+            "operation": "crm_update_incident_status_v2",
+            "pass": true
+          }
+        ],
+        "dependency_checks": [],
+        "clarification_checks": [],
+        "valid_attempts": 2,
+        "attempts": 2,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 5210,
+      "model_requests": 5,
+      "model_cost": 0.0020326199999999997
+    },
+    {
+      "id": "CRM-T-015",
+      "suite": "tool",
+      "title": "Download attachment FILE-DEMO-SEED",
+      "score": {
+        "pass": true,
+        "status": "completed",
+        "selection": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_download_file"
+        ],
+        "selected": [
+          "crm_download_file"
+        ],
+        "planned": [
+          "crm_download_file"
+        ],
+        "parameter_checks": [
+          {
+            "operation": "crm_download_file",
+            "pass": true
+          }
+        ],
+        "dependency_checks": [],
+        "clarification_checks": [],
+        "valid_attempts": 1,
+        "attempts": 1,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 3406,
+      "model_requests": 3,
+      "model_cost": 0.00103578
+    },
+    {
+      "id": "CRM-T-016",
+      "suite": "tool",
+      "title": "Show my authenticated beneficiary CRM incident history",
+      "score": {
+        "pass": true,
+        "status": "completed",
+        "selection": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_get_incidents"
+        ],
+        "selected": [
+          "crm_get_incidents"
+        ],
+        "planned": [
+          "crm_get_incidents"
+        ],
+        "parameter_checks": [
+          {
+            "operation": "crm_get_incidents",
+            "pass": true
+          }
+        ],
+        "dependency_checks": [],
+        "clarification_checks": [],
+        "valid_attempts": 1,
+        "attempts": 1,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 3726,
+      "model_requests": 3,
+      "model_cost": 0.001189812
+    },
+    {
+      "id": "CRM-T-017",
+      "suite": "tool",
+      "title": "Fetch full incident details using this exact Pega key",
+      "score": {
+        "pass": true,
+        "status": "completed",
+        "selection": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_fetch_incident"
+        ],
+        "selected": [
+          "crm_fetch_incident"
+        ],
+        "planned": [
+          "crm_fetch_incident"
+        ],
+        "parameter_checks": [
+          {
+            "operation": "crm_fetch_incident",
+            "pass": true
+          }
+        ],
+        "dependency_checks": [],
+        "clarification_checks": [],
+        "valid_attempts": 1,
+        "attempts": 1,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 3354,
+      "model_requests": 3,
+      "model_cost": 0.001205016
+    },
+    {
+      "id": "CRM-T-019",
+      "suite": "tool",
+      "title": "Retrieve municipal-service classification data with action MSRClsData",
+      "score": {
+        "pass": true,
+        "status": "completed",
+        "selection": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_retrieve_msr_data"
+        ],
+        "selected": [
+          "crm_retrieve_msr_data"
+        ],
+        "planned": [
+          "crm_retrieve_msr_data"
+        ],
+        "parameter_checks": [
+          {
+            "operation": "crm_retrieve_msr_data",
+            "pass": true
+          }
+        ],
+        "dependency_checks": [],
+        "clarification_checks": [],
+        "valid_attempts": 1,
+        "attempts": 1,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 3756,
+      "model_requests": 3,
+      "model_cost": 0.001137084
+    },
+    {
+      "id": "CRM-T-020",
+      "suite": "tool",
+      "title": "List main classifications for type CRM within municipality 004",
+      "score": {
+        "pass": true,
+        "status": "completed",
+        "selection": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_get_main_classifications"
+        ],
+        "selected": [
+          "crm_get_main_classifications"
+        ],
+        "planned": [
+          "crm_get_main_classifications"
+        ],
+        "parameter_checks": [
+          {
+            "operation": "crm_get_main_classifications",
+            "pass": true
+          }
+        ],
+        "dependency_checks": [],
+        "clarification_checks": [],
+        "valid_attempts": 1,
+        "attempts": 1,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 3545,
+      "model_requests": 3,
+      "model_cost": 0.0010017479999999998
+    },
+    {
+      "id": "CRM-T-018",
+      "suite": "tool",
+      "title": "Create municipal service request with all supplied details",
+      "score": {
+        "pass": true,
+        "status": "completed",
+        "selection": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_create_municipal_service"
+        ],
+        "selected": [
+          "crm_create_municipal_service"
+        ],
+        "planned": [
+          "crm_create_municipal_service"
+        ],
+        "parameter_checks": [
+          {
+            "operation": "crm_create_municipal_service",
+            "pass": true
+          }
+        ],
+        "dependency_checks": [],
+        "clarification_checks": [],
+        "valid_attempts": 2,
+        "attempts": 2,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 5852,
+      "model_requests": 4,
+      "model_cost": 0.002432508
+    },
+    {
+      "id": "CRM-T-021",
+      "suite": "tool",
+      "title": "List subclassifications under the supplied main classification",
+      "score": {
+        "pass": true,
+        "status": "completed",
+        "selection": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_get_sub_classifications"
+        ],
+        "selected": [
+          "crm_get_sub_classifications"
+        ],
+        "planned": [
+          "crm_get_sub_classifications"
+        ],
+        "parameter_checks": [
+          {
+            "operation": "crm_get_sub_classifications",
+            "pass": true
+          }
+        ],
+        "dependency_checks": [],
+        "clarification_checks": [],
+        "valid_attempts": 1,
+        "attempts": 1,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 3438,
+      "model_requests": 3,
+      "model_cost": 0.000973248
+    },
+    {
+      "id": "CRM-T-022",
+      "suite": "tool",
+      "title": "List special classifications under the supplied subclassification",
+      "score": {
+        "pass": true,
+        "status": "completed",
+        "selection": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_get_special_classifications"
+        ],
+        "selected": [
+          "crm_get_special_classifications"
+        ],
+        "planned": [
+          "crm_get_special_classifications"
+        ],
+        "parameter_checks": [
+          {
+            "operation": "crm_get_special_classifications",
+            "pass": true
+          }
+        ],
+        "dependency_checks": [],
+        "clarification_checks": [],
+        "valid_attempts": 1,
+        "attempts": 1,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 3709,
+      "model_requests": 3,
+      "model_cost": 0.001030848
+    },
+    {
+      "id": "CRM-T-023",
+      "suite": "tool",
+      "title": "List special classifications by type INQ and special classification type INQC-011",
+      "score": {
+        "pass": true,
+        "status": "completed",
+        "selection": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_get_special_classifications_by_type"
+        ],
+        "selected": [
+          "crm_get_special_classifications_by_type"
+        ],
+        "planned": [
+          "crm_get_special_classifications_by_type"
+        ],
+        "parameter_checks": [
+          {
+            "operation": "crm_get_special_classifications_by_type",
+            "pass": true
+          }
+        ],
+        "dependency_checks": [],
+        "clarification_checks": [],
+        "valid_attempts": 1,
+        "attempts": 1,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 3746,
+      "model_requests": 3,
+      "model_cost": 0.001096548
+    },
+    {
+      "id": "CRM-T-024",
+      "suite": "tool",
+      "title": "Find main and sub classification parents for the supplied special classification",
+      "score": {
+        "pass": true,
+        "status": "completed",
+        "selection": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_get_classification_parents"
+        ],
+        "selected": [
+          "crm_get_classification_parents"
+        ],
+        "planned": [
+          "crm_get_classification_parents"
+        ],
+        "parameter_checks": [
+          {
+            "operation": "crm_get_classification_parents",
+            "pass": true
+          }
+        ],
+        "dependency_checks": [],
+        "clarification_checks": [],
+        "valid_attempts": 1,
+        "attempts": 1,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 3765,
+      "model_requests": 3,
+      "model_cost": 0.0010301159999999998
+    },
+    {
+      "id": "CRM-T-026",
+      "suite": "tool",
+      "title": "Get technical support issue-type dropdown data with these filters",
+      "score": {
+        "pass": true,
+        "status": "completed",
+        "selection": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_retrieve_tsr_data"
+        ],
+        "selected": [
+          "crm_retrieve_tsr_data"
+        ],
+        "planned": [
+          "crm_retrieve_tsr_data"
+        ],
+        "parameter_checks": [
+          {
+            "operation": "crm_retrieve_tsr_data",
+            "pass": true
+          }
+        ],
+        "dependency_checks": [],
+        "clarification_checks": [],
+        "valid_attempts": 1,
+        "attempts": 1,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 3990,
+      "model_requests": 3,
+      "model_cost": 0.0011865839999999999
+    },
+    {
+      "id": "CRM-T-025",
+      "suite": "tool",
+      "title": "Create a classified inquiry with all supplied details, not a public form",
+      "score": {
+        "pass": true,
+        "status": "completed",
+        "selection": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_create_inquiry"
+        ],
+        "selected": [
+          "crm_create_inquiry"
+        ],
+        "planned": [
+          "crm_create_inquiry"
+        ],
+        "parameter_checks": [
+          {
+            "operation": "crm_create_inquiry",
+            "pass": true
+          }
+        ],
+        "dependency_checks": [],
+        "clarification_checks": [],
+        "valid_attempts": 2,
+        "attempts": 2,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 7262,
+      "model_requests": 5,
+      "model_cost": 0.0028269720000000005
+    },
+    {
+      "id": "CRM-T-028",
+      "suite": "tool",
+      "title": "Fetch classified inquiry details using the supplied Pega key",
+      "score": {
+        "pass": true,
+        "status": "completed",
+        "selection": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_fetch_inquiry"
+        ],
+        "selected": [
+          "crm_fetch_inquiry"
+        ],
+        "planned": [
+          "crm_fetch_inquiry"
+        ],
+        "parameter_checks": [
+          {
+            "operation": "crm_fetch_inquiry",
+            "pass": true
+          }
+        ],
+        "dependency_checks": [],
+        "clarification_checks": [],
+        "valid_attempts": 1,
+        "attempts": 1,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 3434,
+      "model_requests": 3,
+      "model_cost": 0.0010593479999999999
+    },
+    {
+      "id": "CRM-T-027",
+      "suite": "tool",
+      "title": "Fetch municipal service request details, not a municipality directory",
+      "score": {
+        "pass": true,
+        "status": "completed",
+        "selection": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_fetch_municipal_service"
+        ],
+        "selected": [
+          "crm_fetch_municipal_service"
+        ],
+        "planned": [
+          "crm_fetch_municipal_service"
+        ],
+        "parameter_checks": [
+          {
+            "operation": "crm_fetch_municipal_service",
+            "pass": true
+          }
+        ],
+        "dependency_checks": [],
+        "clarification_checks": [],
+        "valid_attempts": 1,
+        "attempts": 1,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 4358,
+      "model_requests": 3,
+      "model_cost": 0.0011105159999999998
+    },
+    {
+      "id": "CRM-T-031",
+      "suite": "tool",
+      "title": "Upload base64 attachment for a public form",
+      "score": {
+        "pass": true,
+        "status": "completed",
+        "selection": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_upload_attachment"
+        ],
+        "selected": [
+          "crm_upload_attachment"
+        ],
+        "planned": [
+          "crm_upload_attachment"
+        ],
+        "parameter_checks": [
+          {
+            "operation": "crm_upload_attachment",
+            "pass": true
+          }
+        ],
+        "dependency_checks": [],
+        "clarification_checks": [],
+        "valid_attempts": 2,
+        "attempts": 2,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 4521,
+      "model_requests": 4,
+      "model_cost": 0.001770132
+    },
+    {
+      "id": "CRM-T-029",
+      "suite": "tool",
+      "title": "Create Daem technical support ticket with the supplied entry",
+      "score": {
+        "pass": true,
+        "status": "completed",
+        "selection": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_create_daem_ticket"
+        ],
+        "selected": [
+          "crm_create_daem_ticket"
+        ],
+        "planned": [
+          "crm_create_daem_ticket"
+        ],
+        "parameter_checks": [
+          {
+            "operation": "crm_create_daem_ticket",
+            "pass": true
+          }
+        ],
+        "dependency_checks": [],
+        "clarification_checks": [],
+        "valid_attempts": 2,
+        "attempts": 2,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 5260,
+      "model_requests": 4,
+      "model_cost": 0.002064768
+    },
+    {
+      "id": "CRM-T-030",
+      "suite": "tool",
+      "title": "Submit a public complaint form with an explicitly empty attachments list",
+      "score": {
+        "pass": true,
+        "status": "completed",
+        "selection": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_create_form_request"
+        ],
+        "selected": [
+          "crm_create_form_request"
+        ],
+        "planned": [
+          "crm_create_form_request"
+        ],
+        "parameter_checks": [
+          {
+            "operation": "crm_create_form_request",
+            "pass": true
+          }
+        ],
+        "dependency_checks": [],
+        "clarification_checks": [],
+        "valid_attempts": 2,
+        "attempts": 2,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 5914,
+      "model_requests": 4,
+      "model_cost": 0.0018957
+    },
+    {
+      "id": "CRM-T-033",
+      "suite": "tool",
+      "title": "List Madinati closure reasons for the supplied incident with IsProcessed false",
+      "score": {
+        "pass": true,
+        "status": "completed",
+        "selection": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_get_closure_reasons"
+        ],
+        "selected": [
+          "crm_get_closure_reasons"
+        ],
+        "planned": [
+          "crm_get_closure_reasons"
+        ],
+        "parameter_checks": [
+          {
+            "operation": "crm_get_closure_reasons",
+            "pass": true
+          }
+        ],
+        "dependency_checks": [],
+        "clarification_checks": [],
+        "valid_attempts": 1,
+        "attempts": 1,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 3622,
+      "model_requests": 3,
+      "model_cost": 0.0010988159999999999
+    },
+    {
+      "id": "CRM-T-034",
+      "suite": "tool",
+      "title": "List active external entities with tracking request TRACK-001",
+      "score": {
+        "pass": true,
+        "status": "completed",
+        "selection": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_get_external_entities"
+        ],
+        "selected": [
+          "crm_get_external_entities"
+        ],
+        "planned": [
+          "crm_get_external_entities"
+        ],
+        "parameter_checks": [
+          {
+            "operation": "crm_get_external_entities",
+            "pass": true
+          }
+        ],
+        "dependency_checks": [],
+        "clarification_checks": [],
+        "valid_attempts": 1,
+        "attempts": 1,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 3386,
+      "model_requests": 3,
+      "model_cost": 0.000995148
+    },
+    {
+      "id": "CRM-T-032",
+      "suite": "tool",
+      "title": "Resolve the Madinati incident using its eligible processed closure reason",
+      "score": {
+        "pass": true,
+        "status": "completed",
+        "selection": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_get_closure_reasons",
+          "crm_resolve_madinati_incident"
+        ],
+        "selected": [
+          "crm_get_closure_reasons",
+          "crm_resolve_madinati_incident"
+        ],
+        "planned": [
+          "crm_get_closure_reasons",
+          "crm_resolve_madinati_incident"
+        ],
+        "parameter_checks": [
+          {
+            "operation": "crm_resolve_madinati_incident",
+            "pass": true
+          }
+        ],
+        "dependency_checks": [
+          {
+            "before": "crm_get_closure_reasons",
+            "after": "crm_resolve_madinati_incident",
+            "pass": true
+          }
+        ],
+        "clarification_checks": [],
+        "valid_attempts": 3,
+        "attempts": 3,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 6862,
+      "model_requests": 5,
+      "model_cost": 0.00237516
+    },
+    {
+      "id": "CRM-T-035",
+      "suite": "tool",
+      "title": "List linked classifications for external entity AGC-DEMO-1 within municipality 004",
+      "score": {
+        "pass": true,
+        "status": "completed",
+        "selection": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_get_external_entity_classifications"
+        ],
+        "selected": [
+          "crm_get_external_entity_classifications"
+        ],
+        "planned": [
+          "crm_get_external_entity_classifications"
+        ],
+        "parameter_checks": [
+          {
+            "operation": "crm_get_external_entity_classifications",
+            "pass": true
+          }
+        ],
+        "dependency_checks": [],
+        "clarification_checks": [],
+        "valid_attempts": 1,
+        "attempts": 1,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 3256,
+      "model_requests": 3,
+      "model_cost": 0.0011988839999999999
+    },
+    {
+      "id": "CRM-T-038",
+      "suite": "tool",
+      "title": "Invalid vehicle enum",
+      "score": {
+        "pass": true,
+        "status": "input",
+        "selection": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [],
+        "selected": [],
+        "planned": [
+          "crm_update_vehicle_status"
+        ],
+        "parameter_checks": [],
+        "dependency_checks": [],
+        "clarification_checks": [
+          {
+            "field": "Status",
+            "pass": true
+          }
+        ],
+        "valid_attempts": 0,
+        "attempts": 0,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 2796,
+      "model_requests": 2,
+      "model_cost": 0.000878928
+    },
+    {
+      "id": "CRM-T-037",
+      "suite": "tool",
+      "title": "Missing asset identifier",
+      "score": {
+        "pass": true,
+        "status": "completed",
+        "selection": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_get_assets",
+          "crm_get_asset_details"
+        ],
+        "selected": [
+          "crm_get_assets",
+          "crm_get_asset_details"
+        ],
+        "planned": [
+          "crm_get_assets",
+          "crm_get_asset_details"
+        ],
+        "parameter_checks": [],
+        "dependency_checks": [],
+        "clarification_checks": [],
+        "valid_attempts": 2,
+        "attempts": 2,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 3735,
+      "model_requests": 4,
+      "model_cost": 0.001342836
+    },
+    {
+      "id": "CRM-T-036",
+      "suite": "tool",
+      "title": "Missing file locator",
+      "score": {
+        "pass": true,
+        "status": "input",
+        "selection": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_get_incidents",
+          "crm_fetch_incident"
+        ],
+        "selected": [
+          "crm_get_incidents",
+          "crm_fetch_incident"
+        ],
+        "planned": [
+          "crm_get_incidents",
+          "crm_fetch_incident",
+          "crm_download_file"
+        ],
+        "parameter_checks": [],
+        "dependency_checks": [],
+        "clarification_checks": [
+          {
+            "field": "FileKey",
+            "pass": true
+          }
+        ],
+        "valid_attempts": 2,
+        "attempts": 2,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 8644,
+      "model_requests": 6,
+      "model_cost": 0.002749812
+    },
+    {
+      "id": "CRM-T-039",
+      "suite": "tool",
+      "title": "Unknown satisfaction code meaning",
+      "score": {
+        "pass": true,
+        "status": "input",
+        "selection": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [],
+        "selected": [],
+        "planned": [
+          "crm_submit_survey_evaluation"
+        ],
+        "parameter_checks": [],
+        "dependency_checks": [],
+        "clarification_checks": [
+          {
+            "field": "PetitionerSatisfaction",
+            "pass": true
+          }
+        ],
+        "valid_attempts": 0,
+        "attempts": 0,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 3395,
+      "model_requests": 3,
+      "model_cost": 0.001158348
+    },
+    {
+      "id": "CRM-T-040",
+      "suite": "tool",
+      "title": "Missing survey timestamp",
+      "score": {
+        "pass": true,
+        "status": "input",
+        "selection": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [],
+        "selected": [],
+        "planned": [
+          "crm_update_survey_url"
+        ],
+        "parameter_checks": [],
+        "dependency_checks": [],
+        "clarification_checks": [
+          {
+            "field": "IncidentUrlGeneratedDateTime",
+            "pass": true
+          }
+        ],
+        "valid_attempts": 0,
+        "attempts": 0,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 3270,
+      "model_requests": 2,
+      "model_cost": 0.000879228
+    },
+    {
+      "id": "CRM-T-043",
+      "suite": "tool",
+      "title": "Public form missing contact details",
+      "score": {
+        "pass": true,
+        "status": "input",
+        "selection": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [],
+        "selected": [],
+        "planned": [
+          "crm_create_form_request"
+        ],
+        "parameter_checks": [],
+        "dependency_checks": [],
+        "clarification_checks": [
+          {
+            "field": "CustomerInformation",
+            "pass": true
+          }
+        ],
+        "valid_attempts": 0,
+        "attempts": 0,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 2634,
+      "model_requests": 2,
+      "model_cost": 0.000922728
+    },
+    {
+      "id": "CRM-T-041",
+      "suite": "tool",
+      "title": "CIS conditional utility quantities",
+      "score": {
+        "pass": true,
+        "status": "input",
+        "selection": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [],
+        "selected": [],
+        "planned": [
+          "crm_update_cis_incident"
+        ],
+        "parameter_checks": [],
+        "dependency_checks": [],
+        "clarification_checks": [
+          {
+            "field": "IncidentQuantity",
+            "pass": true
+          },
+          {
+            "field": "UnitValue",
+            "pass": true
+          }
+        ],
+        "valid_attempts": 0,
+        "attempts": 0,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 4271,
+      "model_requests": 3,
+      "model_cost": 0.0013067880000000001
+    },
+    {
+      "id": "CRM-T-042",
+      "suite": "tool",
+      "title": "Resolved external photos missing",
+      "score": {
+        "pass": true,
+        "status": "input",
+        "selection": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [],
+        "selected": [],
+        "planned": [
+          "crm_update_external_incident"
+        ],
+        "parameter_checks": [],
+        "dependency_checks": [],
+        "clarification_checks": [
+          {
+            "field": "IncidentPhotosAfterFixing",
+            "pass": true
+          }
+        ],
+        "valid_attempts": 0,
+        "attempts": 0,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 4333,
+      "model_requests": 3,
+      "model_cost": 0.00137652
+    },
+    {
+      "id": "CRM-T-044",
+      "suite": "tool",
+      "title": "Ambiguous external incident status",
+      "score": {
+        "pass": true,
+        "status": "input",
+        "selection": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [],
+        "selected": [],
+        "planned": [
+          "crm_update_external_incident"
+        ],
+        "parameter_checks": [],
+        "dependency_checks": [],
+        "clarification_checks": [
+          {
+            "field": "IncidentStatusName",
+            "pass": true
+          }
+        ],
+        "valid_attempts": 0,
+        "attempts": 0,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 3601,
+      "model_requests": 3,
+      "model_cost": 0.001307052
+    },
+    {
+      "id": "CRM-T-046",
+      "suite": "tool",
+      "title": "Case-only identifier needs returned Pega key",
+      "score": {
+        "pass": true,
+        "status": "completed",
+        "selection": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_get_incidents",
+          "crm_fetch_incident"
+        ],
+        "selected": [
+          "crm_get_incidents",
+          "crm_fetch_incident"
+        ],
+        "planned": [
+          "crm_get_incidents",
+          "crm_fetch_incident"
+        ],
+        "parameter_checks": [],
+        "dependency_checks": [],
+        "clarification_checks": [],
+        "valid_attempts": 2,
+        "attempts": 2,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 4558,
+      "model_requests": 4,
+      "model_cost": 0.0017329079999999998
+    },
+    {
+      "id": "CRM-T-045",
+      "suite": "tool",
+      "title": "Incomplete municipal creation",
+      "score": {
+        "pass": true,
+        "status": "input",
+        "selection": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_get_main_classifications"
+        ],
+        "selected": [
+          "crm_get_main_classifications"
+        ],
+        "planned": [
+          "crm_get_main_classifications",
+          "crm_get_sub_classifications",
+          "crm_get_special_classifications",
+          "crm_create_municipal_service"
+        ],
+        "parameter_checks": [],
+        "dependency_checks": [],
+        "clarification_checks": [
+          {
+            "field": "LocationInfo",
+            "pass": true
+          },
+          {
+            "field": "IncidentInformation",
+            "pass": true
+          }
+        ],
+        "valid_attempts": 1,
+        "attempts": 1,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 5204,
+      "model_requests": 3,
+      "model_cost": 0.001764588
+    },
+    {
+      "id": "CRM-T-047",
+      "suite": "tool",
+      "title": "Public suggestion code selection",
+      "score": {
+        "pass": true,
+        "status": "completed",
+        "selection": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_create_form_request"
+        ],
+        "selected": [
+          "crm_create_form_request"
+        ],
+        "planned": [
+          "crm_create_form_request"
+        ],
+        "parameter_checks": [],
+        "dependency_checks": [],
+        "clarification_checks": [],
+        "valid_attempts": 2,
+        "attempts": 2,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 4438,
+      "model_requests": 4,
+      "model_cost": 0.0018430319999999999
+    },
+    {
+      "id": "CRM-T-049",
+      "suite": "tool",
+      "title": "Missing source system for attachment",
+      "score": {
+        "pass": true,
+        "status": "input",
+        "selection": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [],
+        "selected": [],
+        "planned": [
+          "crm_upload_attachment"
+        ],
+        "parameter_checks": [],
+        "dependency_checks": [],
+        "clarification_checks": [
+          {
+            "field": "sourceSystem",
+            "pass": true
+          }
+        ],
+        "valid_attempts": 0,
+        "attempts": 0,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 2854,
+      "model_requests": 2,
+      "model_cost": 0.000906396
+    },
+    {
+      "id": "CRM-T-048",
+      "suite": "tool",
+      "title": "Typed vehicle number recovery",
+      "score": {
+        "pass": true,
+        "status": "completed",
+        "selection": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_update_vehicle_status"
+        ],
+        "selected": [
+          "crm_update_vehicle_status"
+        ],
+        "planned": [
+          "crm_update_vehicle_status"
+        ],
+        "parameter_checks": [],
+        "dependency_checks": [],
+        "clarification_checks": [],
+        "valid_attempts": 2,
+        "attempts": 2,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 3717,
+      "model_requests": 4,
+      "model_cost": 0.001603728
+    },
+    {
+      "id": "CRM-T-050",
+      "suite": "tool",
+      "title": "Wrong main classification name",
+      "score": {
+        "pass": true,
+        "status": "completed",
+        "selection": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_get_main_classifications",
+          "crm_get_sub_classifications"
+        ],
+        "selected": [
+          "crm_get_main_classifications",
+          "crm_get_sub_classifications"
+        ],
+        "planned": [
+          "crm_get_main_classifications",
+          "crm_get_sub_classifications"
+        ],
+        "parameter_checks": [],
+        "dependency_checks": [],
+        "clarification_checks": [],
+        "valid_attempts": 2,
+        "attempts": 2,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 4581,
+      "model_requests": 4,
+      "model_cost": 0.0013261079999999999
+    },
+    {
+      "id": "CRM-P-002",
+      "suite": "planning",
+      "title": "Main asset then detail",
+      "score": {
+        "pass": true,
+        "status": "completed",
+        "selection": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_get_assets",
+          "crm_get_asset_details"
+        ],
+        "selected": [
+          "crm_get_assets",
+          "crm_get_asset_details"
+        ],
+        "planned": [
+          "crm_get_assets",
+          "crm_get_asset_details"
+        ],
+        "parameter_checks": [],
+        "dependency_checks": [
+          {
+            "before": "crm_get_assets",
+            "after": "crm_get_asset_details",
+            "pass": true
+          }
+        ],
+        "clarification_checks": [],
+        "valid_attempts": 2,
+        "attempts": 2,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 3833,
+      "model_requests": 4,
+      "model_cost": 0.001331436
+    },
+    {
+      "id": "CRM-P-001",
+      "suite": "planning",
+      "title": "History then incident detail",
+      "score": {
+        "pass": true,
+        "status": "completed",
+        "selection": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_get_incidents",
+          "crm_fetch_incident"
+        ],
+        "selected": [
+          "crm_get_incidents",
+          "crm_fetch_incident"
+        ],
+        "planned": [
+          "crm_get_incidents",
+          "crm_fetch_incident"
+        ],
+        "parameter_checks": [],
+        "dependency_checks": [
+          {
+            "before": "crm_get_incidents",
+            "after": "crm_fetch_incident",
+            "pass": true
+          }
+        ],
+        "clarification_checks": [],
+        "valid_attempts": 2,
+        "attempts": 2,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 5654,
+      "model_requests": 4,
+      "model_cost": 0.0018047399999999998
+    },
+    {
+      "id": "CRM-P-004",
+      "suite": "planning",
+      "title": "Reverse classification and metadata",
+      "score": {
+        "pass": true,
+        "status": "completed",
+        "selection": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_get_classification_parents",
+          "crm_retrieve_msr_data"
+        ],
+        "selected": [
+          "crm_get_classification_parents",
+          "crm_retrieve_msr_data"
+        ],
+        "planned": [
+          "crm_get_classification_parents",
+          "crm_retrieve_msr_data"
+        ],
+        "parameter_checks": [],
+        "dependency_checks": [],
+        "clarification_checks": [],
+        "valid_attempts": 2,
+        "attempts": 2,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 3838,
+      "model_requests": 3,
+      "model_cost": 0.001483752
+    },
+    {
+      "id": "CRM-P-003",
+      "suite": "planning",
+      "title": "Classification tree",
+      "score": {
+        "pass": true,
+        "status": "completed",
+        "selection": {
+          "tp": 3,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 3,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 3,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_get_main_classifications",
+          "crm_get_sub_classifications",
+          "crm_get_special_classifications"
+        ],
+        "selected": [
+          "crm_get_main_classifications",
+          "crm_get_sub_classifications",
+          "crm_get_special_classifications"
+        ],
+        "planned": [
+          "crm_get_main_classifications",
+          "crm_get_sub_classifications",
+          "crm_get_special_classifications"
+        ],
+        "parameter_checks": [],
+        "dependency_checks": [
+          {
+            "before": "crm_get_main_classifications",
+            "after": "crm_get_sub_classifications",
+            "pass": true
+          },
+          {
+            "before": "crm_get_sub_classifications",
+            "after": "crm_get_special_classifications",
+            "pass": true
+          }
+        ],
+        "clarification_checks": [],
+        "valid_attempts": 3,
+        "attempts": 3,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 5970,
+      "model_requests": 5,
+      "model_cost": 0.0018367680000000001
+    },
+    {
+      "id": "CRM-P-005",
+      "suite": "planning",
+      "title": "Entities and filtered classifications",
+      "score": {
+        "pass": true,
+        "status": "completed",
+        "selection": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_get_external_entities",
+          "crm_get_external_entity_classifications"
+        ],
+        "selected": [
+          "crm_get_external_entities",
+          "crm_get_external_entity_classifications"
+        ],
+        "planned": [
+          "crm_get_external_entities",
+          "crm_get_external_entity_classifications"
+        ],
+        "parameter_checks": [],
+        "dependency_checks": [
+          {
+            "before": "crm_get_external_entities",
+            "after": "crm_get_external_entity_classifications",
+            "pass": true
+          }
+        ],
+        "clarification_checks": [],
+        "valid_attempts": 2,
+        "attempts": 2,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 5203,
+      "model_requests": 4,
+      "model_cost": 0.0016214399999999998
+    },
+    {
+      "id": "CRM-P-006",
+      "suite": "planning",
+      "title": "Version read before urgency update",
+      "score": {
+        "pass": true,
+        "status": "completed",
+        "selection": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_get_case",
+          "crm_update_case"
+        ],
+        "selected": [
+          "crm_get_case",
+          "crm_update_case"
+        ],
+        "planned": [
+          "crm_get_case",
+          "crm_update_case"
+        ],
+        "parameter_checks": [],
+        "dependency_checks": [
+          {
+            "before": "crm_get_case",
+            "after": "crm_update_case",
+            "pass": true
+          }
+        ],
+        "clarification_checks": [],
+        "valid_attempts": 3,
+        "attempts": 3,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 6323,
+      "model_requests": 5,
+      "model_cost": 0.002290056
+    },
+    {
+      "id": "CRM-P-007",
+      "suite": "planning",
+      "title": "Madinati closure",
+      "score": {
+        "pass": true,
+        "status": "completed",
+        "selection": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_get_closure_reasons",
+          "crm_resolve_madinati_incident"
+        ],
+        "selected": [
+          "crm_get_closure_reasons",
+          "crm_resolve_madinati_incident"
+        ],
+        "planned": [
+          "crm_get_closure_reasons",
+          "crm_resolve_madinati_incident"
+        ],
+        "parameter_checks": [
+          {
+            "operation": "crm_resolve_madinati_incident",
+            "pass": true
+          }
+        ],
+        "dependency_checks": [
+          {
+            "before": "crm_get_closure_reasons",
+            "after": "crm_resolve_madinati_incident",
+            "pass": true
+          }
+        ],
+        "clarification_checks": [],
+        "valid_attempts": 3,
+        "attempts": 3,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 5907,
+      "model_requests": 5,
+      "model_cost": 0.002340792
+    },
+    {
+      "id": "CRM-P-008",
+      "suite": "planning",
+      "title": "Upload then public complaint",
+      "score": {
+        "pass": true,
+        "status": "completed",
+        "selection": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_upload_attachment",
+          "crm_create_form_request"
+        ],
+        "selected": [
+          "crm_upload_attachment",
+          "crm_create_form_request"
+        ],
+        "planned": [
+          "crm_upload_attachment",
+          "crm_create_form_request"
+        ],
+        "parameter_checks": [],
+        "dependency_checks": [
+          {
+            "before": "crm_upload_attachment",
+            "after": "crm_create_form_request",
+            "pass": true
+          }
+        ],
+        "clarification_checks": [],
+        "valid_attempts": 4,
+        "attempts": 4,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 6956,
+      "model_requests": 6,
+      "model_cost": 0.0033025799999999994
+    },
+    {
+      "id": "CRM-P-009",
+      "suite": "planning",
+      "title": "SSO upload then download",
+      "score": {
+        "pass": true,
+        "status": "completed",
+        "selection": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_upload_file",
+          "crm_download_file"
+        ],
+        "selected": [
+          "crm_upload_file",
+          "crm_download_file"
+        ],
+        "planned": [
+          "crm_upload_file",
+          "crm_download_file"
+        ],
+        "parameter_checks": [],
+        "dependency_checks": [
+          {
+            "before": "crm_upload_file",
+            "after": "crm_download_file",
+            "pass": true
+          }
+        ],
+        "clarification_checks": [],
+        "valid_attempts": 3,
+        "attempts": 3,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 6873,
+      "model_requests": 6,
+      "model_cost": 0.0026514839999999995
+    },
+    {
+      "id": "CRM-P-010",
+      "suite": "planning",
+      "title": "Create then fetch municipal request",
+      "score": {
+        "pass": true,
+        "status": "completed",
+        "selection": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_create_municipal_service",
+          "crm_fetch_municipal_service"
+        ],
+        "selected": [
+          "crm_create_municipal_service",
+          "crm_fetch_municipal_service"
+        ],
+        "planned": [
+          "crm_create_municipal_service",
+          "crm_fetch_municipal_service"
+        ],
+        "parameter_checks": [],
+        "dependency_checks": [
+          {
+            "before": "crm_create_municipal_service",
+            "after": "crm_fetch_municipal_service",
+            "pass": true
+          }
+        ],
+        "clarification_checks": [],
+        "valid_attempts": 3,
+        "attempts": 3,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 6911,
+      "model_requests": 5,
+      "model_cost": 0.002936148
+    },
+    {
+      "id": "CRM-P-011",
+      "suite": "planning",
+      "title": "Create then fetch classified inquiry",
+      "score": {
+        "pass": true,
+        "status": "completed",
+        "selection": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_create_inquiry",
+          "crm_fetch_inquiry"
+        ],
+        "selected": [
+          "crm_create_inquiry",
+          "crm_fetch_inquiry"
+        ],
+        "planned": [
+          "crm_create_inquiry",
+          "crm_fetch_inquiry"
+        ],
+        "parameter_checks": [],
+        "dependency_checks": [
+          {
+            "before": "crm_create_inquiry",
+            "after": "crm_fetch_inquiry",
+            "pass": true
+          }
+        ],
+        "clarification_checks": [],
+        "valid_attempts": 3,
+        "attempts": 3,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 6446,
+      "model_requests": 5,
+      "model_cost": 0.002931912
+    },
+    {
+      "id": "CRM-P-012",
+      "suite": "planning",
+      "title": "Technical support reference then create",
+      "score": {
+        "pass": true,
+        "status": "completed",
+        "selection": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_retrieve_tsr_data",
+          "crm_create_daem_ticket"
+        ],
+        "selected": [
+          "crm_retrieve_tsr_data",
+          "crm_create_daem_ticket"
+        ],
+        "planned": [
+          "crm_retrieve_tsr_data",
+          "crm_create_daem_ticket"
+        ],
+        "parameter_checks": [],
+        "dependency_checks": [
+          {
+            "before": "crm_retrieve_tsr_data",
+            "after": "crm_create_daem_ticket",
+            "pass": true
+          }
+        ],
+        "clarification_checks": [],
+        "valid_attempts": 3,
+        "attempts": 3,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 5750,
+      "model_requests": 5,
+      "model_cost": 0.0027150000000000004
+    },
+    {
+      "id": "CRM-P-013",
+      "suite": "planning",
+      "title": "Reopen then fresh history",
+      "score": {
+        "pass": true,
+        "status": "completed",
+        "selection": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_reopen_incident",
+          "crm_get_incidents"
+        ],
+        "selected": [
+          "crm_reopen_incident",
+          "crm_get_incidents"
+        ],
+        "planned": [
+          "crm_reopen_incident",
+          "crm_get_incidents"
+        ],
+        "parameter_checks": [],
+        "dependency_checks": [
+          {
+            "before": "crm_reopen_incident",
+            "after": "crm_get_incidents",
+            "pass": true
+          }
+        ],
+        "clarification_checks": [],
+        "valid_attempts": 3,
+        "attempts": 3,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 6029,
+      "model_requests": 5,
+      "model_cost": 0.002238324
+    },
+    {
+      "id": "CRM-P-014",
+      "suite": "planning",
+      "title": "Survey link then response",
+      "score": {
+        "pass": true,
+        "status": "completed",
+        "selection": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_update_survey_url",
+          "crm_submit_survey_evaluation"
+        ],
+        "selected": [
+          "crm_update_survey_url",
+          "crm_submit_survey_evaluation"
+        ],
+        "planned": [
+          "crm_update_survey_url",
+          "crm_submit_survey_evaluation"
+        ],
+        "parameter_checks": [],
+        "dependency_checks": [
+          {
+            "before": "crm_update_survey_url",
+            "after": "crm_submit_survey_evaluation",
+            "pass": true
+          }
+        ],
+        "clarification_checks": [],
+        "valid_attempts": 4,
+        "attempts": 4,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 8429,
+      "model_requests": 6,
+      "model_cost": 0.0030485399999999998
+    },
+    {
+      "id": "CRM-P-015",
+      "suite": "planning",
+      "title": "Arabic history and incident detail",
+      "score": {
+        "pass": true,
+        "status": "completed",
+        "selection": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_get_incidents",
+          "crm_fetch_incident"
+        ],
+        "selected": [
+          "crm_get_incidents",
+          "crm_fetch_incident"
+        ],
+        "planned": [
+          "crm_get_incidents",
+          "crm_fetch_incident"
+        ],
+        "parameter_checks": [],
+        "dependency_checks": [
+          {
+            "before": "crm_get_incidents",
+            "after": "crm_fetch_incident",
+            "pass": true
+          }
+        ],
+        "clarification_checks": [],
+        "valid_attempts": 2,
+        "attempts": 2,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 5604,
+      "model_requests": 4,
+      "model_cost": 0.0019456440000000003
+    },
+    {
+      "id": "CRM-P-016",
+      "suite": "planning",
+      "title": "Chinese assets and details",
+      "score": {
+        "pass": true,
+        "status": "completed",
+        "selection": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_get_assets",
+          "crm_get_asset_details"
+        ],
+        "selected": [
+          "crm_get_assets",
+          "crm_get_asset_details"
+        ],
+        "planned": [
+          "crm_get_assets",
+          "crm_get_asset_details"
+        ],
+        "parameter_checks": [],
+        "dependency_checks": [
+          {
+            "before": "crm_get_assets",
+            "after": "crm_get_asset_details",
+            "pass": true
+          }
+        ],
+        "clarification_checks": [],
+        "valid_attempts": 2,
+        "attempts": 2,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 4424,
+      "model_requests": 4,
+      "model_cost": 0.0014745359999999998
+    },
+    {
+      "id": "CRM-P-017",
+      "suite": "planning",
+      "title": "SSO login dependency",
+      "score": {
+        "pass": true,
+        "status": "completed",
+        "selection": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_get_incidents"
+        ],
+        "selected": [
+          "crm_get_incidents"
+        ],
+        "planned": [
+          "crm_get_incidents"
+        ],
+        "parameter_checks": [],
+        "dependency_checks": [],
+        "clarification_checks": [],
+        "valid_attempts": 1,
+        "attempts": 1,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 5059,
+      "model_requests": 4,
+      "model_cost": 0.0017751239999999999
+    },
+    {
+      "id": "CRM-P-018",
+      "suite": "planning",
+      "title": "Clarification followed by correction",
+      "score": {
+        "pass": true,
+        "status": "completed",
+        "selection": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_update_vehicle_status"
+        ],
+        "selected": [
+          "crm_update_vehicle_status"
+        ],
+        "planned": [
+          "crm_update_vehicle_status"
+        ],
+        "parameter_checks": [
+          {
+            "operation": "crm_update_vehicle_status",
+            "pass": true
+          }
+        ],
+        "dependency_checks": [],
+        "clarification_checks": [],
+        "valid_attempts": 2,
+        "attempts": 2,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 5053,
+      "model_requests": 5,
+      "model_cost": 0.0023686439999999996
+    },
+    {
+      "id": "CRM-P-019",
+      "suite": "planning",
+      "title": "Independent external classification views",
+      "score": {
+        "pass": true,
+        "status": "completed",
+        "selection": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_get_external_new_classifications",
+          "crm_get_external_special_classifications"
+        ],
+        "selected": [
+          "crm_get_external_new_classifications",
+          "crm_get_external_special_classifications"
+        ],
+        "planned": [
+          "crm_get_external_new_classifications",
+          "crm_get_external_special_classifications"
+        ],
+        "parameter_checks": [],
+        "dependency_checks": [],
+        "clarification_checks": [],
+        "valid_attempts": 2,
+        "attempts": 2,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 5027,
+      "model_requests": 3,
+      "model_cost": 0.001329516
+    },
+    {
+      "id": "CRM-P-020",
+      "suite": "planning",
+      "title": "Discover then create then fetch",
+      "score": {
+        "pass": true,
+        "status": "completed",
+        "selection": {
+          "tp": 5,
+          "fp": 0,
+          "fn": 0
+        },
+        "execution": {
+          "tp": 5,
+          "fp": 0,
+          "fn": 0
+        },
+        "plan": {
+          "tp": 5,
+          "fp": 0,
+          "fn": 0
+        },
+        "operations": [
+          "crm_get_main_classifications",
+          "crm_get_sub_classifications",
+          "crm_get_special_classifications",
+          "crm_create_municipal_service",
+          "crm_fetch_municipal_service"
+        ],
+        "selected": [
+          "crm_get_main_classifications",
+          "crm_get_sub_classifications",
+          "crm_get_special_classifications",
+          "crm_create_municipal_service",
+          "crm_fetch_municipal_service"
+        ],
+        "planned": [
+          "crm_get_main_classifications",
+          "crm_get_sub_classifications",
+          "crm_get_special_classifications",
+          "crm_create_municipal_service",
+          "crm_fetch_municipal_service"
+        ],
+        "parameter_checks": [],
+        "dependency_checks": [
+          {
+            "before": "crm_get_main_classifications",
+            "after": "crm_get_sub_classifications",
+            "pass": true
+          },
+          {
+            "before": "crm_get_sub_classifications",
+            "after": "crm_get_special_classifications",
+            "pass": true
+          },
+          {
+            "before": "crm_get_special_classifications",
+            "after": "crm_create_municipal_service",
+            "pass": true
+          },
+          {
+            "before": "crm_create_municipal_service",
+            "after": "crm_fetch_municipal_service",
+            "pass": true
+          }
+        ],
+        "clarification_checks": [],
+        "valid_attempts": 6,
+        "attempts": 6,
+        "unsafe_writes": 0,
+        "plan_exact": true
+      },
+      "duration_ms": 9466,
+      "model_requests": 8,
+      "model_cost": 0.004422827999999999
+    }
+  ],
+  "source_report": "reports/crm/2026-10-19T16-32-31.017Z/summary.json",
+  "source_fingerprints_verified": true,
+  "initial_planning_baseline": {
+    "run_id": "2026-10-19T16-20-28.085Z",
+    "metrics": {
+      "cases": 20,
+      "passed": 9,
+      "case_pass_rate": 0.45,
+      "tool_selection": {
+        "tp": 42,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      "tool_execution": {
+        "tp": 37,
+        "fp": 126,
+        "fn": 5,
+        "precision": 0.22699386503067484,
+        "recall": 0.8809523809523809,
+        "f1": 0.36097560975609755
+      },
+      "planning": {
+        "tp": 41,
+        "fp": 0,
+        "fn": 1,
+        "precision": 1,
+        "recall": 0.9761904761904762,
+        "f1": 0.9879518072289156
+      },
+      "dynamic_plan_exact_accuracy": 0.95,
+      "tool_argument_schema_accuracy": 1,
+      "reference_parameter_accuracy": 0.5,
+      "clarification_field_recall": null,
+      "unsafe_writes": 0
+    },
+    "source_sha256": {
+      "src/crm/contract.mjs": "f5ccee09512a1173f09f7e242ef0efbfda343768c08dc13eac9725ffded14a97",
+      "src/crm/agent.mjs": "20e9e71a2527381af27f680bfd7bd06690a3df7d7749f1c26eb646073ca57169",
+      "src/crm/simulation.mjs": "2a06dc3bf07e4bc691e532d889793900b23aa37015da6444c4d209d77a49f2a5",
+      "src/crm/client.mjs": "f523bbe5b70513806d6680fe71a3f018d7533ae416f7040f09af9f286b7e7b32",
+      "src/crm/validation.mjs": "a8fe1a2fad3428a909498dc37422bc974fc77ce0cae8e9808e0667798188b21e",
+      "src/crm/metrics.mjs": "e9fbd640c0e92a9269dc26824645d7b3be617e72c5eb3c6eb00beacd6a5db400",
+      "scripts/crm-eval.mjs": "b963eff85b9766779b240f9b537141c3f5a4a9b290934598d789246d0ab9993b",
+      "src/road/runtime.mjs": "8be144c62fba78f74326f771ff117020092a8aa6eacbf153dc925946a7acb371",
+      "src/road/server.mjs": "a037308d173fe9d5af077cf2a659f9b02a2578351ee11700f6924011aa62cc73",
+      "datasets/balady-crm/tool-cases.jsonl": "3805de5cf5dded242c861a902cddd4e1df053ece681568e40cb48f83c384df76",
+      "datasets/balady-crm/planning-cases.jsonl": "d64af1b9f95f911a317786c26ff35a499bbf58be4474f5d04d24daccc0182881"
+    }
+  },
+  "notes": [
+    "Synthetic regression after prompt and host-control repair; not blind or production accuracy.",
+    "Tool precision ignores explicitly permitted optional prerequisites, which add no true positives.",
+    "FAQ and sentiment are isolated from these planner measurements; full web flow is verified separately.",
+    "Initial planning baseline used the same 20 planning scenarios before removing placeholder plan parameters."
+  ]
+}

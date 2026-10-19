@@ -7,27 +7,31 @@
     "node": ">=22.19.0"
   },
   "scripts": {
-    "test": "node --test tests/*.test.mjs",
-    "test:mocks": "python3 -m unittest discover -s tests -v",
+    "test": "node scripts/test-active.mjs",
+    "test:mocks": "node scripts/disabled-legacy.mjs",
+    "crm:spec": "node scripts/crm-build-spec.mjs",
+    "crm:validate": "node scripts/crm-validate-spec.mjs",
+    "crm:eval": "node --env-file-if-exists=.env scripts/crm-eval.mjs --suite all",
+    "crm:planning": "node --env-file-if-exists=.env scripts/crm-eval.mjs --suite planning",
     "check": "node scripts/check.mjs",
     "poc": "node --env-file-if-exists=.env src/cli-v2.mjs",
     "eval:offline": "npm run poc -- eval --mode offline --suite engineering --split regression",
-    "eval:live": "npm run poc -- eval --suite all --split regression",
+    "eval:live": "npm run crm:eval",
     "probe": "npm run poc -- probe",
     "eval:emotion": "npm run poc -- eval --suite emotion --split all",
-    "eval:planning": "npm run poc -- eval --suite planning --split all",
-    "eval:integration": "npm run poc -- eval --suite integration --split all",
-    "web": "node --env-file-if-exists=.env src/web-server.mjs",
+    "eval:planning": "npm run crm:planning",
+    "eval:integration": "npm run crm:eval",
+    "web": "node --env-file-if-exists=.env src/road/server.mjs",
     "road:web": "node --env-file-if-exists=.env src/road/server.mjs",
-    "road:test": "node --test tests/road-*.test.mjs",
+    "road:test": "node scripts/test-active.mjs",
     "road:test:postgres": "node --env-file-if-exists=.env --test tests/road-session.postgres.mjs tests/road-feedback.postgres.mjs",
     "road:session-migrate": "node --env-file-if-exists=.env scripts/road-session-migrate.mjs",
     "road:capacity": "node --env-file-if-exists=.env scripts/road-capacity.mjs",
-    "road:eval": "node --env-file-if-exists=.env scripts/road-eval.mjs",
+    "road:eval": "node scripts/disabled-legacy.mjs",
     "road:emotion-eval": "node --env-file-if-exists=.env scripts/road-emotion-eval.mjs",
     "road:feedback-export": "node --env-file-if-exists=.env scripts/road-feedback-export.mjs",
     "road:knowledge-audit": "node scripts/road-knowledge-audit.mjs",
-    "road:matters-eval": "node --env-file-if-exists=.env scripts/road-matters-eval.mjs"
+    "road:matters-eval": "node scripts/disabled-legacy.mjs"
   },
   "dependencies": {
     "@earendil-works/pi-agent-core": "1.1.0",
@@ -35,5 +39,8 @@
     "@earendil-works/pi-coding-agent": "1.1.0",
     "ajv": "8.20.0",
     "pg": "8.23.1"
+  },
+  "devDependencies": {
+    "@apidevtools/swagger-parser": "13.1.0"
   }
 }

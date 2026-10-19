@@ -1,5 +1,13 @@
 // UI copy only. Never translate user data, ticket parameters or model-generated replies.
 const en={
+"BALADY 助理":"BALADY Assistant",
+"您好，欢迎使用 BALADY 助理！":"Welcome! I’m your BALADY Assistant.",
+"可以办理已接入的 CRM 案件、市政请求、咨询投诉、分类资产、附件与满意度调查。当前为本地仿真；我会补问缺少的参数，并在提交前请你核对。":"I can help with connected CRM cases, municipal requests, inquiries, complaints, classifications, assets, attachments and surveys. This is a local simulation. I’ll ask for missing information and request confirmation before submitting.",
+"CRM 案件与详情":"CRM cases and details",
+"资产目录":"Municipal assets",
+"市政服务分类":"Service classifications",
+"咨询与投诉":"Inquiries and complaints",
+"PI SDK · BALADY CRM · 本地仿真":"PI SDK · BALADY CRM · Local simulation",
 "已恢复报单草稿，请核对下方信息。":"Report draft restored. Please review the details below.",
 "当前模拟账号已登录。":"The current demo account is signed in.",
 "我的事项":"My matters",

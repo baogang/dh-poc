@@ -4,7 +4,7 @@ COPY package.json package-lock.json ./
 RUN npm ci --omit=dev --ignore-scripts && npm cache clean --force
 COPY --chown=node:node src ./src
 COPY --chown=node:node web/road ./web/road
-COPY --chown=node:node docs/road-agent-flow.html ./docs/road-agent-flow.html
+COPY --chown=node:node docs/balady-crm-flow.html ./docs/balady-crm-flow.html
 ENV NODE_ENV=production
 ENV ROAD_STATE_DIR=/tmp/road-poc-state
 ENV POC_WEB_HOST=0.0.0.0

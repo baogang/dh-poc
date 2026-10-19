@@ -1,4 +1,21 @@
-# SENTRA 感知引擎 V3
+# BALADY CRM 助理
+
+`balady-crm` 分支已将当前 Road PI POC 替换为 BALADY CRM 助理，覆盖 35 个业务工具，使用 CRM Services Integration Guide V1.13.0 的真实接口契约与新的本地仿真后端。不是正式政府 API 接入。
+
+[集成与来源冲突记录](docs/balady-crm-integration.md) · [OpenAPI 3.0.3](specs/balady-crm.openapi.json) · [70 项评测流程](datasets/balady-crm/README.md) · [回归结果](docs/balady-crm-evaluation.md) · [启用/禁用清单](datasets/registry.json)。
+
+```bash
+npm run web           # 当前 BALADY 助理
+npm test              # 当前启用的 CRM 测试
+npm run crm:validate  # OpenAPI schema、引用与生成一致性
+npm run crm:eval      # 50 工具流程 + 20 动态计划，真实模型/本地 API
+```
+
+写操作需要逐次 UI 确认；缺参和参数错误由工具契约返回字段路径并追问。沿用 Neon 会话与回答反馈。旧 mock API 路由及对应评测命令已停用，数据和测试源文件保留。独立情绪评测不受替换影响。
+
+以下是已停用的 SENTRA/旧 mock 版本说明，保留作历史参考；其中的旧业务命令与分数不代表当前 CRM 版本。
+
+## 历史：SENTRA 感知引擎 V3
 
 工单客服独立演示：[Road PI SDK PoC](docs/road-pothole-pi-poc.md)，使用 FAQ → 三分类情绪 → PI Loop / 模拟人工路由，支持普通查询自动执行及精确操作 HITL。会话和反馈保存到 Neon，配置现有 `ROAD_FEEDBACK_DATABASE_URL` 或独立 `ROAD_SESSION_DATABASE_URL` 后运行 `npm run road:web`。[会话管理、容量实测与水平扩展方案](docs/road-session-management.md)。本页其余内容介绍原 SENTRA 评测工作台。
 

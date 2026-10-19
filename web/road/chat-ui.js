@@ -28,7 +28,7 @@ export function progressText(s,locale='zh'){
   const api=[...current].reverse().find(e=>e.type==='api_start');
   if(api)return {login:t('正在验证模拟账号…'),query_tickets:t('正在查询你的工单记录…'),create_ticket:t('正在提交已确认的工单…'),close_ticket:t('正在关闭已确认的工单…'),complain_ticket:t('正在提交已确认的投诉…'),handoff_to_human:t('正在转交已确认的人工请求…')}[api.call.operation]??t('正在处理你的请求…');
   if(current.some(e=>e.type==='faq_miss'))return t('正在整理处理步骤，稍后会在这里说明下一步…');
-  if(current[0]?.route==='resume')return t('正在继续已确认的计划，结果会显示在这里…');
+  if(['resume','crm_resume'].includes(current[0]?.route))return t('正在继续已确认的计划，结果会显示在这里…');
   return t('收到，正在查看是否有能直接回答你的问答内容…');
 }
 
@@ -40,16 +40,17 @@ export function createChatRenderer(document,container,actions){
   const name=service=>service?.title?.[uiLocale]??service?.title?.en??'';
   function officialLink(parent,url){if(!/^https:\/\/(?:www\.)?balady\.gov\.sa(?:\/|$)/.test(url??''))return;const a=el('a',t('访问官方平台'));a.href=url;a.target='_blank';a.rel='noopener noreferrer';parent.append(a);}
   function serviceCard(parent,service,item,busy){
-    const card=el('section',undefined,'service-option');card.append(el('strong',name(service)),el('small',service.department?.[uiLocale]??service.department?.en),el('span',t(service.mode==='mock_transaction'?'模拟办理':'仅知识咨询'),'service-mode'),el('p',service.description?.[uiLocale]??service.description?.en));
+    const card=el('section',undefined,'service-option');card.append(el('strong',name(service)),el('small',service.department?.[uiLocale]??service.department?.en),el('span',t(['mock_transaction','simulation'].includes(service.mode)?'模拟办理':'仅知识咨询'),'service-mode'),el('p',service.description?.[uiLocale]??service.description?.en));
     if(item.choiceActive!==false)card.append(button(t(item.clarificationId?'选择并回答原问题':'查看此服务'),()=>actions.action('/api/service',{scope:service.id,...(item.clarificationId?{clarification_id:item.clarificationId}:{})}),busy));officialLink(card,service.official_url);parent.append(card);
   }
   function loginForm(continuation,busy){
     const form=el('form',undefined,'inline-form login-form');form.dataset.formKey='login:'+(continuation?.id??'welcome');
-    const l=el('label',t('模拟账号')),select=el('select');select.name='username';for(const [value,title]of[['demo',t('demo · 有登记地址')],['demo-no-address',t('demo-no-address · 无登记地址')],['demo-other',t('demo-other · 另一用户')]]){const o=el('option',title);o.value=value;select.append(o);}select.value='demo';l.append(select);form.append(l);field(form,t('模拟密码'),'password','password').value='demo';
+    const l=el('label',t('模拟账号')),select=el('select');select.name='username';for(const [value,title]of[['demo','demo · BALADY beneficiary A'],['sara','sara · BALADY beneficiary B']]){const o=el('option',title);o.value=value;select.append(o);}select.value='demo';l.append(select);form.append(l);field(form,t('模拟密码'),'password','password').value='demo';
     const b=el('button',continuation?t('登录并继续处理'):t('登录模拟账号'));b.disabled=busy;form.append(b,el('p',t('仅使用 demo 等模拟账号，不要输入真实密码或个人资料。'),'hint'));
     form.addEventListener('submit',e=>{e.preventDefault();actions.login(Object.fromEntries(new FormData(form)),continuation);});return form;
   }
   function payload(parent,parameters){
+    if(parameters.body){parent.append(el('pre',JSON.stringify(parameters,null,2),'crm-payload'));return;}
     const dl=el('dl',undefined,'payload');const add=(label,value)=>{if(value===undefined||value===null||value==='')return;dl.append(el('dt',t(label)),el('dd',String(value)));};
     if(parameters.address)add(t('工单地址'),[parameters.address.city,parameters.address.street].filter(Boolean).join(', '));
     add(t('问题描述'),parameters.description);add(t('工单编号'),parameters.ticket_id);add(t('原因'),parameters.reason);add(t('交接摘要'),parameters.conversation_summary);parent.append(dl);
@@ -78,6 +79,11 @@ export function createChatRenderer(document,container,actions){
     }
   }
   function editForm(n,o,busy){
+    if(o.operation.startsWith('crm_')){
+      const details=el('details',undefined,'operation-edit');details.dataset.key='edit:'+o.id;details.append(el('summary',t('修改信息')));
+      const form=el('form',undefined,'inline-form');form.dataset.formKey='edit:'+o.id;field(form,'CRM parameters (JSON)','text','textarea').value=JSON.stringify(o.parameters,null,2);
+      const submit=el('button',t('保存修改并重新核对'));submit.disabled=busy;form.append(submit);form.addEventListener('submit',e=>{e.preventDefault();if(!busy)actions.action('/api/edit-operation',{proposal_id:o.id,value:{text:new FormData(form).get('text')}});});details.append(form);n.append(details);return;
+    }
     if(!['create_ticket','complain_ticket'].includes(o.operation))return;
     const details=el('details',undefined,'operation-edit');details.dataset.key='edit:'+o.id;details.append(el('summary',t('修改信息')));
     const form=el('form',undefined,'inline-form');form.dataset.formKey='edit:'+o.id;
@@ -139,9 +145,9 @@ export function createChatRenderer(document,container,actions){
         n.append(controls);
       }
     }else if(item.kind==='welcome'){
-      n.append(el('strong',t('您好，欢迎使用政务服务助手！')),el('p',t('您可以咨询已支持的政务服务、提交服务申请、查询办理进度、反馈投诉或联系人工客服。请告诉我您需要什么帮助，我会在聊天中说明下一步，并在提交操作前请您确认。')));
+      n.append(el('strong',t('您好，欢迎使用 BALADY 助理！')),el('p',t('可以办理已接入的 CRM 案件、市政请求、咨询投诉、分类资产、附件与满意度调查。当前为本地仿真；我会补问缺少的参数，并在提交前请你核对。')));
       n.append(el('small',t('办理功能使用模拟数据；其他服务当前仅支持已有知识咨询。')),button(t('查看服务目录'),()=>actions.action('/api/catalog',{}),busy),button(t('人工帮助'),()=>actions.action('/api/help',{action:'offer'}),busy),button(t('我的事项'),()=>actions.action('/api/matters',{action:'list'}),busy));
-      const examples=el('div',undefined,'examples');for(const [label,text]of[[t('新坑洞报单'),'There is a big pothole in the road in front of my house'],[t('历史工单跟进'),'The school pothole I reported is still unresolved. Please help me follow up.'],[t('试问答库'),'Is the municipal fees invoice the same as the Civil Defense fees invoice?']])examples.append(button(label,()=>actions.example(text),busy));n.append(examples);
+      const examples=el('div',undefined,'examples');for(const [label,text]of[[t('CRM 案件与详情'),'Show my CRM incidents, then fetch the full details of the first incident.'],[t('资产目录'),'List the main municipal assets, then show details of the first one.'],[t('市政服务分类'),'List main classifications for type CRM in municipality 004, then list sub and special classifications for the first entries.'],[t('咨询与投诉'),'I want to submit a public complaint about a municipal service. What information do you need?']])examples.append(button(label,()=>actions.example(text),busy));n.append(examples);
       if(!item.loggedIn){const d=el('details',undefined,'welcome-login');d.dataset.key='welcome-login';d.append(el('summary',t('模拟登录 · 办理个人工单时需要')),loginForm(null,busy));n.append(d);}
     }else if(item.kind==='plan'){
       const p=item.plan,complete=p.steps.filter(x=>x.status==='completed').length;
@@ -155,7 +161,7 @@ export function createChatRenderer(document,container,actions){
         n.append(button(t('取消这个任务'),()=>actions.action('/api/cancel',{}),busy));
       }else n.append(el('small',p.status==='completed'?t('这份计划已处理完成。'):p.status==='superseded'?t('已按新意图调整计划，这份计划停止执行。'):p.status==='paused'?t('这份计划已暂停。'):['blocked','failed','interrupted'].includes(item.outcome)?t('这份计划还没有完成，可以调整任务或重试。'):t('我正在按这份计划处理。')));
     }else if(item.kind==='operation'){
-      const o=item.proposal;n.append(el('div',t('请确认 · {operation}',{operation:t(operationLabels[o.operation]??t('提交操作'))}),'card-caption'),el('p',t(o.confirmation_reason==='high_risk_read'?'notice.highRiskRead':'notice.operation')));payload(n,o.parameters);
+      const o=item.proposal;n.append(el('div',t('请确认 · {operation}',{operation:o.title??t(operationLabels[o.operation]??t('提交操作'))}),'card-caption'),el('p',t(o.confirmation_reason==='high_risk_read'?'notice.highRiskRead':'notice.operation')));payload(n,o.parameters);
       if(item.active){n.append(button(o.operation==='query_tickets'?t('确认查询'):t('确认提交'),()=>actions.action('/api/approve-operation',{proposal_id:o.id}),busy),button(t('取消这个任务'),()=>actions.action('/api/cancel',{}),busy));editForm(n,o,busy);if(o.operation==='create_ticket')n.append(button(t('保存，稍后继续'),()=>actions.action('/api/save-draft',{proposal_id:o.id}),busy));}
       else n.append(el('small',item.approved?t('你已确认以上内容。'):t('此确认已失效，以上内容不会继续提交。')));
     }else if(item.kind==='input'){
@@ -188,6 +194,7 @@ export function createChatRenderer(document,container,actions){
       n.append(el('small',t('这是模拟人工流程；不会自动修改或关闭你的工单。')));
     }else if(item.kind==='receipt'){
       const r=item.receipt,v=r.result;let text=t('已完成{operation}。',{operation:t(operationLabels[r.operation]??t('当前操作'))});
+      if(v.data)text=r.operation+' · '+v.data.responseMessage+'\n'+JSON.stringify(v.data.result??{responseId:v.data.responseId},null,2);
       if(v.tickets)text=t('已查到 {count} 张属于你的工单。',{count:v.tickets.length});
       if(v.ticket)text=t(r.operation==='close_ticket'?t('已关闭工单 {id} · {status}'):t('已创建工单 {id} · {status}'),{id:v.ticket.ticket_id,status:v.ticket.status});
       if(v.complaint)text=t('投诉已提交：{id} · {status}',{id:v.complaint.complaint_id,status:v.complaint.status});

@@ -1,0 +1,1 @@
+console.log('Disabled on balady-crm: previous mock-API scenarios and their source files are preserved. See datasets/registry.json. Use npm run crm:eval or npm run crm:planning for active CRM scenarios.');

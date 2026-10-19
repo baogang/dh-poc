@@ -1,0 +1,99 @@
+import {mkdir,writeFile} from 'node:fs/promises';
+// Reference expectations are curated here, independently of model output.
+const INC='INC-26-10-000001',CLOSED='INC-26-10-000002',KEY='MOMRA-OPS-CS-WORK '+INC,MAIN='004_MC-1',SUB=MAIN+'_SC-1',SPECIAL=SUB+'_SPC-1';
+const body=value=>({body:value});
+const customer={EmailAddress:'demo@example.test',MobileNumber:'0500000000',FirstName:'Test',LastName:'Citizen'};
+const form=(Type='T03')=>({CustomerInformation:customer,subject:'Municipal service feedback',Description:'Please review the service handling.',Type,Attachments:[]});
+const create={CustomerInformation:{PreferredLanguage:'English'},LocationInfo:{MunicipalityID:'004',SubMunicipalityID:'004001',Sub_SubMunicipalityID:'004001001',Longitude:46.7,Latitude:24.7,Address:'Test Cedar Street, Riyadh',StreetName:'Test Cedar Street',DistrictName:'Test District'},IncidentInformation:{MainClassificationID:MAIN,SubClassificationID:SUB,SplClassificationID:SPECIAL,Priority:'',ResponseTime:'',IssueDescription:'A waste container needs maintenance.',Description:'Please inspect the container.',IsCallBackSelected:'false',SCBusinessTypeID:'',Isinzone:false}};
+const external={MomraIncidentNo:INC,EEIncidentNo:'EE-DEMO-1',IncidentStatusName:'InProgress',ActionDate:'2026-10-20',ActionDescription:'Inspection started'};
+const cis={ViolationIsIssued:'No',CRMIncidentID:INC,CISVisitNo:'CIS-DEMO-1',IssueIsDetected:'Yes',IncidentStatusID:'2',IncidentIsreslved:'No',IsPublicUtilityDamaged:'False',AttachmentList:[]};
+const resolve={MomraIncidentNo:INC,IncidentStatusName:'Resolved',ActionDate:'20/10/2026',EmployeeName:'Test Operator',IsProcessed:true};
+const upload={AttachStream:'SGVsbG8=',Category:'Initial',pxAttachName:'test.txt',pyMemo:'Test attachment'};
+const tsr={Category:'Simulated category',SubCategory:'Simulated subcategory',Area:'Simulated area',Channel:'Citizen',Action:'IssueTypeList'};
+const support={Category:'Simulated category',SubCategory:'Simulated subcategory',Area:'Simulated area',IssueType:'Simulated platform issue',EndUserLocation:'Riyadh',Baladiah:'Simulated Baladiah',Phone:'0500000000',Description:'Unable to open a service page',CitizenCompanyName:'Test Citizen',ContactEmail:'demo@example.test'};
+const rows=[];
+function add(suite,id,title,message,operations,{parameters={},...extra}={}){rows.push({id:`CRM-${suite==='tool'?'T':'P'}-${String(id).padStart(3,'0')}`,enabled:true,suite,difficulty:operations.length>3?'advanced':operations.length>1?'intermediate':'basic',title,login:true,message,ui:{approve_operations:true},expected:{operations,parameters,status:'completed',...extra.expected},...Object.fromEntries(Object.entries(extra).filter(([key])=>key!=='expected'))});}
+const positive=[
+ ['Record MOI vehicle withdrawal outcome','crm_update_vehicle_status',body({IncidentID:INC,Status:1})],
+ ['Record generated Medallia survey URL','crm_update_survey_url',body({IncidentID:INC,IncidentUrlGeneratedDateTime:'20261020T090000.000',IncidentUrlGenerated:'https://example.test/survey'})],
+ ['Submit Medallia evaluation using explicit response code 2','crm_submit_survey_evaluation',body({IncidentID:INC,EvaluationDate:'2026-10-20',PetitionerSatisfaction:2,EvaluationComment:false})],
+ ['List main municipal assets','crm_get_assets',{}],
+ ['Get municipal asset details for main asset MA-DEMO-1','crm_get_asset_details',{id:'MA-DEMO-1'}],
+ ['Read only the version timestamp of this Pega case','crm_get_case',{caseId:KEY}],
+ ['Set case urgency to 60 with supplied current etag','crm_update_case',{caseId:KEY,...body({content:{pxUrgencyWork:60,etag:'20261020T090000.000 GMT'}})}],
+ ['Record CIS received incident inspection outcome','crm_update_cis_incident',body(cis)],
+ ['Record external entity inspection in progress','crm_update_external_incident',body(external)],
+ ['List new classifications associated with my authenticated external entity','crm_get_external_new_classifications',{}],
+ ['List special classifications associated with my authenticated external entity; not mobile classification lookup','crm_get_external_special_classifications',{}],
+ ['As CIS, reopen this resolved visual pollution incident','crm_reopen_incident',body({IncidentID:CLOSED,Notes:'Visual pollution persists'})],
+ ['Send incident status version 2 operator comments without changing status code','crm_update_incident_status_v2',{CRMID:INC,...body({OperatorComments:'Inspection scheduled'})}],
+ ['Upload a file to this existing case through the SSO file upload service','crm_upload_file',body({NationalID:1000000000,CaseID:INC,Category:'Initial',AttachStream:'SGVsbG8=',pxAttachName:'case.txt'})],
+ ['Download attachment FILE-DEMO-SEED','crm_download_file',{FileKey:'FILE-DEMO-SEED'}],
+ ['Show my authenticated beneficiary CRM incident history','crm_get_incidents',{}],
+ ['Fetch full incident details using this exact Pega key','crm_fetch_incident',{pzInsKey:KEY}],
+ ['Create municipal service request with all supplied details','crm_create_municipal_service',body(create)],
+ ['Retrieve municipal-service classification data with action MSRClsData','crm_retrieve_msr_data',{ID:SPECIAL,Action:'MSRClsData'}],
+ ['List main classifications for type CRM within municipality 004','crm_get_main_classifications',{type:'CRM',municipalityID:'004'}],
+ ['List subclassifications under the supplied main classification','crm_get_sub_classifications',{mainClassificationID:MAIN}],
+ ['List special classifications under the supplied subclassification','crm_get_special_classifications',{subClassificationID:SUB}],
+ ['List special classifications by type INQ and special classification type INQC-011','crm_get_special_classifications_by_type',{type:'INQ',SpecialClassificationType:'INQC-011'}],
+ ['Find main and sub classification parents for the supplied special classification','crm_get_classification_parents',{ID:SPECIAL}],
+ ['Create a classified inquiry with all supplied details, not a public form','crm_create_inquiry',body({...create,IncidentInformation:{...create.IncidentInformation,ParkID:''}})],
+ ['Get technical support issue-type dropdown data with these filters','crm_retrieve_tsr_data',tsr],
+ ['Fetch municipal service request details, not a municipality directory','crm_fetch_municipal_service',{pzInsKey:'MOMRA-OPS-CS-WORK-MUNICIPALSERVICEREQUEST REQ-26-10-000001'}],
+ ['Fetch classified inquiry details using the supplied Pega key','crm_fetch_inquiry',{pzInsKey:'MOMRA-OPS-CS-WORK INQ-26-10-000001'}],
+ ['Create Daem technical support ticket with the supplied entry','crm_create_daem_ticket',body({IncidentManagementBaladyIntCRM:[support]})],
+ ['Submit a public complaint form with an explicitly empty attachments list','crm_create_form_request',body(form())],
+ ['Upload base64 attachment for a public form','crm_upload_attachment',{sourceSystem:'Balady 940',FileType:'TXT',...body(upload)}],
+ ['Resolve the Madinati incident using its eligible processed closure reason','crm_resolve_madinati_incident',body({...resolve,ClosureReasonName:'Processed in simulation'})],
+ ['List Madinati closure reasons for the supplied incident with IsProcessed false','crm_get_closure_reasons',{MomraIncidentNo:INC,IsProcessed:false}],
+ ['List active external entities with tracking request TRACK-001','crm_get_external_entities',{RequestID:'TRACK-001'}],
+ ['List linked classifications for external entity AGC-DEMO-1 within municipality 004','crm_get_external_entity_classifications',{RequestID:'TRACK-002',MunicipalityID:'004',EECode:'AGC-DEMO-1'}]
+];
+positive.forEach(([title,op,parameters],i)=>{
+  const prereqs=op==='crm_resolve_madinati_incident'?['crm_get_closure_reasons']:[];
+  add('tool',i+1,title,`${title}. Use these supplied values exactly: ${JSON.stringify(parameters)}. Perform only the requested operation and its necessary prerequisites.`,[...prereqs,op],{parameters:{[op]:parameters},expected:{...(prereqs.length?{dependencies:[[prereqs[0],op]]}:{}),...(op==='crm_update_case'?{optional_operations:['crm_get_case']}:{})}});
+});
+const invalid=[
+ ['Missing file locator','Download my case attachment. I do not have its FileKey.',[],['FileKey']],
+ ['Missing asset identifier','Get municipal asset details. I do not know its main asset ID; list main assets first, then fetch the first asset.', ['crm_get_assets','crm_get_asset_details'],null],
+ ['Invalid vehicle enum','Record MOI vehicle withdrawal status for '+INC+' as numeric status 7. I have not said whether it was withdrawn.',[],['Status']],
+ ['Unknown satisfaction code meaning','Record that I am satisfied with incident '+INC+' on 2026-10-20. I do not know the Medallia 0/1/2 response code.',[],['PetitionerSatisfaction']],
+ ['Missing survey timestamp','Record survey URL https://example.test/survey for '+INC+'. I have not provided when it was generated.',[],['IncidentUrlGeneratedDateTime']],
+ ['CIS conditional utility quantities','Record this CIS update, where public utility damage is confirmed but quantity and unit are unknown: '+JSON.stringify({...cis,IsPublicUtilityDamaged:'True'}),[],['IncidentQuantity','UnitValue']],
+ ['Resolved external photos missing','Set this external entity incident to Resolved with supplied values, but I have not provided any post-fix photos: '+JSON.stringify({...external,IncidentStatusName:'Resolved'}),[],['IncidentPhotosAfterFixing']],
+ ['Public form missing contact details','Submit a public complaint with subject Service handling, Description Please review, Type T03, and Attachments []. I have not provided contact information.',[],['CustomerInformation']],
+ ['Ambiguous external incident status','Update my external incident '+INC+' to status Done, external number EE-1, action date 2026-10-20, action description Checked. I have not chosen InProgress, Resolved or Rejected.',[],['IncidentStatusName']],
+ ['Incomplete municipal creation','Create a municipal service request. I only know the street is Test Cedar Street in Riyadh. No classification or municipality hierarchy IDs or coordinates are available yet.',[],['LocationInfo','IncidentInformation']],
+ ['Case-only identifier needs returned Pega key','Fetch full incident details for the first incident in my history. Discover the actual full key from history.', ['crm_get_incidents','crm_fetch_incident'],null],
+ ['Public suggestion code selection','Submit a public suggestion using this complete form; set Type for a suggestion: '+JSON.stringify({...form(),Type:'T02'}),['crm_create_form_request'],null],
+ ['Typed vehicle number recovery','Record vehicle withdrawal for '+INC+'. It was withdrawn by MOI; the supplied status is the string "1" but the wire field must be numeric. Correct that unambiguous type before submitting.', ['crm_update_vehicle_status'],null],
+ ['Missing source system for attachment','Upload this public form attachment, but the sourceSystem is not provided: '+JSON.stringify(body(upload)),[],['sourceSystem']],
+ ['Wrong main classification name','List subclassifications of a main class called Municipal services; I do not know its ID. First list main classifications for type CRM in municipality 004, then use its first returned ID.', ['crm_get_main_classifications','crm_get_sub_classifications'],null]
+];
+const futureOps={36:'crm_download_file',38:'crm_update_vehicle_status',39:'crm_submit_survey_evaluation',40:'crm_update_survey_url',41:'crm_update_cis_incident',42:'crm_update_external_incident',43:'crm_create_form_request',44:'crm_update_external_incident',45:'crm_create_municipal_service',49:'crm_upload_attachment'};
+invalid.forEach(([title,message,operations,missing],i)=>add('tool',36+i,title,message,operations,{...(missing?{expected:{status:'input',clarification_fields:missing,plan_operations:[futureOps[36+i]],...(i===0?{optional_operations:['crm_get_incidents','crm_fetch_incident']}:i===9?{optional_operations:['crm_get_main_classifications','crm_get_sub_classifications','crm_get_special_classifications']}:{})}}:{})}));
+add('planning',1,'History then incident detail','Show my CRM incidents and fetch the full details of the first one.',['crm_get_incidents','crm_fetch_incident'],{expected:{dependencies:[['crm_get_incidents','crm_fetch_incident']]}});
+add('planning',2,'Main asset then detail','List main municipal assets and then get details of the first asset.',['crm_get_assets','crm_get_asset_details'],{expected:{dependencies:[['crm_get_assets','crm_get_asset_details']]}});
+add('planning',3,'Classification tree','For municipality 004 and service type CRM, show main classifications, then sub classifications of the first result, then special classifications of its first result.',['crm_get_main_classifications','crm_get_sub_classifications','crm_get_special_classifications'],{expected:{dependencies:[['crm_get_main_classifications','crm_get_sub_classifications'],['crm_get_sub_classifications','crm_get_special_classifications']]}});
+add('planning',4,'Reverse classification and metadata',`For special classification ${SPECIAL}, find its main/sub parents and retrieve municipal classification metadata with action MSRClsData.`,['crm_get_classification_parents','crm_retrieve_msr_data']);
+add('planning',5,'Entities and filtered classifications','List active external entities using tracking ID PLAN-005-A; then get linked classifications of the first entity in municipality 004 using tracking ID PLAN-005-B.',['crm_get_external_entities','crm_get_external_entity_classifications'],{expected:{dependencies:[['crm_get_external_entities','crm_get_external_entity_classifications']]}});
+add('planning',6,'Version read before urgency update',`Read version for case ${KEY}, then set pxUrgencyWork to 60 using the returned etag.`,['crm_get_case','crm_update_case'],{expected:{dependencies:[['crm_get_case','crm_update_case']]}});
+add('planning',7,'Madinati closure',`Resolve Madinati incident ${INC}; processed=true, employee Test Operator, action date 20/10/2026. First get its eligible closure reasons and use the first reason NAME. It has no attachments.`,['crm_get_closure_reasons','crm_resolve_madinati_incident'],{parameters:{crm_resolve_madinati_incident:{body:resolve}},expected:{dependencies:[['crm_get_closure_reasons','crm_resolve_madinati_incident']]}});
+add('planning',8,'Upload then public complaint',`Upload this base64 form attachment from sourceSystem Balady 940: ${JSON.stringify(upload)}. Then submit this public complaint with the returned fileId as AttachmentID: ${JSON.stringify({...form(),Attachments:'use uploaded file'})}`,['crm_upload_attachment','crm_create_form_request'],{expected:{dependencies:[['crm_upload_attachment','crm_create_form_request']]}});
+add('planning',9,'SSO upload then download',`Upload this file to an existing case through SSO: ${JSON.stringify({NationalID:1000000000,CaseID:INC,Category:'Initial',AttachStream:'SGVsbG8=',pxAttachName:'case.txt'})}. Then download it using the returned LinkedRefTo as FileKey.`,['crm_upload_file','crm_download_file'],{expected:{dependencies:[['crm_upload_file','crm_download_file']]}});
+add('planning',10,'Create then fetch municipal request',`Create this complete municipal service request, then fetch the returned request using its exact pzInsKey: ${JSON.stringify(create)}`,['crm_create_municipal_service','crm_fetch_municipal_service'],{expected:{dependencies:[['crm_create_municipal_service','crm_fetch_municipal_service']]}});
+add('planning',11,'Create then fetch classified inquiry',`Create this complete classified inquiry, then fetch its returned pzInsKey: ${JSON.stringify({...create,IncidentInformation:{...create.IncidentInformation,ParkID:''}})}`,['crm_create_inquiry','crm_fetch_inquiry'],{expected:{dependencies:[['crm_create_inquiry','crm_fetch_inquiry']]}});
+add('planning',12,'Technical support reference then create',`Get support issue types using ${JSON.stringify(tsr)}, then create a Daem support ticket using the first returned IssueType and these other fields: ${JSON.stringify(support)}`,['crm_retrieve_tsr_data','crm_create_daem_ticket'],{expected:{dependencies:[['crm_retrieve_tsr_data','crm_create_daem_ticket']]}});
+add('planning',13,'Reopen then fresh history',`As CIS reopen the resolved visual pollution incident ${CLOSED} with note "Issue persists", then refresh my incident history to show the updated state.`,['crm_reopen_incident','crm_get_incidents'],{expected:{dependencies:[['crm_reopen_incident','crm_get_incidents']]}});
+add('planning',14,'Survey link then response',`Record a generated Medallia survey URL for ${INC}: generation datetime 20261020T090000.000 and URL https://example.test/survey. Then record evaluation date 2026-10-20, explicit response code 1, EvaluationComment false.`,['crm_update_survey_url','crm_submit_survey_evaluation'],{expected:{dependencies:[['crm_update_survey_url','crm_submit_survey_evaluation']]}});
+add('planning',15,'Arabic history and incident detail','اعرض بلاغاتي في CRM ثم اجلب تفاصيل أول بلاغ باستخدام المفتاح الكامل الذي تعيده القائمة.',['crm_get_incidents','crm_fetch_incident'],{expected:{dependencies:[['crm_get_incidents','crm_fetch_incident']]}});
+add('planning',16,'Chinese assets and details','请先查询市政主资产列表，再用第一个返回的资产编号查询详情。',['crm_get_assets','crm_get_asset_details'],{expected:{dependencies:[['crm_get_assets','crm_get_asset_details']]}});
+add('planning',17,'SSO login dependency','Show my authenticated beneficiary CRM incident history. I have not logged in.', ['crm_get_incidents'],{login:false,ui:{approve_operations:true,login:true},expected:{requires_login_input:true}});
+add('planning',18,'Clarification followed by correction',`Record the MOI vehicle withdrawal outcome for ${INC}, but I have not said whether it was withdrawn.`,['crm_update_vehicle_status'],{dialogue:[{when:'input',text:'It was not withdrawn by MOI. Use numeric status 2.'}],parameters:{crm_update_vehicle_status:body({IncidentID:INC,Status:2})},expected:{requires_input:true}});
+add('planning',19,'Independent external classification views','Show both the new classifications and the special classifications associated with my authenticated external entity. These are the external-entity views with no input, not mobile classification filters.',['crm_get_external_new_classifications','crm_get_external_special_classifications']);
+add('planning',20,'Discover then create then fetch',`I want a municipal service request using the first main/sub/special classifications returned for type CRM in municipality 004. First discover that three-level hierarchy. All other fields are supplied here: ${JSON.stringify({...create,IncidentInformation:{...create.IncidentInformation,MainClassificationID:'use lookup result',SubClassificationID:'use lookup result',SplClassificationID:'use lookup result'}})}. After creating, fetch its municipal request details using the returned pzInsKey.`,['crm_get_main_classifications','crm_get_sub_classifications','crm_get_special_classifications','crm_create_municipal_service','crm_fetch_municipal_service'],{expected:{dependencies:[['crm_get_main_classifications','crm_get_sub_classifications'],['crm_get_sub_classifications','crm_get_special_classifications'],['crm_get_special_classifications','crm_create_municipal_service'],['crm_create_municipal_service','crm_fetch_municipal_service']]}});
+await mkdir('datasets/balady-crm',{recursive:true});
+for(const suite of ['tool','planning'])await writeFile(`datasets/balady-crm/${suite}-cases.jsonl`,rows.filter(x=>x.suite===suite).map(x=>JSON.stringify(x)).join('\n')+'\n');
+await writeFile('datasets/balady-crm/manifest.json',JSON.stringify({version:'1.13.0',enabled:true,tools:50,planning:20,reference_status:'curated synthetic regression; not a blind or production benchmark',sources:['CRM_Services Integration Guide V1.13.0.pdf','CRM FLOW.pdf (journey context only)','Reports_and_Complaints_English.xlsx (domain examples only, no operational deadlines inferred)']},null,2)+'\n');
+console.log(JSON.stringify({tools:rows.filter(x=>x.suite==='tool').length,planning:rows.filter(x=>x.suite==='planning').length}));

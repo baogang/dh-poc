@@ -6,9 +6,12 @@ import { resolve } from 'node:path';
 import { webConfigFromEnv,createWebAccess } from '../web-access.mjs';
 import { failure,id } from './store.mjs';
 import {NeonRoadStore} from './neon-store.mjs';
-import { RoadMocks,MOCK_API_NAMES } from './mocks.mjs';
+import { CrmSimulation } from '../crm/simulation.mjs';
+import { SimulationHttpClient,RealCrmClient } from '../crm/client.mjs';
+import { OPENAPI } from '../crm/openapi.mjs';
+import { OPERATIONS } from '../crm/contract.mjs';
 import { RoadKnowledge } from './knowledge.mjs';
-import { RoadAgent } from './agent.mjs';
+import { CrmAgent } from '../crm/agent.mjs';
 import {parseHighRiskReads} from './policy.mjs';
 import {humanNotice,humanWaitExpired} from './human.mjs';
 import {services} from './services.mjs';
@@ -18,49 +21,41 @@ import {feedbackExport} from '../../web/road/feedback-data.js';
 const equal=(a,b)=>typeof a==='string'&&typeof b==='string'&&a.length===b.length&&timingSafeEqual(Buffer.from(a),Buffer.from(b));
 async function body(req){
   if(!req.headers['content-type']?.startsWith('application/json'))throw failure('JSON_REQUIRED','Use application/json',415);
-  let data='';for await(const part of req){data+=part;if(Buffer.byteLength(data)>12000)throw failure('BODY_TOO_LARGE','JSON body too large',413);}
+  let data='';for await(const part of req){data+=part;if(Buffer.byteLength(data)>2000000)throw failure('BODY_TOO_LARGE','JSON body too large',413);}
   try{return JSON.parse(data||'{}');}catch{throw failure('INVALID_JSON','Invalid JSON');}
 }
-export function mockHttpClient({origin,key}){
-  return async(sid,operation,parameters,context={})=>{
-    const {signal,...headersContext}=context;let attempt=0;
-    while(true){
-      signal?.throwIfAborted();
-      const response=await fetch(`${origin}/mock/${operation}`,{method:'POST',headers:{'content-type':'application/json','x-road-mock-key':key,'x-road-session':sid},body:JSON.stringify({parameters,context:headersContext}),signal});
-      const result=await response.json();
-      if(response.ok)return result;
-      // Same key and payload on retry; covers committed-but-response-lost writes.
-      if(response.status===503&&attempt++===0)continue;
-      throw failure(result.error?.code??'MOCK_HTTP_ERROR',result.error?.message??'Mock API failed',response.status);
-    }
-  };
-}
-
 export async function createRoadServer({store,knowledge,agentFactory,feedback=new FeedbackRepository(),config=webConfigFromEnv(),mockKey=randomBytes(32).toString('hex'),demoUI=process.env.ROAD_DEMO_UI!=='false',highRiskReads=parseHighRiskReads(process.env.ROAD_HIGH_RISK_READS??''),humanSupport={available:process.env.ROAD_HUMAN_AVAILABLE!=='false',wait_limit_ms:Number(process.env.ROAD_HUMAN_WAIT_LIMIT_MS??180000)},maxTurns=Number(process.env.ROAD_MAX_INFLIGHT_TURNS??8),maxStreams=Number(process.env.ROAD_MAX_EVENT_STREAMS??500)}={}){
   if(typeof humanSupport.available!=='boolean'||!Number.isInteger(humanSupport.wait_limit_ms)||humanSupport.wait_limit_ms<1)throw Error('Invalid simulated human support configuration');
   if(!Number.isInteger(maxTurns)||maxTurns<1||!Number.isInteger(maxStreams)||maxStreams<1)throw Error('Road concurrency limits must be positive integers');
   const injectedStore=!!store;store??=NeonRoadStore.fromEnv();await store.initialize();
   const migration=!injectedStore?await store.importDirectory(process.env.ROAD_STATE_DIR??'.road-state'):null;
   await feedback.initialize().catch(()=>console.warn('Feedback database is temporarily unavailable'));knowledge??=await RoadKnowledge.load();
-  const mocks=new RoadMocks(store),access=createWebAccess(config.access),runs=new Set(),streams=new Set(),admission={turns:0,streams:0,maxTurns,maxStreams};let agent;
+  const mocks=new CrmSimulation(store),access=createWebAccess(config.access),runs=new Set(),streams=new Set(),admission={turns:0,streams:0,maxTurns,maxStreams};let agent;
   const permit=kind=>{const max=kind==='turns'?maxTurns:maxStreams;if(admission[kind]>=max)throw failure('SERVER_BUSY','The service is busy. Please retry shortly.',429);admission[kind]++;let released=false;return()=>{if(!released){released=true;admission[kind]--;}};};
   const send=(res,status,value)=>{res.writeHead(status,{'content-type':'application/json; charset=utf-8','cache-control':'no-store'});res.end(JSON.stringify(value));};
   const sessionId=req=>{const cookie=(req.headers.cookie??'').split(';').map(x=>x.trim()).find(x=>x.startsWith('road_session='));if(!cookie)throw failure('SESSION_REQUIRED','Start a conversation',401);return cookie.slice(13);};
-  const view=s=>({...store.view(s),catalog:services,human_support:{...humanSupport,mode:'simulated',hours_configured:false,official_url:'https://balady.gov.sa/en',wait_expired:humanWaitExpired(s.mock.handoffs.find(h=>h.handoff_id===s.activeHandoffId))},demo_ui:demoUI===true,feedback:{enabled:feedback.enabled,items:feedback.cached(s.id)},faq:{name:knowledge.document.name,entry_count:knowledge.entries.length,source_displayed_count:knowledge.document.source_displayed_count,migration_status:knowledge.document.migration_status,quality:knowledge.document.quality},model:'deepseek-flash',runtime:'PI SDK 1.1.0'});
+  const view=s=>({...store.view(s),crm:s.crm?{version:s.crm.version,calls:s.crm.calls}:null,api_mode:agent?.client?.mode??'simulation',tool_count:OPERATIONS.length,catalog:services,human_support:{...humanSupport,mode:'simulated',hours_configured:false,official_url:'https://balady.gov.sa/en',wait_expired:humanWaitExpired(s.mock.handoffs.find(h=>h.handoff_id===s.activeHandoffId))},demo_ui:demoUI===true,feedback:{enabled:feedback.enabled,items:feedback.cached(s.id)},faq:{name:knowledge.document.name,entry_count:knowledge.entries.length,source_displayed_count:knowledge.document.source_displayed_count,migration_status:knowledge.document.migration_status,quality:knowledge.document.quality},model:process.env.DEEPSEEK_MODEL??'deepseek-flash',runtime:'PI SDK 1.1.0'});
   const server=createServer(async(req,res)=>{
     res.setHeader('x-content-type-options','nosniff');res.setHeader('referrer-policy','no-referrer');res.setHeader('content-security-policy',"default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' data:; frame-ancestors 'none'; base-uri 'none'; form-action 'self'");
     let release,turnPermit;
     const unlock=async()=>{if(release){const done=release;release=null;await done();}};
     try{
       const url=new URL(req.url,'http://localhost');
-      if(url.pathname==='/healthz'&&req.method==='GET')return send(res,200,{ok:true,service:'road-pothole-pi-poc',session_storage:store.storage,model_configured:!!process.env.DEEPSEEK_API_KEY});
-      if(url.pathname.startsWith('/mock/')){
-        if(req.method!=='POST'||!equal(req.headers['x-road-mock-key'],mockKey))throw failure('MOCK_FORBIDDEN','Mock APIs require the private harness credential',403);
-        const operation=url.pathname.slice(6);if(!MOCK_API_NAMES.includes(operation))throw failure('UNKNOWN_API','Unknown mock API',404);
-        const input=await body(req);return send(res,200,await mocks.call(req.headers['x-road-session'],operation,input.parameters,input.context));
+      if(url.pathname==='/healthz'&&req.method==='GET')return send(res,200,{ok:true,service:'balady-crm',contract_version:'1.13.0',tools:OPERATIONS.length,api_mode:agent?.client?.mode??'simulation',release:process.env.RENDER_GIT_COMMIT??null,session_storage:store.storage,model_configured:!!process.env.DEEPSEEK_API_KEY});
+      if(url.pathname.startsWith('/mock/'))return send(res,410,{error:{code:'LEGACY_DISABLED',message:'Previous mock APIs are disabled; use the documented CRM toolset.'}});
+      if(url.pathname.startsWith('/v1/crm-services/')){
+        if(!equal(req.headers['x-crm-simulation-key'],mockKey))throw failure('SIMULATION_FORBIDDEN','CRM simulation requires the private harness credential',403);
+        const s=store.get(req.headers['x-road-session']);
+        const input=['POST','PUT'].includes(req.method)?await body(req):undefined;
+        const result=await mocks.http(s,req.method,url,input,{epoch:Number(req.headers['x-crm-epoch']),idempotency_key:req.headers['x-crm-idempotency-key']});
+        if(result.ok)return send(res,200,result.response);
+        const status=result.error.http_status??(result.error.code==='NOT_FOUND'?404:400);
+        return send(res,status,{statusDetails:{code:status,message:result.error.message},data:{responseCode:result.error.code,responseMessage:result.error.message,...(result.error.validation?{validation:result.error.validation}:{})}});
       }
       const port=server.address()?.port??config.port,origin=access.originFor(req,port);
       if(!access.authenticated(req)){res.setHeader('www-authenticate','Basic realm="Road Pothole PI PoC", charset="UTF-8"');return send(res,401,{error:{code:'AUTH_REQUIRED',message:'Test service credentials required'}});}
+      if(url.pathname==='/api/openapi'&&req.method==='GET')return send(res,200,OPENAPI);
+      if(url.pathname==='/api/tools'&&req.method==='GET')return send(res,200,{identity:'BALADY Assistant',mode:agent?.client?.mode??'simulation',operations:OPERATIONS.map(({id,summary,description,auth,effect,input,conditions,notes,section,page})=>({id,summary,description,auth,effect,input,conditions,notes,source:{section,page}}))});
       if(req.method!=='GET'){
         if(req.headers.origin&&req.headers.origin!==origin)throw failure('ORIGIN_FORBIDDEN','Cross-origin request rejected',403);
         if(req.headers['sec-fetch-site']==='cross-site')throw failure('ORIGIN_FORBIDDEN','Cross-site request rejected',403);
@@ -144,7 +139,7 @@ export async function createRoadServer({store,knowledge,agentFactory,feedback=ne
         if(url.pathname==='/api/service')run=agent.selectService(s,input.scope,input.clarification_id);
         else if(url.pathname==='/api/help')run=agent.helpChoice(s,input.request_id,'continue');
         else if(url.pathname==='/api/chat'){
-          if(typeof input.message!=='string'||!input.message.trim()||input.message.length>4000)throw failure('INVALID_MESSAGE','Message must be 1–4000 characters');run=agent.chat(s,input.message);
+          if(typeof input.message!=='string'||!input.message.trim()||input.message.length>12000)throw failure('INVALID_MESSAGE','Message must be 1–12000 characters');run=agent.chat(s,input.message);
         }else if(url.pathname==='/api/approve-plan'){
           const p=agent.active(s);if(!p||p.id!==input.plan_id||p.status!=='review')throw failure('STALE_PLAN','Plan is no longer awaiting review',409);run=agent.approvePlan(s,input.plan_id);
         }else if(url.pathname==='/api/input'){
@@ -158,8 +153,8 @@ export async function createRoadServer({store,knowledge,agentFactory,feedback=ne
         // A 202 acknowledges a persisted turn, not only an in-memory mutation.
         await store.flush(s.id);await Promise.race([run,new Promise(r=>setImmediate(r))]);return send(res,202,view(await store.load(s.id)));
       }
-      if(req.method==='GET'&&url.pathname==='/docs/road-agent-flow.html'){
-        const html=await readFile(new URL('../../docs/road-agent-flow.html',import.meta.url),'utf8');
+      if(req.method==='GET'&&['/docs/road-agent-flow.html','/docs/balady-crm-flow.html'].includes(url.pathname)){
+        const html=await readFile(new URL('../../docs/balady-crm-flow.html',import.meta.url),'utf8');
         const styleHashes=[...html.matchAll(/<style\b[^>]*>([\s\S]*?)<\/style>/gi)].map(match=>"'sha256-"+createHash('sha256').update(match[1]).digest('base64')+"'");
         res.setHeader('content-security-policy',"default-src 'none'; script-src 'none'; style-src "+styleHashes.join(' ')+" https://fonts.googleapis.com; style-src-attr 'none'; font-src https://fonts.gstatic.com; img-src 'self' data:; frame-ancestors 'none'; base-uri 'none'; form-action 'none'");
         res.writeHead(200,{'content-type':'text/html; charset=utf-8','cache-control':'no-store'});return res.end(html);
@@ -172,8 +167,9 @@ export async function createRoadServer({store,knowledge,agentFactory,feedback=ne
     finally{turnPermit?.();await unlock().catch(()=>{});}
   });
   const ready=async()=>{
-    const addr=server.address(),api=mockHttpClient({origin:`http://127.0.0.1:${addr.port}`,key:mockKey});
-    agent=agentFactory?await agentFactory({store,api,knowledge,highRiskReads,humanSupport}):new RoadAgent({store,api,knowledge,highRiskReads,humanSupport});agent.humanSupport=humanSupport;
+    const addr=server.address(),api=(sid,operation,parameters,context)=>mocks.call(sid,operation,parameters,context);
+    const client=process.env.CRM_BACKEND==='real'?new RealCrmClient():new SimulationHttpClient({origin:`http://127.0.0.1:${addr.port}`,key:mockKey});
+    agent=agentFactory?await agentFactory({store,api,client,knowledge,highRiskReads,humanSupport}):new CrmAgent({store,api,client,knowledge,highRiskReads,humanSupport});agent.humanSupport=humanSupport;
     store.onLeaseLost=s=>{if(s?.running)agent.interrupt(s,'ownership_lost');};
   };
   const close=async()=>{
