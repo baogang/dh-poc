@@ -45,7 +45,15 @@
       "screenshots": [
         "assets/balady-crm-format-desktop-20261020.png",
         "assets/balady-crm-format-mobile-20261020.png"
-      ]
+      ],
+      "online": {
+        "browser": "Chrome, existing user conversation",
+        "tables": 4,
+        "duplicated_raw_json_in_answers": false,
+        "standalone_receipt_bubbles": 0,
+        "evidence_collapsed": true,
+        "screenshot": "assets/balady-crm-format-live-20261020.png"
+      }
     },
     "jsonb_compatibility": "A failing regression reproduced the Neon key-order issue; parsed response equality now ignores only object key order, while requiring exact known operation prefixes and complete matching evidence."
   },
@@ -60,12 +68,18 @@
     "web/road/vendor/marked.js": "05e41134d075ad3a009a748d6c779c3d83cea9b942be911c2d9abade36d1dd31"
   },
   "deployment": {
-    "status": "pending_jsonb_followup",
+    "status": "live",
     "previous": {
       "id": "dep-dbb4sobm8hqs73etnnvg",
       "commit": "25519c12c3caba8762bb7827812b3e3d261928be",
       "status": "live",
       "verification": "Tables rendered in the existing online session; JSONB order compatibility required a follow-up."
-    }
+    },
+    "commit": "0384d5f333539a1123129c157edbf3a8b1810d5e",
+    "id": "dep-dbb4to3m8hqs73etphlg",
+    "started_at": "2026-10-19T17:09:52.757126Z",
+    "finished_at": "2026-10-19T17:10:38.63315Z",
+    "url": "https://road-pothole-pi-poc.onrender.com/",
+    "verification": "Existing online conversation reloaded in Chrome: four semantic tables, no raw JSON tail in narratives, all three evidence panels collapsed, no duplicate receipt bubbles."
   }
 }
