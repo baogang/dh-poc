@@ -1,0 +1,17 @@
+{
+  "phase": "pre-fix red test evidence",
+  "expected_failure": true,
+  "tests": 35,
+  "passed": 27,
+  "failed": 8,
+  "exit_code": 1,
+  "source_sha256": {
+    "src/crm/response-guard.mjs": "15b6b674fb33f07c8f20b0164fc0efb48ff7f7274a8079a1fa4a3e85eab0bd54",
+    "src/crm/agent.mjs": "76a92b9037e1a8fde80204c6e01b429579bf3ed777d6ec278d8348acab7b70d3",
+    "tests/crm-response-guard.test.mjs": "3abfa5fcef1ff2bc60ae6c37dfacf859f23d1a2940214071db3771df22ea024b",
+    "tests/crm-integration.test.mjs": "5be795908c9d55223cae1fd6adc27c95c36329422f9f88b35f2922feff0bd93f"
+  },
+  "source_changed_during_run": [],
+  "raw_tap": "docs/evaluation/balady-crm-response-verification-red-20261020.tap",
+  "interpretation": "Old rewrite-and-trust guard fails the new two-independent-verdict contract. Eight targeted failures expected; other host tests should remain green."
+}

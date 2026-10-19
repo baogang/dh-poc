@@ -1,10 +1,12 @@
-# BALADY CRM 测试流程
+# BALADY CRM 技术契约回归
+
+本目录验证 API 参数、工具覆盖和技术依赖，使用 `integration-test` 受众；其中明确指定内部字段、工具和执行顺序的话术不是市民业务场景。真实市民目标测试见 [自然业务集](../balady-crm-natural/README.md) 和 [20 个手测场景](../../docs/balady-crm-user-scenarios.md)。两种分数独立报告，技术契约通过率不代表业务成功率。
 
 `tool-cases.jsonl` 有 50 项：35 个操作覆盖案例，以及 15 个缺参、错误枚举、格式纠正、条件必填和查找编号流程。`planning-cases.jsonl` 有 20 个独立流程，覆盖单/双/三/五工具依赖、读后写、两次写操作确认、SSO 登录、追问续办、中英阿拉伯语。
 
 所有案例启用；旧流程在上级 `registry.json` 中标为 disabled，原文件内容不改动。案例引用是人工整理的合成参考，不是生产真实标签或盲测。用例中的个人信息和文件内容均为虚构测试数据。
 
-运行 `npm run crm:eval` 或 `npm run crm:planning`，也可 `node --env-file=.env scripts/crm-eval.mjs --case CRM-P-020 --concurrency 1`。评测调用真实 DeepSeek 模型与实际 PI SDK，业务请求通过文档路径访问本地 HTTP 仿真。为测规划本身，评测隔离 FAQ 和情绪路由；网页端仍保留完整路由，另做端到端验证。参考答案只在执行后参与评分，不送入模型。
+运行 `npm run crm:contract-eval` 或 `npm run crm:planning`，也可 `node --env-file=.env scripts/crm-eval.mjs --case CRM-P-020 --concurrency 1`。评测调用真实 DeepSeek 模型与实际 PI SDK，业务请求通过文档路径访问本地 HTTP 仿真。为测规划本身，评测隔离 FAQ 和情绪路由；`npm run crm:eval` 默认运行完整路由的自然业务集。参考答案只在执行后参与评分，不送入模型。
 
 每项记录输入、全部计划、模型请求、工具参数、错误、追问、确认事件和实际回执。`reports/crm/<run-id>/` 保存逐项结果、运行配置、源码和数据 SHA-256。发布摘要保存在 `docs/evaluation/`。
 

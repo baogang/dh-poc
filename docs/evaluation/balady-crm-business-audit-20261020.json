@@ -1,0 +1,280 @@
+{
+  "date": "2026-10-20",
+  "auditor": "independent BALADY business test agent",
+  "stage": "v6 full40 reviewed; goal boundaries appropriate, attachment typing and prose-format issues remain",
+  "source": "User-provided CRM Services Integration Guide V1.13.0, printed pages; CRM FLOW actor swimlanes are journey background only. No official external role policy invented.",
+  "findings": [
+    {
+      "id": "BUS-001",
+      "severity": "P1",
+      "title": "Consumer UI exposes system actor callbacks",
+      "evidence": [
+        "src/crm/agent.mjs business tool creation maps every OPERATIONS entry without audience filtering",
+        "PDF 2.3 printed p14: external entity assigned incidents; CIS visual pollution reopen",
+        "PDF3.13 printed p42: CIS team reopens visual pollution",
+        "PDF3.33 printed p103: external system updates, routed-to-Madinati incident"
+      ],
+      "impact": "A beneficiary chat claim and confirmation can mutate staff/MOI/CIS/closure state. UI confirmation proves consent to payload, not verified professional identity.",
+      "recommendation": "Preserve all contracts/adapters; default consumer toolset excludes system/staff mutations, host rejects unauthorized direct calls. Label any least-privilege policy as local POC behavior."
+    },
+    {
+      "id": "BUS-002",
+      "severity": "P1",
+      "title": "Beneficiary data is not isolated by logged-in user",
+      "evidence": [
+        "src/crm/simulation.mjs crm_get_incidents returns every c.incidents row",
+        "findIncident does not check session.user",
+        "PDF3.17 p52 SSO JWT beneficiary history"
+      ],
+      "impact": "A shared or injected multi-beneficiary dataset leaks someone else’s history and details.",
+      "recommendation": "Attach explicit local owner_user_id, filter list, reject fetch/upload/other operations for non-owned cases. Test multiple accounts and mixed-owned fixture without evaluator filtering."
+    },
+    {
+      "id": "BUS-003",
+      "severity": "P1",
+      "title": "One generic classification can stand in for unrelated services",
+      "evidence": [
+        "src/crm/simulation.mjs classification lookups always return same single MAIN/SUB/SPECIAL",
+        "crm_get_special_classifications_by_type ignores supplied type",
+        "creation only validates the hardcoded hierarchy"
+      ],
+      "impact": "Lights, waste bins, parks and roads can all “succeed” with a generic road/public-space class, inflating tool recall.",
+      "recommendation": "Use explicitly synthetic varied semantic catalog, validate parents/type/municipality, ask if ambiguous or unavailable; never treat one returned item as proof it matches the user’s issue."
+    },
+    {
+      "id": "BUS-004",
+      "severity": "P2",
+      "title": "Asset dictionary can be mistaken for nearby places",
+      "evidence": [
+        "PDF3.5 p24 main asset IDs and names; PDF3.6 p26 sub-assets by main asset",
+        "no nearby map, street search or park opening hours API in guide",
+        "existing product example explicitly tells user to list assets then select first"
+      ],
+      "impact": "Technical catalog questions replace genuine resident goals; a model can invent a park location from an asset name.",
+      "recommendation": "Natural resident scenarios test unsupported location/map requests; expose catalog only when intent is catalog or actual matching asset type."
+    },
+    {
+      "id": "BUS-005",
+      "severity": "P1",
+      "title": "Status and survey endpoints are semantically non-interchangeable",
+      "evidence": [
+        "PDF3.2 p18 statuses mean MOI withdrawal, not closure",
+        "PDF3.4 p22 gives 0/1/2 without satisfaction labels",
+        "PDF3.10 p37 EvaluationFlag 1/2 belongs to external-entity update",
+        "PDF3.14 p44 case status lookup unresolved"
+      ],
+      "impact": "“Tow the car”, “I am happy”, or “urgent” can become an invented completed action, survey code, backend urgency or status.",
+      "recommendation": "Do not infer code meanings or outcomes. Decline unsupported integrated survey workflows; preserve user feedback and offer an available next step without internal status writes."
+    },
+    {
+      "id": "BUS-006",
+      "severity": "P2",
+      "title": "Missing system metadata risks user-hostile clarification",
+      "evidence": [
+        "PDF3.19 p61 and3.26 p80 require nested location/classification data",
+        "guide provides no complete street geocoder/submunicipality mapping API",
+        "SSO history contains actual pyID/pzInsKey"
+      ],
+      "impact": "Residents may be asked to supply pzInsKey, special-class ID, zone flags or invented blank defaults instead of a clear service limitation.",
+      "recommendation": "Discover internal IDs from evidence. Ask human location/identity facts in plain language. If a required system value cannot be obtained, explain connected limitation and avoid fabricated submission."
+    },
+    {
+      "id": "BUS-007",
+      "severity": "P2",
+      "title": "Different fetch APIs accept same incident kind",
+      "evidence": [
+        "src/crm/simulation.mjs fetch incident, fetch municipal service and fetch inquiry share unconditional clone(target)"
+      ],
+      "impact": "Wrong fetch-tool selection passes because any key succeeds.",
+      "recommendation": "Track synthetic caseType and reject wrong endpoint kinds. Include different request/inquiry/incident types and non-first semantic targets in tests."
+    },
+    {
+      "id": "BUS-008",
+      "severity": "P2",
+      "title": "Previous 70 cases measure scripted API contracts rather than user readiness",
+      "evidence": [
+        "datasets/balady-crm/tool-cases.jsonl contains exact API field names and prescribed operations",
+        "datasets/balady-crm/planning-cases.jsonl contains tool-step instructions",
+        "scripts/crm-eval.mjs skipRouting=true bypasses FAQ and emotion"
+      ],
+      "impact": "100% does not establish natural business planning, end-to-end routing, role safety or UI quality.",
+      "recommendation": "Retain as contract/script regression. Add independently authored natural messages, holdout, distinct fixtures/references and real public-HTTP routing; report failures, latencies and separate benchmark identities."
+    },
+    {
+      "id": "BUS-009",
+      "severity": "P2",
+      "title": "Matters overview bypasses beneficiary filtering; raw-store suspicion ruled out at server wrapper",
+      "evidence": [
+        "CrmAgent.showMatters reads all crm.incidents without owner filter",
+        "RoadStore.view returns raw crm, but createRoadServer view explicitly replaces crm with version/calls, so the initial suspicion of /api/state raw files/history exposure was not established"
+      ],
+      "impact": "My matters path can show another-owner fixture through a separate unfiltered overview. Do not report a raw public HTTP leak merely from inspecting the underlying store helper.",
+      "recommendation": "Filter the matters overview by verified beneficiary; add actual HTTP assertions for no raw incidents/files and no cross-owner content."
+    }
+  ],
+  "new_suite": {
+    "path": "datasets/balady-crm-natural",
+    "cases": 40,
+    "dev": 12,
+    "holdout": 28,
+    "languages": [
+      "zh",
+      "en",
+      "ar"
+    ],
+    "messages_contain_reference_steps": false,
+    "fixture_expected_separation": true,
+    "freeze_manifest": "datasets/balady-crm-natural/manifest.json",
+    "evaluation_status": "complete natural HTTP candidate runs in progress under integration agent"
+  },
+  "retest": {
+    "backend_checks": "Six public-safety checks passed; separate cold-process non-vehicle guard passed",
+    "automatic_natural_cases": "37/40 (dev11/12, first holdout26/28), original results preserved",
+    "independent_semantic_cases": "33/40 (dev11/12, holdout22/28); 7 cases with product defects",
+    "reversed_selection": "5/6 automatic; no first-row shortcut on five unambiguous targets",
+    "release_gate": "Incomplete; further fixes and regression required"
+  },
+  "baseline_probe": {
+    "method": "Direct CrmSimulation.execute against memory store with explicit mixed-owner synthetic record; not a model run",
+    "checks": {
+      "other_owner_in_history": true,
+      "other_owner_fetch_allowed": true,
+      "incident_fetch_as_inquiry_allowed": true,
+      "unsupported_type_returns_success": true,
+      "municipality_008_returns_004_hierarchy": true,
+      "street_maintenance_vehicle_withdrawal_allowed": true
+    },
+    "meaning": "Each true value is a reproduced pre-fix defect, not a passing check."
+  },
+  "development_semantic_review": {
+    "report": "reports/crm-journeys/baseline-dev-20261020/summary.json",
+    "reviewed_cases": 12,
+    "raw_automatic_passes": 9,
+    "raw_automatic_failures": 3,
+    "oracle_false_failures": [
+      "NAT-D005 completed is a valid safe capability-limit outcome after a real read",
+      "NAT-D010 completed is a valid safe unsupported survey outcome with no writes"
+    ],
+    "real_failures": [
+      {
+        "id": "NAT-D004",
+        "category": "unsupported-system-metadata-resolution",
+        "evidence": "Reply says GPS could be replaced by a sub-municipality name so the location can be matched, but the guide exposes no geocoder or complete name-to-subdivision directory.",
+        "verdict": "Does not submit, but overpromises unavailable location resolution; failure of clear capability boundary."
+      },
+      {
+        "id": "NAT-D006",
+        "category": "loss-of-user-exact-text",
+        "evidence": "Actual confirmed/submitted subject begins lower-case long, user explicitly supplied Long, while final message displays original Long.",
+        "verdict": "Confirmed payload changes explicit user title and final answer masks difference."
+      }
+    ],
+    "warnings": [
+      {
+        "id": "NAT-D003",
+        "category": "excessive-clarification",
+        "evidence": "Asks location already partially known, full contacts, details and additional follow-up consent; legitimate follow-up must preserve case context rather than silently imply internal reopen."
+      },
+      {
+        "id": "NAT-D010",
+        "category": "internal-jargon",
+        "evidence": "Citizen-facing suggestion exposes T02 and plan discusses internal Medallia callbacks."
+      },
+      {
+        "id": "NAT-D011",
+        "category": "irrelevant-operational-metadata",
+        "evidence": "Beneficiary status summary additionally says records were not routed to Madinati, an internal detail unrelated to the request."
+      }
+    ],
+    "independent_semantic_passes": 10,
+    "independent_semantic_failures": 2,
+    "interpretation": "This is an inspected development baseline, not blind accuracy. Some category fixes were already present in the runtime snapshot; do not confuse it with the earlier direct-backend pre-fix probe.",
+    "retest_required": true
+  },
+  "raw_public_state_probe": {
+    "method": "Actual in-memory local HTTP /api/session then inject explicit foreign synthetic record and private file stream into backend then GET /api/state",
+    "result": {
+      "raw_incidents_exposed": false,
+      "raw_files_exposed": false,
+      "foreign_fixture_exposed": false,
+      "private_stream_exposed": false,
+      "crm_keys": [
+        "version",
+        "calls"
+      ]
+    },
+    "verdict": "The server wrapper already prevents the suspected raw-store state exposure. The earlier raw-store-only suspicion is withdrawn."
+  },
+  "candidate_backend_retest": {
+    "date": "2026-10-20",
+    "kind": "candidate-independent-business-probe",
+    "source_sha256": {
+      "src/crm/agent.mjs": "003580c6f79913af9c500d62cbd7e25ecb5010d4c51e43e823af93c38608dcbc",
+      "src/crm/simulation.mjs": "9ab597aff7a79edf893b874f7732995fbd751f43ed09d45c48e8a96c8f4804ac",
+      "src/crm/policy.mjs": "d93301c23ee7ed91dbf0988da78f48c370480c1996673541ccb272eea5cce97b",
+      "src/crm/fixtures.mjs": "bb49919ba566f8c139e49d47fea8622a022a82417480e314365af03ad85659e2"
+    },
+    "checks": {
+      "history_isolates_owner": true,
+      "foreign_fetch_rejected": true,
+      "wrong_kind_fetch_rejected": true,
+      "unsupported_type_does_not_return_generic_row": true,
+      "unknown_city_does_not_return_riyadh_row": true,
+      "public_agent_has_no_vehicle_status_operation": true
+    },
+    "all_six_public_business_checks_pass": true,
+    "residual": {
+      "non_vehicle_callback_issue_confirmed": false,
+      "previous_claim_withdrawn": true,
+      "correction": "INC1 is vehicle, so its successful update was valid. Seed waste and independent waste records both reject vehicle updates with INELIGIBLE_KIND.",
+      "artifact": "docs/evaluation/balady-crm-business-vehicle-correction-20261020.json"
+    },
+    "original_residual_claim_withdrawn": {
+      "private_integration_callback_accepts_non_vehicle_fixture": true,
+      "note": "The internal contract simulation does not validate a vehicle-specific case domain. Citizen-facing role policy removes this callback entirely; this is a residual simulator-fidelity limitation rather than an open citizen write."
+    }
+  },
+  "candidate_remediation_summary": {
+    "verified_pass": [
+      "Beneficiary history excludes a different owner",
+      "Direct foreign case fetch rejected",
+      "Incident cannot be fetched through inquiry endpoint",
+      "Unsupported type yields no generic row",
+      "Municipality008 does not receive004 hierarchy",
+      "Public agent has no vehicle callback operation"
+    ],
+    "residual_simulation_limit": "Previous non-vehicle callback concern withdrawn after cold-process verification: seed INC1 is now a vehicle incident; seed waste and independent topic:waste cases both reject with INELIGIBLE_KIND.",
+    "scope_of_evidence": "Direct memory backend and public Agent operation binding, not an actual government API call; model and UI results remain separately assessed."
+  },
+  "semantic_review_artifact": "docs/evaluation/balady-crm-business-semantic-review-20261020.json",
+  "vehicle_correction": {
+    "date": "2026-10-20",
+    "method": "Fresh Node process; direct private simulation callback with independent topic:waste record; no source edits",
+    "source_sha256": "9ab597aff7a79edf893b874f7732995fbd751f43ed09d45c48e8a96c8f4804ac",
+    "results": {
+      "vehicle_seed": {
+        "topic": "vehicle",
+        "ok": true,
+        "error": null,
+        "vehicle_status": 1
+      },
+      "waste_seed": {
+        "topic": "waste",
+        "ok": false,
+        "error": "INELIGIBLE_KIND",
+        "vehicle_status": null
+      },
+      "independent_waste": {
+        "topic": "waste",
+        "ok": false,
+        "error": "INELIGIBLE_KIND",
+        "vehicle_status": null
+      }
+    },
+    "non_vehicle_rejection_pass": true,
+    "correction": "Previous candidate probe assumed the current INC1 was a street-maintenance case. It is now topic:vehicle, so its successful update was valid. Withdraw previous residual defect claim; both seeded and independently created waste cases are rejected."
+  },
+  "v3_partial_review_artifact": "docs/evaluation/balady-crm-business-v3-partial-review-20261020.json",
+  "v4_independent_review_artifact": "docs/evaluation/balady-crm-business-v4-review-20261020.json",
+  "v6_independent_review_artifact": "docs/evaluation/balady-crm-business-v6-review-20261020.json"
+}

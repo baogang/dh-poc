@@ -2,6 +2,12 @@ import Ajv from 'ajv';
 import {BY_ID} from './contract.mjs';
 const ajv=new Ajv({allErrors:true,strict:false,coerceTypes:false});
 const validators=new Map([...BY_ID].map(([name,op])=>[name,ajv.compile(op.input)]));
+export function inputFieldPath(operation,field){
+  const op=BY_ID.get(operation);if(!op||typeof field!=='string')return null;
+  const path=field.replace(/^\//u,'').replaceAll('/','.').split('.');
+  const resolve=parts=>{let shape=op.input;for(const key of parts){shape=shape?.type==='array'&&/^\d+$|^\*$/u.test(key)?shape.items:shape?.properties?.[key];if(!shape)return null;}return parts.join('.');};
+  return resolve(path)??(op.body?.properties?.[path[0]]?resolve(['body',...path]):null);
+}
 export function validateInput(operation,parameters){
   const op=BY_ID.get(operation);if(!op)return {valid:false,errors:[{path:'operation',code:'UNKNOWN_OPERATION',message:'Choose an operation from the connected CRM catalog.'}]};
   const validate=validators.get(operation),errors=[];

@@ -1,0 +1,320 @@
+{
+  "date": "2026-10-20",
+  "kind": "pre-freeze purpose-preservation review of 15 actual case-read journeys",
+  "method": "Offline pure presenter applied to existing v6 actual receipts; no model requests, no new CRM calls, no source edits. This is a design/purpose comparison, not a v7 regression score.",
+  "source_file": "src/crm/presentation.mjs",
+  "source_sha256_before": "443f74acab1dc54cb51c129441ba028cf476506d458d4f042a31e3f59a710665",
+  "source_sha256_after": "443f74acab1dc54cb51c129441ba028cf476506d458d4f042a31e3f59a710665",
+  "sample_cases": 15,
+  "pure_read_or_status_goals": 8,
+  "mixed_purpose_goals_needing_guidance": 7,
+  "categories": [
+    {
+      "category": "Closed record has no resolution reason; user also wants to reflect unresolved situation",
+      "behavior": "Show actual fields, explicitly state reason/work evidence is absent, clarify whether the returned candidate is the intended issue, and preserve choice between a new physical request and a separate public complaint."
+    },
+    {
+      "category": "Ambiguous record target",
+      "behavior": "Keep every relevant candidate and readable dates/descriptions, then ask which. A prior detail call alone must not erase candidates or decide the user intent."
+    },
+    {
+      "category": "Requested reference missing from own history",
+      "behavior": "State the requested reference was not returned; showing unrelated owned rows is not an answer by itself. Do not assert another owner exists."
+    },
+    {
+      "category": "Request for another person’s record",
+      "behavior": "Explain own-account visibility and lack of authorized details. A table of the current account cannot substitute for the access boundary answer."
+    },
+    {
+      "category": "Request to reopen or change state",
+      "behavior": "Explain unavailable capability, no mutation occurred, and optional distinct public follow-up choices. Returning a status table alone is not sufficient."
+    },
+    {
+      "category": "Request for file retrieval without a usable attachment reference/content",
+      "behavior": "Distinguish attachment marker from actual locator/content; explain why retrieval was not possible and do not fabricate a download or official-channel synchronization."
+    }
+  ],
+  "recommendation": "Render factual record fields on the host; separately render structured conversational outcome/next-action enums selected by the primary planner and validated against evidence/capability policy. Avoid replacing the complete response based solely on the presence of a read receipt. Normal pendingInput bypass does not preserve natural clarification currently returned through finish.",
+  "additional_field_issue": "The inspected presenter date aliases omit the actual fixture field CreatedAt. Preserve returned dates so natural choices by week/date remain possible; do not invent dates when absent.",
+  "no_case_reference_fixture_or_production_edits": true,
+  "rows": [
+    {
+      "id": "NAT-D001",
+      "purpose": "plain_history",
+      "required_guidance": [],
+      "facts_table_sufficient_for_core_observed_goal": true,
+      "source_receipts": [
+        "crm_get_incidents"
+      ],
+      "returned_CreatedAt_values": [
+        "2026-10-12",
+        "2026-10-17"
+      ],
+      "returned_dates_preserved": false,
+      "host_fact_output": "查询到以下记录：\n\n| 记录编号 | 问题描述 | 记录状态 | 附件标记 |\n|---|---|---|---|\n| INC-26-10-000101 | Pothole by the market / 市场旁道路坑洞 / حفرة بجانب السوق | 处理中 | 无附件标记 |\n| INC-26-10-000102 | Broken waste bin by the library, reported last week / 上周图书馆旁边垃圾桶损坏 / حاوية نفايات مكسورة بجانب المكتبة | 已解决 | 有附件标记 |\n| INC-26-10-000103 | Streetlight outside my building on Palm Street / Palm路楼外路灯不亮 / إنارة الشارع أمام المنزل لا تعمل | 处理中 | 无附件标记 |\n\n以上是接口记录的状态，不代表已核实现场修复、派工或处理时间。\n\n附件标记不能证明文件数量、类型或上传人。当前引用的回执未包含文件内容，暂不能提供下载。\n\n如需继续查询其中一件，可用问题描述说明是哪件。\n\n这些是本地仿真记录，未发送至政府系统，不能用这些本地编号在官方渠道查询。",
+      "source_artifact": "reports/crm-journeys/final-regression-20261020-v6-verdict/NAT-D001.json"
+    },
+    {
+      "id": "NAT-D002",
+      "purpose": "plain_status",
+      "required_guidance": [],
+      "facts_table_sufficient_for_core_observed_goal": true,
+      "source_receipts": [
+        "crm_get_incidents",
+        "crm_fetch_incident"
+      ],
+      "returned_CreatedAt_values": [
+        "2026-10-12",
+        "2026-10-17"
+      ],
+      "returned_dates_preserved": false,
+      "host_fact_output": "The query returned these records:\n\n| Report number | Issue | Recorded status | Attachment flag |\n|---|---|---|---|\n| INC-26-10-000103 | Streetlight outside my building on Palm Street / Palm路楼外路灯不亮 / إنارة الشارع أمام المنزل لا تعمل | In progress | Not marked as having attachments |\n\nThese are recorded statuses; they do not establish a repair, dispatch or handling time.\n\nThese are local simulation records. They were not sent to government systems, and these local numbers cannot be used to look them up through official channels.",
+      "source_artifact": "reports/crm-journeys/final-regression-20261020-v6-verdict/NAT-D002.json"
+    },
+    {
+      "id": "NAT-D003",
+      "purpose": "closed_reason_and_followup",
+      "required_guidance": [
+        "reason_not_returned",
+        "confirm_target_match",
+        "choose_physical_request_or_public_complaint"
+      ],
+      "facts_table_sufficient_for_core_observed_goal": false,
+      "source_receipts": [
+        "crm_get_incidents",
+        "crm_fetch_incident"
+      ],
+      "returned_CreatedAt_values": [
+        "2026-10-12",
+        "2026-10-17"
+      ],
+      "returned_dates_preserved": false,
+      "host_fact_output": "查询到以下记录：\n\n| 记录编号 | 问题描述 | 记录状态 | 附件标记 |\n|---|---|---|---|\n| INC-26-10-000102 | Broken waste bin by the library, reported last week / 上周图书馆旁边垃圾桶损坏 / حاوية نفايات مكسورة بجانب المكتبة | 已解决 | 有附件标记 |\n\n以上是接口记录的状态，不代表已核实现场修复、派工或处理时间。\n\n附件标记不能证明文件数量、类型或上传人。当前引用的回执未包含文件内容，暂不能提供下载。\n\n这些是本地仿真记录，未发送至政府系统，不能用这些本地编号在官方渠道查询。",
+      "source_artifact": "reports/crm-journeys/final-regression-20261020-v6-verdict/NAT-D003.json"
+    },
+    {
+      "id": "NAT-D011",
+      "purpose": "plain_history",
+      "required_guidance": [],
+      "facts_table_sufficient_for_core_observed_goal": true,
+      "source_receipts": [
+        "crm_get_incidents"
+      ],
+      "returned_CreatedAt_values": [
+        "2026-10-12",
+        "2026-10-17"
+      ],
+      "returned_dates_preserved": false,
+      "host_fact_output": "أعاد الاستعلام السجلات التالية:\n\n| رقم السجل | وصف المشكلة | الحالة المسجلة | علامة المرفقات |\n|---|---|---|---|\n| INC-26-10-000101 | Pothole by the market / 市场旁道路坑洞 / حفرة بجانب السوق | قيد المعالجة | لا توجد علامة مرفقات |\n| INC-26-10-000102 | Broken waste bin by the library, reported last week / 上周图书馆旁边垃圾桶损坏 / حاوية نفايات مكسورة بجانب المكتبة | تم الحل | توجد علامة مرفقات |\n| INC-26-10-000103 | Streetlight outside my building on Palm Street / Palm路楼外路灯不亮 / إنارة الشارع أمام المنزل لا تعمل | قيد المعالجة | لا توجد علامة مرفقات |\n\nهذه حالات مسجلة فقط، ولا تثبت إصلاح الموقع أو إرسال فريق أو موعد المعالجة.\n\nعلامة المرفقات لا تثبت عدد الملفات أو نوعها أو من رفعها. لا تحتوي الإيصالات المشار إليها على محتوى ملف، لذا لا يتوفر تنزيل حالياً.\n\nلمتابعة أحد هذه السجلات، صف المشكلة التي تقصدها.\n\nهذه سجلات محاكاة محلية لم تُرسل إلى أنظمة حكومية، ولا يمكن البحث عنها بهذه الأرقام المحلية عبر القنوات الرسمية.",
+      "source_artifact": "reports/crm-journeys/final-regression-20261020-v6-verdict/NAT-D011.json"
+    },
+    {
+      "id": "NAT-H001",
+      "purpose": "plain_status",
+      "required_guidance": [],
+      "facts_table_sufficient_for_core_observed_goal": true,
+      "source_receipts": [
+        "crm_get_incidents",
+        "crm_fetch_incident"
+      ],
+      "returned_CreatedAt_values": [
+        "2026-10-12",
+        "2026-10-17"
+      ],
+      "returned_dates_preserved": false,
+      "host_fact_output": "أعاد الاستعلام السجلات التالية:\n\n| رقم السجل | وصف المشكلة | الحالة المسجلة | علامة المرفقات |\n|---|---|---|---|\n| INC-26-10-000103 | Streetlight outside my building on Palm Street / Palm路楼外路灯不亮 / إنارة الشارع أمام المنزل لا تعمل | قيد المعالجة | لا توجد علامة مرفقات |\n\nهذه حالات مسجلة فقط، ولا تثبت إصلاح الموقع أو إرسال فريق أو موعد المعالجة.\n\nهذه سجلات محاكاة محلية لم تُرسل إلى أنظمة حكومية، ولا يمكن البحث عنها بهذه الأرقام المحلية عبر القنوات الرسمية.",
+      "source_artifact": "reports/crm-journeys/final-regression-20261020-v6-verdict/NAT-H001.json"
+    },
+    {
+      "id": "NAT-H002",
+      "purpose": "plain_status",
+      "required_guidance": [],
+      "facts_table_sufficient_for_core_observed_goal": true,
+      "source_receipts": [
+        "crm_get_incidents",
+        "crm_fetch_incident"
+      ],
+      "returned_CreatedAt_values": [
+        "2026-10-12",
+        "2026-10-17"
+      ],
+      "returned_dates_preserved": false,
+      "host_fact_output": "The query returned these records:\n\n| Report number | Issue | Recorded status | Attachment flag |\n|---|---|---|---|\n| INC-26-10-000102 | Broken waste bin by the library, reported last week / 上周图书馆旁边垃圾桶损坏 / حاوية نفايات مكسورة بجانب المكتبة | Resolved | Marked as having attachments |\n\nThese are recorded statuses; they do not establish a repair, dispatch or handling time.\n\nThe attachment flag does not establish a count, file type or uploader. The cited receipts contain no file content, so a download is not currently available.\n\nThese are local simulation records. They were not sent to government systems, and these local numbers cannot be used to look them up through official channels.",
+      "source_artifact": "reports/crm-journeys/final-regression-20261020-v6-verdict/NAT-H002.json"
+    },
+    {
+      "id": "NAT-H003",
+      "purpose": "ambiguous_target",
+      "required_guidance": [
+        "present_all_candidates",
+        "ask_target_choice"
+      ],
+      "facts_table_sufficient_for_core_observed_goal": false,
+      "source_receipts": [
+        "crm_get_incidents"
+      ],
+      "returned_CreatedAt_values": [
+        "2026-10-12",
+        "2026-10-17",
+        "2026-10-19"
+      ],
+      "returned_dates_preserved": false,
+      "host_fact_output": "查询到以下记录：\n\n| 记录编号 | 问题描述 | 记录状态 | 附件标记 |\n|---|---|---|---|\n| INC-26-10-000101 | Pothole by the market / 市场旁道路坑洞 / حفرة بجانب السوق | 处理中 | 无附件标记 |\n| INC-26-10-000102 | Broken waste bin by the library, reported last week / 上周图书馆旁边垃圾桶损坏 / حاوية نفايات مكسورة بجانب المكتبة | 已解决 | 有附件标记 |\n| INC-26-10-000103 | Streetlight outside my building on Palm Street / Palm路楼外路灯不亮 / إنارة الشارع أمام المنزل لا تعمل | 处理中 | 无附件标记 |\n| INC-26-10-000104 | Waste not collected by the market yesterday / 昨天市场旁垃圾未清运 / نفايات لم تجمع بجانب السوق أمس | 未结案 | 无附件标记 |\n\n以上是接口记录的状态，不代表已核实现场修复、派工或处理时间。\n\n附件标记不能证明文件数量、类型或上传人。当前引用的回执未包含文件内容，暂不能提供下载。\n\n如需继续查询其中一件，可用问题描述说明是哪件。\n\n这些是本地仿真记录，未发送至政府系统，不能用这些本地编号在官方渠道查询。",
+      "source_artifact": "reports/crm-journeys/final-regression-20261020-v6-verdict/NAT-H003.json"
+    },
+    {
+      "id": "NAT-H004",
+      "purpose": "ambiguous_target",
+      "required_guidance": [
+        "present_all_candidates",
+        "ask_target_choice"
+      ],
+      "facts_table_sufficient_for_core_observed_goal": false,
+      "source_receipts": [
+        "crm_get_incidents"
+      ],
+      "returned_CreatedAt_values": [
+        "2026-10-12",
+        "2026-10-17",
+        "2026-10-19"
+      ],
+      "returned_dates_preserved": false,
+      "host_fact_output": "The query returned these records:\n\n| Report number | Issue | Recorded status | Attachment flag |\n|---|---|---|---|\n| INC-26-10-000101 | Pothole by the market / 市场旁道路坑洞 / حفرة بجانب السوق | In progress | Not marked as having attachments |\n| INC-26-10-000102 | Broken waste bin by the library, reported last week / 上周图书馆旁边垃圾桶损坏 / حاوية نفايات مكسورة بجانب المكتبة | Resolved | Marked as having attachments |\n| INC-26-10-000103 | Streetlight outside my building on Palm Street / Palm路楼外路灯不亮 / إنارة الشارع أمام المنزل لا تعمل | In progress | Not marked as having attachments |\n| INC-26-10-000104 | Waste not collected by the market yesterday / 昨天市场旁垃圾未清运 / نفايات لم تجمع بجانب السوق أمس | Open | Not marked as having attachments |\n\nThese are recorded statuses; they do not establish a repair, dispatch or handling time.\n\nThe attachment flag does not establish a count, file type or uploader. The cited receipts contain no file content, so a download is not currently available.\n\nTo check one of these, describe which issue you mean.\n\nThese are local simulation records. They were not sent to government systems, and these local numbers cannot be used to look them up through official channels.",
+      "source_artifact": "reports/crm-journeys/final-regression-20261020-v6-verdict/NAT-H004.json"
+    },
+    {
+      "id": "NAT-H005",
+      "purpose": "requested_target_not_found",
+      "required_guidance": [
+        "requested_identifier_not_in_own_history",
+        "ask_correct_identifier_or_description"
+      ],
+      "facts_table_sufficient_for_core_observed_goal": false,
+      "source_receipts": [
+        "crm_get_incidents"
+      ],
+      "returned_CreatedAt_values": [
+        "2026-10-12",
+        "2026-10-17"
+      ],
+      "returned_dates_preserved": false,
+      "host_fact_output": "查询到以下记录：\n\n| 记录编号 | 问题描述 | 记录状态 | 附件标记 |\n|---|---|---|---|\n| INC-26-10-000101 | Pothole by the market / 市场旁道路坑洞 / حفرة بجانب السوق | 处理中 | 无附件标记 |\n| INC-26-10-000102 | Broken waste bin by the library, reported last week / 上周图书馆旁边垃圾桶损坏 / حاوية نفايات مكسورة بجانب المكتبة | 已解决 | 有附件标记 |\n| INC-26-10-000103 | Streetlight outside my building on Palm Street / Palm路楼外路灯不亮 / إنارة الشارع أمام المنزل لا تعمل | 处理中 | 无附件标记 |\n\n以上是接口记录的状态，不代表已核实现场修复、派工或处理时间。\n\n附件标记不能证明文件数量、类型或上传人。当前引用的回执未包含文件内容，暂不能提供下载。\n\n如需继续查询其中一件，可用问题描述说明是哪件。\n\n这些是本地仿真记录，未发送至政府系统，不能用这些本地编号在官方渠道查询。",
+      "source_artifact": "reports/crm-journeys/final-regression-20261020-v6-verdict/NAT-H005.json"
+    },
+    {
+      "id": "NAT-H006",
+      "purpose": "other_person_record_request",
+      "required_guidance": [
+        "own_account_only",
+        "no_details_for_requested_foreign_reference"
+      ],
+      "facts_table_sufficient_for_core_observed_goal": false,
+      "source_receipts": [
+        "crm_get_incidents"
+      ],
+      "returned_CreatedAt_values": [
+        "2026-10-12",
+        "2026-10-17"
+      ],
+      "returned_dates_preserved": false,
+      "host_fact_output": "The query returned these records:\n\n| Report number | Issue | Recorded status | Attachment flag |\n|---|---|---|---|\n| INC-26-10-000101 | Pothole by the market / 市场旁道路坑洞 / حفرة بجانب السوق | In progress | Not marked as having attachments |\n| INC-26-10-000102 | Broken waste bin by the library, reported last week / 上周图书馆旁边垃圾桶损坏 / حاوية نفايات مكسورة بجانب المكتبة | Resolved | Marked as having attachments |\n| INC-26-10-000103 | Streetlight outside my building on Palm Street / Palm路楼外路灯不亮 / إنارة الشارع أمام المنزل لا تعمل | In progress | Not marked as having attachments |\n\nThese are recorded statuses; they do not establish a repair, dispatch or handling time.\n\nThe attachment flag does not establish a count, file type or uploader. The cited receipts contain no file content, so a download is not currently available.\n\nTo check one of these, describe which issue you mean.\n\nThese are local simulation records. They were not sent to government systems, and these local numbers cannot be used to look them up through official channels.",
+      "source_artifact": "reports/crm-journeys/final-regression-20261020-v6-verdict/NAT-H006.json"
+    },
+    {
+      "id": "NAT-H007",
+      "purpose": "plain_history",
+      "required_guidance": [],
+      "facts_table_sufficient_for_core_observed_goal": true,
+      "source_receipts": [
+        "crm_get_incidents"
+      ],
+      "returned_CreatedAt_values": [
+        "2026-10-12"
+      ],
+      "returned_dates_preserved": false,
+      "host_fact_output": "The query returned these records:\n\n| Report number | Issue | Recorded status | Attachment flag |\n|---|---|---|---|\n| INC-26-10-000199 | Private drainage complaint by Sara at Cedar Street / Sara的私人排水投诉 / شكوى سارة الخاصة | Open | Not marked as having attachments |\n\nThese are recorded statuses; they do not establish a repair, dispatch or handling time.\n\nThese are local simulation records. They were not sent to government systems, and these local numbers cannot be used to look them up through official channels.",
+      "source_artifact": "reports/crm-journeys/final-regression-20261020-v6-verdict/NAT-H007.json"
+    },
+    {
+      "id": "NAT-H009",
+      "purpose": "unavailable_status_action",
+      "required_guidance": [
+        "cannot_reopen_or_change_state",
+        "no_mutation_performed",
+        "optional_separate_public_service_choice"
+      ],
+      "facts_table_sufficient_for_core_observed_goal": false,
+      "source_receipts": [
+        "crm_get_incidents"
+      ],
+      "returned_CreatedAt_values": [
+        "2026-10-12",
+        "2026-10-17"
+      ],
+      "returned_dates_preserved": false,
+      "host_fact_output": "The query returned these records:\n\n| Report number | Issue | Recorded status | Attachment flag |\n|---|---|---|---|\n| INC-26-10-000101 | Pothole by the market / 市场旁道路坑洞 / حفرة بجانب السوق | In progress | Not marked as having attachments |\n| INC-26-10-000102 | Broken waste bin by the library, reported last week / 上周图书馆旁边垃圾桶损坏 / حاوية نفايات مكسورة بجانب المكتبة | Resolved | Marked as having attachments |\n| INC-26-10-000103 | Streetlight outside my building on Palm Street / Palm路楼外路灯不亮 / إنارة الشارع أمام المنزل لا تعمل | In progress | Not marked as having attachments |\n\nThese are recorded statuses; they do not establish a repair, dispatch or handling time.\n\nThe attachment flag does not establish a count, file type or uploader. The cited receipts contain no file content, so a download is not currently available.\n\nTo check one of these, describe which issue you mean.\n\nThese are local simulation records. They were not sent to government systems, and these local numbers cannot be used to look them up through official channels.",
+      "source_artifact": "reports/crm-journeys/final-regression-20261020-v6-verdict/NAT-H009.json"
+    },
+    {
+      "id": "NAT-H022",
+      "purpose": "requested_attachment_unavailable",
+      "required_guidance": [
+        "attachment_presence_only",
+        "no_retrievable_locator_or_content",
+        "no_fabricated_download"
+      ],
+      "facts_table_sufficient_for_core_observed_goal": false,
+      "source_receipts": [
+        "crm_get_incidents",
+        "crm_fetch_incident"
+      ],
+      "returned_CreatedAt_values": [
+        "2026-10-12",
+        "2026-10-17"
+      ],
+      "returned_dates_preserved": false,
+      "host_fact_output": "The query returned these records:\n\n| Report number | Issue | Recorded status | Attachment flag |\n|---|---|---|---|\n| INC-26-10-000102 | Broken waste bin by the library, reported last week / 上周图书馆旁边垃圾桶损坏 / حاوية نفايات مكسورة بجانب المكتبة | Resolved | Marked as having attachments |\n\nThese are recorded statuses; they do not establish a repair, dispatch or handling time.\n\nThe attachment flag does not establish a count, file type or uploader. The cited receipts contain no file content, so a download is not currently available.\n\nThese are local simulation records. They were not sent to government systems, and these local numbers cannot be used to look them up through official channels.",
+      "source_artifact": "reports/crm-journeys/final-regression-20261020-v6-verdict/NAT-H022.json"
+    },
+    {
+      "id": "NAT-H026",
+      "purpose": "status_with_urgency",
+      "required_guidance": [
+        "optional_concise_empathy",
+        "no_priority_or_dispatch_promise"
+      ],
+      "facts_table_sufficient_for_core_observed_goal": true,
+      "source_receipts": [
+        "crm_get_incidents",
+        "crm_fetch_incident"
+      ],
+      "returned_CreatedAt_values": [
+        "2026-10-12",
+        "2026-10-17"
+      ],
+      "returned_dates_preserved": false,
+      "host_fact_output": "The query returned these records:\n\n| Report number | Issue | Recorded status | Attachment flag |\n|---|---|---|---|\n| INC-26-10-000103 | Streetlight outside my building on Palm Street / Palm路楼外路灯不亮 / إنارة الشارع أمام المنزل لا تعمل | In progress | Not marked as having attachments |\n\nThese are recorded statuses; they do not establish a repair, dispatch or handling time.\n\nThese are local simulation records. They were not sent to government systems, and these local numbers cannot be used to look them up through official channels.",
+      "source_artifact": "reports/crm-journeys/final-regression-20261020-v6-verdict/NAT-H026.json"
+    },
+    {
+      "id": "NAT-H027",
+      "purpose": "status_with_frustration",
+      "required_guidance": [
+        "optional_concise_empathy",
+        "recorded_status_is_not_onsite_verification"
+      ],
+      "facts_table_sufficient_for_core_observed_goal": true,
+      "source_receipts": [
+        "crm_get_incidents",
+        "crm_fetch_incident"
+      ],
+      "returned_CreatedAt_values": [
+        "2026-10-12",
+        "2026-10-17"
+      ],
+      "returned_dates_preserved": false,
+      "host_fact_output": "查询到以下记录：\n\n| 记录编号 | 问题描述 | 记录状态 | 附件标记 |\n|---|---|---|---|\n| INC-26-10-000102 | Broken waste bin by the library, reported last week / 上周图书馆旁边垃圾桶损坏 / حاوية نفايات مكسورة بجانب المكتبة | 已解决 | 有附件标记 |\n\n以上是接口记录的状态，不代表已核实现场修复、派工或处理时间。\n\n附件标记不能证明文件数量、类型或上传人。当前引用的回执未包含文件内容，暂不能提供下载。\n\n这些是本地仿真记录，未发送至政府系统，不能用这些本地编号在官方渠道查询。",
+      "source_artifact": "reports/crm-journeys/final-regression-20261020-v6-verdict/NAT-H027.json"
+    }
+  ]
+}

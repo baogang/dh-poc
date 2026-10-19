@@ -4,6 +4,7 @@ class Element {
   set textContent(value){this._text=String(value);this.children=[];}
   get textContent(){return this._text+this.children.map(c=>c.textContent).join('');}
   append(...children){for(const c of children){c.remove();c.parentElement=this;this.children.push(c);}}
+  prepend(...children){for(const c of children.reverse()){c.remove();c.parentElement=this;this.children.unshift(c);}}
   remove(){if(this.parentElement){this.parentElement.children=this.parentElement.children.filter(c=>c!==this);this.parentElement=null;}}
   insertBefore(node,before){node.remove();node.parentElement=this;const i=this.children.indexOf(before);if(i<0)this.children.push(node);else this.children.splice(i,0,node);}
   get firstChild(){return this.children[0]??null;}

@@ -10,6 +10,7 @@ import { CrmSimulation } from '../crm/simulation.mjs';
 import { SimulationHttpClient,RealCrmClient } from '../crm/client.mjs';
 import { OPENAPI } from '../crm/openapi.mjs';
 import { OPERATIONS } from '../crm/contract.mjs';
+import {allowedOperation} from '../crm/policy.mjs';
 import {presentCrmMessage} from '../crm/presentation.mjs';
 import { RoadKnowledge } from './knowledge.mjs';
 import { CrmAgent } from '../crm/agent.mjs';
@@ -23,7 +24,9 @@ const equal=(a,b)=>typeof a==='string'&&typeof b==='string'&&a.length===b.length
 async function body(req){
   if(!req.headers['content-type']?.startsWith('application/json'))throw failure('JSON_REQUIRED','Use application/json',415);
   let data='';for await(const part of req){data+=part;if(Buffer.byteLength(data)>2000000)throw failure('BODY_TOO_LARGE','JSON body too large',413);}
-  try{return JSON.parse(data||'{}');}catch{throw failure('INVALID_JSON','Invalid JSON');}
+  let value;try{value=JSON.parse(data||'{}');}catch{throw failure('INVALID_JSON','Invalid JSON');}
+  if(!value||typeof value!=='object'||Array.isArray(value))throw failure('JSON_OBJECT_REQUIRED','Use a JSON object request body');
+  return value;
 }
 export async function createRoadServer({store,knowledge,agentFactory,feedback=new FeedbackRepository(),config=webConfigFromEnv(),mockKey=randomBytes(32).toString('hex'),demoUI=process.env.ROAD_DEMO_UI!=='false',highRiskReads=parseHighRiskReads(process.env.ROAD_HIGH_RISK_READS??''),humanSupport={available:process.env.ROAD_HUMAN_AVAILABLE!=='false',wait_limit_ms:Number(process.env.ROAD_HUMAN_WAIT_LIMIT_MS??180000)},maxTurns=Number(process.env.ROAD_MAX_INFLIGHT_TURNS??8),maxStreams=Number(process.env.ROAD_MAX_EVENT_STREAMS??500)}={}){
   if(typeof humanSupport.available!=='boolean'||!Number.isInteger(humanSupport.wait_limit_ms)||humanSupport.wait_limit_ms<1)throw Error('Invalid simulated human support configuration');
@@ -35,7 +38,7 @@ export async function createRoadServer({store,knowledge,agentFactory,feedback=ne
   const permit=kind=>{const max=kind==='turns'?maxTurns:maxStreams;if(admission[kind]>=max)throw failure('SERVER_BUSY','The service is busy. Please retry shortly.',429);admission[kind]++;let released=false;return()=>{if(!released){released=true;admission[kind]--;}};};
   const send=(res,status,value)=>{res.writeHead(status,{'content-type':'application/json; charset=utf-8','cache-control':'no-store'});res.end(JSON.stringify(value));};
   const sessionId=req=>{const cookie=(req.headers.cookie??'').split(';').map(x=>x.trim()).find(x=>x.startsWith('road_session='));if(!cookie)throw failure('SESSION_REQUIRED','Start a conversation',401);return cookie.slice(13);};
-  const view=s=>{const saved=store.view(s);return {...saved,messages:saved.messages.map(m=>presentCrmMessage(m,s.receipts)),crm:s.crm?{version:s.crm.version,calls:s.crm.calls}:null,api_mode:agent?.client?.mode??'simulation',tool_count:OPERATIONS.length,catalog:services,human_support:{...humanSupport,mode:'simulated',hours_configured:false,official_url:'https://balady.gov.sa/en',wait_expired:humanWaitExpired(s.mock.handoffs.find(h=>h.handoff_id===s.activeHandoffId))},demo_ui:demoUI===true,feedback:{enabled:feedback.enabled,items:feedback.cached(s.id)},faq:{name:knowledge.document.name,entry_count:knowledge.entries.length,source_displayed_count:knowledge.document.source_displayed_count,migration_status:knowledge.document.migration_status,quality:knowledge.document.quality},model:process.env.DEEPSEEK_MODEL??'deepseek-flash',runtime:'PI SDK 1.1.0'};};
+  const view=s=>{const saved=store.view(s);return {...saved,messages:saved.messages.map(m=>presentCrmMessage(m,s.receipts)),crm:s.crm?{version:s.crm.version,calls:s.crm.calls}:null,api_mode:agent?.client?.mode??'simulation',tool_count:agent?.operations?.length??0,contract_operation_count:OPERATIONS.length,catalog:services,human_support:{...humanSupport,mode:'simulated',hours_configured:false,official_url:'https://balady.gov.sa/en',wait_expired:humanWaitExpired(s.mock.handoffs.find(h=>h.handoff_id===s.activeHandoffId))},demo_ui:demoUI===true,feedback:{enabled:feedback.enabled,items:feedback.cached(s.id)},faq:{name:knowledge.document.name,entry_count:knowledge.entries.length,source_displayed_count:knowledge.document.source_displayed_count,migration_status:knowledge.document.migration_status,quality:knowledge.document.quality},model:process.env.DEEPSEEK_MODEL??'deepseek-flash',runtime:'PI SDK 1.1.0'};};
   const server=createServer(async(req,res)=>{
     res.setHeader('x-content-type-options','nosniff');res.setHeader('referrer-policy','no-referrer');res.setHeader('content-security-policy',"default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' data:; frame-ancestors 'none'; base-uri 'none'; form-action 'self'");
     let release,turnPermit;
@@ -54,9 +57,9 @@ export async function createRoadServer({store,knowledge,agentFactory,feedback=ne
         return send(res,status,{statusDetails:{code:status,message:result.error.message},data:{responseCode:result.error.code,responseMessage:result.error.message,...(result.error.validation?{validation:result.error.validation}:{})}});
       }
       const port=server.address()?.port??config.port,origin=access.originFor(req,port);
-      if(!access.authenticated(req)){res.setHeader('www-authenticate','Basic realm="Road Pothole PI PoC", charset="UTF-8"');return send(res,401,{error:{code:'AUTH_REQUIRED',message:'Test service credentials required'}});}
+      if(!access.authenticated(req)){res.setHeader('www-authenticate','Basic realm="BALADY Assistant", charset="UTF-8"');return send(res,401,{error:{code:'AUTH_REQUIRED',message:'Test service credentials required'}});}
       if(url.pathname==='/api/openapi'&&req.method==='GET')return send(res,200,OPENAPI);
-      if(url.pathname==='/api/tools'&&req.method==='GET')return send(res,200,{identity:'BALADY Assistant',mode:agent?.client?.mode??'simulation',operations:OPERATIONS.map(({id,summary,description,auth,effect,input,conditions,notes,section,page})=>({id,summary,description,auth,effect,input,conditions,notes,source:{section,page}}))});
+      if(url.pathname==='/api/tools'&&req.method==='GET')return send(res,200,{identity:'BALADY Assistant',mode:agent?.client?.mode??'simulation',operations:OPERATIONS.map(({id,summary,description,auth,effect,input,conditions,notes,section,page})=>({id,summary,description,auth,effect,input,conditions,notes,available_in_public_assistant:allowedOperation(id),source:{section,page}}))});
       if(req.method!=='GET'){
         if(req.headers.origin&&req.headers.origin!==origin)throw failure('ORIGIN_FORBIDDEN','Cross-origin request rejected',403);
         if(req.headers['sec-fetch-site']==='cross-site')throw failure('ORIGIN_FORBIDDEN','Cross-site request rejected',403);
@@ -161,7 +164,7 @@ export async function createRoadServer({store,knowledge,agentFactory,feedback=ne
         res.writeHead(200,{'content-type':'text/html; charset=utf-8','cache-control':'no-store'});return res.end(html);
       }
       if(req.method!=='GET')throw failure('NOT_FOUND','Not found',404);
-      const files={'/':'index.html','/app.js':'app.js','/chat-ui.js':'chat-ui.js','/markdown.js':'markdown.js','/vendor/marked.js':'vendor/marked.js','/i18n.js':'i18n.js','/feedback-ui.js':'feedback-ui.js','/feedback-data.js':'feedback-data.js','/style.css':'style.css'};
+      const files={'/':'index.html','/app.js':'app.js','/chat-ui.js':'chat-ui.js','/markdown.js':'markdown.js','/crm-review.js':'crm-review.js','/vendor/marked.js':'vendor/marked.js','/i18n.js':'i18n.js','/feedback-ui.js':'feedback-ui.js','/feedback-data.js':'feedback-data.js','/style.css':'style.css'};
       if(!files[url.pathname])throw failure('NOT_FOUND','Not found',404);
       const data=await readFile(new URL(`../../web/road/${files[url.pathname]}`,import.meta.url));res.writeHead(200,{'content-type':url.pathname.endsWith('.js')?'text/javascript; charset=utf-8':url.pathname.endsWith('.css')?'text/css; charset=utf-8':'text/html; charset=utf-8','cache-control':'no-store'});res.end(data);
     }catch(error){if(error.status===429)res.setHeader('retry-after','2');if(!res.headersSent)send(res,error.status??500,{error:{code:error.code??'SERVER_ERROR',message:error.status?error.message:'Internal server error',...(error.current?{current:error.current}:{})}});else res.end();}

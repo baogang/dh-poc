@@ -1,0 +1,327 @@
+{
+  "date": "2026-10-20",
+  "timezone": "Asia/Shanghai",
+  "agent": "independent HTTP integration test agent",
+  "seam": "Browser-facing HTTP session, routing, input, exact confirmation, cancellation, reconciliation and retry endpoints",
+  "test_types": {
+    "document_contract": "The original 70 tool/planning cases are preserved as synthetic, prompt-tuned API contract regression. They do not establish natural beneficiary business accuracy.",
+    "deterministic_http": "Scripted model decisions traverse actual HTTP, FAQ gate, sentiment validation, CRM HTTP adapter and state persistence. Assertions concern externally visible results, not model intelligence.",
+    "natural_journeys": "40 independently authored frozen natural-language inputs (12 development, 28 holdout). The public HTTP runner retains production FAQ and sentiment routing; private references are never model input. Independent business review supplements automatic checks."
+  },
+  "baseline": {
+    "deterministic_http_initial": {
+      "tests": 10,
+      "passed": 7,
+      "failed": 3,
+      "confirmed_defects": [
+        "Different beneficiary demo identities received identical SSO history records.",
+        "An explicitly requested status check was blocked by a negative-sentiment human-offer gate.",
+        "A neutral explicit request for a customer service representative had no actionable human entry point."
+      ]
+    },
+    "expanded_after_first_repair": {
+      "tests": 12,
+      "passed": 11,
+      "failed": 1,
+      "remaining_defect": "A serialized legacy Road create_ticket confirmation was accepted with HTTP 202 rather than rejected before a CRM action. No legacy write was dispatched."
+    },
+    "natural_development_initial": {
+      "report": "reports/crm-journeys/baseline-dev-20261020/summary.json",
+      "cases": 12,
+      "automatic_passes_before_grader_review": 9,
+      "confirmed_parameter_difference": "An explicitly supplied complaint title had its first letter lowercased in the actual API request.",
+      "grader_corrections": [
+        "A business refusal or capability explanation may validly end in completed after a safe lookup; host status vocabulary alone is not the business oracle.",
+        "Slash and dotted missing-field paths are normalized before exact comparison.",
+        "Natural follow-up messages marked chat_before_confirmation must precede automated approval."
+      ],
+      "source_changed_during_run": []
+    }
+  },
+  "fault_injection": [
+    "Successful complaint dispatch followed by loss of the HTTP adapter response; reconcile/retry must use the durable receipt without repeating the mutation.",
+    "One-shot CRM read HTTP 503; an error envelope must never become a successful receipt, and explicit retry may recover.",
+    "Concurrent duplicate UI approvals; at most one exact authorized mutation is dispatched.",
+    "A serialized legacy plan and confirmation supplied as restored backend state."
+  ],
+  "automatic_checks": [
+    "Observable completion, clarification or capability-limit state",
+    "Required and forbidden operations, without an exact total tool sequence",
+    "Exact approved payload before each actual mutation",
+    "Duplicate mutation and maximum-write checks",
+    "User-supplied parameter subset preservation",
+    "Selected case identifiers and private beneficiary fixture ownership",
+    "System identifiers must come from user input or earlier actual receipts",
+    "No successful receipt for a failed or foreign-case request"
+  ],
+  "limitations": [
+    "The CRM backend remains synthetic and cannot validate the actual government's availability, authorization or data quality.",
+    "Deterministic scripted-provider tests are engineering safety tests, not model accuracy measurements.",
+    "Automatic journey checks require independent semantic review for understandable questions, meaningful refusal, unsupported advice and invented claims.",
+    "A holdout ceases to be blind after its individual inputs and failures are used for implementation changes.",
+    "The natural journey runner uses an isolated memory store and disabled database feedback. CRM feedback HTTP binding and file-store restart are tested separately; this run is not a production Neon database regression."
+  ],
+  "final_retest": {
+    "engineering_http": {
+      "command": "node --test tests/crm-integration.test.mjs",
+      "tests": 18,
+      "passed": 18,
+      "failed": 0,
+      "scripted_provider": true,
+      "notes": "Independently supplied multi-record backend fixture checks semantic target selection and returned-key propagation without relying on production demo wording."
+    },
+    "natural_journeys": {
+      "automatic_checks_only": true,
+      "independent_business_review": "docs/evaluation/balady-crm-business-semantic-review-20261020.json; preserved original semantic 33/40",
+      "development": {
+        "cases": 12,
+        "automatic_passes": 11,
+        "report": "reports/crm-journeys/candidate-dev-20261020/summary.json",
+        "source_changed_during_run": []
+      },
+      "first_holdout": {
+        "cases": 28,
+        "automatic_passes": 26,
+        "report": "reports/crm-journeys/first-holdout-20261020/summary.json",
+        "source_changed_during_run": [],
+        "is_blind_to_implementer": true
+      },
+      "automatic_failure_categories": {
+        "host_clarification_status_requires_semantic_interpretation": 2,
+        "specific_case_selection_assertion_not_met": 1
+      },
+      "unauthorized_writes": 0,
+      "duplicate_mutations": 0,
+      "foreign_beneficiary_receipts": 0,
+      "do_not_interpret_as": "Automatic 37/40 is not final business-language accuracy; independent transcript review is required."
+    },
+    "fixture_order_regression": {
+      "phase": "regression",
+      "cases": 6,
+      "automatic_passes": 5,
+      "report": "reports/crm-journeys/reversed-selection-20261020/summary.json",
+      "source_changed_during_run": [],
+      "result": "Five explicit target selections remained correct after backend record order reversal. The same ambiguous-selection assertion was unmet; no additional failures or blind-test claims."
+    }
+  },
+  "first_independent_semantic_review": {
+    "report": "docs/evaluation/balady-crm-business-semantic-review-20261020.json",
+    "cases": 40,
+    "passed": 33,
+    "development_passed": 11,
+    "development_cases": 12,
+    "first_holdout_passed": 22,
+    "first_holdout_cases": 28,
+    "automatic_result_retained": "37/40 under original grader version 1",
+    "status": "Preserved baseline, not overwritten by subsequent regression."
+  },
+  "fingerprint_scope_correction": {
+    "scope_version": 2,
+    "affected_harness": "scripts/crm-eval.mjs",
+    "historical_gap": "The earlier contract harness enumerated source files manually and omitted policy, fixture, file-handling and presentation dependencies. Historical reports remain unmodified; omitted hashes cannot be reconstructed as if they had been measured then.",
+    "new_scope": "Every .mjs in src/crm and src/road, the harness, web access, lockfile and frozen datasets. Start and end hashes are compared; any change fails the run.",
+    "interpretation": "The omission limits exact historical reproducibility. It is not repaired by inserting current hashes into an old report."
+  },
+  "next_regression": {
+    "status": "awaiting host-managed SSO prerequisite repair and independent browser mixed-goal confirmation before v7",
+    "engineering_http_cases": 33,
+    "grading_engineering_cases": 8,
+    "natural_grader_version": 2,
+    "grading_policy": "docs/evaluation/balady-crm-grader-policy-20261020.json",
+    "contract_source_fingerprint_scope_version": 2,
+    "planned_contract_cases": 70,
+    "planned_natural_cases": 40,
+    "phase": "regression",
+    "new_host_safety_checks": [
+      "A complete unapproved draft cannot trigger repeated requests for known facts or text consent after a supplied correction.",
+      "Public successful-write narrative is generated from actual receipts and explicitly local, without invented official-app visibility or notifications.",
+      "Actual UI-selected file bytes remain on the host, require separate upload and submission approvals, and cannot be reused by another conversation.",
+      "Public plan, missing-information question and read answer undergo a separate evidence-based prose review; malformed review output cannot publish a plan or authorize a write."
+    ],
+    "response_guard_seam_cases": 3
+  },
+  "interrupted_regressions": [
+    {
+      "stage": "v2",
+      "natural_directory": "reports/crm-journeys/final-regression-20261020-v2",
+      "natural_cases_completed": 31,
+      "contract_directory": "reports/crm/2026-10-19T17-49-45.316Z",
+      "contract_cases_completed": 54,
+      "is_final": false,
+      "reason": "Source freeze revoked for a general FAQ routing repair."
+    },
+    {
+      "stage": "v3",
+      "natural_directory": "reports/crm-journeys/final-regression-20261020-v3",
+      "natural_cases_completed": 37,
+      "contract_directory": "reports/crm/2026-10-19T17-53-36.962Z",
+      "contract_cases_completed": 57,
+      "is_final": false,
+      "reason": "Browser testing exposed a text-consent loop before the first submission draft; source freeze revoked."
+    },
+    {
+      "stage": "v5",
+      "natural_directory": "reports/crm-journeys/final-regression-20261020-v5-verdict",
+      "natural_cases_completed": 5,
+      "contract_directory": "reports/crm/2026-10-19T18-35-06.846Z",
+      "contract_cases_completed": 32,
+      "is_final": false,
+      "reason": "independent browser found redundant text consent; pending diagnosis"
+    }
+  ],
+  "engineering_evidence_before_latest_consent_repair": {
+    "report": "docs/evaluation/balady-crm-integration-final-r2-20261020.json",
+    "raw_tap": "docs/evaluation/balady-crm-integration-final-r2-20261020.tap",
+    "tests": 29,
+    "passed": 29,
+    "source_changed_during_run": [],
+    "limitation": "The subsequent initial-submission consent red test was not yet part of this passing run; this is not the final release sign-off."
+  },
+  "response_guard_engineering": {
+    "report": "docs/evaluation/balady-crm-integration-response-guard-20261020.json",
+    "raw_tap": "docs/evaluation/balady-crm-integration-response-guard-20261020.tap",
+    "tests": 73,
+    "passed": 73,
+    "failed": 0,
+    "source_changed_during_run": [],
+    "scope": "29 HTTP, 8 grading, 2 audience, 31 FAQ and 3 response-review seam tests",
+    "scripted_provider": true,
+    "notes": [
+      "Host-focused public fixtures inject an explicit identity responseGuard test double. Dedicated seam tests use the actual CrmResponseGuard with scripted external reviewer calls.",
+      "The natural HTTP journey evaluator retains the production real reviewer. Its per-case request count includes reviewer calls and reports reviewer lifecycle/corrections separately.",
+      "No claim of natural language accuracy follows from these engineering results."
+    ]
+  },
+  "live_title_edit_diagnostic": {
+    "phase": "diagnostic-regression",
+    "blind": false,
+    "report": "reports/crm-journeys/diagnostic-title-edit-20261020-guard/summary.json",
+    "checks": 10,
+    "passed": 10,
+    "production_real_model": true,
+    "production_real_response_guard": true,
+    "response_reviews": 2,
+    "model_requests": 13,
+    "source_changed_during_run": [],
+    "result": "Complete supplied complaint data opened a host card; a natural title correction preserved every other parameter, replaced the card, rejected the old card, and required exact new-card approval before one write.",
+    "limitations": [
+      "Independent synthetic diagnostic, not part of 40-case natural score and not a blind test.",
+      "Uses a local memory store and documented CRM simulator.",
+      "Only fictional contact data: Test User, reserved .test mailbox and all-zero dummy telephone."
+    ]
+  },
+  "final_frozen_regression": {
+    "summary": "docs/evaluation/balady-crm-final-regression-20261020.json",
+    "contract": {
+      "report": "reports/crm/2026-10-19T18-21-17.464Z/summary.json",
+      "cases": 70,
+      "passed": 69,
+      "failed": 1,
+      "source_changed_during_run": []
+    },
+    "natural": {
+      "report": "reports/crm-journeys/final-regression-20261020-v4-guard/summary.json",
+      "cases": 40,
+      "automatic_passed": 39,
+      "failed": 0,
+      "needs_review": 1,
+      "source_changed_during_run": [],
+      "response_review": {
+        "started": 86,
+        "completed": 86,
+        "corrected": 46,
+        "model_requests": 86
+      }
+    },
+    "independent_business_review": {
+      "report": "docs/evaluation/balady-crm-business-v4-review-20261020.json",
+      "strict_factual_language_passed": 34,
+      "cases": 40,
+      "observed_goal_adequacy": 39,
+      "needs_observation": 1,
+      "residual_categories": [
+        "Final response in the wrong language",
+        "Official follow-up incorrectly uses a local simulation record number",
+        "Attachment boolean inferred as count, type or uploader",
+        "Missing API inferred as an unsupported official privacy policy"
+      ],
+      "release_criteria_met": false
+    },
+    "historical_results_preserved": true
+  },
+  "input_boundary_engineering": {
+    "report": "docs/evaluation/balady-crm-input-boundaries-engineering-20261020.json",
+    "tests": 157,
+    "passed": 157,
+    "source_changed_during_run": [],
+    "new_cases": 4,
+    "new_cases_red_phase": "The implementation landed before the first run; no pre-fix red outcome is claimed for these four. Earlier verifier tests have separate 8-case red evidence."
+  },
+  "final_v6_regression": {
+    "summary": "docs/evaluation/balady-crm-final-regression-20261020.json",
+    "contract": {
+      "report": "reports/crm/2026-10-19T18-39-11.054Z/summary.json",
+      "cases": 70,
+      "passed": 68,
+      "failed": 2,
+      "source_changed_during_run": []
+    },
+    "natural": {
+      "report": "reports/crm-journeys/final-regression-20261020-v6-verdict/summary.json",
+      "cases": 40,
+      "automatic_passed": 39,
+      "failed": 0,
+      "needs_review": 1,
+      "source_changed_during_run": [],
+      "response_review": {
+        "started": 129,
+        "completed": 86,
+        "rejected_attempts": 42,
+        "passed_gates": 178,
+        "corrected": 0,
+        "model_requests": 219
+      }
+    },
+    "all_input_reference_fixture_hashes_unchanged": true,
+    "independent_business_review": {
+      "report": "docs/evaluation/balady-crm-business-v6-review-20261020.json",
+      "goal_reasonable_at_observed_boundary": 40,
+      "goal_cases": 40,
+      "facts_and_language_passed": 38,
+      "presentation_passed": 39,
+      "combined_passed": 37,
+      "cases": 40,
+      "remaining_categories": [
+        "Attachment presence boolean incorrectly expanded to photograph type (2 cases)",
+        "Literal newline escapes in a cancellation answer (1 case)"
+      ],
+      "actual_outcome_counts": {
+        "own_history_or_detail_reads": 15,
+        "reference_catalog_reads": 5,
+        "total_read_receipts": 33,
+        "simulated_public_form_submissions": 3,
+        "simulated_write_receipts": 3,
+        "actual_file_uploads": 0,
+        "waiting_for_necessary_information_or_choice": 10,
+        "explicit_capability_limits": 18,
+        "cancelled_or_unauthorized_requests": 7,
+        "social": 1,
+        "official_submissions": 0
+      },
+      "actual_outcome_counts_may_overlap": true,
+      "release_criteria_met": false,
+      "coverage_gaps": [
+        "One future clarification was not delivered, so its hidden exact target remains deferred.",
+        "The file-selection case stops at the picker; exact-byte upload and confirmation have separate UI/HTTP evidence."
+      ]
+    },
+    "versioned_aggregate": "docs/evaluation/balady-crm-final-v6-regression-20261020.json"
+  },
+  "mixed_goal_engineering": {
+    "report": "docs/evaluation/balady-crm-mixed-goal-engineering-20261020.json",
+    "tests": 169,
+    "passed": 169,
+    "source_changed_during_run": [],
+    "limitation": "The subsequently discovered unauthenticated SSO planning loop is not part of this passing evidence; two host-auth tests have been authored pending implementation."
+  }
+}

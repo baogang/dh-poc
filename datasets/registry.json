@@ -1,18 +1,67 @@
 {
-  "active": [{"id":"balady-crm","enabled":true,"tool_cases":"balady-crm/tool-cases.jsonl","planning_cases":"balady-crm/planning-cases.jsonl"}],
+  "active": [
+    {
+      "id": "balady-crm",
+      "enabled": true,
+      "tool_cases": "balady-crm/tool-cases.jsonl",
+      "planning_cases": "balady-crm/planning-cases.jsonl",
+      "purpose": "Integration contract regression with explicit wire parameters, not a citizen-language benchmark"
+    },
+    {
+      "id": "balady-crm-natural",
+      "enabled": true,
+      "inputs": "balady-crm-natural/inputs.jsonl",
+      "references": "balady-crm-natural/references.jsonl",
+      "fixtures": "balady-crm-natural/fixtures.jsonl",
+      "purpose": "Independent natural-language public HTTP journeys; 12 development + 28 frozen holdout; semantic review required"
+    }
+  ],
   "legacy_reason": "Previous synthetic APIs were replaced by CRM Services V1.13.0. Preserve their scenarios and test sources, but exclude them from the active CRM test/evaluation commands.",
   "disabled": [
-    {"id":"road-v1","enabled":false},
-    {"id":"road-v2","enabled":false},
-    {"id":"road-v3","enabled":false},
-    {"id":"road-v4","enabled":false},
-    {"id":"v1","enabled":false},
-    {"id":"v1.1","enabled":false},
-    {"id":"v1.2","enabled":false},
-    {"id":"v2.0","enabled":false},
-    {"id":"v3.0","enabled":false}
+    {
+      "id": "road-v1",
+      "enabled": false
+    },
+    {
+      "id": "road-v2",
+      "enabled": false
+    },
+    {
+      "id": "road-v3",
+      "enabled": false
+    },
+    {
+      "id": "road-v4",
+      "enabled": false
+    },
+    {
+      "id": "v1",
+      "enabled": false
+    },
+    {
+      "id": "v1.1",
+      "enabled": false
+    },
+    {
+      "id": "v1.2",
+      "enabled": false
+    },
+    {
+      "id": "v2.0",
+      "enabled": false
+    },
+    {
+      "id": "v3.0",
+      "enabled": false
+    }
   ],
-  "independent": [{"id":"road-emotion-v1","enabled":true,"purpose":"Independent sentiment benchmark; does not call business APIs"}],
+  "independent": [
+    {
+      "id": "road-emotion-v1",
+      "enabled": true,
+      "purpose": "Independent sentiment benchmark; does not call business APIs"
+    }
+  ],
   "disabled_test_files": [
     "tests/core.test.mjs",
     "tests/regression-gate.test.mjs",

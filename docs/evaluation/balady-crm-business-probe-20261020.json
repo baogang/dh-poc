@@ -1,0 +1,29 @@
+{
+  "date": "2026-10-20",
+  "kind": "candidate-independent-business-probe",
+  "source_sha256": {
+    "src/crm/agent.mjs": "003580c6f79913af9c500d62cbd7e25ecb5010d4c51e43e823af93c38608dcbc",
+    "src/crm/simulation.mjs": "9ab597aff7a79edf893b874f7732995fbd751f43ed09d45c48e8a96c8f4804ac",
+    "src/crm/policy.mjs": "d93301c23ee7ed91dbf0988da78f48c370480c1996673541ccb272eea5cce97b",
+    "src/crm/fixtures.mjs": "bb49919ba566f8c139e49d47fea8622a022a82417480e314365af03ad85659e2"
+  },
+  "checks": {
+    "history_isolates_owner": true,
+    "foreign_fetch_rejected": true,
+    "wrong_kind_fetch_rejected": true,
+    "unsupported_type_does_not_return_generic_row": true,
+    "unknown_city_does_not_return_riyadh_row": true,
+    "public_agent_has_no_vehicle_status_operation": true
+  },
+  "all_six_public_business_checks_pass": true,
+  "residual": {
+    "non_vehicle_callback_issue_confirmed": false,
+    "previous_claim_withdrawn": true,
+    "correction": "INC1 is vehicle, so its successful update was valid. Seed waste and independent waste records both reject vehicle updates with INELIGIBLE_KIND.",
+    "artifact": "docs/evaluation/balady-crm-business-vehicle-correction-20261020.json"
+  },
+  "original_residual_claim_withdrawn": {
+    "private_integration_callback_accepts_non_vehicle_fixture": true,
+    "note": "The internal contract simulation does not validate a vehicle-specific case domain. Citizen-facing role policy removes this callback entirely; this is a residual simulator-fidelity limitation rather than an open citizen write."
+  }
+}

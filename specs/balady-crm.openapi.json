@@ -20358,7 +20358,7 @@
                   },
                   "subject": {
                     "type": "string",
-                    "description": "Form request subject; lowercase subject is required."
+                    "description": "The property name is lowercase subject. The title VALUE may use any case: preserve the title supplied by the user exactly; never lowercase it."
                   },
                   "Description": {
                     "type": "string",

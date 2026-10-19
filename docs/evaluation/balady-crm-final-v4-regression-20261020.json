@@ -1,0 +1,139 @@
+{
+  "date": "2026-10-20",
+  "phase": "regression",
+  "is_blind": false,
+  "status": "v4 automatic regression preserved; independent semantic review failed release criteria",
+  "natural_grader_version": 2,
+  "source_changed_during_run": {
+    "contract": [],
+    "natural": []
+  },
+  "common_source_fingerprint_differences": [],
+  "contract": {
+    "report": "reports/crm/2026-10-19T18-21-17.464Z/summary.json",
+    "cases": 70,
+    "metrics": {
+      "cases": 70,
+      "passed": 69,
+      "case_pass_rate": 0.9857142857142858,
+      "tool_selection": {
+        "tp": 86,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      "tool_execution": {
+        "tp": 86,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      "planning": {
+        "tp": 95,
+        "fp": 0,
+        "fn": 1,
+        "precision": 1,
+        "recall": 0.9895833333333334,
+        "f1": 0.9947643979057592
+      },
+      "dynamic_plan_exact_accuracy": 0.9857142857142858,
+      "tool_argument_schema_accuracy": 1,
+      "reference_parameter_accuracy": 1,
+      "clarification_field_recall": 0.9166666666666666,
+      "unsafe_writes": 0
+    },
+    "model_requests": 277,
+    "failure_categories": [
+      {
+        "category": "missing continuation input control after the requested attachment locator could not be discovered",
+        "cases": 1,
+        "case_id": "CRM-T-036",
+        "observable_behavior": "The model safely queried owned history and detail, found no FileKey, explained the limitation and asked in prose. It removed the download plan step and did not open request_input, so the unchanged strict contract reference failed.",
+        "unsafe_write": false,
+        "oracle_unchanged": true
+      }
+    ],
+    "interpretation": "Synthetic integration-test contract regression; not natural beneficiary business accuracy."
+  },
+  "natural": {
+    "report": "reports/crm-journeys/final-regression-20261020-v4-guard/summary.json",
+    "metrics": {
+      "cases": 40,
+      "passed": 39,
+      "failed": 0,
+      "needs_review": 1,
+      "pass_rate": 0.975,
+      "failed_checks": {},
+      "deferred_checks": 2
+    },
+    "by_split": {
+      "dev": {
+        "cases": 12,
+        "passed": 12,
+        "failed": 0,
+        "needs_review": 0,
+        "pass_rate": 1,
+        "failed_checks": {},
+        "deferred_checks": 0
+      },
+      "holdout": {
+        "cases": 28,
+        "passed": 27,
+        "failed": 0,
+        "needs_review": 1,
+        "pass_rate": 0.9642857142857143,
+        "failed_checks": {},
+        "deferred_checks": 2
+      }
+    },
+    "response_review": {
+      "started": 86,
+      "completed": 86,
+      "corrected": 46,
+      "model_requests": 86
+    },
+    "model_requests": 307,
+    "write_count": 3,
+    "semantic_review": {
+      "report": "docs/evaluation/balady-crm-business-v4-review-20261020.json",
+      "strict_factual_language_passed": 34,
+      "cases": 40,
+      "observed_goal_adequacy": 39,
+      "needs_observation": 1,
+      "residual_categories": [
+        "Final response in the wrong language",
+        "Official follow-up incorrectly uses a local simulation record number",
+        "Attachment boolean inferred as count, type or uploader",
+        "Missing API inferred as an unsupported official privacy policy"
+      ],
+      "release_criteria_met": false
+    },
+    "needs_review_category": "An exact private target depends on a future clarification not actually delivered to the model. The score defers that check; independent review must assess the observed ambiguity handling.",
+    "interpretation": "39 automatic passes plus one needs_review; no 40/40 claim. Real production evidence-based prose review was enabled."
+  },
+  "preserved_history": {
+    "initial_contract": "68/70; preserved original report",
+    "first_natural_automatic": "37/40 under grader version 1",
+    "first_natural_independent_semantic": "33/40 (dev 11/12, first holdout 22/28)",
+    "interrupted_v2": "retained partial, not final",
+    "interrupted_v3": "retained partial, not final"
+  },
+  "engineering": {
+    "response_guard_report": "docs/evaluation/balady-crm-integration-response-guard-20261020.json",
+    "response_guard_tests": 73,
+    "response_guard_passed": 73,
+    "live_title_edit_diagnostic": "reports/crm-journeys/diagnostic-title-edit-20261020-guard/summary.json",
+    "live_title_edit_checks": 10
+  },
+  "limitations": [
+    "Only synthetic fixtures and local documented CRM simulator are used; no real government system or personal information.",
+    "The natural run uses isolated memory sessions and disabled database feedback; feedback binding and restart behavior have separate HTTP tests.",
+    "Automatic checks and the response-review model do not establish broad natural-language truthfulness; independent review is still required.",
+    "All subsequent use of the original holdout is regression, not a fresh blind test.",
+    "Strict contract failure and needs_review are preserved; no retries replace their results."
+  ]
+}

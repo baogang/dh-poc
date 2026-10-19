@@ -1,0 +1,46 @@
+{
+  "grader_version": 2,
+  "scope": "Natural public HTTP journeys only; original 70 document contract cases remain strict API coverage tests.",
+  "original_results_are_immutable": [
+    "First natural automatic checks: 37/40",
+    "First independent semantic review: 33/40 (development 11/12, holdout 22/28)",
+    "The first 28 holdout transcripts and their original scores must not be overwritten."
+  ],
+  "corrections_and_independent_rationale": [
+    {
+      "change": "Recognize the actual clarification state only when it contains an actionable pending service choice.",
+      "reason": "A host state label is not a business outcome. This removes a transport-vocabulary mismatch without declaring an irrelevant service chooser a useful business answer; that remains an independent semantic check."
+    },
+    {
+      "change": "Only actual HTTP chat and input text can provide user facts and identifier provenance.",
+      "reason": "Future scripted answers not delivered to the model were incorrectly included in the old source-of-identifier check. A model must not receive credit for using facts it never observed."
+    },
+    {
+      "change": "A private expected target that depends on an unsent clarification is deferred, not a hard failure and not a pass.",
+      "reason": "An evaluator cannot require the model to infer an answer withheld by the test runner. Independent review must still determine whether it asked a useful question, listed candidates safely, or made unsupported assumptions."
+    },
+    {
+      "change": "A successful owned history row explicitly identified in the final answer can satisfy a natural status query without an extra detail request.",
+      "reason": "The citizen requests information, not an API sequence. This equivalence requires actual returned data and the correct displayed record number; a narrative claim without matching evidence does not qualify. Tool-level contract tests still enforce their required APIs."
+    },
+    {
+      "change": "Report pass, fail and needs_review separately.",
+      "reason": "Deferred facts and ungraded semantic rules must not inflate a claimed success rate. Every natural journey still requires independent business-language review."
+    },
+    {
+      "change": "Canonicalize an omitted body prefix in missing-field metadata only when the operation schema unambiguously locates that exact root in the request body.",
+      "reason": "CustomerInformation.FirstName and body.CustomerInformation.FirstName identify the same documented missing fact in a human question. This does not coerce actual API arguments, accept misspelled keys, match arbitrary suffixes, or waive a missing child field."
+    }
+  ],
+  "strict_checks_unchanged": [
+    "No foreign beneficiary record in successful API evidence",
+    "Exact UI authorization before every mutation",
+    "No duplicate mutation or excess writes",
+    "User-supplied payload values remain exact",
+    "Forbidden operations remain forbidden",
+    "Runtime failures remain failures",
+    "System identifiers require an actually observed source"
+  ],
+  "comparability": "Subsequent runs are regression under grader version 2. Their automatic pass rate is not directly comparable to the original version 1 rate; original reports and independent semantic results are retained.",
+  "revision": 2
+}

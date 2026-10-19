@@ -1,17 +1,20 @@
 # BALADY CRM 助理
 
-`balady-crm` 分支已将当前 Road PI POC 替换为 BALADY CRM 助理，覆盖 35 个业务工具，使用 CRM Services Integration Guide V1.13.0 的真实接口契约与新的本地仿真后端。不是正式政府 API 接入。
+`balady-crm` 分支已将当前 Road PI POC 替换为 BALADY 助理。接口契约覆盖 35 个业务 API；市民助手按权限开放其中 20 个，机构回调仅用于独立集成测试。采用 CRM Services Integration Guide V1.13.0 的接口定义和本地仿真后端，尚未接入政府系统。
 
-[集成与来源冲突记录](docs/balady-crm-integration.md) · [OpenAPI 3.0.3](specs/balady-crm.openapi.json) · [70 项评测流程](datasets/balady-crm/README.md) · [回归结果](docs/balady-crm-evaluation.md) · [启用/禁用清单](datasets/registry.json)。
+[集成与来源冲突记录](docs/balady-crm-integration.md) · [OpenAPI 3.0.3](specs/balady-crm.openapi.json) · [20 个手动业务场景](docs/balady-crm-user-scenarios.md) · [40 项自然业务场景](datasets/balady-crm-natural/README.md) · [70 项技术契约流程](datasets/balady-crm/README.md) · [回归结果](docs/balady-crm-evaluation.md) · [启用/禁用清单](datasets/registry.json)。
 
 ```bash
 npm run web           # 当前 BALADY 助理
 npm test              # 当前启用的 CRM 测试
 npm run crm:validate  # OpenAPI schema、引用与生成一致性
-npm run crm:eval      # 50 工具流程 + 20 动态计划，真实模型/本地 API
+npm run crm:eval      # 40 项自然业务流程，完整 FAQ/情绪/HTTP/真实模型
+npm run crm:contract-eval # 50 工具契约 + 20 技术计划，独立集成测试受众
 ```
 
 写操作需要逐次 UI 确认；缺参和参数错误由工具契约返回字段路径并追问。沿用 Neon 会话与回答反馈。旧 mock API 路由及对应评测命令已停用，数据和测试源文件保留。独立情绪评测不受替换影响。
+
+市民场景不出现 API 名、调用步骤或预置答案；输入、参考、仿真数据分别保存。技术契约测试验证接口边界，不代表市民业务成功率。自然业务需要独立语义审查，不能用“被安全拒绝”冒充“办理完成”。
 
 以下是已停用的 SENTRA/旧 mock 版本说明，保留作历史参考；其中的旧业务命令与分数不代表当前 CRM 版本。
 

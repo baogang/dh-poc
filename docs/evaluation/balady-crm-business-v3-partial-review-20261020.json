@@ -1,0 +1,332 @@
+{
+  "date": "2026-10-20",
+  "phase": "interrupted v3 partial review, not final regression",
+  "source_report": "reports/crm-journeys/final-regression-20261020-v3",
+  "interruption": {
+    "recorded_at": "2026-10-19T17:55:46.101707+00:00",
+    "status": "interrupted",
+    "is_final": false,
+    "reason": "Coordinator stopped v3 after browser testing exposed a P1 text-consent loop before the first submission draft. Preserve partial evidence; await successful browser workflow before another full run.",
+    "completed_cases": 37,
+    "partial_report": "reports/crm-journeys/final-regression-20261020-v3/partial.json"
+  },
+  "completed_transcripts_reviewed": 37,
+  "planned_natural_cases": 40,
+  "final_pass_rate": null,
+  "missing_cases": [
+    "NAT-H026",
+    "NAT-H027",
+    "NAT-H028"
+  ],
+  "limitations": [
+    "Only completed transcripts were reviewed. No claim of complete 40-case result.",
+    "The final bytes/schema guards and subsequent browser fix are newer than this report and must be tested in the final frozen candidate.",
+    "File-selection request text is not end-to-end file-upload evidence.",
+    "All later runs are regression, not a new blind holdout."
+  ],
+  "improvements_observed": [
+    "Clear licence/payment and physical issue requests reach an appropriate answer or human-fact clarification instead of an unrelated service-card gate.",
+    "Open/InProgress labels are no longer treated as proof of dispatch, no work started, or a repair schedule.",
+    "Successful submission response comes from the actual receipt and expressly states local-only simulation and no notification/refund.",
+    "Photo request uses file-kind UI instead of a text-only request to upload.",
+    "Arabic list questions contain normal newline characters.",
+    "Alternative public complaint is generally expressed as an explicit choice; no silent fallback write observed."
+  ],
+  "confirmed_residual_findings": [
+    {
+      "id": "V3-SEM-001",
+      "severity": "P2",
+      "category": "Local simulated attachment incorrectly promised visible in official app",
+      "case": "NAT-H022",
+      "message_kind": "input_request",
+      "exact_evidence": "You can view the attachment in the official Balady app or website with the same account.",
+      "context": "The same question identifies the synthetic local report and says its file reference is unavailable. There is no evidence the local report or attachment exists in any official channel.",
+      "root_cause": "Only success-after-write output is receipt-controlled; general answers and request_input.question remain unconstrained model prose.",
+      "recommendation": "Apply the simulation and evidence boundary to all citizen-facing content paths. For an unavailable local attachment, state it cannot be retrieved here and avoid claiming it can be recovered with the same account elsewhere."
+    }
+  ],
+  "warnings": [
+    {
+      "id": "V3-WARN-001",
+      "severity": "P2 warning",
+      "category": "Responsible authority inferred without jurisdiction evidence",
+      "case": "NAT-H012",
+      "exact_evidence": "Water leaking from the pavement is usually handled by the municipality (and the water utility for the pipe itself).",
+      "assessment": "Hedged rather than a guaranteed dispatch, but city and asset owner are unknown and no authority field/verified FAQ supports the statement. Ask location, then explain connected limits without assigning responsibility."
+    }
+  ],
+  "rows": [
+    {
+      "id": "NAT-D001",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v3/NAT-D001.json",
+      "status": "completed",
+      "review": "no additional core semantic defect observed in this completed transcript",
+      "notes": []
+    },
+    {
+      "id": "NAT-D002",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v3/NAT-D002.json",
+      "status": "completed",
+      "review": "no additional core semantic defect observed in this completed transcript",
+      "notes": []
+    },
+    {
+      "id": "NAT-D003",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v3/NAT-D003.json",
+      "status": "completed",
+      "review": "no additional core semantic defect observed in this completed transcript",
+      "notes": [
+        "Public output still exposes T03, an internal request-type code. Optional alternative service offered; no write performed."
+      ]
+    },
+    {
+      "id": "NAT-D004",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v3/NAT-D004.json",
+      "status": "input",
+      "review": "no additional core semantic defect observed in this completed transcript",
+      "notes": []
+    },
+    {
+      "id": "NAT-D005",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v3/NAT-D005.json",
+      "status": "completed",
+      "review": "no additional core semantic defect observed in this completed transcript",
+      "notes": []
+    },
+    {
+      "id": "NAT-D006",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v3/NAT-D006.json",
+      "status": "completed",
+      "review": "no additional core semantic defect observed in this completed transcript",
+      "notes": []
+    },
+    {
+      "id": "NAT-D007",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v3/NAT-D007.json",
+      "status": "input",
+      "review": "no additional core semantic defect observed in this completed transcript",
+      "notes": []
+    },
+    {
+      "id": "NAT-D008",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v3/NAT-D008.json",
+      "status": "completed",
+      "review": "no additional core semantic defect observed in this completed transcript",
+      "notes": []
+    },
+    {
+      "id": "NAT-D009",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v3/NAT-D009.json",
+      "status": "completed",
+      "review": "no additional core semantic defect observed in this completed transcript",
+      "notes": []
+    },
+    {
+      "id": "NAT-D010",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v3/NAT-D010.json",
+      "status": "completed",
+      "review": "no additional core semantic defect observed in this completed transcript",
+      "notes": []
+    },
+    {
+      "id": "NAT-D011",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v3/NAT-D011.json",
+      "status": "completed",
+      "review": "no additional core semantic defect observed in this completed transcript",
+      "notes": []
+    },
+    {
+      "id": "NAT-D012",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v3/NAT-D012.json",
+      "status": "input",
+      "review": "no additional core semantic defect observed in this completed transcript",
+      "notes": []
+    },
+    {
+      "id": "NAT-H001",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v3/NAT-H001.json",
+      "status": "completed",
+      "review": "no additional core semantic defect observed in this completed transcript",
+      "notes": []
+    },
+    {
+      "id": "NAT-H002",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v3/NAT-H002.json",
+      "status": "completed",
+      "review": "no additional core semantic defect observed in this completed transcript",
+      "notes": []
+    },
+    {
+      "id": "NAT-H003",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v3/NAT-H003.json",
+      "status": "completed",
+      "review": "no additional core semantic defect observed in this completed transcript",
+      "notes": []
+    },
+    {
+      "id": "NAT-H004",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v3/NAT-H004.json",
+      "status": "completed",
+      "review": "no additional core semantic defect observed in this completed transcript",
+      "notes": []
+    },
+    {
+      "id": "NAT-H005",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v3/NAT-H005.json",
+      "status": "completed",
+      "review": "no additional core semantic defect observed in this completed transcript",
+      "notes": []
+    },
+    {
+      "id": "NAT-H006",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v3/NAT-H006.json",
+      "status": "completed",
+      "review": "no additional core semantic defect observed in this completed transcript",
+      "notes": []
+    },
+    {
+      "id": "NAT-H007",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v3/NAT-H007.json",
+      "status": "completed",
+      "review": "no additional core semantic defect observed in this completed transcript",
+      "notes": []
+    },
+    {
+      "id": "NAT-H008",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v3/NAT-H008.json",
+      "status": "completed",
+      "review": "no additional core semantic defect observed in this completed transcript",
+      "notes": []
+    },
+    {
+      "id": "NAT-H009",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v3/NAT-H009.json",
+      "status": "completed",
+      "review": "no additional core semantic defect observed in this completed transcript",
+      "notes": []
+    },
+    {
+      "id": "NAT-H010",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v3/NAT-H010.json",
+      "status": "input",
+      "review": "no additional core semantic defect observed in this completed transcript",
+      "notes": []
+    },
+    {
+      "id": "NAT-H011",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v3/NAT-H011.json",
+      "status": "input",
+      "review": "no additional core semantic defect observed in this completed transcript",
+      "notes": []
+    },
+    {
+      "id": "NAT-H012",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v3/NAT-H012.json",
+      "status": "input",
+      "review": "no additional core semantic defect observed in this completed transcript",
+      "notes": [
+        "V3-WARN-001: uncertain jurisdiction advice without a returned authority or verified FAQ"
+      ]
+    },
+    {
+      "id": "NAT-H013",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v3/NAT-H013.json",
+      "status": "input",
+      "review": "no additional core semantic defect observed in this completed transcript",
+      "notes": []
+    },
+    {
+      "id": "NAT-H014",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v3/NAT-H014.json",
+      "status": "completed",
+      "review": "no additional core semantic defect observed in this completed transcript",
+      "notes": [
+        "General official-channel suggestion is not proof that a POC record is visible there; preserve that distinction."
+      ]
+    },
+    {
+      "id": "NAT-H015",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v3/NAT-H015.json",
+      "status": "completed",
+      "review": "no additional core semantic defect observed in this completed transcript",
+      "notes": [
+        "Visible plan is English for a Chinese request; final answer is Chinese."
+      ]
+    },
+    {
+      "id": "NAT-H016",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v3/NAT-H016.json",
+      "status": "completed",
+      "review": "no additional core semantic defect observed in this completed transcript",
+      "notes": []
+    },
+    {
+      "id": "NAT-H017",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v3/NAT-H017.json",
+      "status": "completed",
+      "review": "no additional core semantic defect observed in this completed transcript",
+      "notes": []
+    },
+    {
+      "id": "NAT-H018",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v3/NAT-H018.json",
+      "status": "completed",
+      "review": "no additional core semantic defect observed in this completed transcript",
+      "notes": []
+    },
+    {
+      "id": "NAT-H019",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v3/NAT-H019.json",
+      "status": "completed",
+      "review": "no additional core semantic defect observed in this completed transcript",
+      "notes": []
+    },
+    {
+      "id": "NAT-H020",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v3/NAT-H020.json",
+      "status": "completed",
+      "review": "no additional core semantic defect observed in this completed transcript",
+      "notes": []
+    },
+    {
+      "id": "NAT-H021",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v3/NAT-H021.json",
+      "status": "input",
+      "review": "no additional core semantic defect observed in this completed transcript",
+      "notes": [
+        "Now requests kind=file with a file-selector instruction. This transcript stops at file selection; it does not prove end-to-end image upload or subsequent form completion."
+      ]
+    },
+    {
+      "id": "NAT-H022",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v3/NAT-H022.json",
+      "status": "input",
+      "review": "confirmed residual product issue",
+      "notes": [
+        "V3-SEM-001"
+      ]
+    },
+    {
+      "id": "NAT-H023",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v3/NAT-H023.json",
+      "status": "completed",
+      "review": "no additional core semantic defect observed in this completed transcript",
+      "notes": []
+    },
+    {
+      "id": "NAT-H024",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v3/NAT-H024.json",
+      "status": "completed",
+      "review": "no additional core semantic defect observed in this completed transcript",
+      "notes": []
+    },
+    {
+      "id": "NAT-H025",
+      "artifact": "reports/crm-journeys/final-regression-20261020-v3/NAT-H025.json",
+      "status": "input",
+      "review": "no additional core semantic defect observed in this completed transcript",
+      "notes": []
+    }
+  ],
+  "mutated_case_or_reference_or_production": false
+}

@@ -3,12 +3,28 @@ import assert from 'node:assert/strict';
 import {createChatRenderer} from '../web/road/chat-ui.js';
 import {createDocument} from './helpers/dom.mjs';
 import {presentCrmMessage} from '../src/crm/presentation.mjs';
+import {crmEditor} from '../web/road/crm-review.js';
+import {translator} from '../web/road/i18n.js';
 
 const narrative='已查询市政主资产列表，共 1 条：\n\n| 主资产 ID | 主资产名称 |\n|---|---|\n| MA-DEMO-1 | Simulated municipal infrastructure |\n\n如需查看详情，请提供对应的 `MainAssetsID`。';
 const receipt={id:'r-assets',operation:'crm_get_assets',time:'2026-10-20T02:00:00Z',result:{statusDetails:{code:200,message:'success'},data:{responseCode:'1',responseMessage:'success',result:[{MainAssetsID:'MA-DEMO-1',MainAssetsName:'Simulated municipal infrastructure'}]}}};
 const state=()=>({user:{name:'demo'},status:'completed',running:false,messages:[{id:'answer',role:'assistant',kind:'result',text:narrative,receipt_ids:[receipt.id],time:'2026-10-20T02:00:01Z'}],plans:[],events:[],receipts:[receipt],mock:{handoffs:[]}});
 function fixture(value=state(),options={}){const document=createDocument(),container=document.createElement('div'),renderer=createChatRenderer(document,container,{});renderer.render(value,options);return {container,renderer,value};}
 const answer=container=>container.children.find(n=>n.dataset.chatId==='message:answer');
+
+test('public complaint confirmation presents readable fields and collapses protocol JSON',()=>{
+  const value=state();value.messages=[];value.receipts=[];value.pendingOperation={id:'public-review',operation:'crm_create_form_request',title:'Create public form',parameters:{body:{subject:'Rubbish Still Outside',Description:'The waste was not collected.',CustomerInformation:{FirstName:'Lina',LastName:'Citizen',EmailAddress:'lina@example.test',MobileNumber:'0501234567'},Type:'T03',Attachments:[]}}};
+  const {container}=fixture(value),card=container.children.find(n=>n.dataset.chatId==='operation:public-review');
+  assert.match(card.querySelector('dl').textContent,/标题Rubbish Still Outside/);assert.match(card.querySelector('dl').textContent,/投诉/);
+  const technical=card.querySelector('details');assert.equal(technical.open,false);assert.match(technical.querySelector('pre').textContent,/"Type": "T03"/);
+  const editor=card.querySelector('form');assert.ok(editor.querySelectorAll('input').some(n=>n.name==='body.subject'));assert.ok(!editor.querySelectorAll('textarea').some(n=>n.name==='text'));
+});
+test('editing a title preserves its exact case and the other reviewed submission fields',()=>{
+  const document=createDocument(),parameters={body:{subject:'Original title',Description:'The waste was not collected.',CustomerInformation:{FirstName:'Lina',LastName:'Citizen',EmailAddress:'lina@example.test',MobileNumber:'0501234567'},Type:'T03',Attachments:[]}};let edited;
+  const form=crmEditor(document,{id:'draft',parameters},translator('en'),{busy:false,onSubmit:value=>edited=value});
+  form.querySelectorAll('input').find(n=>n.name==='body.subject').value='Rubbish Still Outside';form.listeners.submit({preventDefault(){}});
+  assert.equal(edited.body.subject,'Rubbish Still Outside');assert.deepEqual(edited.body.CustomerInformation,parameters.body.CustomerInformation);assert.equal(edited.body.Description,parameters.body.Description);assert.equal(parameters.body.subject,'Original title');
+});
 
 test('asset answer renders an accessible table instead of literal Markdown pipes',()=>{
   const {container}=fixture(),node=answer(container),table=node.querySelector('table');
@@ -22,6 +38,12 @@ test('raw CRM evidence is collapsed and attached to the answer without another J
   assert.ok(details,'Answer must retain expandable authoritative API evidence');assert.equal(details.open,false);
   assert.match(details.querySelector('pre').textContent,/MainAssetsID/);
   assert.equal(container.children.filter(n=>n.dataset.chatId==='receipt:r-assets').length,0);
+});
+test('a simulated file download offers the actual returned bytes as a normal download link',()=>{
+  const value=state();value.receipts=[{id:'download',operation:'crm_download_file',api_mode:'simulation',result:{data:{result:{AttachName:'evidence.txt',AttachmentStream:'SGVsbG8='}}}}];value.messages[0].receipt_ids=['download'];value.messages[0].text='The attachment is ready.';
+  const link=answer(fixture(value).container).querySelector('a');assert.ok(link);assert.equal(link.download,'evidence.txt');assert.equal(link.href,'data:application/octet-stream;base64,SGVsbG8=');
+  value.receipts[0].result.data.result.AttachmentStream='javascript:alert(1)';assert.equal(answer(fixture(value).container).querySelectorAll('a').length,0);
+  value.receipts[0].result.data.result.AttachmentStream='SGVsbG8=';value.receipts[0].api_mode='real';assert.equal(answer(fixture(value).container).querySelectorAll('a').length,0,'The undocumented real stream encoding is not guessed');
 });
 test('assistant formatting treats HTML as text and refuses executable links or external images',()=>{
   const value=state();value.messages[0].text='**重点** [官方入口](https://balady.gov.sa/) [危险](javascript:alert(1)) [编码](javascript&#58;alert) ![图片说明](https://example.test/tracker)\n\n<img src=x onerror=alert(1)>\n\n<script>alert(1)</script>';

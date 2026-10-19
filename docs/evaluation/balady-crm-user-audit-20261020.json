@@ -1,0 +1,1054 @@
+{
+  "audit": "BALADY assistant proxy user audit",
+  "date": "2026-10-20",
+  "method": "An agent role-played ordinary citizens through Chrome. This is not human participant research or official production acceptance.",
+  "baseline": {
+    "url": "https://road-pothole-pi-poc.onrender.com/",
+    "mode": "CRM simulation",
+    "isolated_test_conversation": true,
+    "steps": [
+      {
+        "number": 1,
+        "goal": "Inspect current citizen experience without modifying the existing conversation",
+        "health": "issues",
+        "screenshot": "assets/balady-user-20261020/01-existing-session.png"
+      },
+      {
+        "number": 2,
+        "goal": "Track last week's rubbish report using ordinary language; sign in when asked",
+        "health": "partial",
+        "screenshot": "assets/balady-user-20261020/02-login-required.png"
+      },
+      {
+        "number": 3,
+        "goal": "Read the matching report and progress",
+        "health": "issues",
+        "screenshot": "assets/balady-user-20261020/03-ambiguous-report-match.png"
+      },
+      {
+        "number": 4,
+        "goal": "Express frustration while asking for the unresolved rubbish to be handled",
+        "health": "blocked by unrequested human-help gate",
+        "screenshot": "assets/balady-user-20261020/04-emotion-blocks-business.png"
+      },
+      {
+        "number": 5,
+        "goal": "Continue using the assistant after declining the human-help gate",
+        "health": "issues; already signed-in user asked to confirm identity again",
+        "screenshot": "assets/balady-user-20261020/05-redundant-login.png"
+      },
+      {
+        "number": 6,
+        "goal": "Report a dark streetlight without location details, at 390px viewport",
+        "health": "layout passes width; task space limited",
+        "screenshot": "assets/balady-user-20261020/06-mobile-processing.png"
+      },
+      {
+        "number": 7,
+        "goal": "Use the mobile login continuation",
+        "health": "usable",
+        "screenshot": "assets/balady-user-20261020/07-mobile-login.png"
+      },
+      {
+        "number": 8,
+        "goal": "Provide a natural address and explain that internal location identifiers are unknown",
+        "health": "blocked without a usable next route",
+        "screenshot": "assets/balady-user-20261020/09-address-recovery.png"
+      },
+      {
+        "number": 9,
+        "goal": "Prepare a public complaint in natural English",
+        "health": "issues; API vocabulary and unnecessary missing-field request",
+        "screenshot": "assets/balady-user-20261020/10-english-api-question.png"
+      },
+      {
+        "number": 10,
+        "goal": "Review exact complaint and edit it before submission",
+        "health": "safe confirmation gate but poor nontechnical review/edit experience",
+        "screenshots": [
+          "assets/balady-user-20261020/11-json-confirmation.png",
+          "assets/balady-user-20261020/12-json-editor.png"
+        ]
+      },
+      {
+        "number": 11,
+        "goal": "Correct the complaint title using natural language",
+        "health": "old confirmation expired correctly, but model asked for all supplied facts again"
+      },
+      {
+        "number": 12,
+        "goal": "Cancel the complaint naturally, then rate the response",
+        "health": "passed; no write dispatched, feedback saved",
+        "screenshot": "assets/balady-user-20261020/13-cancel-feedback.png"
+      },
+      {
+        "number": 13,
+        "goal": "Ask in Arabic to renew a shop licence and pay its fees",
+        "health": "correct language and business refusal, misleading retry/error state",
+        "screenshot": "assets/balady-user-20261020/14-arabic-unsupported.png"
+      }
+    ],
+    "findings": [
+      {
+        "id": "U01",
+        "severity": "P1",
+        "step": 3,
+        "problem": "An undated generic waste-container fixture was asserted to be the citizen's report from last week, without confirming address or ambiguity",
+        "expected": "Explain that a possible match was found and ask the citizen to identify it before choosing or changing a case"
+      },
+      {
+        "id": "U02",
+        "severity": "P1",
+        "step": 4,
+        "problem": "Negative sentiment intercepted an explicit business request with mandatory human-help choice",
+        "expected": "Continue the stated task with a suitable tone; human help can be optional"
+      },
+      {
+        "id": "U03",
+        "severity": "P1",
+        "step": 5,
+        "problem": "Citizen requested retry handling, and the agent planned CIS-only reopen operations and exposed real-adapter credential ambiguity in simulation",
+        "expected": "Do not offer internal callbacks as citizen actions; report the service boundary and available citizen routes"
+      },
+      {
+        "id": "U04",
+        "severity": "P1",
+        "step": 8,
+        "problem": "Before obtaining a city, the agent selected a single 004 classification fixture as the streetlight category, then demanded internal sub-municipality identifiers and all wire location fields",
+        "expected": "Ask for ordinary location information first, resolve only supported mappings, never choose the first fixture solely because it exists, and offer an honest official route when required data cannot be resolved"
+      },
+      {
+        "id": "U05",
+        "severity": "P2",
+        "step": 8,
+        "problem": "A citizen who explicitly could not supply location IDs was asked for them again with only a generic text field and no actionable alternative",
+        "expected": "Explain the limitation in ordinary terms and expose a clear official service or help route"
+      },
+      {
+        "id": "U06",
+        "severity": "P1",
+        "step": 9,
+        "problem": "The model interpreted the lowercase wire field name subject as a lowercase-value requirement and changed the user's title Rubbish Still Outside to rubbish still outside",
+        "expected": "Preserve the user's exact title case"
+      },
+      {
+        "id": "U07",
+        "severity": "P2",
+        "step": 10,
+        "problem": "Primary confirmation displayed raw body JSON and the only direct edit control required JSON editing",
+        "expected": "Business labels with readable values, ordinary field controls, and optional collapsed raw details"
+      },
+      {
+        "id": "U08",
+        "severity": "P2",
+        "step": 1,
+        "problem": "Plans and results expose crm_* names, SSO, workflow status codes, pzInsKey and UUID receipts in normal copy; wide internal-field tables squeeze words",
+        "expected": "Keep technical data in testing details; show concise citizen-oriented plan and result"
+      },
+      {
+        "id": "U09",
+        "severity": "P2",
+        "step": 6,
+        "problem": "At 390px the demo sentiment panel sits above the task and header controls are approximately 31px high",
+        "expected": "Prioritize conversation on small screens and provide approximately 44px touch controls"
+      },
+      {
+        "id": "U10",
+        "severity": "P1",
+        "step": 11,
+        "problem": "After changing only the title, all previous complaint details were requested for textual reconfirmation before a new UI confirmation; completed plan steps reset",
+        "expected": "Retain all unchanged facts and show the revised confirmation directly"
+      },
+      {
+        "id": "U11",
+        "severity": "P2",
+        "step": 13,
+        "problem": "A correctly refused unsupported service was shown as Plan needs attention with Retry this plan and a 0/1 incomplete task",
+        "expected": "Mark the explanation complete and offer an appropriate official route; do not suggest retrying an unavailable capability"
+      }
+    ],
+    "confirmed_strengths": [
+      "Website already accessible through the user's authorized Chrome login",
+      "Demo login form resumed the initial query",
+      "No whole-document horizontal overflow at 390px",
+      "Location identifiers and coordinates were not invented after the citizen said they were unknown",
+      "Write confirmation waited for UI approval",
+      "Natural-language correction expired the previous confirmation",
+      "Natural cancellation completed without submitting the complaint",
+      "Satisfied feedback saved successfully",
+      "Arabic answer used correct RTL direction through dir=auto"
+    ],
+    "rejected_screenshots": [
+      "08-technical-address-demand.png",
+      "08b-technical-address-demand.png"
+    ],
+    "rejection_reason": "Browser capture returned 390x202 reduced images despite a 390x844 DOM viewport. They are not accepted visual evidence.",
+    "limits": [
+      "A proxy agent conducted these tasks, not recruited BALADY residents",
+      "Fixtures and business writes were simulated",
+      "No screen-reader, contrast-ratio, real SSO or official government end-to-end acceptance was performed"
+    ]
+  },
+  "initial_retest": {
+    "status": "initial candidate tested; awaiting final restart",
+    "url": "http://127.0.0.1:8788/",
+    "mode": "memory-only local CRM simulation with real language model",
+    "passes": [
+      "honest report matching without invented address/date evidence",
+      "negative sentiment continues public complaint rather than forced human gate",
+      "citizen cannot directly mutate closed incident status",
+      "explicit title capitalization preserved",
+      "readable confirmation fields and collapsed complete JSON",
+      "ordinary edit fields",
+      "invalid email blocks save with an actionable message",
+      "saved edit expires old confirmation and creates revised review",
+      "390px reflow has no document overflow and 44px header controls",
+      "mobile sentiment panel condensed"
+    ],
+    "still_failing": [
+      {
+        "id": "U10",
+        "input": "标题再改成“Please Recheck My Rubbish Report”，其他内容保持现在这样，别再让我重新填一遍。",
+        "observed": "Old confirmation expired, but model asked for textual confirmation of previously supplied contacts and no photos rather than presenting the revised confirmation"
+      }
+    ],
+    "screenshots": [
+      "15-retest-login.png",
+      "16-retest-honest-match.png",
+      "17-retest-angry-business.png",
+      "18-retest-readable-confirmation.png",
+      "19-retest-edit-validation.png",
+      "20-retest-mobile.png"
+    ],
+    "feedback_limit": "Local feedback is intentionally disabled to isolate production Neon. Not a product finding; covered independently by HTTP tests and final online verification."
+  },
+  "final_retest": {
+    "status": "complete with unresolved findings; not release acceptance",
+    "started_utc": "2026-10-19T17:33:30Z",
+    "url": "http://127.0.0.1:8788/",
+    "scope": "Chrome, local memory CRM simulation, actual configured language model; frozen final candidate",
+    "steps": [
+      {
+        "number": 1,
+        "description": "Load final frozen citizen assistant with accurate capability welcome",
+        "health": "passed"
+      },
+      {
+        "number": 2,
+        "description": "Natural forgotten-number garbage progress request, sign in and resume",
+        "health": "passed"
+      },
+      {
+        "number": 3,
+        "description": "Select rubbish semantics despite unrelated vehicle first record",
+        "health": "passed",
+        "screenshot": "assets/balady-user-20261020/21-final-report-progress.png"
+      },
+      {
+        "number": 4,
+        "description": "Angry citizen asks to complain; no human-help request",
+        "health": "passed; business continued, only necessary contacts/photos asked"
+      },
+      {
+        "number": 5,
+        "description": "Provide natural contacts, no photos, exact mixed-case title",
+        "health": "passed; title and facts preserved in readable review"
+      },
+      {
+        "number": 6,
+        "description": "Natural-language change of title only",
+        "health": "failed U10; repeated textual confirmation of already supplied details",
+        "screenshot": "assets/balady-user-20261020/22-final-revision-still-reasks.png",
+        "input": "标题改成“Please Recheck My Rubbish Report”，其他信息都不变。",
+        "observed": "已收到您的联系方式…和没有照片的说明…请确认这些信息无误，我会随即生成提交确认卡片。"
+      },
+      {
+        "number": 7,
+        "description": "Ordinary edit form rejects invalid email; corrected edit produces new review",
+        "health": "passed"
+      },
+      {
+        "number": 8,
+        "description": "Explicit UI confirmation creates one local simulated public complaint",
+        "health": "passed; PUB-DEMO-000003",
+        "screenshot": "assets/balady-user-20261020/23-final-confirmation.png"
+      },
+      {
+        "number": 9,
+        "description": "Read receipt and simulation boundary",
+        "health": "partially failed U12; clear simulated receipt but misleading official-app follow-up sentence",
+        "screenshot": "assets/balady-user-20261020/24-final-simulated-receipt.png"
+      },
+      {
+        "number": 10,
+        "description": "Streetlight reported without city/address; ask natural location facts before assuming municipality",
+        "health": "passed"
+      },
+      {
+        "number": 11,
+        "description": "Natural address supplied but unknown internal hierarchy/coordinates; user requests a copyable report",
+        "health": "boundary handled; repair not submitted; follow-up offer still overclaims formal capability under U12",
+        "screenshot": "assets/balady-user-20261020/25-final-location-limit.png"
+      },
+      {
+        "number": 12,
+        "description": "Natural English park-bin suggestion with all contacts and no photos",
+        "health": "passed; direct readable draft, no redundant missing-data prompt"
+      },
+      {
+        "number": 13,
+        "description": "390px English confirmation, navigation and document reflow",
+        "health": "passed after layout stabilized; width390, scrollWidth390, 44px header controls",
+        "screenshot": "assets/balady-user-20261020/27-final-english-mobile-confirmation.png"
+      },
+      {
+        "number": 14,
+        "description": "Cancel suggestion from the mobile confirmation card",
+        "health": "passed; confirmation expired, no write",
+        "screenshot": "assets/balady-user-20261020/28-final-cancelled-mobile.png"
+      },
+      {
+        "number": 15,
+        "description": "Arabic shop licence renewal/payment request in a fresh conversation",
+        "health": "routing friction; asks English service selection despite an explicit unsupported transaction goal"
+      },
+      {
+        "number": 16,
+        "description": "Select fee guidance, retain original Arabic question, receive honest licence/payment capability refusal",
+        "health": "boundary answer completed without retry and RTL rendered correctly; public inquiry offer still wrongly calls simulation official under U12",
+        "screenshot": "assets/balady-user-20261020/29-final-arabic-boundary.png"
+      }
+    ],
+    "open_findings": [
+      {
+        "id": "U10",
+        "severity": "P1",
+        "problem": "Natural single-field revision still asks for textual reconfirmation rather than showing revised host card directly"
+      },
+      {
+        "id": "U12",
+        "severity": "P1",
+        "problem": "Simulated complaint receipt falsely suggests the complaint can be followed in official Balady app",
+        "quote": "或通过 Balady 应用查看该投诉的后续进展。",
+        "additional_evidence": [
+          {
+            "screenshot": "assets/balady-user-20261020/25-final-location-limit.png",
+            "quote": "如果您之后拿到了这盏路灯的坐标…我可以帮您在这里正式提交报修申请。"
+          },
+          {
+            "screenshot": "assets/balady-user-20261020/29-final-arabic-boundary.png",
+            "quote": "أسجّل لك استفسارًا رسميًا",
+            "meaning": "I can register an official inquiry for you, despite simulation mode"
+          }
+        ]
+      },
+      {
+        "id": "U13",
+        "severity": "P2",
+        "problem": "Arabic request for shop licence renewal and payment is routed to English service picker; no matching shop-renewal service, requiring extra selection before explaining the boundary",
+        "screenshot": "assets/balady-user-20261020/29-final-arabic-boundary.png"
+      }
+    ],
+    "completed_business": [
+      "Authenticated citizen garbage progress query",
+      "Public complaint created after explicit UI confirmation in local simulation"
+    ],
+    "not_completed_business": [
+      "Real municipal repair",
+      "Official government complaint submission"
+    ],
+    "capability_limits": [
+      "Location-to-administrative hierarchy and geocoding not connected; no repair was submitted",
+      "Official shop-licence renewal and payments are not connected",
+      "Local feedback intentionally disabled; tested separately outside this proxy-user run"
+    ],
+    "finished_utc": "2026-10-19T17:42:00Z",
+    "screenshot_limits": [
+      "Screenshot 26 captured a stable mobile plan; first width reading immediately after viewport override was transient 1106 but settled DOM and all subsequent screenshots/readings were390; no stable horizontal-overflow bug asserted",
+      "Local model calls and browser commands occasionally timed out before dispatch; observed UI state was checked before any retry to avoid duplicate input"
+    ],
+    "validation_limits": [
+      "Proxy agent only; not human research",
+      "No real government transaction or official identity validation",
+      "Local feedback intentionally disabled for production storage isolation, covered by separate integration suite",
+      "No screen reader or full WCAG compliance assessment",
+      "This frozen candidate still has two P1 findings and one P2 routing finding"
+    ]
+  },
+  "regression_after_host_fixes": {
+    "status": "interrupted before full completion; U10 failed and file chooser blocked",
+    "url": "http://127.0.0.1:8788/",
+    "scope": "Chrome UI with real model; native file chooser attempted for synthetic image transport",
+    "startup_limit": "Initial two Chrome calls timed out; server then restarted for the last router change. Those pre-restart interactions are excluded, and a fresh session is used.",
+    "steps": [
+      {
+        "number": 1,
+        "description": "Accurate citizen-scope welcome",
+        "health": "passed"
+      },
+      {
+        "number": 2,
+        "description": "Forgot report number, sign in and automatically resume",
+        "health": "passed"
+      },
+      {
+        "number": 3,
+        "description": "Pick garbage semantics rather than first unrelated vehicle record",
+        "health": "passed",
+        "screenshot": "assets/balady-user-20261020/30-regression-progress.png"
+      },
+      {
+        "number": 4,
+        "description": "Angry user continues to complaint without human-help gate",
+        "health": "passed"
+      },
+      {
+        "number": 5,
+        "description": "All natural contacts/location/no-photos/title supplied, first draft should show host confirmation",
+        "health": "failed; fictional draft.confirmation requested through request_input",
+        "screenshot": "assets/balady-user-20261020/31-regression-first-draft-text-confirmation.png"
+      },
+      {
+        "number": 6,
+        "description": "Change title only, retain other facts",
+        "health": "failed U10; known contacts and nonexistent API fields requested again",
+        "screenshot": "assets/balady-user-20261020/32-regression-revision-still-reasks.png"
+      }
+    ],
+    "file_fixture": {
+      "path": "/tmp/balady-user-upload.png",
+      "bytes": 68,
+      "kind": "synthetic 1x1 PNG",
+      "scope": "File transport validation only, not evidence of a real municipal issue"
+    },
+    "request_input_evidence": [
+      {
+        "seq": 94,
+        "time": "2026-10-19T17:53:43.654Z",
+        "name": "request_input",
+        "arguments": {
+          "step_id": "draft",
+          "kind": "text",
+          "operation": "crm_create_form_request",
+          "fields": [
+            "draft.confirmation"
+          ],
+          "purpose": "missing",
+          "question": "我已按您提供的信息起草好投诉…如果内容没问题，请回复「可以」，我就提交；需要修改标题或内容请直接告诉我。"
+        }
+      },
+      {
+        "seq": 124,
+        "time": "2026-10-19T17:54:22.112Z",
+        "name": "request_input",
+        "arguments": {
+          "step_id": "ask_facts",
+          "kind": "text",
+          "operation": "crm_create_form_request",
+          "fields": [
+            "CustomerInformation.FirstName",
+            "CustomerInformation.LastName",
+            "CustomerInformation.MobileNumber",
+            "CustomerInformation.EmailAddress",
+            "location.address",
+            "attachments.hasPhotos"
+          ],
+          "question": "请确认沿用之前提供的信息：姓名 Test Citizen、电话 0500000000、邮箱 citizen@example.test、地点为测试橄榄街垃圾箱旁、无照片。若都正确，请回复「沿用」。"
+        }
+      }
+    ],
+    "file_browser_limit": "Native file picker was visible, but waitForEvent(filechooser)/setFiles call never returned and was aborted after1244.2s. Upload was not claimed successful. IAB fallback later unavailable."
+  },
+  "final_guard_regression": {
+    "status": "complete within explicitly recorded browser/capability limits",
+    "url": "http://127.0.0.1:8788/",
+    "browser": "Chrome",
+    "iab_limit": "Browser is not available: iab",
+    "steps": [
+      {
+        "number": 1,
+        "description": "Complete natural public complaint facts supplied in first utterance",
+        "health": "passed; immediate host review, no textual pre-approval",
+        "screenshot": "assets/balady-user-20261020/34-final-guard-first-confirmation.png"
+      },
+      {
+        "number": 2,
+        "description": "Natural title-only change",
+        "health": "passed U10; revised host review without retyping known facts",
+        "screenshot": "assets/balady-user-20261020/35-final-guard-revised-confirmation.png"
+      },
+      {
+        "number": 3,
+        "description": "Ordinary edit form rejects invalid email",
+        "health": "passed; localized browser validation",
+        "screenshot": "assets/balady-user-20261020/36-final-guard-invalid-email.png"
+      },
+      {
+        "number": 4,
+        "description": "Correct email, save for new review and explicitly confirm local submission",
+        "health": "passed; stale review invalidated and one local form created"
+      },
+      {
+        "number": 5,
+        "description": "Read actual local write receipt without official follow-up promises",
+        "health": "passed U12; PUB-DEMO-000003",
+        "screenshot": "assets/balady-user-20261020/37-final-guard-simulated-receipt.png"
+      },
+      {
+        "number": 6,
+        "description": "Natural own garbage-report status and original-photo download request; login resumes work",
+        "health": "query passed; download incomplete because contracts/fixture expose no FileKey, no attachment-list operation exists",
+        "screenshot": "assets/balady-user-20261020/38-final-guard-download-not-completed.png"
+      },
+      {
+        "number": 7,
+        "description": "One natural follow-up on the attachment flag",
+        "health": "honest limit repeated without invented link; not counted as download success"
+      },
+      {
+        "number": 8,
+        "description": "Angry citizen asks what can be done, without choosing another submission",
+        "health": "passed; empathy, no forced human help, no status mutation, public complaint offered only after user choice",
+        "screenshot": "assets/balady-user-20261020/39-final-guard-angry-options.png"
+      },
+      {
+        "number": 9,
+        "description": "Streetlight report without city/location",
+        "health": "passed; ordinary city/street/landmark clarification, no assumed municipality"
+      },
+      {
+        "number": 10,
+        "description": "Natural address with explicit unknown internal IDs/coordinates",
+        "health": "capability limit handled honestly; no record created, no government submission, no requirement that citizen know internal codes",
+        "screenshot": "assets/balady-user-20261020/40-final-guard-location-limit.png"
+      },
+      {
+        "number": 11,
+        "description": "User chooses a copyable report draft for official use after location limit",
+        "health": "passed; Arabic+Chinese drafts, explicit no system/government submission, no future formal-submission promise",
+        "screenshot": "assets/balady-user-20261020/41-final-guard-report-draft.png"
+      },
+      {
+        "number": 12,
+        "description": "Fresh Arabic shop-licence renewal/payment request",
+        "health": "passed U13; direct Arabic boundary answer, no service picker or retry, no official record/payment-receipt promise"
+      },
+      {
+        "number": 13,
+        "description": "390px Arabic response reflow and touch targets",
+        "health": "passed; document scrollWidth390,44px header controls,dir=auto→rtl",
+        "screenshot": "assets/balady-user-20261020/42-final-guard-arabic-mobile.png"
+      },
+      {
+        "number": 14,
+        "description": "Natural English public suggestion with complete contacts and no photos at390px",
+        "health": "passed; direct readable confirmation, no unnecessary clarification, no horizontal overflow",
+        "screenshot": "assets/balady-user-20261020/43-final-guard-english-mobile-confirmation.png"
+      },
+      {
+        "number": 15,
+        "description": "Cancel English suggestion from confirmation card",
+        "health": "passed; review expired and no write",
+        "screenshot": "assets/balady-user-20261020/44-final-guard-cancelled-mobile.png"
+      },
+      {
+        "number": 16,
+        "description": "Natural request with screenshot attachment; inspect native picker and submit with no file",
+        "health": "picker and empty-file rejection passed; actual browser byte selection/upload unverified due earlier Chrome chooser tool block; Stop cancels pending file request without write",
+        "screenshot": "assets/balady-user-20261020/45-final-guard-photo-required.png"
+      }
+    ],
+    "u10": "passed: complete first draft directly shows host confirmation; natural title-only revision directly creates a new host confirmation, preserves all other facts, invalidates old authorization and does not write",
+    "u12_receipt": "passed: actual local write result PUB-DEMO-000003 with final title, explicit no official submission/App lookup/SMS/email/refund",
+    "limitations": [
+      "Chrome native filechooser call previously blocked and was aborted; no successful browser file upload claimed",
+      "IAB unavailable",
+      "Default attachment flag does not expose a FileKey and there is no independent list-case-files API; historical photo download cannot complete from this data"
+    ],
+    "open_findings": [],
+    "status_observation": "Current screenshot40 top status says answered, while processing plan steps are complete. Business failure is explicit in prose. Do not report it as a false successful repair; historic screenshot38 is retained as earlier evidence.",
+    "completed_business": [
+      "One public complaint created in local simulation after explicit UI confirmation: PUB-DEMO-000003",
+      "Authenticated own garbage-report status query",
+      "Copyable Arabic and Chinese report draft"
+    ],
+    "controlled_noncompletion": [
+      "No streetlight repair request created because required administrative hierarchy/coordinates cannot be resolved from an address",
+      "Historical photo download not completed because no FileKey is exposed by default data",
+      "English suggestion cancelled before write",
+      "Photo-picker flow cancelled before selection/upload"
+    ],
+    "browser_checks": {
+      "zh": true,
+      "en": true,
+      "ar": true,
+      "mobile_width": 390,
+      "mobile_scroll_width": 390,
+      "header_touch_height": 44,
+      "arabic_direction": "rtl",
+      "temporary_viewport_restored": true
+    },
+    "file_upload_scope": "Visible native chooser,512KiB notice,empty-file validation and cancellation checked. Browser file bytes selection/upload and download-file completion are not claimed; separate HTTP integration suite is owned by root.",
+    "release_note": "No P1 reproduced in completed final-guard UI cases. This is proxy-user testing, not a claim of universal correctness or official government acceptance. Browser file transport remains explicitly unverified."
+  },
+  "dual_verdict_regression": {
+    "status": "failed_initial_draft_waiting_fix",
+    "url": "http://127.0.0.1:8788/",
+    "browser": "Chrome",
+    "scope": "First natural complete complaint, natural title-only revision, final local receipt boundary and new answer/plan status copy, multilingual capability language",
+    "steps": [
+      {
+        "id": "DV01",
+        "case": "Natural complete complaint should reach host confirmation directly",
+        "input": "我要投诉之前的垃圾清运报告被关掉，但现场的垃圾根本没清。就在利雅得测试橄榄街垃圾箱旁。标题请用“Rubbish Still Outside”。我叫 Test Citizen，电话 0500000000，邮箱 citizen@example.test，没有照片。提交前让我核对一下。",
+        "result": "fail",
+        "priority": "P1",
+        "observed": "Displayed a text request requiring reply 无误 before entering confirmation instead of direct host confirmation; the question itself already drafted the complaint description. All provided contact/title/address facts were visible. No submission performed.",
+        "evidence": "assets/balady-user-20261020/46-dual-verdict-u10-reasked.png",
+        "tool_event": {
+          "seq": 48,
+          "time": "2026-10-19T18:34:39.733Z",
+          "name": "request_input",
+          "arguments": {
+            "step_id": "draft",
+            "kind": "text",
+            "operation": "crm_create_form_request",
+            "fields": [
+              "body.Description"
+            ],
+            "question": "请核对以下投诉草稿（本地模拟，不会正式提交到官方系统）：\n\n标题：Rubbish Still Outside\n类型：投诉\n姓名：Test Citizen\n电话：0500000000\n邮箱：citizen@example.test\n地点：利雅得，测试橄榄街，垃圾箱旁\n照片：无\n\n投诉内容草稿：\n“此前提交的垃圾清运报告已被关闭，但现场垃圾仍未清理。地点在利雅得测试橄榄街的垃圾箱旁，请重新核查并清理。”\n\n如需修改内容，请直接告诉我新的描述；如内容无误，请回复“无误”，我会进入提交确认步骤。",
+            "known_parameters": {
+              "body": {
+                "Type": "T03",
+                "subject": "Rubbish Still Outside",
+                "CustomerInformation": {
+                  "FirstName": "Test",
+                  "LastName": "Citizen",
+                  "MobileNumber": "0500000000",
+                  "EmailAddress": "citizen@example.test"
+                },
+                "Attachments": []
+              }
+            }
+          }
+        },
+        "purpose": "not supplied",
+        "assessment": "Syntactically real schema field body.Description was omitted from known_parameters although the same response drafted it from already supplied facts, causing artificial missing information."
+      }
+    ],
+    "file_transport": "Not repeated; browser file upload remains unverified without extension permission."
+  },
+  "final_input_semantics_regression": {
+    "status": "complete_focused_pass_with_limits",
+    "candidate": "agent 60ba28..., guard 195ecd... as reported by root",
+    "url": "http://127.0.0.1:8788/",
+    "browser": "Chrome",
+    "method": "Proxy user through visible UI. New memory session. Natural words unchanged after latest fix. No browser file upload repeated.",
+    "steps": [
+      {
+        "id": "FI01",
+        "case": "Original natural complete complaint to first confirmation",
+        "result": "pass",
+        "observed": "Direct readable host confirmation; no redundant text confirmation; preserved title case, contact data, no photos and factual description. No submission performed yet.",
+        "evidence": "assets/balady-user-20261020/47-missing-info-direct-confirmation.png"
+      },
+      {
+        "id": "FI02",
+        "case": "Natural title-only revision of pending submission",
+        "input": "标题改成“Waste Still There”，其他内容都保留。",
+        "result": "pass",
+        "observed": "Direct new host confirmation with Waste Still There; other fields retained; earlier confirmation explicitly expired. No repeated text gate.",
+        "evidence": "assets/balady-user-20261020/48-missing-info-revised-title.png"
+      },
+      {
+        "id": "FI03",
+        "case": "Confirm edited local complaint and read actual receipt",
+        "result": "pass_local_simulation",
+        "observed": "One local complaint created as PUB-DEMO-000003 with final title Waste Still There. Host summary explicitly states local simulation only, no government submission, official App query, real SMS/email or refund. Top status 本轮已答复 and plan footer 本轮步骤已结束，请查看答复中的办理结果与限制。 verified in visible DOM.",
+        "evidence": "assets/balady-user-20261020/49-missing-info-local-receipt.png"
+      },
+      {
+        "id": "FI04",
+        "case": "Independent English public suggestion to first confirmation at 390px",
+        "input": "I would like to suggest adding shaded benches beside the children’s play area in our neighbourhood park. Please title it “Shade for Families”. My name is Sara Tester, phone 0500000001, email sara@example.test. I have no photos. Let me review it before you send it.",
+        "result": "pass",
+        "observed": "Direct host confirmation, classified as suggestion, title and contacts preserved, faithful English description. Interface language remained Chinese as selected, model plan/description English. No extra confirmation text. DOM evidence captured; screenshot50 records mobile layout only and is NOT visual proof of active confirmation because message list was scrolled to its top.",
+        "mobile_metrics": {
+          "width": 390,
+          "scrollWidth": 390,
+          "header_buttons_height": 44
+        },
+        "evidence": "assets/balady-user-20261020/50-missing-info-english-mobile.png"
+      },
+      {
+        "id": "FI05",
+        "case": "Cancel independent suggestion at 390px",
+        "result": "pass_no_write",
+        "observed": "Confirmation invalidated and status paused; explicit text says nothing above will continue to submit. No suggestion write.",
+        "evidence": "assets/balady-user-20261020/51-missing-info-cancelled-mobile.png"
+      },
+      {
+        "id": "FI06",
+        "case": "Arabic unsupported renewal/payment and official App question at 390px",
+        "input": "أريد تجديد رخصة المحل ودفع الرسوم هنا. هل يمكنني متابعتها لاحقاً في تطبيق بلدي؟",
+        "result": "pass_capability_boundary",
+        "observed": "Arabic direct answer says cannot renew or pay here, cannot link application or send notifications, local test simulation not actual government filing. Asks whether user wants a general complaint/inquiry instead of starting one unilaterally. No retry failure control or service-picker detour. Top status 本轮已答复 and neutral ended-step footer.",
+        "mobile_metrics": {
+          "width": 390,
+          "scrollWidth": 390,
+          "arabic_dir": "auto",
+          "computed_direction": "rtl"
+        },
+        "evidence": "assets/balady-user-20261020/52-final-semantics-arabic-limit.png"
+      },
+      {
+        "id": "FI07",
+        "case": "Natural suggestion genuinely missing contact details",
+        "input": "我想建议在社区公园增设饮水点，带孩子散步时没地方接水。先帮我整理，提交前让我确认。",
+        "result": "pass_missing_information",
+        "observed": "Asked ordinary Chinese for real missing first/last name, mobile and email. City/neighbourhood explicitly optional; did not demand backend codes or text approval. Supplied synthetic contact data through the visible supplementary input for the next step.",
+        "evidence": "assets/balady-user-20261020/53-final-semantics-real-missing-contacts.png"
+      },
+      {
+        "id": "FI08",
+        "case": "Provide missing contacts to direct confirmation and cancel",
+        "input": "我叫 Test Citizen，手机号 0500000000，邮箱 citizen@example.test。没有照片。",
+        "result": "pass_no_write",
+        "observed": "After supplying real missing contact data, direct readable confirmation card for suggestion 在社区公园增设饮水点. No new text-approval request. Native actions readable at390px. Cancelled, then started new conversation; no suggestion submitted.",
+        "evidence": "assets/balady-user-20261020/54-final-semantics-mobile-confirmation.png"
+      },
+      {
+        "id": "FI09",
+        "case": "English question about official App and municipality SMS",
+        "input": "If I send a complaint here, will it appear in the official Balady app, and will the municipality text me when it is resolved?",
+        "result": "pass_capability_boundary",
+        "observed": "English direct answer says no official synchronization and cannot send or promise SMS/email/callback; official filing would be a separate transaction. Asks user choice before a local complaint/draft. Neutral answer status/footer. It also broadly says supported records can be viewed in assistant history; whether every public-form subtype appears there is not exercised in this focused case.",
+        "mobile_new_message_scroll": {
+          "scrollTop": 1031,
+          "scrollHeight": 1471,
+          "clientHeight": 440,
+          "remaining_to_bottom": 0,
+          "manual_scroll_before_capture": false
+        },
+        "evidence": "assets/balady-user-20261020/55-final-semantics-english-boundary.png"
+      }
+    ],
+    "iteration_note": "This is a focused final guard/input-semantics regression, separate from the previous final_guard_regression 16-step run. Counts must not be summed as one full run.",
+    "mobile_visual_notes": {
+      "screenshot50": "Rejected as proof of active confirmation: viewport changed mid-request and screenshot was at welcome message. Retained as evidence of resizing scroll-position limitation, not card acceptance.",
+      "screenshot54": "Actual 390px confirmation lower portion: ordinary contact fields and all three actions visible; title/description above fold. Long card is vertically scrollable.",
+      "new_message_scroll": "On already fixed390px, new English answer reached bottom automatically (remaining0); no automatic-scroll failure established for new messages.",
+      "final_confirmation_pair": [
+        "assets/balady-user-20261020/56-final-semantics-mobile-confirm-actions.png",
+        "assets/balady-user-20261020/58-final-semantics-mobile-confirm-title.png"
+      ],
+      "repeat_for_evidence": "Repeated FI04 same independent English suggestion on already-fixed390px purely for visual capture, not counted as new test. Direct confirmation arrived at bottom automatically, remaining0. Pair56 and58 shows actionable buttons and readable actual title/description. Cancelled without write; viewport override restored. Screenshot57 landed on plan and is not confirmation proof."
+    },
+    "completed_steps": 9,
+    "result_summary": "9 focused steps completed; no P1 reproduced in latest candidate. One actual local simulated complaint created, suggestions cancelled; no government submission. Separate from prior16-step final_guard run. Browser file upload unverified; historical attachment download incomplete due missing FileKey.",
+    "file_transport": "Browser chooser/upload not repeated. Actual browser file upload remains unverified, requiring extension file URL permission not enabled by this agent. HTTP file byte chain tests belong to integration agent, not this report."
+  },
+  "host_facts_regression": {
+    "status": "complete_intermediate_focused_pass_with_limits",
+    "candidate": "agent eed425..., presentation c4d0a... as reported by root",
+    "url": "http://127.0.0.1:8788/",
+    "browser": "Chrome",
+    "scope": "Natural personal waste status/photo recovery; English same; Arabic table RTL; no literal escaped newlines in ordinary cancel answer; complete first card and natural title revision.",
+    "method": "Independent proxy user, visible UI only; latest preview fresh memory session. No production-code reads used to adjust user language. This iteration separate from prior runs.",
+    "steps": [
+      {
+        "id": "HF01",
+        "case": "Natural Chinese personal waste status + recover original photos",
+        "input": "我之前报过垃圾一直没清理，帮我看看现在是什么状态，也把当时的照片找回来。",
+        "result": "pass_query_download_incomplete",
+        "observed": "Requested UI login, then rendered a real four-column table for INC-26-10-000002, resolved record status and attachment flag. Explicitly distinguishes recorded status from verified on-site work. Attachment flag cannot prove quantity, type or uploader; no file bytes obtained, cannot download. Local simulation/no official channel querying stated. No fake link.",
+        "receipts_checked_in_visible_UI": [
+          "crm_get_incidents returns vehicle first / waste second",
+          "crm_fetch_incident returns INC-26-10-000002"
+        ],
+        "evidence": "assets/balady-user-20261020/59-host-facts-zh-status.png",
+        "business_limit": "Status query succeeded; photo recovery did not complete."
+      },
+      {
+        "id": "HF02",
+        "case": "English natural waste status and picture recovery query",
+        "input": "Please check my rubbish collection report and recover the pictures that were submitted with it. What is its status now?",
+        "result": "pass_query_download_incomplete",
+        "observed": "Rendered English table for waste INC-26-10-000002, Resolved, Marked as having attachments. No claim that flag proves count/type/uploader, no content retrieved so download unavailable; recorded status does not prove physical repair/dispatch/time. Local simulation and official channel limits explicit.",
+        "evidence": "assets/balady-user-20261020/60-host-facts-en-status.png",
+        "business_limit": "Status query succeeded; picture recovery incomplete."
+      },
+      {
+        "id": "HF03",
+        "case": "Arabic waste status/photo query, mobile RTL table",
+        "input": "أين وصل بلاغي عن القمامة؟ أريد الصور التي أرسلتها معه.",
+        "result": "pass_query_download_incomplete",
+        "observed": "Arabic table for waste INC-26-10-000002 with recorded Resolved and attachment flag; does not claim picture count/type/uploader. Explicit no retrieved bytes/download and local-only record, not verified site repair. Both article and table computed rtl; actual horizontal scroll reveals attachment column.",
+        "mobile_metrics": {
+          "width": 390,
+          "documentScrollWidth": 390,
+          "articleDir": "auto",
+          "articleDirection": "rtl",
+          "tableDirection": "rtl",
+          "tableWidth": 360,
+          "regionClientWidth": 299,
+          "regionScrollWidth": 360
+        },
+        "evidence": [
+          "assets/balady-user-20261020/63-host-facts-ar-mobile-table-visible.png",
+          "assets/balady-user-20261020/64-host-facts-ar-mobile-attachment-column.png"
+        ],
+        "rejected_visual_evidence": [
+          "61-host-facts-ar-mobile-boundary.png",
+          "62-host-facts-ar-mobile-table.png"
+        ],
+        "rejection_reason": "Viewport-change scroll position captured earlier Chinese/English turns. Not accepted as Arabic-result proof. Latest Arabic table focused and reshot as63/64.",
+        "business_limit": "Query succeeded, pictures not recovered."
+      },
+      {
+        "id": "HF04",
+        "case": "Complete natural complaint first confirmation after host-facts changes",
+        "result": "pass_no_write",
+        "observed": "Original natural Chinese complaint with contacts, desired title and no photos produces direct readable host confirmation. Title case retained, facts faithfully summarized; no repeated text confirmation. Not submitted.",
+        "evidence": "assets/balady-user-20261020/65-host-facts-first-confirmation.png"
+      },
+      {
+        "id": "HF05",
+        "case": "Natural title-only revision after host facts changes",
+        "input": "标题换成“Waste Still There”，别的不用改。",
+        "result": "pass_no_write",
+        "observed": "Direct new confirmation with Waste Still There and same description/contact/no attachments; earlier confirmation visibly invalidated. No re-asking or text approval.",
+        "evidence": "assets/balady-user-20261020/66-host-facts-revised-title.png"
+      },
+      {
+        "id": "HF06",
+        "case": "Natural chat cancellation produces ordinary model answer without literal escaped newlines",
+        "input": "先别提交，我再想想。",
+        "result": "pass_no_write",
+        "observed": "Model ordinary finish reply states no submission or receipt, earlier confirmation invalid. Says no guaranteed saved-draft feature and can later prepare again; no automatic submission. Rendered8 paragraphs with actual line breaks and no literal backslash+n. Used chat, not host cancel button.",
+        "dom_checks": {
+          "literalEscapedNewline": false,
+          "paragraphs": 8,
+          "hasActualNewline": true
+        },
+        "evidence": "assets/balady-user-20261020/67-host-facts-natural-cancel.png"
+      }
+    ],
+    "file_transport": "Native file chooser not retried; actual browser file upload remains unverified.",
+    "release_note": "Intermediate host-facts candidate eed425/c4d0a as reported by root, not final deployment acceptance. Root is adding structured mixed-goal guidance in a later candidate; those cases are outside this candidate result.",
+    "completed_steps": 6,
+    "result_summary": "6 focused steps on intermediate eed425/c4d0a candidate; no P1 reproduced in exercised cases. Chinese/English/Arabic waste status query succeeded, photo recovery incomplete and honest. No business writes; complete complaint/revision then natural cancellation. Later mixed-goal guidance and wording candidate not accepted by this result.",
+    "viewport": "390px override reset before finishing; user original live session untouched."
+  },
+  "final_host_guidance_regression": {
+    "status": "complete_phase_with_P2_login_replan_pending_fix",
+    "candidate": {
+      "agent": "c561aa...",
+      "presentation": "4e918c...",
+      "guard": "195ecd...",
+      "source": "Parent reported final frozen local preview hashes; no source reads to tune user utterances."
+    },
+    "url": "http://127.0.0.1:8788/",
+    "browser": "Chrome",
+    "method": "Independent proxy user using visible browser UI, natural mixed goals; separate iteration from prior16,9,6 step reports. No real government filing.",
+    "steps": [
+      {
+        "id": "FG01",
+        "case": "Waste still present + unknown closure reason + reopen original instead of duplicate",
+        "input": "我之前报的垃圾还在。帮我查查为什么被结案了，我想把原来的报告重新打开，不想重复报一件。",
+        "result": "pass_content_with_P2_plan_churn",
+        "observed": "After eventual login, actual waste record2 table: recorded resolved, attachment flag. Says receipts do not establish closure reason; no reopening/status/priority change and those institutional actions not connected. Separate local complaint offered only if user chooses and separately confirms, not automatically performed. Current referenced receipts contain no file bytes, no download link. Local-only official limits.",
+        "evidence": "assets/balady-user-20261020/69-final-guidance-reason-reopen.png",
+        "business_outcome": "Query succeeded. Closure reason remains unknown. Original case not reopened. No duplicate complaint created.",
+        "issue": "FG-PLAN-CHURN"
+      },
+      {
+        "id": "FG02",
+        "case": "User uncertain which personal record to follow, asks to choose",
+        "input": "我现在不确定要跟进哪一件了。把我报过的事项给我看看，我确认一下再说。",
+        "result": "pass",
+        "observed": "Explicit multiple candidates not yet selected. Preserves both history candidates: vehicle INC-26-10-000001 InProgress/no attachment and waste INC-26-10-000002 Resolved/attachment flag. Asks description or recorded date; no arbitrary first selection or unnecessary detail fetch (receipt count1).",
+        "evidence": "assets/balady-user-20261020/70-final-guidance-all-candidates.png"
+      },
+      {
+        "id": "FG03",
+        "case": "Natural inquiry about absent fallen-tree record",
+        "input": "那帮我找一下树倒在人行道上的那件，我之前也报过，进度怎么样？",
+        "result": "pass_not_found",
+        "observed": "Clearly says target not confirmed among currently visible records and displayed rows are candidates only. Requests description/place/time to help distinguish. Preserves both actual own records without substituting either as fallen-tree status; no invented tree record or repair.",
+        "evidence": "assets/balady-user-20261020/71-final-guidance-target-not-found.png",
+        "business_outcome": "Target record not found, its progress unknown."
+      },
+      {
+        "id": "FG04",
+        "case": "Request absent neighbour streetlight report without neighbour present",
+        "input": "我邻居也报过路灯不亮，能不能顺便帮我查一下她那件？她现在不在我旁边。",
+        "result": "pass_access_boundary_enum_path_not_proven",
+        "observed": "Ordinary answer: neighbour streetlight report not available in this session, only own vehicle/waste records. Asks neighbour to log in herself to view. No credential/identity collection, no impersonation, no disclosed neighbour record. A new local report offered only after user confirmation; none created.",
+        "evidence": "assets/balady-user-20261020/72-final-guidance-other-person.png",
+        "coverage_limit": "Visible answer used ordinary model paragraph style with prior actual receipt, not the exact host access_limited fixed wording. This case does not prove that enum path was exercised."
+      },
+      {
+        "id": "FG05",
+        "case": "English own rubbish status and original-photo download mixed goals",
+        "input": "Back to my rubbish report: can you show its status and let me download the photos I sent with it?",
+        "result": "pass_query_download_incomplete",
+        "observed": "English table selects waste record2 and recorded Resolved/attachment flag. Explicit type/count/uploader unknown; cited receipts contain no file content. File guidance says cannot download and this does not mean photo recovered. No link, local-only/official-channel limits explicit.",
+        "evidence": "assets/balady-user-20261020/73-final-guidance-en-photo-limit.png",
+        "business_outcome": "Status query succeeds; photos not recovered or downloaded."
+      },
+      {
+        "id": "FG06",
+        "case": "Arabic waste still present, unknown closure reason and reopen original only",
+        "input": "القمامة ما زالت في المكان. لماذا أُغلق بلاغي؟ أريد إعادة فتح البلاغ نفسه، وليس تقديم بلاغ جديد.",
+        "result": "pass_content_enum_path_not_proven",
+        "observed": "Arabic plain-paragraph answer cites record2 and recorded Resolved; no closure reason returned and cannot infer physical clean-up. No reopen/status-change operation available and no record changed. Separate new complaint conditional on user choice, explicitly not original reopen. Local simulation/no official reference boundary. RTL and no literal escaped newlines.",
+        "dom_checks": {
+          "dir": "auto",
+          "direction": "rtl",
+          "literalEscapedNewline": false
+        },
+        "evidence": "assets/balady-user-20261020/74-final-guidance-ar-reopen.png",
+        "coverage_limit": "Visible answer is ordinary model-style prose citing2 actual receipts, not fixed host four-column table. Content was verified; case_guidance enum path is not proven from this UI case."
+      },
+      {
+        "id": "FG07",
+        "case": "Confirm original complete public complaint still reaches direct first card",
+        "result": "pass_no_write",
+        "observed": "Original full natural Chinese request reaches direct host confirmation without redundant text gate or login. User title case, synthetic contacts, no photos preserved, factual description. Not submitted.",
+        "evidence": "assets/balady-user-20261020/75-final-guidance-direct-card.png"
+      },
+      {
+        "id": "FG08",
+        "case": "Natural chat cancellation after public first card",
+        "input": "先别提交，我再想想。",
+        "result": "pass_no_write",
+        "observed": "Old card invalidated; ordinary model answer says no submission/record/number, no guaranteed saved draft, later preparation requires fresh confirmation. Three actual paragraphs, no literal escaped newline.",
+        "dom_checks": {
+          "literalEscapedNewline": false,
+          "paragraphs": 3
+        },
+        "evidence": "assets/balady-user-20261020/76-final-guidance-natural-cancel.png"
+      }
+    ],
+    "file_transport": "File chooser/upload not retried; browser file upload remains unverified.",
+    "findings": [
+      {
+        "id": "FG-PLAN-CHURN",
+        "priority": "P2",
+        "status": "observed_in_candidate",
+        "trigger": "One initial natural mixed question in an unauthenticated new session. No user message changed intent.",
+        "observed": "Seven near-duplicate0/3 plans appeared before eventual login card; first6 said 已按新意图调整计划 despite unchanged user intent. Eventually recovered to login, so not a permanent block.",
+        "evidence": "assets/balady-user-20261020/68-final-guidance-plan-churn.png",
+        "visible_debug_event": {
+          "seq": 172,
+          "time": "2026-10-19T18:55:05.827Z",
+          "type": "tool_end",
+          "name": "crm_get_incidents",
+          "result": {
+            "error": "LOGIN_REQUIRED",
+            "message": "Add an input step with kind login before SSO operations."
+          }
+        },
+        "later_verification": "AL01 on7868bd/ddce225/bd030 showed one plan/one card and no actual API; proactive model login, fallback branch unexercised. Baseline finding retained."
+      }
+    ],
+    "completed_steps": 8,
+    "result_summary": "8 focused cases completed on c561aa/4e918c/195ecd. All exercised content/business boundaries passed; one P2 login-before-SSO replanning issue observed and parent is fixing. No business writes. Not a final release acceptance until login correction is retested. Independent phase, do not add prior iteration counts.",
+    "phase_source_note": "Parent announced a later host-login fix after this phase began. All steps FG01–FG08 here belong to the pre-login-fix c561aa/4e918c/195ecd preview, not a newer hash."
+  },
+  "final_auth_lineage_regression": {
+    "status": "complete_failed_lineage_pending_fix",
+    "candidate": {
+      "agent": "7868bd...",
+      "presentation": "ddce225...",
+      "guard": "bd030...",
+      "source": "Parent reported hashes of freshly restarted final preview."
+    },
+    "url": "http://127.0.0.1:8788/",
+    "browser": "Chrome",
+    "method": "Independent proxy user via visible browser UI. Fresh empty unauthenticated memory session, identical prior mixed utterance. Separate focused phase, not summed with older runs.",
+    "steps": [
+      {
+        "id": "AL01",
+        "case": "Identical mixed utterance in fresh unauthenticated session",
+        "input": "我之前报的垃圾还在。帮我查查为什么被结案了，我想把原来的报告重新打开，不想重复报一件。",
+        "result": "pass_visible_login_behavior_fallback_path_not_exercised",
+        "observed": "One0/4 plan and one login card, no visible actual case API receipt, no duplicate plan loop. On UI login original plan advances to1/4.",
+        "visible_tool_event": {
+          "seq": 36,
+          "time": "2026-10-19T19:02:22.759Z",
+          "name": "request_input",
+          "arguments": {
+            "step_id": "login",
+            "kind": "login",
+            "operation": "crm_get_incidents",
+            "fields": [
+              "beneficiary"
+            ],
+            "question": "要查看您之前提交的报告，需要先登录。请使用界面上的登录按钮完成登录（无需在此输入密码）。"
+          }
+        },
+        "coverage_limit": "Model requested login proactively in this natural sample. This verifies0 actual API /1 card /no replan behavior, but does not prove the host-injected fallback branch was triggered.",
+        "evidence": "assets/balady-user-20261020/77-final-auth-single-login.png"
+      },
+      {
+        "id": "AL02",
+        "case": "UI login resumes original plan and mixed case answer",
+        "result": "pass",
+        "observed": "Same single plan proceeds1/4 to4/4, no extra stopped plans. Host-style four-column table selects waste record2. Recorded resolved is not verified site repair; closure reason not returned; no reopen/status/priority change; separate complaint conditional on choice and new confirmation. Cited receipts lack file bytes, no download.",
+        "evidence": "assets/balady-user-20261020/78-final-auth-resumed-host-guidance.png",
+        "business_outcome": "Query succeeds. Closure reason unknown, original not reopened, no duplicate created."
+      },
+      {
+        "id": "AL03",
+        "case": "Arabic same-question blocked/replanned mixed goal should use host facts and fixed guidance",
+        "input": "القمامة ما زالت في المكان. لماذا أُغلق بلاغي؟ أريد إعادة فتح البلاغ نفسه، وليس تقديم بلاغ جديد.",
+        "result": "fail_presentation_lineage",
+        "priority": "P1",
+        "observed": "Arabic plan0/4 superseded by1/1, old-plan copy correctly says 已更新处理步骤，这份计划不再执行。 But result is a free3-column model table with prose instead of host4-column facts/fixedguidance. Visible message metadata confirms verified_model despite2 cited actual case receipts. Not claiming unauthorized write/data leak; failure is required host presentation/lineage boundary.",
+        "visible_message_event": {
+          "seq": 171,
+          "time": "2026-10-19T19:04:03.086Z",
+          "type": "message",
+          "message": {
+            "id": "message-f8ee3849-5d5f-49f5-b13e-0a631be9b586",
+            "kind": "result",
+            "receipt_ids": [
+              "receipt-52190d6d-5ccb-4268-95b6-a7f0fbffda6f",
+              "receipt-88b79daa-1fb0-4083-ac6f-9bcd9c914339"
+            ],
+            "presentation_source": "verified_model"
+          }
+        },
+        "evidence": "assets/balady-user-20261020/79-final-auth-ar-presentation-bypass.png"
+      }
+    ],
+    "limits": "No file chooser/upload retried; actual browser upload unverified. Local simulation only.",
+    "completed_steps": 3,
+    "result_summary": "AL01 visible login behavior and AL02 resume/mixed facts passed. AL03 required host_case presentation after same-question Arabic replanning failed; not approved for final acceptance. No new business write or file transport. Previous evidence preserved."
+  },
+  "followup_read_fix": {
+    "status": "running",
+    "candidate": {
+      "agent": "42eae89b...",
+      "presentation": "13e32930...",
+      "guard": "bd030...",
+      "source": "Parent reported freshly restarted preview hash."
+    },
+    "url": "http://127.0.0.1:8788/",
+    "browser": "Chrome",
+    "scope": "Only Chinese authenticated mixed query then identical Arabic followup reusing read receipt lineage; verify final host_case metadata and fixed presentation.",
+    "method": "Visible UI proxy-user test, fresh empty session. Old AL03 failure evidence retained. No broader tests counted.",
+    "steps": [
+      {
+        "id": "FR01",
+        "case": "Fresh-session Chinese mixed query with UI login obtains actual waste case facts",
+        "input": "我之前报的垃圾还在。帮我查查为什么被结案了，我想把原来的报告重新打开，不想重复报一件。",
+        "result": "pass",
+        "observed": "Single login flow then original plan4/4. Four-column table for waste record2, recorded resolved and attachment flag; quoted-query receipt heading, no site repair inference, reason unknown and original not reopened, optional separate complaint requires user choice. No write.",
+        "evidence": "assets/balady-user-20261020/80-followup-read-zh-facts.png"
+      }
+    ]
+  }
+}

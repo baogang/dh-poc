@@ -1,0 +1,31 @@
+{
+  "kind": "real-neon-feedback-persistence-only",
+  "date_local": "2026-10-20",
+  "command": "node --env-file-if-exists=.env --test --test-reporter=tap tests/road-feedback.postgres.mjs",
+  "exit_code": 0,
+  "tests_including_parent": 5,
+  "logical_subtests": 4,
+  "passed": 5,
+  "failed": 0,
+  "skipped": 0,
+  "duration_ms": 15327.300858,
+  "evidence": "balady-crm-neon-feedback-20261020.tap",
+  "verified": [
+    "Transaction and idempotent replay",
+    "Immutable original-answer evidence and stale-update rejection",
+    "Concurrent opposite ratings and owner isolation",
+    "Reconnect persistence and export"
+  ],
+  "isolation": "A random test-only schema was created and removed by the test; production records were not modified.",
+  "source_sha256": {
+    "src/road/database.mjs": "d4d3a9e3e804d305034fcf7a15874d8a2b60f880cb949a1c59c62aa8bdff924f",
+    "src/road/feedback.mjs": "f82e820db72c305ec3a99c4faaa5b4f0b4c9c84a598ca53e997b329649bc029d",
+    "tests/road-feedback.postgres.mjs": "8643d8f2dd5bfbc014a20f90f92ac5403f2688da6ffa300d3f864013834ada6f",
+    "web/road/feedback-data.js": "a53d66adb7cf71aef7cf2404d411c5e9debcd25cf714bffbe2d4c4234a2a35df"
+  },
+  "limitations": [
+    "Database feedback persistence only, not CRM business execution or a complete Neon session restart test.",
+    "No model or government API calls.",
+    "Not included in the deterministic engineering test count."
+  ]
+}

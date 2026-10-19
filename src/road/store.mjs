@@ -58,7 +58,7 @@ export class RoadStore {
   subscribe(sid,listener){const set=this.listeners.get(sid)??new Set();set.add(listener);this.listeners.set(sid,set);return()=>{set.delete(listener);if(!set.size)this.listeners.delete(sid);};}
   message(s,role,text,extra={}){const m={id:id('message'),role,text,time:new Date().toISOString(),...extra};s.messages.push(m);this.emit(s,'message',{message:m});return m;}
   view(s){
-    const {authorizations,mock,answerSnapshots,...rest}=s;
+    const {authorizations,mock,answerSnapshots,crmFiles,...rest}=s;
     return {...clone(rest),messages:s.messages.map(m=>({...clone(m),rateable:!!answerSnapshots?.[m.id]})),mock:{tickets:clone(mock.tickets),complaints:clone(mock.complaints),handoffs:clone(mock.handoffs),calls:clone(mock.calls)}};
   }
 }

@@ -1,5 +1,12 @@
 // UI copy only. Never translate user data, ticket parameters or model-generated replies.
 const en={
+"本轮已答复":"This turn has been answered","本轮步骤已结束，请查看答复中的办理结果与限制。":"These steps have ended. See the reply for the actual outcome and any limits.",
+"下载附件：{name}":"Download attachment: {name}",
+"选择附件":"Choose an attachment","选择文件并继续":"Choose file and continue","每个附件最大 512 KiB。选择的文件只用于本次仿真提交。":"Each attachment can be up to 512 KiB. It is used only for this simulated submission.","请选择非空且不超过 512 KiB 的文件。":"Choose a nonempty file up to 512 KiB.","无法读取附件，请重新选择文件。":"The file could not be read. Please choose it again.","已收到处理结果，正在整理。":"Result received. Preparing your answer.",
+"可以查询本人事项、整理咨询建议与投诉，以及浏览市政服务分类和资产目录。当前为仿真；我会询问必要信息，在提交前请你核对，并说明尚未接入的能力。":"I can help you follow up your reports, prepare inquiries, suggestions and complaints, and browse service and asset references. This is a simulation. I’ll ask for necessary information, show submissions for review, and explain capability limits.",
+"提交咨询、建议或投诉":"Submit an inquiry, suggestion or complaint","提交市政服务请求":"Submit a municipal service request","提交咨询":"Submit an inquiry","提交技术支持请求":"Submit a technical support request","上传附件":"Upload an attachment","上传工单附件":"Upload a case attachment",
+"error.OPERATION_NOT_AVAILABLE":"This operation is not available in the current assistant. Please start a new request.","error.INVALID_PARAMETERS":"Some submission details are invalid. Please check the fields and try again.",
+"标题":"Title","问题描述":"Description","名字":"First name","姓氏":"Last name","电子邮箱":"Email","联系电话":"Phone number","联系人":"Contact name","详细地址":"Address","街道":"Street","街区":"District","回复语言":"Reply language","需要电话回访":"Request a callback","文件名":"File name","附件说明":"Attachment note","类别":"Category","子类别":"Subcategory","服务区域":"Service area","问题类型":"Issue type","所在城市":"City","所属市政":"Municipality","是":"Yes","否":"No","提交类型":"Request type","咨询":"Inquiry","建议":"Suggestion","投诉":"Complaint","其他":"Other","附件":"Attachments","无附件":"No attachments","已附 {count} 个文件":"{count} files attached","查看完整提交数据":"View full submission data","请在聊天中说明需要修改的信息。":"Describe the changes you need in the chat.","处理进度":"Progress","处理步骤 · {done}/{total} 已完成":"Steps · {done}/{total} complete",
 "查看 API 回执 · {count}":"View API receipts · {count}",
 "回答中的数据表":"Data table in this answer",
 "已取得 API 回执，正在整理结果。":"API response received. Preparing the result.",
@@ -249,7 +256,7 @@ const en={
   "按计划继续": "Continue with this plan",
   "取消这个任务": "Cancel this task",
   "这份计划已处理完成。": "This plan is complete.",
-  "已按新意图调整计划，这份计划停止执行。": "A new plan replaced this one after your request changed.",
+  "已更新处理步骤，这份计划不再执行。": "The steps have been updated; this plan is no longer active.",
   "这份计划已暂停。": "This plan is paused.",
   "这份计划还没有完成，可以调整任务或重试。": "This plan is not complete. Adjust the request or retry.",
   "我正在按这份计划处理。": "I am following this plan.",
@@ -361,6 +368,9 @@ const en={
   "error.CSRF_REQUIRED": "The session confirmation token is missing or expired. Refresh the page."
 };
 const zh={
+  "error.INVALID_FILE":"请选择有效的附件文件。",
+  "error.FILE_SIZE_LIMIT":"请选择非空且不超过 512 KiB 的文件。",
+"error.OPERATION_NOT_AVAILABLE":"这项操作不适用于当前助手，请发起新的请求。","error.INVALID_PARAMETERS":"部分提交信息有误，请检查填写内容后重试。",
 "matter.status.OPEN":"已提交",
 "matter.status.IN_PROGRESS":"处理中",
 "matter.status.RESOLVED":"已解决（模拟）",

@@ -62,4 +62,17 @@
 .api-evidence>summary{font-size:11px;color:var(--muted);font-weight:500}
 .api-evidence section{min-width:0}
 .api-evidence pre{direction:ltr;text-align:left;max-height:280px;font-size:11px}
+.attachment-download{display:inline-block;box-sizing:border-box;max-width:100%;min-height:44px;margin:8px 0;padding:10px 14px;border:1px solid var(--line);border-radius:8px;color:inherit;font-size:13px;overflow-wrap:anywhere}
 @media(max-width:600px){.markdown-table th,.markdown-table td{padding:9px 11px}.markdown-table table{font-size:12px}.bubble.assistant:has(.markdown-table){width:97%}}
+
+.submission-technical{margin:10px 0;border-top:1px solid var(--line);padding-top:10px}
+.submission-technical summary{font-weight:400;font-size:11px;color:var(--muted)}
+.crm-review dt{min-width:76px}.crm-review dd{font-size:13px}
+.operation-edit textarea{min-height:90px}
+@media(max-width:600px){
+  .demo-sidebar{padding-top:6px}.sentiment-card{display:flex;align-items:center;gap:9px;padding:7px 11px;border-radius:10px}
+  .sentiment-eyebrow,.sentiment-demo-note,.sentiment-evidence{display:none}.sentiment-card h2{margin:0;font-size:10px}.sentiment-summary{margin:0;margin-inline-start:auto;gap:6px}.sentiment-face{width:24px;height:24px}.sentiment-label{font-size:11px}
+  .header-actions button,.language-picker select{min-height:44px}.header-actions{gap:4px}header{height:120px}.app-layout{height:calc(100dvh - 120px)}
+  .chat-heading h1{font-size:18px;margin-bottom:6px}.app-layout>.chat-shell{padding-top:8px}.chat-toolbar{padding-bottom:8px}
+  .feedback-vote{min-width:44px;min-height:44px}.composer textarea{min-height:44px}.composer .hint{display:none}
+}

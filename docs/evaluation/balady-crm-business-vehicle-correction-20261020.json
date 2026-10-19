@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-20",
+  "method": "Fresh Node process; direct private simulation callback with independent topic:waste record; no source edits",
+  "source_sha256": "9ab597aff7a79edf893b874f7732995fbd751f43ed09d45c48e8a96c8f4804ac",
+  "results": {
+    "vehicle_seed": {
+      "topic": "vehicle",
+      "ok": true,
+      "error": null,
+      "vehicle_status": 1
+    },
+    "waste_seed": {
+      "topic": "waste",
+      "ok": false,
+      "error": "INELIGIBLE_KIND",
+      "vehicle_status": null
+    },
+    "independent_waste": {
+      "topic": "waste",
+      "ok": false,
+      "error": "INELIGIBLE_KIND",
+      "vehicle_status": null
+    }
+  },
+  "non_vehicle_rejection_pass": true,
+  "correction": "Previous candidate probe assumed the current INC1 was a street-maintenance case. It is now topic:vehicle, so its successful update was valid. Withdraw previous residual defect claim; both seeded and independently created waste cases are rejected."
+}

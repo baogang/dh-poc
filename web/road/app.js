@@ -7,7 +7,7 @@ const client={busy:false,connecting:true,pendingMessage:null,error:null,expired:
 const ratings=createFeedbackController({request,onChange:()=>render()});
 let preferredLocale;try{preferredLocale=localStorage.getItem('road:locale');}catch{}
 let locale=resolveLocale(preferredLocale,globalThis.navigator?.language),t=translator(locale);
-const labels={clarification:'请选择服务',human_offer:'请选择帮助方式',idle:'准备就绪',expired:'会话已过期',running:'正在处理',review:'等待你确认计划',input:'等待你补充信息',confirmation:'等待你确认提交',completed:'已完成',answered:'已回答',blocked:'需要调整任务',failed:'本轮未完成',interrupted:'已中断',paused:'已暂停',approved:'已确认计划',human_waiting:'等待人工受理',human_active:'模拟人工处理中',human_completed:'人工处理已结束'};
+const labels={clarification:'请选择服务',human_offer:'请选择帮助方式',idle:'准备就绪',expired:'会话已过期',running:'正在处理',review:'等待你确认计划',input:'等待你补充信息',confirmation:'等待你确认提交',completed:'本轮已答复',answered:'已回答',blocked:'需要调整任务',failed:'本轮未完成',interrupted:'已中断',paused:'已暂停',approved:'已确认计划',human_waiting:'等待人工受理',human_active:'模拟人工处理中',human_completed:'人工处理已结束'};
 let showTasks=true;try{showTasks=localStorage.getItem('road:showTasks')!=='false';}catch{}
 const el=(tag,text)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;return n;};
 const json=(parent,value)=>{const d=el('details');d.dataset.key=JSON.stringify(value);d.append(el('summary',t('查看数据')),el('pre',JSON.stringify(value,null,2)));parent.append(d);};
