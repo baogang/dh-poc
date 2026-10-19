@@ -11,6 +11,13 @@ const step=(id,capability,depends_on=[])=>({id,title:capability,capability,depen
 const plan=steps=>call('propose_plan',{goal:'Requested CRM task',summary:'Perform the requested actions.',steps:[...steps,step('reply','respond',steps.map(x=>x.id))]});
 async function fixture(){const store=new RoadStore(),session=store.create(),client=new CrmSimulation(store),queue=[],toolsets=[];ensureCrm(session);const agent=new CrmAgent({store,client,api:(...args)=>client.call(...args),knowledge:{document:{name:'test'},answer:async()=>null},runtimeFactory:options=>{toolsets.push(options.tools.map(x=>x.name));assert.ok(queue.length,'Scripted model turn missing');return controlledSession({...options,fauxResponses:queue.shift()});}});return {store,session,client,queue,toolsets,agent};}
 const finish=session=>()=>call('finish',{state:'completed',message:'Operation complete.',receipt_ids:session.receipts.map(x=>x.id)});
+test('CRM answer keeps narrative separate from complete authoritative evidence',async()=>{
+  const f=await fixture();f.queue.push([plan([step('assets','crm_get_assets')]),call('crm_get_assets',{step_id:'assets'}),finish(f.session)]);
+  await f.agent.chat(f.session,'List municipal assets',{skipRouting:true});
+  const answer=f.session.messages.at(-1);assert.equal(answer.text,'Operation complete.');
+  assert.deepEqual(answer.receipt_ids,[f.session.receipts[0].id]);assert.equal(f.session.receipts[0].result.data.result[0].MainAssetsID,'MA-DEMO-1');
+  assert.equal(f.session.answerSnapshots[answer.id].tool_results[0].operation,'crm_get_assets');
+});
 test('active identity is BALADY and tools contain all CRM operations, no old business APIs or credentials',async()=>{
   const f=await fixture();f.queue.push([call('finish',{state:'answered',message:'I am the BALADY Assistant.',receipt_ids:[]})]);await f.agent.chat(f.session,'Introduce yourself',{skipRouting:true});
   assert.match(CRM_SYSTEM,/BALADY Assistant/);assert.equal(f.toolsets[0].filter(x=>x.startsWith('crm_')).length,35);assert.ok(!f.toolsets[0].includes('query_tickets'));assert.ok(!f.toolsets[0].includes('create_ticket'));assert.ok(!f.toolsets[0].includes('handoff_to_human'));assert.ok(!f.toolsets[0].includes('crm_authenticate'));

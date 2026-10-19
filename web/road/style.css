@@ -31,3 +31,35 @@
 
 .matter-item{border:1px solid var(--line,#dce7e2);border-radius:14px;padding:16px;margin:14px 0;overflow-wrap:anywhere}.matter-item button{margin:8px 8px 0 0}.matter-timeline{margin-top:12px}.matter-timeline li{padding:10px 0}.matter-timeline time{font-size:.8rem;color:#607a73}.matter-notices{padding-inline-start:22px;line-height:1.9}.operation-edit{margin-top:16px}.operation-edit summary{cursor:pointer;font-weight:600}.uncertain-card{border-color:#b77525;background:#fffaf0}.matter-item .payload{margin:8px 0}.header-actions{flex-wrap:wrap}
 .crm-payload{white-space:pre-wrap;overflow-wrap:anywhere;max-height:360px;overflow:auto;padding:14px;border:1px solid #d6e2dc;border-radius:8px;background:#f4f8f5;font:13px/1.6 ui-monospace,monospace}
+
+/* Assistant Markdown is rendered as DOM; user messages remain literal text. */
+.markdown-body{white-space:normal;min-width:0}
+.markdown-body>:first-child{margin-top:0}
+.markdown-body>:last-child{margin-bottom:0}
+.markdown-body p{white-space:pre-wrap;margin:0 0 12px}
+.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{font-size:14px;line-height:1.6;margin:16px 0 8px}
+.markdown-body ul,.markdown-body ol{margin:8px 0 12px;padding-inline-start:23px}
+.markdown-body li{margin:4px 0}
+.markdown-body li p{margin:0}
+.markdown-body code{font:12px/1.6 ui-monospace,SFMono-Regular,Consolas,monospace;background:#eef3f0;border-radius:4px;padding:2px 5px;overflow-wrap:anywhere}
+.markdown-body pre{max-height:320px;white-space:pre-wrap;margin:12px 0}
+.markdown-body pre code{padding:0;background:transparent}
+.markdown-body blockquote{margin:12px 0;padding-inline-start:12px;border-inline-start:3px solid #c6d9d1;color:#526e60}
+.markdown-body a{color:var(--green);text-decoration:underline;text-underline-offset:3px}
+.markdown-body hr{border:0;border-top:1px solid var(--line);margin:16px 0}
+.bubble.assistant:has(.markdown-table){width:94%;min-width:0}
+.markdown-table{max-width:100%;overflow-x:auto;overscroll-behavior-inline:contain;border:1px solid var(--line);border-radius:9px;margin:14px 0 16px}
+.markdown-table:focus-visible{outline:2px solid var(--green);outline-offset:3px}
+.markdown-table table{width:100%;min-width:360px;border-collapse:separate;border-spacing:0;font-size:13px;line-height:1.65}
+.markdown-table th,.markdown-table td{text-align:start;padding:11px 14px;vertical-align:top;overflow-wrap:anywhere}
+.markdown-table th{background:#edf4f0;font-weight:650;color:#315b50;border-bottom:1px solid var(--line);white-space:nowrap}
+.markdown-table td{border-bottom:1px solid #e8efea}
+.markdown-table tbody tr:last-child td{border-bottom:0}
+.markdown-table tbody tr:nth-child(even){background:#f9fbf9}
+.markdown-table .align-center{text-align:center}
+.markdown-table .align-right{text-align:right}
+.api-evidence{margin-top:16px;padding-top:11px;border-top:1px solid #e8efea}
+.api-evidence>summary{font-size:11px;color:var(--muted);font-weight:500}
+.api-evidence section{min-width:0}
+.api-evidence pre{direction:ltr;text-align:left;max-height:280px;font-size:11px}
+@media(max-width:600px){.markdown-table th,.markdown-table td{padding:9px 11px}.markdown-table table{font-size:12px}.bubble.assistant:has(.markdown-table){width:97%}}

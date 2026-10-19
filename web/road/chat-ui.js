@@ -1,21 +1,23 @@
 import {translator} from './i18n.js';
+import {markdown} from './markdown.js';
 const special=new Set(['plan','input_request','operation_confirmation']);
 const taskLabels={pending:'待执行',running:'执行中',waiting:'等待你确认',completed:'已完成',failed:'执行失败'};
 const operationLabels={create_ticket:'创建工单',query_tickets:'查询工单',close_ticket:'关闭工单',complain_ticket:'提交投诉',handoff_to_human:'转交人工'};
 
 export function conversationItems(s){
   const rows=[];
+  const answeredReceipts=new Set(s.messages.filter(m=>m.role==='assistant'&&m.kind==='result').flatMap(m=>m.receipt_ids??[]));
   const inputEvents=s.events.filter(e=>e.type==='input_required');
   for(const m of s.messages){
     if(special.has(m.kind)||m.kind==='question'&&inputEvents.some(e=>e.input.question===m.text))continue;
-    rows.push({id:'message:'+m.id,kind:'message',time:m.time,message:m});
+    rows.push({id:'message:'+m.id,kind:'message',time:m.time,message:m,receipts:m.role==='assistant'&&m.kind==='result'?(m.receipt_ids??[]).map(id=>s.receipts.find(r=>r.id===id)).filter(Boolean):[]});
   }
   for(const p of s.plans){const m=s.messages.find(m=>m.kind==='plan'&&m.plan_id===p.id);rows.push({id:'plan:'+p.id,kind:'plan',time:m?.time??p.created_at,plan:p,text:m?.text??p.summary,active:s.activePlanId===p.id,loggedIn:!!s.user,outcome:s.activePlanId===p.id?s.status:p.status});}
   const inputs=inputEvents.map(e=>e.input);if(s.pendingInput&&!inputs.some(x=>x.id===s.pendingInput.id))inputs.push(s.pendingInput);
   for(const x of inputs){const m=s.messages.find(m=>m.input_id===x.id&&m.role==='assistant');const event=inputEvents.find(e=>e.input.id===x.id);rows.push({id:'input:'+x.id,kind:'input',time:m?.time??event?.time??s.messages.at(-1)?.time,input:x,active:s.pendingInput?.id===x.id,received:s.events.some(e=>e.type==='input_received'&&e.input_id===x.id),loggedIn:!!s.user});}
   const operations=s.events.filter(e=>e.type==='confirmation_required').map(e=>({proposal:e.proposal,time:e.time}));if(s.pendingOperation&&!operations.some(x=>x.proposal.id===s.pendingOperation.id))operations.push({proposal:s.pendingOperation,time:s.messages.at(-1)?.time});
   for(const {proposal:o,time}of operations){const m=s.messages.find(m=>m.kind==='operation_confirmation'&&m.proposal_id===o.id);rows.push({id:'operation:'+o.id,kind:'operation',time:m?.time??time,proposal:o,text:m?.text,active:s.pendingOperation?.id===o.id,approved:s.events.some(e=>e.type==='operation_approved'&&e.proposal_id===o.id)});}
-  for(const r of s.receipts)rows.push({id:'receipt:'+r.id,kind:'receipt',time:r.time,receipt:r});
+  for(const r of s.receipts)if(!answeredReceipts.has(r.id))rows.push({id:'receipt:'+r.id,kind:'receipt',time:r.time,receipt:r});
   for(const h of s.mock.handoffs.filter(h=>h.scope==='conversation'))rows.push({id:'human-desk:'+h.handoff_id,kind:'human_desk',time:h.created_at,handoff:h,active:s.activeHandoffId===h.handoff_id});
   for(const e of s.events.filter(e=>e.type==='human_status'&&e.handoff.scope!=='conversation'))rows.push({id:'human:'+e.seq,kind:'human',time:e.time,handoff:e.handoff});
   return rows.sort((a,b)=>(a.time??'').localeCompare(b.time??''));
@@ -38,6 +40,12 @@ export function createChatRenderer(document,container,actions){
   const button=(text,fn,busy=false)=>{const n=el('button',text);n.type='button';n.disabled=busy;n.addEventListener('click',fn);return n;};
   const field=(form,label,name,type='text')=>{const l=el('label',label),i=el(type==='textarea'?'textarea':'input');i.name=name;if(type!=='textarea')i.type=type;i.required=true;i.maxLength=2000;l.append(i);form.append(l);return i;};
   const name=service=>service?.title?.[uiLocale]??service?.title?.en??'';
+  function receiptDetails(parent,receipts,key){
+    const details=el('details',undefined,'api-evidence');details.dataset.key='evidence:'+key;
+    details.append(el('summary',t('查看 API 回执 · {count}',{count:receipts.length})));
+    for(const r of receipts){const section=el('section');section.append(el('small',r.operation),el('pre',JSON.stringify({receipt_id:r.id,response:r.result},null,2)));details.append(section);}
+    parent.append(details);
+  }
   function officialLink(parent,url){if(!/^https:\/\/(?:www\.)?balady\.gov\.sa(?:\/|$)/.test(url??''))return;const a=el('a',t('访问官方平台'));a.href=url;a.target='_blank';a.rel='noopener noreferrer';parent.append(a);}
   function serviceCard(parent,service,item,busy){
     const card=el('section',undefined,'service-option');card.append(el('strong',name(service)),el('small',service.department?.[uiLocale]??service.department?.en),el('span',t(['mock_transaction','simulation'].includes(service.mode)?'模拟办理':'仅知识咨询'),'service-mode'),el('p',service.description?.[uiLocale]??service.description?.en));
@@ -128,7 +136,8 @@ export function createChatRenderer(document,container,actions){
       if(notice)text=t('notice.'+notice,m.notice_values??{});
       else if(['human_notice','human_reply'].includes(m.kind))text=t(text);
       if(item.message.kind==='input'){try{const value=item.message.value??JSON.parse(text);if(value.ticket_id)text=t('已选择工单 {id}；{state}。',{id:value.ticket_id,state:t(value.unresolved?t('问题仍未解决'):t('问题已解决'))});else if(value.city&&value.street)text=t('工单地址：{city}, {street}',{city:value.city,street:value.street});else if(value.text)text=value.text;}catch{}}
-      n.append(el('div',text,'message-text'));
+      n.append(m.role==='assistant'?markdown(document,text,{tableLabel:t('回答中的数据表')}):el('div',text,'message-text'));
+      if(item.receipts?.length)receiptDetails(n,item.receipts,m.id);
       if(m.knowledge_state){n.append(button(t('查看服务目录'),()=>actions.action('/api/catalog',{}),busy),button(t('人工帮助'),()=>actions.action('/api/help',{action:'offer'}),busy));if(m.knowledge_state==='unavailable')n.append(button(t('重试知识查询'),()=>actions.action('/api/chat',{message:m.question}),busy));officialLink(n,item.humanSupport.official_url);}
       if(item.message.source){
         const source=m.source;n.append(el('small',t('问答库来源：{id}',{id:source.id})));
@@ -194,12 +203,13 @@ export function createChatRenderer(document,container,actions){
       n.append(el('small',t('这是模拟人工流程；不会自动修改或关闭你的工单。')));
     }else if(item.kind==='receipt'){
       const r=item.receipt,v=r.result;let text=t('已完成{operation}。',{operation:t(operationLabels[r.operation]??t('当前操作'))});
-      if(v.data)text=r.operation+' · '+v.data.responseMessage+'\n'+JSON.stringify(v.data.result??{responseId:v.data.responseId},null,2);
+      if(v.data)text=t('已取得 API 回执，正在整理结果。');
       if(v.tickets)text=t('已查到 {count} 张属于你的工单。',{count:v.tickets.length});
       if(v.ticket)text=t(r.operation==='close_ticket'?t('已关闭工单 {id} · {status}'):t('已创建工单 {id} · {status}'),{id:v.ticket.ticket_id,status:v.ticket.status});
       if(v.complaint)text=t('投诉已提交：{id} · {status}',{id:v.complaint.complaint_id,status:v.complaint.status});
       if(v.handoff)text=t('已转交人工队列：{ticket} · {status}，正在等待人工受理。',{ticket:v.handoff.ticket_id??t('当前会话'),status:v.handoff.status});
       n.append(el('p',text,'receipt-text'));
+      if(v.data)receiptDetails(n,[r],r.id);
     }else if(item.kind==='human')n.append(el('p',({ACCEPTED:t('人工已受理。'),ESCALATED:t('人工处理已升级。'),COMPLETED:t('人工处理已完成；这不表示道路已经修复。')})[item.handoff.status]??t('人工状态：{status}',{status:item.handoff.status})));
     else if(item.kind==='retry'){n.append(el('p',t('本轮还没有完成。你可以重试这份计划，或告诉我你想怎么调整。')),button(t('重试这份计划'),()=>actions.action('/api/retry',{}),busy),button(t('取消这个任务'),()=>actions.action('/api/cancel',{}),busy));}
     else if(item.kind==='uncertain'){n.setAttribute('role','alert');n.append(el('strong',t('正在核对提交结果')),el('p',t('尚未确认是否提交成功。请先核对结果，避免重复提交。')),button(t('核对提交结果'),()=>actions.action('/api/reconcile',{}),busy));}

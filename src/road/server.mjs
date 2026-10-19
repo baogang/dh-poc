@@ -10,6 +10,7 @@ import { CrmSimulation } from '../crm/simulation.mjs';
 import { SimulationHttpClient,RealCrmClient } from '../crm/client.mjs';
 import { OPENAPI } from '../crm/openapi.mjs';
 import { OPERATIONS } from '../crm/contract.mjs';
+import {presentCrmMessage} from '../crm/presentation.mjs';
 import { RoadKnowledge } from './knowledge.mjs';
 import { CrmAgent } from '../crm/agent.mjs';
 import {parseHighRiskReads} from './policy.mjs';
@@ -34,7 +35,7 @@ export async function createRoadServer({store,knowledge,agentFactory,feedback=ne
   const permit=kind=>{const max=kind==='turns'?maxTurns:maxStreams;if(admission[kind]>=max)throw failure('SERVER_BUSY','The service is busy. Please retry shortly.',429);admission[kind]++;let released=false;return()=>{if(!released){released=true;admission[kind]--;}};};
   const send=(res,status,value)=>{res.writeHead(status,{'content-type':'application/json; charset=utf-8','cache-control':'no-store'});res.end(JSON.stringify(value));};
   const sessionId=req=>{const cookie=(req.headers.cookie??'').split(';').map(x=>x.trim()).find(x=>x.startsWith('road_session='));if(!cookie)throw failure('SESSION_REQUIRED','Start a conversation',401);return cookie.slice(13);};
-  const view=s=>({...store.view(s),crm:s.crm?{version:s.crm.version,calls:s.crm.calls}:null,api_mode:agent?.client?.mode??'simulation',tool_count:OPERATIONS.length,catalog:services,human_support:{...humanSupport,mode:'simulated',hours_configured:false,official_url:'https://balady.gov.sa/en',wait_expired:humanWaitExpired(s.mock.handoffs.find(h=>h.handoff_id===s.activeHandoffId))},demo_ui:demoUI===true,feedback:{enabled:feedback.enabled,items:feedback.cached(s.id)},faq:{name:knowledge.document.name,entry_count:knowledge.entries.length,source_displayed_count:knowledge.document.source_displayed_count,migration_status:knowledge.document.migration_status,quality:knowledge.document.quality},model:process.env.DEEPSEEK_MODEL??'deepseek-flash',runtime:'PI SDK 1.1.0'});
+  const view=s=>{const saved=store.view(s);return {...saved,messages:saved.messages.map(m=>presentCrmMessage(m,s.receipts)),crm:s.crm?{version:s.crm.version,calls:s.crm.calls}:null,api_mode:agent?.client?.mode??'simulation',tool_count:OPERATIONS.length,catalog:services,human_support:{...humanSupport,mode:'simulated',hours_configured:false,official_url:'https://balady.gov.sa/en',wait_expired:humanWaitExpired(s.mock.handoffs.find(h=>h.handoff_id===s.activeHandoffId))},demo_ui:demoUI===true,feedback:{enabled:feedback.enabled,items:feedback.cached(s.id)},faq:{name:knowledge.document.name,entry_count:knowledge.entries.length,source_displayed_count:knowledge.document.source_displayed_count,migration_status:knowledge.document.migration_status,quality:knowledge.document.quality},model:process.env.DEEPSEEK_MODEL??'deepseek-flash',runtime:'PI SDK 1.1.0'};};
   const server=createServer(async(req,res)=>{
     res.setHeader('x-content-type-options','nosniff');res.setHeader('referrer-policy','no-referrer');res.setHeader('content-security-policy',"default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' data:; frame-ancestors 'none'; base-uri 'none'; form-action 'self'");
     let release,turnPermit;
@@ -160,7 +161,7 @@ export async function createRoadServer({store,knowledge,agentFactory,feedback=ne
         res.writeHead(200,{'content-type':'text/html; charset=utf-8','cache-control':'no-store'});return res.end(html);
       }
       if(req.method!=='GET')throw failure('NOT_FOUND','Not found',404);
-      const files={'/':'index.html','/app.js':'app.js','/chat-ui.js':'chat-ui.js','/i18n.js':'i18n.js','/feedback-ui.js':'feedback-ui.js','/feedback-data.js':'feedback-data.js','/style.css':'style.css'};
+      const files={'/':'index.html','/app.js':'app.js','/chat-ui.js':'chat-ui.js','/markdown.js':'markdown.js','/vendor/marked.js':'vendor/marked.js','/i18n.js':'i18n.js','/feedback-ui.js':'feedback-ui.js','/feedback-data.js':'feedback-data.js','/style.css':'style.css'};
       if(!files[url.pathname])throw failure('NOT_FOUND','Not found',404);
       const data=await readFile(new URL(`../../web/road/${files[url.pathname]}`,import.meta.url));res.writeHead(200,{'content-type':url.pathname.endsWith('.js')?'text/javascript; charset=utf-8':url.pathname.endsWith('.css')?'text/css; charset=utf-8':'text/html; charset=utf-8','cache-control':'no-store'});res.end(data);
     }catch(error){if(error.status===429)res.setHeader('retry-after','2');if(!res.headersSent)send(res,error.status??500,{error:{code:error.code??'SERVER_ERROR',message:error.status?error.message:'Internal server error',...(error.current?{current:error.current}:{})}});else res.end();}

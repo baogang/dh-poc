@@ -127,10 +127,9 @@ export class CrmAgent extends RoadAgent{
           if(args.state==='blocked'&&unfinished.length&&!unfinished.some(x=>x.error))return {error:'USER_INPUT_REQUIRED',message:'The remaining action has no backend failure. Add an input step and use request_input for missing parameters or user choices; do not leave a recoverable missing value as a blocked final answer.'};
           if(args.state==='completed'||args.state==='answered'&&plan){if(!plan||unfinished.length)return {error:'UNFINISHED_PLAN',steps:unfinished.map(x=>x.id)};if(plan.steps.some(x=>x.receipt_id&&!args.receipt_ids.includes(x.receipt_id)))return {error:'MISSING_RECEIPT'};plan.status='completed';plan.steps.filter(x=>x.capability==='respond').forEach(x=>x.status='completed');}
           session.status=args.state==='answered'&&plan?'completed':args.state;
-          // The narrative is accompanied by authoritative operation results, so a
-          // model cannot manufacture a ticket number or successful write receipt.
-          const observed=receipts.length?'\n\n'+receipts.map(r=>BY_ID.get(r.operation).summary+': '+JSON.stringify(r.result.data)).join('\n'):'';
-          this.answer(session,args.message+observed,{kind:'result',receipt_ids:args.receipt_ids},{questionId,turnSeq,planId:plan?.id});return {end_turn:true,accepted:true};
+          // Keep authoritative evidence linked, separate from the narrative. The
+          // UI renders receipt details without duplicating JSON in the answer.
+          this.answer(session,args.message,{kind:'result',receipt_ids:args.receipt_ids},{questionId,turnSeq,planId:plan?.id});return {end_turn:true,accepted:true};
         })
       ];
       runtime=await this.runtimeFactory({system:CRM_SYSTEM,tools,maxRequests:24,fauxResponses,onEvent:emit});alive();const abort=()=>runtime.session.agent.abort();controller.signal.addEventListener('abort',abort,{once:true});

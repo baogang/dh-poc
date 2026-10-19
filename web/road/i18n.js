@@ -1,5 +1,8 @@
 // UI copy only. Never translate user data, ticket parameters or model-generated replies.
 const en={
+"查看 API 回执 · {count}":"View API receipts · {count}",
+"回答中的数据表":"Data table in this answer",
+"已取得 API 回执，正在整理结果。":"API response received. Preparing the result.",
 "BALADY 助理":"BALADY Assistant",
 "您好，欢迎使用 BALADY 助理！":"Welcome! I’m your BALADY Assistant.",
 "可以办理已接入的 CRM 案件、市政请求、咨询投诉、分类资产、附件与满意度调查。当前为本地仿真；我会补问缺少的参数，并在提交前请你核对。":"I can help with connected CRM cases, municipal requests, inquiries, complaints, classifications, assets, attachments and surveys. This is a local simulation. I’ll ask for missing information and request confirmation before submitting.",

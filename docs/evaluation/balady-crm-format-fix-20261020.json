@@ -1,0 +1,64 @@
+{
+  "date": "2026-10-20",
+  "timezone": "Asia/Shanghai",
+  "issue": "Assistant Markdown table was displayed literally; complete CRM JSON was duplicated in the answer and receipt bubbles.",
+  "root_causes": [
+    "Assistant messages were rendered with textContent and pre-wrap only.",
+    "The finish host appended serialized API envelopes to the narrative.",
+    "Receipt rows displayed another JSON block even after the answer cited them."
+  ],
+  "fix": [
+    "GFM tokenization with locally bundled Marked 18.0.11; DOM allowlist rendering without HTML insertion.",
+    "Responsive, keyboard-focusable table scroller with semantic table headers.",
+    "Narrative retains receipt_ids; full authoritative responses are collapsed below each answer.",
+    "Existing persisted messages remove only the exact trusted host JSON suffix in the public view."
+  ],
+  "validation": {
+    "initial_reproduction": "Two UI checks and one agent narrative check failed on the original source before the fix.",
+    "engineering": {
+      "command": "npm test",
+      "passed": 66,
+      "failed": 0
+    },
+    "source_checks": "passed",
+    "credential_scan": "passed",
+    "browser": {
+      "environment": "Local ephemeral memory-store service; real DeepSeek model; same shipped UI and CRM HTTP simulation.",
+      "input": "请查询市政主资产列表，并用表格展示结果。",
+      "observed": [
+        "A real three-column table with asset MA-DEMO-1.",
+        "API receipt is collapsed by default and expands to the full original response.",
+        "No repeated standalone receipt after the final answer."
+      ],
+      "desktop_viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "mobile_viewport": {
+        "width": 390,
+        "height": 844,
+        "page_client_width": 390,
+        "page_scroll_width": 390,
+        "table_scroller_width": 299,
+        "table_scroll_width": 403
+      },
+      "screenshots": [
+        "assets/balady-crm-format-desktop-20261020.png",
+        "assets/balady-crm-format-mobile-20261020.png"
+      ]
+    }
+  },
+  "source_sha256": {
+    "src/crm/agent.mjs": "9d196b36cb9e006fc9d67327170cee9f070feaceebfe07fcd1ab06fcef12f47a",
+    "src/crm/presentation.mjs": "abd8fd8e258575c5cc88a19ac0850bdd331027bc747478b17b47562581a2b6d8",
+    "src/road/server.mjs": "9148dea180f381023a98af2d265f30cd211894b4dcceb703b0652d7eb7a8636f",
+    "web/road/chat-ui.js": "aa3c1a2e23d9cd604446778dda7ef8204b31617719b9bd387efa8a530134211e",
+    "web/road/markdown.js": "c0cf975929b8e46795bae29699cffc529596079740bc1fee1ff11216139273ff",
+    "web/road/style.css": "8552c234aae5b628e2968b272684a4a3ca10b69aff6921db54f4a9421858efc3",
+    "web/road/i18n.js": "29f5fd806eeaa356f65d61cab8e0815d8bc94537f27849022aeae7371ef28489",
+    "web/road/vendor/marked.js": "05e41134d075ad3a009a748d6c779c3d83cea9b942be911c2d9abade36d1dd31"
+  },
+  "deployment": {
+    "status": "pending"
+  }
+}

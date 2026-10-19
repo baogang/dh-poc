@@ -13,6 +13,7 @@ test('HTTP active service exposes CRM identity, 35 typed tools and validated Ope
   assert.equal((await fetch(f.origin+'/mock/query_tickets',{method:'POST'})).status,410);
   const spec=await (await fetch(f.origin+'/api/openapi')).json();assert.equal(spec.openapi,'3.0.3');
   const catalog=await (await fetch(f.origin+'/api/tools')).json();assert.equal(catalog.identity,'BALADY Assistant');assert.equal(catalog.operations.length,35);assert.ok(catalog.operations.every(x=>x.input.additionalProperties===false));
+  for(const path of ['/markdown.js','/vendor/marked.js']){const asset=await fetch(f.origin+path);assert.equal(asset.status,200);assert.match(asset.headers.get('content-type'),/javascript/);assert.ok((await asset.text()).length>100);}
   const diagram=await fetch(f.origin+'/docs/balady-crm-flow.html');assert.equal(diagram.status,200);assert.match(await diagram.text(),/35 business tools/);assert.match(diagram.headers.get('content-security-policy'),/script-src 'none'/);
   assert.equal((await fetch(f.origin+'/v1/crm-services/asset-details')).status,403);
   const authorized=await fetch(f.origin+'/v1/crm-services/asset-details',{headers:{'x-crm-simulation-key':f.key,'x-road-session':f.state.id,'x-crm-epoch':'0'}});const value=await authorized.json();assert.equal(value.statusDetails.code,200);assert.equal(value.data.result[0].MainAssetsID,'MA-DEMO-1');assert.equal(value.ok,undefined);
