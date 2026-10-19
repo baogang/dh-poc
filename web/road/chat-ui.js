@@ -6,6 +6,12 @@ const taskLabels={pending:'待执行',running:'执行中',waiting:'等待你确�
 const operationLabels={crm_create_form_request:'提交咨询、建议或投诉',crm_create_municipal_service:'提交市政服务请求',crm_create_inquiry:'提交咨询',crm_create_daem_ticket:'提交技术支持请求',crm_upload_attachment:'上传附件',crm_upload_file:'上传工单附件',create_ticket:'创建工单',query_tickets:'查询工单',close_ticket:'关闭工单',complain_ticket:'提交投诉',handoff_to_human:'转交人工'};
 const hasLocationLimit=(state,plan)=>state.status==='blocked'&&!!plan?.origin_message_id&&Object.values(state.facts?.hostConstraints?.[plan.origin_message_id]??{}).some(c=>c.origin_message_id===plan.origin_message_id&&c.capability==='administrative_location_resolution'&&c.available===false&&c.code==='LOCATION_METADATA_UNAVAILABLE');
 
+// Layout-only projection. Keep stored messages, tool arguments, native option
+// values and literal code intact; normalize prose list breaks across scripts.
+export function displayProse(value){
+  return String(value??'').split(/(```[\s\S]*?```|`[^`\n]+`)/gu).map((part,index)=>index%2?part:part.replace(/(?<!\\)(?:\\n){2,}/gu,breaks=>'\n'.repeat(breaks.length/2)).replace(/(?<!\\)\\n(?=\s*(?:[-*+·•] |\p{Nd}+[.)）、．] |\p{Nd}+[.)）、．](?=\S)|#{1,6} |\|))/gu,'\n')).join('');
+}
+
 export function conversationItems(s){
   const rows=[];
   const answeredReceipts=new Set(s.messages.filter(m=>m.role==='assistant'&&m.kind==='result').flatMap(m=>m.receipt_ids??[]));
@@ -144,7 +150,7 @@ export function createChatRenderer(document,container,actions){
       if(notice)text=t('notice.'+notice,m.notice_values??{});
       else if(['human_notice','human_reply'].includes(m.kind))text=t(text);
       if(item.message.kind==='input'){try{const value=item.message.value??JSON.parse(text);if(value.ticket_id)text=t('已选择工单 {id}；{state}。',{id:value.ticket_id,state:t(value.unresolved?t('问题仍未解决'):t('问题已解决'))});else if(value.city&&value.street)text=t('工单地址：{city}, {street}',{city:value.city,street:value.street});else if(value.text)text=value.text;}catch{}}
-      n.append(m.role==='assistant'?markdown(document,text,{tableLabel:t('回答中的数据表')}):el('div',text,'message-text'));
+      n.append(m.role==='assistant'?markdown(document,displayProse(text),{tableLabel:t('回答中的数据表')}):el('div',text,'message-text'));
       if(item.receipts?.length){for(const receipt of item.receipts)fileDownload(n,receipt);receiptDetails(n,item.receipts,m.id);}
       if(m.knowledge_state){n.append(button(t('查看服务目录'),()=>actions.action('/api/catalog',{}),busy),button(t('人工帮助'),()=>actions.action('/api/help',{action:'offer'}),busy));if(m.knowledge_state==='unavailable')n.append(button(t('重试知识查询'),()=>actions.action('/api/chat',{message:m.question}),busy));officialLink(n,item.humanSupport.official_url);}
       if(item.message.source){
@@ -182,18 +188,25 @@ export function createChatRenderer(document,container,actions){
       if(item.active){n.append(button(o.operation==='query_tickets'?t('确认查询'):t('确认提交'),()=>actions.action('/api/approve-operation',{proposal_id:o.id}),busy),button(t('取消这个任务'),()=>actions.action('/api/cancel',{}),busy));editForm(n,o,busy);if(o.operation==='create_ticket')n.append(button(t('保存，稍后继续'),()=>actions.action('/api/save-draft',{proposal_id:o.id}),busy));}
       else n.append(el('small',item.approved?t('你已确认以上内容。'):t('此确认已失效，以上内容不会继续提交。')));
     }else if(item.kind==='input'){
-      const x=item.input;n.append(el('p',x.question,'message-text'));
+      const x=item.input;n.append(el('p',displayProse(x.question),'message-text'));
       if(!item.active){const copy=x.kind==='choice'?serviceChoiceCopy(x.question,uiLocale,x.purpose):null;n.append(el('small',copy?item.received?copy.received:copy.expired:item.received?t('已收到你补充的信息。'):t('此信息请求已结束。')));return n;}
       if(x.kind==='login'){if(!item.loggedIn)n.append(loginForm({kind:'input',id:x.id},busy));else n.append(button(t('已登录，继续'),()=>actions.action('/api/input',{input_id:x.id,value:{}}),busy));return n;}
       if(x.kind==='choice'){
         const copy=serviceChoiceCopy(x.question,uiLocale,x.purpose),form=el('form',undefined,'inline-form service-choice-form');form.dataset.formKey='input:'+x.id;form.dir=copy.direction;form.lang=copy.language;
         const group=el('fieldset',undefined,'service-choice-options');group.disabled=busy;group.append(el('legend',copy.legend));
-        for(const choice of x.choices??[]){const label=el('label',undefined,'service-choice-option'),radio=el('input'),text=el('span',undefined,'service-choice-text');label.dir='auto';radio.type='radio';radio.name='choice_id';radio.value=choice.id;radio.required=true;radio.disabled=busy;text.append(el('strong',choice.label));if(choice.description)text.append(el('span',choice.description,'service-choice-description'));label.append(radio,text);group.append(label);}
+        for(const choice of x.choices??[]){const label=el('label',undefined,'service-choice-option'),radio=el('input'),text=el('span',undefined,'service-choice-text');label.dir='auto';radio.type='radio';radio.name='choice_id';radio.value=choice.id;radio.required=true;radio.disabled=busy;text.append(el('strong',displayProse(choice.label)));if(choice.description)text.append(el('span',displayProse(choice.description),'service-choice-description'));label.append(radio,text);group.append(label);}
         const notice=el('p',copy.notice,'service-choice-notice'),error=el('p','','input-error');error.setAttribute('role','alert');const controls=el('div',undefined,'service-choice-actions'),submit=el('button',copy.continue),cancel=button(copy.cancel,()=>actions.action('/api/cancel',{}),busy);submit.type='submit';submit.disabled=busy;cancel.className='secondary';controls.append(submit,cancel);form.append(group,notice,error,controls);
         form.addEventListener('submit',async event=>{event.preventDefault();if(busy||submit.disabled)return;const selected=[...form.querySelectorAll('input')].find(input=>input.type==='radio'&&input.checked&&(x.choices??[]).some(choice=>choice.id===input.value));if(!selected){error.textContent=copy.required;return;}submit.disabled=true;error.textContent='';try{await actions.action('/api/input',{input_id:x.id,value:{choice_id:selected.value}});}catch{error.textContent=copy.retry;}finally{submit.disabled=busy;}});
         n.append(form);return n;
       }
       const f=el('form',undefined,'inline-form');f.dataset.formKey='input:'+x.id;
+      if(x.kind==='name_roles'){
+        const copy=x.name_role_copy,inputs=[];
+        for(const path of x.fields){const key=path.split('.').at(-1),input=field(f,copy[key],key);input.autocomplete=key==='FirstName'?'given-name':'family-name';input.disabled=busy;inputs.push(input);}
+        const error=el('p','','input-error');error.setAttribute('role','alert');const submit=el('button',copy.continue),cancel=button(copy.cancel,()=>actions.action('/api/cancel',{}),busy);submit.type='submit';submit.disabled=busy;cancel.className='secondary';f.append(el('small',copy.note),error,submit,cancel);
+        f.addEventListener('submit',async event=>{event.preventDefault();if(busy||submit.disabled)return;submit.disabled=true;error.textContent='';try{await actions.action('/api/input',{input_id:x.id,value:{name_roles:Object.fromEntries(inputs.map(input=>[input.name,input.value]))}});}catch{error.textContent=copy.retry;}finally{submit.disabled=busy;}});
+        n.append(f);return n;
+      }
       if(x.kind==='file'){
         const picker=field(f,t('选择附件'),'attachment','file');picker.maxLength=undefined;
         const note=el('small',t('每个附件最大 512 KiB。选择的文件只用于本次仿真提交。'));const error=el('p','','input-error');error.setAttribute('role','alert');

@@ -27,6 +27,14 @@ const guidanceWords=(language,mode='simulation')=>({
 
 // Normalize prose paragraph/list separators, leaving code and literal paths
 // alone. API parameters, user messages and stored evidence are never rewritten.
+export function nameRolePrompt(language='en'){
+  return ({
+    zh:{question:'请按下面的字段填写你的姓名。其他已提供的信息会保留。',FirstName:'名（Given name）',LastName:'姓（Family name）',continue:'保存姓名并继续',cancel:'取消本次请求',note:'仅填写下面尚不明确的姓名部分；这不是身份验证。',retry:'未能保存，请重试。'},
+    en:{question:'Please enter your name in the labelled fields below. Your other supplied details will be kept.',FirstName:'Given name',LastName:'Family name',continue:'Save name and continue',cancel:'Cancel this request',note:'Only the name roles still unclear are shown. This is not identity verification.',retry:'Could not save. Please try again.'},
+    ar:{question:'أدخل اسمك في الحقول المسمّاة أدناه. ستُحفظ المعلومات الأخرى التي قدمتها.',FirstName:'الاسم الشخصي',LastName:'اسم العائلة',continue:'حفظ الاسم والمتابعة',cancel:'إلغاء هذا الطلب',note:'تظهر فقط أجزاء الاسم التي لم تتضح بعد. هذا ليس تحققاً من الهوية.',retry:'تعذر الحفظ. حاول مرة أخرى.'}
+  })[language]??nameRolePrompt('en');
+}
+
 export function normalizeCustomerText(text){
   return text.split(/(```[\s\S]*?```|`[^`\n]+`)/gu).map((part,index)=>index%2?part:part.replace(/(?<!\\)(?:\\n){2,}/gu,separator=>'\n'.repeat(separator.length/2)).replace(/(?<!\\)\\n(?=\s*(?:[-*+·•] |\d+[.)] |#{1,6} |\|))/gu,'\n')).join('');
 }
