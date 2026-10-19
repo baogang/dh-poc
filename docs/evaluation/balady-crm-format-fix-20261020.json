@@ -17,7 +17,7 @@
     "initial_reproduction": "Two UI checks and one agent narrative check failed on the original source before the fix.",
     "engineering": {
       "command": "npm test",
-      "passed": 66,
+      "passed": 67,
       "failed": 0
     },
     "source_checks": "passed",
@@ -46,11 +46,12 @@
         "assets/balady-crm-format-desktop-20261020.png",
         "assets/balady-crm-format-mobile-20261020.png"
       ]
-    }
+    },
+    "jsonb_compatibility": "A failing regression reproduced the Neon key-order issue; parsed response equality now ignores only object key order, while requiring exact known operation prefixes and complete matching evidence."
   },
   "source_sha256": {
     "src/crm/agent.mjs": "9d196b36cb9e006fc9d67327170cee9f070feaceebfe07fcd1ab06fcef12f47a",
-    "src/crm/presentation.mjs": "abd8fd8e258575c5cc88a19ac0850bdd331027bc747478b17b47562581a2b6d8",
+    "src/crm/presentation.mjs": "331b659e474a6e57631b51b635d839b264399d7ed7f82ddbde4b9ba333de84dd",
     "src/road/server.mjs": "9148dea180f381023a98af2d265f30cd211894b4dcceb703b0652d7eb7a8636f",
     "web/road/chat-ui.js": "aa3c1a2e23d9cd604446778dda7ef8204b31617719b9bd387efa8a530134211e",
     "web/road/markdown.js": "c0cf975929b8e46795bae29699cffc529596079740bc1fee1ff11216139273ff",
@@ -59,6 +60,12 @@
     "web/road/vendor/marked.js": "05e41134d075ad3a009a748d6c779c3d83cea9b942be911c2d9abade36d1dd31"
   },
   "deployment": {
-    "status": "pending"
+    "status": "pending_jsonb_followup",
+    "previous": {
+      "id": "dep-dbb4sobm8hqs73etnnvg",
+      "commit": "25519c12c3caba8762bb7827812b3e3d261928be",
+      "status": "live",
+      "verification": "Tables rendered in the existing online session; JSONB order compatibility required a follow-up."
+    }
   }
 }

@@ -51,3 +51,9 @@ test('existing saved answers drop only the exact host suffix and keep authoritat
   assert.equal(presentCrmMessage({...stored,role:'user'},[receipt]).text,stored.text);
   assert.equal(presentCrmMessage({...message,text:narrative+'\nResponse from model: '+JSON.stringify(receipt.result.data)},[receipt]).text,narrative+'\nResponse from model: '+JSON.stringify(receipt.result.data));
 });
+test('old JSON evidence remains recognizable after Neon JSONB reorders nested object fields',()=>{
+  const value=state(),message=value.messages[0],stored={...message,text:narrative+'\n\nList main municipal assets: '+JSON.stringify(receipt.result.data)};
+  const reloaded={...receipt,result:{...receipt.result,data:{result:[{MainAssetsName:'Simulated municipal infrastructure',MainAssetsID:'MA-DEMO-1'}],responseMessage:'success',responseCode:'1'}}};
+  assert.equal(presentCrmMessage(stored,[reloaded]).text,narrative);
+  const different={...reloaded,result:{...reloaded.result,data:{...reloaded.result.data,responseCode:'2'}}};assert.equal(presentCrmMessage(stored,[different]).text,stored.text);
+});
