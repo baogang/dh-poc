@@ -122,3 +122,16 @@ export function presentCrmMessage(message,receipts){
 // render the receipt rows. Reject the format before model review so a repeated
 // table cannot be approved as a merely factually correct explanation.
 export function explanationHasTable(text){return normalizeCustomerText(text).split(/\r?\n/u).some(line=>/^\s*\|?\s*:?-{3,}:?\s*(?:\|\s*:?-{3,}:?\s*)+\|?\s*$/u.test(line));}
+
+// Source-bound supplements identify the citizen's question without granting
+// the author a prose channel to invent capability, policy or field claims.
+export function sourceBoundOutcome({language='en',unavailableQuote,unconfirmedQuote}){
+  const safe=value=>value.replace(/[\\`*_[\]<>|]/gu,'\\$&').replace(/[\r\n]+/gu,' ');
+  const words={zh:['本次未办理的请求是：','当前引用的记录尚未核实你问到的这项信息：'],en:['The request not carried out in this turn is:','The cited records have not established the information you asked about:'],ar:['الطلب الذي لم يُنفَّذ في هذه الجولة هو:','لم تثبت السجلات المشار إليها المعلومة التي سألت عنها:']}[language];
+  return [unavailableQuote?words[0]+' “'+safe(unavailableQuote)+'”':null,unconfirmedQuote?words[1]+' “'+safe(unconfirmedQuote)+'”':null].filter(Boolean).join('\n\n')||null;
+}
+
+export function constraintObservationOutcome(labels,{language='en'}={}){
+  const routes=labels.join(' / ');
+  return ({zh:`保留的操作检查涉及：${routes}。检查发现缺少必需的下级行政位置资料，且未连接相应的地址解析服务。这些检查没有执行提交；最终尚未核实这些路线与原诉求的关联。`,en:`The retained operation checks concern: ${routes}. They found missing required local administrative location data and no connected address resolver. These checks did not execute a submission; the final association of these routes with the original request has not been verified.`,ar:`تخص فحوص العمليات المحفوظة: ${routes}. وجدت نقصاً في بيانات النطاق الإداري المحلي المطلوبة وعدم اتصال خدمة لتحليل العنوان. لم تنفذ هذه الفحوص إرسالاً؛ ولم يُتحقق نهائياً من ارتباط هذه المسارات بالطلب الأصلي.`})[language];
+}
