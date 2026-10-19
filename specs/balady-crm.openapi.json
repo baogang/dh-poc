@@ -11493,7 +11493,7 @@
                     "properties": {
                       "MunicipalityID": {
                         "type": "string",
-                        "description": "Municipality ID from section 3.37.8; keep leading zeros (004 Riyadh, 006 Eastern, 008 Qassim).",
+                        "description": "Municipality ID from section 3.37.8, printed p116. Ask citizens for a city/municipality NAME, never an internal code. Resolve an explicitly supplied matching name using this documented directory; preserve leading zeros. Do not infer a sub-municipality or coordinates from this directory. Arabic source name; English/Chinese presentation translations: 002: أمانة العاصمة المقدسة / Makkah / 麦加; 003: أمانة منطقة المدينة المنورة / Madinah / 麦地那; 004: أمانة منطقة الرياض / Riyadh / 利雅得; 005: أمانة محافظة جدة / Jeddah / 吉达; 006: أمانة المنطقة الشرقية / Eastern Province / 东部省; 007: أمانة منطقة عسير / Asir / 阿西尔; 008: أمانة منطقة القصيم / Qassim / 卡西姆; 009: أمانة منطقة جازان / Jazan / 吉赞; 010: أمانة منطقة الجوف / Al Jawf / 焦夫; 011: أمانة منطقة تبوك / Tabuk / 塔布克; 012: أمانة منطقة حائل / Hail / 哈伊勒; 013: أمانة منطقة الحدود الشمالية / Northern Borders / 北部边疆省; 014: أمانة منطقة الباحة / Al Bahah / 巴哈; 015: أمانة منطقة نجران / Najran / 纳季兰; 016: أمانة محافظة الطائف / Taif / 塔伊夫; 017: أمانة محافظة الاحساء / Al Ahsa / 哈萨; 018: أمانة محافظة حفر الباطن / Hafr Al Batin / 哈夫尔巴廷",
                         "enum": [
                           "002",
                           "003",
@@ -13187,10 +13187,10 @@
             "in": "query",
             "name": "municipalityID",
             "required": false,
-            "description": "Municipality ID from section 3.37.8; keep leading zeros (004 Riyadh, 006 Eastern, 008 Qassim).",
+            "description": "Municipality ID from section 3.37.8, printed p116. Ask citizens for a city/municipality NAME, never an internal code. Resolve an explicitly supplied matching name using this documented directory; preserve leading zeros. Do not infer a sub-municipality or coordinates from this directory. Arabic source name; English/Chinese presentation translations: 002: أمانة العاصمة المقدسة / Makkah / 麦加; 003: أمانة منطقة المدينة المنورة / Madinah / 麦地那; 004: أمانة منطقة الرياض / Riyadh / 利雅得; 005: أمانة محافظة جدة / Jeddah / 吉达; 006: أمانة المنطقة الشرقية / Eastern Province / 东部省; 007: أمانة منطقة عسير / Asir / 阿西尔; 008: أمانة منطقة القصيم / Qassim / 卡西姆; 009: أمانة منطقة جازان / Jazan / 吉赞; 010: أمانة منطقة الجوف / Al Jawf / 焦夫; 011: أمانة منطقة تبوك / Tabuk / 塔布克; 012: أمانة منطقة حائل / Hail / 哈伊勒; 013: أمانة منطقة الحدود الشمالية / Northern Borders / 北部边疆省; 014: أمانة منطقة الباحة / Al Bahah / 巴哈; 015: أمانة منطقة نجران / Najran / 纳季兰; 016: أمانة محافظة الطائف / Taif / 塔伊夫; 017: أمانة محافظة الاحساء / Al Ahsa / 哈萨; 018: أمانة محافظة حفر الباطن / Hafr Al Batin / 哈夫尔巴廷",
             "schema": {
               "type": "string",
-              "description": "Municipality ID from section 3.37.8; keep leading zeros (004 Riyadh, 006 Eastern, 008 Qassim).",
+              "description": "Municipality ID from section 3.37.8, printed p116. Ask citizens for a city/municipality NAME, never an internal code. Resolve an explicitly supplied matching name using this documented directory; preserve leading zeros. Do not infer a sub-municipality or coordinates from this directory. Arabic source name; English/Chinese presentation translations: 002: أمانة العاصمة المقدسة / Makkah / 麦加; 003: أمانة منطقة المدينة المنورة / Madinah / 麦地那; 004: أمانة منطقة الرياض / Riyadh / 利雅得; 005: أمانة محافظة جدة / Jeddah / 吉达; 006: أمانة المنطقة الشرقية / Eastern Province / 东部省; 007: أمانة منطقة عسير / Asir / 阿西尔; 008: أمانة منطقة القصيم / Qassim / 卡西姆; 009: أمانة منطقة جازان / Jazan / 吉赞; 010: أمانة منطقة الجوف / Al Jawf / 焦夫; 011: أمانة منطقة تبوك / Tabuk / 塔布克; 012: أمانة منطقة حائل / Hail / 哈伊勒; 013: أمانة منطقة الحدود الشمالية / Northern Borders / 北部边疆省; 014: أمانة منطقة الباحة / Al Bahah / 巴哈; 015: أمانة منطقة نجران / Najran / 纳季兰; 016: أمانة محافظة الطائف / Taif / 塔伊夫; 017: أمانة محافظة الاحساء / Al Ahsa / 哈萨; 018: أمانة محافظة حفر الباطن / Hafr Al Batin / 哈夫尔巴廷",
               "enum": [
                 "002",
                 "003",
@@ -16867,7 +16867,7 @@
                     "properties": {
                       "MunicipalityID": {
                         "type": "string",
-                        "description": "Municipality ID from section 3.37.8; keep leading zeros (004 Riyadh, 006 Eastern, 008 Qassim).",
+                        "description": "Municipality ID from section 3.37.8, printed p116. Ask citizens for a city/municipality NAME, never an internal code. Resolve an explicitly supplied matching name using this documented directory; preserve leading zeros. Do not infer a sub-municipality or coordinates from this directory. Arabic source name; English/Chinese presentation translations: 002: أمانة العاصمة المقدسة / Makkah / 麦加; 003: أمانة منطقة المدينة المنورة / Madinah / 麦地那; 004: أمانة منطقة الرياض / Riyadh / 利雅得; 005: أمانة محافظة جدة / Jeddah / 吉达; 006: أمانة المنطقة الشرقية / Eastern Province / 东部省; 007: أمانة منطقة عسير / Asir / 阿西尔; 008: أمانة منطقة القصيم / Qassim / 卡西姆; 009: أمانة منطقة جازان / Jazan / 吉赞; 010: أمانة منطقة الجوف / Al Jawf / 焦夫; 011: أمانة منطقة تبوك / Tabuk / 塔布克; 012: أمانة منطقة حائل / Hail / 哈伊勒; 013: أمانة منطقة الحدود الشمالية / Northern Borders / 北部边疆省; 014: أمانة منطقة الباحة / Al Bahah / 巴哈; 015: أمانة منطقة نجران / Najran / 纳季兰; 016: أمانة محافظة الطائف / Taif / 塔伊夫; 017: أمانة محافظة الاحساء / Al Ahsa / 哈萨; 018: أمانة محافظة حفر الباطن / Hafr Al Batin / 哈夫尔巴廷",
                         "enum": [
                           "002",
                           "003",
@@ -23999,10 +23999,10 @@
             "in": "query",
             "name": "MunicipalityID",
             "required": true,
-            "description": "Municipality ID from section 3.37.8; keep leading zeros (004 Riyadh, 006 Eastern, 008 Qassim).",
+            "description": "Municipality ID from section 3.37.8, printed p116. Ask citizens for a city/municipality NAME, never an internal code. Resolve an explicitly supplied matching name using this documented directory; preserve leading zeros. Do not infer a sub-municipality or coordinates from this directory. Arabic source name; English/Chinese presentation translations: 002: أمانة العاصمة المقدسة / Makkah / 麦加; 003: أمانة منطقة المدينة المنورة / Madinah / 麦地那; 004: أمانة منطقة الرياض / Riyadh / 利雅得; 005: أمانة محافظة جدة / Jeddah / 吉达; 006: أمانة المنطقة الشرقية / Eastern Province / 东部省; 007: أمانة منطقة عسير / Asir / 阿西尔; 008: أمانة منطقة القصيم / Qassim / 卡西姆; 009: أمانة منطقة جازان / Jazan / 吉赞; 010: أمانة منطقة الجوف / Al Jawf / 焦夫; 011: أمانة منطقة تبوك / Tabuk / 塔布克; 012: أمانة منطقة حائل / Hail / 哈伊勒; 013: أمانة منطقة الحدود الشمالية / Northern Borders / 北部边疆省; 014: أمانة منطقة الباحة / Al Bahah / 巴哈; 015: أمانة منطقة نجران / Najran / 纳季兰; 016: أمانة محافظة الطائف / Taif / 塔伊夫; 017: أمانة محافظة الاحساء / Al Ahsa / 哈萨; 018: أمانة محافظة حفر الباطن / Hafr Al Batin / 哈夫尔巴廷",
             "schema": {
               "type": "string",
-              "description": "Municipality ID from section 3.37.8; keep leading zeros (004 Riyadh, 006 Eastern, 008 Qassim).",
+              "description": "Municipality ID from section 3.37.8, printed p116. Ask citizens for a city/municipality NAME, never an internal code. Resolve an explicitly supplied matching name using this documented directory; preserve leading zeros. Do not infer a sub-municipality or coordinates from this directory. Arabic source name; English/Chinese presentation translations: 002: أمانة العاصمة المقدسة / Makkah / 麦加; 003: أمانة منطقة المدينة المنورة / Madinah / 麦地那; 004: أمانة منطقة الرياض / Riyadh / 利雅得; 005: أمانة محافظة جدة / Jeddah / 吉达; 006: أمانة المنطقة الشرقية / Eastern Province / 东部省; 007: أمانة منطقة عسير / Asir / 阿西尔; 008: أمانة منطقة القصيم / Qassim / 卡西姆; 009: أمانة منطقة جازان / Jazan / 吉赞; 010: أمانة منطقة الجوف / Al Jawf / 焦夫; 011: أمانة منطقة تبوك / Tabuk / 塔布克; 012: أمانة منطقة حائل / Hail / 哈伊勒; 013: أمانة منطقة الحدود الشمالية / Northern Borders / 北部边疆省; 014: أمانة منطقة الباحة / Al Bahah / 巴哈; 015: أمانة منطقة نجران / Najran / 纳季兰; 016: أمانة محافظة الطائف / Taif / 塔伊夫; 017: أمانة محافظة الاحساء / Al Ahsa / 哈萨; 018: أمانة محافظة حفر الباطن / Hafr Al Batin / 哈夫尔巴廷",
               "enum": [
                 "002",
                 "003",

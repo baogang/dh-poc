@@ -11,8 +11,30 @@ const inc=()=>s('MOMRA CRM incident number, beginning INC-. This is not a Pega p
 const pz=()=>s('Full Pega instance key returned by Get Incidents/create response, including class prefix and space. Preserve it exactly; it is not just pyID.');
 const enumeration=(description,values)=>s(description,{enum:values});
 export const municipalities=['002','003','004','005','006','007','008','009','010','011','012','013','014','015','016','017','018'];
+// Arabic names are transcribed from section 3.37.8, printed p116 (PDF p117).
+// English/Chinese names are presentation translations, not a geocoder or a
+// source for lower-level administrative boundaries.
+export const MUNICIPALITY_DIRECTORY=[
+  ['002','أمانة العاصمة المقدسة','Makkah','麦加'],
+  ['003','أمانة منطقة المدينة المنورة','Madinah','麦地那'],
+  ['004','أمانة منطقة الرياض','Riyadh','利雅得'],
+  ['005','أمانة محافظة جدة','Jeddah','吉达'],
+  ['006','أمانة المنطقة الشرقية','Eastern Province','东部省'],
+  ['007','أمانة منطقة عسير','Asir','阿西尔'],
+  ['008','أمانة منطقة القصيم','Qassim','卡西姆'],
+  ['009','أمانة منطقة جازان','Jazan','吉赞'],
+  ['010','أمانة منطقة الجوف','Al Jawf','焦夫'],
+  ['011','أمانة منطقة تبوك','Tabuk','塔布克'],
+  ['012','أمانة منطقة حائل','Hail','哈伊勒'],
+  ['013','أمانة منطقة الحدود الشمالية','Northern Borders','北部边疆省'],
+  ['014','أمانة منطقة الباحة','Al Bahah','巴哈'],
+  ['015','أمانة منطقة نجران','Najran','纳季兰'],
+  ['016','أمانة محافظة الطائف','Taif','塔伊夫'],
+  ['017','أمانة محافظة الاحساء','Al Ahsa','哈萨'],
+  ['018','أمانة محافظة حفر الباطن','Hafr Al Batin','哈夫尔巴廷']
+].map(([id,ar,en,zh])=>({id,ar,en,zh}));
 export const typeLookup=['C','Z','B','E','i','O','L','INQC-011','H','P','R','Y','A','J','S','G','A2','U','T','D'];
-const municipality=()=>enumeration('Municipality ID from section 3.37.8; keep leading zeros (004 Riyadh, 006 Eastern, 008 Qassim).',municipalities);
+const municipality=()=>enumeration('Municipality ID from section 3.37.8, printed p116. Ask citizens for a city/municipality NAME, never an internal code. Resolve an explicitly supplied matching name using this documented directory; preserve leading zeros. Do not infer a sub-municipality or coordinates from this directory. Arabic source name; English/Chinese presentation translations: '+MUNICIPALITY_DIRECTORY.map(x=>`${x.id}: ${x.ar} / ${x.en} / ${x.zh}`).join('; '),municipalities);
 const fields=(names,description)=>Object.fromEntries(names.split(' ').map(key=>[key,s(description?.[key]??key.replace(/([a-z])([A-Z])/g,'$1 $2'))]));
 const photo=(url='AttachmentUrl',required=[])=>obj({AttachmentName:s('Attachment file name'),AttachmentType:s('Attachment media/file type; the guide lists PDF, JPEG and JPG for external-entity updates.'),[url]:s('Attachment locator returned by the document management system. Guide examples can be opaque IDs rather than HTTP URLs.')},required);
 const location=obj({MunicipalityID:municipality(),SubMunicipalityID:id('Sub-municipality ID; obtain from trusted user/context or lookup; do not infer from a street name.'),Sub_SubMunicipalityID:id('Sub-sub-municipality ID; obtain from trusted user/context.'),Longitude:n('Location longitude. Type inferred from section 3.19 request example.',{minimum:-180,maximum:180,'x-type-source':'example; geographical range is local validation policy'}),Latitude:n('Location latitude. Type inferred from section 3.19 request example.',{minimum:-90,maximum:90,'x-type-source':'example; geographical range is local validation policy'}),...fields('Address StreetName DistrictName',{Address:'Full address supplied by the user or trusted profile',StreetName:'Street name; preserve supplied spelling',DistrictName:'District/neighborhood name'})});
