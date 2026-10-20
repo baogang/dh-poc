@@ -1,0 +1,198 @@
+{
+  "stage": "Independent v20 original fixed actual-file actor review; incomplete honest role clarification",
+  "source_report": "docs/evaluation/balady-crm-real-file-service-v20-journey-20261020.json",
+  "candidate_commit": "60acc5791d561dbdd1144487af2d469378c3ebb5",
+  "source_changed_during_run": [],
+  "candidate_commit_unchanged": true,
+  "part_of_frozen_natural_40": false,
+  "actor_modified": false,
+  "automatic_original": {
+    "pass": false,
+    "checks": {
+      "no_unscripted_missing_user_input": {
+        "pass": false,
+        "details": {
+          "kind": "name_roles",
+          "fields": [
+            "body.CustomerInformation.FirstName",
+            "body.CustomerInformation.LastName"
+          ]
+        }
+      }
+    },
+    "error": {
+      "code": "JOURNEY_ASSERTION",
+      "message": "Assertion failed: no_unscripted_missing_user_input"
+    },
+    "modified": false
+  },
+  "independent_result": {
+    "goal_adequacy_at_observed_boundary": "pass: genuine unknown given/family roles",
+    "strict_delivered_facts_and_language": "pass",
+    "actual_observed_DAG": "pass",
+    "application_runtime": "input, not failed",
+    "original_end_to_end_file_and_form_goal_completed": false,
+    "actual_file_selected": false,
+    "actual_file_uploads": 0,
+    "actual_form_writes": 0,
+    "official_government_actions": 0,
+    "composite_label": "honest_incomplete_waiting_not_end_to_end_pass"
+  },
+  "business_assessment": [
+    "Original undifferentiated fullname establishes no field roles under declared local policy. Native prompt asks only role fields and retains supplied contacts/title.",
+    "Actual DAG name-clarification and file-input precede form, upload depends on actual selected file, submission depends on role facts and upload. Appropriate at this boundary.",
+    "Actor has no predeclared role reply and correctly stops rather than being silently adapted. The no_unscripted_missing_user_input assertion remains failed.",
+    "No file selected/upload/card/form: this run does not prove bytes, consent order or end-to-endfile flow. Do not borrow v19 or role-awarev2 as if this original actor completed."
+  ],
+  "delivered_messages": [
+    {
+      "id": "message-a6870aa9-301d-4f3b-a721-9c67a355a87f",
+      "role": "user",
+      "text": "I want to make a public complaint about the service experience at Test Cedar Municipal Service Hall. I waited in the queue for two hours and received no queue updates. Use the title “Long wait at Test Cedar Service Hall”. My name is Lina Citizen, my email is lina@example.test and my phone is 0501234567. I have one test image to attach and will select it when the file picker opens.",
+      "time": "2026-10-19T23:53:04.961Z",
+      "rateable": false
+    },
+    {
+      "id": "message-10bd3897-69e8-491a-887c-2038142a6cc9",
+      "role": "assistant",
+      "text": "These are the planned steps for your request. Queries run automatically; you will review exact details before a submission. A plan does not mean the request has been carried out.",
+      "time": "2026-10-19T23:53:10.899Z",
+      "kind": "plan",
+      "plan_id": "plan-5b09840d-0a4a-4f43-bc66-e5745a8667cc",
+      "rateable": false
+    },
+    {
+      "id": "message-78125fe7-f54f-4e0f-bf89-412073140f6b",
+      "role": "assistant",
+      "text": "Please enter your name in the labelled fields below. Your other supplied details will be kept.",
+      "time": "2026-10-19T23:53:12.380Z",
+      "kind": "input_request",
+      "input_id": "input-ce37afc6-5ab9-445a-82a9-e7efd84dbf35",
+      "plan_id": "plan-5b09840d-0a4a-4f43-bc66-e5745a8667cc",
+      "rateable": false
+    }
+  ],
+  "actual_public_plans": [
+    {
+      "id": "plan-5b09840d-0a4a-4f43-bc66-e5745a8667cc",
+      "origin_message_id": "message-a6870aa9-301d-4f3b-a721-9c67a355a87f",
+      "version": 1,
+      "goal": "Plan for this request",
+      "summary": "These are the planned steps for your request. Queries run automatically; you will review exact details before a submission. A plan does not mean the request has been carried out.",
+      "steps": [
+        {
+          "id": "name_roles",
+          "capability": "input",
+          "depends_on": [],
+          "title": "Clarify necessary information",
+          "parameters": {},
+          "status": "waiting"
+        },
+        {
+          "id": "photo",
+          "capability": "input",
+          "depends_on": [],
+          "title": "Clarify necessary information",
+          "parameters": {},
+          "status": "pending"
+        },
+        {
+          "id": "upload",
+          "capability": "crm_upload_attachment",
+          "depends_on": [
+            "photo"
+          ],
+          "title": "Upload a form attachment",
+          "parameters": {},
+          "status": "pending"
+        },
+        {
+          "id": "submit",
+          "capability": "crm_create_form_request",
+          "depends_on": [
+            "name_roles",
+            "upload"
+          ],
+          "title": "Record an inquiry, suggestion or complaint",
+          "parameters": {},
+          "status": "pending"
+        },
+        {
+          "id": "respond",
+          "capability": "respond",
+          "depends_on": [
+            "submit"
+          ],
+          "title": "Explain the result and limits",
+          "parameters": {},
+          "status": "pending"
+        }
+      ],
+      "approved": true,
+      "status": "approved",
+      "created_at": "2026-10-19T23:53:10.899Z"
+    }
+  ],
+  "pending_input": {
+    "id": "input-ce37afc6-5ab9-445a-82a9-e7efd84dbf35",
+    "plan_id": "plan-5b09840d-0a4a-4f43-bc66-e5745a8667cc",
+    "step_id": "name_roles",
+    "kind": "name_roles",
+    "operation": "crm_create_form_request",
+    "fields": [
+      "body.CustomerInformation.FirstName",
+      "body.CustomerInformation.LastName"
+    ],
+    "purpose": "missing",
+    "question": "Please enter your name in the labelled fields below. Your other supplied details will be kept.",
+    "known_parameters": {
+      "body": {
+        "Type": "T03",
+        "subject": "Long wait at Test Cedar Service Hall",
+        "CustomerInformation": {
+          "EmailAddress": "lina@example.test",
+          "MobileNumber": "0501234567"
+        }
+      }
+    },
+    "name_role_copy": {
+      "question": "Please enter your name in the labelled fields below. Your other supplied details will be kept.",
+      "FirstName": "Given name",
+      "LastName": "Family name",
+      "continue": "Save name and continue",
+      "cancel": "Cancel this request",
+      "note": "Only the name roles still unclear are shown. This is not identity verification.",
+      "retry": "Could not save. Please try again."
+    }
+  },
+  "trace": [
+    {
+      "path": "/api/session",
+      "status": 201,
+      "input": {}
+    },
+    {
+      "path": "/api/chat",
+      "status": 202,
+      "input": {
+        "message": "I want to make a public complaint about the service experience at Test Cedar Municipal Service Hall. I waited in the queue for two hours and received no queue updates. Use the title “Long wait at Test Cedar Service Hall”. My name is Lina Citizen, my email is lina@example.test and my phone is 0501234567. I have one test image to attach and will select it when the file picker opens."
+      }
+    }
+  ],
+  "model_payload_audit": {
+    "requests_by_kind": {
+      "primary": 3,
+      "verifier": 2,
+      "faq": 1,
+      "sentiment": 1
+    },
+    "audit_count": 7,
+    "no_actual_file_selected": "No raw-file leakage coverage can be inferred before selection."
+  },
+  "findings": [],
+  "coverage_limits": [
+    "One original fixed actor first result, outside40.",
+    "No browser chooser or image/content interpretation.",
+    "Local name-role integrity is not official schema/name uniqueness or legal identity validation."
+  ]
+}

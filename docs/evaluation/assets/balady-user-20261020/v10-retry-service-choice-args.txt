@@ -1,0 +1,42 @@
+04:20:35 · tool_start
+查看数据
+{
+  "seq": 28,
+  "time": "2026-10-19T20:20:35.510Z",
+  "type": "tool_start",
+  "call_id": "call_00_o8r9GHwHFHys0b1vCqeq3232",
+  "name": "request_service_choice",
+  "arguments": {
+    "step_id": "choose",
+    "question": "这两件事性质不同，可以分开办，也可以都办。您想先办哪一件？\\n\\n· 反映设施损坏：针对秋千断裂本身，属于设施报修类事项，需要地点等信息。\\n· 投诉沟通问题：针对工作人员没有给出答复这件事，属于服务投诉，需要您的联系方式和事情经过。\\n\\n如果两件都想办，可以先选一项，办完再办另一项。",
+    "choices": [
+      {
+        "id": "facility",
+        "label": "先反映秋千损坏（设施报修）",
+        "description": "就秋千断裂这件事提交设施报修类事项，需要公园所在城市、位置和情况描述。",
+        "operation": "crm_create_municipal_service"
+      },
+      {
+        "id": "complaint",
+        "label": "先投诉沟通问题（服务投诉）",
+        "description": "就工作人员未说明维修安排这件事提交投诉，需要您的姓名、手机、邮箱和事情经过。",
+        "operation": "crm_create_form_request"
+      },
+      {
+        "id": "both",
+        "label": "两件都要办",
+        "description": "先办设施报修，再办服务投诉，两项分别提交、分别确认。",
+        "operation": "crm_create_municipal_service",
+        "additional_operations": [
+          "crm_create_form_request"
+        ]
+      },
+      {
+        "id": "explain",
+        "label": "先只想知道该怎么选",
+        "description": "暂不提交任何事项，只说明两者的区别和建议。",
+        "operation": "none"
+      }
+    ]
+  }
+}

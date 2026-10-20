@@ -1,0 +1,15 @@
+{
+  "stage": "documented nullable API parameter must survive SDK tool conversion",
+  "selected_tests": 1,
+  "exit_code": 1,
+  "source_sha256": {
+    "src/crm/agent.mjs": "b95403636686352d71d18632ec4afa51a01297e80518f54163f596ae2915840f",
+    "src/crm/contract.mjs": "007c29178e32cd4e3a4185dda425a731713b7d298e389b89851be10cde136306",
+    "src/crm/validation.mjs": "15fdc1563381fb17c197abaf2c7447c407b8029fffa77a13556304a4f65de04a",
+    "src/road/runtime.mjs": "8be144c62fba78f74326f771ff117020092a8aa6eacbf153dc925946a7acb371",
+    "tests/crm-integration.test.mjs": "d28b2df31ac1bbc1c2360b87151c5149d3d89e17ac0d59c1d368b73bd64c5f35"
+  },
+  "expected": "A schema-valid Description:null remains null in confirmation and actual wire receipt after exact approval",
+  "observed": "Direct validator accepts null; SDK tool_start receives empty string and host rejects blank",
+  "raw_tap": "docs/evaluation/balady-crm-v10-nullable-tool-red-20261020.tap"
+}

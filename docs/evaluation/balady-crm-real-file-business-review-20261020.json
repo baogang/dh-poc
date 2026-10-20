@@ -1,0 +1,112 @@
+{
+  "date": "2026-10-20",
+  "stage": "Independent semantic review of separate actual-file HTTP journey; not part of frozen natural 40",
+  "source_report": "docs/evaluation/balady-crm-real-file-journey-20261020.json",
+  "source_initial_automatic_copy": "docs/evaluation/balady-crm-real-file-journey-initial-automatic-20261020.json",
+  "candidate_commit": "25b87c8c499a37928f146cfd6b62ce56b73d8b00",
+  "source_changed_during_run": [],
+  "candidate_commit_unchanged": true,
+  "part_of_frozen_natural_40": false,
+  "review_method": "Read original actor, every delivered plan/question/card, successful receipts, corrections/errors, final host answer and instrumented evaluator source. Recomputed actual receipt bytes SHA/size and matched exact proposal/approval/dispatch parameters. Did not rerun or modify actor/source/oracle.",
+  "automatic_functional_checks_original": {
+    "passed": 23,
+    "total": 23,
+    "interpretation": "Functional chain only, not a business-route completeness score."
+  },
+  "independent_verdicts": {
+    "file_bytes_receipt_chain": "pass",
+    "independent_exact_upload_and_form_approval": "pass",
+    "public_complaint_reading_of_supplied_request": "plausible",
+    "physical_issue_vs_general_complaint_route": "needs_clarification_or_inconclusive_coverage",
+    "delivered_final_facts_and_language": "pass",
+    "presentation_readability": "pass",
+    "claim_of_official_or_physical_service_completion": "not_observed",
+    "overall": "Functional actual-file and local-public-form chain is supported. The ambiguous physical/public route is not established as correct physical service triage and must not be counted as such. No definite new product bug is established solely from the actor ambiguity."
+  },
+  "actor_design_assessment": {
+    "deviation": "The delegated extra scenario was intended to concern service-hall queue handling. The immutable actor instead describes an overflowing physical container, so it is not clean evidence for the intended service-handling complaint scenario.",
+    "why_public_form_is_defensible": "The actor explicitly asks to make a complaint and supplies a requested title, contact details and a test image. A public complaint interpretation is plausible; there is no explicit physical-service tool or operation instruction in the user utterance.",
+    "why_route_not_proven": "The underlying goal concerns a physical overflowing bin and the draft asks for emptying and cleaning. Ordinary citizens also call physical service requests complaints. No intent clarification is delivered before the public form route; the scripted actor only approves matching payload facts and cannot demonstrate a human made a conscious alternative-service selection.",
+    "fairness": "A model that instead asks whether a physical issue report or general complaint is desired, or asks for city/location for a physical path, would be handling a genuine ambiguity; that should not fail this actor as a model bug. Likewise public-form execution alone should not be called accurate physical issue classification.",
+    "future_coverage": "Keep this immutable result. A separately designed natural scenario with an unambiguous service-handling complaint can test the intended path, or a resident actor can answer a genuine intent question without tool/API wording. Do not selectively rewrite or replace this run."
+  },
+  "actual_outcomes": {
+    "actual_file_uploads": 1,
+    "actual_local_public_form_submissions": 1,
+    "successful_mutation_receipts": 2,
+    "physical_municipal_service_creations": 0,
+    "actual_official_government_submissions": 0,
+    "actual_dispatch_or_container_cleanup": 0,
+    "browser_file_chooser_automation": false
+  },
+  "independent_byte_verification": {
+    "filename": "Test Evidence.png",
+    "media_type": "image/png",
+    "size_bytes": 68,
+    "sha256": "d78711356a9abac91b9d7e1c2477b8a2def3030702a16792173871c54c452a28",
+    "png_signature_matches": true,
+    "uploaded_returned_file_id": "FILE-DEMO-000003",
+    "form_uses_exact_returned_file_id": true,
+    "test_image_content_note": "This is a 68-byte synthetic PNG. No visual inspection/scene understanding by the model is established. The upload memo labels the issue from conversation context; it must not be reported as verified image content or proof of an overflowing bin."
+  },
+  "independent_approval_verification": {
+    "crm_upload_attachment": {
+      "same_exact_proposed_approved_executed_parameters": true,
+      "proposal_seq": 109,
+      "approval_seq": 114,
+      "dispatch_seq": 120,
+      "approval_precedes_dispatch": true
+    },
+    "crm_create_form_request": {
+      "same_exact_proposed_approved_executed_parameters": true,
+      "proposal_seq": 135,
+      "approval_seq": 140,
+      "dispatch_seq": 146,
+      "approval_precedes_dispatch": true
+    }
+  },
+  "business_parameters": {
+    "form_type": "T03",
+    "supplied_title_preserved": true,
+    "contact_fields_preserved": true,
+    "description_assessment": "Preserves container/place/three-day context and drafts an understandable requested cleanup action. This is requested action text, not an assertion that cleanup occurred.",
+    "location_assessment": "The form contains no city/coordinates because the executed path is an unclassified public form. That does not establish a valid physical municipal service request or successful geocoding."
+  },
+  "model_payload_audit": {
+    "evaluator_source_hash_verified": "e91e2fabf7363debd7ba2b7bae811fea19d8ca19e9ab5494980a3bda6df0c6c5",
+    "requests_by_kind": {
+      "primary": 14,
+      "verifier": 13,
+      "faq": 1,
+      "sentiment": 1
+    },
+    "onPayload_instrumentation_inspected": true,
+    "all_recorded_payload_audits_report_no_raw_selected_base64": true,
+    "evidence_limit": "The evaluator attaches an onPayload check before forwarding every FAQ/sentiment/primary/verifier payload, tests the selected exact base64 string and stores only SHA plus boolean. Original raw payloads are not persisted here, so absence cannot be independently recomputed from retained hashes; this is source-inspected instrumentation evidence, not an additional network capture. No vision understanding is shown."
+  },
+  "presentation_assessment": {
+    "final_source": "host_submission",
+    "final_parts": [
+      "host_submission"
+    ],
+    "final_customer_text": "This local simulated submission is complete.\n\n- Attachment uploaded: Test Evidence.png\n- Record number: PUB-DEMO-000005\n- Title: Waste collection at Test Cedar Park\n\nThis record exists only in this simulated conversation. It was not sent to a government system, cannot be tracked in the official app, and triggers no real SMS, email or refund.",
+    "notes": [
+      "Final answer correctly lists one actual uploaded filename and one actual local form ID/title.",
+      "It expressly says no government synchronization, official app tracking or real SMS/email/refund. It does not promise department handling or cleanup.",
+      "Three largely repeated plan messages and host confirmation card jargon are avoidable UX noise, but there is no raw JSON/escaped-newline breakdown."
+    ]
+  },
+  "observable_tool_errors_preserved": {
+    "UNVERIFIED_CUSTOMER_CLAIMS": 1,
+    "STEP_MISMATCH": 2,
+    "INVALID_INPUT_FIELDS": 1
+  },
+  "recovery_assessment": "Initial planning used an upload step for a file input, then an invalid field. Host errors were retained and the real model added an input step and consulted the contract. Both writes occur only after corrected file input and separate exact approvals. Initial recovery errors are not erased or converted into first-attempt planning success.",
+  "definite_new_product_findings": [],
+  "business_route_coverage_gap": {
+    "severity": "test-design limitation",
+    "category": "Ambiguous physical sanitation complaint vs general public complaint",
+    "requires_product_bug_label": false
+  },
+  "no_source_actor_reference_fixture_runner_or_original_report_edits": true
+}

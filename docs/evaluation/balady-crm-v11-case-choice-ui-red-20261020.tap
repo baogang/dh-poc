@@ -1,0 +1,34 @@
+TAP version 13
+# Subtest: case choice names actual readable reports in three languages without implying service selection or approval
+not ok 1 - case choice names actual readable reports in three languages without implying service selection or approval
+  ---
+  duration_ms: 5.985178
+  type: 'test'
+  location: '/Users/baogang/git/momah-poc/tests/crm-chat-ui.test.mjs:35:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    '选择办理方式' !== '选择一件报告'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: '选择一件报告'
+  actual: '选择办理方式'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/baogang/git/momah-poc/tests/crm-chat-ui.test.mjs:38:170)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1062:25)
+    Test.start (node:internal/test_runner/test:959:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:332:17)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 159.24687

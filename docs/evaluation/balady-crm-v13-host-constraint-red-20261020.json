@@ -1,0 +1,29 @@
+{
+  "stage": "v13 public HTTP real host constraint evidence and blocked-outcome red before repair",
+  "command": [
+    "node",
+    "--test",
+    "--test-reporter=tap",
+    "--test-name-pattern=real host location constraint is reference evidence",
+    "tests/crm-integration.test.mjs"
+  ],
+  "tests": 1,
+  "passed": 0,
+  "failed": 1,
+  "exit_code": 1,
+  "source_sha256": {
+    "src/crm/agent.mjs": "11374ab1dfbc935293db8eb971bf6ddaa51b9df0d69c98eeea1892552738020c",
+    "src/crm/response-guard.mjs": "0330f20310cb7b2b239dc08e5bd049742a526ab6d4e9118e5de9e217bb88d1d2",
+    "src/crm/presentation.mjs": "e6b7284a6d8ded8f81a38326fc3383e667ee6800d46a12425cc619490a37edad",
+    "tests/crm-integration.test.mjs": "af40f7fd6b4f1f63f40624d20a1199ece1077c4131798b95b2812bb6a67e517d"
+  },
+  "source_sha256_end": {
+    "src/crm/agent.mjs": "11374ab1dfbc935293db8eb971bf6ddaa51b9df0d69c98eeea1892552738020c",
+    "src/crm/response-guard.mjs": "0330f20310cb7b2b239dc08e5bd049742a526ab6d4e9118e5de9e217bb88d1d2",
+    "src/crm/presentation.mjs": "e6b7284a6d8ded8f81a38326fc3383e667ee6800d46a12425cc619490a37edad",
+    "tests/crm-integration.test.mjs": "af40f7fd6b4f1f63f40624d20a1199ece1077c4131798b95b2812bb6a67e517d"
+  },
+  "source_changed_during_run": [],
+  "raw_tap": "docs/evaluation/balady-crm-v13-host-constraint-red-20261020.tap",
+  "expected_behavior": "A real lower-location capability constraint permits honest original-request blocking and is passed as scoped trusted reference evidence to two independent reviewers; it is not a success receipt, authorization or an unconnected-operation claim."
+}

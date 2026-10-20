@@ -1,0 +1,37 @@
+{
+  "candidate": "60acc5791d561dbdd1144487af2d469378c3ebb5",
+  "stage": "Read-only replay of the exact captured v19 Unicode-list question through the v20 production renderer; NOT natural-model or semantic coverage",
+  "captured_source": "/Users/baogang/git/momah-poc/reports/crm-journeys/final-regression-20261020-v19-final/NAT-D003.json",
+  "source_message_id": "message-81d61f29-4187-4348-9310-8057fb42aebf",
+  "raw_question": "我在你的记录里看到一条上周（10月12日）提交、状态为“已办结”的事项：图书馆旁边垃圾桶损坏。没有找到“垃圾未清运”的记录。\n\n你想怎么再次反映？\\n1）就“垃圾没清走”新登记一条市政服务请求（需要地点等信息）；\\n2）就“投诉已办结但垃圾仍未清走”提交一条公共投诉表单；\\n3）先不提交，只了解那条已办结记录的情况。\n\n说明：这里都是本地模拟记录，登记后不会转给任何部门或人员去清运或复核。",
+  "raw_choices": [
+    {
+      "id": "municipal",
+      "label": "新登记一条垃圾未清运的市政服务请求",
+      "description": "登记一条关于垃圾未清运的市政服务请求记录（本地模拟，不执行清运）。",
+      "operation": "crm_create_municipal_service"
+    },
+    {
+      "id": "complaint",
+      "label": "提交一条关于“已办结但问题未解决”的公共投诉",
+      "description": "提交公共投诉表单，反映投诉被办结但垃圾仍未清走（本地模拟记录）。",
+      "operation": "crm_create_form_request"
+    },
+    {
+      "id": "none",
+      "label": "先不提交，只了解那条已办结记录",
+      "description": "不新建任何记录，仅说明现有记录情况。",
+      "operation": "none"
+    }
+  ],
+  "html_sha256": "6ce8ee7ac0409a7edd48aff27f951ac78263540a36df3bf43cc08f97c6d6fdec",
+  "served_modules": {
+    "chat-ui.js": "e56725f26533218df2b5f8cdb98d8970702c71e4d70e386008a3240f3639e146",
+    "style.css": "b8749b4418d132c9f9871860b8f1c4b63f7ed2de78cf4f4b6080b5cb4515907f",
+    "i18n.js": "7dbf8831a290f0fdf3e4fea1ceeefb6745dea092041d7b6d3e09528902a6f7f5",
+    "markdown.js": "c0cf975929b8e46795bae29699cffc529596079740bc1fee1ff11216139273ff",
+    "crm-review.js": "fdc5e254948c509adb3dfffdc28e293b7cf6b8368a7279d8ae5c32d3fafd158f",
+    "vendor/marked.js": "05e41134d075ad3a009a748d6c779c3d83cea9b942be911c2d9abade36d1dd31"
+  },
+  "url": "http://127.0.0.1:8789/"
+}

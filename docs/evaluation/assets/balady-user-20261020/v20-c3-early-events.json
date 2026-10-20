@@ -1,0 +1,32 @@
+[
+  {
+    "request": 1,
+    "seq": 4,
+    "time": "2026-10-19T23:58:37.724Z",
+    "type": "model_request"
+  },
+  {
+    "entries": 9,
+    "seq": 3,
+    "time": "2026-10-19T23:58:37.716Z",
+    "type": "faq_lookup"
+  },
+  {
+    "epoch": 0,
+    "route": "faq_then_balady_crm",
+    "seq": 2,
+    "time": "2026-10-19T23:58:37.713Z",
+    "type": "turn_started"
+  },
+  {
+    "message": {
+      "id": "message-7e0514d1-ea35-451b-914f-03a1195ea5c0",
+      "role": "user",
+      "text": "我想投诉一次咨询窗口的服务体验。昨天我去公园服务窗口询问无障碍入口，工作人员只让我去另一边，没有说清楚路线，我带着轮椅绕了很久。希望窗口给出清楚的指引，并说明遇到类似情况该找谁。标题请写“公园窗口指引不清”。我叫林舟，电话0500000153，邮箱linzhou.test@example.com，不附照片。",
+      "time": "2026-10-19T23:58:37.712Z"
+    },
+    "seq": 1,
+    "time": "2026-10-19T23:58:37.712Z",
+    "type": "message"
+  }
+]

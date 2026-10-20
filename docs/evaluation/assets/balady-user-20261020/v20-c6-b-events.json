@@ -1,0 +1,1164 @@
+[
+  {
+    "seq": 61,
+    "status": "input",
+    "time": "2026-10-19T23:57:55.050Z",
+    "type": "turn_finished"
+  },
+  {
+    "call_id": "call_00_qCkUVcaanYM1mSEC7BQ97193",
+    "name": "crm_fetch_incident",
+    "result": {
+      "end_turn": true,
+      "input": {
+        "case_history_receipt_id": "receipt-2525c6fa-ceb9-44e9-945e-fdb116e4cb9e",
+        "case_owner": "demo-demo",
+        "choices": [
+          {
+            "description": "记录状态: 处理中",
+            "id": "case_0",
+            "label": "Suspected abandoned vehicle beside Test Cedar Street / 测试雪松街旁疑似废弃车辆",
+            "record_fingerprint": "5f7477d6df14b84242677a1d44f6f66e660b173f30a0758c027d504f50fef635",
+            "record_id": "INC-26-10-000001",
+            "record_key": "MOMRA-OPS-CS-WORK INC-26-10-000001"
+          },
+          {
+            "description": "记录状态: 已解决",
+            "id": "case_1",
+            "label": "Waste left beside the Test Olive Street container / 测试橄榄街垃圾箱旁垃圾未清运",
+            "record_fingerprint": "5f029954d6895ba6f5061b0fc8d14b0aaad5c613531b758b51c64ff30d28d15d",
+            "record_id": "INC-26-10-000002",
+            "record_key": "MOMRA-OPS-CS-WORK INC-26-10-000002"
+          },
+          {
+            "id": "none",
+            "label": "这些都不是我要查询的事项",
+            "none": true
+          }
+        ],
+        "host_case_selection": true,
+        "id": "input-d31a4ccb-e4d0-4476-842c-785f1c8b72da",
+        "kind": "choice",
+        "plan_id": "plan-c52a7d83-9286-4a06-8014-b09eaf989fe4",
+        "purpose": "case",
+        "question": "尚未确定你指的是哪一件。请从本次可见记录的问题描述或记录日期选择；这些都不符合时可以选择“都不是”。选择只确定查询目标，不会修改或提交事项。",
+        "step_id": "case_choice-9245b970-3f0e-469d-8334-1d06"
+      }
+    },
+    "seq": 60,
+    "time": "2026-10-19T23:57:55.050Z",
+    "type": "tool_end"
+  },
+  {
+    "message": {
+      "id": "message-1fdce8ab-2981-4f6e-b18e-d95f77ff4f96",
+      "input_id": "input-d31a4ccb-e4d0-4476-842c-785f1c8b72da",
+      "kind": "input_request",
+      "plan_id": "plan-c52a7d83-9286-4a06-8014-b09eaf989fe4",
+      "role": "assistant",
+      "text": "尚未确定你指的是哪一件。请从本次可见记录的问题描述或记录日期选择；这些都不符合时可以选择“都不是”。选择只确定查询目标，不会修改或提交事项。",
+      "time": "2026-10-19T23:57:55.050Z"
+    },
+    "seq": 59,
+    "time": "2026-10-19T23:57:55.050Z",
+    "type": "message"
+  },
+  {
+    "input": {
+      "case_history_receipt_id": "receipt-2525c6fa-ceb9-44e9-945e-fdb116e4cb9e",
+      "case_owner": "demo-demo",
+      "choices": [
+        {
+          "description": "记录状态: 处理中",
+          "id": "case_0",
+          "label": "Suspected abandoned vehicle beside Test Cedar Street / 测试雪松街旁疑似废弃车辆",
+          "record_fingerprint": "5f7477d6df14b84242677a1d44f6f66e660b173f30a0758c027d504f50fef635",
+          "record_id": "INC-26-10-000001",
+          "record_key": "MOMRA-OPS-CS-WORK INC-26-10-000001"
+        },
+        {
+          "description": "记录状态: 已解决",
+          "id": "case_1",
+          "label": "Waste left beside the Test Olive Street container / 测试橄榄街垃圾箱旁垃圾未清运",
+          "record_fingerprint": "5f029954d6895ba6f5061b0fc8d14b0aaad5c613531b758b51c64ff30d28d15d",
+          "record_id": "INC-26-10-000002",
+          "record_key": "MOMRA-OPS-CS-WORK INC-26-10-000002"
+        },
+        {
+          "id": "none",
+          "label": "这些都不是我要查询的事项",
+          "none": true
+        }
+      ],
+      "host_case_selection": true,
+      "id": "input-d31a4ccb-e4d0-4476-842c-785f1c8b72da",
+      "kind": "choice",
+      "plan_id": "plan-c52a7d83-9286-4a06-8014-b09eaf989fe4",
+      "purpose": "case",
+      "question": "尚未确定你指的是哪一件。请从本次可见记录的问题描述或记录日期选择；这些都不符合时可以选择“都不是”。选择只确定查询目标，不会修改或提交事项。",
+      "step_id": "case_choice-9245b970-3f0e-469d-8334-1d06"
+    },
+    "seq": 58,
+    "time": "2026-10-19T23:57:55.050Z",
+    "type": "input_required"
+  },
+  {
+    "plan": {
+      "approved": true,
+      "created_at": "2026-10-19T23:57:28.002Z",
+      "goal": "本轮处理计划",
+      "id": "plan-c52a7d83-9286-4a06-8014-b09eaf989fe4",
+      "origin_message_id": "message-d7b75a70-7de1-44c4-b50d-3e3a0ac4ccb8",
+      "status": "approved",
+      "steps": [
+        {
+          "capability": "input",
+          "depends_on": [],
+          "id": "login",
+          "parameters": {},
+          "status": "completed",
+          "title": "确认必要信息"
+        },
+        {
+          "capability": "crm_get_incidents",
+          "depends_on": [
+            "login"
+          ],
+          "id": "history",
+          "parameters": {},
+          "receipt_id": "receipt-2525c6fa-ceb9-44e9-945e-fdb116e4cb9e",
+          "status": "completed",
+          "title": "查看本人可见事项"
+        },
+        {
+          "capability": "input",
+          "depends_on": [
+            "history"
+          ],
+          "host_case_selection": true,
+          "id": "case_choice-9245b970-3f0e-469d-8334-1d06",
+          "parameters": {},
+          "status": "waiting",
+          "title": "确认要查询的事项"
+        },
+        {
+          "capability": "crm_fetch_incident",
+          "depends_on": [
+            "history",
+            "case_choice-9245b970-3f0e-469d-8334-1d06"
+          ],
+          "id": "detail",
+          "parameters": {},
+          "status": "pending",
+          "title": "查看所选报告的详情"
+        },
+        {
+          "capability": "respond",
+          "depends_on": [
+            "detail"
+          ],
+          "id": "respond",
+          "parameters": {},
+          "status": "pending",
+          "title": "说明结果与限制"
+        }
+      ],
+      "summary": "按以下步骤处理你的请求。查询会自动进行；提交前会请你核对具体内容。计划不代表事项已经办理。",
+      "version": 1
+    },
+    "reason": "case_selection_required",
+    "seq": 57,
+    "time": "2026-10-19T23:57:55.050Z",
+    "type": "plan_updated"
+  },
+  {
+    "arguments": {
+      "pzInsKey": "MOMRA-OPS-CS-WORK INC-26-10-000001",
+      "step_id": "detail"
+    },
+    "call_id": "call_00_qCkUVcaanYM1mSEC7BQ97193",
+    "name": "crm_fetch_incident",
+    "seq": 56,
+    "time": "2026-10-19T23:57:55.049Z",
+    "type": "tool_start"
+  },
+  {
+    "seq": 55,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T23:57:55.048Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "pzInsKey": "MOMRA-OPS-CS-WORK INC-26-10-000001",
+          "step_id": "detail"
+        },
+        "name": "crm_fetch_incident"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 16512,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000099072,
+        "cacheWrite": 0,
+        "input": 0.0001362,
+        "output": 0.0000876,
+        "total": 0.00032287200000000004
+      },
+      "input": 454,
+      "output": 73,
+      "reasoning": 0,
+      "totalTokens": 17039
+    }
+  },
+  {
+    "request": 2,
+    "seq": 54,
+    "time": "2026-10-19T23:57:54.325Z",
+    "type": "model_request"
+  },
+  {
+    "call_id": "call_00_7DE02hepv8QW3nPrnbEK7146",
+    "name": "crm_get_incidents",
+    "result": {
+      "receipt": {
+        "api_mode": "simulation",
+        "beneficiary_id": "demo-demo",
+        "id": "receipt-2525c6fa-ceb9-44e9-945e-fdb116e4cb9e",
+        "operation": "crm_get_incidents",
+        "operation_key": "e213dfb7c8ff10492cd57e18c5f9ab0b24f4b14771a48652da0fb16ecf903479",
+        "parameters": {},
+        "plan_id": "plan-c52a7d83-9286-4a06-8014-b09eaf989fe4",
+        "result": {
+          "data": {
+            "responseCode": "1",
+            "responseMessage": "success",
+            "result": {
+              "IncidentRequestList": [
+                {
+                  "Description": "Suspected abandoned vehicle beside Test Cedar Street / 测试雪松街旁疑似废弃车辆",
+                  "MainClassificationID": "004_MC-VEHICLE",
+                  "MunicipalityID": "004",
+                  "SplClassificationID": "004_MC-VEHICLE_SC-1_SPC-1",
+                  "SubClassificationID": "004_MC-VEHICLE_SC-1",
+                  "hasAttachments": false,
+                  "history": "[MaxDepth]",
+                  "pyID": "INC-26-10-000001",
+                  "pyStatusWork": "InProgress",
+                  "pzInsKey": "MOMRA-OPS-CS-WORK INC-26-10-000001",
+                  "routedToMadinati": true,
+                  "topic": "vehicle"
+                },
+                {
+                  "Description": "Waste left beside the Test Olive Street container / 测试橄榄街垃圾箱旁垃圾未清运",
+                  "MunicipalityID": "004",
+                  "hasAttachments": true,
+                  "history": "[MaxDepth]",
+                  "pyID": "INC-26-10-000002",
+                  "pyStatusWork": "Resolved",
+                  "pzInsKey": "MOMRA-OPS-CS-WORK INC-26-10-000002",
+                  "routedToMadinati": true,
+                  "topic": "waste"
+                }
+              ],
+              "TotalRecordCount": "2"
+            }
+          },
+          "statusDetails": {
+            "code": 200,
+            "message": "OK"
+          }
+        },
+        "step_id": "history",
+        "time": "2026-10-19T23:57:54.321Z"
+      }
+    },
+    "seq": 53,
+    "time": "2026-10-19T23:57:54.321Z",
+    "type": "tool_end"
+  },
+  {
+    "receipt": {
+      "api_mode": "simulation",
+      "beneficiary_id": "demo-demo",
+      "id": "receipt-2525c6fa-ceb9-44e9-945e-fdb116e4cb9e",
+      "operation": "crm_get_incidents",
+      "operation_key": "e213dfb7c8ff10492cd57e18c5f9ab0b24f4b14771a48652da0fb16ecf903479",
+      "parameters": {},
+      "plan_id": "plan-c52a7d83-9286-4a06-8014-b09eaf989fe4",
+      "result": {
+        "data": {
+          "responseCode": "1",
+          "responseMessage": "success",
+          "result": {
+            "IncidentRequestList": [
+              {
+                "Description": "Suspected abandoned vehicle beside Test Cedar Street / 测试雪松街旁疑似废弃车辆",
+                "MainClassificationID": "004_MC-VEHICLE",
+                "MunicipalityID": "004",
+                "SplClassificationID": "004_MC-VEHICLE_SC-1_SPC-1",
+                "SubClassificationID": "004_MC-VEHICLE_SC-1",
+                "hasAttachments": false,
+                "history": [],
+                "pyID": "INC-26-10-000001",
+                "pyStatusWork": "InProgress",
+                "pzInsKey": "MOMRA-OPS-CS-WORK INC-26-10-000001",
+                "routedToMadinati": true,
+                "topic": "vehicle"
+              },
+              {
+                "Description": "Waste left beside the Test Olive Street container / 测试橄榄街垃圾箱旁垃圾未清运",
+                "MunicipalityID": "004",
+                "hasAttachments": true,
+                "history": [],
+                "pyID": "INC-26-10-000002",
+                "pyStatusWork": "Resolved",
+                "pzInsKey": "MOMRA-OPS-CS-WORK INC-26-10-000002",
+                "routedToMadinati": true,
+                "topic": "waste"
+              }
+            ],
+            "TotalRecordCount": "2"
+          }
+        },
+        "statusDetails": {
+          "code": 200,
+          "message": "OK"
+        }
+      },
+      "step_id": "history",
+      "time": "2026-10-19T23:57:54.321Z"
+    },
+    "seq": 52,
+    "time": "2026-10-19T23:57:54.321Z",
+    "type": "receipt"
+  },
+  {
+    "operation": "crm_get_incidents",
+    "response": {
+      "data": {
+        "responseCode": "1",
+        "responseMessage": "success",
+        "result": {
+          "IncidentRequestList": [
+            {
+              "Description": "Suspected abandoned vehicle beside Test Cedar Street / 测试雪松街旁疑似废弃车辆",
+              "MainClassificationID": "004_MC-VEHICLE",
+              "MunicipalityID": "004",
+              "SplClassificationID": "004_MC-VEHICLE_SC-1_SPC-1",
+              "SubClassificationID": "004_MC-VEHICLE_SC-1",
+              "hasAttachments": false,
+              "history": [],
+              "pyID": "INC-26-10-000001",
+              "pyStatusWork": "InProgress",
+              "pzInsKey": "MOMRA-OPS-CS-WORK INC-26-10-000001",
+              "routedToMadinati": true,
+              "topic": "vehicle"
+            },
+            {
+              "Description": "Waste left beside the Test Olive Street container / 测试橄榄街垃圾箱旁垃圾未清运",
+              "MunicipalityID": "004",
+              "hasAttachments": true,
+              "history": [],
+              "pyID": "INC-26-10-000002",
+              "pyStatusWork": "Resolved",
+              "pzInsKey": "MOMRA-OPS-CS-WORK INC-26-10-000002",
+              "routedToMadinati": true,
+              "topic": "waste"
+            }
+          ],
+          "TotalRecordCount": "2"
+        }
+      },
+      "statusDetails": {
+        "code": 200,
+        "message": "OK"
+      }
+    },
+    "seq": 51,
+    "time": "2026-10-19T23:57:54.319Z",
+    "type": "api_end"
+  },
+  {
+    "call": {
+      "operation": "crm_get_incidents",
+      "parameters": {},
+      "time": "2026-10-19T23:57:54.319Z"
+    },
+    "seq": 50,
+    "time": "2026-10-19T23:57:54.319Z",
+    "type": "api_start"
+  },
+  {
+    "plan_id": "plan-c52a7d83-9286-4a06-8014-b09eaf989fe4",
+    "seq": 49,
+    "step_id": "history",
+    "time": "2026-10-19T23:57:54.317Z",
+    "type": "step_running"
+  },
+  {
+    "arguments": {
+      "step_id": "history"
+    },
+    "call_id": "call_00_7DE02hepv8QW3nPrnbEK7146",
+    "name": "crm_get_incidents",
+    "seq": 48,
+    "time": "2026-10-19T23:57:54.317Z",
+    "type": "tool_start"
+  },
+  {
+    "seq": 47,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T23:57:54.317Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "step_id": "history"
+        },
+        "name": "crm_get_incidents"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 15488,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000092928,
+        "cacheWrite": 0,
+        "input": 0.0002979,
+        "output": 0.000044399999999999995,
+        "total": 0.000435228
+      },
+      "input": 993,
+      "output": 37,
+      "reasoning": 0,
+      "totalTokens": 16518
+    }
+  },
+  {
+    "request": 1,
+    "seq": 46,
+    "time": "2026-10-19T23:57:53.623Z",
+    "type": "model_request"
+  },
+  {
+    "epoch": 0,
+    "route": "crm_resume",
+    "seq": 45,
+    "time": "2026-10-19T23:57:53.608Z",
+    "type": "turn_started"
+  },
+  {
+    "input_id": "input-1945f419-1d32-4717-94c4-b516a57c1ccd",
+    "result": {},
+    "seq": 44,
+    "time": "2026-10-19T23:57:53.608Z",
+    "type": "input_received"
+  },
+  {
+    "message": {
+      "id": "message-e856a91f-59d5-458f-ae8a-2545f5c0191f",
+      "input_id": "input-1945f419-1d32-4717-94c4-b516a57c1ccd",
+      "kind": "input",
+      "role": "user",
+      "text": "已完成模拟登录。",
+      "time": "2026-10-19T23:57:53.608Z",
+      "value": {}
+    },
+    "seq": 43,
+    "time": "2026-10-19T23:57:53.608Z",
+    "type": "message"
+  },
+  {
+    "message": {
+      "id": "message-d0e64ab3-2a30-4533-9fca-c8a50a0caef4",
+      "kind": "login",
+      "notice": "login",
+      "role": "assistant",
+      "text": "模拟登录成功。现在可以继续处理你的工单。",
+      "time": "2026-10-19T23:57:53.505Z"
+    },
+    "seq": 42,
+    "time": "2026-10-19T23:57:53.505Z",
+    "type": "message"
+  },
+  {
+    "seq": 41,
+    "time": "2026-10-19T23:57:53.505Z",
+    "type": "login",
+    "user": {
+      "name": "demo",
+      "user_id": "demo-demo"
+    }
+  },
+  {
+    "seq": 40,
+    "status": "input",
+    "time": "2026-10-19T23:57:30.217Z",
+    "type": "turn_finished"
+  },
+  {
+    "call_id": "call_00_CLCJ0ybSdSglXknGmZYD4541",
+    "name": "request_input",
+    "result": {
+      "end_turn": true,
+      "input": {
+        "fields": [],
+        "id": "input-1945f419-1d32-4717-94c4-b516a57c1ccd",
+        "kind": "login",
+        "operation": "crm_get_incidents",
+        "plan_id": "plan-c52a7d83-9286-4a06-8014-b09eaf989fe4",
+        "question": "查看您本人的记录需要先登录。请使用页面上的登录入口完成演示登录，之后我会列出您名下的记录供您确认是哪一件。",
+        "step_id": "login"
+      }
+    },
+    "seq": 39,
+    "time": "2026-10-19T23:57:30.217Z",
+    "type": "tool_end"
+  },
+  {
+    "message": {
+      "id": "message-6994bde8-06d1-4b0f-a405-31ce3f053b14",
+      "input_id": "input-1945f419-1d32-4717-94c4-b516a57c1ccd",
+      "kind": "input_request",
+      "plan_id": "plan-c52a7d83-9286-4a06-8014-b09eaf989fe4",
+      "role": "assistant",
+      "text": "查看您本人的记录需要先登录。请使用页面上的登录入口完成演示登录，之后我会列出您名下的记录供您确认是哪一件。",
+      "time": "2026-10-19T23:57:30.217Z"
+    },
+    "seq": 38,
+    "time": "2026-10-19T23:57:30.217Z",
+    "type": "message"
+  },
+  {
+    "input": {
+      "fields": [],
+      "id": "input-1945f419-1d32-4717-94c4-b516a57c1ccd",
+      "kind": "login",
+      "operation": "crm_get_incidents",
+      "plan_id": "plan-c52a7d83-9286-4a06-8014-b09eaf989fe4",
+      "question": "查看您本人的记录需要先登录。请使用页面上的登录入口完成演示登录，之后我会列出您名下的记录供您确认是哪一件。",
+      "step_id": "login"
+    },
+    "seq": 37,
+    "time": "2026-10-19T23:57:30.217Z",
+    "type": "input_required"
+  },
+  {
+    "corrected": false,
+    "issues": [],
+    "seq": 36,
+    "time": "2026-10-19T23:57:30.217Z",
+    "type": "response_guard_completed"
+  },
+  {
+    "scope": "capability_language",
+    "seq": 35,
+    "time": "2026-10-19T23:57:30.217Z",
+    "type": "response_guard_passed"
+  },
+  {
+    "seq": 34,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T23:57:30.216Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "approved": true,
+          "issues": []
+        },
+        "name": "review_message"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 2304,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000013824,
+        "cacheWrite": 0,
+        "input": 0.0008537999999999999,
+        "output": 0.0000576,
+        "total": 0.000925224
+      },
+      "input": 2846,
+      "output": 48,
+      "reasoning": 0,
+      "totalTokens": 5198
+    }
+  },
+  {
+    "request": 1,
+    "seq": 33,
+    "time": "2026-10-19T23:57:29.549Z",
+    "type": "model_request"
+  },
+  {
+    "scope": "facts",
+    "seq": 32,
+    "time": "2026-10-19T23:57:29.542Z",
+    "type": "response_guard_passed"
+  },
+  {
+    "seq": 31,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T23:57:29.541Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "approved": true,
+          "issues": []
+        },
+        "name": "review_message"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 2048,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000012288,
+        "cacheWrite": 0,
+        "input": 0.0008592,
+        "output": 0.0000576,
+        "total": 0.000929088
+      },
+      "input": 2864,
+      "output": 48,
+      "reasoning": 0,
+      "totalTokens": 4960
+    }
+  },
+  {
+    "request": 1,
+    "seq": 30,
+    "time": "2026-10-19T23:57:28.951Z",
+    "type": "model_request"
+  },
+  {
+    "message_count": 1,
+    "seq": 29,
+    "time": "2026-10-19T23:57:28.944Z",
+    "type": "response_guard_started"
+  },
+  {
+    "arguments": {
+      "fields": [],
+      "kind": "login",
+      "operation": "crm_get_incidents",
+      "question": "查看您本人的记录需要先登录。请使用页面上的登录入口完成演示登录，之后我会列出您名下的记录供您确认是哪一件。",
+      "step_id": "login"
+    },
+    "call_id": "call_00_CLCJ0ybSdSglXknGmZYD4541",
+    "name": "request_input",
+    "seq": 28,
+    "time": "2026-10-19T23:57:28.944Z",
+    "type": "tool_start"
+  },
+  {
+    "seq": 27,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T23:57:28.943Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "fields": [],
+          "kind": "login",
+          "operation": "crm_get_incidents",
+          "question": "查看您本人的记录需要先登录。请使用页面上的登录入口完成演示登录，之后我会列出您名下的记录供您确认是哪一件。",
+          "step_id": "login"
+        },
+        "name": "request_input"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 15872,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000095232,
+        "cacheWrite": 0,
+        "input": 0.0001017,
+        "output": 0.0001572,
+        "total": 0.000354132
+      },
+      "input": 339,
+      "output": 131,
+      "reasoning": 0,
+      "totalTokens": 16342
+    }
+  },
+  {
+    "request": 2,
+    "seq": 26,
+    "time": "2026-10-19T23:57:28.005Z",
+    "type": "model_request"
+  },
+  {
+    "call_id": "call_00_MCiQmo31yMivmtMWo94H7064",
+    "name": "propose_plan",
+    "result": {
+      "auto_execute": true,
+      "plan": {
+        "approved": true,
+        "created_at": "2026-10-19T23:57:28.002Z",
+        "goal": "本轮处理计划",
+        "id": "plan-c52a7d83-9286-4a06-8014-b09eaf989fe4",
+        "origin_message_id": "message-d7b75a70-7de1-44c4-b50d-3e3a0ac4ccb8",
+        "status": "approved",
+        "steps": [
+          {
+            "capability": "input",
+            "depends_on": [],
+            "id": "login",
+            "parameters": {},
+            "status": "pending",
+            "title": "确认必要信息"
+          },
+          {
+            "capability": "crm_get_incidents",
+            "depends_on": [
+              "login"
+            ],
+            "id": "history",
+            "parameters": {},
+            "status": "pending",
+            "title": "查看本人可见事项"
+          },
+          {
+            "capability": "crm_fetch_incident",
+            "depends_on": [
+              "history"
+            ],
+            "id": "detail",
+            "parameters": {},
+            "status": "pending",
+            "title": "查看所选报告的详情"
+          },
+          {
+            "capability": "respond",
+            "depends_on": [
+              "detail"
+            ],
+            "id": "respond",
+            "parameters": {},
+            "status": "pending",
+            "title": "说明结果与限制"
+          }
+        ],
+        "summary": "按以下步骤处理你的请求。查询会自动进行；提交前会请你核对具体内容。计划不代表事项已经办理。",
+        "version": 1
+      }
+    },
+    "seq": 25,
+    "time": "2026-10-19T23:57:28.002Z",
+    "type": "tool_end"
+  },
+  {
+    "message": {
+      "id": "message-8c8a73b2-f17e-467d-b8d2-4e0aafa8adf8",
+      "kind": "plan",
+      "plan_id": "plan-c52a7d83-9286-4a06-8014-b09eaf989fe4",
+      "role": "assistant",
+      "text": "按以下步骤处理你的请求。查询会自动进行；提交前会请你核对具体内容。计划不代表事项已经办理。",
+      "time": "2026-10-19T23:57:28.002Z"
+    },
+    "seq": 24,
+    "time": "2026-10-19T23:57:28.002Z",
+    "type": "message"
+  },
+  {
+    "plan_id": "plan-c52a7d83-9286-4a06-8014-b09eaf989fe4",
+    "seq": 23,
+    "time": "2026-10-19T23:57:28.002Z",
+    "type": "plan_auto_started"
+  },
+  {
+    "plan": {
+      "approved": true,
+      "created_at": "2026-10-19T23:57:28.002Z",
+      "goal": "本轮处理计划",
+      "id": "plan-c52a7d83-9286-4a06-8014-b09eaf989fe4",
+      "origin_message_id": "message-d7b75a70-7de1-44c4-b50d-3e3a0ac4ccb8",
+      "status": "approved",
+      "steps": [
+        {
+          "capability": "input",
+          "depends_on": [],
+          "id": "login",
+          "parameters": {},
+          "status": "pending",
+          "title": "确认必要信息"
+        },
+        {
+          "capability": "crm_get_incidents",
+          "depends_on": [
+            "login"
+          ],
+          "id": "history",
+          "parameters": {},
+          "status": "pending",
+          "title": "查看本人可见事项"
+        },
+        {
+          "capability": "crm_fetch_incident",
+          "depends_on": [
+            "history"
+          ],
+          "id": "detail",
+          "parameters": {},
+          "status": "pending",
+          "title": "查看所选报告的详情"
+        },
+        {
+          "capability": "respond",
+          "depends_on": [
+            "detail"
+          ],
+          "id": "respond",
+          "parameters": {},
+          "status": "pending",
+          "title": "说明结果与限制"
+        }
+      ],
+      "summary": "按以下步骤处理你的请求。查询会自动进行；提交前会请你核对具体内容。计划不代表事项已经办理。",
+      "version": 1
+    },
+    "seq": 22,
+    "time": "2026-10-19T23:57:28.002Z",
+    "type": "plan_proposed"
+  },
+  {
+    "corrected": false,
+    "issues": [],
+    "seq": 21,
+    "time": "2026-10-19T23:57:28.001Z",
+    "type": "response_guard_completed"
+  },
+  {
+    "scope": "plan_feasibility",
+    "seq": 20,
+    "time": "2026-10-19T23:57:28.001Z",
+    "type": "response_guard_passed"
+  },
+  {
+    "seq": 19,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T23:57:28.001Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "approved": true,
+          "issues": []
+        },
+        "name": "review_message"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 1280,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.00000768,
+        "cacheWrite": 0,
+        "input": 0.0008757,
+        "output": 0.0000576,
+        "total": 0.00094098
+      },
+      "input": 2919,
+      "output": 48,
+      "reasoning": 0,
+      "totalTokens": 4247
+    }
+  },
+  {
+    "request": 1,
+    "seq": 18,
+    "time": "2026-10-19T23:57:27.415Z",
+    "type": "model_request"
+  },
+  {
+    "scope": "plan_intent",
+    "seq": 17,
+    "time": "2026-10-19T23:57:27.409Z",
+    "type": "response_guard_passed"
+  },
+  {
+    "seq": 16,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T23:57:27.409Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "approved": true,
+          "issues": []
+        },
+        "name": "review_message"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 1280,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.00000768,
+        "cacheWrite": 0,
+        "input": 0.0008709,
+        "output": 0.0000576,
+        "total": 0.00093618
+      },
+      "input": 2903,
+      "output": 48,
+      "reasoning": 0,
+      "totalTokens": 4231
+    }
+  },
+  {
+    "request": 1,
+    "seq": 15,
+    "time": "2026-10-19T23:57:26.876Z",
+    "type": "model_request"
+  },
+  {
+    "message_count": 0,
+    "seq": 14,
+    "time": "2026-10-19T23:57:26.870Z",
+    "type": "response_guard_started"
+  },
+  {
+    "arguments": {
+      "goal": "查看用户此前关于路边车辆未挪动的记录及其状态",
+      "steps": [
+        {
+          "capability": "input",
+          "depends_on": [],
+          "id": "login",
+          "title": "登录以查看我的记录"
+        },
+        {
+          "capability": "crm_get_incidents",
+          "depends_on": [
+            "login"
+          ],
+          "id": "history",
+          "title": "查看我的记录列表"
+        },
+        {
+          "capability": "crm_fetch_incident",
+          "depends_on": [
+            "history"
+          ],
+          "id": "detail",
+          "title": "查看该记录的详情与状态"
+        },
+        {
+          "capability": "respond",
+          "depends_on": [
+            "detail"
+          ],
+          "id": "respond",
+          "title": "说明记录状态"
+        }
+      ]
+    },
+    "call_id": "call_00_MCiQmo31yMivmtMWo94H7064",
+    "name": "propose_plan",
+    "seq": 13,
+    "time": "2026-10-19T23:57:26.870Z",
+    "type": "tool_start"
+  },
+  {
+    "seq": 12,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T23:57:26.869Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "goal": "查看用户此前关于路边车辆未挪动的记录及其状态",
+          "steps": [
+            {
+              "capability": "input",
+              "depends_on": [],
+              "id": "login",
+              "title": "登录以查看我的记录"
+            },
+            {
+              "capability": "crm_get_incidents",
+              "depends_on": [
+                "login"
+              ],
+              "id": "history",
+              "title": "查看我的记录列表"
+            },
+            {
+              "capability": "crm_fetch_incident",
+              "depends_on": [
+                "history"
+              ],
+              "id": "detail",
+              "title": "查看该记录的详情与状态"
+            },
+            {
+              "capability": "respond",
+              "depends_on": [
+                "detail"
+              ],
+              "id": "respond",
+              "title": "说明记录状态"
+            }
+          ]
+        },
+        "name": "propose_plan"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 15360,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.00009216,
+        "cacheWrite": 0,
+        "input": 0.0001089,
+        "output": 0.0002316,
+        "total": 0.00043266
+      },
+      "input": 363,
+      "output": 193,
+      "reasoning": 0,
+      "totalTokens": 15916
+    }
+  },
+  {
+    "request": 1,
+    "seq": 11,
+    "time": "2026-10-19T23:57:25.747Z",
+    "type": "model_request"
+  },
+  {
+    "emotion": {
+      "assessed_at": "2026-10-19T23:57:25.737Z",
+      "evidence": null,
+      "message_id": "message-d7b75a70-7de1-44c4-b50d-3e3a0ac4ccb8",
+      "sentiment": "neutral",
+      "status": "classified",
+      "version": "road-emotion-1.0.1"
+    },
+    "seq": 10,
+    "time": "2026-10-19T23:57:25.737Z",
+    "type": "emotion_assessed"
+  },
+  {
+    "seq": 9,
+    "stage": "emotion",
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T23:57:25.736Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "quote": "",
+          "sentiment": "neutral"
+        },
+        "name": "record_sentiment"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 896,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000005376,
+        "cacheWrite": 0,
+        "input": 0.0000474,
+        "output": 0.0000588,
+        "total": 0.000111576
+      },
+      "input": 158,
+      "output": 49,
+      "reasoning": 0,
+      "totalTokens": 1103
+    }
+  },
+  {
+    "request": 1,
+    "seq": 8,
+    "stage": "emotion",
+    "time": "2026-10-19T23:57:25.077Z",
+    "type": "model_request"
+  },
+  {
+    "message_id": "message-d7b75a70-7de1-44c4-b50d-3e3a0ac4ccb8",
+    "seq": 7,
+    "time": "2026-10-19T23:57:25.071Z",
+    "type": "emotion_started"
+  },
+  {
+    "entry_id": null,
+    "method": "model",
+    "seq": 6,
+    "time": "2026-10-19T23:57:25.071Z",
+    "type": "faq_miss"
+  },
+  {
+    "seq": 5,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T23:57:25.070Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "answerable": false,
+          "entry_id": null,
+          "needs_clarification": false,
+          "reason": "User asks to check the status/closure of their own previously submitted report (personal ticket query). This is a personal record lookup requiring a business action, not a knowledge question answerable from the FAQ."
+        },
+        "name": "select_faq"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 384,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000002304,
+        "cacheWrite": 0,
+        "input": 0.0008805,
+        "output": 0.00015,
+        "total": 0.001032804
+      },
+      "input": 2935,
+      "output": 125,
+      "reasoning": 0,
+      "totalTokens": 3444
+    }
+  },
+  {
+    "request": 1,
+    "seq": 4,
+    "time": "2026-10-19T23:57:24.368Z",
+    "type": "model_request"
+  },
+  {
+    "entries": 9,
+    "seq": 3,
+    "time": "2026-10-19T23:57:24.361Z",
+    "type": "faq_lookup"
+  },
+  {
+    "epoch": 0,
+    "route": "faq_then_balady_crm",
+    "seq": 2,
+    "time": "2026-10-19T23:57:24.361Z",
+    "type": "turn_started"
+  },
+  {
+    "message": {
+      "id": "message-d7b75a70-7de1-44c4-b50d-3e3a0ac4ccb8",
+      "role": "user",
+      "text": "我之前反映过路边那辆车一直没挪，想看看我的那件记录是否已经结案。",
+      "time": "2026-10-19T23:57:24.361Z"
+    },
+    "seq": 1,
+    "time": "2026-10-19T23:57:24.361Z",
+    "type": "message"
+  }
+]

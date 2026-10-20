@@ -1,0 +1,93 @@
+TAP version 13
+1..0
+# Subtest: tests/crm-agent.test.mjs
+ok 1 - tests/crm-agent.test.mjs
+  ---
+  duration_ms: 3002.496137
+  type: 'test'
+  ...
+1..0
+# Subtest: tests/crm-audience.test.mjs
+ok 2 - tests/crm-audience.test.mjs
+  ---
+  duration_ms: 2986.04543
+  type: 'test'
+  ...
+1..0
+# Subtest: tests/crm-chat-ui.test.mjs
+ok 3 - tests/crm-chat-ui.test.mjs
+  ---
+  duration_ms: 386.754168
+  type: 'test'
+  ...
+1..0
+# Subtest: tests/crm-contract.test.mjs
+ok 4 - tests/crm-contract.test.mjs
+  ---
+  duration_ms: 893.489652
+  type: 'test'
+  ...
+1..0
+# Subtest: tests/crm-files.test.mjs
+ok 5 - tests/crm-files.test.mjs
+  ---
+  duration_ms: 458.882806
+  type: 'test'
+  ...
+1..0
+# Subtest: tests/crm-http.test.mjs
+ok 6 - tests/crm-http.test.mjs
+  ---
+  duration_ms: 3136.490527
+  type: 'test'
+  ...
+# Subtest: HTTP a post-write reviewer outage preserves the actual same-origin receipt after replanning and never presents it as a new submission for another origin
+ok 7 - HTTP a post-write reviewer outage preserves the actual same-origin receipt after replanning and never presents it as a new submission for another origin
+  ---
+  duration_ms: 502.559121
+  type: 'test'
+  ...
+1..0
+# Subtest: tests/crm-journey-choice.test.mjs
+ok 8 - tests/crm-journey-choice.test.mjs
+  ---
+  duration_ms: 411.336312
+  type: 'test'
+  ...
+1..0
+# Subtest: tests/crm-journey-metrics.test.mjs
+ok 9 - tests/crm-journey-metrics.test.mjs
+  ---
+  duration_ms: 598.062848
+  type: 'test'
+  ...
+1..0
+# Subtest: tests/crm-knowledge-routing.test.mjs
+ok 10 - tests/crm-knowledge-routing.test.mjs
+  ---
+  duration_ms: 3201.776115
+  type: 'test'
+  ...
+1..0
+# Subtest: tests/crm-response-guard.test.mjs
+ok 11 - tests/crm-response-guard.test.mjs
+  ---
+  duration_ms: 2934.724664
+  type: 'test'
+  ...
+1..0
+# Subtest: tests/crm-smoke.test.mjs
+ok 12 - tests/crm-smoke.test.mjs
+  ---
+  duration_ms: 2810.333365
+  type: 'test'
+  ...
+1..12
+# tests 12
+# suites 0
+# pass 12
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3684.713708

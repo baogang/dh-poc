@@ -1,0 +1,49 @@
+TAP version 13
+# Subtest: v22 physical-only intent cannot publish a public-form DAG or collect form contacts before a real native service choice
+not ok 1 - v22 physical-only intent cannot publish a public-form DAG or collect form contacts before a real native service choice
+  ---
+  duration_ms: 233.45406
+  type: 'test'
+  location: '/private/tmp/balady-v22-old-source-C9flTD/tests/crm-integration.test.mjs:1162:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    false !== true
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/balady-v22-old-source-C9flTD/tests/crm-integration.test.mjs:1168:13)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async Test.run (node:internal/test_runner/test:1069:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:332:3)
+  ...
+# Subtest: v22 unavailable classification accepts an information request for an unconnected product through two fresh category-only scopes
+not ok 2 - v22 unavailable classification accepts an information request for an unconnected product through two fresh category-only scopes
+  ---
+  duration_ms: 6.695379
+  type: 'test'
+  location: '/private/tmp/balady-v22-old-source-C9flTD/tests/crm-response-guard.test.mjs:180:1'
+  failureType: 'testCodeFailure'
+  error: 'The response could not be verified. Retry without adding claims.'
+  code: 'RESPONSE_GUARD_UNAVAILABLE'
+  stack: |-
+    failure (file:///private/tmp/balady-v22-old-source-C9flTD/src/road/store.mjs:9:63)
+    CrmResponseGuard.review (file:///private/tmp/balady-v22-old-source-C9flTD/src/crm/response-guard.mjs:139:15)
+    async TestContext.<anonymous> (file:///private/tmp/balady-v22-old-source-C9flTD/tests/crm-response-guard.test.mjs:183:16)
+    async Test.run (node:internal/test_runner/test:1069:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:332:3)
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 0
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1601.525654

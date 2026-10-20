@@ -1,0 +1,40 @@
+TAP version 13
+# Subtest: HTTP a required city input uses a fixed ordinary three-language question and preserves mixed-field draft facts without exposing a code list
+ok 1 - HTTP a required city input uses a fixed ordinary three-language question and preserves mixed-field draft facts without exposing a code list
+  ---
+  duration_ms: 350.993611
+  type: 'test'
+  ...
+# Subtest: HTTP unresolved lower administrative identifiers cannot become a citizen input or silently submitted report
+ok 2 - HTTP unresolved lower administrative identifiers cannot become a citizen input or silently submitted report
+  ---
+  duration_ms: 171.198695
+  type: 'test'
+  ...
+# Subtest: HTTP missing the entire administrative location stops before city or contact collection when required lower metadata cannot be resolved
+ok 3 - HTTP missing the entire administrative location stops before city or contact collection when required lower metadata cannot be resolved
+  ---
+  duration_ms: 83.465339
+  type: 'test'
+  ...
+# Subtest: HTTP an omitted optional municipality filter cannot block reading classifications without that filter
+ok 4 - HTTP an omitted optional municipality filter cannot block reading classifications without that filter
+  ---
+  duration_ms: 101.117334
+  type: 'test'
+  ...
+# Subtest: HTTP an explicitly unresolved optional city-filter choice asks for a human place name while retaining the classification type
+ok 5 - HTTP an explicitly unresolved optional city-filter choice asks for a human place name while retaining the classification type
+  ---
+  duration_ms: 68.731564
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2030.373825

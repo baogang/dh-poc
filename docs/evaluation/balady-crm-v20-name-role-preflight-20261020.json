@@ -1,0 +1,369 @@
+{
+  "stage": "v20 targeted name-role semantic provenance probes; synthetic self-report, not identity validation or journey score",
+  "started_at": "2026-10-19T23:34:21.433Z",
+  "source_sha256": {
+    "src/crm/agent.mjs": "831c4ac7901796d2077c14e03f8c7e1ff3ad96c243827d5fa768b4308cc43251",
+    "src/crm/response-guard.mjs": "7c776fd02b063cf1a4fa307862d330b229cd41da7656d6cbfb36cb1593b2e606",
+    "src/crm/public-capabilities.mjs": "27cec11faf184ec5fa5b6166c7819ce7b0ee24716f64293c633944120a5d979a",
+    "web/road/chat-ui.js": "bd08e93bcefef59c4ec2b02933432ba6f4eae775f2abfd4a4cb4634c1c30a1cc"
+  },
+  "cases": [
+    {
+      "id": "unlabelled_full_name_substrings_are_not_role_evidence",
+      "language": "en",
+      "name": "Cedar Citizen",
+      "given": "Cedar",
+      "family": "Citizen",
+      "given_quote": "My name is Cedar",
+      "family_quote": "Citizen",
+      "role_text": "My name is Cedar Citizen.",
+      "expected": "reject",
+      "actual": "approve",
+      "pass": false,
+      "events": [
+        {
+          "type": "response_guard_started",
+          "message_count": 0
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 3609,
+            "output": 48,
+            "cacheRead": 1408,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 5065,
+            "cost": {
+              "input": 0.0010827,
+              "output": 0.0000576,
+              "cacheRead": 0.000008448,
+              "cacheWrite": 0,
+              "total": 0.0011487480000000002
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": true,
+                "issues": []
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_passed",
+          "scope": "facts"
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 3719,
+            "output": 48,
+            "cacheRead": 1536,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 5303,
+            "cost": {
+              "input": 0.0011156999999999999,
+              "output": 0.0000576,
+              "cacheRead": 0.000009216,
+              "cacheWrite": 0,
+              "total": 0.001182516
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": true,
+                "issues": []
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_passed",
+          "scope": "capability_language"
+        },
+        {
+          "type": "response_guard_completed",
+          "corrected": false,
+          "issues": []
+        }
+      ]
+    },
+    {
+      "id": "explicit_given_and_family_roles",
+      "language": "en",
+      "name": "Cedar Citizen",
+      "given": "Cedar",
+      "family": "Citizen",
+      "given_quote": "My given name is Cedar",
+      "family_quote": "my family name is Citizen",
+      "role_text": "My given name is Cedar and my family name is Citizen.",
+      "expected": "approve",
+      "actual": "approve",
+      "pass": true,
+      "events": [
+        {
+          "type": "response_guard_started",
+          "message_count": 0
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 2861,
+            "output": 48,
+            "cacheRead": 2176,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 5085,
+            "cost": {
+              "input": 0.0008583,
+              "output": 0.0000576,
+              "cacheRead": 0.000013056,
+              "cacheWrite": 0,
+              "total": 0.000928956
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": true,
+                "issues": []
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_passed",
+          "scope": "facts"
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 2843,
+            "output": 48,
+            "cacheRead": 2432,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 5323,
+            "cost": {
+              "input": 0.0008529,
+              "output": 0.0000576,
+              "cacheRead": 0.000014592,
+              "cacheWrite": 0,
+              "total": 0.000925092
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": true,
+                "issues": []
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_passed",
+          "scope": "capability_language"
+        },
+        {
+          "type": "response_guard_completed",
+          "corrected": false,
+          "issues": []
+        }
+      ]
+    },
+    {
+      "id": "identical_roles_separately_stated_are_valid",
+      "language": "en",
+      "name": "Cedar Cedar",
+      "given": "Cedar",
+      "family": "Cedar",
+      "given_quote": "My given name is Cedar",
+      "family_quote": "my family name is Cedar",
+      "role_text": "My given name is Cedar and my family name is Cedar.",
+      "expected": "approve",
+      "actual": "approve",
+      "pass": true,
+      "events": [
+        {
+          "type": "response_guard_started",
+          "message_count": 0
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 2989,
+            "output": 48,
+            "cacheRead": 2048,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 5085,
+            "cost": {
+              "input": 0.0008967,
+              "output": 0.0000576,
+              "cacheRead": 0.000012288,
+              "cacheWrite": 0,
+              "total": 0.0009665879999999999
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": true,
+                "issues": []
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_passed",
+          "scope": "facts"
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 2971,
+            "output": 48,
+            "cacheRead": 2304,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 5323,
+            "cost": {
+              "input": 0.0008912999999999999,
+              "output": 0.0000576,
+              "cacheRead": 0.000013824,
+              "cacheWrite": 0,
+              "total": 0.0009627239999999999
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": true,
+                "issues": []
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_passed",
+          "scope": "capability_language"
+        },
+        {
+          "type": "response_guard_completed",
+          "corrected": false,
+          "issues": []
+        }
+      ]
+    },
+    {
+      "id": "role_label_in_quote_cannot_be_reversed",
+      "language": "zh",
+      "name": "星桥",
+      "given": "星",
+      "family": "桥",
+      "given_quote": "我的姓是星",
+      "family_quote": "我的名是桥",
+      "role_text": "我的姓是星，我的名是桥。",
+      "expected": "reject",
+      "actual": "reject",
+      "pass": true,
+      "error": {
+        "code": "UNVERIFIED_CUSTOMER_CLAIMS",
+        "message": "Regenerate the original submission_draft in zh using only supported facts and capabilities; then retry this tool. Name roles are inverted: the user said \"我的姓是星\" (family name 星) and \"我的名是桥\" (given name 桥), but the payload sets FirstName=星 and LastName=桥. Correct the mapping so FirstName=桥 and LastName=星, or re-confirm the roles.; PreferredLanguage=English is not supported by any delivered user fact; the user wrote in Chinese and stated no language preference. Remove it or obtain the citizen's explicit choice."
+      },
+      "events": [
+        {
+          "type": "response_guard_started",
+          "message_count": 0
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 2949,
+            "output": 152,
+            "cacheRead": 2048,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 5149,
+            "cost": {
+              "input": 0.0008847,
+              "output": 0.0001824,
+              "cacheRead": 0.000012288,
+              "cacheWrite": 0,
+              "total": 0.0010793880000000001
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": false,
+                "issues": [
+                  "Name roles are inverted: the user said \"我的姓是星\" (family name 星) and \"我的名是桥\" (given name 桥), but the payload sets FirstName=星 and LastName=桥. Correct the mapping so FirstName=桥 and LastName=星, or re-confirm the roles.",
+                  "PreferredLanguage=English is not supported by any delivered user fact; the user wrote in Chinese and stated no language preference. Remove it or obtain the citizen's explicit choice."
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_rejected",
+          "scope": "facts",
+          "issues": [
+            "Name roles are inverted: the user said \"我的姓是星\" (family name 星) and \"我的名是桥\" (given name 桥), but the payload sets FirstName=星 and LastName=桥. Correct the mapping so FirstName=桥 and LastName=星, or re-confirm the roles.",
+            "PreferredLanguage=English is not supported by any delivered user fact; the user wrote in Chinese and stated no language preference. Remove it or obtain the citizen's explicit choice."
+          ]
+        }
+      ]
+    }
+  ],
+  "completed_at": "2026-10-19T23:34:26.801Z",
+  "pass": false,
+  "source_changed_during_run": []
+}

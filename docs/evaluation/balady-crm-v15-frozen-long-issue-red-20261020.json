@@ -1,0 +1,14 @@
+{
+  "stage": "v15 actual frozen-v14 guard SDK isolation probe; current working tree was never reverted",
+  "frozen_commit": "f2ea7a77f5dc025e0ade53307152815c55cd0976",
+  "frozen_source": "src/crm/response-guard.mjs",
+  "original_source_sha256": "a47a44e8222e62c87c3330181a78961314e30c2107600f7d65c2695a7ad5f4c6",
+  "isolated_import_rewrite_sha256": "ed28e05fefa96f169709a6df26b6c23ade496833d53f293746b47f28a59fbbdb",
+  "import_rewrite_only": true,
+  "temporary_module": "/var/folders/gr/szh9xdq57x9gdcx7wkmvnx3w0000gn/T/balady-v15-frozen-guard-GTbAKR/response-guard.mjs",
+  "issue_characters": 624,
+  "expected_behavior": "UNVERIFIED_CUSTOMER_CLAIMS",
+  "actual_error": "RESPONSE_GUARD_UNAVAILABLE",
+  "bug_reproduced": true,
+  "current_source_unchanged": true
+}

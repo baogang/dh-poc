@@ -1,0 +1,29 @@
+{
+  "stage": "v16 actual host public outcome is subject to goal-applicability review before publication",
+  "command": [
+    "node",
+    "--test",
+    "--test-reporter=tap",
+    "--test-name-pattern=actual host-rendered limitation text is reviewed",
+    "tests/crm-integration.test.mjs"
+  ],
+  "tests": 1,
+  "passed": 0,
+  "failed": 1,
+  "exit_code": 1,
+  "source_sha256": {
+    "src/crm/agent.mjs": "3cd0a63364fea37a5a3108d1d3878bd4e63fe1571b003cc347236f84f23eadb4",
+    "src/crm/response-guard.mjs": "dfad88f406f64097143ee60e87e3dc94d5f78dcffbe1e1d9a57d3e5596a541ec",
+    "src/crm/presentation.mjs": "452ee24f78d4051465d18f55496814e9b78d0606ea85c99641575b1bca5b1f32",
+    "tests/crm-integration.test.mjs": "d4148e895b12e6bbfe15d37c7e2746b6d74a8672469ec9713ecdf81e903d8a12"
+  },
+  "source_sha256_end": {
+    "src/crm/agent.mjs": "3cd0a63364fea37a5a3108d1d3878bd4e63fe1571b003cc347236f84f23eadb4",
+    "src/crm/response-guard.mjs": "dfad88f406f64097143ee60e87e3dc94d5f78dcffbe1e1d9a57d3e5596a541ec",
+    "src/crm/presentation.mjs": "452ee24f78d4051465d18f55496814e9b78d0606ea85c99641575b1bca5b1f32",
+    "tests/crm-integration.test.mjs": "d4148e895b12e6bbfe15d37c7e2746b6d74a8672469ec9713ecdf81e903d8a12"
+  },
+  "source_changed_during_run": [],
+  "raw_tap": "docs/evaluation/balady-crm-v16-rendered-goal-red-20261020.tap",
+  "frozen_data_actor_reference_grader_changed": false
+}

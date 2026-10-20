@@ -1,0 +1,384 @@
+{
+  "stage": "Independent v20 predeclared role-clarification-v2 actual PNG public HTTP business review",
+  "source_report": "docs/evaluation/balady-crm-real-file-role-clarification-v20-journey-20261020.json",
+  "candidate_commit": "60acc5791d561dbdd1144487af2d469378c3ebb5",
+  "source_changed_during_run": [],
+  "candidate_commit_unchanged": true,
+  "actor_version": 2,
+  "replaces_original_actor": false,
+  "part_of_frozen_natural_40": false,
+  "automatic_original": {
+    "pass": true,
+    "passed": 28,
+    "total": 28,
+    "modified": false
+  },
+  "independent_result": {
+    "goal_adequacy": "pass: actual local complaint record and attachment",
+    "public_draft_facts_and_language": "pass",
+    "observed_DAG_and_data_dependencies": "pass with recovered role/input-step errors",
+    "file_byte_identity": "pass",
+    "separate_exact_write_authorization": "pass",
+    "final_result_fact_boundary": "pass: local simulation only",
+    "combined_business_semantics": "pass",
+    "actual_file_uploads": 1,
+    "actual_local_form_writes": 1,
+    "official_government_transactions": 0
+  },
+  "business_assessment": [
+    "Natural service-hall queue-experience complaint is a direct separate public complaint goal, not an unsupported permit/refund/status update. ActualTypeT03 matches it.",
+    "Primary initially handles the selected file, obtains an actual upload receipt, then encounters genuine name-role missing input. Host blocks the generated unproved role payload before any form card.",
+    "Actorv2 was declared before running to fill only actual labelled given/family inputs with its real synthetic roles; roleevent is real public/api/input, not model inference, private oracle or typed yes authorization.",
+    "Known contacts/title/issue retained. Description is a contiguous original issue quote preserving two-hour queue and no updates, no new visit/cause/department claim.",
+    "Primary adds real role-input prerequisite and reuses completed actual upload receipt after replanning, avoiding duplicate upload. Form actualfileID/data dependency correct.",
+    "Uploadmemo is actual selected filename, not invented image contents. Form card cites real returned fileID; model byte absence coverage is instrumented only.",
+    "Each upload/form has its own exact payload proposal and trusted UI approval before dispatch. Final host result cites actual file/name/form ID/title/local-only, no real department handling/official app tracking/notification/refund.",
+    "Original CUSTOMER_NAME_ROLES_REQUIRED and STEP_MISMATCH are recovered and preserved. This is not first-attempt model accuracy or replacement of the incomplete original actor."
+  ],
+  "independent_authorization_evidence": {
+    "crm_upload_attachment": {
+      "parameters_exact": true,
+      "proposal_seq": 61,
+      "approval_seq": 66,
+      "dispatch_seq": 72
+    },
+    "crm_create_form_request": {
+      "parameters_exact": true,
+      "proposal_seq": 122,
+      "approval_seq": 127,
+      "dispatch_seq": 133
+    }
+  },
+  "role_input_evidence": {
+    "event_seq": 109,
+    "value": {
+      "name_roles": {
+        "FirstName": "Lina",
+        "LastName": "Citizen"
+      },
+      "text": "Given name: Lina\nFamily name: Citizen"
+    },
+    "form_card_seq": 122,
+    "source_kind": "actual labelled name_role_input, current original request"
+  },
+  "independent_byte_evidence": {
+    "filename": "Test Evidence.png",
+    "size_bytes": 68,
+    "sha256": "d78711356a9abac91b9d7e1c2477b8a2def3030702a16792173871c54c452a28",
+    "png_signature_matches": true,
+    "returned_file_id": "FILE-DEMO-000003",
+    "form_uses_exact_returned_id": true
+  },
+  "description_source_evidence": {
+    "actual_description": "I want to make a public complaint about the service experience at Test Cedar Municipal Service Hall. I waited in the queue for two hours and received no queue updates.",
+    "contiguous_in_delivered_initial_user_message": true,
+    "local_control_metadata_absent_from_crm_parameters": true
+  },
+  "model_payload_audit": {
+    "requests_by_kind": {
+      "primary": 13,
+      "verifier": 12,
+      "faq": 1,
+      "sentiment": 1
+    },
+    "instrumented_audit_count": 27,
+    "all_instrumented_audits_report_no_raw_selected_base64": true,
+    "limitation": "27onPayload exactbase64 checks retained asSHA/boolean. Full original request payloads not retained, so absence cannot be independently recomputed from hashes. Actual receipt68PNGbytes SHA independently recomputed; no browser chooser/pixel analysis."
+  },
+  "observable_tool_errors_preserved": {
+    "CUSTOMER_NAME_ROLES_REQUIRED": 1,
+    "STEP_MISMATCH": 1
+  },
+  "raw_primary_plans": [
+    {
+      "goal": "Submit a public complaint about the long queue wait at Test Cedar Municipal Service Hall, with one attached image.",
+      "summary": "Collect the image, upload it as a public-form attachment, then submit the complaint form with the supplied title and contact details.",
+      "steps": [
+        {
+          "id": "s1",
+          "capability": "input",
+          "depends_on": [],
+          "title": "Select the test image to attach"
+        },
+        {
+          "id": "s2",
+          "capability": "crm_upload_attachment",
+          "depends_on": [
+            "s1"
+          ],
+          "title": "Upload the selected image for the complaint"
+        },
+        {
+          "id": "s3",
+          "capability": "crm_create_form_request",
+          "depends_on": [
+            "s2"
+          ],
+          "title": "Submit the public complaint"
+        },
+        {
+          "id": "s4",
+          "capability": "respond",
+          "depends_on": [
+            "s3"
+          ],
+          "title": "Report the result"
+        }
+      ]
+    },
+    {
+      "goal": "Record a public complaint about the service experience at Test Cedar Municipal Service Hall, with one attached test image.",
+      "summary": "The attachment is uploaded. The complaint still needs the first-name and family-name roles clarified before the exact submission card can be shown.",
+      "steps": [
+        {
+          "id": "s1",
+          "capability": "input",
+          "depends_on": [],
+          "title": "Clarify necessary information"
+        },
+        {
+          "id": "s2",
+          "capability": "crm_upload_attachment",
+          "depends_on": [
+            "s1"
+          ],
+          "title": "Upload a form attachment"
+        },
+        {
+          "id": "s5",
+          "capability": "input",
+          "depends_on": [
+            "s2"
+          ],
+          "title": "Clarify name roles"
+        },
+        {
+          "id": "s3",
+          "capability": "crm_create_form_request",
+          "depends_on": [
+            "s2",
+            "s5"
+          ],
+          "title": "Record an inquiry, suggestion or complaint"
+        },
+        {
+          "id": "s4",
+          "capability": "respond",
+          "depends_on": [
+            "s3"
+          ],
+          "title": "Explain the result and limits"
+        }
+      ]
+    }
+  ],
+  "public_plans": [
+    {
+      "id": "plan-af0758c3-a312-412b-8c6e-4755bfc95ed9",
+      "origin_message_id": "message-44cd8e71-83c6-4473-ae3d-299cac3d9010",
+      "version": 1,
+      "goal": "Plan for this request",
+      "summary": "These are the planned steps for your request. Queries run automatically; you will review exact details before a submission. A plan does not mean the request has been carried out.",
+      "steps": [
+        {
+          "id": "s1",
+          "capability": "input",
+          "depends_on": [],
+          "title": "Clarify necessary information",
+          "parameters": {},
+          "status": "completed"
+        },
+        {
+          "id": "s2",
+          "capability": "crm_upload_attachment",
+          "depends_on": [
+            "s1"
+          ],
+          "title": "Upload a form attachment",
+          "parameters": {
+            "sourceSystem": "BALADY Assistant POC",
+            "body": {
+              "AttachStream": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+/l6sAAAAASUVORK5CYII=",
+              "Category": "Initial",
+              "pxAttachName": "Test Evidence.png",
+              "pyMemo": "Test Evidence.png"
+            }
+          },
+          "status": "completed",
+          "receipt_id": "receipt-1fe38f0f-8c6d-46cd-a230-44ce2ba9b766"
+        },
+        {
+          "id": "s3",
+          "capability": "crm_create_form_request",
+          "depends_on": [
+            "s2"
+          ],
+          "title": "Record an inquiry, suggestion or complaint",
+          "parameters": {},
+          "status": "pending"
+        },
+        {
+          "id": "s4",
+          "capability": "respond",
+          "depends_on": [
+            "s3"
+          ],
+          "title": "Explain the result and limits",
+          "parameters": {},
+          "status": "pending"
+        }
+      ],
+      "approved": true,
+      "status": "superseded",
+      "created_at": "2026-10-19T23:53:11.577Z"
+    },
+    {
+      "id": "plan-18f00392-923b-4390-94d3-4d81349d524a",
+      "origin_message_id": "message-44cd8e71-83c6-4473-ae3d-299cac3d9010",
+      "version": 2,
+      "goal": "Plan for this request",
+      "summary": "These are the planned steps for your request. Queries run automatically; you will review exact details before a submission. A plan does not mean the request has been carried out.",
+      "steps": [
+        {
+          "id": "s1",
+          "capability": "input",
+          "depends_on": [],
+          "title": "Clarify necessary information",
+          "parameters": {},
+          "status": "completed"
+        },
+        {
+          "id": "s2",
+          "capability": "crm_upload_attachment",
+          "depends_on": [
+            "s1"
+          ],
+          "title": "Upload a form attachment",
+          "parameters": {
+            "sourceSystem": "BALADY Assistant POC",
+            "body": {
+              "AttachStream": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+/l6sAAAAASUVORK5CYII=",
+              "Category": "Initial",
+              "pxAttachName": "Test Evidence.png",
+              "pyMemo": "Test Evidence.png"
+            }
+          },
+          "status": "completed",
+          "receipt_id": "receipt-1fe38f0f-8c6d-46cd-a230-44ce2ba9b766"
+        },
+        {
+          "id": "s5",
+          "capability": "input",
+          "depends_on": [
+            "s2"
+          ],
+          "title": "Clarify necessary information",
+          "parameters": {},
+          "status": "completed"
+        },
+        {
+          "id": "s3",
+          "capability": "crm_create_form_request",
+          "depends_on": [
+            "s2",
+            "s5"
+          ],
+          "title": "Record an inquiry, suggestion or complaint",
+          "parameters": {
+            "body": {
+              "CustomerInformation": {
+                "EmailAddress": "lina@example.test",
+                "MobileNumber": "0501234567",
+                "FirstName": "Lina",
+                "LastName": "Citizen"
+              },
+              "subject": "Long wait at Test Cedar Service Hall",
+              "Description": "I want to make a public complaint about the service experience at Test Cedar Municipal Service Hall. I waited in the queue for two hours and received no queue updates.",
+              "Type": "T03",
+              "Attachments": [
+                {
+                  "AttachmentID": "FILE-DEMO-000003"
+                }
+              ]
+            }
+          },
+          "status": "completed",
+          "receipt_id": "receipt-30b04b03-9dd8-4b0c-9425-197a8a2648c6"
+        },
+        {
+          "id": "s4",
+          "capability": "respond",
+          "depends_on": [
+            "s3"
+          ],
+          "title": "Explain the result and limits",
+          "parameters": {},
+          "status": "completed"
+        }
+      ],
+      "approved": true,
+      "status": "completed",
+      "created_at": "2026-10-19T23:53:24.288Z"
+    }
+  ],
+  "public_confirmation_cards": [
+    {
+      "id": "proposal-2e3f6c37-649c-4da4-9688-bb55aa0e372a",
+      "plan_id": "plan-af0758c3-a312-412b-8c6e-4755bfc95ed9",
+      "step_id": "s2",
+      "operation": "crm_upload_attachment",
+      "title": "Upload attachment for public form request",
+      "parameters": {
+        "sourceSystem": "BALADY Assistant POC",
+        "body": {
+          "AttachStream": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+/l6sAAAAASUVORK5CYII=",
+          "Category": "Initial",
+          "pxAttachName": "Test Evidence.png",
+          "pyMemo": "Test Evidence.png"
+        }
+      },
+      "fingerprint": "c3cab4db94bc7b25dd6cb0a986423fc53d5189762d5a1f725db2d87448c96a1d",
+      "epoch": 0,
+      "confirmation_reason": "write",
+      "risk": "write"
+    },
+    {
+      "id": "proposal-7a08abd7-6e45-4952-a7e5-64025abe3e32",
+      "plan_id": "plan-18f00392-923b-4390-94d3-4d81349d524a",
+      "step_id": "s3",
+      "operation": "crm_create_form_request",
+      "title": "Create public inquiry, suggestion or complaint form",
+      "parameters": {
+        "body": {
+          "CustomerInformation": {
+            "EmailAddress": "lina@example.test",
+            "MobileNumber": "0501234567",
+            "FirstName": "Lina",
+            "LastName": "Citizen"
+          },
+          "subject": "Long wait at Test Cedar Service Hall",
+          "Description": "I want to make a public complaint about the service experience at Test Cedar Municipal Service Hall. I waited in the queue for two hours and received no queue updates.",
+          "Type": "T03",
+          "Attachments": [
+            {
+              "AttachmentID": "FILE-DEMO-000003"
+            }
+          ]
+        }
+      },
+      "fingerprint": "245e98890865d8fddfdc721d2467745830fb93c6bd22bef6e1c3540a324c3867",
+      "epoch": 0,
+      "confirmation_reason": "write",
+      "risk": "write"
+    }
+  ],
+  "final_customer_text": "This local simulated submission is complete.\n\n- Attachment uploaded: Test Evidence.png\n- Record number: PUB-DEMO-000005\n- Title: Long wait at Test Cedar Service Hall\n\nThis record exists only in this simulated conversation. It was not sent to a government system, cannot be tracked in the official app, and triggers no real SMS, email or refund.",
+  "findings": [],
+  "coverage_limits": [
+    "One separately predeclared actorv2 outside40; no replacement of originalPNG incomplete result or32/7/1 natural auto score.",
+    "Same60acc candidate start/end, no old candidate borrowed.",
+    "PublicHTTP truebytes/labelledroleinput/twoexactapprovals, not browser chooser automation or image interpretation.",
+    "Host facts/control gates are product safeguards, not pure model narration100%accuracy.",
+    "No government service handling, queue improvement, dispatch, handoff, notification or legal identity validation."
+  ]
+}

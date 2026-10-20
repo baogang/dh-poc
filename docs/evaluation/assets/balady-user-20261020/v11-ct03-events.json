@@ -1,0 +1,1193 @@
+[
+  {
+    "message": {
+      "id": "message-6e904b1c-9ca0-4522-ba73-4588b45221a3",
+      "kind": "info",
+      "notice": "cancelled",
+      "role": "assistant",
+      "text": "تم إيقاف المهمة الحالية. أخبرني بما تريد القيام به بعد ذلك.",
+      "time": "2026-10-19T20:53:10.218Z"
+    },
+    "seq": 63,
+    "time": "2026-10-19T20:53:10.218Z",
+    "type": "message"
+  },
+  {
+    "reason": "user_cancelled",
+    "seq": 62,
+    "time": "2026-10-19T20:53:10.218Z",
+    "type": "interrupted"
+  },
+  {
+    "seq": 61,
+    "status": "input",
+    "time": "2026-10-19T20:52:14.797Z",
+    "type": "turn_finished"
+  },
+  {
+    "call_id": "call_00_WlyDjF6Pdu1xd9CvdsNb5103",
+    "name": "crm_fetch_incident",
+    "result": {
+      "end_turn": true,
+      "input": {
+        "case_history_receipt_id": "receipt-eef63aef-6a2a-4ed8-8643-03fc6d662389",
+        "case_owner": "demo-demo",
+        "choices": [
+          {
+            "description": "الحالة المسجلة: InProgress",
+            "id": "case_0",
+            "label": "Suspected abandoned vehicle beside Test Cedar Street / 测试雪松街旁疑似废弃车辆",
+            "record_fingerprint": "5f7477d6df14b84242677a1d44f6f66e660b173f30a0758c027d504f50fef635",
+            "record_id": "INC-26-10-000001",
+            "record_key": "MOMRA-OPS-CS-WORK INC-26-10-000001"
+          },
+          {
+            "description": "الحالة المسجلة: Resolved",
+            "id": "case_1",
+            "label": "Waste left beside the Test Olive Street container / 测试橄榄街垃圾箱旁垃圾未清运",
+            "record_fingerprint": "5f029954d6895ba6f5061b0fc8d14b0aaad5c613531b758b51c64ff30d28d15d",
+            "record_id": "INC-26-10-000002",
+            "record_key": "MOMRA-OPS-CS-WORK INC-26-10-000002"
+          },
+          {
+            "id": "none",
+            "label": "لا شيء منها هو الطلب الذي أقصده",
+            "none": true
+          }
+        ],
+        "host_case_selection": true,
+        "id": "input-36c33581-5f0e-4423-935e-0896659e5049",
+        "kind": "choice",
+        "plan_id": "plan-04164c03-ba7f-4641-ae9e-73e17b26041d",
+        "purpose": "case",
+        "question": "لم يتحدد الطلب المقصود. اختر وصف المشكلة أو تاريخها المسجل من السجلات الظاهرة، أو اختر «لا شيء منها». الاختيار يحدد هدف الاستعلام فقط ولا يعدل أي طلب أو يرسله.",
+        "step_id": "case_choice-ea98d4f0-49d6-42a3-8e05-b4d4"
+      }
+    },
+    "seq": 60,
+    "time": "2026-10-19T20:52:14.797Z",
+    "type": "tool_end"
+  },
+  {
+    "message": {
+      "id": "message-9d1cfd04-a3ea-41c6-b451-8018e823f4c6",
+      "input_id": "input-36c33581-5f0e-4423-935e-0896659e5049",
+      "kind": "input_request",
+      "plan_id": "plan-04164c03-ba7f-4641-ae9e-73e17b26041d",
+      "role": "assistant",
+      "text": "لم يتحدد الطلب المقصود. اختر وصف المشكلة أو تاريخها المسجل من السجلات الظاهرة، أو اختر «لا شيء منها». الاختيار يحدد هدف الاستعلام فقط ولا يعدل أي طلب أو يرسله.",
+      "time": "2026-10-19T20:52:14.797Z"
+    },
+    "seq": 59,
+    "time": "2026-10-19T20:52:14.797Z",
+    "type": "message"
+  },
+  {
+    "input": {
+      "case_history_receipt_id": "receipt-eef63aef-6a2a-4ed8-8643-03fc6d662389",
+      "case_owner": "demo-demo",
+      "choices": [
+        {
+          "description": "الحالة المسجلة: InProgress",
+          "id": "case_0",
+          "label": "Suspected abandoned vehicle beside Test Cedar Street / 测试雪松街旁疑似废弃车辆",
+          "record_fingerprint": "5f7477d6df14b84242677a1d44f6f66e660b173f30a0758c027d504f50fef635",
+          "record_id": "INC-26-10-000001",
+          "record_key": "MOMRA-OPS-CS-WORK INC-26-10-000001"
+        },
+        {
+          "description": "الحالة المسجلة: Resolved",
+          "id": "case_1",
+          "label": "Waste left beside the Test Olive Street container / 测试橄榄街垃圾箱旁垃圾未清运",
+          "record_fingerprint": "5f029954d6895ba6f5061b0fc8d14b0aaad5c613531b758b51c64ff30d28d15d",
+          "record_id": "INC-26-10-000002",
+          "record_key": "MOMRA-OPS-CS-WORK INC-26-10-000002"
+        },
+        {
+          "id": "none",
+          "label": "لا شيء منها هو الطلب الذي أقصده",
+          "none": true
+        }
+      ],
+      "host_case_selection": true,
+      "id": "input-36c33581-5f0e-4423-935e-0896659e5049",
+      "kind": "choice",
+      "plan_id": "plan-04164c03-ba7f-4641-ae9e-73e17b26041d",
+      "purpose": "case",
+      "question": "لم يتحدد الطلب المقصود. اختر وصف المشكلة أو تاريخها المسجل من السجلات الظاهرة، أو اختر «لا شيء منها». الاختيار يحدد هدف الاستعلام فقط ولا يعدل أي طلب أو يرسله.",
+      "step_id": "case_choice-ea98d4f0-49d6-42a3-8e05-b4d4"
+    },
+    "seq": 58,
+    "time": "2026-10-19T20:52:14.796Z",
+    "type": "input_required"
+  },
+  {
+    "plan": {
+      "approved": true,
+      "created_at": "2026-10-19T20:51:57.612Z",
+      "goal": "الاطلاع على تفاصيل بلاغ النفايات المتروكة بجانب الحاوية، وتوضيح إمكانية استرجاع المرفق القديم",
+      "id": "plan-04164c03-ba7f-4641-ae9e-73e17b26041d",
+      "origin_message_id": "message-56cfb388-ff7c-4b33-9d61-57514f59ee8d",
+      "status": "approved",
+      "steps": [
+        {
+          "capability": "input",
+          "depends_on": [],
+          "id": "login",
+          "parameters": {},
+          "status": "completed",
+          "title": "تسجيل الدخول للوصول إلى سجل البلاغات"
+        },
+        {
+          "capability": "crm_get_incidents",
+          "depends_on": [
+            "login"
+          ],
+          "id": "history",
+          "parameters": {},
+          "receipt_id": "receipt-eef63aef-6a2a-4ed8-8643-03fc6d662389",
+          "status": "completed",
+          "title": "استعراض سجل البلاغات"
+        },
+        {
+          "capability": "input",
+          "depends_on": [
+            "history"
+          ],
+          "host_case_selection": true,
+          "id": "case_choice-ea98d4f0-49d6-42a3-8e05-b4d4",
+          "parameters": {},
+          "status": "waiting",
+          "title": "تحديد الطلب المراد الاستعلام عنه"
+        },
+        {
+          "capability": "crm_fetch_incident",
+          "depends_on": [
+            "history",
+            "case_choice-ea98d4f0-49d6-42a3-8e05-b4d4"
+          ],
+          "id": "details",
+          "parameters": {},
+          "status": "pending",
+          "title": "عرض تفاصيل البلاغ المطابق"
+        },
+        {
+          "capability": "respond",
+          "depends_on": [
+            "details"
+          ],
+          "id": "answer",
+          "parameters": {},
+          "status": "pending",
+          "title": "عرض النتيجة وتوضيح حدود استرجاع المرفق"
+        }
+      ],
+      "summary": "سأتحقق أولاً من تسجيل الدخول لعرض سجل البلاغات، ثم أستعرض البلاغات وأحدد البلاغ المطابق، ثم أعرض تفاصيله وأوضح ما يتعلق بالمرفق.",
+      "version": 1
+    },
+    "reason": "case_selection_required",
+    "seq": 57,
+    "time": "2026-10-19T20:52:14.796Z",
+    "type": "plan_updated"
+  },
+  {
+    "arguments": {
+      "pzInsKey": "MOMRA-OPS-CS-WORK INC-26-10-000002",
+      "step_id": "details"
+    },
+    "call_id": "call_00_WlyDjF6Pdu1xd9CvdsNb5103",
+    "name": "crm_fetch_incident",
+    "seq": 56,
+    "time": "2026-10-19T20:52:14.796Z",
+    "type": "tool_start"
+  },
+  {
+    "seq": 55,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T20:52:14.796Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "pzInsKey": "MOMRA-OPS-CS-WORK INC-26-10-000002",
+          "step_id": "details"
+        },
+        "name": "crm_fetch_incident"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 13184,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000079104,
+        "cacheWrite": 0,
+        "input": 0.00014099999999999998,
+        "output": 0.0000876,
+        "total": 0.00030770399999999995
+      },
+      "input": 470,
+      "output": 73,
+      "reasoning": 0,
+      "totalTokens": 13727
+    }
+  },
+  {
+    "request": 2,
+    "seq": 54,
+    "time": "2026-10-19T20:52:14.256Z",
+    "type": "model_request"
+  },
+  {
+    "call_id": "call_00_qPwVPkhgLssucNjcRcFq9953",
+    "name": "crm_get_incidents",
+    "result": {
+      "receipt": {
+        "api_mode": "simulation",
+        "beneficiary_id": "demo-demo",
+        "id": "receipt-eef63aef-6a2a-4ed8-8643-03fc6d662389",
+        "operation": "crm_get_incidents",
+        "operation_key": "b75653f560a0ebe2c9285ada642d8c924507293661a90ff6954460744de6a305",
+        "parameters": {},
+        "plan_id": "plan-04164c03-ba7f-4641-ae9e-73e17b26041d",
+        "result": {
+          "data": {
+            "responseCode": "1",
+            "responseMessage": "success",
+            "result": {
+              "IncidentRequestList": [
+                {
+                  "Description": "Suspected abandoned vehicle beside Test Cedar Street / 测试雪松街旁疑似废弃车辆",
+                  "MainClassificationID": "004_MC-VEHICLE",
+                  "MunicipalityID": "004",
+                  "SplClassificationID": "004_MC-VEHICLE_SC-1_SPC-1",
+                  "SubClassificationID": "004_MC-VEHICLE_SC-1",
+                  "hasAttachments": false,
+                  "history": "[MaxDepth]",
+                  "pyID": "INC-26-10-000001",
+                  "pyStatusWork": "InProgress",
+                  "pzInsKey": "MOMRA-OPS-CS-WORK INC-26-10-000001",
+                  "routedToMadinati": true,
+                  "topic": "vehicle"
+                },
+                {
+                  "Description": "Waste left beside the Test Olive Street container / 测试橄榄街垃圾箱旁垃圾未清运",
+                  "MunicipalityID": "004",
+                  "hasAttachments": true,
+                  "history": "[MaxDepth]",
+                  "pyID": "INC-26-10-000002",
+                  "pyStatusWork": "Resolved",
+                  "pzInsKey": "MOMRA-OPS-CS-WORK INC-26-10-000002",
+                  "routedToMadinati": true,
+                  "topic": "waste"
+                }
+              ],
+              "TotalRecordCount": "2"
+            }
+          },
+          "statusDetails": {
+            "code": 200,
+            "message": "OK"
+          }
+        },
+        "step_id": "history",
+        "time": "2026-10-19T20:52:14.253Z"
+      }
+    },
+    "seq": 53,
+    "time": "2026-10-19T20:52:14.253Z",
+    "type": "tool_end"
+  },
+  {
+    "receipt": {
+      "api_mode": "simulation",
+      "beneficiary_id": "demo-demo",
+      "id": "receipt-eef63aef-6a2a-4ed8-8643-03fc6d662389",
+      "operation": "crm_get_incidents",
+      "operation_key": "b75653f560a0ebe2c9285ada642d8c924507293661a90ff6954460744de6a305",
+      "parameters": {},
+      "plan_id": "plan-04164c03-ba7f-4641-ae9e-73e17b26041d",
+      "result": {
+        "data": {
+          "responseCode": "1",
+          "responseMessage": "success",
+          "result": {
+            "IncidentRequestList": [
+              {
+                "Description": "Suspected abandoned vehicle beside Test Cedar Street / 测试雪松街旁疑似废弃车辆",
+                "MainClassificationID": "004_MC-VEHICLE",
+                "MunicipalityID": "004",
+                "SplClassificationID": "004_MC-VEHICLE_SC-1_SPC-1",
+                "SubClassificationID": "004_MC-VEHICLE_SC-1",
+                "hasAttachments": false,
+                "history": [],
+                "pyID": "INC-26-10-000001",
+                "pyStatusWork": "InProgress",
+                "pzInsKey": "MOMRA-OPS-CS-WORK INC-26-10-000001",
+                "routedToMadinati": true,
+                "topic": "vehicle"
+              },
+              {
+                "Description": "Waste left beside the Test Olive Street container / 测试橄榄街垃圾箱旁垃圾未清运",
+                "MunicipalityID": "004",
+                "hasAttachments": true,
+                "history": [],
+                "pyID": "INC-26-10-000002",
+                "pyStatusWork": "Resolved",
+                "pzInsKey": "MOMRA-OPS-CS-WORK INC-26-10-000002",
+                "routedToMadinati": true,
+                "topic": "waste"
+              }
+            ],
+            "TotalRecordCount": "2"
+          }
+        },
+        "statusDetails": {
+          "code": 200,
+          "message": "OK"
+        }
+      },
+      "step_id": "history",
+      "time": "2026-10-19T20:52:14.253Z"
+    },
+    "seq": 52,
+    "time": "2026-10-19T20:52:14.253Z",
+    "type": "receipt"
+  },
+  {
+    "operation": "crm_get_incidents",
+    "response": {
+      "data": {
+        "responseCode": "1",
+        "responseMessage": "success",
+        "result": {
+          "IncidentRequestList": [
+            {
+              "Description": "Suspected abandoned vehicle beside Test Cedar Street / 测试雪松街旁疑似废弃车辆",
+              "MainClassificationID": "004_MC-VEHICLE",
+              "MunicipalityID": "004",
+              "SplClassificationID": "004_MC-VEHICLE_SC-1_SPC-1",
+              "SubClassificationID": "004_MC-VEHICLE_SC-1",
+              "hasAttachments": false,
+              "history": [],
+              "pyID": "INC-26-10-000001",
+              "pyStatusWork": "InProgress",
+              "pzInsKey": "MOMRA-OPS-CS-WORK INC-26-10-000001",
+              "routedToMadinati": true,
+              "topic": "vehicle"
+            },
+            {
+              "Description": "Waste left beside the Test Olive Street container / 测试橄榄街垃圾箱旁垃圾未清运",
+              "MunicipalityID": "004",
+              "hasAttachments": true,
+              "history": [],
+              "pyID": "INC-26-10-000002",
+              "pyStatusWork": "Resolved",
+              "pzInsKey": "MOMRA-OPS-CS-WORK INC-26-10-000002",
+              "routedToMadinati": true,
+              "topic": "waste"
+            }
+          ],
+          "TotalRecordCount": "2"
+        }
+      },
+      "statusDetails": {
+        "code": 200,
+        "message": "OK"
+      }
+    },
+    "seq": 51,
+    "time": "2026-10-19T20:52:14.252Z",
+    "type": "api_end"
+  },
+  {
+    "call": {
+      "operation": "crm_get_incidents",
+      "parameters": {},
+      "time": "2026-10-19T20:52:14.252Z"
+    },
+    "seq": 50,
+    "time": "2026-10-19T20:52:14.252Z",
+    "type": "api_start"
+  },
+  {
+    "plan_id": "plan-04164c03-ba7f-4641-ae9e-73e17b26041d",
+    "seq": 49,
+    "step_id": "history",
+    "time": "2026-10-19T20:52:14.250Z",
+    "type": "step_running"
+  },
+  {
+    "arguments": {
+      "step_id": "history"
+    },
+    "call_id": "call_00_qPwVPkhgLssucNjcRcFq9953",
+    "name": "crm_get_incidents",
+    "seq": 48,
+    "time": "2026-10-19T20:52:14.250Z",
+    "type": "tool_start"
+  },
+  {
+    "seq": 47,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T20:52:14.250Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "step_id": "history"
+        },
+        "name": "crm_get_incidents"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 11904,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000071424,
+        "cacheWrite": 0,
+        "input": 0.000381,
+        "output": 0.000044399999999999995,
+        "total": 0.000496824
+      },
+      "input": 1270,
+      "output": 37,
+      "reasoning": 0,
+      "totalTokens": 13211
+    }
+  },
+  {
+    "request": 1,
+    "seq": 46,
+    "time": "2026-10-19T20:52:13.439Z",
+    "type": "model_request"
+  },
+  {
+    "epoch": 0,
+    "route": "crm_resume",
+    "seq": 45,
+    "time": "2026-10-19T20:52:13.428Z",
+    "type": "turn_started"
+  },
+  {
+    "input_id": "input-308efba1-0c21-4b07-a4c5-4f29b77c294e",
+    "result": {},
+    "seq": 44,
+    "time": "2026-10-19T20:52:13.428Z",
+    "type": "input_received"
+  },
+  {
+    "message": {
+      "id": "message-3c0c234c-d667-44cd-8f73-832f7a7fda8e",
+      "input_id": "input-308efba1-0c21-4b07-a4c5-4f29b77c294e",
+      "kind": "input",
+      "role": "user",
+      "text": "اكتمل تسجيل الدخول التجريبي.",
+      "time": "2026-10-19T20:52:13.428Z",
+      "value": {}
+    },
+    "seq": 43,
+    "time": "2026-10-19T20:52:13.428Z",
+    "type": "message"
+  },
+  {
+    "message": {
+      "id": "message-9ae037df-5bb2-476b-97b9-067bf28649b5",
+      "kind": "login",
+      "notice": "login",
+      "role": "assistant",
+      "text": "تم تسجيل الدخول التجريبي بنجاح. يمكننا متابعة بلاغاتك.",
+      "time": "2026-10-19T20:52:13.331Z"
+    },
+    "seq": 42,
+    "time": "2026-10-19T20:52:13.331Z",
+    "type": "message"
+  },
+  {
+    "seq": 41,
+    "time": "2026-10-19T20:52:13.331Z",
+    "type": "login",
+    "user": {
+      "name": "demo",
+      "user_id": "demo-demo"
+    }
+  },
+  {
+    "seq": 40,
+    "status": "input",
+    "time": "2026-10-19T20:52:00.111Z",
+    "type": "turn_finished"
+  },
+  {
+    "call_id": "call_00_ggB0CH6MYyTW3CvWOSJD8000",
+    "name": "request_input",
+    "result": {
+      "end_turn": true,
+      "input": {
+        "fields": [
+          "login"
+        ],
+        "id": "input-308efba1-0c21-4b07-a4c5-4f29b77c294e",
+        "kind": "login",
+        "operation": "crm_get_incidents",
+        "plan_id": "plan-04164c03-ba7f-4641-ae9e-73e17b26041d",
+        "question": "لعرض سجل بلاغاتك وتفاصيل البلاغ، يرجى تسجيل الدخول من خلال واجهة الدخول.",
+        "step_id": "login"
+      }
+    },
+    "seq": 39,
+    "time": "2026-10-19T20:52:00.111Z",
+    "type": "tool_end"
+  },
+  {
+    "message": {
+      "id": "message-4c9ce7f6-2337-453b-8eea-84eb49d14d03",
+      "input_id": "input-308efba1-0c21-4b07-a4c5-4f29b77c294e",
+      "kind": "input_request",
+      "plan_id": "plan-04164c03-ba7f-4641-ae9e-73e17b26041d",
+      "role": "assistant",
+      "text": "لعرض سجل بلاغاتك وتفاصيل البلاغ، يرجى تسجيل الدخول من خلال واجهة الدخول.",
+      "time": "2026-10-19T20:52:00.111Z"
+    },
+    "seq": 38,
+    "time": "2026-10-19T20:52:00.111Z",
+    "type": "message"
+  },
+  {
+    "input": {
+      "fields": [
+        "login"
+      ],
+      "id": "input-308efba1-0c21-4b07-a4c5-4f29b77c294e",
+      "kind": "login",
+      "operation": "crm_get_incidents",
+      "plan_id": "plan-04164c03-ba7f-4641-ae9e-73e17b26041d",
+      "question": "لعرض سجل بلاغاتك وتفاصيل البلاغ، يرجى تسجيل الدخول من خلال واجهة الدخول.",
+      "step_id": "login"
+    },
+    "seq": 37,
+    "time": "2026-10-19T20:52:00.110Z",
+    "type": "input_required"
+  },
+  {
+    "corrected": false,
+    "issues": [],
+    "seq": 36,
+    "time": "2026-10-19T20:52:00.110Z",
+    "type": "response_guard_completed"
+  },
+  {
+    "scope": "capability_language",
+    "seq": 35,
+    "time": "2026-10-19T20:52:00.110Z",
+    "type": "response_guard_passed"
+  },
+  {
+    "seq": 34,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T20:52:00.110Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "approved": true,
+          "issues": []
+        },
+        "name": "review_message"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 768,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000004608,
+        "cacheWrite": 0,
+        "input": 0.0007955999999999999,
+        "output": 0.0000576,
+        "total": 0.0008578079999999999
+      },
+      "input": 2652,
+      "output": 48,
+      "reasoning": 0,
+      "totalTokens": 3468
+    }
+  },
+  {
+    "request": 1,
+    "seq": 33,
+    "time": "2026-10-19T20:51:59.414Z",
+    "type": "model_request"
+  },
+  {
+    "scope": "facts",
+    "seq": 32,
+    "time": "2026-10-19T20:51:59.408Z",
+    "type": "response_guard_passed"
+  },
+  {
+    "seq": 31,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T20:51:59.408Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "approved": true,
+          "issues": []
+        },
+        "name": "review_message"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 512,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000003072,
+        "cacheWrite": 0,
+        "input": 0.0007986,
+        "output": 0.0000576,
+        "total": 0.000859272
+      },
+      "input": 2662,
+      "output": 48,
+      "reasoning": 0,
+      "totalTokens": 3222
+    }
+  },
+  {
+    "request": 1,
+    "seq": 30,
+    "time": "2026-10-19T20:51:58.413Z",
+    "type": "model_request"
+  },
+  {
+    "message_count": 1,
+    "seq": 29,
+    "time": "2026-10-19T20:51:58.391Z",
+    "type": "response_guard_started"
+  },
+  {
+    "arguments": {
+      "fields": [
+        "login"
+      ],
+      "kind": "login",
+      "operation": "crm_get_incidents",
+      "question": "لعرض سجل بلاغاتك وتفاصيل البلاغ، يرجى تسجيل الدخول من خلال واجهة الدخول.",
+      "step_id": "login"
+    },
+    "call_id": "call_00_ggB0CH6MYyTW3CvWOSJD8000",
+    "name": "request_input",
+    "seq": 28,
+    "time": "2026-10-19T20:51:58.391Z",
+    "type": "tool_start"
+  },
+  {
+    "seq": 27,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T20:51:58.390Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "fields": [
+            "login"
+          ],
+          "kind": "login",
+          "operation": "crm_get_incidents",
+          "question": "لعرض سجل بلاغاتك وتفاصيل البلاغ، يرجى تسجيل الدخول من خلال واجهة الدخول.",
+          "step_id": "login"
+        },
+        "name": "request_input"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 12544,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000075264,
+        "cacheWrite": 0,
+        "input": 0.0001356,
+        "output": 0.0001608,
+        "total": 0.000371664
+      },
+      "input": 452,
+      "output": 134,
+      "reasoning": 0,
+      "totalTokens": 13130
+    }
+  },
+  {
+    "request": 2,
+    "seq": 26,
+    "time": "2026-10-19T20:51:57.615Z",
+    "type": "model_request"
+  },
+  {
+    "call_id": "call_00_zZBcVKBLFIiZRt2pkkD73868",
+    "name": "propose_plan",
+    "result": {
+      "auto_execute": true,
+      "plan": {
+        "approved": true,
+        "created_at": "2026-10-19T20:51:57.612Z",
+        "goal": "الاطلاع على تفاصيل بلاغ النفايات المتروكة بجانب الحاوية، وتوضيح إمكانية استرجاع المرفق القديم",
+        "id": "plan-04164c03-ba7f-4641-ae9e-73e17b26041d",
+        "origin_message_id": "message-56cfb388-ff7c-4b33-9d61-57514f59ee8d",
+        "status": "approved",
+        "steps": [
+          {
+            "capability": "input",
+            "depends_on": [],
+            "id": "login",
+            "parameters": {},
+            "status": "pending",
+            "title": "تسجيل الدخول للوصول إلى سجل البلاغات"
+          },
+          {
+            "capability": "crm_get_incidents",
+            "depends_on": [
+              "login"
+            ],
+            "id": "history",
+            "parameters": {},
+            "status": "pending",
+            "title": "استعراض سجل البلاغات"
+          },
+          {
+            "capability": "crm_fetch_incident",
+            "depends_on": [
+              "history"
+            ],
+            "id": "details",
+            "parameters": {},
+            "status": "pending",
+            "title": "عرض تفاصيل البلاغ المطابق"
+          },
+          {
+            "capability": "respond",
+            "depends_on": [
+              "details"
+            ],
+            "id": "answer",
+            "parameters": {},
+            "status": "pending",
+            "title": "عرض النتيجة وتوضيح حدود استرجاع المرفق"
+          }
+        ],
+        "summary": "سأتحقق أولاً من تسجيل الدخول لعرض سجل البلاغات، ثم أستعرض البلاغات وأحدد البلاغ المطابق، ثم أعرض تفاصيله وأوضح ما يتعلق بالمرفق.",
+        "version": 1
+      }
+    },
+    "seq": 25,
+    "time": "2026-10-19T20:51:57.612Z",
+    "type": "tool_end"
+  },
+  {
+    "message": {
+      "id": "message-33a25c64-a5f0-4139-8698-027a33b5aebf",
+      "kind": "plan",
+      "plan_id": "plan-04164c03-ba7f-4641-ae9e-73e17b26041d",
+      "role": "assistant",
+      "text": "سأتحقق أولاً من تسجيل الدخول لعرض سجل البلاغات، ثم أستعرض البلاغات وأحدد البلاغ المطابق، ثم أعرض تفاصيله وأوضح ما يتعلق بالمرفق.",
+      "time": "2026-10-19T20:51:57.612Z"
+    },
+    "seq": 24,
+    "time": "2026-10-19T20:51:57.612Z",
+    "type": "message"
+  },
+  {
+    "plan_id": "plan-04164c03-ba7f-4641-ae9e-73e17b26041d",
+    "seq": 23,
+    "time": "2026-10-19T20:51:57.612Z",
+    "type": "plan_auto_started"
+  },
+  {
+    "plan": {
+      "approved": true,
+      "created_at": "2026-10-19T20:51:57.612Z",
+      "goal": "الاطلاع على تفاصيل بلاغ النفايات المتروكة بجانب الحاوية، وتوضيح إمكانية استرجاع المرفق القديم",
+      "id": "plan-04164c03-ba7f-4641-ae9e-73e17b26041d",
+      "origin_message_id": "message-56cfb388-ff7c-4b33-9d61-57514f59ee8d",
+      "status": "approved",
+      "steps": [
+        {
+          "capability": "input",
+          "depends_on": [],
+          "id": "login",
+          "parameters": {},
+          "status": "pending",
+          "title": "تسجيل الدخول للوصول إلى سجل البلاغات"
+        },
+        {
+          "capability": "crm_get_incidents",
+          "depends_on": [
+            "login"
+          ],
+          "id": "history",
+          "parameters": {},
+          "status": "pending",
+          "title": "استعراض سجل البلاغات"
+        },
+        {
+          "capability": "crm_fetch_incident",
+          "depends_on": [
+            "history"
+          ],
+          "id": "details",
+          "parameters": {},
+          "status": "pending",
+          "title": "عرض تفاصيل البلاغ المطابق"
+        },
+        {
+          "capability": "respond",
+          "depends_on": [
+            "details"
+          ],
+          "id": "answer",
+          "parameters": {},
+          "status": "pending",
+          "title": "عرض النتيجة وتوضيح حدود استرجاع المرفق"
+        }
+      ],
+      "summary": "سأتحقق أولاً من تسجيل الدخول لعرض سجل البلاغات، ثم أستعرض البلاغات وأحدد البلاغ المطابق، ثم أعرض تفاصيله وأوضح ما يتعلق بالمرفق.",
+      "version": 1
+    },
+    "seq": 22,
+    "time": "2026-10-19T20:51:57.612Z",
+    "type": "plan_proposed"
+  },
+  {
+    "corrected": false,
+    "issues": [],
+    "seq": 21,
+    "time": "2026-10-19T20:51:57.612Z",
+    "type": "response_guard_completed"
+  },
+  {
+    "scope": "capability_language",
+    "seq": 20,
+    "time": "2026-10-19T20:51:57.611Z",
+    "type": "response_guard_passed"
+  },
+  {
+    "seq": 19,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T20:51:57.611Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "approved": true,
+          "issues": []
+        },
+        "name": "review_message"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 1280,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.00000768,
+        "cacheWrite": 0,
+        "input": 0.000594,
+        "output": 0.0000576,
+        "total": 0.00065928
+      },
+      "input": 1980,
+      "output": 48,
+      "reasoning": 0,
+      "totalTokens": 3308
+    }
+  },
+  {
+    "request": 1,
+    "seq": 18,
+    "time": "2026-10-19T20:51:56.788Z",
+    "type": "model_request"
+  },
+  {
+    "scope": "facts",
+    "seq": 17,
+    "time": "2026-10-19T20:51:56.783Z",
+    "type": "response_guard_passed"
+  },
+  {
+    "seq": 16,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T20:51:56.782Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "approved": true,
+          "issues": []
+        },
+        "name": "review_message"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 1024,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000006144,
+        "cacheWrite": 0,
+        "input": 0.000597,
+        "output": 0.0000576,
+        "total": 0.000660744
+      },
+      "input": 1990,
+      "output": 48,
+      "reasoning": 0,
+      "totalTokens": 3062
+    }
+  },
+  {
+    "request": 1,
+    "seq": 15,
+    "time": "2026-10-19T20:51:56.129Z",
+    "type": "model_request"
+  },
+  {
+    "message_count": 6,
+    "seq": 14,
+    "time": "2026-10-19T20:51:56.123Z",
+    "type": "response_guard_started"
+  },
+  {
+    "arguments": {
+      "goal": "الاطلاع على تفاصيل بلاغ النفايات المتروكة بجانب الحاوية، وتوضيح إمكانية استرجاع المرفق القديم",
+      "steps": [
+        {
+          "capability": "input",
+          "depends_on": [],
+          "id": "login",
+          "title": "تسجيل الدخول للوصول إلى سجل البلاغات"
+        },
+        {
+          "capability": "crm_get_incidents",
+          "depends_on": [
+            "login"
+          ],
+          "id": "history",
+          "title": "استعراض سجل البلاغات"
+        },
+        {
+          "capability": "crm_fetch_incident",
+          "depends_on": [
+            "history"
+          ],
+          "id": "details",
+          "title": "عرض تفاصيل البلاغ المطابق"
+        },
+        {
+          "capability": "respond",
+          "depends_on": [
+            "details"
+          ],
+          "id": "answer",
+          "title": "عرض النتيجة وتوضيح حدود استرجاع المرفق"
+        }
+      ],
+      "summary": "سأتحقق أولاً من تسجيل الدخول لعرض سجل البلاغات، ثم أستعرض البلاغات وأحدد البلاغ المطابق، ثم أعرض تفاصيله وأوضح ما يتعلق بالمرفق."
+    },
+    "call_id": "call_00_zZBcVKBLFIiZRt2pkkD73868",
+    "name": "propose_plan",
+    "seq": 13,
+    "time": "2026-10-19T20:51:56.122Z",
+    "type": "tool_start"
+  },
+  {
+    "seq": 12,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T20:51:56.122Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "goal": "الاطلاع على تفاصيل بلاغ النفايات المتروكة بجانب الحاوية، وتوضيح إمكانية استرجاع المرفق القديم",
+          "steps": [
+            {
+              "capability": "input",
+              "depends_on": [],
+              "id": "login",
+              "title": "تسجيل الدخول للوصول إلى سجل البلاغات"
+            },
+            {
+              "capability": "crm_get_incidents",
+              "depends_on": [
+                "login"
+              ],
+              "id": "history",
+              "title": "استعراض سجل البلاغات"
+            },
+            {
+              "capability": "crm_fetch_incident",
+              "depends_on": [
+                "history"
+              ],
+              "id": "details",
+              "title": "عرض تفاصيل البلاغ المطابق"
+            },
+            {
+              "capability": "respond",
+              "depends_on": [
+                "details"
+              ],
+              "id": "answer",
+              "title": "عرض النتيجة وتوضيح حدود استرجاع المرفق"
+            }
+          ],
+          "summary": "سأتحقق أولاً من تسجيل الدخول لعرض سجل البلاغات، ثم أستعرض البلاغات وأحدد البلاغ المطابق، ثم أعرض تفاصيله وأوضح ما يتعلق بالمرفق."
+        },
+        "name": "propose_plan"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 11904,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000071424,
+        "cacheWrite": 0,
+        "input": 0.0001152,
+        "output": 0.0003828,
+        "total": 0.000569424
+      },
+      "input": 384,
+      "output": 319,
+      "reasoning": 0,
+      "totalTokens": 12607
+    }
+  },
+  {
+    "request": 1,
+    "seq": 11,
+    "time": "2026-10-19T20:51:54.676Z",
+    "type": "model_request"
+  },
+  {
+    "emotion": {
+      "assessed_at": "2026-10-19T20:51:54.665Z",
+      "evidence": null,
+      "message_id": "message-56cfb388-ff7c-4b33-9d61-57514f59ee8d",
+      "sentiment": "neutral",
+      "status": "classified",
+      "version": "road-emotion-1.0.1"
+    },
+    "seq": 10,
+    "time": "2026-10-19T20:51:54.665Z",
+    "type": "emotion_assessed"
+  },
+  {
+    "seq": 9,
+    "stage": "emotion",
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T20:51:54.664Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "quote": "",
+          "sentiment": "neutral"
+        },
+        "name": "record_sentiment"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 768,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000004608,
+        "cacheWrite": 0,
+        "input": 0.00008999999999999999,
+        "output": 0.0000588,
+        "total": 0.00015340799999999998
+      },
+      "input": 300,
+      "output": 49,
+      "reasoning": 0,
+      "totalTokens": 1117
+    }
+  },
+  {
+    "request": 1,
+    "seq": 8,
+    "stage": "emotion",
+    "time": "2026-10-19T20:51:53.431Z",
+    "type": "model_request"
+  },
+  {
+    "message_id": "message-56cfb388-ff7c-4b33-9d61-57514f59ee8d",
+    "seq": 7,
+    "time": "2026-10-19T20:51:53.424Z",
+    "type": "emotion_started"
+  },
+  {
+    "entry_id": null,
+    "method": "model",
+    "seq": 6,
+    "time": "2026-10-19T20:51:53.424Z",
+    "type": "faq_miss"
+  },
+  {
+    "seq": 5,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T20:51:53.423Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "answerable": false,
+          "entry_id": null,
+          "needs_clarification": false,
+          "reason": "Request to view details of the user's own submitted report and retrieve an old attachment — a personal ticket query/business action, not a knowledge question. No FAQ entry covers it."
+        },
+        "name": "select_faq"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 384,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000002304,
+        "cacheWrite": 0,
+        "input": 0.0008925,
+        "output": 0.0001452,
+        "total": 0.001040004
+      },
+      "input": 2975,
+      "output": 121,
+      "reasoning": 0,
+      "totalTokens": 3480
+    }
+  },
+  {
+    "request": 1,
+    "seq": 4,
+    "time": "2026-10-19T20:51:52.346Z",
+    "type": "model_request"
+  },
+  {
+    "entries": 9,
+    "seq": 3,
+    "time": "2026-10-19T20:51:52.339Z",
+    "type": "faq_lookup"
+  },
+  {
+    "epoch": 0,
+    "route": "faq_then_balady_crm",
+    "seq": 2,
+    "time": "2026-10-19T20:51:52.335Z",
+    "type": "turn_started"
+  },
+  {
+    "message": {
+      "id": "message-56cfb388-ff7c-4b33-9d61-57514f59ee8d",
+      "role": "user",
+      "text": "أريد الاطلاع على تفاصيل البلاغ الذي قدمته عن النفايات المتروكة بجانب الحاوية، وهل أستطيع استرجاع المرفق القديم؟",
+      "time": "2026-10-19T20:51:52.334Z"
+    },
+    "seq": 1,
+    "time": "2026-10-19T20:51:52.334Z",
+    "type": "message"
+  }
+]

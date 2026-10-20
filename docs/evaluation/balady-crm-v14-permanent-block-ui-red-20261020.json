@@ -1,0 +1,26 @@
+{
+  "stage": "v14 permanent administrative-location UI retry red and transient positive control",
+  "command": [
+    "node",
+    "--test",
+    "--test-reporter=tap",
+    "--test-name-pattern=permanent current-request location|transient failed interrupted",
+    "tests/crm-chat-ui.test.mjs"
+  ],
+  "tests": 2,
+  "passed": 1,
+  "failed": 1,
+  "exit_code": 1,
+  "source_sha256": {
+    "web/road/chat-ui.js": "fd63b0e124a6a27d7f74b19234c2957553bc98b41428da886d09a5a3a98c9dc4",
+    "web/road/i18n.js": "bc8735d88ee2b3be4407198c26dd4433ee74700603aa862548ef77e4e389ef7b",
+    "tests/crm-chat-ui.test.mjs": "5043b9f7d4e933d282dfcba3151bcafd3d85c0dfab0d8ba205601aea8480baf1"
+  },
+  "source_sha256_end": {
+    "web/road/chat-ui.js": "fd63b0e124a6a27d7f74b19234c2957553bc98b41428da886d09a5a3a98c9dc4",
+    "web/road/i18n.js": "bc8735d88ee2b3be4407198c26dd4433ee74700603aa862548ef77e4e389ef7b",
+    "tests/crm-chat-ui.test.mjs": "5043b9f7d4e933d282dfcba3151bcafd3d85c0dfab0d8ba205601aea8480baf1"
+  },
+  "source_changed_during_run": [],
+  "raw_tap": "docs/evaluation/balady-crm-v14-permanent-block-ui-red-20261020.tap"
+}

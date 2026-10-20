@@ -1,0 +1,702 @@
+[
+  {
+    "message": {
+      "id": "message-ee5c040e-0917-4f73-b189-d5564ddeaefc",
+      "kind": "info",
+      "notice": "cancelled",
+      "role": "assistant",
+      "text": "تم إيقاف المهمة الحالية. أخبرني بما تريد القيام به بعد ذلك.",
+      "time": "2026-10-19T20:27:38.374Z"
+    },
+    "seq": 42,
+    "time": "2026-10-19T20:27:38.374Z",
+    "type": "message"
+  },
+  {
+    "reason": "user_cancelled",
+    "seq": 41,
+    "time": "2026-10-19T20:27:38.373Z",
+    "type": "interrupted"
+  },
+  {
+    "seq": 40,
+    "status": "input",
+    "time": "2026-10-19T20:26:45.444Z",
+    "type": "turn_finished"
+  },
+  {
+    "call_id": "call_00_4o5PJlnpMFo4ynF6Ho8J9495",
+    "name": "request_service_choice",
+    "result": {
+      "end_turn": true,
+      "input": {
+        "choices": [
+          {
+            "description": "طلب خدمة بلدية لإصلاح العطل في الحديقة (يتطلب وصف الموقع والصور إن وُجدت).",
+            "id": "report_fault",
+            "label": "الإبلاغ عن الأرجوحة المكسورة",
+            "operation": "crm_create_municipal_service"
+          },
+          {
+            "description": "شكوى عامة بأن الموظف لم يوضح حالة الإصلاح (نموذج شكوى عام).",
+            "id": "complain_staff",
+            "label": "تقديم شكوى عن طريقة التعامل",
+            "operation": "crm_create_form_request"
+          },
+          {
+            "additional_operations": [
+              "crm_create_form_request"
+            ],
+            "description": "الإبلاغ عن العطل أولًا، ثم تقديم شكوى منفصلة عن التعامل.",
+            "id": "both",
+            "label": "الاثنان معًا",
+            "operation": "crm_create_municipal_service"
+          }
+        ],
+        "id": "input-6fe14f9c-b9c1-4fe9-9c19-6251bf27d8d8",
+        "kind": "choice",
+        "plan_id": "plan-0e19e43c-8dd7-475f-b07e-ada239d070a9",
+        "question": "فهمت أن لديك أمرين: أرجوحة مكسورة في حديقة الحي، وعدم وضوح رد الموظف عن إصلاحها. هذان مساران مختلفان، فأي واحد تريد أن نبدأ به؟",
+        "step_id": "choose"
+      }
+    },
+    "seq": 39,
+    "time": "2026-10-19T20:26:45.444Z",
+    "type": "tool_end"
+  },
+  {
+    "message": {
+      "id": "message-255ba2eb-ea66-40c8-8ace-0bb9c70c1d1f",
+      "input_id": "input-6fe14f9c-b9c1-4fe9-9c19-6251bf27d8d8",
+      "kind": "input_request",
+      "plan_id": "plan-0e19e43c-8dd7-475f-b07e-ada239d070a9",
+      "role": "assistant",
+      "text": "فهمت أن لديك أمرين: أرجوحة مكسورة في حديقة الحي، وعدم وضوح رد الموظف عن إصلاحها. هذان مساران مختلفان، فأي واحد تريد أن نبدأ به؟",
+      "time": "2026-10-19T20:26:45.444Z"
+    },
+    "seq": 38,
+    "time": "2026-10-19T20:26:45.444Z",
+    "type": "message"
+  },
+  {
+    "input": {
+      "choices": [
+        {
+          "description": "طلب خدمة بلدية لإصلاح العطل في الحديقة (يتطلب وصف الموقع والصور إن وُجدت).",
+          "id": "report_fault",
+          "label": "الإبلاغ عن الأرجوحة المكسورة",
+          "operation": "crm_create_municipal_service"
+        },
+        {
+          "description": "شكوى عامة بأن الموظف لم يوضح حالة الإصلاح (نموذج شكوى عام).",
+          "id": "complain_staff",
+          "label": "تقديم شكوى عن طريقة التعامل",
+          "operation": "crm_create_form_request"
+        },
+        {
+          "additional_operations": [
+            "crm_create_form_request"
+          ],
+          "description": "الإبلاغ عن العطل أولًا، ثم تقديم شكوى منفصلة عن التعامل.",
+          "id": "both",
+          "label": "الاثنان معًا",
+          "operation": "crm_create_municipal_service"
+        }
+      ],
+      "id": "input-6fe14f9c-b9c1-4fe9-9c19-6251bf27d8d8",
+      "kind": "choice",
+      "plan_id": "plan-0e19e43c-8dd7-475f-b07e-ada239d070a9",
+      "question": "فهمت أن لديك أمرين: أرجوحة مكسورة في حديقة الحي، وعدم وضوح رد الموظف عن إصلاحها. هذان مساران مختلفان، فأي واحد تريد أن نبدأ به؟",
+      "step_id": "choose"
+    },
+    "seq": 37,
+    "time": "2026-10-19T20:26:45.444Z",
+    "type": "input_required"
+  },
+  {
+    "corrected": false,
+    "issues": [],
+    "seq": 36,
+    "time": "2026-10-19T20:26:45.443Z",
+    "type": "response_guard_completed"
+  },
+  {
+    "scope": "capability_language",
+    "seq": 35,
+    "time": "2026-10-19T20:26:45.443Z",
+    "type": "response_guard_passed"
+  },
+  {
+    "seq": 34,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T20:26:45.442Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "approved": true,
+          "issues": []
+        },
+        "name": "review_message"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 512,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000003072,
+        "cacheWrite": 0,
+        "input": 0.0012138,
+        "output": 0.0000576,
+        "total": 0.001274472
+      },
+      "input": 4046,
+      "output": 48,
+      "reasoning": 0,
+      "totalTokens": 4606
+    }
+  },
+  {
+    "request": 1,
+    "seq": 33,
+    "time": "2026-10-19T20:26:44.771Z",
+    "type": "model_request"
+  },
+  {
+    "scope": "facts",
+    "seq": 32,
+    "time": "2026-10-19T20:26:44.764Z",
+    "type": "response_guard_passed"
+  },
+  {
+    "seq": 31,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T20:26:44.763Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "approved": true,
+          "issues": []
+        },
+        "name": "review_message"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 384,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000002304,
+        "cacheWrite": 0,
+        "input": 0.0011829,
+        "output": 0.0000576,
+        "total": 0.001242804
+      },
+      "input": 3943,
+      "output": 48,
+      "reasoning": 0,
+      "totalTokens": 4375
+    }
+  },
+  {
+    "request": 1,
+    "seq": 30,
+    "time": "2026-10-19T20:26:44.165Z",
+    "type": "model_request"
+  },
+  {
+    "message_count": 7,
+    "seq": 29,
+    "time": "2026-10-19T20:26:44.157Z",
+    "type": "response_guard_started"
+  },
+  {
+    "arguments": {
+      "choices": [
+        {
+          "description": "طلب خدمة بلدية لإصلاح العطل في الحديقة (يتطلب وصف الموقع والصور إن وُجدت).",
+          "id": "report_fault",
+          "label": "الإبلاغ عن الأرجوحة المكسورة",
+          "operation": "crm_create_municipal_service"
+        },
+        {
+          "description": "شكوى عامة بأن الموظف لم يوضح حالة الإصلاح (نموذج شكوى عام).",
+          "id": "complain_staff",
+          "label": "تقديم شكوى عن طريقة التعامل",
+          "operation": "crm_create_form_request"
+        },
+        {
+          "additional_operations": [
+            "crm_create_form_request"
+          ],
+          "description": "الإبلاغ عن العطل أولًا، ثم تقديم شكوى منفصلة عن التعامل.",
+          "id": "both",
+          "label": "الاثنان معًا",
+          "operation": "crm_create_municipal_service"
+        }
+      ],
+      "question": "فهمت أن لديك أمرين: أرجوحة مكسورة في حديقة الحي، وعدم وضوح رد الموظف عن إصلاحها. هذان مساران مختلفان، فأي واحد تريد أن نبدأ به؟",
+      "step_id": "choose"
+    },
+    "call_id": "call_00_4o5PJlnpMFo4ynF6Ho8J9495",
+    "name": "request_service_choice",
+    "seq": 28,
+    "time": "2026-10-19T20:26:44.156Z",
+    "type": "tool_start"
+  },
+  {
+    "seq": 27,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T20:26:44.155Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "choices": [
+            {
+              "description": "طلب خدمة بلدية لإصلاح العطل في الحديقة (يتطلب وصف الموقع والصور إن وُجدت).",
+              "id": "report_fault",
+              "label": "الإبلاغ عن الأرجوحة المكسورة",
+              "operation": "crm_create_municipal_service"
+            },
+            {
+              "description": "شكوى عامة بأن الموظف لم يوضح حالة الإصلاح (نموذج شكوى عام).",
+              "id": "complain_staff",
+              "label": "تقديم شكوى عن طريقة التعامل",
+              "operation": "crm_create_form_request"
+            },
+            {
+              "additional_operations": [
+                "crm_create_form_request"
+              ],
+              "description": "الإبلاغ عن العطل أولًا، ثم تقديم شكوى منفصلة عن التعامل.",
+              "id": "both",
+              "label": "الاثنان معًا",
+              "operation": "crm_create_municipal_service"
+            }
+          ],
+          "question": "فهمت أن لديك أمرين: أرجوحة مكسورة في حديقة الحي، وعدم وضوح رد الموظف عن إصلاحها. هذان مساران مختلفان، فأي واحد تريد أن نبدأ به؟",
+          "step_id": "choose"
+        },
+        "name": "request_service_choice"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 12416,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000074496,
+        "cacheWrite": 0,
+        "input": 0.0000951,
+        "output": 0.0003912,
+        "total": 0.0005607959999999999
+      },
+      "input": 317,
+      "output": 326,
+      "reasoning": 0,
+      "totalTokens": 13059
+    }
+  },
+  {
+    "request": 2,
+    "seq": 26,
+    "time": "2026-10-19T20:26:42.094Z",
+    "type": "model_request"
+  },
+  {
+    "call_id": "call_00_vjqYS2YgmzuYpbTuBAU72055",
+    "name": "propose_plan",
+    "result": {
+      "auto_execute": true,
+      "plan": {
+        "approved": true,
+        "created_at": "2026-10-19T20:26:42.088Z",
+        "goal": "مساعدة المستخدم على اختيار الخدمة المناسبة: الإبلاغ عن عطل الأرجوحة في حديقة الحي، أو تقديم شكوى من طريقة تعامل الموظف",
+        "id": "plan-0e19e43c-8dd7-475f-b07e-ada239d070a9",
+        "origin_message_id": "message-e5b73b70-58b4-4797-a48e-e20f6ef5206d",
+        "status": "approved",
+        "steps": [
+          {
+            "capability": "input",
+            "depends_on": [],
+            "id": "choose",
+            "parameters": {},
+            "status": "pending",
+            "title": "توضيح ما يريده المستخدم: الإبلاغ عن العطل أم الشكوى من التعامل"
+          },
+          {
+            "capability": "respond",
+            "depends_on": [
+              "choose"
+            ],
+            "id": "answer",
+            "parameters": {},
+            "status": "pending",
+            "title": "شرح الخيارات والخطوات التالية"
+          }
+        ],
+        "summary": "سؤال توضيحي واحد لاختيار المسار، ثم متابعة التفاصيل المطلوبة للمسار المختار.",
+        "version": 1
+      }
+    },
+    "seq": 25,
+    "time": "2026-10-19T20:26:42.089Z",
+    "type": "tool_end"
+  },
+  {
+    "message": {
+      "id": "message-52b1fed4-95cf-494c-ad1c-964bdff167e9",
+      "kind": "plan",
+      "plan_id": "plan-0e19e43c-8dd7-475f-b07e-ada239d070a9",
+      "role": "assistant",
+      "text": "سؤال توضيحي واحد لاختيار المسار، ثم متابعة التفاصيل المطلوبة للمسار المختار.",
+      "time": "2026-10-19T20:26:42.088Z"
+    },
+    "seq": 24,
+    "time": "2026-10-19T20:26:42.088Z",
+    "type": "message"
+  },
+  {
+    "plan_id": "plan-0e19e43c-8dd7-475f-b07e-ada239d070a9",
+    "seq": 23,
+    "time": "2026-10-19T20:26:42.088Z",
+    "type": "plan_auto_started"
+  },
+  {
+    "plan": {
+      "approved": true,
+      "created_at": "2026-10-19T20:26:42.088Z",
+      "goal": "مساعدة المستخدم على اختيار الخدمة المناسبة: الإبلاغ عن عطل الأرجوحة في حديقة الحي، أو تقديم شكوى من طريقة تعامل الموظف",
+      "id": "plan-0e19e43c-8dd7-475f-b07e-ada239d070a9",
+      "origin_message_id": "message-e5b73b70-58b4-4797-a48e-e20f6ef5206d",
+      "status": "approved",
+      "steps": [
+        {
+          "capability": "input",
+          "depends_on": [],
+          "id": "choose",
+          "parameters": {},
+          "status": "pending",
+          "title": "توضيح ما يريده المستخدم: الإبلاغ عن العطل أم الشكوى من التعامل"
+        },
+        {
+          "capability": "respond",
+          "depends_on": [
+            "choose"
+          ],
+          "id": "answer",
+          "parameters": {},
+          "status": "pending",
+          "title": "شرح الخيارات والخطوات التالية"
+        }
+      ],
+      "summary": "سؤال توضيحي واحد لاختيار المسار، ثم متابعة التفاصيل المطلوبة للمسار المختار.",
+      "version": 1
+    },
+    "seq": 22,
+    "time": "2026-10-19T20:26:42.088Z",
+    "type": "plan_proposed"
+  },
+  {
+    "corrected": false,
+    "issues": [],
+    "seq": 21,
+    "time": "2026-10-19T20:26:42.088Z",
+    "type": "response_guard_completed"
+  },
+  {
+    "scope": "capability_language",
+    "seq": 20,
+    "time": "2026-10-19T20:26:42.088Z",
+    "type": "response_guard_passed"
+  },
+  {
+    "seq": 19,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T20:26:42.087Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "approved": true,
+          "issues": []
+        },
+        "name": "review_message"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 640,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.00000384,
+        "cacheWrite": 0,
+        "input": 0.0007164,
+        "output": 0.0000576,
+        "total": 0.0007778399999999999
+      },
+      "input": 2388,
+      "output": 48,
+      "reasoning": 0,
+      "totalTokens": 3076
+    }
+  },
+  {
+    "request": 1,
+    "seq": 18,
+    "time": "2026-10-19T20:26:41.310Z",
+    "type": "model_request"
+  },
+  {
+    "scope": "facts",
+    "seq": 17,
+    "time": "2026-10-19T20:26:41.303Z",
+    "type": "response_guard_passed"
+  },
+  {
+    "seq": 16,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T20:26:41.302Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "approved": true,
+          "issues": []
+        },
+        "name": "review_message"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 128,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 7.68e-7,
+        "cacheWrite": 0,
+        "input": 0.0008007,
+        "output": 0.0000576,
+        "total": 0.0008590679999999999
+      },
+      "input": 2669,
+      "output": 48,
+      "reasoning": 0,
+      "totalTokens": 2845
+    }
+  },
+  {
+    "request": 1,
+    "seq": 15,
+    "time": "2026-10-19T20:26:40.688Z",
+    "type": "model_request"
+  },
+  {
+    "message_count": 4,
+    "seq": 14,
+    "time": "2026-10-19T20:26:40.681Z",
+    "type": "response_guard_started"
+  },
+  {
+    "arguments": {
+      "goal": "مساعدة المستخدم على اختيار الخدمة المناسبة: الإبلاغ عن عطل الأرجوحة في حديقة الحي، أو تقديم شكوى من طريقة تعامل الموظف",
+      "steps": [
+        {
+          "capability": "input",
+          "depends_on": [],
+          "id": "choose",
+          "title": "توضيح ما يريده المستخدم: الإبلاغ عن العطل أم الشكوى من التعامل"
+        },
+        {
+          "capability": "respond",
+          "depends_on": [
+            "choose"
+          ],
+          "id": "answer",
+          "title": "شرح الخيارات والخطوات التالية"
+        }
+      ],
+      "summary": "سؤال توضيحي واحد لاختيار المسار، ثم متابعة التفاصيل المطلوبة للمسار المختار."
+    },
+    "call_id": "call_00_vjqYS2YgmzuYpbTuBAU72055",
+    "name": "propose_plan",
+    "seq": 13,
+    "time": "2026-10-19T20:26:40.680Z",
+    "type": "tool_start"
+  },
+  {
+    "seq": 12,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T20:26:40.678Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "goal": "مساعدة المستخدم على اختيار الخدمة المناسبة: الإبلاغ عن عطل الأرجوحة في حديقة الحي، أو تقديم شكوى من طريقة تعامل الموظف",
+          "steps": [
+            {
+              "capability": "input",
+              "depends_on": [],
+              "id": "choose",
+              "title": "توضيح ما يريده المستخدم: الإبلاغ عن العطل أم الشكوى من التعامل"
+            },
+            {
+              "capability": "respond",
+              "depends_on": [
+                "choose"
+              ],
+              "id": "answer",
+              "title": "شرح الخيارات والخطوات التالية"
+            }
+          ],
+          "summary": "سؤال توضيحي واحد لاختيار المسار، ثم متابعة التفاصيل المطلوبة للمسار المختار."
+        },
+        "name": "propose_plan"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 7040,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.00004224,
+        "cacheWrite": 0,
+        "input": 0.001557,
+        "output": 0.0002628,
+        "total": 0.00186204
+      },
+      "input": 5190,
+      "output": 219,
+      "reasoning": 0,
+      "totalTokens": 12449
+    }
+  },
+  {
+    "request": 1,
+    "seq": 11,
+    "time": "2026-10-19T20:26:39.388Z",
+    "type": "model_request"
+  },
+  {
+    "emotion": {
+      "assessed_at": "2026-10-19T20:26:39.376Z",
+      "evidence": null,
+      "message_id": "message-e5b73b70-58b4-4797-a48e-e20f6ef5206d",
+      "sentiment": "neutral",
+      "status": "classified",
+      "version": "road-emotion-1.0.1"
+    },
+    "seq": 10,
+    "time": "2026-10-19T20:26:39.376Z",
+    "type": "emotion_assessed"
+  },
+  {
+    "seq": 9,
+    "stage": "emotion",
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T20:26:39.374Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "quote": "",
+          "sentiment": "neutral"
+        },
+        "name": "record_sentiment"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 768,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000004608,
+        "cacheWrite": 0,
+        "input": 0.0000942,
+        "output": 0.0000588,
+        "total": 0.000157608
+      },
+      "input": 314,
+      "output": 49,
+      "reasoning": 0,
+      "totalTokens": 1131
+    }
+  },
+  {
+    "request": 1,
+    "seq": 8,
+    "stage": "emotion",
+    "time": "2026-10-19T20:26:38.743Z",
+    "type": "model_request"
+  },
+  {
+    "message_id": "message-e5b73b70-58b4-4797-a48e-e20f6ef5206d",
+    "seq": 7,
+    "time": "2026-10-19T20:26:38.736Z",
+    "type": "emotion_started"
+  },
+  {
+    "entry_id": null,
+    "method": "model",
+    "seq": 6,
+    "time": "2026-10-19T20:26:38.736Z",
+    "type": "faq_miss"
+  },
+  {
+    "seq": 5,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T20:26:38.730Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "answerable": false,
+          "entry_id": null,
+          "needs_clarification": false,
+          "reason": "User asks for guidance on whether to report a broken swing or file a complaint about staff handling — a request for advice/business action, not covered by any FAQ entry."
+        },
+        "name": "select_faq"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 384,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000002304,
+        "cacheWrite": 0,
+        "input": 0.0009009,
+        "output": 0.0001428,
+        "total": 0.001046004
+      },
+      "input": 3003,
+      "output": 119,
+      "reasoning": 0,
+      "totalTokens": 3506
+    }
+  },
+  {
+    "request": 1,
+    "seq": 4,
+    "time": "2026-10-19T20:26:37.497Z",
+    "type": "model_request"
+  },
+  {
+    "entries": 9,
+    "seq": 3,
+    "time": "2026-10-19T20:26:37.218Z",
+    "type": "faq_lookup"
+  },
+  {
+    "epoch": 0,
+    "route": "faq_then_balady_crm",
+    "seq": 2,
+    "time": "2026-10-19T20:26:37.213Z",
+    "type": "turn_started"
+  },
+  {
+    "message": {
+      "id": "message-e5b73b70-58b4-4797-a48e-e20f6ef5206d",
+      "role": "user",
+      "text": "في حديقة الحي أرجوحة مكسورة، وسألت الموظف عن إصلاحها لكنه لم يوضح لي شيئًا. لا أعرف هل أبلغ عن العطل أم أشتكي من طريقة التعامل، ما الأنسب؟",
+      "time": "2026-10-19T20:26:37.209Z"
+    },
+    "seq": 1,
+    "time": "2026-10-19T20:26:37.210Z",
+    "type": "message"
+  }
+]

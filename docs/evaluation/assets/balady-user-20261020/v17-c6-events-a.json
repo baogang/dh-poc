@@ -1,0 +1,701 @@
+[
+  {
+    "request": 1,
+    "seq": 46,
+    "time": "2026-10-19T22:46:55.560Z",
+    "type": "model_request"
+  },
+  {
+    "epoch": 0,
+    "route": "crm_resume",
+    "seq": 45,
+    "time": "2026-10-19T22:46:55.546Z",
+    "type": "turn_started"
+  },
+  {
+    "input_id": "input-78c49d2e-3a01-4bf1-914c-c9668d71ef1f",
+    "result": {},
+    "seq": 44,
+    "time": "2026-10-19T22:46:55.546Z",
+    "type": "input_received"
+  },
+  {
+    "message": {
+      "id": "message-e5e1a691-6215-4ca8-b85e-a37cc2883023",
+      "input_id": "input-78c49d2e-3a01-4bf1-914c-c9668d71ef1f",
+      "kind": "input",
+      "role": "user",
+      "text": "已完成模拟登录。",
+      "time": "2026-10-19T22:46:55.546Z",
+      "value": {}
+    },
+    "seq": 43,
+    "time": "2026-10-19T22:46:55.546Z",
+    "type": "message"
+  },
+  {
+    "message": {
+      "id": "message-f8eb0bf8-a32f-424c-856e-bc6c94399c0b",
+      "kind": "login",
+      "notice": "login",
+      "role": "assistant",
+      "text": "模拟登录成功。现在可以继续处理你的工单。",
+      "time": "2026-10-19T22:46:55.453Z"
+    },
+    "seq": 42,
+    "time": "2026-10-19T22:46:55.453Z",
+    "type": "message"
+  },
+  {
+    "seq": 41,
+    "time": "2026-10-19T22:46:55.453Z",
+    "type": "login",
+    "user": {
+      "name": "demo",
+      "user_id": "demo-demo"
+    }
+  },
+  {
+    "seq": 40,
+    "status": "input",
+    "time": "2026-10-19T22:46:43.492Z",
+    "type": "turn_finished"
+  },
+  {
+    "call_id": "call_00_B1iEZXHLyVk1PBAhyzSO2059",
+    "name": "request_input",
+    "result": {
+      "end_turn": true,
+      "input": {
+        "fields": [
+          "beneficiary"
+        ],
+        "id": "input-78c49d2e-3a01-4bf1-914c-c9668d71ef1f",
+        "kind": "login",
+        "operation": "crm_get_incidents",
+        "plan_id": "plan-9c33b5c3-266d-4141-b94b-0c293d4a0f4e",
+        "question": "查看您本人的记录需要先登录。请使用页面上的登录按钮完成演示登录，之后我会读取您的历史记录。",
+        "step_id": "login"
+      }
+    },
+    "seq": 39,
+    "time": "2026-10-19T22:46:43.491Z",
+    "type": "tool_end"
+  },
+  {
+    "message": {
+      "id": "message-f2160135-5b7b-4f07-85a8-589435732076",
+      "input_id": "input-78c49d2e-3a01-4bf1-914c-c9668d71ef1f",
+      "kind": "input_request",
+      "plan_id": "plan-9c33b5c3-266d-4141-b94b-0c293d4a0f4e",
+      "role": "assistant",
+      "text": "查看您本人的记录需要先登录。请使用页面上的登录按钮完成演示登录，之后我会读取您的历史记录。",
+      "time": "2026-10-19T22:46:43.491Z"
+    },
+    "seq": 38,
+    "time": "2026-10-19T22:46:43.491Z",
+    "type": "message"
+  },
+  {
+    "input": {
+      "fields": [
+        "beneficiary"
+      ],
+      "id": "input-78c49d2e-3a01-4bf1-914c-c9668d71ef1f",
+      "kind": "login",
+      "operation": "crm_get_incidents",
+      "plan_id": "plan-9c33b5c3-266d-4141-b94b-0c293d4a0f4e",
+      "question": "查看您本人的记录需要先登录。请使用页面上的登录按钮完成演示登录，之后我会读取您的历史记录。",
+      "step_id": "login"
+    },
+    "seq": 37,
+    "time": "2026-10-19T22:46:43.491Z",
+    "type": "input_required"
+  },
+  {
+    "corrected": false,
+    "issues": [],
+    "seq": 36,
+    "time": "2026-10-19T22:46:43.491Z",
+    "type": "response_guard_completed"
+  },
+  {
+    "scope": "capability_language",
+    "seq": 35,
+    "time": "2026-10-19T22:46:43.491Z",
+    "type": "response_guard_passed"
+  },
+  {
+    "seq": 34,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T22:46:43.491Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "approved": true,
+          "issues": []
+        },
+        "name": "review_message"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 1664,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000009984,
+        "cacheWrite": 0,
+        "input": 0.0005438999999999999,
+        "output": 0.0000576,
+        "total": 0.0006114839999999999
+      },
+      "input": 1813,
+      "output": 48,
+      "reasoning": 0,
+      "totalTokens": 3525
+    }
+  },
+  {
+    "request": 1,
+    "seq": 33,
+    "time": "2026-10-19T22:46:42.913Z",
+    "type": "model_request"
+  },
+  {
+    "scope": "facts",
+    "seq": 32,
+    "time": "2026-10-19T22:46:42.907Z",
+    "type": "response_guard_passed"
+  },
+  {
+    "seq": 31,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T22:46:42.906Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "approved": true,
+          "issues": []
+        },
+        "name": "review_message"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 1408,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000008448,
+        "cacheWrite": 0,
+        "input": 0.0005493,
+        "output": 0.0000576,
+        "total": 0.0006153479999999999
+      },
+      "input": 1831,
+      "output": 48,
+      "reasoning": 0,
+      "totalTokens": 3287
+    }
+  },
+  {
+    "request": 1,
+    "seq": 30,
+    "time": "2026-10-19T22:46:42.273Z",
+    "type": "model_request"
+  },
+  {
+    "message_count": 1,
+    "seq": 29,
+    "time": "2026-10-19T22:46:42.268Z",
+    "type": "response_guard_started"
+  },
+  {
+    "arguments": {
+      "fields": [
+        "beneficiary"
+      ],
+      "kind": "login",
+      "operation": "crm_get_incidents",
+      "question": "查看您本人的记录需要先登录。请使用页面上的登录按钮完成演示登录，之后我会读取您的历史记录。",
+      "step_id": "login"
+    },
+    "call_id": "call_00_B1iEZXHLyVk1PBAhyzSO2059",
+    "name": "request_input",
+    "seq": 28,
+    "time": "2026-10-19T22:46:42.268Z",
+    "type": "tool_start"
+  },
+  {
+    "seq": 27,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T22:46:42.267Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "fields": [
+            "beneficiary"
+          ],
+          "kind": "login",
+          "operation": "crm_get_incidents",
+          "question": "查看您本人的记录需要先登录。请使用页面上的登录按钮完成演示登录，之后我会读取您的历史记录。",
+          "step_id": "login"
+        },
+        "name": "request_input"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 14592,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000087552,
+        "cacheWrite": 0,
+        "input": 0.0001053,
+        "output": 0.0001548,
+        "total": 0.000347652
+      },
+      "input": 351,
+      "output": 129,
+      "reasoning": 0,
+      "totalTokens": 15072
+    }
+  },
+  {
+    "request": 2,
+    "seq": 26,
+    "time": "2026-10-19T22:46:41.359Z",
+    "type": "model_request"
+  },
+  {
+    "call_id": "call_00_zdE06Wd9OJ7a5IaWTzsG6675",
+    "name": "propose_plan",
+    "result": {
+      "auto_execute": true,
+      "plan": {
+        "approved": true,
+        "created_at": "2026-10-19T22:46:41.355Z",
+        "goal": "本轮处理计划",
+        "id": "plan-9c33b5c3-266d-4141-b94b-0c293d4a0f4e",
+        "origin_message_id": "message-6933c946-a551-4809-a2c3-ab70028ceed7",
+        "status": "approved",
+        "steps": [
+          {
+            "capability": "input",
+            "depends_on": [],
+            "id": "login",
+            "parameters": {},
+            "status": "pending",
+            "title": "确认必要信息"
+          },
+          {
+            "capability": "crm_get_incidents",
+            "depends_on": [
+              "login"
+            ],
+            "id": "history",
+            "parameters": {},
+            "status": "pending",
+            "title": "查看本人可见事项"
+          },
+          {
+            "capability": "respond",
+            "depends_on": [
+              "history"
+            ],
+            "id": "respond",
+            "parameters": {},
+            "status": "pending",
+            "title": "说明结果与限制"
+          }
+        ],
+        "summary": "按以下步骤处理你的请求。查询会自动进行；提交前会请你核对具体内容。计划不代表事项已经办理。",
+        "version": 1
+      }
+    },
+    "seq": 25,
+    "time": "2026-10-19T22:46:41.355Z",
+    "type": "tool_end"
+  },
+  {
+    "message": {
+      "id": "message-ba1721e3-538d-47ef-93c2-e279f29425cf",
+      "kind": "plan",
+      "plan_id": "plan-9c33b5c3-266d-4141-b94b-0c293d4a0f4e",
+      "role": "assistant",
+      "text": "按以下步骤处理你的请求。查询会自动进行；提交前会请你核对具体内容。计划不代表事项已经办理。",
+      "time": "2026-10-19T22:46:41.355Z"
+    },
+    "seq": 24,
+    "time": "2026-10-19T22:46:41.355Z",
+    "type": "message"
+  },
+  {
+    "plan_id": "plan-9c33b5c3-266d-4141-b94b-0c293d4a0f4e",
+    "seq": 23,
+    "time": "2026-10-19T22:46:41.355Z",
+    "type": "plan_auto_started"
+  },
+  {
+    "plan": {
+      "approved": true,
+      "created_at": "2026-10-19T22:46:41.355Z",
+      "goal": "本轮处理计划",
+      "id": "plan-9c33b5c3-266d-4141-b94b-0c293d4a0f4e",
+      "origin_message_id": "message-6933c946-a551-4809-a2c3-ab70028ceed7",
+      "status": "approved",
+      "steps": [
+        {
+          "capability": "input",
+          "depends_on": [],
+          "id": "login",
+          "parameters": {},
+          "status": "pending",
+          "title": "确认必要信息"
+        },
+        {
+          "capability": "crm_get_incidents",
+          "depends_on": [
+            "login"
+          ],
+          "id": "history",
+          "parameters": {},
+          "status": "pending",
+          "title": "查看本人可见事项"
+        },
+        {
+          "capability": "respond",
+          "depends_on": [
+            "history"
+          ],
+          "id": "respond",
+          "parameters": {},
+          "status": "pending",
+          "title": "说明结果与限制"
+        }
+      ],
+      "summary": "按以下步骤处理你的请求。查询会自动进行；提交前会请你核对具体内容。计划不代表事项已经办理。",
+      "version": 1
+    },
+    "seq": 22,
+    "time": "2026-10-19T22:46:41.355Z",
+    "type": "plan_proposed"
+  },
+  {
+    "corrected": false,
+    "issues": [],
+    "seq": 21,
+    "time": "2026-10-19T22:46:41.354Z",
+    "type": "response_guard_completed"
+  },
+  {
+    "scope": "plan_feasibility",
+    "seq": 20,
+    "time": "2026-10-19T22:46:41.354Z",
+    "type": "response_guard_passed"
+  },
+  {
+    "seq": 19,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T22:46:41.354Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "approved": true,
+          "issues": []
+        },
+        "name": "review_message"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 768,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000004608,
+        "cacheWrite": 0,
+        "input": 0.0005319,
+        "output": 0.0000576,
+        "total": 0.000594108
+      },
+      "input": 1773,
+      "output": 48,
+      "reasoning": 0,
+      "totalTokens": 2589
+    }
+  },
+  {
+    "request": 1,
+    "seq": 18,
+    "time": "2026-10-19T22:46:40.504Z",
+    "type": "model_request"
+  },
+  {
+    "scope": "plan_intent",
+    "seq": 17,
+    "time": "2026-10-19T22:46:40.498Z",
+    "type": "response_guard_passed"
+  },
+  {
+    "seq": 16,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T22:46:40.497Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "approved": true,
+          "issues": []
+        },
+        "name": "review_message"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 768,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000004608,
+        "cacheWrite": 0,
+        "input": 0.0005271,
+        "output": 0.0000576,
+        "total": 0.000589308
+      },
+      "input": 1757,
+      "output": 48,
+      "reasoning": 0,
+      "totalTokens": 2573
+    }
+  },
+  {
+    "request": 1,
+    "seq": 15,
+    "time": "2026-10-19T22:46:39.626Z",
+    "type": "model_request"
+  },
+  {
+    "message_count": 0,
+    "seq": 14,
+    "time": "2026-10-19T22:46:39.621Z",
+    "type": "response_guard_started"
+  },
+  {
+    "arguments": {
+      "goal": "查看用户之前反映的路边车辆未挪动记录是否已结案",
+      "steps": [
+        {
+          "capability": "input",
+          "depends_on": [],
+          "id": "login",
+          "title": "登录以查看我的记录"
+        },
+        {
+          "capability": "crm_get_incidents",
+          "depends_on": [
+            "login"
+          ],
+          "id": "history",
+          "title": "查看我的历史记录"
+        },
+        {
+          "capability": "respond",
+          "depends_on": [
+            "history"
+          ],
+          "id": "respond",
+          "title": "说明记录状态"
+        }
+      ],
+      "summary": "需要登录后读取本人历史记录，找到与路边车辆未挪动相关的记录并说明其状态。"
+    },
+    "call_id": "call_00_zdE06Wd9OJ7a5IaWTzsG6675",
+    "name": "propose_plan",
+    "seq": 13,
+    "time": "2026-10-19T22:46:39.620Z",
+    "type": "tool_start"
+  },
+  {
+    "seq": 12,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T22:46:39.619Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "goal": "查看用户之前反映的路边车辆未挪动记录是否已结案",
+          "steps": [
+            {
+              "capability": "input",
+              "depends_on": [],
+              "id": "login",
+              "title": "登录以查看我的记录"
+            },
+            {
+              "capability": "crm_get_incidents",
+              "depends_on": [
+                "login"
+              ],
+              "id": "history",
+              "title": "查看我的历史记录"
+            },
+            {
+              "capability": "respond",
+              "depends_on": [
+                "history"
+              ],
+              "id": "respond",
+              "title": "说明记录状态"
+            }
+          ],
+          "summary": "需要登录后读取本人历史记录，找到与路边车辆未挪动相关的记录并说明其状态。"
+        },
+        "name": "propose_plan"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 14208,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000085248,
+        "cacheWrite": 0,
+        "input": 0.00008669999999999999,
+        "output": 0.0002328,
+        "total": 0.000404748
+      },
+      "input": 289,
+      "output": 194,
+      "reasoning": 0,
+      "totalTokens": 14691
+    }
+  },
+  {
+    "request": 1,
+    "seq": 11,
+    "time": "2026-10-19T22:46:38.462Z",
+    "type": "model_request"
+  },
+  {
+    "emotion": {
+      "assessed_at": "2026-10-19T22:46:38.451Z",
+      "evidence": null,
+      "message_id": "message-6933c946-a551-4809-a2c3-ab70028ceed7",
+      "sentiment": "neutral",
+      "status": "classified",
+      "version": "road-emotion-1.0.1"
+    },
+    "seq": 10,
+    "time": "2026-10-19T22:46:38.451Z",
+    "type": "emotion_assessed"
+  },
+  {
+    "seq": 9,
+    "stage": "emotion",
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T22:46:38.451Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "quote": "",
+          "sentiment": "neutral"
+        },
+        "name": "record_sentiment"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 768,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000004608,
+        "cacheWrite": 0,
+        "input": 0.0000804,
+        "output": 0.0000588,
+        "total": 0.000143808
+      },
+      "input": 268,
+      "output": 49,
+      "reasoning": 0,
+      "totalTokens": 1085
+    }
+  },
+  {
+    "request": 1,
+    "seq": 8,
+    "stage": "emotion",
+    "time": "2026-10-19T22:46:37.761Z",
+    "type": "model_request"
+  },
+  {
+    "message_id": "message-6933c946-a551-4809-a2c3-ab70028ceed7",
+    "seq": 7,
+    "time": "2026-10-19T22:46:37.755Z",
+    "type": "emotion_started"
+  },
+  {
+    "entry_id": null,
+    "method": "model",
+    "seq": 6,
+    "time": "2026-10-19T22:46:37.755Z",
+    "type": "faq_miss"
+  },
+  {
+    "seq": 5,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T22:46:37.754Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "answerable": false,
+          "entry_id": null,
+          "needs_clarification": false,
+          "reason": "User asks to check the status/closure of their own previously submitted report (personal ticket query). This is a business action, not a knowledge question, and no FAQ entry covers it."
+        },
+        "name": "select_faq"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 384,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000002304,
+        "cacheWrite": 0,
+        "input": 0.0008778,
+        "output": 0.00014639999999999998,
+        "total": 0.001026504
+      },
+      "input": 2926,
+      "output": 122,
+      "reasoning": 0,
+      "totalTokens": 3432
+    }
+  },
+  {
+    "request": 1,
+    "seq": 4,
+    "time": "2026-10-19T22:46:36.607Z",
+    "type": "model_request"
+  },
+  {
+    "entries": 9,
+    "seq": 3,
+    "time": "2026-10-19T22:46:36.600Z",
+    "type": "faq_lookup"
+  },
+  {
+    "epoch": 0,
+    "route": "faq_then_balady_crm",
+    "seq": 2,
+    "time": "2026-10-19T22:46:36.597Z",
+    "type": "turn_started"
+  },
+  {
+    "message": {
+      "id": "message-6933c946-a551-4809-a2c3-ab70028ceed7",
+      "role": "user",
+      "text": "我之前反映过路边那辆车一直没挪，想看看我的那件记录是否已经结案。",
+      "time": "2026-10-19T22:46:36.596Z"
+    },
+    "seq": 1,
+    "time": "2026-10-19T22:46:36.596Z",
+    "type": "message"
+  }
+]

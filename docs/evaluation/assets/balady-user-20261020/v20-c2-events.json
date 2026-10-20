@@ -1,0 +1,970 @@
+[
+  {
+    "seq": 60,
+    "status": "blocked",
+    "time": "2026-10-19T23:55:43.405Z",
+    "type": "turn_finished"
+  },
+  {
+    "call_id": "call_00_nPxfVAZ4dqBYVTKO8TOo8856",
+    "name": "finish",
+    "result": {
+      "accepted": true,
+      "end_turn": true
+    },
+    "seq": 59,
+    "time": "2026-10-19T23:55:43.405Z",
+    "type": "tool_end"
+  },
+  {
+    "message": {
+      "case_guidance": [
+        "location_unavailable"
+      ],
+      "id": "message-12ace32f-184d-4514-9033-ed42f38180aa",
+      "kind": "result",
+      "presentation_parts": [
+        "host_guidance"
+      ],
+      "presentation_source": "host_guidance",
+      "receipt_ids": [],
+      "role": "assistant",
+      "text": "لم يكتمل هذا الطلب. لا يعني التوضيح أدناه أن الطلب الأصلي قد سُجل أو نُفذ.\n\nلم يُسجَّل البلاغ عن المشكلة الميدانية. لا تتوفر هنا خدمة لتحويل العنوان إلى بيانات النطاقات الإدارية المحلية المطلوبة للتسجيل. لا تحتاج إلى تقديم رموز داخلية أو تكرار بيانات الاتصال.\n\nتحتفظ هذه البيئة بسجلات محاكاة محلية فقط. لا يُحال شيء إلى جهة حكومية أو قسم أو موظف للتحقق أو المعالجة، ولا تُنفَّذ عمليات حقيقية للاسترداد أو الدفع أو الترخيص أو الإشعارات. تتطلب المعاملات الحقيقية قناة رسمية مستقلة، ولا تُستخدم الأرقام المحلية للتتبع فيها.",
+      "time": "2026-10-19T23:55:43.405Z"
+    },
+    "seq": 58,
+    "time": "2026-10-19T23:55:43.405Z",
+    "type": "message"
+  },
+  {
+    "corrected": false,
+    "issues": [],
+    "seq": 57,
+    "time": "2026-10-19T23:55:43.405Z",
+    "type": "response_guard_completed"
+  },
+  {
+    "scope": "evidence_binding",
+    "seq": 56,
+    "time": "2026-10-19T23:55:43.404Z",
+    "type": "response_guard_passed"
+  },
+  {
+    "seq": 55,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T23:55:43.404Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "approved": true,
+          "issues": []
+        },
+        "name": "review_message"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 1152,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000006912,
+        "cacheWrite": 0,
+        "input": 0.0008663999999999999,
+        "output": 0.0000576,
+        "total": 0.000930912
+      },
+      "input": 2888,
+      "output": 48,
+      "reasoning": 0,
+      "totalTokens": 4088
+    }
+  },
+  {
+    "request": 1,
+    "seq": 54,
+    "time": "2026-10-19T23:55:42.332Z",
+    "type": "model_request"
+  },
+  {
+    "scope": "guidance_intent",
+    "seq": 53,
+    "time": "2026-10-19T23:55:42.327Z",
+    "type": "response_guard_passed"
+  },
+  {
+    "seq": 52,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T23:55:42.327Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "approved": true,
+          "issues": []
+        },
+        "name": "review_message"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 1024,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000006144,
+        "cacheWrite": 0,
+        "input": 0.0008994,
+        "output": 0.0000576,
+        "total": 0.000963144
+      },
+      "input": 2998,
+      "output": 48,
+      "reasoning": 0,
+      "totalTokens": 4070
+    }
+  },
+  {
+    "request": 1,
+    "seq": 51,
+    "time": "2026-10-19T23:55:41.640Z",
+    "type": "model_request"
+  },
+  {
+    "message_count": 0,
+    "seq": 50,
+    "time": "2026-10-19T23:55:41.635Z",
+    "type": "response_guard_started"
+  },
+  {
+    "arguments": {
+      "case_guidance": [
+        "location_unavailable"
+      ],
+      "receipt_ids": [],
+      "state": "blocked"
+    },
+    "call_id": "call_00_nPxfVAZ4dqBYVTKO8TOo8856",
+    "name": "finish",
+    "seq": 49,
+    "time": "2026-10-19T23:55:41.635Z",
+    "type": "tool_start"
+  },
+  {
+    "seq": 48,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T23:55:41.634Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "case_guidance": [
+            "location_unavailable"
+          ],
+          "receipt_ids": [],
+          "state": "blocked"
+        },
+        "name": "finish"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 16896,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000101376,
+        "cacheWrite": 0,
+        "input": 0.0000984,
+        "output": 0.00008879999999999999,
+        "total": 0.000288576
+      },
+      "input": 328,
+      "output": 74,
+      "reasoning": 0,
+      "totalTokens": 17298
+    }
+  },
+  {
+    "request": 4,
+    "seq": 47,
+    "time": "2026-10-19T23:55:40.691Z",
+    "type": "model_request"
+  },
+  {
+    "call_id": "call_00_LtMsun4fmwwnDtAdoW0g4524",
+    "name": "propose_plan",
+    "result": {
+      "auto_execute": true,
+      "plan": {
+        "approved": true,
+        "created_at": "2026-10-19T23:55:40.687Z",
+        "goal": "خطة هذا الطلب",
+        "id": "plan-af4ebf36-4397-4e8d-82d6-e02b702c99ab",
+        "origin_message_id": "message-ff4d94c1-b85d-4c39-8e57-d133ef1d1c7a",
+        "status": "approved",
+        "steps": [
+          {
+            "capability": "input",
+            "depends_on": [],
+            "id": "check-location",
+            "parameters": {},
+            "status": "pending",
+            "title": "استكمال المعلومات اللازمة"
+          },
+          {
+            "capability": "respond",
+            "depends_on": [
+              "check-location"
+            ],
+            "id": "respond",
+            "parameters": {},
+            "status": "pending",
+            "title": "توضيح النتيجة والحدود"
+          }
+        ],
+        "summary": "هذه خطوات التعامل مع طلبك. تُنفّذ الاستعلامات تلقائياً، وتراجع التفاصيل قبل أي إرسال. لا تعني الخطة أن الطلب قد أُنجز.",
+        "version": 1
+      }
+    },
+    "seq": 46,
+    "time": "2026-10-19T23:55:40.687Z",
+    "type": "tool_end"
+  },
+  {
+    "message": {
+      "id": "message-1751110e-10f9-44ad-afa5-eea5fbea9fef",
+      "kind": "plan",
+      "plan_id": "plan-af4ebf36-4397-4e8d-82d6-e02b702c99ab",
+      "role": "assistant",
+      "text": "هذه خطوات التعامل مع طلبك. تُنفّذ الاستعلامات تلقائياً، وتراجع التفاصيل قبل أي إرسال. لا تعني الخطة أن الطلب قد أُنجز.",
+      "time": "2026-10-19T23:55:40.687Z"
+    },
+    "seq": 45,
+    "time": "2026-10-19T23:55:40.687Z",
+    "type": "message"
+  },
+  {
+    "plan_id": "plan-af4ebf36-4397-4e8d-82d6-e02b702c99ab",
+    "seq": 44,
+    "time": "2026-10-19T23:55:40.687Z",
+    "type": "plan_auto_started"
+  },
+  {
+    "plan": {
+      "approved": true,
+      "created_at": "2026-10-19T23:55:40.687Z",
+      "goal": "خطة هذا الطلب",
+      "id": "plan-af4ebf36-4397-4e8d-82d6-e02b702c99ab",
+      "origin_message_id": "message-ff4d94c1-b85d-4c39-8e57-d133ef1d1c7a",
+      "status": "approved",
+      "steps": [
+        {
+          "capability": "input",
+          "depends_on": [],
+          "id": "check-location",
+          "parameters": {},
+          "status": "pending",
+          "title": "استكمال المعلومات اللازمة"
+        },
+        {
+          "capability": "respond",
+          "depends_on": [
+            "check-location"
+          ],
+          "id": "respond",
+          "parameters": {},
+          "status": "pending",
+          "title": "توضيح النتيجة والحدود"
+        }
+      ],
+      "summary": "هذه خطوات التعامل مع طلبك. تُنفّذ الاستعلامات تلقائياً، وتراجع التفاصيل قبل أي إرسال. لا تعني الخطة أن الطلب قد أُنجز.",
+      "version": 1
+    },
+    "seq": 43,
+    "time": "2026-10-19T23:55:40.687Z",
+    "type": "plan_proposed"
+  },
+  {
+    "corrected": false,
+    "issues": [],
+    "seq": 42,
+    "time": "2026-10-19T23:55:40.687Z",
+    "type": "response_guard_completed"
+  },
+  {
+    "scope": "plan_feasibility",
+    "seq": 41,
+    "time": "2026-10-19T23:55:40.687Z",
+    "type": "response_guard_passed"
+  },
+  {
+    "seq": 40,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T23:55:40.686Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "approved": true,
+          "issues": []
+        },
+        "name": "review_message"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 1280,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.00000768,
+        "cacheWrite": 0,
+        "input": 0.0008738999999999999,
+        "output": 0.0000576,
+        "total": 0.00093918
+      },
+      "input": 2913,
+      "output": 48,
+      "reasoning": 0,
+      "totalTokens": 4241
+    }
+  },
+  {
+    "request": 1,
+    "seq": 39,
+    "time": "2026-10-19T23:55:40.009Z",
+    "type": "model_request"
+  },
+  {
+    "scope": "plan_intent",
+    "seq": 38,
+    "time": "2026-10-19T23:55:40.004Z",
+    "type": "response_guard_passed"
+  },
+  {
+    "seq": 37,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T23:55:40.004Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "approved": true,
+          "issues": []
+        },
+        "name": "review_message"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 1280,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.00000768,
+        "cacheWrite": 0,
+        "input": 0.0008690999999999999,
+        "output": 0.0000576,
+        "total": 0.00093438
+      },
+      "input": 2897,
+      "output": 48,
+      "reasoning": 0,
+      "totalTokens": 4225
+    }
+  },
+  {
+    "request": 1,
+    "seq": 36,
+    "time": "2026-10-19T23:55:39.410Z",
+    "type": "model_request"
+  },
+  {
+    "message_count": 0,
+    "seq": 35,
+    "time": "2026-10-19T23:55:39.405Z",
+    "type": "response_guard_started"
+  },
+  {
+    "arguments": {
+      "goal": "الإبلاغ عن بلاط رصيف مفكك عند مدخل حديقة صغيرة قرب شارع الصنوبر التجريبي في الرياض",
+      "steps": [
+        {
+          "capability": "input",
+          "depends_on": [],
+          "id": "check-location",
+          "title": "التحقق من متطلبات الموقع"
+        },
+        {
+          "capability": "respond",
+          "depends_on": [
+            "check-location"
+          ],
+          "id": "respond",
+          "title": "توضيح النتيجة"
+        }
+      ],
+      "summary": "التحقق من إمكانية تسجيل طلب خدمة بلدية للموقع المذكور ثم توضيح الحد التقني."
+    },
+    "call_id": "call_00_LtMsun4fmwwnDtAdoW0g4524",
+    "name": "propose_plan",
+    "seq": 34,
+    "time": "2026-10-19T23:55:39.405Z",
+    "type": "tool_start"
+  },
+  {
+    "seq": 33,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T23:55:39.404Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "goal": "الإبلاغ عن بلاط رصيف مفكك عند مدخل حديقة صغيرة قرب شارع الصنوبر التجريبي في الرياض",
+          "steps": [
+            {
+              "capability": "input",
+              "depends_on": [],
+              "id": "check-location",
+              "title": "التحقق من متطلبات الموقع"
+            },
+            {
+              "capability": "respond",
+              "depends_on": [
+                "check-location"
+              ],
+              "id": "respond",
+              "title": "توضيح النتيجة"
+            }
+          ],
+          "summary": "التحقق من إمكانية تسجيل طلب خدمة بلدية للموقع المذكور ثم توضيح الحد التقني."
+        },
+        "name": "propose_plan"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 16256,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000097536,
+        "cacheWrite": 0,
+        "input": 0.0001551,
+        "output": 0.0002316,
+        "total": 0.000484236
+      },
+      "input": 517,
+      "output": 193,
+      "reasoning": 0,
+      "totalTokens": 16966
+    }
+  },
+  {
+    "request": 3,
+    "seq": 32,
+    "time": "2026-10-19T23:55:38.147Z",
+    "type": "model_request"
+  },
+  {
+    "call_id": "call_00_xDQc1c4okk23O8NwjGcH9250",
+    "name": "check_operation_readiness",
+    "result": {
+      "authentication_required": true,
+      "authorized": false,
+      "business_call_executed": false,
+      "constraint": {
+        "available": false,
+        "capability": "administrative_location_resolution",
+        "code": "LOCATION_METADATA_UNAVAILABLE",
+        "fields": [
+          "body.LocationInfo.SubMunicipalityID",
+          "body.LocationInfo.Sub_SubMunicipalityID"
+        ],
+        "operation": "crm_create_municipal_service",
+        "origin_message_id": "message-ff4d94c1-b85d-4c39-8e57-d133ef1d1c7a"
+      },
+      "error": "LOCATION_METADATA_UNAVAILABLE",
+      "inputs_valid": false,
+      "validation": {
+        "errors": [
+          {
+            "code": "required",
+            "message": "must have required property 'CustomerInformation'",
+            "missingProperty": "CustomerInformation",
+            "path": "/body/CustomerInformation"
+          },
+          {
+            "code": "required",
+            "message": "must have required property 'IncidentInformation'",
+            "missingProperty": "IncidentInformation",
+            "path": "/body/IncidentInformation"
+          },
+          {
+            "code": "required",
+            "message": "must have required property 'MunicipalityID'",
+            "missingProperty": "MunicipalityID",
+            "path": "/body/LocationInfo/MunicipalityID"
+          },
+          {
+            "code": "required",
+            "message": "must have required property 'SubMunicipalityID'",
+            "missingProperty": "SubMunicipalityID",
+            "path": "/body/LocationInfo/SubMunicipalityID"
+          },
+          {
+            "code": "required",
+            "message": "must have required property 'Sub_SubMunicipalityID'",
+            "missingProperty": "Sub_SubMunicipalityID",
+            "path": "/body/LocationInfo/Sub_SubMunicipalityID"
+          },
+          {
+            "code": "required",
+            "message": "must have required property 'Longitude'",
+            "missingProperty": "Longitude",
+            "path": "/body/LocationInfo/Longitude"
+          },
+          {
+            "code": "required",
+            "message": "must have required property 'Latitude'",
+            "missingProperty": "Latitude",
+            "path": "/body/LocationInfo/Latitude"
+          },
+          {
+            "code": "required",
+            "message": "must have required property 'DistrictName'",
+            "missingProperty": "DistrictName",
+            "path": "/body/LocationInfo/DistrictName"
+          }
+        ],
+        "repair": "Read the listed paths and allowed values; ask the user for missing facts. Do not invent IDs, dates, consent, identity or file content.",
+        "source": {
+          "printed_page": 61,
+          "section": "3.19"
+        },
+        "valid": false
+      }
+    },
+    "seq": 31,
+    "time": "2026-10-19T23:55:38.143Z",
+    "type": "tool_end"
+  },
+  {
+    "constraint": {
+      "available": false,
+      "capability": "administrative_location_resolution",
+      "code": "LOCATION_METADATA_UNAVAILABLE",
+      "fields": [
+        "body.LocationInfo.SubMunicipalityID",
+        "body.LocationInfo.Sub_SubMunicipalityID"
+      ],
+      "operation": "crm_create_municipal_service",
+      "origin_message_id": "message-ff4d94c1-b85d-4c39-8e57-d133ef1d1c7a"
+    },
+    "seq": 30,
+    "time": "2026-10-19T23:55:38.143Z",
+    "type": "host_constraint"
+  },
+  {
+    "corrected": false,
+    "issues": [],
+    "seq": 29,
+    "time": "2026-10-19T23:55:38.143Z",
+    "type": "response_guard_completed"
+  },
+  {
+    "scope": "capability_language",
+    "seq": 28,
+    "time": "2026-10-19T23:55:38.143Z",
+    "type": "response_guard_passed"
+  },
+  {
+    "seq": 27,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T23:55:38.142Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "approved": true,
+          "issues": []
+        },
+        "name": "review_message"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 2176,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000013056,
+        "cacheWrite": 0,
+        "input": 0.0012261,
+        "output": 0.0000576,
+        "total": 0.001296756
+      },
+      "input": 4087,
+      "output": 48,
+      "reasoning": 0,
+      "totalTokens": 6311
+    }
+  },
+  {
+    "request": 1,
+    "seq": 26,
+    "time": "2026-10-19T23:55:37.618Z",
+    "type": "model_request"
+  },
+  {
+    "scope": "facts",
+    "seq": 25,
+    "time": "2026-10-19T23:55:37.611Z",
+    "type": "response_guard_passed"
+  },
+  {
+    "seq": 24,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T23:55:37.610Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "approved": true,
+          "issues": []
+        },
+        "name": "review_message"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 1920,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.00001152,
+        "cacheWrite": 0,
+        "input": 0.0012315,
+        "output": 0.0000576,
+        "total": 0.0013006200000000002
+      },
+      "input": 4105,
+      "output": 48,
+      "reasoning": 0,
+      "totalTokens": 6073
+    }
+  },
+  {
+    "request": 1,
+    "seq": 23,
+    "time": "2026-10-19T23:55:37.059Z",
+    "type": "model_request"
+  },
+  {
+    "message_count": 0,
+    "seq": 22,
+    "time": "2026-10-19T23:55:37.053Z",
+    "type": "response_guard_started"
+  },
+  {
+    "arguments": {
+      "known_parameters": {
+        "body": {
+          "LocationInfo": {
+            "Address": "قرب شارع الصنوبر التجريبي، الرياض",
+            "StreetName": "شارع الصنوبر التجريبي"
+          }
+        }
+      },
+      "operation": "crm_create_municipal_service"
+    },
+    "call_id": "call_00_xDQc1c4okk23O8NwjGcH9250",
+    "name": "check_operation_readiness",
+    "seq": 21,
+    "time": "2026-10-19T23:55:37.053Z",
+    "type": "tool_start"
+  },
+  {
+    "seq": 20,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T23:55:37.052Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "known_parameters": {
+            "body": {
+              "LocationInfo": {
+                "Address": "قرب شارع الصنوبر التجريبي، الرياض",
+                "StreetName": "شارع الصنوبر التجريبي"
+              }
+            }
+          },
+          "operation": "crm_create_municipal_service"
+        },
+        "name": "check_operation_readiness"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 15872,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000095232,
+        "cacheWrite": 0,
+        "input": 0.0000921,
+        "output": 0.000114,
+        "total": 0.00030133199999999997
+      },
+      "input": 307,
+      "output": 95,
+      "reasoning": 0,
+      "totalTokens": 16274
+    }
+  },
+  {
+    "request": 2,
+    "seq": 19,
+    "time": "2026-10-19T23:55:36.116Z",
+    "type": "model_request"
+  },
+  {
+    "call_id": "call_00_5RE5JEMIxxxmcyQQHH4p5798",
+    "name": "check_operation_readiness",
+    "result": {
+      "error": "UNVERIFIED_CUSTOMER_CLAIMS",
+      "message": "Regenerate the original prerequisite_check in ar using only supported facts and capabilities; then retry this tool. known_parameters use dotted wire paths (body.LocationInfo.*) as flat keys; the contract requires a nested body object with LocationInfo, so validation reports body missing and the dotted keys as additional properties. Nest the values under body.LocationInfo.; MunicipalityID \"004\" is not grounded in delivered user facts: the citizen said الرياض (Riyadh) but no explicit municipality name-to-code resolution is recorded; the value must come from an explicitly supplied matching name or trusted context.; Required LocationInfo fields SubMunicipalityID, Sub_SubMunicipalityID, Longitude, Latitude and DistrictName are absent; the citizen explicitly does not know the official district name, so these must be requested or left unknown rather than inferred from the street name.; Required IncidentInformation fields (MainClassificationID, SubClassificationID, SplClassificationID, Priority, ResponseTime, IssueDescription, Description, IsCallBackSelected, SCBusinessTypeID, Isinzone) and CustomerInformation.PreferredLanguage are absent from the probe; they must be obtained from classification lookups and user input, not invented."
+    },
+    "seq": 18,
+    "time": "2026-10-19T23:55:36.112Z",
+    "type": "tool_end"
+  },
+  {
+    "issues": [
+      "known_parameters use dotted wire paths (body.LocationInfo.*) as flat keys; the contract requires a nested body object with LocationInfo, so validation reports body missing and the dotted keys as additional properties. Nest the values under body.LocationInfo.",
+      "MunicipalityID \"004\" is not grounded in delivered user facts: the citizen said الرياض (Riyadh) but no explicit municipality name-to-code resolution is recorded; the value must come from an explicitly supplied matching name or trusted context.",
+      "Required LocationInfo fields SubMunicipalityID, Sub_SubMunicipalityID, Longitude, Latitude and DistrictName are absent; the citizen explicitly does not know the official district name, so these must be requested or left unknown rather than inferred from the street name.",
+      "Required IncidentInformation fields (MainClassificationID, SubClassificationID, SplClassificationID, Priority, ResponseTime, IssueDescription, Description, IsCallBackSelected, SCBusinessTypeID, Isinzone) and CustomerInformation.PreferredLanguage are absent from the probe; they must be obtained from classification lookups and user input, not invented."
+    ],
+    "scope": "facts",
+    "seq": 17,
+    "time": "2026-10-19T23:55:36.112Z",
+    "type": "response_guard_rejected"
+  },
+  {
+    "seq": 16,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T23:55:36.111Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "approved": false,
+          "issues": [
+            "known_parameters use dotted wire paths (body.LocationInfo.*) as flat keys; the contract requires a nested body object with LocationInfo, so validation reports body missing and the dotted keys as additional properties. Nest the values under body.LocationInfo.",
+            "MunicipalityID \"004\" is not grounded in delivered user facts: the citizen said الرياض (Riyadh) but no explicit municipality name-to-code resolution is recorded; the value must come from an explicitly supplied matching name or trusted context.",
+            "Required LocationInfo fields SubMunicipalityID, Sub_SubMunicipalityID, Longitude, Latitude and DistrictName are absent; the citizen explicitly does not know the official district name, so these must be requested or left unknown rather than inferred from the street name.",
+            "Required IncidentInformation fields (MainClassificationID, SubClassificationID, SplClassificationID, Priority, ResponseTime, IssueDescription, Description, IsCallBackSelected, SCBusinessTypeID, Isinzone) and CustomerInformation.PreferredLanguage are absent from the probe; they must be obtained from classification lookups and user input, not invented."
+          ]
+        },
+        "name": "review_message"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 1920,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.00001152,
+        "cacheWrite": 0,
+        "input": 0.001191,
+        "output": 0.00032879999999999997,
+        "total": 0.00153132
+      },
+      "input": 3970,
+      "output": 274,
+      "reasoning": 0,
+      "totalTokens": 6164
+    }
+  },
+  {
+    "request": 1,
+    "seq": 15,
+    "time": "2026-10-19T23:55:34.360Z",
+    "type": "model_request"
+  },
+  {
+    "message_count": 0,
+    "seq": 14,
+    "time": "2026-10-19T23:55:34.353Z",
+    "type": "response_guard_started"
+  },
+  {
+    "arguments": {
+      "known_parameters": {
+        "body.LocationInfo.Address": "قرب شارع الصنوبر التجريبي، الرياض",
+        "body.LocationInfo.MunicipalityID": "004",
+        "body.LocationInfo.StreetName": "شارع الصنوبر التجريبي"
+      },
+      "operation": "crm_create_municipal_service"
+    },
+    "call_id": "call_00_5RE5JEMIxxxmcyQQHH4p5798",
+    "name": "check_operation_readiness",
+    "seq": 13,
+    "time": "2026-10-19T23:55:34.353Z",
+    "type": "tool_start"
+  },
+  {
+    "seq": 12,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T23:55:34.352Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "known_parameters": {
+            "body.LocationInfo.Address": "قرب شارع الصنوبر التجريبي، الرياض",
+            "body.LocationInfo.MunicipalityID": "004",
+            "body.LocationInfo.StreetName": "شارع الصنوبر التجريبي"
+          },
+          "operation": "crm_create_municipal_service"
+        },
+        "name": "check_operation_readiness"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 15360,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.00009216,
+        "cacheWrite": 0,
+        "input": 0.0001314,
+        "output": 0.0001296,
+        "total": 0.00035316
+      },
+      "input": 438,
+      "output": 108,
+      "reasoning": 0,
+      "totalTokens": 15906
+    }
+  },
+  {
+    "request": 1,
+    "seq": 11,
+    "time": "2026-10-19T23:55:33.508Z",
+    "type": "model_request"
+  },
+  {
+    "emotion": {
+      "assessed_at": "2026-10-19T23:55:33.498Z",
+      "evidence": {
+        "message_id": "message-ff4d94c1-b85d-4c39-8e57-d133ef1d1c7a",
+        "quote": "وأخشى أن يتعثر أحد"
+      },
+      "message_id": "message-ff4d94c1-b85d-4c39-8e57-d133ef1d1c7a",
+      "sentiment": "negative",
+      "status": "classified",
+      "version": "road-emotion-1.0.1"
+    },
+    "seq": 10,
+    "time": "2026-10-19T23:55:33.498Z",
+    "type": "emotion_assessed"
+  },
+  {
+    "seq": 9,
+    "stage": "emotion",
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T23:55:33.497Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "quote": "وأخشى أن يتعثر أحد",
+          "sentiment": "negative"
+        },
+        "name": "record_sentiment"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 896,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000005376,
+        "cacheWrite": 0,
+        "input": 0.0000582,
+        "output": 0.0000696,
+        "total": 0.000133176
+      },
+      "input": 194,
+      "output": 58,
+      "reasoning": 0,
+      "totalTokens": 1148
+    }
+  },
+  {
+    "request": 1,
+    "seq": 8,
+    "stage": "emotion",
+    "time": "2026-10-19T23:55:33.007Z",
+    "type": "model_request"
+  },
+  {
+    "message_id": "message-ff4d94c1-b85d-4c39-8e57-d133ef1d1c7a",
+    "seq": 7,
+    "time": "2026-10-19T23:55:33.001Z",
+    "type": "emotion_started"
+  },
+  {
+    "entry_id": null,
+    "method": "model",
+    "seq": 6,
+    "time": "2026-10-19T23:55:33.001Z",
+    "type": "faq_miss"
+  },
+  {
+    "seq": 5,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T23:55:33.000Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "answerable": false,
+          "entry_id": null,
+          "needs_clarification": false,
+          "reason": "The user wants to file a report about a broken sidewalk tile (a business action/transaction request), not a knowledge question. No FAQ entry covers sidewalk defect reporting; the available entries concern Civil Defense fees, infrastructure permits, and platform personalization."
+        },
+        "name": "select_faq"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 512,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000003072,
+        "cacheWrite": 0,
+        "input": 0.0008655,
+        "output": 0.0001608,
+        "total": 0.001029372
+      },
+      "input": 2885,
+      "output": 134,
+      "reasoning": 0,
+      "totalTokens": 3531
+    }
+  },
+  {
+    "request": 1,
+    "seq": 4,
+    "time": "2026-10-19T23:55:32.114Z",
+    "type": "model_request"
+  },
+  {
+    "entries": 9,
+    "seq": 3,
+    "time": "2026-10-19T23:55:32.106Z",
+    "type": "faq_lookup"
+  },
+  {
+    "epoch": 0,
+    "route": "faq_then_balady_crm",
+    "seq": 2,
+    "time": "2026-10-19T23:55:32.103Z",
+    "type": "turn_started"
+  },
+  {
+    "message": {
+      "id": "message-ff4d94c1-b85d-4c39-8e57-d133ef1d1c7a",
+      "role": "user",
+      "text": "يوجد بلاط رصيف مفكك عند مدخل حديقة صغيرة وأخشى أن يتعثر أحد. أريد الإبلاغ لإصلاحه، وهو قرب شارع الصنوبر التجريبي في الرياض، ولا أعرف اسم الحي الرسمي.",
+      "time": "2026-10-19T23:55:32.101Z"
+    },
+    "seq": 1,
+    "time": "2026-10-19T23:55:32.101Z",
+    "type": "message"
+  }
+]

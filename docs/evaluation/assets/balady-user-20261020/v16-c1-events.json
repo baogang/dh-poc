@@ -1,0 +1,804 @@
+[
+  {
+    "seq": 52,
+    "status": "blocked",
+    "time": "2026-10-19T22:26:00.709Z",
+    "type": "turn_finished"
+  },
+  {
+    "call_id": "call_00_ddWq7Cp9yBimAnXvCB6I2039",
+    "name": "finish",
+    "result": {
+      "accepted": true,
+      "end_turn": true
+    },
+    "seq": 51,
+    "time": "2026-10-19T22:26:00.708Z",
+    "type": "tool_end"
+  },
+  {
+    "message": {
+      "case_guidance": [
+        "location_unavailable"
+      ],
+      "id": "message-b0a7ddb8-fd07-48aa-891b-94e45a926dfc",
+      "kind": "result",
+      "presentation_parts": [
+        "host_guidance"
+      ],
+      "presentation_source": "host_guidance",
+      "receipt_ids": [],
+      "role": "assistant",
+      "text": "本次请求尚未完成；下方说明不代表原事项已经登记或办理。\n\n本次报修尚未登记。当前未接入将地址转换为下级行政区域资料的服务，无法取得登记必需的位置数据。无需提供内部编号，也不必为此重复填写联系人。\n\n这里仅提供本地仿真记录，不会投递给政府、部门或工作人员核实处理，也不会执行真实退款、缴费、办证或通知。真实业务需要通过官方渠道另行发起；本地编号不能用于官方查询。",
+      "time": "2026-10-19T22:26:00.707Z"
+    },
+    "seq": 50,
+    "time": "2026-10-19T22:26:00.707Z",
+    "type": "message"
+  },
+  {
+    "corrected": false,
+    "issues": [],
+    "seq": 49,
+    "time": "2026-10-19T22:26:00.707Z",
+    "type": "response_guard_completed"
+  },
+  {
+    "scope": "capability_language",
+    "seq": 48,
+    "time": "2026-10-19T22:26:00.707Z",
+    "type": "response_guard_passed"
+  },
+  {
+    "seq": 47,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T22:26:00.706Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "approved": true,
+          "issues": []
+        },
+        "name": "review_message"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 1664,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000009984,
+        "cacheWrite": 0,
+        "input": 0.0006527999999999999,
+        "output": 0.0000576,
+        "total": 0.0007203839999999999
+      },
+      "input": 2176,
+      "output": 48,
+      "reasoning": 0,
+      "totalTokens": 3888
+    }
+  },
+  {
+    "request": 1,
+    "seq": 46,
+    "time": "2026-10-19T22:26:00.075Z",
+    "type": "model_request"
+  },
+  {
+    "scope": "facts",
+    "seq": 45,
+    "time": "2026-10-19T22:26:00.067Z",
+    "type": "response_guard_passed"
+  },
+  {
+    "seq": 44,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T22:26:00.066Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "approved": true,
+          "issues": []
+        },
+        "name": "review_message"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 1408,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000008448,
+        "cacheWrite": 0,
+        "input": 0.0006582,
+        "output": 0.0000576,
+        "total": 0.0007242479999999999
+      },
+      "input": 2194,
+      "output": 48,
+      "reasoning": 0,
+      "totalTokens": 3650
+    }
+  },
+  {
+    "request": 1,
+    "seq": 43,
+    "time": "2026-10-19T22:25:59.487Z",
+    "type": "model_request"
+  },
+  {
+    "message_count": 1,
+    "seq": 42,
+    "time": "2026-10-19T22:25:59.477Z",
+    "type": "response_guard_started"
+  },
+  {
+    "arguments": {
+      "case_guidance": [
+        "location_unavailable"
+      ],
+      "message": "很抱歉，这次报修没能登记成功。\n\n原因：报修人行道地砖需要系统内的街区层级和坐标信息，而本助手没有连接地址/街区解析服务，无法把\"利雅得测试松树街附近、小公园入口旁\"转换成所需的内部位置信息。这不是您提供的信息有误，也不需要您去查正式街区名称。\n\n已保留您描述的情况：利雅得测试松树街附近，小公园入口旁的人行道地砖松动，踩上去会晃动。\n\n可选做法：\n1. 通过利雅得市政的官方渠道（官网、官方应用或统一服务热线）另行提交一次真实报修，并说明\"小公园入口旁人行道地砖松动\"这一位置线索；\n2. 如果您希望，我也可以帮您把这段情况整理成一段可直接粘贴到官方渠道的文字。\n\n另外说明：本环境是本地模拟，即使登记成功也不会转交任何部门处理，因此这里没有生成任何可对外引用的报修编号。",
+      "receipt_ids": [],
+      "state": "blocked"
+    },
+    "call_id": "call_00_ddWq7Cp9yBimAnXvCB6I2039",
+    "name": "finish",
+    "seq": 41,
+    "time": "2026-10-19T22:25:59.475Z",
+    "type": "tool_start"
+  },
+  {
+    "seq": 40,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T22:25:59.474Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "case_guidance": [
+            "location_unavailable"
+          ],
+          "message": "很抱歉，这次报修没能登记成功。\n\n原因：报修人行道地砖需要系统内的街区层级和坐标信息，而本助手没有连接地址/街区解析服务，无法把\"利雅得测试松树街附近、小公园入口旁\"转换成所需的内部位置信息。这不是您提供的信息有误，也不需要您去查正式街区名称。\n\n已保留您描述的情况：利雅得测试松树街附近，小公园入口旁的人行道地砖松动，踩上去会晃动。\n\n可选做法：\n1. 通过利雅得市政的官方渠道（官网、官方应用或统一服务热线）另行提交一次真实报修，并说明\"小公园入口旁人行道地砖松动\"这一位置线索；\n2. 如果您希望，我也可以帮您把这段情况整理成一段可直接粘贴到官方渠道的文字。\n\n另外说明：本环境是本地模拟，即使登记成功也不会转交任何部门处理，因此这里没有生成任何可对外引用的报修编号。",
+          "receipt_ids": [],
+          "state": "blocked"
+        },
+        "name": "finish"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 15104,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000090624,
+        "cacheWrite": 0,
+        "input": 0.0000555,
+        "output": 0.0003564,
+        "total": 0.000502524
+      },
+      "input": 185,
+      "output": 297,
+      "reasoning": 0,
+      "totalTokens": 15586
+    }
+  },
+  {
+    "request": 3,
+    "seq": 39,
+    "time": "2026-10-19T22:25:57.465Z",
+    "type": "model_request"
+  },
+  {
+    "call_id": "call_00_wlsnKHn93l9brGbuaMQL5562",
+    "name": "propose_plan",
+    "result": {
+      "auto_execute": true,
+      "plan": {
+        "approved": true,
+        "created_at": "2026-10-19T22:25:57.460Z",
+        "goal": "本轮处理计划",
+        "id": "plan-07be530c-f8b7-45f4-a95b-38cd6f56f637",
+        "origin_message_id": "message-4fc5045e-8741-4c38-b0c8-488a1579d797",
+        "status": "approved",
+        "steps": [
+          {
+            "capability": "respond",
+            "depends_on": [],
+            "id": "respond",
+            "parameters": {},
+            "status": "pending",
+            "title": "说明结果与限制"
+          }
+        ],
+        "summary": "按以下步骤处理你的请求。查询会自动进行；提交前会请你核对具体内容。计划不代表事项已经办理。",
+        "version": 1
+      }
+    },
+    "seq": 38,
+    "time": "2026-10-19T22:25:57.460Z",
+    "type": "tool_end"
+  },
+  {
+    "message": {
+      "id": "message-4bbb2181-736b-4175-bf36-89a10f484a84",
+      "kind": "plan",
+      "plan_id": "plan-07be530c-f8b7-45f4-a95b-38cd6f56f637",
+      "role": "assistant",
+      "text": "按以下步骤处理你的请求。查询会自动进行；提交前会请你核对具体内容。计划不代表事项已经办理。",
+      "time": "2026-10-19T22:25:57.460Z"
+    },
+    "seq": 37,
+    "time": "2026-10-19T22:25:57.460Z",
+    "type": "message"
+  },
+  {
+    "plan_id": "plan-07be530c-f8b7-45f4-a95b-38cd6f56f637",
+    "seq": 36,
+    "time": "2026-10-19T22:25:57.460Z",
+    "type": "plan_auto_started"
+  },
+  {
+    "plan": {
+      "approved": true,
+      "created_at": "2026-10-19T22:25:57.460Z",
+      "goal": "本轮处理计划",
+      "id": "plan-07be530c-f8b7-45f4-a95b-38cd6f56f637",
+      "origin_message_id": "message-4fc5045e-8741-4c38-b0c8-488a1579d797",
+      "status": "approved",
+      "steps": [
+        {
+          "capability": "respond",
+          "depends_on": [],
+          "id": "respond",
+          "parameters": {},
+          "status": "pending",
+          "title": "说明结果与限制"
+        }
+      ],
+      "summary": "按以下步骤处理你的请求。查询会自动进行；提交前会请你核对具体内容。计划不代表事项已经办理。",
+      "version": 1
+    },
+    "seq": 35,
+    "time": "2026-10-19T22:25:57.460Z",
+    "type": "plan_proposed"
+  },
+  {
+    "corrected": false,
+    "issues": [],
+    "seq": 34,
+    "time": "2026-10-19T22:25:57.460Z",
+    "type": "response_guard_completed"
+  },
+  {
+    "scope": "plan_feasibility",
+    "seq": 33,
+    "time": "2026-10-19T22:25:57.459Z",
+    "type": "response_guard_passed"
+  },
+  {
+    "seq": 32,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T22:25:57.459Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "approved": true,
+          "issues": []
+        },
+        "name": "review_message"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 768,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000004608,
+        "cacheWrite": 0,
+        "input": 0.0005358,
+        "output": 0.0000576,
+        "total": 0.000598008
+      },
+      "input": 1786,
+      "output": 48,
+      "reasoning": 0,
+      "totalTokens": 2602
+    }
+  },
+  {
+    "request": 1,
+    "seq": 31,
+    "time": "2026-10-19T22:25:56.918Z",
+    "type": "model_request"
+  },
+  {
+    "scope": "plan_intent",
+    "seq": 30,
+    "time": "2026-10-19T22:25:56.912Z",
+    "type": "response_guard_passed"
+  },
+  {
+    "seq": 29,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T22:25:56.912Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "approved": true,
+          "issues": []
+        },
+        "name": "review_message"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 640,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.00000384,
+        "cacheWrite": 0,
+        "input": 0.0005694,
+        "output": 0.0000576,
+        "total": 0.0006308399999999999
+      },
+      "input": 1898,
+      "output": 48,
+      "reasoning": 0,
+      "totalTokens": 2586
+    }
+  },
+  {
+    "request": 1,
+    "seq": 28,
+    "time": "2026-10-19T22:25:56.008Z",
+    "type": "model_request"
+  },
+  {
+    "message_count": 0,
+    "seq": 27,
+    "time": "2026-10-19T22:25:56.001Z",
+    "type": "response_guard_started"
+  },
+  {
+    "arguments": {
+      "goal": "市民想报修利雅得测试松树街小公园入口旁松动的人行道地砖；本部署缺少街区/坐标解析能力，无法完成报修登记。",
+      "steps": [
+        {
+          "capability": "respond",
+          "depends_on": [],
+          "id": "respond",
+          "title": "说明位置信息限制与可选后续方式"
+        }
+      ],
+      "summary": "检查报修所需的位置信息后，说明位置解析限制并给出可选后续方式。"
+    },
+    "call_id": "call_00_wlsnKHn93l9brGbuaMQL5562",
+    "name": "propose_plan",
+    "seq": 26,
+    "time": "2026-10-19T22:25:56.000Z",
+    "type": "tool_start"
+  },
+  {
+    "seq": 25,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T22:25:55.999Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "goal": "市民想报修利雅得测试松树街小公园入口旁松动的人行道地砖；本部署缺少街区/坐标解析能力，无法完成报修登记。",
+          "steps": [
+            {
+              "capability": "respond",
+              "depends_on": [],
+              "id": "respond",
+              "title": "说明位置信息限制与可选后续方式"
+            }
+          ],
+          "summary": "检查报修所需的位置信息后，说明位置解析限制并给出可选后续方式。"
+        },
+        "name": "propose_plan"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 14464,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000086784,
+        "cacheWrite": 0,
+        "input": 0.0001479,
+        "output": 0.00017879999999999998,
+        "total": 0.000413484
+      },
+      "input": 493,
+      "output": 149,
+      "reasoning": 0,
+      "totalTokens": 15106
+    }
+  },
+  {
+    "request": 2,
+    "seq": 24,
+    "time": "2026-10-19T22:25:54.857Z",
+    "type": "model_request"
+  },
+  {
+    "call_id": "call_00_9DxTeCApW7vXAAZQsBNx2646",
+    "name": "check_operation_readiness",
+    "result": {
+      "authentication_required": true,
+      "authorized": false,
+      "business_call_executed": false,
+      "constraint": {
+        "available": false,
+        "capability": "administrative_location_resolution",
+        "code": "LOCATION_METADATA_UNAVAILABLE",
+        "fields": [
+          "body.LocationInfo.SubMunicipalityID",
+          "body.LocationInfo.Sub_SubMunicipalityID"
+        ],
+        "operation": "crm_create_municipal_service",
+        "origin_message_id": "message-4fc5045e-8741-4c38-b0c8-488a1579d797"
+      },
+      "error": "LOCATION_METADATA_UNAVAILABLE",
+      "inputs_valid": false,
+      "validation": {
+        "errors": [
+          {
+            "code": "required",
+            "message": "must have required property 'CustomerInformation'",
+            "missingProperty": "CustomerInformation",
+            "path": "/body/CustomerInformation"
+          },
+          {
+            "code": "required",
+            "message": "must have required property 'IncidentInformation'",
+            "missingProperty": "IncidentInformation",
+            "path": "/body/IncidentInformation"
+          },
+          {
+            "code": "required",
+            "message": "must have required property 'SubMunicipalityID'",
+            "missingProperty": "SubMunicipalityID",
+            "path": "/body/LocationInfo/SubMunicipalityID"
+          },
+          {
+            "code": "required",
+            "message": "must have required property 'Sub_SubMunicipalityID'",
+            "missingProperty": "Sub_SubMunicipalityID",
+            "path": "/body/LocationInfo/Sub_SubMunicipalityID"
+          },
+          {
+            "code": "required",
+            "message": "must have required property 'Longitude'",
+            "missingProperty": "Longitude",
+            "path": "/body/LocationInfo/Longitude"
+          },
+          {
+            "code": "required",
+            "message": "must have required property 'Latitude'",
+            "missingProperty": "Latitude",
+            "path": "/body/LocationInfo/Latitude"
+          },
+          {
+            "code": "required",
+            "message": "must have required property 'DistrictName'",
+            "missingProperty": "DistrictName",
+            "path": "/body/LocationInfo/DistrictName"
+          }
+        ],
+        "repair": "Read the listed paths and allowed values; ask the user for missing facts. Do not invent IDs, dates, consent, identity or file content.",
+        "source": {
+          "printed_page": 61,
+          "section": "3.19"
+        },
+        "valid": false
+      }
+    },
+    "seq": 23,
+    "time": "2026-10-19T22:25:54.851Z",
+    "type": "tool_end"
+  },
+  {
+    "constraint": {
+      "available": false,
+      "capability": "administrative_location_resolution",
+      "code": "LOCATION_METADATA_UNAVAILABLE",
+      "fields": [
+        "body.LocationInfo.SubMunicipalityID",
+        "body.LocationInfo.Sub_SubMunicipalityID"
+      ],
+      "operation": "crm_create_municipal_service",
+      "origin_message_id": "message-4fc5045e-8741-4c38-b0c8-488a1579d797"
+    },
+    "seq": 22,
+    "time": "2026-10-19T22:25:54.851Z",
+    "type": "host_constraint"
+  },
+  {
+    "corrected": false,
+    "issues": [],
+    "seq": 21,
+    "time": "2026-10-19T22:25:54.851Z",
+    "type": "response_guard_completed"
+  },
+  {
+    "scope": "capability_language",
+    "seq": 20,
+    "time": "2026-10-19T22:25:54.851Z",
+    "type": "response_guard_passed"
+  },
+  {
+    "seq": 19,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T22:25:54.850Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "approved": true,
+          "issues": []
+        },
+        "name": "review_message"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 1536,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000009216,
+        "cacheWrite": 0,
+        "input": 0.0009393,
+        "output": 0.0000576,
+        "total": 0.001006116
+      },
+      "input": 3131,
+      "output": 48,
+      "reasoning": 0,
+      "totalTokens": 4715
+    }
+  },
+  {
+    "request": 1,
+    "seq": 18,
+    "time": "2026-10-19T22:25:54.128Z",
+    "type": "model_request"
+  },
+  {
+    "scope": "facts",
+    "seq": 17,
+    "time": "2026-10-19T22:25:54.110Z",
+    "type": "response_guard_passed"
+  },
+  {
+    "seq": 16,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T22:25:54.109Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "approved": true,
+          "issues": []
+        },
+        "name": "review_message"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 1280,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.00000768,
+        "cacheWrite": 0,
+        "input": 0.0009447,
+        "output": 0.0000576,
+        "total": 0.00100998
+      },
+      "input": 3149,
+      "output": 48,
+      "reasoning": 0,
+      "totalTokens": 4477
+    }
+  },
+  {
+    "request": 1,
+    "seq": 15,
+    "time": "2026-10-19T22:25:53.319Z",
+    "type": "model_request"
+  },
+  {
+    "message_count": 0,
+    "seq": 14,
+    "time": "2026-10-19T22:25:53.312Z",
+    "type": "response_guard_started"
+  },
+  {
+    "arguments": {
+      "known_parameters": {
+        "body": {
+          "LocationInfo": {
+            "Address": "利雅得测试松树街附近，小公园入口旁",
+            "MunicipalityID": "004",
+            "StreetName": "测试松树街"
+          }
+        }
+      },
+      "operation": "crm_create_municipal_service"
+    },
+    "call_id": "call_00_9DxTeCApW7vXAAZQsBNx2646",
+    "name": "check_operation_readiness",
+    "seq": 13,
+    "time": "2026-10-19T22:25:53.310Z",
+    "type": "tool_start"
+  },
+  {
+    "seq": 12,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T22:25:53.309Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "known_parameters": {
+            "body": {
+              "LocationInfo": {
+                "Address": "利雅得测试松树街附近，小公园入口旁",
+                "MunicipalityID": "004",
+                "StreetName": "测试松树街"
+              }
+            }
+          },
+          "operation": "crm_create_municipal_service"
+        },
+        "name": "check_operation_readiness"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 14080,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.00008448,
+        "cacheWrite": 0,
+        "input": 0.0000951,
+        "output": 0.0001236,
+        "total": 0.00030318
+      },
+      "input": 317,
+      "output": 103,
+      "reasoning": 0,
+      "totalTokens": 14500
+    }
+  },
+  {
+    "request": 1,
+    "seq": 11,
+    "time": "2026-10-19T22:25:52.619Z",
+    "type": "model_request"
+  },
+  {
+    "emotion": {
+      "assessed_at": "2026-10-19T22:25:52.602Z",
+      "evidence": null,
+      "message_id": "message-4fc5045e-8741-4c38-b0c8-488a1579d797",
+      "sentiment": "neutral",
+      "status": "classified",
+      "version": "road-emotion-1.0.1"
+    },
+    "seq": 10,
+    "time": "2026-10-19T22:25:52.603Z",
+    "type": "emotion_assessed"
+  },
+  {
+    "seq": 9,
+    "stage": "emotion",
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T22:25:52.600Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "quote": "",
+          "sentiment": "neutral"
+        },
+        "name": "record_sentiment"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 896,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000005376,
+        "cacheWrite": 0,
+        "input": 0.0000498,
+        "output": 0.0000588,
+        "total": 0.000113976
+      },
+      "input": 166,
+      "output": 49,
+      "reasoning": 0,
+      "totalTokens": 1111
+    }
+  },
+  {
+    "request": 1,
+    "seq": 8,
+    "stage": "emotion",
+    "time": "2026-10-19T22:25:51.878Z",
+    "type": "model_request"
+  },
+  {
+    "message_id": "message-4fc5045e-8741-4c38-b0c8-488a1579d797",
+    "seq": 7,
+    "time": "2026-10-19T22:25:51.868Z",
+    "type": "emotion_started"
+  },
+  {
+    "entry_id": null,
+    "method": "model",
+    "seq": 6,
+    "time": "2026-10-19T22:25:51.867Z",
+    "type": "faq_miss"
+  },
+  {
+    "seq": 5,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T22:25:51.854Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "answerable": false,
+          "entry_id": null,
+          "needs_clarification": false,
+          "reason": "User requests a business action (reporting a loose sidewalk tile for repair). No FAQ entry covers sidewalk defect reporting; this is a miss, not a knowledge question."
+        },
+        "name": "select_faq"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 512,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000003072,
+        "cacheWrite": 0,
+        "input": 0.0008504999999999999,
+        "output": 0.0001416,
+        "total": 0.000995172
+      },
+      "input": 2835,
+      "output": 118,
+      "reasoning": 0,
+      "totalTokens": 3465
+    }
+  },
+  {
+    "request": 1,
+    "seq": 4,
+    "time": "2026-10-19T22:25:50.764Z",
+    "type": "model_request"
+  },
+  {
+    "entries": 9,
+    "seq": 3,
+    "time": "2026-10-19T22:25:50.525Z",
+    "type": "faq_lookup"
+  },
+  {
+    "epoch": 0,
+    "route": "faq_then_balady_crm",
+    "seq": 2,
+    "time": "2026-10-19T22:25:50.522Z",
+    "type": "turn_started"
+  },
+  {
+    "message": {
+      "id": "message-4fc5045e-8741-4c38-b0c8-488a1579d797",
+      "role": "user",
+      "text": "小公园入口旁的人行道地砖松了，一踩就晃，能帮我报修吗？在利雅得测试松树街附近，我不知道正式街区叫什么。",
+      "time": "2026-10-19T22:25:50.519Z"
+    },
+    "seq": 1,
+    "time": "2026-10-19T22:25:50.519Z",
+    "type": "message"
+  }
+]

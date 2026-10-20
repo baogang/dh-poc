@@ -1,0 +1,92 @@
+{
+  "date": "2026-10-20",
+  "stage": "Independent review of one unambiguous service-hall complaint with actual PNG via public HTTP",
+  "phase": "separate regression evidence, not blind and not part of frozen natural40",
+  "source_report": "docs/evaluation/balady-crm-real-file-service-journey-20261020.json",
+  "source_initial_automatic_copy": "docs/evaluation/balady-crm-real-file-service-journey-initial-automatic-20261020.json",
+  "candidate_commit": "25b87c8c499a37928f146cfd6b62ce56b73d8b00",
+  "source_changed_during_run": [],
+  "candidate_commit_unchanged": true,
+  "automatic_original": {
+    "passed": 23,
+    "total": 23,
+    "modified": false
+  },
+  "independent_verdicts": {
+    "goal_adequacy_at_observed_boundary": "pass: requested local public service-experience complaint and actual selected image recorded",
+    "business_route": "pass: explicit public complaint about waiting/no queue updates at a service hall; this is not an ambiguous physical maintenance request",
+    "strict_facts_and_language_including_public_drafts": "pass",
+    "delivered_final_facts_and_language": "pass",
+    "presentation_readability": "pass",
+    "combined_quality": "pass within local simulated public-complaint scope"
+  },
+  "actual_outcomes": {
+    "actual_file_uploads": 1,
+    "actual_local_form_submissions": 1,
+    "actual_successful_write_receipts": 2,
+    "actual_physical_service_requests": 0,
+    "actual_official_government_submissions": 0,
+    "actual_department_handling_or_notification": 0,
+    "browser_chooser_coverage": false
+  },
+  "business_assessment": [
+    "User explicitly requests a public complaint about a concrete service experience, gives title/contact facts and says a test image will be selected. No prior physical/report-vs-general service ambiguity needs to be manufactured.",
+    "Draft preserves two-hour queue and no updates as user-supplied assertions, without inventing a cause, responsible department, service deadline or official outcome.",
+    "Given and family name and all supplied synthetic contacts/title match the original actor. No duplicate complete name or unsolicited language rewrite appears.",
+    "File memo says image selected by the user for this complaint, avoiding a claim that the unseen synthetic pixels prove the queue.",
+    "Host final acknowledges only real local upload and form receipts, explicitly separates official channels and promises no department/SMS/email/refund.",
+    "Three rejected primary attempts are retained. Initial plan omitted an input step and described intended attachment too confidently; the primary regenerated before selection/write. This is recovery success, not first-attempt-perfect planning."
+  ],
+  "independent_byte_evidence": {
+    "filename": "Test Evidence.png",
+    "media_type": "image/png",
+    "size_bytes": 68,
+    "sha256": "d78711356a9abac91b9d7e1c2477b8a2def3030702a16792173871c54c452a28",
+    "png_signature_matches": true,
+    "returned_file_id": "FILE-DEMO-000003",
+    "form_references_actual_returned_file_id": true
+  },
+  "independent_authorization_evidence": {
+    "crm_upload_attachment": {
+      "parameters_exact": true,
+      "proposal_seq": 82,
+      "approval_seq": 87,
+      "dispatch_seq": 93
+    },
+    "crm_create_form_request": {
+      "parameters_exact": true,
+      "proposal_seq": 108,
+      "approval_seq": 113,
+      "dispatch_seq": 119
+    }
+  },
+  "write_count_evidence": {
+    "upload_receipts": 1,
+    "form_receipts": 1,
+    "approvals": 2,
+    "confirmation_cards": 2
+  },
+  "model_payload_audit": {
+    "requests_by_kind": {
+      "primary": 10,
+      "verifier": 12,
+      "faq": 1,
+      "sentiment": 1
+    },
+    "all_instrumented_audits_report_no_raw_selected_base64": true,
+    "limitation": "Source-inspected onPayload instrumentation with hash/boolean evidence; original raw model payloads are not retained for independent recomputation. No browser dialog or visual interpretation test is established."
+  },
+  "observable_tool_errors_preserved": {
+    "UNVERIFIED_CUSTOMER_CLAIMS": 3
+  },
+  "final_customer_text": "This local simulated submission is complete.\n\n- Attachment uploaded: Test Evidence.png\n- Record number: PUB-DEMO-000005\n- Title: Long wait at Test Cedar Service Hall\n\nThis record exists only in this simulated conversation. It was not sent to a government system, cannot be tracked in the official app, and triggers no real SMS, email or refund.",
+  "presentation_origin": "host_submission",
+  "findings": [],
+  "coverage_limits": [
+    "This is one fixed synthetic actor once, outside the40. It does not increase the natural40 numerator or override its failed run.",
+    "Demonstrates actual bytes, two independent exact approval gates and local receipt chain through public HTTP. Native browser file chooser interaction is separate evidence.",
+    "No real case handling, queue improvement, notification, permit or physical service action occurs.",
+    "The original waste-container actor and its ambiguous route report remain intact. This new independently fixed service-hall actor adds the intended route evidence; it is not a replacement score or rewritten retry."
+  ],
+  "no_actor_reference_fixture_runner_production_or_original_report_edits": true
+}

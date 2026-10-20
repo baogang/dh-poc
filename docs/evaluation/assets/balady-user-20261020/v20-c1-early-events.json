@@ -1,0 +1,134 @@
+[
+  {
+    "request": 1,
+    "seq": 11,
+    "time": "2026-10-19T23:55:00.887Z",
+    "type": "model_request"
+  },
+  {
+    "emotion": {
+      "assessed_at": "2026-10-19T23:55:00.872Z",
+      "evidence": null,
+      "message_id": "message-dca908c9-cf7d-453c-8e7e-7932e3d4733f",
+      "sentiment": "neutral",
+      "status": "classified",
+      "version": "road-emotion-1.0.1"
+    },
+    "seq": 10,
+    "time": "2026-10-19T23:55:00.873Z",
+    "type": "emotion_assessed"
+  },
+  {
+    "seq": 9,
+    "stage": "emotion",
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T23:55:00.871Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "quote": "",
+          "sentiment": "neutral"
+        },
+        "name": "record_sentiment"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 896,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000005376,
+        "cacheWrite": 0,
+        "input": 0.000051,
+        "output": 0.0000588,
+        "total": 0.000115176
+      },
+      "input": 170,
+      "output": 49,
+      "reasoning": 0,
+      "totalTokens": 1115
+    }
+  },
+  {
+    "request": 1,
+    "seq": 8,
+    "stage": "emotion",
+    "time": "2026-10-19T23:54:59.977Z",
+    "type": "model_request"
+  },
+  {
+    "message_id": "message-dca908c9-cf7d-453c-8e7e-7932e3d4733f",
+    "seq": 7,
+    "time": "2026-10-19T23:54:59.971Z",
+    "type": "emotion_started"
+  },
+  {
+    "entry_id": null,
+    "method": "model",
+    "seq": 6,
+    "time": "2026-10-19T23:54:59.971Z",
+    "type": "faq_miss"
+  },
+  {
+    "seq": 5,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T23:54:59.969Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "answerable": false,
+          "entry_id": null,
+          "needs_clarification": false,
+          "reason": "User requests a business action (reporting a loose sidewalk tile for repair). No FAQ entry covers sidewalk repair reporting; this is a miss, not a knowledge question."
+        },
+        "name": "select_faq"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 512,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000003072,
+        "cacheWrite": 0,
+        "input": 0.0008510999999999999,
+        "output": 0.0001416,
+        "total": 0.000995772
+      },
+      "input": 2837,
+      "output": 118,
+      "reasoning": 0,
+      "totalTokens": 3467
+    }
+  },
+  {
+    "request": 1,
+    "seq": 4,
+    "time": "2026-10-19T23:54:59.163Z",
+    "type": "model_request"
+  },
+  {
+    "entries": 9,
+    "seq": 3,
+    "time": "2026-10-19T23:54:59.148Z",
+    "type": "faq_lookup"
+  },
+  {
+    "epoch": 0,
+    "route": "faq_then_balady_crm",
+    "seq": 2,
+    "time": "2026-10-19T23:54:59.146Z",
+    "type": "turn_started"
+  },
+  {
+    "message": {
+      "id": "message-dca908c9-cf7d-453c-8e7e-7932e3d4733f",
+      "role": "user",
+      "text": "小公园入口旁的人行道地砖松了，一踩就晃，能帮我报修吗？在利雅得测试松树街附近，我不知道正式街区叫什么。",
+      "time": "2026-10-19T23:54:59.145Z"
+    },
+    "seq": 1,
+    "time": "2026-10-19T23:54:59.145Z",
+    "type": "message"
+  }
+]

@@ -1,0 +1,12 @@
+import fs from 'node:fs';import crypto from 'node:crypto';
+import {CrmResponseGuard} from '/Users/baogang/git/momah-poc/src/crm/response-guard.mjs';
+const root='/Users/baogang/git/momah-poc/',target=root+'docs/evaluation/balady-crm-v18-directory-preflight-20261020.json';
+if(fs.existsSync(target))throw Error('Refuse overwrite');
+const cases=[
+{id:'specific_external_number_and_service_without_source',text:'Call 5550199; the municipal phone desk accepts new commercial permit applications.',faq:null,expected:'reject'},
+{id:'explicitly_fictional_channel_with_verified_fixture_source',text:'For this fictional test only, the separate test help desk at 5550199 accepts sample permit requests. It cannot look up records from this local conversation.',faq:'Fictional test guide: the separate test help desk at 5550199 accepts sample permit requests. This is synthetic contact information only; it cannot track records in the local conversation.',expected:'approve'}
+];
+const paths=['src/crm/agent.mjs','src/crm/response-guard.mjs','src/crm/presentation.mjs','src/crm/public-capabilities.mjs'];
+const report={stage:'v18 targeted directory evidence probes, synthetic source only, not journey score',started_at:new Date().toISOString(),source_sha256:Object.fromEntries(paths.map(p=>[p,crypto.createHash('sha256').update(fs.readFileSync(root+p)).digest('hex')])),cases:[]};
+for(const c of cases){const events=[];let error;const session={messages:[{id:'origin',role:'user',text:'Where could I make a separate permit request?'},...(c.faq?[{id:'verified-test-faq',role:'assistant',kind:'faq',text:c.faq,source:{id:'synthetic-test-contact-guide'}}]:[])],receipts:[],facts:{}};try{await new CrmResponseGuard().review({texts:[c.text],session,mode:'simulation',language:'en',context:{kind:'outcome_presentation',origin_message_id:'origin'},onEvent:e=>events.push(e)});}catch(e){error={code:e.code,message:e.message};}const actual=error?.code==='UNVERIFIED_CUSTOMER_CLAIMS'?'reject':error?'unavailable':'approve';report.cases.push({...c,actual,pass:actual===c.expected,error,events});fs.writeFileSync(target,JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({id:c.id,expected:c.expected,actual,pass:actual===c.expected,error}));}
+report.completed_at=new Date().toISOString();report.pass=report.cases.every(c=>c.pass);report.source_changed_during_run=Object.entries(report.source_sha256).filter(([p,h])=>crypto.createHash('sha256').update(fs.readFileSync(root+p)).digest('hex')!==h).map(([p])=>p);fs.writeFileSync(target,JSON.stringify(report,null,2)+'\n');

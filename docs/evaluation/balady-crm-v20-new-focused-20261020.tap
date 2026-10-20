@@ -1,0 +1,168 @@
+TAP version 13
+1..0
+# Subtest: tests/crm-agent.test.mjs
+ok 1 - tests/crm-agent.test.mjs
+  ---
+  duration_ms: 3600.946439
+  type: 'test'
+  ...
+1..0
+# Subtest: tests/crm-audience.test.mjs
+ok 2 - tests/crm-audience.test.mjs
+  ---
+  duration_ms: 3667.871031
+  type: 'test'
+  ...
+# Subtest: v20 Unicode numbered prose is projected to visible line breaks without changing source messages native IDs code paths or parameters
+ok 3 - v20 Unicode numbered prose is projected to visible line breaks without changing source messages native IDs code paths or parameters
+  ---
+  duration_ms: 321.704269
+  type: 'test'
+  ...
+# Subtest: v20 native name-role input renders only requested labelled fields and submits the exact role map without authorizing a business write
+ok 4 - v20 native name-role input renders only requested labelled fields and submits the exact role map without authorizing a business write
+  ---
+  duration_ms: 1.087554
+  type: 'test'
+  ...
+1..0
+# Subtest: tests/crm-contract.test.mjs
+ok 4 - tests/crm-contract.test.mjs
+  ---
+  duration_ms: 1157.912654
+  type: 'test'
+  ...
+1..0
+# Subtest: tests/crm-files.test.mjs
+ok 5 - tests/crm-files.test.mjs
+  ---
+  duration_ms: 773.375138
+  type: 'test'
+  ...
+1..0
+# Subtest: tests/crm-http.test.mjs
+ok 6 - tests/crm-http.test.mjs
+  ---
+  duration_ms: 3797.229788
+  type: 'test'
+  ...
+# Subtest: v20 unlabelled full names and bare role quotes cannot obtain a public draft or write even when both reviewers would approve
+ok 8 - v20 unlabelled full names and bare role quotes cannot obtain a public draft or write even when both reviewers would approve
+  ---
+  duration_ms: 403.824674
+  type: 'test'
+  ...
+# Subtest: v20 only the genuinely missing name role becomes a strict native field input while known roles contacts and issue remain intact
+not ok 9 - v20 only the genuinely missing name role becomes a strict native field input while known roles contacts and issue remain intact
+  ---
+  duration_ms: 112.931952
+  type: 'test'
+  location: '/Users/baogang/git/momah-poc/tests/crm-integration.test.mjs:1074:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    'failed' !== 'input'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'input'
+  actual: 'failed'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/baogang/git/momah-poc/tests/crm-integration.test.mjs:1075:1179)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async Test.run (node:internal/test_runner/test:1069:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:752:7)
+  ...
+# Subtest: v20 legacy approved full-name evidence cannot bypass role provenance through confirmed execution or a direct raw operation
+ok 10 - v20 legacy approved full-name evidence cannot bypass role provenance through confirmed execution or a direct raw operation
+  ---
+  duration_ms: 217.646903
+  type: 'test'
+  ...
+# Subtest: v20 a one-field UI edit cannot upgrade an unreviewed other-role quote while both actual UI roles can authorize one exact write
+not ok 11 - v20 a one-field UI edit cannot upgrade an unreviewed other-role quote while both actual UI roles can authorize one exact write
+  ---
+  duration_ms: 225.515589
+  type: 'test'
+  location: '/Users/baogang/git/momah-poc/tests/crm-integration.test.mjs:1083:1'
+  failureType: 'testCodeFailure'
+  error: "Cannot read properties of undefined (reading 'kind')"
+  code: 'ERR_TEST_FAILURE'
+  name: 'TypeError'
+  stack: |-
+    file:///Users/baogang/git/momah-poc/tests/crm-integration.test.mjs:1084:3035
+    Array.filter (<anonymous>)
+    TestContext.<anonymous> (file:///Users/baogang/git/momah-poc/tests/crm-integration.test.mjs:1084:3015)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async Test.run (node:internal/test_runner/test:1069:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:752:7)
+  ...
+# Subtest: v20 a currently reviewed other-role quote plus one real UI role edit needs no extra role inference or duplicate confirmation
+not ok 12 - v20 a currently reviewed other-role quote plus one real UI role edit needs no extra role inference or duplicate confirmation
+  ---
+  duration_ms: 138.855057
+  type: 'test'
+  location: '/Users/baogang/git/momah-poc/tests/crm-integration.test.mjs:1087:1'
+  failureType: 'testCodeFailure'
+  error: "Cannot read properties of undefined (reading 'kind')"
+  code: 'ERR_TEST_FAILURE'
+  name: 'TypeError'
+  stack: |-
+    file:///Users/baogang/git/momah-poc/tests/crm-integration.test.mjs:1088:996
+    Array.filter (<anonymous>)
+    TestContext.<anonymous> (file:///Users/baogang/git/momah-poc/tests/crm-integration.test.mjs:1088:976)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async Test.run (node:internal/test_runner/test:1069:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:752:7)
+  ...
+# Subtest: v20 a partial draft with an unlabelled guessed given name still lacks both roles and permits both native fields instead of treating one guess as established
+ok 13 - v20 a partial draft with an unlabelled guessed given name still lacks both roles and permits both native fields instead of treating one guess as established
+  ---
+  duration_ms: 117.879075
+  type: 'test'
+  ...
+1..0
+# Subtest: tests/crm-journey-choice.test.mjs
+ok 8 - tests/crm-journey-choice.test.mjs
+  ---
+  duration_ms: 812.776337
+  type: 'test'
+  ...
+1..0
+# Subtest: tests/crm-journey-metrics.test.mjs
+ok 9 - tests/crm-journey-metrics.test.mjs
+  ---
+  duration_ms: 835.452719
+  type: 'test'
+  ...
+1..0
+# Subtest: tests/crm-knowledge-routing.test.mjs
+ok 10 - tests/crm-knowledge-routing.test.mjs
+  ---
+  duration_ms: 3862.662332
+  type: 'test'
+  ...
+# Subtest: v20 dedicated name-role gates isolate role semantics from service payloads and require two independent approvals
+ok 17 - v20 dedicated name-role gates isolate role semantics from service payloads and require two independent approvals
+  ---
+  duration_ms: 235.166703
+  type: 'test'
+  ...
+1..0
+# Subtest: tests/crm-smoke.test.mjs
+ok 12 - tests/crm-smoke.test.mjs
+  ---
+  duration_ms: 3181.768969
+  type: 'test'
+  ...
+1..18
+# tests 18
+# suites 0
+# pass 15
+# fail 3
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 5116.270118

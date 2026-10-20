@@ -1,0 +1,105 @@
+TAP version 13
+# Subtest: service choice uses explicit native single selection and sends only its selected choice ID without approving a write
+not ok 1 - service choice uses explicit native single selection and sends only its selected choice ID without approving a write
+  ---
+  duration_ms: 20.143683
+  type: 'test'
+  location: '/Users/baogang/git/momah-poc/tests/crm-chat-ui.test.mjs:18:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The expression evaluated to a falsy value:
+    
+      assert.ok(card.querySelector('fieldset'))
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: ~
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/baogang/git/momah-poc/tests/crm-chat-ui.test.mjs:19:242)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1062:25)
+    Test.start (node:internal/test_runner/test:959:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:332:17)
+  ...
+# Subtest: service choice keeps selection across refresh and disables all actions while the selection is being sent
+not ok 2 - service choice keeps selection across refresh and disables all actions while the selection is being sent
+  ---
+  duration_ms: 0.501303
+  type: 'test'
+  location: '/Users/baogang/git/momah-poc/tests/crm-chat-ui.test.mjs:23:1'
+  failureType: 'testCodeFailure'
+  error: "Cannot set properties of undefined (setting 'checked')"
+  code: 'ERR_TEST_FAILURE'
+  name: 'TypeError'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/baogang/git/momah-poc/tests/crm-chat-ui.test.mjs:24:263)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1062:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+    Test.postRun (node:internal/test_runner/test:1191:19)
+    Test.run (node:internal/test_runner/test:1119:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:332:3)
+  ...
+# Subtest: service choice notices and controls follow Chinese English and Arabic prompts with native RTL-safe labels
+not ok 3 - service choice notices and controls follow Chinese English and Arabic prompts with native RTL-safe labels
+  ---
+  duration_ms: 0.711564
+  type: 'test'
+  location: '/Users/baogang/git/momah-poc/tests/crm-chat-ui.test.mjs:27:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input did not match the regular expression /选择.*(?:不会|尚未).*提交/u. Input:
+    
+    '你希望使用哪种办理方式？Additional informationSubmit information and continue'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual: '你希望使用哪种办理方式？Additional informationSubmit information and continue'
+  operator: 'match'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/baogang/git/momah-poc/tests/crm-chat-ui.test.mjs:28:623)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1062:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+    Test.postRun (node:internal/test_runner/test:1191:19)
+    Test.run (node:internal/test_runner/test:1119:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:752:7)
+  ...
+# Subtest: an expired or answered service choice keeps readable history without live route buttons
+not ok 4 - an expired or answered service choice keeps readable history without live route buttons
+  ---
+  duration_ms: 1.119491
+  type: 'test'
+  location: '/Users/baogang/git/momah-poc/tests/crm-chat-ui.test.mjs:31:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input did not match the regular expression /choice.*received|recorded.*choice/iu. Input:
+    
+    'How would you like to continue?Your additional information has been received.'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual: 'How would you like to continue?Your additional information has been received.'
+  operator: 'match'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/baogang/git/momah-poc/tests/crm-chat-ui.test.mjs:32:436)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1062:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+    Test.postRun (node:internal/test_runner/test:1191:19)
+    Test.run (node:internal/test_runner/test:1119:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:752:7)
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 0
+# fail 4
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 191.642168

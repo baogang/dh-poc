@@ -1,0 +1,1193 @@
+[
+  {
+    "message": {
+      "id": "message-68650200-0580-4019-af0a-610b3a936a8b",
+      "kind": "info",
+      "notice": "cancelled",
+      "role": "assistant",
+      "text": "The current task has stopped. Tell me what you would like to do next.",
+      "time": "2026-10-19T21:12:26.081Z"
+    },
+    "seq": 63,
+    "time": "2026-10-19T21:12:26.081Z",
+    "type": "message"
+  },
+  {
+    "reason": "user_cancelled",
+    "seq": 62,
+    "time": "2026-10-19T21:12:26.081Z",
+    "type": "interrupted"
+  },
+  {
+    "seq": 61,
+    "status": "input",
+    "time": "2026-10-19T21:12:08.702Z",
+    "type": "turn_finished"
+  },
+  {
+    "call_id": "call_00_SqgGj7ryuZrm9thFxCfn1954",
+    "name": "crm_fetch_incident",
+    "result": {
+      "end_turn": true,
+      "input": {
+        "case_history_receipt_id": "receipt-29cd1c0b-9e7f-4a50-804c-dc5d8ab68950",
+        "case_owner": "demo-demo",
+        "choices": [
+          {
+            "description": "Recorded status: In progress",
+            "id": "case_0",
+            "label": "Suspected abandoned vehicle beside Test Cedar Street / 测试雪松街旁疑似废弃车辆",
+            "record_fingerprint": "5f7477d6df14b84242677a1d44f6f66e660b173f30a0758c027d504f50fef635",
+            "record_id": "INC-26-10-000001",
+            "record_key": "MOMRA-OPS-CS-WORK INC-26-10-000001"
+          },
+          {
+            "description": "Recorded status: Resolved",
+            "id": "case_1",
+            "label": "Waste left beside the Test Olive Street container / 测试橄榄街垃圾箱旁垃圾未清运",
+            "record_fingerprint": "5f029954d6895ba6f5061b0fc8d14b0aaad5c613531b758b51c64ff30d28d15d",
+            "record_id": "INC-26-10-000002",
+            "record_key": "MOMRA-OPS-CS-WORK INC-26-10-000002"
+          },
+          {
+            "id": "none",
+            "label": "None of these is the matter I mean",
+            "none": true
+          }
+        ],
+        "host_case_selection": true,
+        "id": "input-d25c9c1f-c900-4227-83f9-0abaaa0ec8f8",
+        "kind": "choice",
+        "plan_id": "plan-b2671660-470e-4283-a285-484178458e5a",
+        "purpose": "case",
+        "question": "The target has not been identified. Select an issue description or recorded date from the visible records, or choose “None of these”. This only selects a query target; it does not change or submit a case.",
+        "step_id": "case_choice-b0458e79-8438-49a8-a909-8843"
+      }
+    },
+    "seq": 60,
+    "time": "2026-10-19T21:12:08.702Z",
+    "type": "tool_end"
+  },
+  {
+    "message": {
+      "id": "message-4edf22c1-127f-4c0f-9c97-41825cd5ec7b",
+      "input_id": "input-d25c9c1f-c900-4227-83f9-0abaaa0ec8f8",
+      "kind": "input_request",
+      "plan_id": "plan-b2671660-470e-4283-a285-484178458e5a",
+      "role": "assistant",
+      "text": "The target has not been identified. Select an issue description or recorded date from the visible records, or choose “None of these”. This only selects a query target; it does not change or submit a case.",
+      "time": "2026-10-19T21:12:08.702Z"
+    },
+    "seq": 59,
+    "time": "2026-10-19T21:12:08.702Z",
+    "type": "message"
+  },
+  {
+    "input": {
+      "case_history_receipt_id": "receipt-29cd1c0b-9e7f-4a50-804c-dc5d8ab68950",
+      "case_owner": "demo-demo",
+      "choices": [
+        {
+          "description": "Recorded status: In progress",
+          "id": "case_0",
+          "label": "Suspected abandoned vehicle beside Test Cedar Street / 测试雪松街旁疑似废弃车辆",
+          "record_fingerprint": "5f7477d6df14b84242677a1d44f6f66e660b173f30a0758c027d504f50fef635",
+          "record_id": "INC-26-10-000001",
+          "record_key": "MOMRA-OPS-CS-WORK INC-26-10-000001"
+        },
+        {
+          "description": "Recorded status: Resolved",
+          "id": "case_1",
+          "label": "Waste left beside the Test Olive Street container / 测试橄榄街垃圾箱旁垃圾未清运",
+          "record_fingerprint": "5f029954d6895ba6f5061b0fc8d14b0aaad5c613531b758b51c64ff30d28d15d",
+          "record_id": "INC-26-10-000002",
+          "record_key": "MOMRA-OPS-CS-WORK INC-26-10-000002"
+        },
+        {
+          "id": "none",
+          "label": "None of these is the matter I mean",
+          "none": true
+        }
+      ],
+      "host_case_selection": true,
+      "id": "input-d25c9c1f-c900-4227-83f9-0abaaa0ec8f8",
+      "kind": "choice",
+      "plan_id": "plan-b2671660-470e-4283-a285-484178458e5a",
+      "purpose": "case",
+      "question": "The target has not been identified. Select an issue description or recorded date from the visible records, or choose “None of these”. This only selects a query target; it does not change or submit a case.",
+      "step_id": "case_choice-b0458e79-8438-49a8-a909-8843"
+    },
+    "seq": 58,
+    "time": "2026-10-19T21:12:08.702Z",
+    "type": "input_required"
+  },
+  {
+    "plan": {
+      "approved": true,
+      "created_at": "2026-10-19T21:11:51.777Z",
+      "goal": "Show the details of the user's earlier report about rubbish left beside a waste container",
+      "id": "plan-b2671660-470e-4283-a285-484178458e5a",
+      "origin_message_id": "message-f2c073fa-07f2-48a3-8846-0cf703f9ac31",
+      "status": "approved",
+      "steps": [
+        {
+          "capability": "input",
+          "depends_on": [],
+          "id": "login",
+          "parameters": {},
+          "status": "completed",
+          "title": "Sign in to view your own reports"
+        },
+        {
+          "capability": "crm_get_incidents",
+          "depends_on": [
+            "login"
+          ],
+          "id": "history",
+          "parameters": {},
+          "receipt_id": "receipt-29cd1c0b-9e7f-4a50-804c-dc5d8ab68950",
+          "status": "completed",
+          "title": "List your previous reports"
+        },
+        {
+          "capability": "input",
+          "depends_on": [
+            "history"
+          ],
+          "host_case_selection": true,
+          "id": "case_choice-b0458e79-8438-49a8-a909-8843",
+          "parameters": {},
+          "status": "waiting",
+          "title": "Identify the report to query"
+        },
+        {
+          "capability": "crm_fetch_incident",
+          "depends_on": [
+            "history",
+            "case_choice-b0458e79-8438-49a8-a909-8843"
+          ],
+          "id": "details",
+          "parameters": {},
+          "status": "pending",
+          "title": "Open the matching report's details"
+        },
+        {
+          "capability": "respond",
+          "depends_on": [
+            "details"
+          ],
+          "id": "answer",
+          "parameters": {},
+          "status": "pending",
+          "title": "Show the report details"
+        }
+      ],
+      "summary": "Sign in to view the user's own reports, list their report history, then open the matching report's details.",
+      "version": 1
+    },
+    "reason": "case_selection_required",
+    "seq": 57,
+    "time": "2026-10-19T21:12:08.702Z",
+    "type": "plan_updated"
+  },
+  {
+    "arguments": {
+      "pzInsKey": "MOMRA-OPS-CS-WORK INC-26-10-000002",
+      "step_id": "details"
+    },
+    "call_id": "call_00_SqgGj7ryuZrm9thFxCfn1954",
+    "name": "crm_fetch_incident",
+    "seq": 56,
+    "time": "2026-10-19T21:12:08.701Z",
+    "type": "tool_start"
+  },
+  {
+    "seq": 55,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T21:12:08.701Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "pzInsKey": "MOMRA-OPS-CS-WORK INC-26-10-000002",
+          "step_id": "details"
+        },
+        "name": "crm_fetch_incident"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 14208,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000085248,
+        "cacheWrite": 0,
+        "input": 0.000144,
+        "output": 0.0000876,
+        "total": 0.000316848
+      },
+      "input": 480,
+      "output": 73,
+      "reasoning": 0,
+      "totalTokens": 14761
+    }
+  },
+  {
+    "request": 2,
+    "seq": 54,
+    "time": "2026-10-19T21:12:08.112Z",
+    "type": "model_request"
+  },
+  {
+    "call_id": "call_00_Jn6zk0H2OhCiKcWk5ZLb2333",
+    "name": "crm_get_incidents",
+    "result": {
+      "receipt": {
+        "api_mode": "simulation",
+        "beneficiary_id": "demo-demo",
+        "id": "receipt-29cd1c0b-9e7f-4a50-804c-dc5d8ab68950",
+        "operation": "crm_get_incidents",
+        "operation_key": "3eb41d3ac55343b2f4a81dae3e8a19b3ab2f72aa1482329abe5ced4bc6d181c6",
+        "parameters": {},
+        "plan_id": "plan-b2671660-470e-4283-a285-484178458e5a",
+        "result": {
+          "data": {
+            "responseCode": "1",
+            "responseMessage": "success",
+            "result": {
+              "IncidentRequestList": [
+                {
+                  "Description": "Suspected abandoned vehicle beside Test Cedar Street / 测试雪松街旁疑似废弃车辆",
+                  "MainClassificationID": "004_MC-VEHICLE",
+                  "MunicipalityID": "004",
+                  "SplClassificationID": "004_MC-VEHICLE_SC-1_SPC-1",
+                  "SubClassificationID": "004_MC-VEHICLE_SC-1",
+                  "hasAttachments": false,
+                  "history": "[MaxDepth]",
+                  "pyID": "INC-26-10-000001",
+                  "pyStatusWork": "InProgress",
+                  "pzInsKey": "MOMRA-OPS-CS-WORK INC-26-10-000001",
+                  "routedToMadinati": true,
+                  "topic": "vehicle"
+                },
+                {
+                  "Description": "Waste left beside the Test Olive Street container / 测试橄榄街垃圾箱旁垃圾未清运",
+                  "MunicipalityID": "004",
+                  "hasAttachments": true,
+                  "history": "[MaxDepth]",
+                  "pyID": "INC-26-10-000002",
+                  "pyStatusWork": "Resolved",
+                  "pzInsKey": "MOMRA-OPS-CS-WORK INC-26-10-000002",
+                  "routedToMadinati": true,
+                  "topic": "waste"
+                }
+              ],
+              "TotalRecordCount": "2"
+            }
+          },
+          "statusDetails": {
+            "code": 200,
+            "message": "OK"
+          }
+        },
+        "step_id": "history",
+        "time": "2026-10-19T21:12:08.108Z"
+      }
+    },
+    "seq": 53,
+    "time": "2026-10-19T21:12:08.108Z",
+    "type": "tool_end"
+  },
+  {
+    "receipt": {
+      "api_mode": "simulation",
+      "beneficiary_id": "demo-demo",
+      "id": "receipt-29cd1c0b-9e7f-4a50-804c-dc5d8ab68950",
+      "operation": "crm_get_incidents",
+      "operation_key": "3eb41d3ac55343b2f4a81dae3e8a19b3ab2f72aa1482329abe5ced4bc6d181c6",
+      "parameters": {},
+      "plan_id": "plan-b2671660-470e-4283-a285-484178458e5a",
+      "result": {
+        "data": {
+          "responseCode": "1",
+          "responseMessage": "success",
+          "result": {
+            "IncidentRequestList": [
+              {
+                "Description": "Suspected abandoned vehicle beside Test Cedar Street / 测试雪松街旁疑似废弃车辆",
+                "MainClassificationID": "004_MC-VEHICLE",
+                "MunicipalityID": "004",
+                "SplClassificationID": "004_MC-VEHICLE_SC-1_SPC-1",
+                "SubClassificationID": "004_MC-VEHICLE_SC-1",
+                "hasAttachments": false,
+                "history": [],
+                "pyID": "INC-26-10-000001",
+                "pyStatusWork": "InProgress",
+                "pzInsKey": "MOMRA-OPS-CS-WORK INC-26-10-000001",
+                "routedToMadinati": true,
+                "topic": "vehicle"
+              },
+              {
+                "Description": "Waste left beside the Test Olive Street container / 测试橄榄街垃圾箱旁垃圾未清运",
+                "MunicipalityID": "004",
+                "hasAttachments": true,
+                "history": [],
+                "pyID": "INC-26-10-000002",
+                "pyStatusWork": "Resolved",
+                "pzInsKey": "MOMRA-OPS-CS-WORK INC-26-10-000002",
+                "routedToMadinati": true,
+                "topic": "waste"
+              }
+            ],
+            "TotalRecordCount": "2"
+          }
+        },
+        "statusDetails": {
+          "code": 200,
+          "message": "OK"
+        }
+      },
+      "step_id": "history",
+      "time": "2026-10-19T21:12:08.108Z"
+    },
+    "seq": 52,
+    "time": "2026-10-19T21:12:08.108Z",
+    "type": "receipt"
+  },
+  {
+    "operation": "crm_get_incidents",
+    "response": {
+      "data": {
+        "responseCode": "1",
+        "responseMessage": "success",
+        "result": {
+          "IncidentRequestList": [
+            {
+              "Description": "Suspected abandoned vehicle beside Test Cedar Street / 测试雪松街旁疑似废弃车辆",
+              "MainClassificationID": "004_MC-VEHICLE",
+              "MunicipalityID": "004",
+              "SplClassificationID": "004_MC-VEHICLE_SC-1_SPC-1",
+              "SubClassificationID": "004_MC-VEHICLE_SC-1",
+              "hasAttachments": false,
+              "history": [],
+              "pyID": "INC-26-10-000001",
+              "pyStatusWork": "InProgress",
+              "pzInsKey": "MOMRA-OPS-CS-WORK INC-26-10-000001",
+              "routedToMadinati": true,
+              "topic": "vehicle"
+            },
+            {
+              "Description": "Waste left beside the Test Olive Street container / 测试橄榄街垃圾箱旁垃圾未清运",
+              "MunicipalityID": "004",
+              "hasAttachments": true,
+              "history": [],
+              "pyID": "INC-26-10-000002",
+              "pyStatusWork": "Resolved",
+              "pzInsKey": "MOMRA-OPS-CS-WORK INC-26-10-000002",
+              "routedToMadinati": true,
+              "topic": "waste"
+            }
+          ],
+          "TotalRecordCount": "2"
+        }
+      },
+      "statusDetails": {
+        "code": 200,
+        "message": "OK"
+      }
+    },
+    "seq": 51,
+    "time": "2026-10-19T21:12:08.107Z",
+    "type": "api_end"
+  },
+  {
+    "call": {
+      "operation": "crm_get_incidents",
+      "parameters": {},
+      "time": "2026-10-19T21:12:08.107Z"
+    },
+    "seq": 50,
+    "time": "2026-10-19T21:12:08.107Z",
+    "type": "api_start"
+  },
+  {
+    "plan_id": "plan-b2671660-470e-4283-a285-484178458e5a",
+    "seq": 49,
+    "step_id": "history",
+    "time": "2026-10-19T21:12:08.105Z",
+    "type": "step_running"
+  },
+  {
+    "arguments": {
+      "step_id": "history"
+    },
+    "call_id": "call_00_Jn6zk0H2OhCiKcWk5ZLb2333",
+    "name": "crm_get_incidents",
+    "seq": 48,
+    "time": "2026-10-19T21:12:08.105Z",
+    "type": "tool_start"
+  },
+  {
+    "seq": 47,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T21:12:08.104Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "step_id": "history"
+        },
+        "name": "crm_get_incidents"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 13184,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000079104,
+        "cacheWrite": 0,
+        "input": 0.0003051,
+        "output": 0.000044399999999999995,
+        "total": 0.000428604
+      },
+      "input": 1017,
+      "output": 37,
+      "reasoning": 0,
+      "totalTokens": 14238
+    }
+  },
+  {
+    "request": 1,
+    "seq": 46,
+    "time": "2026-10-19T21:12:07.305Z",
+    "type": "model_request"
+  },
+  {
+    "epoch": 0,
+    "route": "crm_resume",
+    "seq": 45,
+    "time": "2026-10-19T21:12:07.291Z",
+    "type": "turn_started"
+  },
+  {
+    "input_id": "input-1c94162e-0338-480d-a846-f215cdaba58f",
+    "result": {},
+    "seq": 44,
+    "time": "2026-10-19T21:12:07.291Z",
+    "type": "input_received"
+  },
+  {
+    "message": {
+      "id": "message-b2dd96b0-4817-48db-b186-a000492e052d",
+      "input_id": "input-1c94162e-0338-480d-a846-f215cdaba58f",
+      "kind": "input",
+      "role": "user",
+      "text": "Demo sign-in completed.",
+      "time": "2026-10-19T21:12:07.291Z",
+      "value": {}
+    },
+    "seq": 43,
+    "time": "2026-10-19T21:12:07.291Z",
+    "type": "message"
+  },
+  {
+    "message": {
+      "id": "message-057a681c-90bd-4eff-a943-d3f78cd0e701",
+      "kind": "login",
+      "notice": "login",
+      "role": "assistant",
+      "text": "Demo sign-in succeeded. We can continue with your tickets.",
+      "time": "2026-10-19T21:12:07.205Z"
+    },
+    "seq": 42,
+    "time": "2026-10-19T21:12:07.205Z",
+    "type": "message"
+  },
+  {
+    "seq": 41,
+    "time": "2026-10-19T21:12:07.205Z",
+    "type": "login",
+    "user": {
+      "name": "demo",
+      "user_id": "demo-demo"
+    }
+  },
+  {
+    "seq": 40,
+    "status": "input",
+    "time": "2026-10-19T21:11:54.130Z",
+    "type": "turn_finished"
+  },
+  {
+    "call_id": "call_00_21zSXQQ758SA9xFoHGO55444",
+    "name": "request_input",
+    "result": {
+      "end_turn": true,
+      "input": {
+        "fields": [
+          "user"
+        ],
+        "id": "input-1c94162e-0338-480d-a846-f215cdaba58f",
+        "kind": "login",
+        "operation": "crm_get_incidents",
+        "plan_id": "plan-b2671660-470e-4283-a285-484178458e5a",
+        "question": "To show your own reports, please sign in with the demo login. I never ask for passwords here.",
+        "step_id": "login"
+      }
+    },
+    "seq": 39,
+    "time": "2026-10-19T21:11:54.129Z",
+    "type": "tool_end"
+  },
+  {
+    "message": {
+      "id": "message-86abf6d3-1efb-472d-8c71-e7c647bf6b23",
+      "input_id": "input-1c94162e-0338-480d-a846-f215cdaba58f",
+      "kind": "input_request",
+      "plan_id": "plan-b2671660-470e-4283-a285-484178458e5a",
+      "role": "assistant",
+      "text": "To show your own reports, please sign in with the demo login. I never ask for passwords here.",
+      "time": "2026-10-19T21:11:54.129Z"
+    },
+    "seq": 38,
+    "time": "2026-10-19T21:11:54.129Z",
+    "type": "message"
+  },
+  {
+    "input": {
+      "fields": [
+        "user"
+      ],
+      "id": "input-1c94162e-0338-480d-a846-f215cdaba58f",
+      "kind": "login",
+      "operation": "crm_get_incidents",
+      "plan_id": "plan-b2671660-470e-4283-a285-484178458e5a",
+      "question": "To show your own reports, please sign in with the demo login. I never ask for passwords here.",
+      "step_id": "login"
+    },
+    "seq": 37,
+    "time": "2026-10-19T21:11:54.129Z",
+    "type": "input_required"
+  },
+  {
+    "corrected": false,
+    "issues": [],
+    "seq": 36,
+    "time": "2026-10-19T21:11:54.129Z",
+    "type": "response_guard_completed"
+  },
+  {
+    "scope": "capability_language",
+    "seq": 35,
+    "time": "2026-10-19T21:11:54.129Z",
+    "type": "response_guard_passed"
+  },
+  {
+    "seq": 34,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T21:11:54.128Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "approved": true,
+          "issues": []
+        },
+        "name": "review_message"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 1408,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000008448,
+        "cacheWrite": 0,
+        "input": 0.0005681999999999999,
+        "output": 0.0000576,
+        "total": 0.0006342479999999999
+      },
+      "input": 1894,
+      "output": 48,
+      "reasoning": 0,
+      "totalTokens": 3350
+    }
+  },
+  {
+    "request": 1,
+    "seq": 33,
+    "time": "2026-10-19T21:11:53.287Z",
+    "type": "model_request"
+  },
+  {
+    "scope": "facts",
+    "seq": 32,
+    "time": "2026-10-19T21:11:53.282Z",
+    "type": "response_guard_passed"
+  },
+  {
+    "seq": 31,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T21:11:53.282Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "approved": true,
+          "issues": []
+        },
+        "name": "review_message"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 1152,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000006912,
+        "cacheWrite": 0,
+        "input": 0.0005712,
+        "output": 0.0000576,
+        "total": 0.000635712
+      },
+      "input": 1904,
+      "output": 48,
+      "reasoning": 0,
+      "totalTokens": 3104
+    }
+  },
+  {
+    "request": 1,
+    "seq": 30,
+    "time": "2026-10-19T21:11:52.632Z",
+    "type": "model_request"
+  },
+  {
+    "message_count": 1,
+    "seq": 29,
+    "time": "2026-10-19T21:11:52.627Z",
+    "type": "response_guard_started"
+  },
+  {
+    "arguments": {
+      "fields": [
+        "user"
+      ],
+      "kind": "login",
+      "operation": "crm_get_incidents",
+      "question": "To show your own reports, please sign in with the demo login. I never ask for passwords here.",
+      "step_id": "login"
+    },
+    "call_id": "call_00_21zSXQQ758SA9xFoHGO55444",
+    "name": "request_input",
+    "seq": 28,
+    "time": "2026-10-19T21:11:52.627Z",
+    "type": "tool_start"
+  },
+  {
+    "seq": 27,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T21:11:52.626Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "fields": [
+            "user"
+          ],
+          "kind": "login",
+          "operation": "crm_get_incidents",
+          "question": "To show your own reports, please sign in with the demo login. I never ask for passwords here.",
+          "step_id": "login"
+        },
+        "name": "request_input"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 13696,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000082176,
+        "cacheWrite": 0,
+        "input": 0.0000999,
+        "output": 0.00014759999999999998,
+        "total": 0.000329676
+      },
+      "input": 333,
+      "output": 123,
+      "reasoning": 0,
+      "totalTokens": 14152
+    }
+  },
+  {
+    "request": 2,
+    "seq": 26,
+    "time": "2026-10-19T21:11:51.781Z",
+    "type": "model_request"
+  },
+  {
+    "call_id": "call_00_b9oZxbC6Z6zf8dZqIPQW8853",
+    "name": "propose_plan",
+    "result": {
+      "auto_execute": true,
+      "plan": {
+        "approved": true,
+        "created_at": "2026-10-19T21:11:51.777Z",
+        "goal": "Show the details of the user's earlier report about rubbish left beside a waste container",
+        "id": "plan-b2671660-470e-4283-a285-484178458e5a",
+        "origin_message_id": "message-f2c073fa-07f2-48a3-8846-0cf703f9ac31",
+        "status": "approved",
+        "steps": [
+          {
+            "capability": "input",
+            "depends_on": [],
+            "id": "login",
+            "parameters": {},
+            "status": "pending",
+            "title": "Sign in to view your own reports"
+          },
+          {
+            "capability": "crm_get_incidents",
+            "depends_on": [
+              "login"
+            ],
+            "id": "history",
+            "parameters": {},
+            "status": "pending",
+            "title": "List your previous reports"
+          },
+          {
+            "capability": "crm_fetch_incident",
+            "depends_on": [
+              "history"
+            ],
+            "id": "details",
+            "parameters": {},
+            "status": "pending",
+            "title": "Open the matching report's details"
+          },
+          {
+            "capability": "respond",
+            "depends_on": [
+              "details"
+            ],
+            "id": "answer",
+            "parameters": {},
+            "status": "pending",
+            "title": "Show the report details"
+          }
+        ],
+        "summary": "Sign in to view the user's own reports, list their report history, then open the matching report's details.",
+        "version": 1
+      }
+    },
+    "seq": 25,
+    "time": "2026-10-19T21:11:51.777Z",
+    "type": "tool_end"
+  },
+  {
+    "message": {
+      "id": "message-d0886fc0-79cd-4028-944d-b4417cd26035",
+      "kind": "plan",
+      "plan_id": "plan-b2671660-470e-4283-a285-484178458e5a",
+      "role": "assistant",
+      "text": "Sign in to view the user's own reports, list their report history, then open the matching report's details.",
+      "time": "2026-10-19T21:11:51.777Z"
+    },
+    "seq": 24,
+    "time": "2026-10-19T21:11:51.777Z",
+    "type": "message"
+  },
+  {
+    "plan_id": "plan-b2671660-470e-4283-a285-484178458e5a",
+    "seq": 23,
+    "time": "2026-10-19T21:11:51.777Z",
+    "type": "plan_auto_started"
+  },
+  {
+    "plan": {
+      "approved": true,
+      "created_at": "2026-10-19T21:11:51.777Z",
+      "goal": "Show the details of the user's earlier report about rubbish left beside a waste container",
+      "id": "plan-b2671660-470e-4283-a285-484178458e5a",
+      "origin_message_id": "message-f2c073fa-07f2-48a3-8846-0cf703f9ac31",
+      "status": "approved",
+      "steps": [
+        {
+          "capability": "input",
+          "depends_on": [],
+          "id": "login",
+          "parameters": {},
+          "status": "pending",
+          "title": "Sign in to view your own reports"
+        },
+        {
+          "capability": "crm_get_incidents",
+          "depends_on": [
+            "login"
+          ],
+          "id": "history",
+          "parameters": {},
+          "status": "pending",
+          "title": "List your previous reports"
+        },
+        {
+          "capability": "crm_fetch_incident",
+          "depends_on": [
+            "history"
+          ],
+          "id": "details",
+          "parameters": {},
+          "status": "pending",
+          "title": "Open the matching report's details"
+        },
+        {
+          "capability": "respond",
+          "depends_on": [
+            "details"
+          ],
+          "id": "answer",
+          "parameters": {},
+          "status": "pending",
+          "title": "Show the report details"
+        }
+      ],
+      "summary": "Sign in to view the user's own reports, list their report history, then open the matching report's details.",
+      "version": 1
+    },
+    "seq": 22,
+    "time": "2026-10-19T21:11:51.777Z",
+    "type": "plan_proposed"
+  },
+  {
+    "corrected": false,
+    "issues": [],
+    "seq": 21,
+    "time": "2026-10-19T21:11:51.777Z",
+    "type": "response_guard_completed"
+  },
+  {
+    "scope": "capability_language",
+    "seq": 20,
+    "time": "2026-10-19T21:11:51.777Z",
+    "type": "response_guard_passed"
+  },
+  {
+    "seq": 19,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T21:11:51.776Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "approved": true,
+          "issues": []
+        },
+        "name": "review_message"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 1280,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.00000768,
+        "cacheWrite": 0,
+        "input": 0.000534,
+        "output": 0.0000576,
+        "total": 0.00059928
+      },
+      "input": 1780,
+      "output": 48,
+      "reasoning": 0,
+      "totalTokens": 3108
+    }
+  },
+  {
+    "request": 1,
+    "seq": 18,
+    "time": "2026-10-19T21:11:51.121Z",
+    "type": "model_request"
+  },
+  {
+    "scope": "facts",
+    "seq": 17,
+    "time": "2026-10-19T21:11:51.116Z",
+    "type": "response_guard_passed"
+  },
+  {
+    "seq": 16,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T21:11:51.116Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "approved": true,
+          "issues": []
+        },
+        "name": "review_message"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 1152,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000006912,
+        "cacheWrite": 0,
+        "input": 0.0004986,
+        "output": 0.0000576,
+        "total": 0.0005631119999999999
+      },
+      "input": 1662,
+      "output": 48,
+      "reasoning": 0,
+      "totalTokens": 2862
+    }
+  },
+  {
+    "request": 1,
+    "seq": 15,
+    "time": "2026-10-19T21:11:50.339Z",
+    "type": "model_request"
+  },
+  {
+    "message_count": 6,
+    "seq": 14,
+    "time": "2026-10-19T21:11:50.333Z",
+    "type": "response_guard_started"
+  },
+  {
+    "arguments": {
+      "goal": "Show the details of the user's earlier report about rubbish left beside a waste container",
+      "steps": [
+        {
+          "capability": "input",
+          "depends_on": [],
+          "id": "login",
+          "title": "Sign in to view your own reports"
+        },
+        {
+          "capability": "crm_get_incidents",
+          "depends_on": [
+            "login"
+          ],
+          "id": "history",
+          "title": "List your previous reports"
+        },
+        {
+          "capability": "crm_fetch_incident",
+          "depends_on": [
+            "history"
+          ],
+          "id": "details",
+          "title": "Open the matching report's details"
+        },
+        {
+          "capability": "respond",
+          "depends_on": [
+            "details"
+          ],
+          "id": "answer",
+          "title": "Show the report details"
+        }
+      ],
+      "summary": "Sign in to view the user's own reports, list their report history, then open the matching report's details."
+    },
+    "call_id": "call_00_b9oZxbC6Z6zf8dZqIPQW8853",
+    "name": "propose_plan",
+    "seq": 13,
+    "time": "2026-10-19T21:11:50.333Z",
+    "type": "tool_start"
+  },
+  {
+    "seq": 12,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T21:11:50.332Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "goal": "Show the details of the user's earlier report about rubbish left beside a waste container",
+          "steps": [
+            {
+              "capability": "input",
+              "depends_on": [],
+              "id": "login",
+              "title": "Sign in to view your own reports"
+            },
+            {
+              "capability": "crm_get_incidents",
+              "depends_on": [
+                "login"
+              ],
+              "id": "history",
+              "title": "List your previous reports"
+            },
+            {
+              "capability": "crm_fetch_incident",
+              "depends_on": [
+                "history"
+              ],
+              "id": "details",
+              "title": "Open the matching report's details"
+            },
+            {
+              "capability": "respond",
+              "depends_on": [
+                "details"
+              ],
+              "id": "answer",
+              "title": "Show the report details"
+            }
+          ],
+          "summary": "Sign in to view the user's own reports, list their report history, then open the matching report's details."
+        },
+        "name": "propose_plan"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 13184,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000079104,
+        "cacheWrite": 0,
+        "input": 0.0000903,
+        "output": 0.000288,
+        "total": 0.000457404
+      },
+      "input": 301,
+      "output": 240,
+      "reasoning": 0,
+      "totalTokens": 13725
+    }
+  },
+  {
+    "request": 1,
+    "seq": 11,
+    "time": "2026-10-19T21:11:48.892Z",
+    "type": "model_request"
+  },
+  {
+    "emotion": {
+      "assessed_at": "2026-10-19T21:11:48.881Z",
+      "evidence": null,
+      "message_id": "message-f2c073fa-07f2-48a3-8846-0cf703f9ac31",
+      "sentiment": "neutral",
+      "status": "classified",
+      "version": "road-emotion-1.0.1"
+    },
+    "seq": 10,
+    "time": "2026-10-19T21:11:48.881Z",
+    "type": "emotion_assessed"
+  },
+  {
+    "seq": 9,
+    "stage": "emotion",
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T21:11:48.881Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "quote": "",
+          "sentiment": "neutral"
+        },
+        "name": "record_sentiment"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 896,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000005376,
+        "cacheWrite": 0,
+        "input": 0.0000447,
+        "output": 0.0000588,
+        "total": 0.000108876
+      },
+      "input": 149,
+      "output": 49,
+      "reasoning": 0,
+      "totalTokens": 1094
+    }
+  },
+  {
+    "request": 1,
+    "seq": 8,
+    "stage": "emotion",
+    "time": "2026-10-19T21:11:48.296Z",
+    "type": "model_request"
+  },
+  {
+    "message_id": "message-f2c073fa-07f2-48a3-8846-0cf703f9ac31",
+    "seq": 7,
+    "time": "2026-10-19T21:11:48.289Z",
+    "type": "emotion_started"
+  },
+  {
+    "entry_id": null,
+    "method": "model",
+    "seq": 6,
+    "time": "2026-10-19T21:11:48.289Z",
+    "type": "faq_miss"
+  },
+  {
+    "seq": 5,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T21:11:48.288Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "answerable": false,
+          "entry_id": null,
+          "needs_clarification": false,
+          "reason": "Request to retrieve details of the user's own previously submitted report is a personal account/transaction action, not a knowledge question; no FAQ entry covers it."
+        },
+        "name": "select_faq"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 384,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000002304,
+        "cacheWrite": 0,
+        "input": 0.0008786999999999999,
+        "output": 0.0001392,
+        "total": 0.001020204
+      },
+      "input": 2929,
+      "output": 116,
+      "reasoning": 0,
+      "totalTokens": 3429
+    }
+  },
+  {
+    "request": 1,
+    "seq": 4,
+    "time": "2026-10-19T21:11:47.198Z",
+    "type": "model_request"
+  },
+  {
+    "entries": 9,
+    "seq": 3,
+    "time": "2026-10-19T21:11:47.188Z",
+    "type": "faq_lookup"
+  },
+  {
+    "epoch": 0,
+    "route": "faq_then_balady_crm",
+    "seq": 2,
+    "time": "2026-10-19T21:11:47.187Z",
+    "type": "turn_started"
+  },
+  {
+    "message": {
+      "id": "message-f2c073fa-07f2-48a3-8846-0cf703f9ac31",
+      "role": "user",
+      "text": "I reported rubbish left beside a waste container before. Could you show me the details of that report?",
+      "time": "2026-10-19T21:11:47.186Z"
+    },
+    "seq": 1,
+    "time": "2026-10-19T21:11:47.186Z",
+    "type": "message"
+  }
+]

@@ -1,0 +1,638 @@
+[
+  {
+    "seq": 32,
+    "status": "input",
+    "time": "2026-10-20T00:16:56.864Z",
+    "type": "turn_finished"
+  },
+  {
+    "call_id": "call_00_ZkTxX5kDIJ8rAgRV23BU3915",
+    "name": "request_input",
+    "result": {
+      "end_turn": true,
+      "input": {
+        "description_source": {
+          "quotes": [
+            "أريد تقديم اقتراح لوضع لوحات واضحة للمداخل المناسبة للكراسي المتحركة في الحديقة."
+          ]
+        },
+        "fields": [
+          "body.CustomerInformation.FirstName",
+          "body.CustomerInformation.LastName"
+        ],
+        "id": "input-a71dabc8-4133-4347-9812-316556905339",
+        "kind": "name_roles",
+        "known_parameters": {
+          "body": {
+            "Attachments": [],
+            "CustomerInformation": {
+              "EmailAddress": "layla.salem.test@example.com",
+              "MobileNumber": "0500000164"
+            },
+            "Description": "أريد تقديم اقتراح لوضع لوحات واضحة للمداخل المناسبة للكراسي المتحركة في الحديقة.",
+            "Type": "T02",
+            "subject": "إرشادات الوصول إلى الحديقة"
+          }
+        },
+        "name_role_copy": {
+          "FirstName": "الاسم الشخصي",
+          "LastName": "اسم العائلة",
+          "cancel": "إلغاء هذا الطلب",
+          "continue": "حفظ الاسم والمتابعة",
+          "note": "تظهر فقط أجزاء الاسم التي لم تتضح بعد. هذا ليس تحققاً من الهوية.",
+          "question": "أدخل اسمك في الحقول المسمّاة أدناه. ستُحفظ المعلومات الأخرى التي قدمتها.",
+          "retry": "تعذر الحفظ. حاول مرة أخرى."
+        },
+        "operation": "crm_create_form_request",
+        "plan_id": "plan-2a1063db-de38-429d-9811-9810783402d8",
+        "question": "أدخل اسمك في الحقول المسمّاة أدناه. ستُحفظ المعلومات الأخرى التي قدمتها.",
+        "step_id": "s1"
+      }
+    },
+    "seq": 31,
+    "time": "2026-10-20T00:16:56.864Z",
+    "type": "tool_end"
+  },
+  {
+    "message": {
+      "id": "message-e5198e0c-1344-4e29-8bf9-bf72bd65db24",
+      "input_id": "input-a71dabc8-4133-4347-9812-316556905339",
+      "kind": "input_request",
+      "plan_id": "plan-2a1063db-de38-429d-9811-9810783402d8",
+      "role": "assistant",
+      "text": "أدخل اسمك في الحقول المسمّاة أدناه. ستُحفظ المعلومات الأخرى التي قدمتها.",
+      "time": "2026-10-20T00:16:56.864Z"
+    },
+    "seq": 30,
+    "time": "2026-10-20T00:16:56.864Z",
+    "type": "message"
+  },
+  {
+    "input": {
+      "description_source": {
+        "quotes": [
+          "أريد تقديم اقتراح لوضع لوحات واضحة للمداخل المناسبة للكراسي المتحركة في الحديقة."
+        ]
+      },
+      "fields": [
+        "body.CustomerInformation.FirstName",
+        "body.CustomerInformation.LastName"
+      ],
+      "id": "input-a71dabc8-4133-4347-9812-316556905339",
+      "kind": "name_roles",
+      "known_parameters": {
+        "body": {
+          "Attachments": [],
+          "CustomerInformation": {
+            "EmailAddress": "layla.salem.test@example.com",
+            "MobileNumber": "0500000164"
+          },
+          "Description": "أريد تقديم اقتراح لوضع لوحات واضحة للمداخل المناسبة للكراسي المتحركة في الحديقة.",
+          "Type": "T02",
+          "subject": "إرشادات الوصول إلى الحديقة"
+        }
+      },
+      "name_role_copy": {
+        "FirstName": "الاسم الشخصي",
+        "LastName": "اسم العائلة",
+        "cancel": "إلغاء هذا الطلب",
+        "continue": "حفظ الاسم والمتابعة",
+        "note": "تظهر فقط أجزاء الاسم التي لم تتضح بعد. هذا ليس تحققاً من الهوية.",
+        "question": "أدخل اسمك في الحقول المسمّاة أدناه. ستُحفظ المعلومات الأخرى التي قدمتها.",
+        "retry": "تعذر الحفظ. حاول مرة أخرى."
+      },
+      "operation": "crm_create_form_request",
+      "plan_id": "plan-2a1063db-de38-429d-9811-9810783402d8",
+      "question": "أدخل اسمك في الحقول المسمّاة أدناه. ستُحفظ المعلومات الأخرى التي قدمتها.",
+      "step_id": "s1"
+    },
+    "seq": 29,
+    "time": "2026-10-20T00:16:56.864Z",
+    "type": "input_required"
+  },
+  {
+    "arguments": {
+      "description_source": {
+        "quotes": [
+          "أريد تقديم اقتراح لوضع لوحات واضحة للمداخل المناسبة للكراسي المتحركة في الحديقة."
+        ]
+      },
+      "fields": [
+        "body.CustomerInformation.FirstName",
+        "body.CustomerInformation.LastName"
+      ],
+      "kind": "text",
+      "known_parameters": {
+        "body": {
+          "Attachments": [],
+          "CustomerInformation": {
+            "EmailAddress": "layla.salem.test@example.com",
+            "MobileNumber": "0500000164"
+          },
+          "Description": "أريد تقديم اقتراح لوضع لوحات واضحة للمداخل المناسبة للكراسي المتحركة في الحديقة.",
+          "Type": "T02",
+          "subject": "إرشادات الوصول إلى الحديقة"
+        }
+      },
+      "operation": "crm_create_form_request",
+      "question": "سأسجّل اقتراحاً بعنوان «إرشادات الوصول إلى الحديقة» بهذا النص:\n«أريد تقديم اقتراح لوضع لوحات واضحة للمداخل المناسبة للكراسي المتحركة في الحديقة.»\nبيانات التواصل: 0500000164 و layla.salem.test@example.com، وبدون صور.\nأحتاج فقط توضيح الاسم الأول واسم العائلة بشكل منفصل (مثلاً: الاسم الأول «ليلى» واسم العائلة «سالم»).",
+      "step_id": "s1"
+    },
+    "call_id": "call_00_ZkTxX5kDIJ8rAgRV23BU3915",
+    "name": "request_input",
+    "seq": 28,
+    "time": "2026-10-20T00:16:56.863Z",
+    "type": "tool_start"
+  },
+  {
+    "seq": 27,
+    "stop_reason": "toolUse",
+    "time": "2026-10-20T00:16:56.862Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "description_source": {
+            "quotes": [
+              "أريد تقديم اقتراح لوضع لوحات واضحة للمداخل المناسبة للكراسي المتحركة في الحديقة."
+            ]
+          },
+          "fields": [
+            "body.CustomerInformation.FirstName",
+            "body.CustomerInformation.LastName"
+          ],
+          "kind": "text",
+          "known_parameters": {
+            "body": {
+              "Attachments": [],
+              "CustomerInformation": {
+                "EmailAddress": "layla.salem.test@example.com",
+                "MobileNumber": "0500000164"
+              },
+              "Description": "أريد تقديم اقتراح لوضع لوحات واضحة للمداخل المناسبة للكراسي المتحركة في الحديقة.",
+              "Type": "T02",
+              "subject": "إرشادات الوصول إلى الحديقة"
+            }
+          },
+          "operation": "crm_create_form_request",
+          "question": "سأسجّل اقتراحاً بعنوان «إرشادات الوصول إلى الحديقة» بهذا النص:\n«أريد تقديم اقتراح لوضع لوحات واضحة للمداخل المناسبة للكراسي المتحركة في الحديقة.»\nبيانات التواصل: 0500000164 و layla.salem.test@example.com، وبدون صور.\nأحتاج فقط توضيح الاسم الأول واسم العائلة بشكل منفصل (مثلاً: الاسم الأول «ليلى» واسم العائلة «سالم»).",
+          "step_id": "s1"
+        },
+        "name": "request_input"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 16000,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000096,
+        "cacheWrite": 0,
+        "input": 0.0001092,
+        "output": 0.0004788,
+        "total": 0.0006839999999999999
+      },
+      "input": 364,
+      "output": 399,
+      "reasoning": 0,
+      "totalTokens": 16763
+    }
+  },
+  {
+    "request": 2,
+    "seq": 26,
+    "time": "2026-10-20T00:16:54.598Z",
+    "type": "model_request"
+  },
+  {
+    "call_id": "call_00_bWW0anT5q7s1fkkB81Rj6606",
+    "name": "propose_plan",
+    "result": {
+      "auto_execute": true,
+      "plan": {
+        "approved": true,
+        "created_at": "2026-10-20T00:16:54.595Z",
+        "goal": "خطة هذا الطلب",
+        "id": "plan-2a1063db-de38-429d-9811-9810783402d8",
+        "origin_message_id": "message-850eefa2-52f5-4629-8dc9-1dd7736bcc71",
+        "status": "approved",
+        "steps": [
+          {
+            "capability": "input",
+            "depends_on": [],
+            "id": "s1",
+            "parameters": {},
+            "status": "pending",
+            "title": "استكمال المعلومات اللازمة"
+          },
+          {
+            "capability": "crm_create_form_request",
+            "depends_on": [
+              "s1"
+            ],
+            "id": "s2",
+            "parameters": {},
+            "status": "pending",
+            "title": "تسجيل استفسار أو اقتراح أو شكوى"
+          },
+          {
+            "capability": "respond",
+            "depends_on": [
+              "s2"
+            ],
+            "id": "s3",
+            "parameters": {},
+            "status": "pending",
+            "title": "توضيح النتيجة والحدود"
+          }
+        ],
+        "summary": "هذه خطوات التعامل مع طلبك. تُنفّذ الاستعلامات تلقائياً، وتراجع التفاصيل قبل أي إرسال. لا تعني الخطة أن الطلب قد أُنجز.",
+        "version": 1
+      }
+    },
+    "seq": 25,
+    "time": "2026-10-20T00:16:54.595Z",
+    "type": "tool_end"
+  },
+  {
+    "message": {
+      "id": "message-8997b16f-af87-4dd1-bbd0-a7d73a7fa02e",
+      "kind": "plan",
+      "plan_id": "plan-2a1063db-de38-429d-9811-9810783402d8",
+      "role": "assistant",
+      "text": "هذه خطوات التعامل مع طلبك. تُنفّذ الاستعلامات تلقائياً، وتراجع التفاصيل قبل أي إرسال. لا تعني الخطة أن الطلب قد أُنجز.",
+      "time": "2026-10-20T00:16:54.595Z"
+    },
+    "seq": 24,
+    "time": "2026-10-20T00:16:54.595Z",
+    "type": "message"
+  },
+  {
+    "plan_id": "plan-2a1063db-de38-429d-9811-9810783402d8",
+    "seq": 23,
+    "time": "2026-10-20T00:16:54.595Z",
+    "type": "plan_auto_started"
+  },
+  {
+    "plan": {
+      "approved": true,
+      "created_at": "2026-10-20T00:16:54.595Z",
+      "goal": "خطة هذا الطلب",
+      "id": "plan-2a1063db-de38-429d-9811-9810783402d8",
+      "origin_message_id": "message-850eefa2-52f5-4629-8dc9-1dd7736bcc71",
+      "status": "approved",
+      "steps": [
+        {
+          "capability": "input",
+          "depends_on": [],
+          "id": "s1",
+          "parameters": {},
+          "status": "pending",
+          "title": "استكمال المعلومات اللازمة"
+        },
+        {
+          "capability": "crm_create_form_request",
+          "depends_on": [
+            "s1"
+          ],
+          "id": "s2",
+          "parameters": {},
+          "status": "pending",
+          "title": "تسجيل استفسار أو اقتراح أو شكوى"
+        },
+        {
+          "capability": "respond",
+          "depends_on": [
+            "s2"
+          ],
+          "id": "s3",
+          "parameters": {},
+          "status": "pending",
+          "title": "توضيح النتيجة والحدود"
+        }
+      ],
+      "summary": "هذه خطوات التعامل مع طلبك. تُنفّذ الاستعلامات تلقائياً، وتراجع التفاصيل قبل أي إرسال. لا تعني الخطة أن الطلب قد أُنجز.",
+      "version": 1
+    },
+    "seq": 22,
+    "time": "2026-10-20T00:16:54.595Z",
+    "type": "plan_proposed"
+  },
+  {
+    "corrected": false,
+    "issues": [],
+    "seq": 21,
+    "time": "2026-10-20T00:16:54.595Z",
+    "type": "response_guard_completed"
+  },
+  {
+    "scope": "plan_feasibility",
+    "seq": 20,
+    "time": "2026-10-20T00:16:54.595Z",
+    "type": "response_guard_passed"
+  },
+  {
+    "seq": 19,
+    "stop_reason": "toolUse",
+    "time": "2026-10-20T00:16:54.594Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "approved": true,
+          "issues": []
+        },
+        "name": "review_message"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 1408,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000008448,
+        "cacheWrite": 0,
+        "input": 0.0009291,
+        "output": 0.0000576,
+        "total": 0.0009951480000000002
+      },
+      "input": 3097,
+      "output": 48,
+      "reasoning": 0,
+      "totalTokens": 4553
+    }
+  },
+  {
+    "request": 1,
+    "seq": 18,
+    "time": "2026-10-20T00:16:53.954Z",
+    "type": "model_request"
+  },
+  {
+    "scope": "plan_intent",
+    "seq": 17,
+    "time": "2026-10-20T00:16:53.949Z",
+    "type": "response_guard_passed"
+  },
+  {
+    "seq": 16,
+    "stop_reason": "toolUse",
+    "time": "2026-10-20T00:16:53.948Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "approved": true,
+          "issues": []
+        },
+        "name": "review_message"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 1408,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000008448,
+        "cacheWrite": 0,
+        "input": 0.0009243,
+        "output": 0.0000576,
+        "total": 0.000990348
+      },
+      "input": 3081,
+      "output": 48,
+      "reasoning": 0,
+      "totalTokens": 4537
+    }
+  },
+  {
+    "request": 1,
+    "seq": 15,
+    "time": "2026-10-20T00:16:53.284Z",
+    "type": "model_request"
+  },
+  {
+    "message_count": 0,
+    "seq": 14,
+    "time": "2026-10-20T00:16:53.279Z",
+    "type": "response_guard_started"
+  },
+  {
+    "arguments": {
+      "goal": "تقديم اقتراح عام (نموذج تواصل) حول وضع لوحات إرشادية لمداخل الكراسي المتحركة في الحديقة",
+      "steps": [
+        {
+          "capability": "input",
+          "depends_on": [],
+          "id": "s1",
+          "title": "تأكيد صياغة الاقتراح واسم العائلة"
+        },
+        {
+          "capability": "crm_create_form_request",
+          "depends_on": [
+            "s1"
+          ],
+          "id": "s2",
+          "title": "تسجيل الاقتراح"
+        },
+        {
+          "capability": "respond",
+          "depends_on": [
+            "s2"
+          ],
+          "id": "s3",
+          "title": "إبلاغ النتيجة"
+        }
+      ],
+      "summary": "اقتراح عام من نوع اقتراح، بدون مرفقات، مع بيانات التواصل المقدمة."
+    },
+    "call_id": "call_00_bWW0anT5q7s1fkkB81Rj6606",
+    "name": "propose_plan",
+    "seq": 13,
+    "time": "2026-10-20T00:16:53.278Z",
+    "type": "tool_start"
+  },
+  {
+    "seq": 12,
+    "stop_reason": "toolUse",
+    "time": "2026-10-20T00:16:53.277Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "goal": "تقديم اقتراح عام (نموذج تواصل) حول وضع لوحات إرشادية لمداخل الكراسي المتحركة في الحديقة",
+          "steps": [
+            {
+              "capability": "input",
+              "depends_on": [],
+              "id": "s1",
+              "title": "تأكيد صياغة الاقتراح واسم العائلة"
+            },
+            {
+              "capability": "crm_create_form_request",
+              "depends_on": [
+                "s1"
+              ],
+              "id": "s2",
+              "title": "تسجيل الاقتراح"
+            },
+            {
+              "capability": "respond",
+              "depends_on": [
+                "s2"
+              ],
+              "id": "s3",
+              "title": "إبلاغ النتيجة"
+            }
+          ],
+          "summary": "اقتراح عام من نوع اقتراح، بدون مرفقات، مع بيانات التواصل المقدمة."
+        },
+        "name": "propose_plan"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 15488,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000092928,
+        "cacheWrite": 0,
+        "input": 0.0001029,
+        "output": 0.0002808,
+        "total": 0.000476628
+      },
+      "input": 343,
+      "output": 234,
+      "reasoning": 0,
+      "totalTokens": 16065
+    }
+  },
+  {
+    "request": 1,
+    "seq": 11,
+    "time": "2026-10-20T00:16:51.979Z",
+    "type": "model_request"
+  },
+  {
+    "emotion": {
+      "assessed_at": "2026-10-20T00:16:51.967Z",
+      "evidence": null,
+      "message_id": "message-850eefa2-52f5-4629-8dc9-1dd7736bcc71",
+      "sentiment": "neutral",
+      "status": "classified",
+      "version": "road-emotion-1.0.1"
+    },
+    "seq": 10,
+    "time": "2026-10-20T00:16:51.967Z",
+    "type": "emotion_assessed"
+  },
+  {
+    "seq": 9,
+    "stage": "emotion",
+    "stop_reason": "toolUse",
+    "time": "2026-10-20T00:16:51.967Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "quote": "",
+          "sentiment": "neutral"
+        },
+        "name": "record_sentiment"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 896,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000005376,
+        "cacheWrite": 0,
+        "input": 0.0000618,
+        "output": 0.0000588,
+        "total": 0.000125976
+      },
+      "input": 206,
+      "output": 49,
+      "reasoning": 0,
+      "totalTokens": 1151
+    }
+  },
+  {
+    "request": 1,
+    "seq": 8,
+    "stage": "emotion",
+    "time": "2026-10-20T00:16:51.295Z",
+    "type": "model_request"
+  },
+  {
+    "message_id": "message-850eefa2-52f5-4629-8dc9-1dd7736bcc71",
+    "seq": 7,
+    "time": "2026-10-20T00:16:51.289Z",
+    "type": "emotion_started"
+  },
+  {
+    "entry_id": null,
+    "method": "model",
+    "seq": 6,
+    "time": "2026-10-20T00:16:51.289Z",
+    "type": "faq_miss"
+  },
+  {
+    "seq": 5,
+    "stop_reason": "toolUse",
+    "time": "2026-10-20T00:16:51.288Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "answerable": false,
+          "entry_id": null,
+          "needs_clarification": false,
+          "reason": "The user is submitting a suggestion (park accessibility signage) with personal details — a business action, not a knowledge question. No FAQ entry covers suggestions, and none of the listed services (civil defense fees, infrastructure permit, Balady platform) match."
+        },
+        "name": "select_faq"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 512,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000003072,
+        "cacheWrite": 0,
+        "input": 0.0008745,
+        "output": 0.00016199999999999998,
+        "total": 0.001039572
+      },
+      "input": 2915,
+      "output": 135,
+      "reasoning": 0,
+      "totalTokens": 3562
+    }
+  },
+  {
+    "request": 1,
+    "seq": 4,
+    "time": "2026-10-20T00:16:50.405Z",
+    "type": "model_request"
+  },
+  {
+    "entries": 9,
+    "seq": 3,
+    "time": "2026-10-20T00:16:50.396Z",
+    "type": "faq_lookup"
+  },
+  {
+    "epoch": 0,
+    "route": "faq_then_balady_crm",
+    "seq": 2,
+    "time": "2026-10-20T00:16:50.396Z",
+    "type": "turn_started"
+  },
+  {
+    "message": {
+      "id": "message-850eefa2-52f5-4629-8dc9-1dd7736bcc71",
+      "role": "user",
+      "text": "أريد تقديم اقتراح لوضع لوحات واضحة للمداخل المناسبة للكراسي المتحركة في الحديقة. العنوان: إرشادات الوصول إلى الحديقة. اسمي ليلى سالم، ورقم التواصل 0500000164، والبريد layla.salem.test@example.com. لا أريد إرفاق صور.",
+      "time": "2026-10-20T00:16:50.396Z"
+    },
+    "seq": 1,
+    "time": "2026-10-20T00:16:50.396Z",
+    "type": "message"
+  }
+]

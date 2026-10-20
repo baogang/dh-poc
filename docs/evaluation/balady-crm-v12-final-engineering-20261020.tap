@@ -1,0 +1,1414 @@
+TAP version 13
+# Subtest: CRM answer keeps narrative separate from complete authoritative evidence
+ok 1 - CRM answer keeps narrative separate from complete authoritative evidence
+  ---
+  duration_ms: 197.082072
+  type: 'test'
+  ...
+# Subtest: active identity is BALADY and tools contain all CRM operations, no old business APIs or credentials
+ok 2 - active identity is BALADY and tools contain all CRM operations, no old business APIs or credentials
+  ---
+  duration_ms: 47.51522
+  type: 'test'
+  ...
+# Subtest: exact write authorization precedes API dispatch; stale confirmations cannot replay
+ok 3 - exact write authorization precedes API dispatch; stale confirmations cannot replay
+  ---
+  duration_ms: 191.206271
+  type: 'test'
+  ...
+# Subtest: normal reads run without confirmation and plans use concrete returned identifiers
+ok 4 - normal reads run without confirmation and plans use concrete returned identifiers
+  ---
+  duration_ms: 121.722072
+  type: 'test'
+  ...
+# Subtest: dependency guard blocks an early API and finish rejects incomplete plans
+ok 5 - dependency guard blocks an early API and finish rejects incomplete plans
+  ---
+  duration_ms: 79.288328
+  type: 'test'
+  ...
+# Subtest: new goal revokes old authorization and never runs the old pending write
+ok 6 - new goal revokes old authorization and never runs the old pending write
+  ---
+  duration_ms: 124.490944
+  type: 'test'
+  ...
+# Subtest: edited CRM payload requires a fresh exact confirmation
+ok 7 - edited CRM payload requires a fresh exact confirmation
+  ---
+  duration_ms: 89.194125
+  type: 'test'
+  ...
+# Subtest: API simulation persists idempotent results and rejects key/payload conflicts
+ok 8 - API simulation persists idempotent results and rejects key/payload conflicts
+  ---
+  duration_ms: 1.424521
+  type: 'test'
+  ...
+# Subtest: Madinati closure cannot bypass a matching lookup or attachment condition
+ok 9 - Madinati closure cannot bypass a matching lookup or attachment condition
+  ---
+  duration_ms: 3.564144
+  type: 'test'
+  ...
+# Subtest: scoring penalizes wrong tools, duplicate execution, missing dependencies and absent parameters
+ok 10 - scoring penalizes wrong tools, duplicate execution, missing dependencies and absent parameters
+  ---
+  duration_ms: 1.991871
+  type: 'test'
+  ...
+# Subtest: CRM feedback evidence keeps original business question across FAQ and exact confirmation
+ok 11 - CRM feedback evidence keeps original business question across FAQ and exact confirmation
+  ---
+  duration_ms: 86.26563
+  type: 'test'
+  ...
+# Subtest: public beneficiary toolset excludes organizational callbacks even when the user claims staff authority
+ok 12 - public beneficiary toolset excludes organizational callbacks even when the user claims staff authority
+  ---
+  duration_ms: 123.422729
+  type: 'test'
+  ...
+# Subtest: the integration simulator rejects a vehicle withdrawal outcome for a waste complaint
+ok 13 - the integration simulator rejects a vehicle withdrawal outcome for a waste complaint
+  ---
+  duration_ms: 2.078357
+  type: 'test'
+  ...
+# Subtest: service choice uses explicit native single selection and sends only its selected choice ID without approving a write
+ok 14 - service choice uses explicit native single selection and sends only its selected choice ID without approving a write
+  ---
+  duration_ms: 104.345111
+  type: 'test'
+  ...
+# Subtest: service choice keeps selection across refresh and disables all actions while the selection is being sent
+ok 15 - service choice keeps selection across refresh and disables all actions while the selection is being sent
+  ---
+  duration_ms: 3.401902
+  type: 'test'
+  ...
+# Subtest: service choice notices and controls follow Chinese English and Arabic prompts with native RTL-safe labels
+ok 16 - service choice notices and controls follow Chinese English and Arabic prompts with native RTL-safe labels
+  ---
+  duration_ms: 1.93682
+  type: 'test'
+  ...
+# Subtest: an expired or answered service choice keeps readable history without live route buttons
+ok 17 - an expired or answered service choice keeps readable history without live route buttons
+  ---
+  duration_ms: 0.795754
+  type: 'test'
+  ...
+# Subtest: case choice names actual readable reports in three languages without implying service selection or approval
+ok 18 - case choice names actual readable reports in three languages without implying service selection or approval
+  ---
+  duration_ms: 4.472141
+  type: 'test'
+  ...
+# Subtest: public complaint confirmation presents readable fields and collapses protocol JSON
+ok 19 - public complaint confirmation presents readable fields and collapses protocol JSON
+  ---
+  duration_ms: 2.149306
+  type: 'test'
+  ...
+# Subtest: editing a title preserves its exact case and the other reviewed submission fields
+ok 20 - editing a title preserves its exact case and the other reviewed submission fields
+  ---
+  duration_ms: 0.945331
+  type: 'test'
+  ...
+# Subtest: asset answer renders an accessible table instead of literal Markdown pipes
+ok 21 - asset answer renders an accessible table instead of literal Markdown pipes
+  ---
+  duration_ms: 39.299229
+  type: 'test'
+  ...
+# Subtest: raw CRM evidence is collapsed and attached to the answer without another JSON bubble
+ok 22 - raw CRM evidence is collapsed and attached to the answer without another JSON bubble
+  ---
+  duration_ms: 0.977188
+  type: 'test'
+  ...
+# Subtest: a simulated file download offers the actual returned bytes as a normal download link
+ok 23 - a simulated file download offers the actual returned bytes as a normal download link
+  ---
+  duration_ms: 4.182213
+  type: 'test'
+  ...
+# Subtest: assistant formatting treats HTML as text and refuses executable links or external images
+ok 24 - assistant formatting treats HTML as text and refuses executable links or external images
+  ---
+  duration_ms: 48.222667
+  type: 'test'
+  ...
+# Subtest: tables retain escaped pipes, inline formatting and multilingual values; user text stays literal
+ok 25 - tables retain escaped pipes, inline formatting and multilingual values; user text stays literal
+  ---
+  duration_ms: 41.208347
+  type: 'test'
+  ...
+# Subtest: receipt expansion survives refresh and locale change; in-flight receipts remain inspectable
+ok 26 - receipt expansion survives refresh and locale change; in-flight receipts remain inspectable
+  ---
+  duration_ms: 3.400973
+  type: 'test'
+  ...
+# Subtest: existing saved answers drop only the exact host suffix and keep authoritative receipts
+ok 27 - existing saved answers drop only the exact host suffix and keep authoritative receipts
+  ---
+  duration_ms: 0.989763
+  type: 'test'
+  ...
+# Subtest: old JSON evidence remains recognizable after Neon JSONB reorders nested object fields
+ok 28 - old JSON evidence remains recognizable after Neon JSONB reorders nested object fields
+  ---
+  duration_ms: 0.945199
+  type: 'test'
+  ...
+# Subtest: all 36 service sections have unique OpenAPI operations and source references
+ok 29 - all 36 service sections have unique OpenAPI operations and source references
+  ---
+  duration_ms: 10.188222
+  type: 'test'
+  ...
+# Subtest: CRM-T-001 supplied documented positive parameters validate
+ok 30 - CRM-T-001 supplied documented positive parameters validate
+  ---
+  duration_ms: 1.062421
+  type: 'test'
+  ...
+# Subtest: CRM-T-002 supplied documented positive parameters validate
+ok 31 - CRM-T-002 supplied documented positive parameters validate
+  ---
+  duration_ms: 0.524563
+  type: 'test'
+  ...
+# Subtest: CRM-T-003 supplied documented positive parameters validate
+ok 32 - CRM-T-003 supplied documented positive parameters validate
+  ---
+  duration_ms: 0.52366
+  type: 'test'
+  ...
+# Subtest: CRM-T-004 supplied documented positive parameters validate
+ok 33 - CRM-T-004 supplied documented positive parameters validate
+  ---
+  duration_ms: 0.274191
+  type: 'test'
+  ...
+# Subtest: CRM-T-005 supplied documented positive parameters validate
+ok 34 - CRM-T-005 supplied documented positive parameters validate
+  ---
+  duration_ms: 0.332359
+  type: 'test'
+  ...
+# Subtest: CRM-T-006 supplied documented positive parameters validate
+ok 35 - CRM-T-006 supplied documented positive parameters validate
+  ---
+  duration_ms: 0.272577
+  type: 'test'
+  ...
+# Subtest: CRM-T-007 supplied documented positive parameters validate
+ok 36 - CRM-T-007 supplied documented positive parameters validate
+  ---
+  duration_ms: 0.416194
+  type: 'test'
+  ...
+# Subtest: CRM-T-008 supplied documented positive parameters validate
+ok 37 - CRM-T-008 supplied documented positive parameters validate
+  ---
+  duration_ms: 0.769151
+  type: 'test'
+  ...
+# Subtest: CRM-T-009 supplied documented positive parameters validate
+ok 38 - CRM-T-009 supplied documented positive parameters validate
+  ---
+  duration_ms: 1.010953
+  type: 'test'
+  ...
+# Subtest: CRM-T-010 supplied documented positive parameters validate
+ok 39 - CRM-T-010 supplied documented positive parameters validate
+  ---
+  duration_ms: 0.266899
+  type: 'test'
+  ...
+# Subtest: CRM-T-011 supplied documented positive parameters validate
+ok 40 - CRM-T-011 supplied documented positive parameters validate
+  ---
+  duration_ms: 0.216736
+  type: 'test'
+  ...
+# Subtest: CRM-T-012 supplied documented positive parameters validate
+ok 41 - CRM-T-012 supplied documented positive parameters validate
+  ---
+  duration_ms: 0.289089
+  type: 'test'
+  ...
+# Subtest: CRM-T-013 supplied documented positive parameters validate
+ok 42 - CRM-T-013 supplied documented positive parameters validate
+  ---
+  duration_ms: 0.513005
+  type: 'test'
+  ...
+# Subtest: CRM-T-014 supplied documented positive parameters validate
+ok 43 - CRM-T-014 supplied documented positive parameters validate
+  ---
+  duration_ms: 0.48227
+  type: 'test'
+  ...
+# Subtest: CRM-T-015 supplied documented positive parameters validate
+ok 44 - CRM-T-015 supplied documented positive parameters validate
+  ---
+  duration_ms: 0.225409
+  type: 'test'
+  ...
+# Subtest: CRM-T-016 supplied documented positive parameters validate
+ok 45 - CRM-T-016 supplied documented positive parameters validate
+  ---
+  duration_ms: 0.164551
+  type: 'test'
+  ...
+# Subtest: CRM-T-017 supplied documented positive parameters validate
+ok 46 - CRM-T-017 supplied documented positive parameters validate
+  ---
+  duration_ms: 0.442002
+  type: 'test'
+  ...
+# Subtest: CRM-T-018 supplied documented positive parameters validate
+ok 47 - CRM-T-018 supplied documented positive parameters validate
+  ---
+  duration_ms: 1.478323
+  type: 'test'
+  ...
+# Subtest: CRM-T-019 supplied documented positive parameters validate
+ok 48 - CRM-T-019 supplied documented positive parameters validate
+  ---
+  duration_ms: 0.294262
+  type: 'test'
+  ...
+# Subtest: CRM-T-020 supplied documented positive parameters validate
+ok 49 - CRM-T-020 supplied documented positive parameters validate
+  ---
+  duration_ms: 0.316293
+  type: 'test'
+  ...
+# Subtest: CRM-T-021 supplied documented positive parameters validate
+ok 50 - CRM-T-021 supplied documented positive parameters validate
+  ---
+  duration_ms: 0.397069
+  type: 'test'
+  ...
+# Subtest: CRM-T-022 supplied documented positive parameters validate
+ok 51 - CRM-T-022 supplied documented positive parameters validate
+  ---
+  duration_ms: 0.219092
+  type: 'test'
+  ...
+# Subtest: CRM-T-023 supplied documented positive parameters validate
+ok 52 - CRM-T-023 supplied documented positive parameters validate
+  ---
+  duration_ms: 0.236732
+  type: 'test'
+  ...
+# Subtest: CRM-T-024 supplied documented positive parameters validate
+ok 53 - CRM-T-024 supplied documented positive parameters validate
+  ---
+  duration_ms: 0.204669
+  type: 'test'
+  ...
+# Subtest: CRM-T-025 supplied documented positive parameters validate
+ok 54 - CRM-T-025 supplied documented positive parameters validate
+  ---
+  duration_ms: 1.102902
+  type: 'test'
+  ...
+# Subtest: CRM-T-026 supplied documented positive parameters validate
+ok 55 - CRM-T-026 supplied documented positive parameters validate
+  ---
+  duration_ms: 0.425493
+  type: 'test'
+  ...
+# Subtest: CRM-T-027 supplied documented positive parameters validate
+ok 56 - CRM-T-027 supplied documented positive parameters validate
+  ---
+  duration_ms: 0.242926
+  type: 'test'
+  ...
+# Subtest: CRM-T-028 supplied documented positive parameters validate
+ok 57 - CRM-T-028 supplied documented positive parameters validate
+  ---
+  duration_ms: 0.896728
+  type: 'test'
+  ...
+# Subtest: CRM-T-029 supplied documented positive parameters validate
+ok 58 - CRM-T-029 supplied documented positive parameters validate
+  ---
+  duration_ms: 0.677023
+  type: 'test'
+  ...
+# Subtest: CRM-T-030 supplied documented positive parameters validate
+ok 59 - CRM-T-030 supplied documented positive parameters validate
+  ---
+  duration_ms: 0.608967
+  type: 'test'
+  ...
+# Subtest: CRM-T-031 supplied documented positive parameters validate
+ok 60 - CRM-T-031 supplied documented positive parameters validate
+  ---
+  duration_ms: 0.517198
+  type: 'test'
+  ...
+# Subtest: CRM-T-032 supplied documented positive parameters validate
+ok 61 - CRM-T-032 supplied documented positive parameters validate
+  ---
+  duration_ms: 0.660578
+  type: 'test'
+  ...
+# Subtest: CRM-T-033 supplied documented positive parameters validate
+ok 62 - CRM-T-033 supplied documented positive parameters validate
+  ---
+  duration_ms: 0.265221
+  type: 'test'
+  ...
+# Subtest: CRM-T-034 supplied documented positive parameters validate
+ok 63 - CRM-T-034 supplied documented positive parameters validate
+  ---
+  duration_ms: 0.215104
+  type: 'test'
+  ...
+# Subtest: CRM-T-035 supplied documented positive parameters validate
+ok 64 - CRM-T-035 supplied documented positive parameters validate
+  ---
+  duration_ms: 0.276311
+  type: 'test'
+  ...
+# Subtest: path keys preserve spaces, Unicode and plus signs after exactly one encoding
+ok 65 - path keys preserve spaces, Unicode and plus signs after exactly one encoding
+  ---
+  duration_ms: 0.250451
+  type: 'test'
+  ...
+# Subtest: missing nested public contact fields are returned at exact paths
+ok 66 - missing nested public contact fields are returned at exact paths
+  ---
+  duration_ms: 0.21974
+  type: 'test'
+  ...
+# Subtest: CIS quantities and post-fix photos are conditional
+ok 67 - CIS quantities and post-fix photos are conditional
+  ---
+  duration_ms: 0.504891
+  type: 'test'
+  ...
+# Subtest: Madinati/external date and attachment spelling remain distinct
+ok 68 - Madinati/external date and attachment spelling remain distinct
+  ---
+  duration_ms: 0.171248
+  type: 'test'
+  ...
+# Subtest: wrong field case suggests correction and does not mutate input
+ok 69 - wrong field case suggests correction and does not mutate input
+  ---
+  duration_ms: 0.247476
+  type: 'test'
+  ...
+# Subtest: types, enums and unknown model-supplied host fields are rejected
+ok 70 - types, enums and unknown model-supplied host fields are rejected
+  ---
+  duration_ms: 0.182441
+  type: 'test'
+  ...
+# Subtest: business error envelopes with HTTP 200 are failures
+ok 71 - business error envelopes with HTTP 200 are failures
+  ---
+  duration_ms: 7.893768
+  type: 'test'
+  ...
+# Subtest: SSO JWT never falls back to consumer OAuth
+ok 72 - SSO JWT never falls back to consumer OAuth
+  ---
+  duration_ms: 0.895293
+  type: 'test'
+  ...
+# Subtest: conflicting real auth and body shapes require provider-confirmed policy
+ok 73 - conflicting real auth and body shapes require provider-confirmed policy
+  ---
+  duration_ms: 1.7294
+  type: 'test'
+  ...
+# Subtest: real adapter caches OAuth and preserves a failed mutation as uncertain without retry
+ok 74 - real adapter caches OAuth and preserves a failed mutation as uncertain without retry
+  ---
+  duration_ms: 62.741355
+  type: 'test'
+  ...
+# Subtest: new regression datasets preserve minimum counts, enabled status and hidden references
+ok 75 - new regression datasets preserve minimum counts, enabled status and hidden references
+  ---
+  duration_ms: 77.397759
+  type: 'test'
+  ...
+# Subtest: a requested photo presents a native file picker, not a base64 text box
+ok 76 - a requested photo presents a native file picker, not a base64 text box
+  ---
+  duration_ms: 9.805833
+  type: 'test'
+  ...
+# Subtest: selected bytes are validated and private while their metadata is available for planning
+ok 77 - selected bytes are validated and private while their metadata is available for planning
+  ---
+  duration_ms: 115.857607
+  type: 'test'
+  ...
+# Subtest: HTTP active service exposes CRM identity, 35 typed tools and validated OpenAPI, legacy APIs return Gone
+ok 78 - HTTP active service exposes CRM identity, 35 typed tools and validated OpenAPI, legacy APIs return Gone
+  ---
+  duration_ms: 171.261192
+  type: 'test'
+  ...
+# Subtest: HTTP authenticated-session actions enforce CSRF and show exact CRM confirmation before any write
+ok 79 - HTTP authenticated-session actions enforce CSRF and show exact CRM confirmation before any write
+  ---
+  duration_ms: 329.078411
+  type: 'test'
+  ...
+# Subtest: HTTP clean model verdicts cannot silently select one of several case records and a real choice resumes the exact selected key once
+ok 80 - HTTP clean model verdicts cannot silently select one of several case records and a real choice resumes the exact selected key once
+  ---
+  duration_ms: 623.581895
+  type: 'test'
+  ...
+# Subtest: HTTP none-of-these is a real unselected case boundary for incident municipal and inquiry details without an arbitrary fallback
+ok 81 - HTTP none-of-these is a real unselected case boundary for incident municipal and inquiry details without an arbitrary fallback
+  ---
+  duration_ms: 381.602372
+  type: 'test'
+  ...
+# Subtest: HTTP case choices cannot survive an owner switch or a newer actual history receipt
+ok 82 - HTTP case choices cannot survive an owner switch or a newer actual history receipt
+  ---
+  duration_ms: 161.972206
+  type: 'test'
+  ...
+# Subtest: HTTP listing all actual cases and explicitly naming a real number key or complete unique description do not require another case choice
+ok 83 - HTTP listing all actual cases and explicitly naming a real number key or complete unique description do not require another case choice
+  ---
+  duration_ms: 326.144361
+  type: 'test'
+  ...
+# Subtest: HTTP citing a true earlier detail cannot bypass current case ambiguity even when both model verifiers approve
+ok 84 - HTTP citing a true earlier detail cannot bypass current case ambiguity even when both model verifiers approve
+  ---
+  duration_ms: 281.923492
+  type: 'test'
+  ...
+# Subtest: HTTP missing or different SSO receipt ownership is rejected and a fresh same-owner query can recover
+ok 85 - HTTP missing or different SSO receipt ownership is rejected and a fresh same-owner query can recover
+  ---
+  duration_ms: 261.693705
+  type: 'test'
+  ...
+# Subtest: HTTP a signed-out restored SSO receipt cannot pass an undefined-owner comparison or become an answer
+ok 86 - HTTP a signed-out restored SSO receipt cannot pass an undefined-owner comparison or become an answer
+  ---
+  duration_ms: 193.894148
+  type: 'test'
+  ...
+# Subtest: HTTP a prior none-of-these selection expires when a fresh real history exposes changed candidates
+ok 87 - HTTP a prior none-of-these selection expires when a fresh real history exposes changed candidates
+  ---
+  duration_ms: 99.881331
+  type: 'test'
+  ...
+# Subtest: HTTP a guessed detail key requires actual owned history and cannot dispatch or be made into a successful read
+ok 88 - HTTP a guessed detail key requires actual owned history and cannot dispatch or be made into a successful read
+  ---
+  duration_ms: 171.688944
+  type: 'test'
+  ...
+# Subtest: HTTP report-number references use identifier boundaries so CASE-10 never selects CASE-1 while exact and Chinese references still work
+ok 89 - HTTP report-number references use identifier boundaries so CASE-10 never selects CASE-1 while exact and Chinese references still work
+  ---
+  duration_ms: 249.052096
+  type: 'test'
+  ...
+# Subtest: HTTP case-choice statuses use the same Chinese English and Arabic labels as the selected final record without changing returned wire facts
+ok 90 - HTTP case-choice statuses use the same Chinese English and Arabic labels as the selected final record without changing returned wire facts
+  ---
+  duration_ms: 329.177451
+  type: 'test'
+  ...
+# Subtest: HTTP full routing calls FAQ and sentiment before a beneficiary history and uses returned keys for details
+ok 91 - HTTP full routing calls FAQ and sentiment before a beneficiary history and uses returned keys for details
+  ---
+  duration_ms: 69.56306
+  type: 'test'
+  ...
+# Subtest: HTTP failed prose gates make the author retry plan and question while host read facts preserve the business target
+ok 92 - HTTP failed prose gates make the author retry plan and question while host read facts preserve the business target
+  ---
+  duration_ms: 247.475054
+  type: 'test'
+  ...
+# Subtest: HTTP a malformed verification verdict cannot publish its plan or bypass confirmation
+ok 93 - HTTP a malformed verification verdict cannot publish its plan or bypass confirmation
+  ---
+  duration_ms: 121.194906
+  type: 'test'
+  ...
+# Subtest: HTTP beneficiary history and details are isolated between different demo identities
+ok 94 - HTTP beneficiary history and details are isolated between different demo identities
+  ---
+  duration_ms: 227.520958
+  type: 'test'
+  ...
+# Subtest: HTTP a beneficiary cannot fetch another account case even when its full Pega key is known
+ok 95 - HTTP a beneficiary cannot fetch another account case even when its full Pega key is known
+  ---
+  duration_ms: 112.198129
+  type: 'test'
+  ...
+# Subtest: HTTP a beneficiary incident key cannot be fetched as a municipal service or inquiry
+ok 96 - HTTP a beneficiary incident key cannot be fetched as a municipal service or inquiry
+  ---
+  duration_ms: 199.291386
+  type: 'test'
+  ...
+# Subtest: HTTP My matters cannot bypass the beneficiary ownership filter
+ok 97 - HTTP My matters cannot bypass the beneficiary ownership filter
+  ---
+  duration_ms: 91.027537
+  type: 'test'
+  ...
+# Subtest: HTTP FAQ interruption keeps an exact pending CRM confirmation and feedback points to the original request
+ok 98 - HTTP FAQ interruption keeps an exact pending CRM confirmation and feedback points to the original request
+  ---
+  duration_ms: 84.239138
+  type: 'test'
+  ...
+# Subtest: HTTP edits revoke old confirmation, validate the payload, and concurrent approval dispatches once
+ok 99 - HTTP edits revoke old confirmation, validate the payload, and concurrent approval dispatches once
+  ---
+  duration_ms: 169.300053
+  type: 'test'
+  ...
+# Subtest: HTTP native field editing accepts a structured payload and changes only the edited complaint field
+ok 100 - HTTP native field editing accepts a structured payload and changes only the edited complaint field
+  ---
+  duration_ms: 90.136507
+  type: 'test'
+  ...
+# Subtest: HTTP a natural title correction reuses known submission facts and requires a fresh exact confirmation
+ok 101 - HTTP a natural title correction reuses known submission facts and requires a fresh exact confirmation
+  ---
+  duration_ms: 168.584689
+  type: 'test'
+  ...
+# Subtest: HTTP a complete draft rejects redundant known-data and text-consent questions after an explicit correction
+ok 102 - HTTP a complete draft rejects redundant known-data and text-consent questions after an explicit correction
+  ---
+  duration_ms: 140.701961
+  type: 'test'
+  ...
+# Subtest: HTTP first-time submission cannot request non-contract consent fields instead of the exact confirmation card
+ok 103 - HTTP first-time submission cannot request non-contract consent fields instead of the exact confirmation card
+  ---
+  duration_ms: 64.355115
+  type: 'test'
+  ...
+# Subtest: HTTP complete known submission parameters go directly to the exact host card without text approval
+ok 104 - HTTP complete known submission parameters go directly to the exact host card without text approval
+  ---
+  duration_ms: 53.396877
+  type: 'test'
+  ...
+# Subtest: HTTP a partial submission rejects questions about known data and asks only for the actual missing field
+ok 105 - HTTP a partial submission rejects questions about known data and asks only for the actual missing field
+  ---
+  duration_ms: 98.991128
+  type: 'test'
+  ...
+# Subtest: HTTP optional upload metadata cannot block collecting the genuinely missing file bytes
+ok 106 - HTTP optional upload metadata cannot block collecting the genuinely missing file bytes
+  ---
+  duration_ms: 62.965029
+  type: 'test'
+  ...
+# Subtest: HTTP public write completion is grounded in its receipt and excludes invented official follow-up promises
+ok 107 - HTTP public write completion is grounded in its receipt and excludes invented official follow-up promises
+  ---
+  duration_ms: 420.818161
+  type: 'test'
+  ...
+# Subtest: HTTP file selection keeps exact bytes on the host, requires separate confirmations, and cannot cross sessions
+ok 108 - HTTP file selection keeps exact bytes on the host, requires separate confirmations, and cannot cross sessions
+  ---
+  duration_ms: 746.373425
+  type: 'test'
+  ...
+# Subtest: HTTP a raw public upload cannot bypass actual file selection with model-invented bytes
+ok 109 - HTTP a raw public upload cannot bypass actual file selection with model-invented bytes
+  ---
+  duration_ms: 129.917123
+  type: 'test'
+  ...
+# Subtest: HTTP an existing-case attachment uses trusted metadata, exact selected bytes and the returned download key
+ok 110 - HTTP an existing-case attachment uses trusted metadata, exact selected bytes and the returned download key
+  ---
+  duration_ms: 137.482045
+  type: 'test'
+  ...
+# Subtest: HTTP cancel revokes the confirmation and cannot dispatch an old mutation
+ok 111 - HTTP cancel revokes the confirmation and cannot dispatch an old mutation
+  ---
+  duration_ms: 99.352747
+  type: 'test'
+  ...
+# Subtest: HTTP missing parameter recovery continues the same business request through trusted UI input
+ok 112 - HTTP missing parameter recovery continues the same business request through trusted UI input
+  ---
+  duration_ms: 136.283059
+  type: 'test'
+  ...
+# Subtest: HTTP negative sentiment does not block an explicit beneficiary status request behind a human choice
+ok 113 - HTTP negative sentiment does not block an explicit beneficiary status request behind a human choice
+  ---
+  duration_ms: 106.905868
+  type: 'test'
+  ...
+# Subtest: HTTP a direct request for a human presents the help choice even with neutral sentiment
+ok 114 - HTTP a direct request for a human presents the help choice even with neutral sentiment
+  ---
+  duration_ms: 20.774448
+  type: 'test'
+  ...
+# Subtest: HTTP lost mutation response is reconciled from durable outcome without a duplicate mutation
+ok 115 - HTTP lost mutation response is reconciled from durable outcome without a duplicate mutation
+  ---
+  duration_ms: 203.821678
+  type: 'test'
+  ...
+# Subtest: HTTP read failure is not a successful receipt and an explicit retry can recover
+ok 116 - HTTP read failure is not a successful receipt and an explicit retry can recover
+  ---
+  duration_ms: 269.61404
+  type: 'test'
+  ...
+# Subtest: HTTP restored legacy Road confirmations cannot be approved against the CRM assistant
+ok 117 - HTTP restored legacy Road confirmations cannot be approved against the CRM assistant
+  ---
+  duration_ms: 6.681588
+  type: 'test'
+  ...
+# Subtest: HTTP feedback preserves original CRM evidence across FAQ interruption and is isolated from another browser session
+ok 118 - HTTP feedback preserves original CRM evidence across FAQ interruption and is isolated from another browser session
+  ---
+  duration_ms: 132.948774
+  type: 'test'
+  ...
+# Subtest: HTTP a persisted current CRM confirmation survives server replacement and is executed only once
+ok 119 - HTTP a persisted current CRM confirmation survives server replacement and is executed only once
+  ---
+  duration_ms: 126.756011
+  type: 'test'
+  ...
+# Subtest: HTTP login input is allowed only for a signed-out SSO operation
+ok 120 - HTTP login input is allowed only for a signed-out SSO operation
+  ---
+  duration_ms: 221.322846
+  type: 'test'
+  ...
+# Subtest: HTTP file input must collect actual stream bytes rather than form metadata or a filename
+ok 121 - HTTP file input must collect actual stream bytes rather than form metadata or a filename
+  ---
+  duration_ms: 153.925891
+  type: 'test'
+  ...
+# Subtest: HTTP a change-value question needs an existing draft and an actually requested replacement
+ok 122 - HTTP a change-value question needs an existing draft and an actually requested replacement
+  ---
+  duration_ms: 163.761689
+  type: 'test'
+  ...
+# Subtest: HTTP semantic input review sees actual known data and rejects a fabricated description gap and text consent
+ok 123 - HTTP semantic input review sees actual known data and rejects a fabricated description gap and text consent
+  ---
+  duration_ms: 280.738876
+  type: 'test'
+  ...
+# Subtest: HTTP rejected wire-code narration and translated draft retry before a single exact confirmation
+ok 124 - HTTP rejected wire-code narration and translated draft retry before a single exact confirmation
+  ---
+  duration_ms: 263.715301
+  type: 'test'
+  ...
+# Subtest: HTTP an explicitly supplied English description stays verbatim in a Chinese conversation
+ok 125 - HTTP an explicitly supplied English description stays verbatim in a Chinese conversation
+  ---
+  duration_ms: 161.336891
+  type: 'test'
+  ...
+# Subtest: HTTP case history summary uses distinct returned records, status and dates without expanding attachment flags
+ok 126 - HTTP case history summary uses distinct returned records, status and dates without expanding attachment flags
+  ---
+  duration_ms: 59.396239
+  type: 'test'
+  ...
+# Subtest: HTTP typed incident, municipal service and inquiry summaries stay grounded in their actual records and conversation language
+ok 127 - HTTP typed incident, municipal service and inquiry summaries stay grounded in their actual records and conversation language
+  ---
+  duration_ms: 252.442716
+  type: 'test'
+  ...
+# Subtest: HTTP a selected fetched case is the read-summary target and an earlier receipt cannot be fabricated into this turn
+ok 128 - HTTP a selected fetched case is the read-summary target and an earlier receipt cannot be fabricated into this turn
+  ---
+  duration_ms: 171.915084
+  type: 'test'
+  ...
+# Subtest: HTTP prose cancellation formatting normalizes paragraph escapes while preserving inline and fenced code
+ok 129 - HTTP prose cancellation formatting normalizes paragraph escapes while preserving inline and fenced code
+  ---
+  duration_ms: 49.519268
+  type: 'test'
+  ...
+# Subtest: HTTP a free capability answer must still be rejected and regenerated after a verifier issue
+ok 130 - HTTP a free capability answer must still be rejected and regenerated after a verifier issue
+  ---
+  duration_ms: 117.970145
+  type: 'test'
+  ...
+# Subtest: HTTP a carried completed read receipt remains evidence for a revised active plan without another API call
+ok 131 - HTTP a carried completed read receipt remains evidence for a revised active plan without another API call
+  ---
+  duration_ms: 77.960598
+  type: 'test'
+  ...
+# Subtest: HTTP mixed ambiguity presents actual readable candidates before any unconfirmed detail fetch
+ok 132 - HTTP mixed ambiguity presents actual readable candidates before any unconfirmed detail fetch
+  ---
+  duration_ms: 67.064508
+  type: 'test'
+  ...
+# Subtest: HTTP mixed status, missing reason and unavailable action retain grounded next-step guidance without silently submitting a complaint
+ok 133 - HTTP mixed status, missing reason and unavailable action retain grounded next-step guidance without silently submitting a complaint
+  ---
+  duration_ms: 172.266019
+  type: 'test'
+  ...
+# Subtest: HTTP guidance cannot manufacture ambiguity when actual case evidence has only one candidate
+ok 134 - HTTP guidance cannot manufacture ambiguity when actual case evidence has only one candidate
+  ---
+  duration_ms: 78.592044
+  type: 'test'
+  ...
+# Subtest: HTTP file-unavailable guidance cannot contradict an actual owned file download receipt
+ok 135 - HTTP file-unavailable guidance cannot contradict an actual owned file download receipt
+  ---
+  duration_ms: 129.61942
+  type: 'test'
+  ...
+# Subtest: HTTP not-found and access-limited guidance preserve the actual available history candidates
+ok 136 - HTTP not-found and access-limited guidance preserve the actual available history candidates
+  ---
+  duration_ms: 112.549341
+  type: 'test'
+  ...
+# Subtest: HTTP result provenance distinguishes host submission from the integration-only model narrative
+ok 137 - HTTP result provenance distinguishes host submission from the integration-only model narrative
+  ---
+  duration_ms: 164.067447
+  type: 'test'
+  ...
+# Subtest: HTTP the first signed-out SSO history call opens one host login control and resumes the same intended lookup
+ok 138 - HTTP the first signed-out SSO history call opens one host login control and resumes the same intended lookup
+  ---
+  duration_ms: 137.650808
+  type: 'test'
+  ...
+# Subtest: HTTP a host login prerequisite preserves the exact signed-out fetch target and executes it only after sign-in
+ok 139 - HTTP a host login prerequisite preserves the exact signed-out fetch target and executes it only after sign-in
+  ---
+  duration_ms: 84.290428
+  type: 'test'
+  ...
+# Subtest: HTTP a respond-only replan within the same request still renders its actual cited case facts
+ok 140 - HTTP a respond-only replan within the same request still renders its actual cited case facts
+  ---
+  duration_ms: 96.967652
+  type: 'test'
+  ...
+# Subtest: HTTP a blocked partial request keeps successful read facts and clearly leaves the failed target unfinished
+ok 141 - HTTP a blocked partial request keeps successful read facts and clearly leaves the failed target unfinished
+  ---
+  duration_ms: 60.932946
+  type: 'test'
+  ...
+# Subtest: HTTP a prior question write receipt cannot turn a new respond-only answer into a new host submission
+ok 142 - HTTP a prior question write receipt cannot turn a new respond-only answer into a new host submission
+  ---
+  duration_ms: 154.535059
+  type: 'test'
+  ...
+# Subtest: HTTP a follow-up can cite an actual earlier case read without a new query or ungrounded free-form facts
+ok 143 - HTTP a follow-up can cite an actual earlier case read without a new query or ungrounded free-form facts
+  ---
+  duration_ms: 140.219004
+  type: 'test'
+  ...
+# Subtest: HTTP receipt-free typed capability guidance cannot promise external handling or create an unchosen complaint
+ok 144 - HTTP receipt-free typed capability guidance cannot promise external handling or create an unchosen complaint
+  ---
+  duration_ms: 106.900786
+  type: 'test'
+  ...
+# Subtest: HTTP typed case-choice or not-found claims require an actual query before any candidate facts can be shown
+ok 145 - HTTP typed case-choice or not-found claims require an actual query before any candidate facts can be shown
+  ---
+  duration_ms: 91.033122
+  type: 'test'
+  ...
+# Subtest: HTTP a confirmed local form write and an unavailable extra action both appear without inventing a refund or external handling
+ok 146 - HTTP a confirmed local form write and an unavailable extra action both appear without inventing a refund or external handling
+  ---
+  duration_ms: 173.51573
+  type: 'test'
+  ...
+# Subtest: HTTP a blocked request with one successful form reports that exact receipt and the unfinished remainder
+ok 147 - HTTP a blocked request with one successful form reports that exact receipt and the unfinished remainder
+  ---
+  duration_ms: 83.65185
+  type: 'test'
+  ...
+# Subtest: HTTP a delivered full name maps once across name fields and cannot be duplicated to obtain a confirmation
+ok 148 - HTTP a delivered full name maps once across name fields and cannot be duplicated to obtain a confirmation
+  ---
+  duration_ms: 127.701207
+  type: 'test'
+  ...
+# Subtest: HTTP semantically invalid duplicated name fields permit genuine clarification and then exact submission
+ok 149 - HTTP semantically invalid duplicated name fields permit genuine clarification and then exact submission
+  ---
+  duration_ms: 70.119937
+  type: 'test'
+  ...
+# Subtest: HTTP separately stated identical given and family names remain valid through title correction without leaking source metadata
+ok 150 - HTTP separately stated identical given and family names remain valid through title correction without leaking source metadata
+  ---
+  duration_ms: 281.769044
+  type: 'test'
+  ...
+# Subtest: HTTP nonexistent or overlapping name quotes cannot substitute for actual separate user sources
+ok 151 - HTTP nonexistent or overlapping name quotes cannot substitute for actual separate user sources
+  ---
+  duration_ms: 113.523288
+  type: 'test'
+  ...
+# Subtest: HTTP complete known parameters preserve explicit name-source quotes when proceeding directly to confirmation
+ok 152 - HTTP complete known parameters preserve explicit name-source quotes when proceeding directly to confirmation
+  ---
+  duration_ms: 119.404973
+  type: 'test'
+  ...
+# Subtest: HTTP catalog-only blocked guidance preserves the uncompleted original request and does not submit its optional alternative
+ok 153 - HTTP catalog-only blocked guidance preserves the uncompleted original request and does not submit its optional alternative
+  ---
+  duration_ms: 198.611923
+  type: 'test'
+  ...
+# Subtest: HTTP terminal errors use the conversation language and preserve successful writes without exposing internal error text
+ok 154 - HTTP terminal errors use the conversation language and preserve successful writes without exposing internal error text
+  ---
+  duration_ms: 232.159592
+  type: 'test'
+  ...
+# Subtest: HTTP selecting a service is real user input and still requires separate exact file and form approvals
+ok 155 - HTTP selecting a service is real user input and still requires separate exact file and form approvals
+  ---
+  duration_ms: 172.439547
+  type: 'test'
+  ...
+# Subtest: HTTP the selected original route or none cannot be changed into a general complaint during recovery
+ok 156 - HTTP the selected original route or none cannot be changed into a general complaint during recovery
+  ---
+  duration_ms: 180.657633
+  type: 'test'
+  ...
+# Subtest: HTTP an unresolved service choice can be cancelled and cannot be resumed by a stale selection
+ok 157 - HTTP an unresolved service choice can be cancelled and cannot be resumed by a stale selection
+  ---
+  duration_ms: 51.601757
+  type: 'test'
+  ...
+# Subtest: HTTP real case fields do not establish a merely similar user target; rejected selection recovers to qualified candidates
+ok 158 - HTTP real case fields do not establish a merely similar user target; rejected selection recovers to qualified candidates
+  ---
+  duration_ms: 139.105742
+  type: 'test'
+  ...
+# Subtest: HTTP an explicitly selected two-service option permits both routes only through independent exact approvals
+ok 159 - HTTP an explicitly selected two-service option permits both routes only through independent exact approvals
+  ---
+  duration_ms: 195.757821
+  type: 'test'
+  ...
+# Subtest: HTTP stop cannot be mixed with additional writes and a primary route cannot be repeated as an additional service
+ok 160 - HTTP stop cannot be mixed with additional writes and a primary route cannot be repeated as an additional service
+  ---
+  duration_ms: 134.798841
+  type: 'test'
+  ...
+# Subtest: HTTP service-choice Unicode bullet separators are normalized before both verifier gates and the shipped UI
+ok 161 - HTTP service-choice Unicode bullet separators are normalized before both verifier gates and the shipped UI
+  ---
+  duration_ms: 95.292096
+  type: 'test'
+  ...
+# Subtest: HTTP the tool runtime preserves a documented nullable description through exact confirmation and wire dispatch
+ok 162 - HTTP the tool runtime preserves a documented nullable description through exact confirmation and wire dispatch
+  ---
+  duration_ms: 112.69391
+  type: 'test'
+  ...
+# Subtest: HTTP an unconfirmed case association in a partial complaint is rejected before collecting contacts and the author must correct its source
+ok 163 - HTTP an unconfirmed case association in a partial complaint is rejected before collecting contacts and the author must correct its source
+  ---
+  duration_ms: 142.861357
+  type: 'test'
+  ...
+# Subtest: HTTP a required city input uses a fixed ordinary three-language question and preserves mixed-field draft facts without exposing a code list
+ok 164 - HTTP a required city input uses a fixed ordinary three-language question and preserves mixed-field draft facts without exposing a code list
+  ---
+  duration_ms: 180.778184
+  type: 'test'
+  ...
+# Subtest: HTTP unresolved lower administrative identifiers cannot become a citizen input or silently submitted report
+ok 165 - HTTP unresolved lower administrative identifiers cannot become a citizen input or silently submitted report
+  ---
+  duration_ms: 119.152378
+  type: 'test'
+  ...
+# Subtest: HTTP missing the entire administrative location stops before city or contact collection when required lower metadata cannot be resolved
+ok 166 - HTTP missing the entire administrative location stops before city or contact collection when required lower metadata cannot be resolved
+  ---
+  duration_ms: 88.583163
+  type: 'test'
+  ...
+# Subtest: HTTP an omitted optional municipality filter cannot block reading classifications without that filter
+ok 167 - HTTP an omitted optional municipality filter cannot block reading classifications without that filter
+  ---
+  duration_ms: 63.151149
+  type: 'test'
+  ...
+# Subtest: HTTP an explicitly unresolved optional city-filter choice asks for a human place name while retaining the classification type
+ok 168 - HTTP an explicitly unresolved optional city-filter choice asks for a human place name while retaining the classification type
+  ---
+  duration_ms: 48.552927
+  type: 'test'
+  ...
+# Subtest: journey choice actor never chooses a default route without an explicit frozen fact
+ok 169 - journey choice actor never chooses a default route without an explicit frozen fact
+  ---
+  duration_ms: 1.983062
+  type: 'test'
+  ...
+# Subtest: journey choice actor accepts only an actually offered explicit choice identifier
+ok 170 - journey choice actor accepts only an actually offered explicit choice identifier
+  ---
+  duration_ms: 0.309418
+  type: 'test'
+  ...
+# Subtest: journey choice actor matches exact visible labels or identifiers while preserving multilingual meaning
+ok 171 - journey choice actor matches exact visible labels or identifiers while preserving multilingual meaning
+  ---
+  duration_ms: 1.525611
+  type: 'test'
+  ...
+# Subtest: journey choice actor does not infer a service from paraphrases partial labels or a future clarification
+ok 172 - journey choice actor does not infer a service from paraphrases partial labels or a future clarification
+  ---
+  duration_ms: 0.291508
+  type: 'test'
+  ...
+# Subtest: journey choice actor leaves duplicate visible labels ambiguous and permits a unique explicit identifier
+ok 173 - journey choice actor leaves duplicate visible labels ambiguous and permits a unique explicit identifier
+  ---
+  duration_ms: 0.241652
+  type: 'test'
+  ...
+# Subtest: journey choice actor cannot use an unsupported UI kind or duplicate identifiers as a selection
+ok 174 - journey choice actor cannot use an unsupported UI kind or duplicate identifiers as a selection
+  ---
+  duration_ms: 0.182051
+  type: 'test'
+  ...
+# Subtest: journey grader accepts an owned returned history row as evidence without forcing an extra detail request
+ok 175 - journey grader accepts an owned returned history row as evidence without forcing an extra detail request
+  ---
+  duration_ms: 5.482152
+  type: 'test'
+  ...
+# Subtest: journey grader never credits an identifier appearing only in an undelivered future answer
+ok 176 - journey grader never credits an identifier appearing only in an undelivered future answer
+  ---
+  duration_ms: 0.517037
+  type: 'test'
+  ...
+# Subtest: journey grader defers a private future target and does not inflate pass counts
+ok 177 - journey grader defers a private future target and does not inflate pass counts
+  ---
+  duration_ms: 0.486252
+  type: 'test'
+  ...
+# Subtest: journey grader uses an actually delivered input as an identifier source
+ok 178 - journey grader uses an actually delivered input as an identifier source
+  ---
+  duration_ms: 0.272744
+  type: 'test'
+  ...
+# Subtest: journey grader requires an actionable service choice for the clarification host state
+ok 179 - journey grader requires an actionable service choice for the clarification host state
+  ---
+  duration_ms: 0.322047
+  type: 'test'
+  ...
+# Subtest: journey grader keeps unauthorized writes and foreign returned records as hard failures despite deferred targets
+ok 180 - journey grader keeps unauthorized writes and foreign returned records as hard failures despite deferred targets
+  ---
+  duration_ms: 1.455141
+  type: 'test'
+  ...
+# Subtest: journey grader rejects a narrated target that no successful history or detail receipt returned
+ok 181 - journey grader rejects a narrated target that no successful history or detail receipt returned
+  ---
+  duration_ms: 0.391673
+  type: 'test'
+  ...
+# Subtest: journey grader canonicalizes a schema-known body field location while preserving exact parameter spelling
+ok 182 - journey grader canonicalizes a schema-known body field location while preserving exact parameter spelling
+  ---
+  duration_ms: 0.584995
+  type: 'test'
+  ...
+# Subtest: FAQ routing: a statement is not a generic service question: My whole neighborhood is dark.
+ok 183 - FAQ routing: a statement is not a generic service question: My whole neighborhood is dark.
+  ---
+  duration_ms: 134.427615
+  type: 'test'
+  ...
+# Subtest: FAQ routing: a statement is not a generic service question: The whole street is covered in rubbish.
+ok 184 - FAQ routing: a statement is not a generic service question: The whole street is covered in rubbish.
+  ---
+  duration_ms: 69.07408
+  type: 'test'
+  ...
+# Subtest: FAQ routing: a statement is not a generic service question: The company is called Wholesale Market.
+ok 185 - FAQ routing: a statement is not a generic service question: The company is called Wholesale Market.
+  ---
+  duration_ms: 50.426667
+  type: 'test'
+  ...
+# Subtest: FAQ routing: a statement is not a generic service question: The charge for last month’s service is wrong.
+ok 186 - FAQ routing: a statement is not a generic service question: The charge for last month’s service is wrong.
+  ---
+  duration_ms: 39.143251
+  type: 'test'
+  ...
+# Subtest: FAQ routing: a statement is not a generic service question: There are documents attached to my report.
+ok 187 - FAQ routing: a statement is not a generic service question: There are documents attached to my report.
+  ---
+  duration_ms: 17.984399
+  type: 'test'
+  ...
+# Subtest: FAQ routing: a statement is not a generic service question: This service is disappointing.
+ok 188 - FAQ routing: a statement is not a generic service question: This service is disappointing.
+  ---
+  duration_ms: 37.489234
+  type: 'test'
+  ...
+# Subtest: FAQ routing: a statement is not a generic service question: 这项服务的费用已经支付，收据在我这里。
+ok 189 - FAQ routing: a statement is not a generic service question: 这项服务的费用已经支付，收据在我这里。
+  ---
+  duration_ms: 27.148711
+  type: 'test'
+  ...
+# Subtest: FAQ routing: a statement is not a generic service question: رسوم هذه الخدمة مدفوعة بالكامل.
+ok 190 - FAQ routing: a statement is not a generic service question: رسوم هذه الخدمة مدفوعة بالكامل.
+  ---
+  duration_ms: 41.937612
+  type: 'test'
+  ...
+# Subtest: FAQ routing: an explicit target/action is not replaced by a service picker: Can you help me apply for a business license through this service?
+ok 191 - FAQ routing: an explicit target/action is not replaced by a service picker: Can you help me apply for a business license through this service?
+  ---
+  duration_ms: 37.591193
+  type: 'test'
+  ...
+# Subtest: FAQ routing: an explicit target/action is not replaced by a service picker: 这个服务能帮我办理营业许可证吗？
+ok 192 - FAQ routing: an explicit target/action is not replaced by a service picker: 这个服务能帮我办理营业许可证吗？
+  ---
+  duration_ms: 36.600189
+  type: 'test'
+  ...
+# Subtest: FAQ routing: an explicit target/action is not replaced by a service picker: أريد إصدار رخصة تجارية من هذه الخدمة، هل تستطيع إنهاء الطلب؟
+ok 193 - FAQ routing: an explicit target/action is not replaced by a service picker: أريد إصدار رخصة تجارية من هذه الخدمة، هل تستطيع إنهاء الطلب؟
+  ---
+  duration_ms: 25.862305
+  type: 'test'
+  ...
+# Subtest: FAQ routing: an explicit target/action is not replaced by a service picker: Who can help me report the whole street being dark?
+ok 194 - FAQ routing: an explicit target/action is not replaced by a service picker: Who can help me report the whole street being dark?
+  ---
+  duration_ms: 21.942889
+  type: 'test'
+  ...
+# Subtest: FAQ routing: an explicit target/action is not replaced by a service picker: The charge is wrong. Please help me complain about it.
+ok 195 - FAQ routing: an explicit target/action is not replaced by a service picker: The charge is wrong. Please help me complain about it.
+  ---
+  duration_ms: 21.307862
+  type: 'test'
+  ...
+# Subtest: BALADY routing: a clear unsupported license request reaches the assistant explanation: Can you help me apply for a business license through this service?
+ok 196 - BALADY routing: a clear unsupported license request reaches the assistant explanation: Can you help me apply for a business license through this service?
+  ---
+  duration_ms: 70.457111
+  type: 'test'
+  ...
+# Subtest: BALADY routing: a clear unsupported license request reaches the assistant explanation: 这个服务能帮我办理营业许可证吗？
+ok 197 - BALADY routing: a clear unsupported license request reaches the assistant explanation: 这个服务能帮我办理营业许可证吗？
+  ---
+  duration_ms: 41.496581
+  type: 'test'
+  ...
+# Subtest: BALADY routing: a clear unsupported license request reaches the assistant explanation: أريد إصدار رخصة تجارية من هذه الخدمة، هل تستطيع إنهاء الطلب؟
+ok 198 - BALADY routing: a clear unsupported license request reaches the assistant explanation: أريد إصدار رخصة تجارية من هذه الخدمة، هل تستطيع إنهاء الطلب؟
+  ---
+  duration_ms: 49.379219
+  type: 'test'
+  ...
+# Subtest: FAQ routing: a genuine named-service fee question remains answerable: 民防费用发票和市政费用发票，是同一张吗？
+ok 199 - FAQ routing: a genuine named-service fee question remains answerable: 民防费用发票和市政费用发票，是同一张吗？
+  ---
+  duration_ms: 13.626613
+  type: 'test'
+  ...
+# Subtest: FAQ routing: a genuine named-service fee question remains answerable: هل فاتورة رسوم الدفاع المدني هي نفسها فاتورة الرسوم البلدية؟
+ok 200 - FAQ routing: a genuine named-service fee question remains answerable: هل فاتورة رسوم الدفاع المدني هي نفسها فاتورة الرسوم البلدية؟
+  ---
+  duration_ms: 14.248778
+  type: 'test'
+  ...
+# Subtest: FAQ routing: a genuine named-service fee question remains answerable: Are Civil Defense and municipal fee invoices the same invoice?
+ok 201 - FAQ routing: a genuine named-service fee question remains answerable: Are Civil Defense and municipal fee invoices the same invoice?
+  ---
+  duration_ms: 12.96473
+  type: 'test'
+  ...
+# Subtest: FAQ routing: exact trusted FAQ still returns its preserved source answer without a model selector
+ok 202 - FAQ routing: exact trusted FAQ still returns its preserved source answer without a model selector
+  ---
+  duration_ms: 18.19706
+  type: 'test'
+  ...
+# Subtest: FAQ routing: genuinely unspecified service policy asks which service: Who can apply for this service?
+ok 203 - FAQ routing: genuinely unspecified service policy asks which service: Who can apply for this service?
+  ---
+  duration_ms: 1.039463
+  type: 'test'
+  ...
+# Subtest: FAQ routing: genuinely unspecified service policy asks which service: 这个服务需要哪些材料？
+ok 204 - FAQ routing: genuinely unspecified service policy asks which service: 这个服务需要哪些材料？
+  ---
+  duration_ms: 11.511962
+  type: 'test'
+  ...
+# Subtest: FAQ routing: genuinely unspecified service policy asks which service: ما هي رسوم هذه الخدمة؟
+ok 205 - FAQ routing: genuinely unspecified service policy asks which service: ما هي رسوم هذه الخدمة؟
+  ---
+  duration_ms: 17.211395
+  type: 'test'
+  ...
+# Subtest: FAQ routing: a named unsupported service is not an unspecified catalog choice: What are the fees for renewing a restaurant license?
+ok 206 - FAQ routing: a named unsupported service is not an unspecified catalog choice: What are the fees for renewing a restaurant license?
+  ---
+  duration_ms: 13.432646
+  type: 'test'
+  ...
+# Subtest: FAQ routing: a named unsupported service is not an unspecified catalog choice: 营业许可证需要哪些材料？
+ok 207 - FAQ routing: a named unsupported service is not an unspecified catalog choice: 营业许可证需要哪些材料？
+  ---
+  duration_ms: 13.718838
+  type: 'test'
+  ...
+# Subtest: FAQ routing: a named unsupported service is not an unspecified catalog choice: ما هي رسوم رخصة محل تجاري؟
+ok 208 - FAQ routing: a named unsupported service is not an unspecified catalog choice: ما هي رسوم رخصة محل تجاري؟
+  ---
+  duration_ms: 14.878526
+  type: 'test'
+  ...
+# Subtest: FAQ routing: a named unsupported service is not an unspecified catalog choice: 这个服务办理餐饮许可证需要什么材料？
+ok 209 - FAQ routing: a named unsupported service is not an unspecified catalog choice: 这个服务办理餐饮许可证需要什么材料？
+  ---
+  duration_ms: 14.510084
+  type: 'test'
+  ...
+# Subtest: FAQ routing: a named unsupported service is not an unspecified catalog choice: How much does this service charge for a restaurant license?
+ok 210 - FAQ routing: a named unsupported service is not an unspecified catalog choice: How much does this service charge for a restaurant license?
+  ---
+  duration_ms: 29.953188
+  type: 'test'
+  ...
+# Subtest: FAQ routing: a named unsupported service is not an unspecified catalog choice: ما هي رسوم هذه الخدمة لإصدار رخصة محل تجاري؟
+ok 211 - FAQ routing: a named unsupported service is not an unspecified catalog choice: ما هي رسوم هذه الخدمة لإصدار رخصة محل تجاري؟
+  ---
+  duration_ms: 12.22843
+  type: 'test'
+  ...
+# Subtest: FAQ routing: eligibility wording is not automatically an instruction to perform an application: Can I apply for an infrastructure works permit as a service provider’s representative?
+ok 212 - FAQ routing: eligibility wording is not automatically an instruction to perform an application: Can I apply for an infrastructure works permit as a service provider’s representative?
+  ---
+  duration_ms: 13.650744
+  type: 'test'
+  ...
+# Subtest: FAQ routing: eligibility wording is not automatically an instruction to perform an application: 我是服务提供商的代表，能申请新开发规划区基础设施施工许可吗？
+ok 213 - FAQ routing: eligibility wording is not automatically an instruction to perform an application: 我是服务提供商的代表，能申请新开发规划区基础设施施工许可吗？
+  ---
+  duration_ms: 13.061526
+  type: 'test'
+  ...
+# Subtest: response verification requires two fresh clean approvals and returns the original text without changing facts
+ok 214 - response verification requires two fresh clean approvals and returns the original text without changing facts
+  ---
+  duration_ms: 165.622276
+  type: 'test'
+  ...
+# Subtest: a verifier rejection cannot be used to publish the claimed repaired answer
+ok 215 - a verifier rejection cannot be used to publish the claimed repaired answer
+  ---
+  duration_ms: 36.576302
+  type: 'test'
+  ...
+# Subtest: approved true accompanied by factual issues must be rejected rather than displayed
+ok 216 - approved true accompanied by factual issues must be rejected rather than displayed
+  ---
+  duration_ms: 59.681262
+  type: 'test'
+  ...
+# Subtest: a clean factual verdict does not bypass a failed second capability or language verdict
+ok 217 - a clean factual verdict does not bypass a failed second capability or language verdict
+  ---
+  duration_ms: 55.260606
+  type: 'test'
+  ...
+# Subtest: an English conversation cannot receive an entirely Arabic paragraph even if model verifiers approve it
+ok 218 - an English conversation cannot receive an entirely Arabic paragraph even if model verifiers approve it
+  ---
+  duration_ms: 1.830509
+  type: 'test'
+  ...
+# Subtest: both fresh verifiers receive file metadata but no selected bytes from any receipt
+ok 219 - both fresh verifiers receive file metadata but no selected bytes from any receipt
+  ---
+  duration_ms: 66.947601
+  type: 'test'
+  ...
+# Subtest: fresh verifiers receive trusted sign-in state and the actual SSO authentication requirement without identity secrets
+ok 220 - fresh verifiers receive trusted sign-in state and the actual SSO authentication requirement without identity secrets
+  ---
+  duration_ms: 200.199588
+  type: 'test'
+  ...
+# Subtest: empty-prose submission review verifies exact payload metadata while retaining upload bytes only on the host
+ok 221 - empty-prose submission review verifies exact payload metadata while retaining upload bytes only on the host
+  ---
+  duration_ms: 42.524021
+  type: 'test'
+  ...
+# Subtest: plan, missing-fact question and exact draft reviews receive only their own task-specific instructions
+ok 222 - plan, missing-fact question and exact draft reviews receive only their own task-specific instructions
+  ---
+  duration_ms: 150.163239
+  type: 'test'
+  ...
+# Subtest: an intended-plan context still fails closed on a verifier finding instead of receiving an unconditional plan exemption
+ok 223 - an intended-plan context still fails closed on a verifier finding instead of receiving an unconditional plan exemption
+  ---
+  duration_ms: 41.996781
+  type: 'test'
+  ...
+# Subtest: service-choice verifiers receive the positive public capability catalogue and actual selected-route facts without granting authorization
+ok 224 - service-choice verifiers receive the positive public capability catalogue and actual selected-route facts without granting authorization
+  ---
+  duration_ms: 40.261705
+  type: 'test'
+  ...
+# Subtest: case-target verifiers retain an explicitly cited old read beyond the last sixteen receipts without including unrelated old records
+ok 225 - case-target verifiers retain an explicitly cited old read beyond the last sixteen receipts without including unrelated old records
+  ---
+  duration_ms: 46.626079
+  type: 'test'
+  ...
+# Subtest: each review context separates the exact target from internal operation catalogues receipt evidence and control metadata
+ok 226 - each review context separates the exact target from internal operation catalogues receipt evidence and control metadata
+  ---
+  duration_ms: 163.485665
+  type: 'test'
+  ...
+# Subtest: internal operation names in reference data are permitted but the same names in actual public prose still receive a rejecting verdict
+ok 227 - internal operation names in reference data are permitted but the same names in actual public prose still receive a rejecting verdict
+  ---
+  duration_ms: 57.206425
+  type: 'test'
+  ...
+# Subtest: verifiers receive exact relevant public required-field schemas and current plan state as reference evidence without hidden parameter bytes
+ok 228 - verifiers receive exact relevant public required-field schemas and current plan state as reference evidence without hidden parameter bytes
+  ---
+  duration_ms: 28.223254
+  type: 'test'
+  ...
+# Subtest: partial submission reviews include drafted values and only the current origin selection as reference while retaining file bytes on the host
+ok 229 - partial submission reviews include drafted values and only the current origin selection as reference while retaining file bytes on the host
+  ---
+  duration_ms: 46.730489
+  type: 'test'
+  ...
+# Subtest: smoke: public health and authenticated HTML/assets/OpenAPI are reachable; unauthenticated content stays protected
+ok 230 - smoke: public health and authenticated HTML/assets/OpenAPI are reachable; unauthenticated content stays protected
+  ---
+  duration_ms: 139.824847
+  type: 'test'
+  ...
+# Subtest: smoke: new browser sessions are isolated; login failure is recoverable; secrets never enter public state
+ok 231 - smoke: new browser sessions are isolated; login failure is recoverable; secrets never enter public state
+  ---
+  duration_ms: 95.045188
+  type: 'test'
+  ...
+# Subtest: smoke: CSRF/origin failures and malformed transport do not break the next valid request
+ok 232 - smoke: CSRF/origin failures and malformed transport do not break the next valid request
+  ---
+  duration_ms: 42.287955
+  type: 'test'
+  ...
+# Subtest: smoke: stale actions, unknown routes, invalid cursors and wrong methods return controlled errors
+ok 233 - smoke: stale actions, unknown routes, invalid cursors and wrong methods return controlled errors
+  ---
+  duration_ms: 16.557061
+  type: 'test'
+  ...
+# Subtest: smoke: a JSON null payload is rejected as a client error rather than an internal failure
+ok 234 - smoke: a JSON null payload is rejected as a client error rather than an internal failure
+  ---
+  duration_ms: 63.870351
+  type: 'test'
+  ...
+1..234
+# tests 234
+# suites 0
+# pass 234
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 17172.817303

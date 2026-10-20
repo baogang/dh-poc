@@ -1,0 +1,169 @@
+{
+  "stage": "v18 targeted directory evidence probes, synthetic source only, not journey score",
+  "started_at": "2026-10-19T22:54:05.173Z",
+  "source_sha256": {
+    "src/crm/agent.mjs": "e17942bfd2a09a19ed128565925d07286da67b8bb154c6af0453a37d023a9384",
+    "src/crm/response-guard.mjs": "9c00eb4f49ff7e6df6b085f76879e8103f606f0667bbdf9dfe0a8dd59b36b603",
+    "src/crm/presentation.mjs": "8c99c155653890a49d74cfe11ad0d00ff23dca17979b744a877ba54279d06708",
+    "src/crm/public-capabilities.mjs": "3a84aa843a098ee82971581140412194d070a272d91dc174dd84d9815039bd25"
+  },
+  "cases": [
+    {
+      "id": "specific_external_number_and_service_without_source",
+      "text": "Call 5550199; the municipal phone desk accepts new commercial permit applications.",
+      "faq": null,
+      "expected": "reject",
+      "actual": "reject",
+      "pass": true,
+      "error": {
+        "code": "UNVERIFIED_CUSTOMER_CLAIMS",
+        "message": "Regenerate the original outcome_presentation in en using only supported facts and capabilities; then retry this tool. Unsupported phone number 5550199: no delivered fact, receipt, capability metadata or verified FAQ provides it.; Unsupported claim that a municipal phone desk accepts new commercial permit applications: no evidence of any such channel or that it handles permits; no connected operation grants or issues permits.; The answer does not address the citizen's question with grounded options (e.g., the available public contact form record or the general need for a separate official channel), and instead asserts an unverified external channel."
+      },
+      "events": [
+        {
+          "type": "response_guard_started",
+          "message_count": 1
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 3304,
+            "output": 149,
+            "cacheRead": 896,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 4349,
+            "cost": {
+              "input": 0.0009912,
+              "output": 0.00017879999999999998,
+              "cacheRead": 0.000005376,
+              "cacheWrite": 0,
+              "total": 0.0011753760000000001
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": false,
+                "issues": [
+                  "Unsupported phone number 5550199: no delivered fact, receipt, capability metadata or verified FAQ provides it.",
+                  "Unsupported claim that a municipal phone desk accepts new commercial permit applications: no evidence of any such channel or that it handles permits; no connected operation grants or issues permits.",
+                  "The answer does not address the citizen's question with grounded options (e.g., the available public contact form record or the general need for a separate official channel), and instead asserts an unverified external channel."
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_rejected",
+          "scope": "facts",
+          "issues": [
+            "Unsupported phone number 5550199: no delivered fact, receipt, capability metadata or verified FAQ provides it.",
+            "Unsupported claim that a municipal phone desk accepts new commercial permit applications: no evidence of any such channel or that it handles permits; no connected operation grants or issues permits.",
+            "The answer does not address the citizen's question with grounded options (e.g., the available public contact form record or the general need for a separate official channel), and instead asserts an unverified external channel."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "explicitly_fictional_channel_with_verified_fixture_source",
+      "text": "For this fictional test only, the separate test help desk at 5550199 accepts sample permit requests. It cannot look up records from this local conversation.",
+      "faq": "Fictional test guide: the separate test help desk at 5550199 accepts sample permit requests. This is synthetic contact information only; it cannot track records in the local conversation.",
+      "expected": "approve",
+      "actual": "approve",
+      "pass": true,
+      "events": [
+        {
+          "type": "response_guard_started",
+          "message_count": 1
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 2489,
+            "output": 48,
+            "cacheRead": 1792,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 4329,
+            "cost": {
+              "input": 0.0007467,
+              "output": 0.0000576,
+              "cacheRead": 0.000010752,
+              "cacheWrite": 0,
+              "total": 0.000815052
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": true,
+                "issues": []
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_passed",
+          "scope": "facts"
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 3239,
+            "output": 48,
+            "cacheRead": 1280,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 4567,
+            "cost": {
+              "input": 0.0009716999999999999,
+              "output": 0.0000576,
+              "cacheRead": 0.00000768,
+              "cacheWrite": 0,
+              "total": 0.0010369799999999998
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": true,
+                "issues": []
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_passed",
+          "scope": "capability_language"
+        },
+        {
+          "type": "response_guard_completed",
+          "corrected": false,
+          "issues": []
+        }
+      ]
+    }
+  ],
+  "completed_at": "2026-10-19T22:54:08.224Z",
+  "pass": true,
+  "source_changed_during_run": []
+}

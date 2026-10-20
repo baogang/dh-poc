@@ -1,0 +1,29 @@
+{
+  "stage": "v14 structured-plan review and host Arabic labels before replacing future-prose gates",
+  "command": [
+    "node",
+    "--test",
+    "--test-reporter=tap",
+    "--test-name-pattern=public action plans review actual intent",
+    "tests/crm-integration.test.mjs"
+  ],
+  "tests": 1,
+  "passed": 0,
+  "failed": 1,
+  "exit_code": 1,
+  "source_sha256": {
+    "src/crm/agent.mjs": "368325141bf94a6d420344398608239e92919806bb6b6d505e24928d503fd39a",
+    "src/crm/response-guard.mjs": "28ccdfb28468e1cd1f01faa6e0b7d5000b750c6c178f84efad4d10e1c4bbf552",
+    "src/crm/presentation.mjs": "452ee24f78d4051465d18f55496814e9b78d0606ea85c99641575b1bca5b1f32",
+    "tests/crm-integration.test.mjs": "4e66d57fd6dfb35ca80701767440183fb07e3220838e13a5267902f0f14ac7b3"
+  },
+  "source_sha256_end": {
+    "src/crm/agent.mjs": "368325141bf94a6d420344398608239e92919806bb6b6d505e24928d503fd39a",
+    "src/crm/response-guard.mjs": "28ccdfb28468e1cd1f01faa6e0b7d5000b750c6c178f84efad4d10e1c4bbf552",
+    "src/crm/presentation.mjs": "452ee24f78d4051465d18f55496814e9b78d0606ea85c99641575b1bca5b1f32",
+    "tests/crm-integration.test.mjs": "4e66d57fd6dfb35ca80701767440183fb07e3220838e13a5267902f0f14ac7b3"
+  },
+  "source_changed_during_run": [],
+  "raw_tap": "docs/evaluation/balady-crm-v14-action-plan-red-20261020.tap",
+  "live_model_accuracy_claim": false
+}

@@ -1,0 +1,57 @@
+{
+  "reason": "Derived aggregate accidentally copied summary.response_review_statistics explanatory string instead of summing immutable row.response_review counters. Corrected only report counters. All original run scores, traces, refs, actor and source remain unchanged. Prior derived JSON bytes retained.",
+  "corrections": [
+    {
+      "report": "docs/evaluation/balady-crm-final-v12-automatic-20261020.json",
+      "prior_snapshot": "docs/evaluation/balady-crm-final-v12-automatic-20261020-before-report-statistics-correction.json",
+      "prior_sha256": "42160966134f9ae468345b222529fbf839803b57a3f82da8733bb73e01cc2f40",
+      "response_review": {
+        "started": 108,
+        "completed": 78,
+        "rejected_attempts": 27,
+        "passed_gates": 161,
+        "corrected": 0,
+        "model_requests": 191
+      }
+    },
+    {
+      "report": "docs/evaluation/balady-crm-final-v12-regression-20261020.json",
+      "prior_snapshot": "docs/evaluation/balady-crm-final-v12-regression-20261020-before-report-statistics-correction.json",
+      "prior_sha256": "7b2097c01893b15954441f21911ef9ab0fed6c5975f215ef0ed4c433fba6213c",
+      "response_review": {
+        "started": 108,
+        "completed": 78,
+        "rejected_attempts": 27,
+        "passed_gates": 161,
+        "corrected": 0,
+        "model_requests": 191
+      }
+    },
+    {
+      "report": "docs/evaluation/balady-crm-final-v13-automatic-20261020.json",
+      "prior_snapshot": "docs/evaluation/balady-crm-final-v13-automatic-20261020-before-report-statistics-correction.json",
+      "prior_sha256": "5074e1f226839c7b3f7ae6d94a3f94319096ee2efa141f7e77d9da6b5109b2e3",
+      "response_review": {
+        "started": 101,
+        "completed": 76,
+        "rejected_attempts": 25,
+        "passed_gates": 164,
+        "corrected": 0,
+        "model_requests": 189
+      }
+    },
+    {
+      "report": "docs/evaluation/balady-crm-final-regression-20261020.json",
+      "prior_snapshot": "docs/evaluation/balady-crm-final-regression-20261020-before-report-statistics-correction.json",
+      "prior_sha256": "5074e1f226839c7b3f7ae6d94a3f94319096ee2efa141f7e77d9da6b5109b2e3",
+      "response_review": {
+        "started": 101,
+        "completed": 76,
+        "rejected_attempts": 25,
+        "passed_gates": 164,
+        "corrected": 0,
+        "model_requests": 189
+      }
+    }
+  ]
+}

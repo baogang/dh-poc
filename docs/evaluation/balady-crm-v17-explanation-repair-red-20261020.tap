@@ -1,0 +1,112 @@
+TAP version 13
+1..0
+# Subtest: tests/crm-agent.test.mjs
+ok 1 - tests/crm-agent.test.mjs
+  ---
+  duration_ms: 2605.182548
+  type: 'test'
+  ...
+1..0
+# Subtest: tests/crm-audience.test.mjs
+ok 2 - tests/crm-audience.test.mjs
+  ---
+  duration_ms: 2598.276316
+  type: 'test'
+  ...
+1..0
+# Subtest: tests/crm-chat-ui.test.mjs
+ok 3 - tests/crm-chat-ui.test.mjs
+  ---
+  duration_ms: 292.97319
+  type: 'test'
+  ...
+1..0
+# Subtest: tests/crm-contract.test.mjs
+ok 4 - tests/crm-contract.test.mjs
+  ---
+  duration_ms: 670.059911
+  type: 'test'
+  ...
+1..0
+# Subtest: tests/crm-files.test.mjs
+ok 5 - tests/crm-files.test.mjs
+  ---
+  duration_ms: 437.62965
+  type: 'test'
+  ...
+1..0
+# Subtest: tests/crm-http.test.mjs
+ok 6 - tests/crm-http.test.mjs
+  ---
+  duration_ms: 2616.09528
+  type: 'test'
+  ...
+# Subtest: HTTP correcting the supplemental explanation changes the actual public host result only after two fresh reviews without duplicating or rewriting its case facts
+not ok 7 - HTTP correcting the supplemental explanation changes the actual public host result only after two fresh reviews without duplicating or rewriting its case facts
+  ---
+  duration_ms: 350.418152
+  type: 'test'
+  location: '/Users/baogang/git/momah-poc/tests/crm-integration.test.mjs:990:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + 'failed'
+    - 'completed'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'completed'
+  actual: 'failed'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/baogang/git/momah-poc/tests/crm-integration.test.mjs:991:1914)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async Test.run (node:internal/test_runner/test:1069:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:332:3)
+  ...
+1..0
+# Subtest: tests/crm-journey-choice.test.mjs
+ok 8 - tests/crm-journey-choice.test.mjs
+  ---
+  duration_ms: 459.622826
+  type: 'test'
+  ...
+1..0
+# Subtest: tests/crm-journey-metrics.test.mjs
+ok 9 - tests/crm-journey-metrics.test.mjs
+  ---
+  duration_ms: 457.351742
+  type: 'test'
+  ...
+1..0
+# Subtest: tests/crm-knowledge-routing.test.mjs
+ok 10 - tests/crm-knowledge-routing.test.mjs
+  ---
+  duration_ms: 2626.47363
+  type: 'test'
+  ...
+1..0
+# Subtest: tests/crm-response-guard.test.mjs
+ok 11 - tests/crm-response-guard.test.mjs
+  ---
+  duration_ms: 2362.566039
+  type: 'test'
+  ...
+1..0
+# Subtest: tests/crm-smoke.test.mjs
+ok 12 - tests/crm-smoke.test.mjs
+  ---
+  duration_ms: 2372.394865
+  type: 'test'
+  ...
+1..12
+# tests 12
+# suites 0
+# pass 11
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3028.117311

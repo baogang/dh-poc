@@ -1,0 +1,1708 @@
+[
+  {
+    "seq": 102,
+    "status": "answered",
+    "time": "2026-10-19T22:04:32.194Z",
+    "type": "turn_finished"
+  },
+  {
+    "call_id": "call_00_N8UxTNeUx0WDJK1vjpsP8202",
+    "name": "finish",
+    "result": {
+      "accepted": true,
+      "end_turn": true
+    },
+    "seq": 101,
+    "time": "2026-10-19T22:04:32.194Z",
+    "type": "tool_end"
+  },
+  {
+    "message": {
+      "case_guidance": [
+        "offer_separate_complaint"
+      ],
+      "id": "message-10cca27d-53ef-4af4-a7d1-9e0683df8f87",
+      "kind": "result",
+      "presentation_parts": [
+        "host_guidance"
+      ],
+      "presentation_source": "host_guidance",
+      "receipt_ids": [
+        "receipt-090ecc9c-5321-4364-8dd8-45e77ee09d2a",
+        "receipt-7cfc23ea-3a13-4084-9a22-674c100a370a",
+        "receipt-c616f404-2f94-4524-a5f6-07f959a5361f"
+      ],
+      "role": "assistant",
+      "text": "لم يكتمل هذا الطلب. لا يعني التوضيح أدناه أن الطلب الأصلي قد سُجل أو نُفذ.\n\nإذا رغبت، يمكن إعداد شكوى عامة منفصلة في المحاكاة المحلية. هي سجل محلي جديد يتطلب اختيارك ومراجعة مستقلة، ولا يغيّر الطلب الأصلي ولا يُحال إلى جهة حقيقية للتحقق أو المعالجة.\n\nتحتفظ هذه البيئة بسجلات محاكاة محلية فقط. لا يُحال شيء إلى جهة حكومية أو قسم أو موظف للتحقق أو المعالجة، ولا تُنفَّذ عمليات حقيقية للاسترداد أو الدفع أو الترخيص أو الإشعارات. تتطلب المعاملات الحقيقية قناة رسمية مستقلة، ولا تُستخدم الأرقام المحلية للتتبع فيها.",
+      "time": "2026-10-19T22:04:32.193Z"
+    },
+    "seq": 100,
+    "time": "2026-10-19T22:04:32.193Z",
+    "type": "message"
+  },
+  {
+    "arguments": {
+      "case_guidance": [
+        "offer_separate_complaint"
+      ],
+      "message": "لم أتمكن من تسجيل البلاغ، والبلاغ غير مسجّل حالياً.\n\nما وجدته: في فئات خدمات الرياض المتاحة هنا توجد فئة «صيانة المرافق العامة» ← «سطح الطريق» ← «تلف سطح الطريق». هذه أقرب فئة متاحة لبلاط رصيف مفكك، لكنها ليست وصفاً دقيقاً لبلاط رصيف عند مدخل حديقة.\n\nسبب التوقف: تسجيل البلاغ يتطلب تحديد الموقع الإداري الداخلي (البلدية الفرعية والحي) وإحداثيات الموقع، ولا توجد في هذا المساعد خدمة لتحويل اسم شارع أو وصف موقع إلى هذه البيانات. لا أستطيع طلب هذه الرموز الداخلية منك، ولا افتراض حي أو إحداثيات.\n\nما احتفظت به من وصفك: بلاط رصيف مفكك عند مدخل حديقة صغيرة، خطر تعثر، قرب شارع الصنوبر التجريبي في الرياض، والحي الرسمي غير معروف.\n\nملاحظة مهمة: هذه البيئة محاكاة محلية، وأي سجل يُنشأ فيها لا يُحال إلى أي جهة ولا يُتابع رسمياً. لتقديم بلاغ فعلي يمكنك استخدام القنوات الرسمية للأمانة (موقعها أو تطبيقها أو مركز الاتصال) بشكل منفصل تماماً عن هذه المحادثة.\n\nهل تريد بدلاً من ذلك تقديم شكوى عامة مكتوبة عن المشكلة عبر نموذج الشكاوى العام المتاح هنا؟ هذه خدمة مختلفة ولن أقدّمها إلا بموافقتك الصريحة.",
+      "receipt_ids": [
+        "receipt-090ecc9c-5321-4364-8dd8-45e77ee09d2a",
+        "receipt-7cfc23ea-3a13-4084-9a22-674c100a370a",
+        "receipt-c616f404-2f94-4524-a5f6-07f959a5361f"
+      ],
+      "state": "blocked"
+    },
+    "call_id": "call_00_N8UxTNeUx0WDJK1vjpsP8202",
+    "name": "finish",
+    "seq": 99,
+    "time": "2026-10-19T22:04:32.193Z",
+    "type": "tool_start"
+  },
+  {
+    "seq": 98,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T22:04:32.192Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "case_guidance": [
+            "offer_separate_complaint"
+          ],
+          "message": "لم أتمكن من تسجيل البلاغ، والبلاغ غير مسجّل حالياً.\n\nما وجدته: في فئات خدمات الرياض المتاحة هنا توجد فئة «صيانة المرافق العامة» ← «سطح الطريق» ← «تلف سطح الطريق». هذه أقرب فئة متاحة لبلاط رصيف مفكك، لكنها ليست وصفاً دقيقاً لبلاط رصيف عند مدخل حديقة.\n\nسبب التوقف: تسجيل البلاغ يتطلب تحديد الموقع الإداري الداخلي (البلدية الفرعية والحي) وإحداثيات الموقع، ولا توجد في هذا المساعد خدمة لتحويل اسم شارع أو وصف موقع إلى هذه البيانات. لا أستطيع طلب هذه الرموز الداخلية منك، ولا افتراض حي أو إحداثيات.\n\nما احتفظت به من وصفك: بلاط رصيف مفكك عند مدخل حديقة صغيرة، خطر تعثر، قرب شارع الصنوبر التجريبي في الرياض، والحي الرسمي غير معروف.\n\nملاحظة مهمة: هذه البيئة محاكاة محلية، وأي سجل يُنشأ فيها لا يُحال إلى أي جهة ولا يُتابع رسمياً. لتقديم بلاغ فعلي يمكنك استخدام القنوات الرسمية للأمانة (موقعها أو تطبيقها أو مركز الاتصال) بشكل منفصل تماماً عن هذه المحادثة.\n\nهل تريد بدلاً من ذلك تقديم شكوى عامة مكتوبة عن المشكلة عبر نموذج الشكاوى العام المتاح هنا؟ هذه خدمة مختلفة ولن أقدّمها إلا بموافقتك الصريحة.",
+          "receipt_ids": [
+            "receipt-090ecc9c-5321-4364-8dd8-45e77ee09d2a",
+            "receipt-7cfc23ea-3a13-4084-9a22-674c100a370a",
+            "receipt-c616f404-2f94-4524-a5f6-07f959a5361f"
+          ],
+          "state": "blocked"
+        },
+        "name": "finish"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 17920,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.00010752,
+        "cacheWrite": 0,
+        "input": 0.0000645,
+        "output": 0.0006527999999999999,
+        "total": 0.00082482
+      },
+      "input": 215,
+      "output": 544,
+      "reasoning": 0,
+      "totalTokens": 18679
+    }
+  },
+  {
+    "request": 7,
+    "seq": 97,
+    "time": "2026-10-19T22:04:30.094Z",
+    "type": "model_request"
+  },
+  {
+    "call_id": "call_00_6cHzrzoncb72pSsMB5633763",
+    "name": "finish",
+    "result": {
+      "error": "GUIDANCE_EVIDENCE_REQUIRED",
+      "message": "location_unavailable requires an actual host location constraint for this original request. Do not invent a blocked prerequisite."
+    },
+    "seq": 96,
+    "time": "2026-10-19T22:04:30.089Z",
+    "type": "tool_end"
+  },
+  {
+    "arguments": {
+      "case_guidance": [
+        "location_unavailable",
+        "offer_separate_complaint"
+      ],
+      "message": "لم أتمكن من تسجيل البلاغ، والبلاغ غير مسجّل حالياً.\n\nما وجدته: في فئات خدمات الرياض المتاحة هنا توجد فئة «صيانة المرافق العامة» ← «سطح الطريق» ← «تلف سطح الطريق». هذه أقرب فئة متاحة لبلاط رصيف مفكك، لكنها ليست وصفاً دقيقاً لبلاط رصيف عند مدخل حديقة.\n\nسبب التوقف: تسجيل البلاغ يتطلب تحديد الموقع الإداري الداخلي (البلدية الفرعية والحي) وإحداثيات الموقع، ولا توجد في هذا المساعد خدمة لتحويل اسم شارع أو وصف موقع إلى هذه البيانات. لا أستطيع طلب هذه الرموز الداخلية منك، ولا افتراض حي أو إحداثيات.\n\nما احتفظت به من وصفك: بلاط رصيف مفكك عند مدخل حديقة صغيرة، خطر تعثر، قرب شارع الصنوبر التجريبي في الرياض، والحي الرسمي غير معروف.\n\nملاحظة مهمة: هذه البيئة محاكاة محلية، وأي سجل يُنشأ فيها لا يُحال إلى أي جهة ولا يُتابع رسمياً. لتقديم بلاغ فعلي يمكنك استخدام القنوات الرسمية للأمانة (موقعها أو تطبيقها أو مركز الاتصال) بشكل منفصل تماماً عن هذه المحادثة.\n\nهل تريد بدلاً من ذلك تقديم شكوى عامة مكتوبة عن المشكلة عبر نموذج الشكاوى العام المتاح هنا؟ هذه خدمة مختلفة ولن أقدّمها إلا بموافقتك الصريحة.",
+      "receipt_ids": [
+        "receipt-090ecc9c-5321-4364-8dd8-45e77ee09d2a",
+        "receipt-7cfc23ea-3a13-4084-9a22-674c100a370a",
+        "receipt-c616f404-2f94-4524-a5f6-07f959a5361f"
+      ],
+      "state": "blocked"
+    },
+    "call_id": "call_00_6cHzrzoncb72pSsMB5633763",
+    "name": "finish",
+    "seq": 95,
+    "time": "2026-10-19T22:04:30.089Z",
+    "type": "tool_start"
+  },
+  {
+    "seq": 94,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T22:04:30.088Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "case_guidance": [
+            "location_unavailable",
+            "offer_separate_complaint"
+          ],
+          "message": "لم أتمكن من تسجيل البلاغ، والبلاغ غير مسجّل حالياً.\n\nما وجدته: في فئات خدمات الرياض المتاحة هنا توجد فئة «صيانة المرافق العامة» ← «سطح الطريق» ← «تلف سطح الطريق». هذه أقرب فئة متاحة لبلاط رصيف مفكك، لكنها ليست وصفاً دقيقاً لبلاط رصيف عند مدخل حديقة.\n\nسبب التوقف: تسجيل البلاغ يتطلب تحديد الموقع الإداري الداخلي (البلدية الفرعية والحي) وإحداثيات الموقع، ولا توجد في هذا المساعد خدمة لتحويل اسم شارع أو وصف موقع إلى هذه البيانات. لا أستطيع طلب هذه الرموز الداخلية منك، ولا افتراض حي أو إحداثيات.\n\nما احتفظت به من وصفك: بلاط رصيف مفكك عند مدخل حديقة صغيرة، خطر تعثر، قرب شارع الصنوبر التجريبي في الرياض، والحي الرسمي غير معروف.\n\nملاحظة مهمة: هذه البيئة محاكاة محلية، وأي سجل يُنشأ فيها لا يُحال إلى أي جهة ولا يُتابع رسمياً. لتقديم بلاغ فعلي يمكنك استخدام القنوات الرسمية للأمانة (موقعها أو تطبيقها أو مركز الاتصال) بشكل منفصل تماماً عن هذه المحادثة.\n\nهل تريد بدلاً من ذلك تقديم شكوى عامة مكتوبة عن المشكلة عبر نموذج الشكاوى العام المتاح هنا؟ هذه خدمة مختلفة ولن أقدّمها إلا بموافقتك الصريحة.",
+          "receipt_ids": [
+            "receipt-090ecc9c-5321-4364-8dd8-45e77ee09d2a",
+            "receipt-7cfc23ea-3a13-4084-9a22-674c100a370a",
+            "receipt-c616f404-2f94-4524-a5f6-07f959a5361f"
+          ],
+          "state": "blocked"
+        },
+        "name": "finish"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 17280,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.00010368,
+        "cacheWrite": 0,
+        "input": 0.0000759,
+        "output": 0.0006588,
+        "total": 0.00083838
+      },
+      "input": 253,
+      "output": 549,
+      "reasoning": 0,
+      "totalTokens": 18082
+    }
+  },
+  {
+    "request": 6,
+    "seq": 93,
+    "time": "2026-10-19T22:04:27.254Z",
+    "type": "model_request"
+  },
+  {
+    "call_id": "call_00_fej9WMlOifeS0Bu4qRHN3834",
+    "name": "crm_get_special_classifications",
+    "result": {
+      "receipt": {
+        "api_mode": "simulation",
+        "beneficiary_id": "demo-demo",
+        "id": "receipt-c616f404-2f94-4524-a5f6-07f959a5361f",
+        "operation": "crm_get_special_classifications",
+        "operation_key": "1cbbffea0dab2b47c0563463c751abb7a9e4f3f4e101790ce9d03c62909bad7a",
+        "parameters": {
+          "subClassificationID": "004_MC-1_SC-1"
+        },
+        "plan_id": "plan-15996278-81f0-4037-af1e-096a765db1b7",
+        "result": {
+          "data": {
+            "responseCode": "1",
+            "responseMessage": "success",
+            "result": [
+              {
+                "ID": "004_MC-1_SC-1_SPC-1",
+                "Name": "Road surface damage / 路面破损"
+              }
+            ]
+          },
+          "statusDetails": {
+            "code": 200,
+            "message": "OK"
+          }
+        },
+        "step_id": "s3",
+        "time": "2026-10-19T22:04:27.251Z"
+      }
+    },
+    "seq": 92,
+    "time": "2026-10-19T22:04:27.251Z",
+    "type": "tool_end"
+  },
+  {
+    "receipt": {
+      "api_mode": "simulation",
+      "beneficiary_id": "demo-demo",
+      "id": "receipt-c616f404-2f94-4524-a5f6-07f959a5361f",
+      "operation": "crm_get_special_classifications",
+      "operation_key": "1cbbffea0dab2b47c0563463c751abb7a9e4f3f4e101790ce9d03c62909bad7a",
+      "parameters": {
+        "subClassificationID": "004_MC-1_SC-1"
+      },
+      "plan_id": "plan-15996278-81f0-4037-af1e-096a765db1b7",
+      "result": {
+        "data": {
+          "responseCode": "1",
+          "responseMessage": "success",
+          "result": [
+            {
+              "ID": "004_MC-1_SC-1_SPC-1",
+              "Name": "Road surface damage / 路面破损"
+            }
+          ]
+        },
+        "statusDetails": {
+          "code": 200,
+          "message": "OK"
+        }
+      },
+      "step_id": "s3",
+      "time": "2026-10-19T22:04:27.251Z"
+    },
+    "seq": 91,
+    "time": "2026-10-19T22:04:27.251Z",
+    "type": "receipt"
+  },
+  {
+    "operation": "crm_get_special_classifications",
+    "response": {
+      "data": {
+        "responseCode": "1",
+        "responseMessage": "success",
+        "result": [
+          {
+            "ID": "004_MC-1_SC-1_SPC-1",
+            "Name": "Road surface damage / 路面破损"
+          }
+        ]
+      },
+      "statusDetails": {
+        "code": 200,
+        "message": "OK"
+      }
+    },
+    "seq": 90,
+    "time": "2026-10-19T22:04:27.250Z",
+    "type": "api_end"
+  },
+  {
+    "call": {
+      "operation": "crm_get_special_classifications",
+      "parameters": {
+        "subClassificationID": "004_MC-1_SC-1"
+      },
+      "time": "2026-10-19T22:04:27.249Z"
+    },
+    "seq": 89,
+    "time": "2026-10-19T22:04:27.249Z",
+    "type": "api_start"
+  },
+  {
+    "plan_id": "plan-15996278-81f0-4037-af1e-096a765db1b7",
+    "seq": 88,
+    "step_id": "s3",
+    "time": "2026-10-19T22:04:27.246Z",
+    "type": "step_running"
+  },
+  {
+    "arguments": {
+      "step_id": "s3",
+      "subClassificationID": "004_MC-1_SC-1"
+    },
+    "call_id": "call_00_fej9WMlOifeS0Bu4qRHN3834",
+    "name": "crm_get_special_classifications",
+    "seq": 87,
+    "time": "2026-10-19T22:04:27.246Z",
+    "type": "tool_start"
+  },
+  {
+    "seq": 86,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T22:04:27.246Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "step_id": "s3",
+          "subClassificationID": "004_MC-1_SC-1"
+        },
+        "name": "crm_get_special_classifications"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 16640,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.00009984,
+        "cacheWrite": 0,
+        "input": 0.0001758,
+        "output": 0.0000768,
+        "total": 0.00035244
+      },
+      "input": 586,
+      "output": 64,
+      "reasoning": 0,
+      "totalTokens": 17290
+    }
+  },
+  {
+    "request": 5,
+    "seq": 85,
+    "time": "2026-10-19T22:04:25.962Z",
+    "type": "model_request"
+  },
+  {
+    "call_id": "call_00_7EHUt4UEaTHoy8o5pVnv0478",
+    "name": "propose_plan",
+    "result": {
+      "auto_execute": true,
+      "plan": {
+        "approved": true,
+        "created_at": "2026-10-19T22:04:25.957Z",
+        "goal": "خطة هذا الطلب",
+        "id": "plan-15996278-81f0-4037-af1e-096a765db1b7",
+        "origin_message_id": "message-c2626acc-e95c-4b53-a13a-168facf1aa88",
+        "status": "approved",
+        "steps": [
+          {
+            "capability": "input",
+            "depends_on": [],
+            "id": "signin-72e73f2b-9c53-407d-bda9-26b1292e9",
+            "parameters": {},
+            "status": "completed",
+            "title": "استكمال المعلومات اللازمة"
+          },
+          {
+            "capability": "crm_get_main_classifications",
+            "depends_on": [
+              "signin-72e73f2b-9c53-407d-bda9-26b1292e9"
+            ],
+            "id": "s1",
+            "parameters": {
+              "municipalityID": "004",
+              "type": "CRM"
+            },
+            "receipt_id": "receipt-090ecc9c-5321-4364-8dd8-45e77ee09d2a",
+            "status": "completed",
+            "title": "عرض فئات الخدمة الرئيسية"
+          },
+          {
+            "capability": "crm_get_sub_classifications",
+            "depends_on": [
+              "s1"
+            ],
+            "id": "s2",
+            "parameters": {
+              "mainClassificationID": "004_MC-1"
+            },
+            "receipt_id": "receipt-7cfc23ea-3a13-4084-9a22-674c100a370a",
+            "status": "completed",
+            "title": "عرض فئات الخدمة الفرعية"
+          },
+          {
+            "capability": "crm_get_special_classifications",
+            "depends_on": [
+              "s2"
+            ],
+            "id": "s3",
+            "parameters": {},
+            "status": "pending",
+            "title": "عرض تصنيفات المشكلات التفصيلية"
+          },
+          {
+            "capability": "respond",
+            "depends_on": [
+              "s3"
+            ],
+            "id": "s4",
+            "parameters": {},
+            "status": "pending",
+            "title": "توضيح النتيجة والحدود"
+          }
+        ],
+        "summary": "هذه خطوات التعامل مع طلبك. تُنفّذ الاستعلامات تلقائياً، وتراجع التفاصيل قبل أي إرسال. لا تعني الخطة أن الطلب قد أُنجز.",
+        "version": 3
+      }
+    },
+    "seq": 84,
+    "time": "2026-10-19T22:04:25.957Z",
+    "type": "tool_end"
+  },
+  {
+    "message": {
+      "id": "message-2301a9c3-f6b5-4e0a-a736-16e2ee210b37",
+      "kind": "plan",
+      "plan_id": "plan-15996278-81f0-4037-af1e-096a765db1b7",
+      "role": "assistant",
+      "text": "هذه خطوات التعامل مع طلبك. تُنفّذ الاستعلامات تلقائياً، وتراجع التفاصيل قبل أي إرسال. لا تعني الخطة أن الطلب قد أُنجز.",
+      "time": "2026-10-19T22:04:25.957Z"
+    },
+    "seq": 83,
+    "time": "2026-10-19T22:04:25.957Z",
+    "type": "message"
+  },
+  {
+    "plan_id": "plan-15996278-81f0-4037-af1e-096a765db1b7",
+    "seq": 82,
+    "time": "2026-10-19T22:04:25.957Z",
+    "type": "plan_auto_started"
+  },
+  {
+    "plan": {
+      "approved": true,
+      "created_at": "2026-10-19T22:04:25.957Z",
+      "goal": "خطة هذا الطلب",
+      "id": "plan-15996278-81f0-4037-af1e-096a765db1b7",
+      "origin_message_id": "message-c2626acc-e95c-4b53-a13a-168facf1aa88",
+      "status": "approved",
+      "steps": [
+        {
+          "capability": "input",
+          "depends_on": [],
+          "id": "signin-72e73f2b-9c53-407d-bda9-26b1292e9",
+          "parameters": {},
+          "status": "completed",
+          "title": "استكمال المعلومات اللازمة"
+        },
+        {
+          "capability": "crm_get_main_classifications",
+          "depends_on": [
+            "signin-72e73f2b-9c53-407d-bda9-26b1292e9"
+          ],
+          "id": "s1",
+          "parameters": {
+            "municipalityID": "004",
+            "type": "CRM"
+          },
+          "receipt_id": "receipt-090ecc9c-5321-4364-8dd8-45e77ee09d2a",
+          "status": "completed",
+          "title": "عرض فئات الخدمة الرئيسية"
+        },
+        {
+          "capability": "crm_get_sub_classifications",
+          "depends_on": [
+            "s1"
+          ],
+          "id": "s2",
+          "parameters": {
+            "mainClassificationID": "004_MC-1"
+          },
+          "receipt_id": "receipt-7cfc23ea-3a13-4084-9a22-674c100a370a",
+          "status": "completed",
+          "title": "عرض فئات الخدمة الفرعية"
+        },
+        {
+          "capability": "crm_get_special_classifications",
+          "depends_on": [
+            "s2"
+          ],
+          "id": "s3",
+          "parameters": {},
+          "status": "pending",
+          "title": "عرض تصنيفات المشكلات التفصيلية"
+        },
+        {
+          "capability": "respond",
+          "depends_on": [
+            "s3"
+          ],
+          "id": "s4",
+          "parameters": {},
+          "status": "pending",
+          "title": "توضيح النتيجة والحدود"
+        }
+      ],
+      "summary": "هذه خطوات التعامل مع طلبك. تُنفّذ الاستعلامات تلقائياً، وتراجع التفاصيل قبل أي إرسال. لا تعني الخطة أن الطلب قد أُنجز.",
+      "version": 3
+    },
+    "seq": 81,
+    "time": "2026-10-19T22:04:25.957Z",
+    "type": "plan_proposed"
+  },
+  {
+    "corrected": false,
+    "issues": [],
+    "seq": 80,
+    "time": "2026-10-19T22:04:25.957Z",
+    "type": "response_guard_completed"
+  },
+  {
+    "scope": "plan_feasibility",
+    "seq": 79,
+    "time": "2026-10-19T22:04:25.957Z",
+    "type": "response_guard_passed"
+  },
+  {
+    "seq": 78,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T22:04:25.956Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "approved": true,
+          "issues": []
+        },
+        "name": "review_message"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 768,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000004608,
+        "cacheWrite": 0,
+        "input": 0.0009861,
+        "output": 0.0000576,
+        "total": 0.001048308
+      },
+      "input": 3287,
+      "output": 48,
+      "reasoning": 0,
+      "totalTokens": 4103
+    }
+  },
+  {
+    "request": 1,
+    "seq": 77,
+    "time": "2026-10-19T22:04:25.128Z",
+    "type": "model_request"
+  },
+  {
+    "scope": "plan_intent",
+    "seq": 76,
+    "time": "2026-10-19T22:04:25.121Z",
+    "type": "response_guard_passed"
+  },
+  {
+    "seq": 75,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T22:04:25.121Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "approved": true,
+          "issues": []
+        },
+        "name": "review_message"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 768,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000004608,
+        "cacheWrite": 0,
+        "input": 0.0009813,
+        "output": 0.0000576,
+        "total": 0.001043508
+      },
+      "input": 3271,
+      "output": 48,
+      "reasoning": 0,
+      "totalTokens": 4087
+    }
+  },
+  {
+    "request": 1,
+    "seq": 74,
+    "time": "2026-10-19T22:04:24.341Z",
+    "type": "model_request"
+  },
+  {
+    "message_count": 0,
+    "seq": 73,
+    "time": "2026-10-19T22:04:24.335Z",
+    "type": "response_guard_started"
+  },
+  {
+    "arguments": {
+      "goal": "الإبلاغ عن بلاط رصيف مفكك عند مدخل حديقة صغيرة قرب شارع الصنوبر التجريبي في الرياض",
+      "steps": [
+        {
+          "capability": "input",
+          "depends_on": [],
+          "id": "signin-72e73f2b-9c53-407d-bda9-26b1292e9",
+          "title": "تسجيل الدخول التجريبي"
+        },
+        {
+          "capability": "crm_get_main_classifications",
+          "depends_on": [
+            "signin-72e73f2b-9c53-407d-bda9-26b1292e9"
+          ],
+          "id": "s1",
+          "title": "عرض فئات الخدمة الرئيسية"
+        },
+        {
+          "capability": "crm_get_sub_classifications",
+          "depends_on": [
+            "s1"
+          ],
+          "id": "s2",
+          "title": "عرض الفئات الفرعية"
+        },
+        {
+          "capability": "crm_get_special_classifications",
+          "depends_on": [
+            "s2"
+          ],
+          "id": "s3",
+          "title": "عرض الفئات التخصصية"
+        },
+        {
+          "capability": "respond",
+          "depends_on": [
+            "s3"
+          ],
+          "id": "s4",
+          "title": "توضيح النتيجة والحدود"
+        }
+      ],
+      "summary": "الفئة المتاحة لصيانة المرافق العامة في الرياض هي «سطح الطريق». الخطوة التالية عرض الفئات التخصصية للتأكد من ملاءمتها لبلاط الرصيف، ثم توضيح حدود تحديد الموقع."
+    },
+    "call_id": "call_00_7EHUt4UEaTHoy8o5pVnv0478",
+    "name": "propose_plan",
+    "seq": 72,
+    "time": "2026-10-19T22:04:24.335Z",
+    "type": "tool_start"
+  },
+  {
+    "seq": 71,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T22:04:24.335Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "goal": "الإبلاغ عن بلاط رصيف مفكك عند مدخل حديقة صغيرة قرب شارع الصنوبر التجريبي في الرياض",
+          "steps": [
+            {
+              "capability": "input",
+              "depends_on": [],
+              "id": "signin-72e73f2b-9c53-407d-bda9-26b1292e9",
+              "title": "تسجيل الدخول التجريبي"
+            },
+            {
+              "capability": "crm_get_main_classifications",
+              "depends_on": [
+                "signin-72e73f2b-9c53-407d-bda9-26b1292e9"
+              ],
+              "id": "s1",
+              "title": "عرض فئات الخدمة الرئيسية"
+            },
+            {
+              "capability": "crm_get_sub_classifications",
+              "depends_on": [
+                "s1"
+              ],
+              "id": "s2",
+              "title": "عرض الفئات الفرعية"
+            },
+            {
+              "capability": "crm_get_special_classifications",
+              "depends_on": [
+                "s2"
+              ],
+              "id": "s3",
+              "title": "عرض الفئات التخصصية"
+            },
+            {
+              "capability": "respond",
+              "depends_on": [
+                "s3"
+              ],
+              "id": "s4",
+              "title": "توضيح النتيجة والحدود"
+            }
+          ],
+          "summary": "الفئة المتاحة لصيانة المرافق العامة في الرياض هي «سطح الطريق». الخطوة التالية عرض الفئات التخصصية للتأكد من ملاءمتها لبلاط الرصيف، ثم توضيح حدود تحديد الموقع."
+        },
+        "name": "propose_plan"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 16000,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000096,
+        "cacheWrite": 0,
+        "input": 0.0000951,
+        "output": 0.0004668,
+        "total": 0.0006578999999999999
+      },
+      "input": 317,
+      "output": 389,
+      "reasoning": 0,
+      "totalTokens": 16706
+    }
+  },
+  {
+    "request": 4,
+    "seq": 70,
+    "time": "2026-10-19T22:04:22.803Z",
+    "type": "model_request"
+  },
+  {
+    "call_id": "call_00_gDTmMBcGWQnb58anunvG6839",
+    "name": "crm_get_sub_classifications",
+    "result": {
+      "receipt": {
+        "api_mode": "simulation",
+        "beneficiary_id": "demo-demo",
+        "id": "receipt-7cfc23ea-3a13-4084-9a22-674c100a370a",
+        "operation": "crm_get_sub_classifications",
+        "operation_key": "5186615ed8eb6f50ca402f72b37e983fae82890af367badc616341d99ed35f45",
+        "parameters": {
+          "mainClassificationID": "004_MC-1"
+        },
+        "plan_id": "plan-01c0237c-2cef-4f8f-b382-c607899cd605",
+        "result": {
+          "data": {
+            "responseCode": "1",
+            "responseMessage": "success",
+            "result": [
+              {
+                "ID": "004_MC-1_SC-1",
+                "Name": "Road surface / 道路路面"
+              }
+            ]
+          },
+          "statusDetails": {
+            "code": 200,
+            "message": "OK"
+          }
+        },
+        "step_id": "s2",
+        "time": "2026-10-19T22:04:22.800Z"
+      }
+    },
+    "seq": 69,
+    "time": "2026-10-19T22:04:22.800Z",
+    "type": "tool_end"
+  },
+  {
+    "receipt": {
+      "api_mode": "simulation",
+      "beneficiary_id": "demo-demo",
+      "id": "receipt-7cfc23ea-3a13-4084-9a22-674c100a370a",
+      "operation": "crm_get_sub_classifications",
+      "operation_key": "5186615ed8eb6f50ca402f72b37e983fae82890af367badc616341d99ed35f45",
+      "parameters": {
+        "mainClassificationID": "004_MC-1"
+      },
+      "plan_id": "plan-01c0237c-2cef-4f8f-b382-c607899cd605",
+      "result": {
+        "data": {
+          "responseCode": "1",
+          "responseMessage": "success",
+          "result": [
+            {
+              "ID": "004_MC-1_SC-1",
+              "Name": "Road surface / 道路路面"
+            }
+          ]
+        },
+        "statusDetails": {
+          "code": 200,
+          "message": "OK"
+        }
+      },
+      "step_id": "s2",
+      "time": "2026-10-19T22:04:22.800Z"
+    },
+    "seq": 68,
+    "time": "2026-10-19T22:04:22.800Z",
+    "type": "receipt"
+  },
+  {
+    "operation": "crm_get_sub_classifications",
+    "response": {
+      "data": {
+        "responseCode": "1",
+        "responseMessage": "success",
+        "result": [
+          {
+            "ID": "004_MC-1_SC-1",
+            "Name": "Road surface / 道路路面"
+          }
+        ]
+      },
+      "statusDetails": {
+        "code": 200,
+        "message": "OK"
+      }
+    },
+    "seq": 67,
+    "time": "2026-10-19T22:04:22.799Z",
+    "type": "api_end"
+  },
+  {
+    "call": {
+      "operation": "crm_get_sub_classifications",
+      "parameters": {
+        "mainClassificationID": "004_MC-1"
+      },
+      "time": "2026-10-19T22:04:22.799Z"
+    },
+    "seq": 66,
+    "time": "2026-10-19T22:04:22.799Z",
+    "type": "api_start"
+  },
+  {
+    "plan_id": "plan-01c0237c-2cef-4f8f-b382-c607899cd605",
+    "seq": 65,
+    "step_id": "s2",
+    "time": "2026-10-19T22:04:22.798Z",
+    "type": "step_running"
+  },
+  {
+    "arguments": {
+      "mainClassificationID": "004_MC-1",
+      "step_id": "s2"
+    },
+    "call_id": "call_00_gDTmMBcGWQnb58anunvG6839",
+    "name": "crm_get_sub_classifications",
+    "seq": 64,
+    "time": "2026-10-19T22:04:22.797Z",
+    "type": "tool_start"
+  },
+  {
+    "seq": 63,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T22:04:22.797Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "mainClassificationID": "004_MC-1",
+          "step_id": "s2"
+        },
+        "name": "crm_get_sub_classifications"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 15488,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000092928,
+        "cacheWrite": 0,
+        "input": 0.0001626,
+        "output": 0.000072,
+        "total": 0.000327528
+      },
+      "input": 542,
+      "output": 60,
+      "reasoning": 0,
+      "totalTokens": 16090
+    }
+  },
+  {
+    "request": 3,
+    "seq": 62,
+    "time": "2026-10-19T22:04:22.101Z",
+    "type": "model_request"
+  },
+  {
+    "call_id": "call_00_IVPPwA8ahS67XksxtDvQ7595",
+    "name": "propose_plan",
+    "result": {
+      "auto_execute": true,
+      "plan": {
+        "approved": true,
+        "created_at": "2026-10-19T22:04:22.098Z",
+        "goal": "خطة هذا الطلب",
+        "id": "plan-01c0237c-2cef-4f8f-b382-c607899cd605",
+        "origin_message_id": "message-c2626acc-e95c-4b53-a13a-168facf1aa88",
+        "status": "approved",
+        "steps": [
+          {
+            "capability": "input",
+            "depends_on": [],
+            "id": "signin-72e73f2b-9c53-407d-bda9-26b1292e9",
+            "parameters": {},
+            "status": "completed",
+            "title": "استكمال المعلومات اللازمة"
+          },
+          {
+            "capability": "crm_get_main_classifications",
+            "depends_on": [
+              "signin-72e73f2b-9c53-407d-bda9-26b1292e9"
+            ],
+            "id": "s1",
+            "parameters": {
+              "municipalityID": "004",
+              "type": "CRM"
+            },
+            "receipt_id": "receipt-090ecc9c-5321-4364-8dd8-45e77ee09d2a",
+            "status": "completed",
+            "title": "عرض فئات الخدمة الرئيسية"
+          },
+          {
+            "capability": "crm_get_sub_classifications",
+            "depends_on": [
+              "s1"
+            ],
+            "id": "s2",
+            "parameters": {},
+            "status": "pending",
+            "title": "عرض فئات الخدمة الفرعية"
+          },
+          {
+            "capability": "respond",
+            "depends_on": [
+              "s2"
+            ],
+            "id": "s3",
+            "parameters": {},
+            "status": "pending",
+            "title": "توضيح النتيجة والحدود"
+          }
+        ],
+        "summary": "هذه خطوات التعامل مع طلبك. تُنفّذ الاستعلامات تلقائياً، وتراجع التفاصيل قبل أي إرسال. لا تعني الخطة أن الطلب قد أُنجز.",
+        "version": 2
+      }
+    },
+    "seq": 61,
+    "time": "2026-10-19T22:04:22.098Z",
+    "type": "tool_end"
+  },
+  {
+    "message": {
+      "id": "message-9c8234cd-e8ff-4fd5-a75a-c659558a1166",
+      "kind": "plan",
+      "plan_id": "plan-01c0237c-2cef-4f8f-b382-c607899cd605",
+      "role": "assistant",
+      "text": "هذه خطوات التعامل مع طلبك. تُنفّذ الاستعلامات تلقائياً، وتراجع التفاصيل قبل أي إرسال. لا تعني الخطة أن الطلب قد أُنجز.",
+      "time": "2026-10-19T22:04:22.098Z"
+    },
+    "seq": 60,
+    "time": "2026-10-19T22:04:22.098Z",
+    "type": "message"
+  },
+  {
+    "plan_id": "plan-01c0237c-2cef-4f8f-b382-c607899cd605",
+    "seq": 59,
+    "time": "2026-10-19T22:04:22.098Z",
+    "type": "plan_auto_started"
+  },
+  {
+    "plan": {
+      "approved": true,
+      "created_at": "2026-10-19T22:04:22.098Z",
+      "goal": "خطة هذا الطلب",
+      "id": "plan-01c0237c-2cef-4f8f-b382-c607899cd605",
+      "origin_message_id": "message-c2626acc-e95c-4b53-a13a-168facf1aa88",
+      "status": "approved",
+      "steps": [
+        {
+          "capability": "input",
+          "depends_on": [],
+          "id": "signin-72e73f2b-9c53-407d-bda9-26b1292e9",
+          "parameters": {},
+          "status": "completed",
+          "title": "استكمال المعلومات اللازمة"
+        },
+        {
+          "capability": "crm_get_main_classifications",
+          "depends_on": [
+            "signin-72e73f2b-9c53-407d-bda9-26b1292e9"
+          ],
+          "id": "s1",
+          "parameters": {
+            "municipalityID": "004",
+            "type": "CRM"
+          },
+          "receipt_id": "receipt-090ecc9c-5321-4364-8dd8-45e77ee09d2a",
+          "status": "completed",
+          "title": "عرض فئات الخدمة الرئيسية"
+        },
+        {
+          "capability": "crm_get_sub_classifications",
+          "depends_on": [
+            "s1"
+          ],
+          "id": "s2",
+          "parameters": {},
+          "status": "pending",
+          "title": "عرض فئات الخدمة الفرعية"
+        },
+        {
+          "capability": "respond",
+          "depends_on": [
+            "s2"
+          ],
+          "id": "s3",
+          "parameters": {},
+          "status": "pending",
+          "title": "توضيح النتيجة والحدود"
+        }
+      ],
+      "summary": "هذه خطوات التعامل مع طلبك. تُنفّذ الاستعلامات تلقائياً، وتراجع التفاصيل قبل أي إرسال. لا تعني الخطة أن الطلب قد أُنجز.",
+      "version": 2
+    },
+    "seq": 58,
+    "time": "2026-10-19T22:04:22.098Z",
+    "type": "plan_proposed"
+  },
+  {
+    "corrected": false,
+    "issues": [],
+    "seq": 57,
+    "time": "2026-10-19T22:04:22.097Z",
+    "type": "response_guard_completed"
+  },
+  {
+    "scope": "plan_feasibility",
+    "seq": 56,
+    "time": "2026-10-19T22:04:22.097Z",
+    "type": "response_guard_passed"
+  },
+  {
+    "seq": 55,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T22:04:22.097Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "approved": true,
+          "issues": []
+        },
+        "name": "review_message"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 640,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.00000384,
+        "cacheWrite": 0,
+        "input": 0.0009531,
+        "output": 0.0000576,
+        "total": 0.00101454
+      },
+      "input": 3177,
+      "output": 48,
+      "reasoning": 0,
+      "totalTokens": 3865
+    }
+  },
+  {
+    "request": 1,
+    "seq": 54,
+    "time": "2026-10-19T22:04:21.305Z",
+    "type": "model_request"
+  },
+  {
+    "scope": "plan_intent",
+    "seq": 53,
+    "time": "2026-10-19T22:04:21.300Z",
+    "type": "response_guard_passed"
+  },
+  {
+    "seq": 52,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T22:04:21.299Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "approved": true,
+          "issues": []
+        },
+        "name": "review_message"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 640,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.00000384,
+        "cacheWrite": 0,
+        "input": 0.0009483,
+        "output": 0.0000576,
+        "total": 0.00100974
+      },
+      "input": 3161,
+      "output": 48,
+      "reasoning": 0,
+      "totalTokens": 3849
+    }
+  },
+  {
+    "request": 1,
+    "seq": 51,
+    "time": "2026-10-19T22:04:20.720Z",
+    "type": "model_request"
+  },
+  {
+    "message_count": 0,
+    "seq": 50,
+    "time": "2026-10-19T22:04:20.715Z",
+    "type": "response_guard_started"
+  },
+  {
+    "arguments": {
+      "goal": "الإبلاغ عن بلاط رصيف مفكك عند مدخل حديقة صغيرة قرب شارع الصنوبر التجريبي في الرياض",
+      "steps": [
+        {
+          "capability": "input",
+          "depends_on": [],
+          "id": "signin-72e73f2b-9c53-407d-bda9-26b1292e9",
+          "title": "تسجيل الدخول التجريبي"
+        },
+        {
+          "capability": "crm_get_main_classifications",
+          "depends_on": [
+            "signin-72e73f2b-9c53-407d-bda9-26b1292e9"
+          ],
+          "id": "s1",
+          "title": "عرض فئات الخدمة الرئيسية"
+        },
+        {
+          "capability": "crm_get_sub_classifications",
+          "depends_on": [
+            "s1"
+          ],
+          "id": "s2",
+          "title": "عرض الفئات الفرعية لصيانة المرافق العامة"
+        },
+        {
+          "capability": "respond",
+          "depends_on": [
+            "s2"
+          ],
+          "id": "s3",
+          "title": "توضيح النتيجة والحدود"
+        }
+      ],
+      "summary": "عرضنا فئات الخدمة المتاحة في الرياض. الخطوة التالية هي تحديد الفئة الفرعية المناسبة لصيانة الأرصفة، ثم التحقق من إمكانية تحديد الموقع الداخلي المطلوب."
+    },
+    "call_id": "call_00_IVPPwA8ahS67XksxtDvQ7595",
+    "name": "propose_plan",
+    "seq": 49,
+    "time": "2026-10-19T22:04:20.715Z",
+    "type": "tool_start"
+  },
+  {
+    "seq": 48,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T22:04:20.714Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "goal": "الإبلاغ عن بلاط رصيف مفكك عند مدخل حديقة صغيرة قرب شارع الصنوبر التجريبي في الرياض",
+          "steps": [
+            {
+              "capability": "input",
+              "depends_on": [],
+              "id": "signin-72e73f2b-9c53-407d-bda9-26b1292e9",
+              "title": "تسجيل الدخول التجريبي"
+            },
+            {
+              "capability": "crm_get_main_classifications",
+              "depends_on": [
+                "signin-72e73f2b-9c53-407d-bda9-26b1292e9"
+              ],
+              "id": "s1",
+              "title": "عرض فئات الخدمة الرئيسية"
+            },
+            {
+              "capability": "crm_get_sub_classifications",
+              "depends_on": [
+                "s1"
+              ],
+              "id": "s2",
+              "title": "عرض الفئات الفرعية لصيانة المرافق العامة"
+            },
+            {
+              "capability": "respond",
+              "depends_on": [
+                "s2"
+              ],
+              "id": "s3",
+              "title": "توضيح النتيجة والحدود"
+            }
+          ],
+          "summary": "عرضنا فئات الخدمة المتاحة في الرياض. الخطوة التالية هي تحديد الفئة الفرعية المناسبة لصيانة الأرصفة، ثم التحقق من إمكانية تحديد الموقع الداخلي المطلوب."
+        },
+        "name": "propose_plan"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 14848,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000089088,
+        "cacheWrite": 0,
+        "input": 0.0001203,
+        "output": 0.0004224,
+        "total": 0.0006317879999999999
+      },
+      "input": 401,
+      "output": 352,
+      "reasoning": 0,
+      "totalTokens": 15601
+    }
+  },
+  {
+    "request": 2,
+    "seq": 47,
+    "time": "2026-10-19T22:04:18.963Z",
+    "type": "model_request"
+  },
+  {
+    "call_id": "call_00_1SF6oGYNfKGCbmLCoMwL8999",
+    "name": "crm_get_main_classifications",
+    "result": {
+      "receipt": {
+        "api_mode": "simulation",
+        "beneficiary_id": "demo-demo",
+        "id": "receipt-090ecc9c-5321-4364-8dd8-45e77ee09d2a",
+        "operation": "crm_get_main_classifications",
+        "operation_key": "c2bc4409b4bc35ddcb9be2e853282098f618bc3959dcf5de49b1d924bc198c83",
+        "parameters": {
+          "municipalityID": "004",
+          "type": "CRM"
+        },
+        "plan_id": "plan-967ce7c6-0b47-47ad-9c60-e87ea337013a",
+        "result": {
+          "data": {
+            "responseCode": "1",
+            "responseMessage": "success",
+            "result": [
+              {
+                "ID": "004_MC-1",
+                "Name": "Public space maintenance / 公共空间维护"
+              },
+              {
+                "ID": "004_MC-CLEAN",
+                "Name": "Cleanliness and waste / 环境卫生"
+              },
+              {
+                "ID": "004_MC-LIGHT",
+                "Name": "Street lighting / 道路照明"
+              },
+              {
+                "ID": "004_MC-VEHICLE",
+                "Name": "Abandoned vehicles / 废弃车辆"
+              }
+            ]
+          },
+          "statusDetails": {
+            "code": 200,
+            "message": "OK"
+          }
+        },
+        "step_id": "s1",
+        "time": "2026-10-19T22:04:18.958Z"
+      }
+    },
+    "seq": 46,
+    "time": "2026-10-19T22:04:18.958Z",
+    "type": "tool_end"
+  },
+  {
+    "receipt": {
+      "api_mode": "simulation",
+      "beneficiary_id": "demo-demo",
+      "id": "receipt-090ecc9c-5321-4364-8dd8-45e77ee09d2a",
+      "operation": "crm_get_main_classifications",
+      "operation_key": "c2bc4409b4bc35ddcb9be2e853282098f618bc3959dcf5de49b1d924bc198c83",
+      "parameters": {
+        "municipalityID": "004",
+        "type": "CRM"
+      },
+      "plan_id": "plan-967ce7c6-0b47-47ad-9c60-e87ea337013a",
+      "result": {
+        "data": {
+          "responseCode": "1",
+          "responseMessage": "success",
+          "result": [
+            {
+              "ID": "004_MC-1",
+              "Name": "Public space maintenance / 公共空间维护"
+            },
+            {
+              "ID": "004_MC-CLEAN",
+              "Name": "Cleanliness and waste / 环境卫生"
+            },
+            {
+              "ID": "004_MC-LIGHT",
+              "Name": "Street lighting / 道路照明"
+            },
+            {
+              "ID": "004_MC-VEHICLE",
+              "Name": "Abandoned vehicles / 废弃车辆"
+            }
+          ]
+        },
+        "statusDetails": {
+          "code": 200,
+          "message": "OK"
+        }
+      },
+      "step_id": "s1",
+      "time": "2026-10-19T22:04:18.958Z"
+    },
+    "seq": 45,
+    "time": "2026-10-19T22:04:18.958Z",
+    "type": "receipt"
+  },
+  {
+    "operation": "crm_get_main_classifications",
+    "response": {
+      "data": {
+        "responseCode": "1",
+        "responseMessage": "success",
+        "result": [
+          {
+            "ID": "004_MC-1",
+            "Name": "Public space maintenance / 公共空间维护"
+          },
+          {
+            "ID": "004_MC-CLEAN",
+            "Name": "Cleanliness and waste / 环境卫生"
+          },
+          {
+            "ID": "004_MC-LIGHT",
+            "Name": "Street lighting / 道路照明"
+          },
+          {
+            "ID": "004_MC-VEHICLE",
+            "Name": "Abandoned vehicles / 废弃车辆"
+          }
+        ]
+      },
+      "statusDetails": {
+        "code": 200,
+        "message": "OK"
+      }
+    },
+    "seq": 44,
+    "time": "2026-10-19T22:04:18.956Z",
+    "type": "api_end"
+  },
+  {
+    "call": {
+      "operation": "crm_get_main_classifications",
+      "parameters": {
+        "municipalityID": "004",
+        "type": "CRM"
+      },
+      "time": "2026-10-19T22:04:18.955Z"
+    },
+    "seq": 43,
+    "time": "2026-10-19T22:04:18.955Z",
+    "type": "api_start"
+  },
+  {
+    "plan_id": "plan-967ce7c6-0b47-47ad-9c60-e87ea337013a",
+    "seq": 42,
+    "step_id": "s1",
+    "time": "2026-10-19T22:04:18.952Z",
+    "type": "step_running"
+  },
+  {
+    "arguments": {
+      "municipalityID": "004",
+      "step_id": "s1",
+      "type": "CRM"
+    },
+    "call_id": "call_00_1SF6oGYNfKGCbmLCoMwL8999",
+    "name": "crm_get_main_classifications",
+    "seq": 41,
+    "time": "2026-10-19T22:04:18.952Z",
+    "type": "tool_start"
+  },
+  {
+    "seq": 40,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T22:04:18.951Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "municipalityID": "004",
+          "step_id": "s1",
+          "type": "CRM"
+        },
+        "name": "crm_get_main_classifications"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 13696,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000082176,
+        "cacheWrite": 0,
+        "input": 0.0003561,
+        "output": 0.00008879999999999999,
+        "total": 0.000527076
+      },
+      "input": 1187,
+      "output": 74,
+      "reasoning": 0,
+      "totalTokens": 14957
+    }
+  },
+  {
+    "request": 1,
+    "seq": 39,
+    "time": "2026-10-19T22:04:18.087Z",
+    "type": "model_request"
+  },
+  {
+    "epoch": 0,
+    "route": "crm_resume",
+    "seq": 38,
+    "time": "2026-10-19T22:04:18.075Z",
+    "type": "turn_started"
+  },
+  {
+    "input_id": "input-4390d5e8-7371-4e19-b363-2a35abe594b9",
+    "result": {},
+    "seq": 37,
+    "time": "2026-10-19T22:04:18.075Z",
+    "type": "input_received"
+  },
+  {
+    "message": {
+      "id": "message-15d1cf1f-a10c-43cf-93d9-ecffbca923ac",
+      "input_id": "input-4390d5e8-7371-4e19-b363-2a35abe594b9",
+      "kind": "input",
+      "role": "user",
+      "text": "اكتمل تسجيل الدخول التجريبي.",
+      "time": "2026-10-19T22:04:18.075Z",
+      "value": {}
+    },
+    "seq": 36,
+    "time": "2026-10-19T22:04:18.075Z",
+    "type": "message"
+  },
+  {
+    "message": {
+      "id": "message-4ca2d1dc-5a48-4355-8698-a839c2120b72",
+      "kind": "login",
+      "notice": "login",
+      "role": "assistant",
+      "text": "تم تسجيل الدخول التجريبي بنجاح. يمكننا متابعة بلاغاتك.",
+      "time": "2026-10-19T22:04:17.986Z"
+    },
+    "seq": 35,
+    "time": "2026-10-19T22:04:17.986Z",
+    "type": "message"
+  },
+  {
+    "seq": 34,
+    "time": "2026-10-19T22:04:17.985Z",
+    "type": "login",
+    "user": {
+      "name": "demo",
+      "user_id": "demo-demo"
+    }
+  },
+  {
+    "seq": 33,
+    "status": "input",
+    "time": "2026-10-19T22:04:05.141Z",
+    "type": "turn_finished"
+  },
+  {
+    "call_id": "call_00_2FqvWsIkgtfg1d6jMuUd3576",
+    "name": "crm_get_main_classifications",
+    "result": {
+      "end_turn": true,
+      "input": {
+        "fields": [],
+        "host_authentication": true,
+        "id": "input-4390d5e8-7371-4e19-b363-2a35abe594b9",
+        "kind": "login",
+        "operation": "crm_get_main_classifications",
+        "plan_id": "plan-967ce7c6-0b47-47ad-9c60-e87ea337013a",
+        "question": "أكمل تسجيل الدخول التجريبي عبر الصفحة لمتابعة هذه الخدمة. لا ترسل كلمة المرور في المحادثة.",
+        "step_id": "signin-72e73f2b-9c53-407d-bda9-26b1292e9"
+      }
+    },
+    "seq": 32,
+    "time": "2026-10-19T22:04:05.140Z",
+    "type": "tool_end"
+  },
+  {
+    "message": {
+      "id": "message-923fdce7-827b-4892-a2ad-cc179613e2eb",
+      "input_id": "input-4390d5e8-7371-4e19-b363-2a35abe594b9",
+      "kind": "input_request",
+      "plan_id": "plan-967ce7c6-0b47-47ad-9c60-e87ea337013a",
+      "role": "assistant",
+      "text": "أكمل تسجيل الدخول التجريبي عبر الصفحة لمتابعة هذه الخدمة. لا ترسل كلمة المرور في المحادثة.",
+      "time": "2026-10-19T22:04:05.140Z"
+    },
+    "seq": 31,
+    "time": "2026-10-19T22:04:05.140Z",
+    "type": "message"
+  },
+  {
+    "input": {
+      "fields": [],
+      "host_authentication": true,
+      "id": "input-4390d5e8-7371-4e19-b363-2a35abe594b9",
+      "kind": "login",
+      "operation": "crm_get_main_classifications",
+      "plan_id": "plan-967ce7c6-0b47-47ad-9c60-e87ea337013a",
+      "question": "أكمل تسجيل الدخول التجريبي عبر الصفحة لمتابعة هذه الخدمة. لا ترسل كلمة المرور في المحادثة.",
+      "step_id": "signin-72e73f2b-9c53-407d-bda9-26b1292e9"
+    },
+    "seq": 30,
+    "time": "2026-10-19T22:04:05.140Z",
+    "type": "input_required"
+  },
+  {
+    "plan": {
+      "approved": true,
+      "created_at": "2026-10-19T22:04:04.348Z",
+      "goal": "خطة هذا الطلب",
+      "id": "plan-967ce7c6-0b47-47ad-9c60-e87ea337013a",
+      "origin_message_id": "message-c2626acc-e95c-4b53-a13a-168facf1aa88",
+      "status": "approved",
+      "steps": [
+        {
+          "capability": "input",
+          "depends_on": [],
+          "host_authentication": true,
+          "id": "signin-72e73f2b-9c53-407d-bda9-26b1292e9",
+          "parameters": {},
+          "status": "waiting",
+          "title": "تسجيل الدخول التجريبي"
+        },
+        {
+          "capability": "crm_get_main_classifications",
+          "depends_on": [
+            "signin-72e73f2b-9c53-407d-bda9-26b1292e9"
+          ],
+          "id": "s1",
+          "parameters": {
+            "municipalityID": "004",
+            "type": "CRM"
+          },
+          "status": "pending",
+          "title": "عرض فئات الخدمة الرئيسية"
+        },
+        {
+          "capability": "respond",
+          "depends_on": [
+            "s1"
+          ],
+          "id": "s2",
+          "parameters": {},
+          "status": "pending",
+          "title": "توضيح النتيجة والحدود"
+        }
+      ],
+      "summary": "هذه خطوات التعامل مع طلبك. تُنفّذ الاستعلامات تلقائياً، وتراجع التفاصيل قبل أي إرسال. لا تعني الخطة أن الطلب قد أُنجز.",
+      "version": 1
+    },
+    "reason": "authentication_required",
+    "seq": 29,
+    "time": "2026-10-19T22:04:05.140Z",
+    "type": "plan_updated"
+  },
+  {
+    "arguments": {
+      "municipalityID": "004",
+      "step_id": "s1",
+      "type": "CRM"
+    },
+    "call_id": "call_00_2FqvWsIkgtfg1d6jMuUd3576",
+    "name": "crm_get_main_classifications",
+    "seq": 28,
+    "time": "2026-10-19T22:04:05.139Z",
+    "type": "tool_start"
+  },
+  {
+    "seq": 27,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T22:04:05.138Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "municipalityID": "004",
+          "step_id": "s1",
+          "type": "CRM"
+        },
+        "name": "crm_get_main_classifications"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 14208,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000085248,
+        "cacheWrite": 0,
+        "input": 0.00008939999999999999,
+        "output": 0.00008879999999999999,
+        "total": 0.000263448
+      },
+      "input": 298,
+      "output": 74,
+      "reasoning": 0,
+      "totalTokens": 14580
+    }
+  },
+  {
+    "request": 2,
+    "seq": 26,
+    "time": "2026-10-19T22:04:04.351Z",
+    "type": "model_request"
+  },
+  {
+    "call_id": "call_00_nBlU2ttQIYIFVhr5FY8e0129",
+    "name": "propose_plan",
+    "result": {
+      "auto_execute": true,
+      "plan": {
+        "approved": true,
+        "created_at": "2026-10-19T22:04:04.348Z",
+        "goal": "خطة هذا الطلب",
+        "id": "plan-967ce7c6-0b47-47ad-9c60-e87ea337013a",
+        "origin_message_id": "message-c2626acc-e95c-4b53-a13a-168facf1aa88",
+        "status": "approved",
+        "steps": [
+          {
+            "capability": "crm_get_main_classifications",
+            "depends_on": [],
+            "id": "s1",
+            "parameters": {},
+            "status": "pending",
+            "title": "عرض فئات الخدمة الرئيسية"
+          },
+          {
+            "capability": "respond",
+            "depends_on": [
+              "s1"
+            ],
+            "id": "s2",
+            "parameters": {},
+            "status": "pending",
+            "title": "توضيح النتيجة والحدود"
+          }
+        ],
+        "summary": "هذه خطوات التعامل مع طلبك. تُنفّذ الاستعلامات تلقائياً، وتراجع التفاصيل قبل أي إرسال. لا تعني الخطة أن الطلب قد أُنجز.",
+        "version": 1
+      }
+    },
+    "seq": 25,
+    "time": "2026-10-19T22:04:04.348Z",
+    "type": "tool_end"
+  },
+  {
+    "message": {
+      "id": "message-bfcfa918-2a3f-473d-9f7e-0bff572233cb",
+      "kind": "plan",
+      "plan_id": "plan-967ce7c6-0b47-47ad-9c60-e87ea337013a",
+      "role": "assistant",
+      "text": "هذه خطوات التعامل مع طلبك. تُنفّذ الاستعلامات تلقائياً، وتراجع التفاصيل قبل أي إرسال. لا تعني الخطة أن الطلب قد أُنجز.",
+      "time": "2026-10-19T22:04:04.348Z"
+    },
+    "seq": 24,
+    "time": "2026-10-19T22:04:04.348Z",
+    "type": "message"
+  },
+  {
+    "plan_id": "plan-967ce7c6-0b47-47ad-9c60-e87ea337013a",
+    "seq": 23,
+    "time": "2026-10-19T22:04:04.348Z",
+    "type": "plan_auto_started"
+  }
+]

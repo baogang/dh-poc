@@ -1,0 +1,121 @@
+TAP version 13
+1..0
+# Subtest: tests/crm-agent.test.mjs
+ok 1 - tests/crm-agent.test.mjs
+  ---
+  duration_ms: 3070.3081
+  type: 'test'
+  ...
+1..0
+# Subtest: tests/crm-audience.test.mjs
+ok 2 - tests/crm-audience.test.mjs
+  ---
+  duration_ms: 3068.130678
+  type: 'test'
+  ...
+1..0
+# Subtest: tests/crm-chat-ui.test.mjs
+ok 3 - tests/crm-chat-ui.test.mjs
+  ---
+  duration_ms: 376.955169
+  type: 'test'
+  ...
+1..0
+# Subtest: tests/crm-contract.test.mjs
+ok 4 - tests/crm-contract.test.mjs
+  ---
+  duration_ms: 751.289423
+  type: 'test'
+  ...
+1..0
+# Subtest: tests/crm-files.test.mjs
+ok 5 - tests/crm-files.test.mjs
+  ---
+  duration_ms: 501.494236
+  type: 'test'
+  ...
+1..0
+# Subtest: tests/crm-http.test.mjs
+ok 6 - tests/crm-http.test.mjs
+  ---
+  duration_ms: 3396.683238
+  type: 'test'
+  ...
+# Subtest: v19 HTTP structured facts reject even clean-verdict unsafe supplemental prose and a real source-bound unknown question survives without extra API or authorization
+ok 7 - v19 HTTP structured facts reject even clean-verdict unsafe supplemental prose and a real source-bound unknown question survives without extra API or authorization
+  ---
+  duration_ms: 473.33313
+  type: 'test'
+  ...
+# Subtest: v19 HTTP an unconfirmed fact requires an actual current question actual evidence and independent absence verification before a host boundary is shown
+not ok 8 - v19 HTTP an unconfirmed fact requires an actual current question actual evidence and independent absence verification before a host boundary is shown
+  ---
+  duration_ms: 242.162751
+  type: 'test'
+  location: '/Users/baogang/git/momah-poc/tests/crm-integration.test.mjs:1048:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The expression evaluated to a falsy value:
+    
+      assert.ok(state.messages.at(-1).text.includes('Open'))
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/baogang/git/momah-poc/tests/crm-integration.test.mjs:1051:235)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async Test.run (node:internal/test_runner/test:1069:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:752:7)
+  ...
+# Subtest: v19 HTTP a failed final verifier retains an actual permanent location reason and blocked no-retry outcome in three languages without inventing receipt or success
+ok 9 - v19 HTTP a failed final verifier retains an actual permanent location reason and blocked no-retry outcome in three languages without inventing receipt or success
+  ---
+  duration_ms: 1107.34007
+  type: 'test'
+  ...
+1..0
+# Subtest: tests/crm-journey-choice.test.mjs
+ok 8 - tests/crm-journey-choice.test.mjs
+  ---
+  duration_ms: 499.023275
+  type: 'test'
+  ...
+1..0
+# Subtest: tests/crm-journey-metrics.test.mjs
+ok 9 - tests/crm-journey-metrics.test.mjs
+  ---
+  duration_ms: 512.781813
+  type: 'test'
+  ...
+1..0
+# Subtest: tests/crm-knowledge-routing.test.mjs
+ok 10 - tests/crm-knowledge-routing.test.mjs
+  ---
+  duration_ms: 3372.13738
+  type: 'test'
+  ...
+# Subtest: v19 fact-absence and outcome-binding gates inspect sourced questions and actual evidence independently without free host prose or file bytes
+ok 13 - v19 fact-absence and outcome-binding gates inspect sourced questions and actual evidence independently without free host prose or file bytes
+  ---
+  duration_ms: 468.089467
+  type: 'test'
+  ...
+1..0
+# Subtest: tests/crm-smoke.test.mjs
+ok 12 - tests/crm-smoke.test.mjs
+  ---
+  duration_ms: 3085.124014
+  type: 'test'
+  ...
+1..14
+# tests 14
+# suites 0
+# pass 13
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 5271.915153

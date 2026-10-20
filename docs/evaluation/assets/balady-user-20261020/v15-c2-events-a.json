@@ -1,0 +1,608 @@
+[
+  {
+    "request": 1,
+    "seq": 39,
+    "time": "2026-10-19T22:04:18.087Z",
+    "type": "model_request"
+  },
+  {
+    "epoch": 0,
+    "route": "crm_resume",
+    "seq": 38,
+    "time": "2026-10-19T22:04:18.075Z",
+    "type": "turn_started"
+  },
+  {
+    "input_id": "input-4390d5e8-7371-4e19-b363-2a35abe594b9",
+    "result": {},
+    "seq": 37,
+    "time": "2026-10-19T22:04:18.075Z",
+    "type": "input_received"
+  },
+  {
+    "message": {
+      "id": "message-15d1cf1f-a10c-43cf-93d9-ecffbca923ac",
+      "input_id": "input-4390d5e8-7371-4e19-b363-2a35abe594b9",
+      "kind": "input",
+      "role": "user",
+      "text": "اكتمل تسجيل الدخول التجريبي.",
+      "time": "2026-10-19T22:04:18.075Z",
+      "value": {}
+    },
+    "seq": 36,
+    "time": "2026-10-19T22:04:18.075Z",
+    "type": "message"
+  },
+  {
+    "message": {
+      "id": "message-4ca2d1dc-5a48-4355-8698-a839c2120b72",
+      "kind": "login",
+      "notice": "login",
+      "role": "assistant",
+      "text": "تم تسجيل الدخول التجريبي بنجاح. يمكننا متابعة بلاغاتك.",
+      "time": "2026-10-19T22:04:17.986Z"
+    },
+    "seq": 35,
+    "time": "2026-10-19T22:04:17.986Z",
+    "type": "message"
+  },
+  {
+    "seq": 34,
+    "time": "2026-10-19T22:04:17.985Z",
+    "type": "login",
+    "user": {
+      "name": "demo",
+      "user_id": "demo-demo"
+    }
+  },
+  {
+    "seq": 33,
+    "status": "input",
+    "time": "2026-10-19T22:04:05.141Z",
+    "type": "turn_finished"
+  },
+  {
+    "call_id": "call_00_2FqvWsIkgtfg1d6jMuUd3576",
+    "name": "crm_get_main_classifications",
+    "result": {
+      "end_turn": true,
+      "input": {
+        "fields": [],
+        "host_authentication": true,
+        "id": "input-4390d5e8-7371-4e19-b363-2a35abe594b9",
+        "kind": "login",
+        "operation": "crm_get_main_classifications",
+        "plan_id": "plan-967ce7c6-0b47-47ad-9c60-e87ea337013a",
+        "question": "أكمل تسجيل الدخول التجريبي عبر الصفحة لمتابعة هذه الخدمة. لا ترسل كلمة المرور في المحادثة.",
+        "step_id": "signin-72e73f2b-9c53-407d-bda9-26b1292e9"
+      }
+    },
+    "seq": 32,
+    "time": "2026-10-19T22:04:05.140Z",
+    "type": "tool_end"
+  },
+  {
+    "message": {
+      "id": "message-923fdce7-827b-4892-a2ad-cc179613e2eb",
+      "input_id": "input-4390d5e8-7371-4e19-b363-2a35abe594b9",
+      "kind": "input_request",
+      "plan_id": "plan-967ce7c6-0b47-47ad-9c60-e87ea337013a",
+      "role": "assistant",
+      "text": "أكمل تسجيل الدخول التجريبي عبر الصفحة لمتابعة هذه الخدمة. لا ترسل كلمة المرور في المحادثة.",
+      "time": "2026-10-19T22:04:05.140Z"
+    },
+    "seq": 31,
+    "time": "2026-10-19T22:04:05.140Z",
+    "type": "message"
+  },
+  {
+    "input": {
+      "fields": [],
+      "host_authentication": true,
+      "id": "input-4390d5e8-7371-4e19-b363-2a35abe594b9",
+      "kind": "login",
+      "operation": "crm_get_main_classifications",
+      "plan_id": "plan-967ce7c6-0b47-47ad-9c60-e87ea337013a",
+      "question": "أكمل تسجيل الدخول التجريبي عبر الصفحة لمتابعة هذه الخدمة. لا ترسل كلمة المرور في المحادثة.",
+      "step_id": "signin-72e73f2b-9c53-407d-bda9-26b1292e9"
+    },
+    "seq": 30,
+    "time": "2026-10-19T22:04:05.140Z",
+    "type": "input_required"
+  },
+  {
+    "plan": {
+      "approved": true,
+      "created_at": "2026-10-19T22:04:04.348Z",
+      "goal": "خطة هذا الطلب",
+      "id": "plan-967ce7c6-0b47-47ad-9c60-e87ea337013a",
+      "origin_message_id": "message-c2626acc-e95c-4b53-a13a-168facf1aa88",
+      "status": "approved",
+      "steps": [
+        {
+          "capability": "input",
+          "depends_on": [],
+          "host_authentication": true,
+          "id": "signin-72e73f2b-9c53-407d-bda9-26b1292e9",
+          "parameters": {},
+          "status": "waiting",
+          "title": "تسجيل الدخول التجريبي"
+        },
+        {
+          "capability": "crm_get_main_classifications",
+          "depends_on": [
+            "signin-72e73f2b-9c53-407d-bda9-26b1292e9"
+          ],
+          "id": "s1",
+          "parameters": {
+            "municipalityID": "004",
+            "type": "CRM"
+          },
+          "status": "pending",
+          "title": "عرض فئات الخدمة الرئيسية"
+        },
+        {
+          "capability": "respond",
+          "depends_on": [
+            "s1"
+          ],
+          "id": "s2",
+          "parameters": {},
+          "status": "pending",
+          "title": "توضيح النتيجة والحدود"
+        }
+      ],
+      "summary": "هذه خطوات التعامل مع طلبك. تُنفّذ الاستعلامات تلقائياً، وتراجع التفاصيل قبل أي إرسال. لا تعني الخطة أن الطلب قد أُنجز.",
+      "version": 1
+    },
+    "reason": "authentication_required",
+    "seq": 29,
+    "time": "2026-10-19T22:04:05.140Z",
+    "type": "plan_updated"
+  },
+  {
+    "arguments": {
+      "municipalityID": "004",
+      "step_id": "s1",
+      "type": "CRM"
+    },
+    "call_id": "call_00_2FqvWsIkgtfg1d6jMuUd3576",
+    "name": "crm_get_main_classifications",
+    "seq": 28,
+    "time": "2026-10-19T22:04:05.139Z",
+    "type": "tool_start"
+  },
+  {
+    "seq": 27,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T22:04:05.138Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "municipalityID": "004",
+          "step_id": "s1",
+          "type": "CRM"
+        },
+        "name": "crm_get_main_classifications"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 14208,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000085248,
+        "cacheWrite": 0,
+        "input": 0.00008939999999999999,
+        "output": 0.00008879999999999999,
+        "total": 0.000263448
+      },
+      "input": 298,
+      "output": 74,
+      "reasoning": 0,
+      "totalTokens": 14580
+    }
+  },
+  {
+    "request": 2,
+    "seq": 26,
+    "time": "2026-10-19T22:04:04.351Z",
+    "type": "model_request"
+  },
+  {
+    "call_id": "call_00_nBlU2ttQIYIFVhr5FY8e0129",
+    "name": "propose_plan",
+    "result": {
+      "auto_execute": true,
+      "plan": {
+        "approved": true,
+        "created_at": "2026-10-19T22:04:04.348Z",
+        "goal": "خطة هذا الطلب",
+        "id": "plan-967ce7c6-0b47-47ad-9c60-e87ea337013a",
+        "origin_message_id": "message-c2626acc-e95c-4b53-a13a-168facf1aa88",
+        "status": "approved",
+        "steps": [
+          {
+            "capability": "crm_get_main_classifications",
+            "depends_on": [],
+            "id": "s1",
+            "parameters": {},
+            "status": "pending",
+            "title": "عرض فئات الخدمة الرئيسية"
+          },
+          {
+            "capability": "respond",
+            "depends_on": [
+              "s1"
+            ],
+            "id": "s2",
+            "parameters": {},
+            "status": "pending",
+            "title": "توضيح النتيجة والحدود"
+          }
+        ],
+        "summary": "هذه خطوات التعامل مع طلبك. تُنفّذ الاستعلامات تلقائياً، وتراجع التفاصيل قبل أي إرسال. لا تعني الخطة أن الطلب قد أُنجز.",
+        "version": 1
+      }
+    },
+    "seq": 25,
+    "time": "2026-10-19T22:04:04.348Z",
+    "type": "tool_end"
+  },
+  {
+    "message": {
+      "id": "message-bfcfa918-2a3f-473d-9f7e-0bff572233cb",
+      "kind": "plan",
+      "plan_id": "plan-967ce7c6-0b47-47ad-9c60-e87ea337013a",
+      "role": "assistant",
+      "text": "هذه خطوات التعامل مع طلبك. تُنفّذ الاستعلامات تلقائياً، وتراجع التفاصيل قبل أي إرسال. لا تعني الخطة أن الطلب قد أُنجز.",
+      "time": "2026-10-19T22:04:04.348Z"
+    },
+    "seq": 24,
+    "time": "2026-10-19T22:04:04.348Z",
+    "type": "message"
+  },
+  {
+    "plan_id": "plan-967ce7c6-0b47-47ad-9c60-e87ea337013a",
+    "seq": 23,
+    "time": "2026-10-19T22:04:04.348Z",
+    "type": "plan_auto_started"
+  },
+  {
+    "plan": {
+      "approved": true,
+      "created_at": "2026-10-19T22:04:04.348Z",
+      "goal": "خطة هذا الطلب",
+      "id": "plan-967ce7c6-0b47-47ad-9c60-e87ea337013a",
+      "origin_message_id": "message-c2626acc-e95c-4b53-a13a-168facf1aa88",
+      "status": "approved",
+      "steps": [
+        {
+          "capability": "crm_get_main_classifications",
+          "depends_on": [],
+          "id": "s1",
+          "parameters": {},
+          "status": "pending",
+          "title": "عرض فئات الخدمة الرئيسية"
+        },
+        {
+          "capability": "respond",
+          "depends_on": [
+            "s1"
+          ],
+          "id": "s2",
+          "parameters": {},
+          "status": "pending",
+          "title": "توضيح النتيجة والحدود"
+        }
+      ],
+      "summary": "هذه خطوات التعامل مع طلبك. تُنفّذ الاستعلامات تلقائياً، وتراجع التفاصيل قبل أي إرسال. لا تعني الخطة أن الطلب قد أُنجز.",
+      "version": 1
+    },
+    "seq": 22,
+    "time": "2026-10-19T22:04:04.348Z",
+    "type": "plan_proposed"
+  },
+  {
+    "corrected": false,
+    "issues": [],
+    "seq": 21,
+    "time": "2026-10-19T22:04:04.348Z",
+    "type": "response_guard_completed"
+  },
+  {
+    "scope": "plan_feasibility",
+    "seq": 20,
+    "time": "2026-10-19T22:04:04.348Z",
+    "type": "response_guard_passed"
+  },
+  {
+    "seq": 19,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T22:04:04.347Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "approved": true,
+          "issues": []
+        },
+        "name": "review_message"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 640,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.00000384,
+        "cacheWrite": 0,
+        "input": 0.0007446,
+        "output": 0.0000576,
+        "total": 0.00080604
+      },
+      "input": 2482,
+      "output": 48,
+      "reasoning": 0,
+      "totalTokens": 3170
+    }
+  },
+  {
+    "request": 1,
+    "seq": 18,
+    "time": "2026-10-19T22:04:03.536Z",
+    "type": "model_request"
+  },
+  {
+    "scope": "plan_intent",
+    "seq": 17,
+    "time": "2026-10-19T22:04:03.530Z",
+    "type": "response_guard_passed"
+  },
+  {
+    "seq": 16,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T22:04:03.530Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "approved": true,
+          "issues": []
+        },
+        "name": "review_message"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 640,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.00000384,
+        "cacheWrite": 0,
+        "input": 0.0007398,
+        "output": 0.0000576,
+        "total": 0.0008012399999999999
+      },
+      "input": 2466,
+      "output": 48,
+      "reasoning": 0,
+      "totalTokens": 3154
+    }
+  },
+  {
+    "request": 1,
+    "seq": 15,
+    "time": "2026-10-19T22:04:02.682Z",
+    "type": "model_request"
+  },
+  {
+    "message_count": 0,
+    "seq": 14,
+    "time": "2026-10-19T22:04:02.677Z",
+    "type": "response_guard_started"
+  },
+  {
+    "arguments": {
+      "goal": "الإبلاغ عن بلاط رصيف مفكك عند مدخل حديقة صغيرة قرب شارع الصنوبر التجريبي في الرياض",
+      "steps": [
+        {
+          "capability": "crm_get_main_classifications",
+          "depends_on": [],
+          "id": "s1",
+          "title": "استعراض التصنيفات الرئيسية للخدمات البلدية"
+        },
+        {
+          "capability": "respond",
+          "depends_on": [
+            "s1"
+          ],
+          "id": "s2",
+          "title": "توضيح النتيجة والخطوات التالية"
+        }
+      ],
+      "summary": "استكشاف التصنيفات المتاحة لطلب خدمة بلدية، ثم تحديد ما إذا كانت بيانات الموقع الداخلية متاحة، ثم جمع بيانات التواصل والاسم من المستفيد."
+    },
+    "call_id": "call_00_nBlU2ttQIYIFVhr5FY8e0129",
+    "name": "propose_plan",
+    "seq": 13,
+    "time": "2026-10-19T22:04:02.677Z",
+    "type": "tool_start"
+  },
+  {
+    "seq": 12,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T22:04:02.676Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "goal": "الإبلاغ عن بلاط رصيف مفكك عند مدخل حديقة صغيرة قرب شارع الصنوبر التجريبي في الرياض",
+          "steps": [
+            {
+              "capability": "crm_get_main_classifications",
+              "depends_on": [],
+              "id": "s1",
+              "title": "استعراض التصنيفات الرئيسية للخدمات البلدية"
+            },
+            {
+              "capability": "respond",
+              "depends_on": [
+                "s1"
+              ],
+              "id": "s2",
+              "title": "توضيح النتيجة والخطوات التالية"
+            }
+          ],
+          "summary": "استكشاف التصنيفات المتاحة لطلب خدمة بلدية، ثم تحديد ما إذا كانت بيانات الموقع الداخلية متاحة، ثم جمع بيانات التواصل والاسم من المستفيد."
+        },
+        "name": "propose_plan"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 13568,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000081408,
+        "cacheWrite": 0,
+        "input": 0.0001389,
+        "output": 0.0002628,
+        "total": 0.00048310799999999994
+      },
+      "input": 463,
+      "output": 219,
+      "reasoning": 0,
+      "totalTokens": 14250
+    }
+  },
+  {
+    "request": 1,
+    "seq": 11,
+    "time": "2026-10-19T22:04:01.128Z",
+    "type": "model_request"
+  },
+  {
+    "emotion": {
+      "assessed_at": "2026-10-19T22:04:01.115Z",
+      "evidence": null,
+      "message_id": "message-c2626acc-e95c-4b53-a13a-168facf1aa88",
+      "sentiment": "neutral",
+      "status": "classified",
+      "version": "road-emotion-1.0.1"
+    },
+    "seq": 10,
+    "time": "2026-10-19T22:04:01.116Z",
+    "type": "emotion_assessed"
+  },
+  {
+    "seq": 9,
+    "stage": "emotion",
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T22:04:01.114Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "quote": "",
+          "sentiment": "neutral"
+        },
+        "name": "record_sentiment"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 896,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000005376,
+        "cacheWrite": 0,
+        "input": 0.0000546,
+        "output": 0.0000588,
+        "total": 0.000118776
+      },
+      "input": 182,
+      "output": 49,
+      "reasoning": 0,
+      "totalTokens": 1127
+    }
+  },
+  {
+    "request": 1,
+    "seq": 8,
+    "stage": "emotion",
+    "time": "2026-10-19T22:04:00.563Z",
+    "type": "model_request"
+  },
+  {
+    "message_id": "message-c2626acc-e95c-4b53-a13a-168facf1aa88",
+    "seq": 7,
+    "time": "2026-10-19T22:04:00.556Z",
+    "type": "emotion_started"
+  },
+  {
+    "entry_id": null,
+    "method": "model",
+    "seq": 6,
+    "time": "2026-10-19T22:04:00.556Z",
+    "type": "faq_miss"
+  },
+  {
+    "seq": 5,
+    "stop_reason": "toolUse",
+    "time": "2026-10-19T22:04:00.554Z",
+    "tool_calls": [
+      {
+        "arguments": {
+          "answerable": false,
+          "entry_id": null,
+          "needs_clarification": false,
+          "reason": "The user wants to file a report about a broken sidewalk tile (a business action/transaction request), not a knowledge question. No FAQ entry covers reporting sidewalk damage or how to submit such a report, so this is a miss."
+        },
+        "name": "select_faq"
+      }
+    ],
+    "type": "model_result",
+    "usage": {
+      "cacheRead": 512,
+      "cacheWrite": 0,
+      "cost": {
+        "cacheRead": 0.000003072,
+        "cacheWrite": 0,
+        "input": 0.0008637,
+        "output": 0.0001572,
+        "total": 0.001023972
+      },
+      "input": 2879,
+      "output": 131,
+      "reasoning": 0,
+      "totalTokens": 3522
+    }
+  },
+  {
+    "request": 1,
+    "seq": 4,
+    "time": "2026-10-19T22:03:59.495Z",
+    "type": "model_request"
+  },
+  {
+    "entries": 9,
+    "seq": 3,
+    "time": "2026-10-19T22:03:59.484Z",
+    "type": "faq_lookup"
+  },
+  {
+    "epoch": 0,
+    "route": "faq_then_balady_crm",
+    "seq": 2,
+    "time": "2026-10-19T22:03:59.482Z",
+    "type": "turn_started"
+  },
+  {
+    "message": {
+      "id": "message-c2626acc-e95c-4b53-a13a-168facf1aa88",
+      "role": "user",
+      "text": "يوجد بلاط رصيف مفكك عند مدخل حديقة صغيرة وأخشى أن يتعثر أحد. أريد الإبلاغ لإصلاحه، وهو قرب شارع الصنوبر التجريبي في الرياض، ولا أعرف اسم الحي الرسمي.",
+      "time": "2026-10-19T22:03:59.480Z"
+    },
+    "seq": 1,
+    "time": "2026-10-19T22:03:59.480Z",
+    "type": "message"
+  }
+]

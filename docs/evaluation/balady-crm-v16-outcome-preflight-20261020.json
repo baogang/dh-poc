@@ -1,0 +1,619 @@
+{
+  "stage": "v16 targeted real-model outcome applicability and readiness preflight, not full journeys or a blind benchmark",
+  "started_at": "2026-10-19T22:18:03.386Z",
+  "model": "deepseek-flash",
+  "source_sha256": {
+    "src/crm/agent.mjs": "1a58a2b3a4ee092594d63c88cdc017ce1e2675853ea19cfa8a66606966ad86db",
+    "src/crm/response-guard.mjs": "b898d64dc3737b836b76d8e18dd0dfbb5f622fe05f3bf8faa564a4e8ab054730",
+    "src/crm/presentation.mjs": "452ee24f78d4051465d18f55496814e9b78d0606ea85c99641575b1bca5b1f32"
+  },
+  "cases": [
+    {
+      "id": "guidance_must_match_read_goal",
+      "snapshot": {
+        "messages": [
+          {
+            "id": "origin",
+            "role": "user",
+            "text": "Show my past reports, please. I am worried about the progress."
+          }
+        ],
+        "receipts": [
+          {
+            "id": "actual-history",
+            "operation": "crm_get_incidents",
+            "parameters": {},
+            "result": {
+              "data": {
+                "result": {
+                  "IncidentRequestList": [
+                    {
+                      "pyID": "INC-SYNTHETIC-41",
+                      "pzInsKey": "SYNTHETIC INC-SYNTHETIC-41",
+                      "Description": "Broken bench",
+                      "pyStatusWork": "Open"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        ],
+        "facts": {},
+        "user": {
+          "user_id": "synthetic-test"
+        }
+      },
+      "texts": [
+        "The cited query receipts contain these records:\n\n| Report number | Issue | Recorded status | Attachment flag |\n|---|---|---|---|\n| INC-SYNTHETIC-41 | Broken bench | Open | Not returned |\n\nThese are recorded statuses; they do not establish a repair, dispatch or handling time.\n\nThe requested operation is not connected to this assistant and was not performed.\n\nIf you wish, we can prepare a separate local simulated public complaint. It is a new local record requiring your choice and its own review. It does not change the original matter or get forwarded to a real department for investigation or handling.\n\nThese are local simulation records. They were not sent to government systems, and these local numbers cannot be used to look them up through official channels."
+      ],
+      "context": {
+        "kind": "outcome_presentation",
+        "origin_message_id": "origin",
+        "outcome": "completed",
+        "case_guidance": [
+          "action_unavailable",
+          "offer_separate_complaint"
+        ],
+        "receipt_ids": [
+          "actual-history"
+        ],
+        "author_explanation": "Here is your progress."
+      },
+      "expected": "reject",
+      "actual": "reject",
+      "pass": true,
+      "error": {
+        "code": "UNVERIFIED_CUSTOMER_CLAIMS",
+        "message": "Regenerate the original outcome_presentation in en using only supported facts and capabilities; then retry this tool. The text says \"The requested operation is not connected to this assistant and was not performed,\" but the citizen's request (show past reports) was fulfilled by the crm_get_incidents receipt; no unavailable operation was requested.; The text omits the citizen's stated concern about progress; the receipt shows only status Open, and the answer should acknowledge that progress/handling time is unknown rather than implying a separate unavailable operation."
+      },
+      "events": [
+        {
+          "type": "response_guard_started",
+          "message_count": 1
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 2614,
+            "output": 137,
+            "cacheRead": 640,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 3391,
+            "cost": {
+              "input": 0.0007842,
+              "output": 0.00016439999999999998,
+              "cacheRead": 0.00000384,
+              "cacheWrite": 0,
+              "total": 0.0009524399999999999
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": false,
+                "issues": [
+                  "The text says \"The requested operation is not connected to this assistant and was not performed,\" but the citizen's request (show past reports) was fulfilled by the crm_get_incidents receipt; no unavailable operation was requested.",
+                  "The text omits the citizen's stated concern about progress; the receipt shows only status Open, and the answer should acknowledge that progress/handling time is unknown rather than implying a separate unavailable operation."
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_rejected",
+          "scope": "facts",
+          "issues": [
+            "The text says \"The requested operation is not connected to this assistant and was not performed,\" but the citizen's request (show past reports) was fulfilled by the crm_get_incidents receipt; no unavailable operation was requested.",
+            "The text omits the citizen's stated concern about progress; the receipt shows only status Open, and the answer should acknowledge that progress/handling time is unknown rather than implying a separate unavailable operation."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "actual_location_reason_is_preserved",
+      "snapshot": {
+        "messages": [
+          {
+            "id": "origin",
+            "role": "user",
+            "text": "Several paving tiles outside the community playground are loose. Can I report this? I do not know the district."
+          }
+        ],
+        "receipts": [],
+        "facts": {
+          "hostConstraints": {
+            "origin": {
+              "crm_create_municipal_service": {
+                "code": "LOCATION_METADATA_UNAVAILABLE",
+                "operation": "crm_create_municipal_service",
+                "fields": [
+                  "body.LocationInfo.SubMunicipalityID",
+                  "body.LocationInfo.Sub_SubMunicipalityID"
+                ],
+                "capability": "administrative_location_resolution",
+                "available": false,
+                "origin_message_id": "origin"
+              }
+            }
+          }
+        },
+        "user": {
+          "user_id": "synthetic-test"
+        }
+      },
+      "texts": [
+        "This request is not complete. The information below does not mean that the original matter was registered or carried out.\n\nThe physical report has not been registered. This assistant has no address-to-local-administrative-area resolver, so the required location data cannot currently be obtained. You do not need to provide internal codes or repeat your contact details.\n\nIf you wish, we can prepare a separate local simulated public complaint. It is a new local record requiring your choice and its own review. It does not change the original matter or get forwarded to a real department for investigation or handling.\n\nThis environment keeps local simulation records only. Nothing is forwarded to a government body, department or staff for verification or handling; no real refund, payment, permit or notification is performed. Real transactions require a separate official channel, where local numbers cannot be used for tracking."
+      ],
+      "context": {
+        "kind": "outcome_presentation",
+        "origin_message_id": "origin",
+        "outcome": "blocked",
+        "case_guidance": [
+          "location_unavailable",
+          "offer_separate_complaint"
+        ],
+        "author_explanation": "The report is unregistered because the required administrative location resolver is unavailable."
+      },
+      "expected": "approve",
+      "actual": "approve",
+      "pass": true,
+      "events": [
+        {
+          "type": "response_guard_started",
+          "message_count": 1
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 1877,
+            "output": 48,
+            "cacheRead": 1408,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 3333,
+            "cost": {
+              "input": 0.0005631,
+              "output": 0.0000576,
+              "cacheRead": 0.000008448,
+              "cacheWrite": 0,
+              "total": 0.000629148
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": true,
+                "issues": []
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_passed",
+          "scope": "facts"
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 2627,
+            "output": 48,
+            "cacheRead": 896,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 3571,
+            "cost": {
+              "input": 0.0007880999999999999,
+              "output": 0.0000576,
+              "cacheRead": 0.000005376,
+              "cacheWrite": 0,
+              "total": 0.0008510759999999999
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": true,
+                "issues": []
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_passed",
+          "scope": "capability_language"
+        },
+        {
+          "type": "response_guard_completed",
+          "corrected": false,
+          "issues": []
+        }
+      ]
+    },
+    {
+      "id": "optional_alternative_cannot_replace_blocked_reason",
+      "snapshot": {
+        "messages": [
+          {
+            "id": "origin",
+            "role": "user",
+            "text": "Several paving tiles outside the community playground are loose. Can I report this? I do not know the district."
+          }
+        ],
+        "receipts": [],
+        "facts": {
+          "hostConstraints": {
+            "origin": {
+              "crm_create_municipal_service": {
+                "code": "LOCATION_METADATA_UNAVAILABLE",
+                "operation": "crm_create_municipal_service",
+                "fields": [
+                  "body.LocationInfo.SubMunicipalityID",
+                  "body.LocationInfo.Sub_SubMunicipalityID"
+                ],
+                "capability": "administrative_location_resolution",
+                "available": false,
+                "origin_message_id": "origin"
+              }
+            }
+          }
+        },
+        "user": {
+          "user_id": "synthetic-test"
+        }
+      },
+      "texts": [
+        "This request is not complete. The information below does not mean that the original matter was registered or carried out.\n\nIf you wish, we can prepare a separate local simulated public complaint. It is a new local record requiring your choice and its own review. It does not change the original matter or get forwarded to a real department for investigation or handling.\n\nThis environment keeps local simulation records only. Nothing is forwarded to a government body, department or staff for verification or handling; no real refund, payment, permit or notification is performed. Real transactions require a separate official channel, where local numbers cannot be used for tracking."
+      ],
+      "context": {
+        "kind": "outcome_presentation",
+        "origin_message_id": "origin",
+        "outcome": "blocked",
+        "case_guidance": [
+          "offer_separate_complaint"
+        ],
+        "author_explanation": "The report is unregistered because the required administrative location resolver is unavailable."
+      },
+      "expected": "reject",
+      "actual": "approve",
+      "pass": false,
+      "events": [
+        {
+          "type": "response_guard_started",
+          "message_count": 1
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 1781,
+            "output": 48,
+            "cacheRead": 1408,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 3237,
+            "cost": {
+              "input": 0.0005342999999999999,
+              "output": 0.0000576,
+              "cacheRead": 0.000008448,
+              "cacheWrite": 0,
+              "total": 0.0006003479999999999
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": true,
+                "issues": []
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_passed",
+          "scope": "facts"
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 1763,
+            "output": 48,
+            "cacheRead": 1664,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 3475,
+            "cost": {
+              "input": 0.0005289,
+              "output": 0.0000576,
+              "cacheRead": 0.000009984,
+              "cacheWrite": 0,
+              "total": 0.000596484
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": true,
+                "issues": []
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_passed",
+          "scope": "capability_language"
+        },
+        {
+          "type": "response_guard_completed",
+          "corrected": false,
+          "issues": []
+        }
+      ]
+    },
+    {
+      "id": "physical_readiness_probe",
+      "snapshot": {
+        "messages": [
+          {
+            "id": "origin",
+            "role": "user",
+            "text": "Several paving tiles outside the community playground are loose. Can I report this? I do not know the district."
+          }
+        ],
+        "receipts": [],
+        "facts": {
+          "hostConstraints": {
+            "origin": {
+              "crm_create_municipal_service": {
+                "code": "LOCATION_METADATA_UNAVAILABLE",
+                "operation": "crm_create_municipal_service",
+                "fields": [
+                  "body.LocationInfo.SubMunicipalityID",
+                  "body.LocationInfo.Sub_SubMunicipalityID"
+                ],
+                "capability": "administrative_location_resolution",
+                "available": false,
+                "origin_message_id": "origin"
+              }
+            }
+          }
+        },
+        "user": {
+          "user_id": "synthetic-test"
+        }
+      },
+      "texts": [],
+      "context": {
+        "kind": "prerequisite_check",
+        "origin_message_id": "origin",
+        "operation": "crm_create_municipal_service",
+        "known_parameters": {
+          "body": {
+            "IncidentInformation": {
+              "IssueDescription": "Several paving tiles outside the community playground are loose. Can I report this? I do not know the district."
+            }
+          }
+        }
+      },
+      "expected": "approve",
+      "actual": "approve",
+      "pass": true,
+      "events": [
+        {
+          "type": "response_guard_started",
+          "message_count": 0
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 3457,
+            "output": 48,
+            "cacheRead": 640,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 4145,
+            "cost": {
+              "input": 0.0010371,
+              "output": 0.0000576,
+              "cacheRead": 0.00000384,
+              "cacheWrite": 0,
+              "total": 0.00109854
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": true,
+                "issues": []
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_passed",
+          "scope": "facts"
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 3567,
+            "output": 48,
+            "cacheRead": 768,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 4383,
+            "cost": {
+              "input": 0.0010701,
+              "output": 0.0000576,
+              "cacheRead": 0.000004608,
+              "cacheWrite": 0,
+              "total": 0.001132308
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": true,
+                "issues": []
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_passed",
+          "scope": "capability_language"
+        },
+        {
+          "type": "response_guard_completed",
+          "corrected": false,
+          "issues": []
+        }
+      ]
+    },
+    {
+      "id": "unrelated_readiness_probe",
+      "snapshot": {
+        "messages": [
+          {
+            "id": "origin",
+            "role": "user",
+            "text": "Show my past reports, please. I am worried about the progress."
+          }
+        ],
+        "receipts": [
+          {
+            "id": "actual-history",
+            "operation": "crm_get_incidents",
+            "parameters": {},
+            "result": {
+              "data": {
+                "result": {
+                  "IncidentRequestList": [
+                    {
+                      "pyID": "INC-SYNTHETIC-41",
+                      "pzInsKey": "SYNTHETIC INC-SYNTHETIC-41",
+                      "Description": "Broken bench",
+                      "pyStatusWork": "Open"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        ],
+        "facts": {},
+        "user": {
+          "user_id": "synthetic-test"
+        }
+      },
+      "texts": [],
+      "context": {
+        "kind": "prerequisite_check",
+        "origin_message_id": "origin",
+        "operation": "crm_create_municipal_service",
+        "known_parameters": {}
+      },
+      "expected": "reject",
+      "actual": "reject",
+      "pass": true,
+      "error": {
+        "code": "UNVERIFIED_CUSTOMER_CLAIMS",
+        "message": "Regenerate the original prerequisite_check in en using only supported facts and capabilities; then retry this tool. Prerequisite check targets crm_create_municipal_service (a write to create a new municipal service request), which does not correspond to the citizen's goal of viewing past report history; the relevant capability is crm_get_incidents, which already returned a receipt.; No text is supplied for review, and the check omits the delivered facts (the history request and the returned incident INC-SYNTHETIC-41 with status Open) that the citizen's request requires."
+      },
+      "events": [
+        {
+          "type": "response_guard_started",
+          "message_count": 0
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 2745,
+            "output": 146,
+            "cacheRead": 1280,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 4171,
+            "cost": {
+              "input": 0.0008235,
+              "output": 0.0001752,
+              "cacheRead": 0.00000768,
+              "cacheWrite": 0,
+              "total": 0.0010063799999999999
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": false,
+                "issues": [
+                  "Prerequisite check targets crm_create_municipal_service (a write to create a new municipal service request), which does not correspond to the citizen's goal of viewing past report history; the relevant capability is crm_get_incidents, which already returned a receipt.",
+                  "No text is supplied for review, and the check omits the delivered facts (the history request and the returned incident INC-SYNTHETIC-41 with status Open) that the citizen's request requires."
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_rejected",
+          "scope": "facts",
+          "issues": [
+            "Prerequisite check targets crm_create_municipal_service (a write to create a new municipal service request), which does not correspond to the citizen's goal of viewing past report history; the relevant capability is crm_get_incidents, which already returned a receipt.",
+            "No text is supplied for review, and the check omits the delivered facts (the history request and the returned incident INC-SYNTHETIC-41 with status Open) that the citizen's request requires."
+          ]
+        }
+      ]
+    }
+  ],
+  "completed_at": "2026-10-19T22:18:11.594Z",
+  "pass": false,
+  "source_changed_during_run": []
+}

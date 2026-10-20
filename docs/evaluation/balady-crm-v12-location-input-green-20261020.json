@@ -1,0 +1,34 @@
+{
+  "stage": "v12 location-input five-case green probe after host fix",
+  "command": [
+    "node",
+    "--test",
+    "--test-reporter=tap",
+    "--test-name-pattern=required city input|unresolved lower administrative|missing the entire administrative|omitted optional municipality|explicitly unresolved optional city-filter",
+    "tests/crm-integration.test.mjs"
+  ],
+  "tests": 5,
+  "passed": 5,
+  "failed": 0,
+  "exit_code": 0,
+  "source_sha256": {
+    "src/crm/agent.mjs": "11374ab1dfbc935293db8eb971bf6ddaa51b9df0d69c98eeea1892552738020c",
+    "src/crm/contract.mjs": "650d3bc0abd54fca8d7a32c5a640a6bd8ee5a996254704f855f41a3d6b93d08a",
+    "src/crm/response-guard.mjs": "0330f20310cb7b2b239dc08e5bd049742a526ab6d4e9118e5de9e217bb88d1d2",
+    "tests/crm-integration.test.mjs": "24045da34109070170e2c2fde28e012475df1cbb9afb2f1a28340421f2756e6f"
+  },
+  "source_sha256_end": {
+    "src/crm/agent.mjs": "11374ab1dfbc935293db8eb971bf6ddaa51b9df0d69c98eeea1892552738020c",
+    "src/crm/contract.mjs": "650d3bc0abd54fca8d7a32c5a640a6bd8ee5a996254704f855f41a3d6b93d08a",
+    "src/crm/response-guard.mjs": "0330f20310cb7b2b239dc08e5bd049742a526ab6d4e9118e5de9e217bb88d1d2",
+    "tests/crm-integration.test.mjs": "24045da34109070170e2c2fde28e012475df1cbb9afb2f1a28340421f2756e6f"
+  },
+  "source_changed_during_run": [],
+  "raw_tap": "docs/evaluation/balady-crm-v12-location-input-green-20261020.tap",
+  "prior_stage": "docs/evaluation/balady-crm-v12-location-input-red-20261020.json",
+  "notes": [
+    "Positive city-question fixture has trusted lower administrative IDs. Missing entire LocationInfo must stop rather than collect unnecessary citizen data.",
+    "Wire schema enums and original frozen natural inputs/references/fixtures remain unchanged.",
+    "The parent agent fix11374ab had landed before this5-case run. Only the earlier immutable4-failure report is pre-fix red evidence; no5-case pre-fix red is claimed."
+  ]
+}

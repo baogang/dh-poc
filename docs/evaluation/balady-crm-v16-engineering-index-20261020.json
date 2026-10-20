@@ -1,0 +1,41 @@
+{
+  "phase": "engineering only; v16 real-model 70+40 not yet started",
+  "final": {
+    "report": "docs/evaluation/balady-crm-v16-final-engineering-v2-20261020.json",
+    "raw": "docs/evaluation/balady-crm-v16-final-engineering-v2-20261020.tap",
+    "tests": 274,
+    "passed": 274,
+    "failed": 0,
+    "exit_code": 0,
+    "files": 67,
+    "source_changed_during_run": [],
+    "agent_sha": "9986d86a1a5c7490551351d96f68b9f7170dcb389303e3d1fb5a39762ed14fcc",
+    "guard_sha": "cd818fd248f6d5c248c07786a353ff4593173996210ce7155a64f26e85e9ba32",
+    "presentation_sha": "649467e68d764e9c843370764257847cee9d10bcc2abe11a7d04f21301987c14"
+  },
+  "retained_preceding_runs": [
+    {
+      "report": "docs/evaluation/balady-crm-v16-initial-engineering-20261020.json",
+      "pass": 267,
+      "total": 272,
+      "note": "Five old-script compatibility assertions; full TAP preserved and precise reasons in test-adaptation notes."
+    },
+    {
+      "report": "docs/evaluation/balady-crm-v16-final-engineering-20261020.json",
+      "pass": 272,
+      "total": 274,
+      "note": "One genuine PRIMARY_OUTCOME_REQUIRED regression on exact-approved write plus real read 503, and one old optional-only explanation expectation. Full TAP preserved; original partial-success assertion stayed strict."
+    }
+  ],
+  "interpretation": [
+    "The successful scripted engineering checks exercise actual public HTTP, real host authorization and document-derived simulation with controlled model/reviewer responses. They do not measure real model planning accuracy.",
+    "The pure-case none branch is deterministic host control completion with zero primary/reviewer model calls, including separate feedback snapshot accounting. It is not model planning success.",
+    "The real current-plan read failure is separately grounded control evidence, not a successful API receipt and not evidence of a permanently disconnected operation.",
+    "No production source was edited by this integration subagent; parent made production corrections after concrete seam evidence. No natural inputs/references/fixtures/actor/grader were changed.",
+    "Original v15 technical70/70, natural38/1/1 and independent combined38/40 remain unchanged. v16 has no live score yet."
+  ],
+  "notes": [
+    "docs/evaluation/balady-crm-v16-test-adaptation-notes-20261020.json",
+    "docs/evaluation/balady-crm-v16-outcome-gate-followup-20261020.json"
+  ]
+}

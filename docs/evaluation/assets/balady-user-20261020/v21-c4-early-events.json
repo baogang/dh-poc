@@ -1,0 +1,32 @@
+[
+  {
+    "request": 1,
+    "seq": 4,
+    "time": "2026-10-20T00:18:47.653Z",
+    "type": "model_request"
+  },
+  {
+    "entries": 9,
+    "seq": 3,
+    "time": "2026-10-20T00:18:47.643Z",
+    "type": "faq_lookup"
+  },
+  {
+    "epoch": 0,
+    "route": "faq_then_balady_crm",
+    "seq": 2,
+    "time": "2026-10-20T00:18:47.642Z",
+    "type": "turn_started"
+  },
+  {
+    "message": {
+      "id": "message-6a8a224c-ab7e-4a05-826a-9a8ab8ec6e62",
+      "role": "user",
+      "text": "这里有哪些市政资产类别可以查看？",
+      "time": "2026-10-20T00:18:47.642Z"
+    },
+    "seq": 1,
+    "time": "2026-10-20T00:18:47.642Z",
+    "type": "message"
+  }
+]

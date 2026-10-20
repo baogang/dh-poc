@@ -1,0 +1,91 @@
+{
+  "source_commit": "5978237500a1cf57dd580955812bf94f0c16793d",
+  "branch": "balady-crm",
+  "service_id": "srv-db7p0lbbc2fs73fvlkhg",
+  "workspace_id": "tea-db5ogtd9fdbs73ditg1g",
+  "url": "https://road-pothole-pi-poc.onrender.com",
+  "dashboard_url": "https://dashboard.render.com/web/srv-db7p0lbbc2fs73fvlkhg",
+  "deploy_id": "dep-dbbbkpss728c73b93h0g",
+  "trigger": "existing service automatic new_commit deployment after successful source push; no duplicate manual deployment",
+  "timeline": [
+    {
+      "status": "build_in_progress",
+      "at": "2026-10-20T00:48:39.830625Z"
+    },
+    {
+      "status": "live",
+      "observed_at": "2026-10-20 00:49:26 UTC",
+      "finishedAt": "2026-10-20T00:49:25.105671Z"
+    }
+  ],
+  "quality_gates": {
+    "engineering": "320/320 independent final smoke run",
+    "technical": "70/70; selection and execution86TP0FP0FN, plan96TP0FP0FN; not citizen-business completion accuracy",
+    "natural_original_automatic": "32pass/7fail/1needs_review plus2deferred checks; unchanged",
+    "natural_independent": "40/40 acceptable within observed boundary;0cards0writes; not40completed transactions",
+    "browser": "nine original journeys complete;6reads0writes; recovered tool errors retained separately",
+    "file_original": "0/1 executed checks; waiting for actual name-role facts;0writes",
+    "file_independent_native_roles": "28/28; separate predeclared actor; synthetic68-bytePNG",
+    "source_integrity": "68 frozen files unchanged;70merged files match candidate Git blobs"
+  },
+  "evidence": {
+    "regression": "docs/evaluation/balady-crm-final-v22-regression-20261020.json",
+    "smoke": "docs/evaluation/balady-crm-smoke-20261020.json#final_v22_candidate",
+    "browser": "docs/evaluation/balady-crm-user-audit-20261020.json#v22_typed_capability_and_form_route_browser_regression",
+    "browser_source": "docs/evaluation/balady-crm-v22-browser-end-source-20261020.json",
+    "integrity": "docs/evaluation/balady-crm-v22-run-integrity-20261020.json"
+  },
+  "limitations": [
+    "CRM local simulation; no government transaction or external processing.",
+    "Original natural actors and all old scores are preserved.",
+    "Browser file chooser was not automated; actual bytes tested through separate public HTTP journeys.",
+    "Documentation/audit-only commit follows successful deployment using [skip render], with compiled source unchanged."
+  ],
+  "render_status": "live",
+  "render_finished_at": "2026-10-20T00:49:25.105671Z",
+  "health": {
+    "http_status": 200,
+    "ok": true,
+    "service": "balady-crm",
+    "contract_version": "1.13.0",
+    "tools": 35,
+    "api_mode": "simulation",
+    "release": "5978237500a1cf57dd580955812bf94f0c16793d",
+    "session_storage": "neon",
+    "model_configured": true
+  },
+  "authenticated_browser": {
+    "status": "complete_observed_scope_no_new_p1_p2",
+    "stage": "v22_render_authenticated_browser_acceptance",
+    "browser": "Chrome; existing authentication preserved",
+    "actual_business_reads": 1,
+    "actual_write_calls": 0,
+    "actual_upload_calls": 0,
+    "event_seq": {
+      "first": 1,
+      "last": 89,
+      "gaps": []
+    },
+    "model_requests": 17,
+    "model_results": 17,
+    "tool_errors": 0,
+    "public_tool_count": 20,
+    "contract_operation_count": 35,
+    "observations": [
+      "Exact deployed health release, BALADY brand and real-model response verified.",
+      "Natural asset query produced one readable table without raw Markdown/JSON.",
+      "Asset result persisted unchanged after refresh.",
+      "A natural public suggestion exposed labelled given/family name fields.",
+      "Native cancellation completed, persisted after refresh, and removed stale fields.",
+      "No file chooser or actual upload exercised online."
+    ],
+    "screenshots": "docs/evaluation/assets/balady-user-20261020/260–266",
+    "result_tab_id": "1625157817",
+    "user_owned_tabs_preserved": [
+      "1625157677",
+      "1625157656"
+    ]
+  },
+  "completed_at": "2026-10-20 00:53:27 UTC",
+  "health_recorded_at": "2026-10-20 00:50:28 UTC"
+}

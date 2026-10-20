@@ -1,0 +1,94 @@
+04:18:19 · message
+查看数据
+{
+  "seq": 117,
+  "time": "2026-10-19T20:18:19.739Z",
+  "type": "message",
+  "message": {
+    "id": "message-a780bbcc-66ec-4bda-bcfd-9cd2422ea328",
+    "role": "assistant",
+    "text": "部分请求尚未完成；以下仅为已取得的记录，不能视为全部办理成功。\n\n尚未在本次可见记录中确认你所指的事项。下表如有记录，仅为可见候选；可以补充问题描述、地点或时间帮助区分。\n\n引用的查询回执记录如下：\n\n| 记录编号 | 问题描述 | 记录状态 | 附件标记 |\n|---|---|---|---|\n| INC-26-10-000001 | Suspected abandoned vehicle beside Test Cedar Street / 测试雪松街旁疑似废弃车辆 | 处理中 | 无附件标记 |\n| INC-26-10-000002 | Waste left beside the Test Olive Street container / 测试橄榄街垃圾箱旁垃圾未清运 | 已解决 | 有附件标记 |\n\n以上是接口记录的状态，不代表已核实现场修复、派工或处理时间。\n\n附件标记不能证明文件数量、类型或上传人。当前引用的回执未包含文件内容，暂不能提供下载。\n\n这些是本地仿真记录，未发送至政府系统，不能用这些本地编号在官方渠道查询。",
+    "time": "2026-10-19T20:18:19.739Z",
+    "kind": "result",
+    "receipt_ids": [
+      "receipt-e6b5c6a7-22eb-44f0-8a2f-83be81d6e6b2"
+    ],
+    "presentation_source": "host_case",
+    "presentation_parts": [
+      "host_case"
+    ],
+    "case_guidance": [
+      "not_found"
+    ]
+  }
+}
+
+04:18:19 · response_guard_completed
+查看数据
+{
+  "seq": 116,
+  "time": "2026-10-19T20:18:19.738Z",
+  "type": "response_guard_completed",
+  "corrected": false,
+  "issues": []
+}
+
+04:18:18 · tool_start
+查看数据
+{
+  "seq": 108,
+  "time": "2026-10-19T20:18:18.505Z",
+  "type": "tool_start",
+  "call_id": "call_00_zt0domRlavMQ83RmMRw83541",
+  "name": "finish",
+  "arguments": {
+    "case_guidance": [
+      "not_found"
+    ],
+    "message": "我查看了您登录账户下的历史诉求记录，共 2 条，但都不是夜间车辆鸣笛噪音的问题：\n\n| 记录编号 | 内容 | 当前状态 |\n|---|---|---|\n| INC-26-10-000001 | 测试雪松街旁疑似废弃车辆 | 处理中 |\n| INC-26-10-000002 | 测试橄榄街垃圾箱旁垃圾未清运 | 已解决 |\n\n因此，在您的账户下没有找到与夜间车辆鸣笛噪音匹配的记录，无法说明该投诉的处理进展；上述两条记录不能视为您那件噪音投诉的进展。状态仅为记录当前所处状态，不代表已受理、派单或已开始作业。\n\n如果您希望就夜间车辆鸣笛噪音重新反映，我可以帮您起草一份新的诉求（需要所在城市、大致地址、联系方式，并确认是否有照片）。本环境为本地模拟，记录不会转交任何部门处理；如需正式反映，请另行通过官方渠道办理。",
+    "receipt_ids": [
+      "receipt-e6b5c6a7-22eb-44f0-8a2f-83be81d6e6b2"
+    ],
+    "state": "blocked"
+  }
+}
+
+04:18:16 · response_guard_rejected
+查看数据
+{
+  "seq": 104,
+  "time": "2026-10-19T20:18:16.533Z",
+  "type": "response_guard_rejected",
+  "scope": "facts",
+  "issues": [
+    "用户询问的是夜间车辆鸣笛噪音投诉，但返回的两条记录分别为废弃车辆（INC-26-10-000001，InProgress）和垃圾未清运（INC-26-10-000002，Resolved），均与鸣笛噪音不符；不得将任一记录当作该投诉的进展。",
+    "case_guidance 为 not_found：应说明未找到与该鸣笛噪音投诉匹配的记录，并保留实际可见记录作为候选或提供澄清，而非给出进展结论。"
+  ]
+}
+
+04:18:13 · response_guard_rejected
+查看数据
+{
+  "seq": 96,
+  "time": "2026-10-19T20:18:13.567Z",
+  "type": "response_guard_rejected",
+  "scope": "facts",
+  "issues": [
+    "用户询问的是夜间车辆鸣笛噪音投诉，但返回的两条记录分别是废弃车辆（INC-26-10-000001，InProgress）和垃圾未清运（INC-26-10-000002，Resolved），均与鸣笛噪音不符；不得将任一记录当作该投诉的进展。",
+    "case_guidance 为 not_found，应如实说明未找到与该鸣笛噪音投诉匹配的记录，并保留澄清或未找到的边界，不得声称已查到进展。"
+  ]
+}
+
+04:18:10 · response_guard_rejected
+查看数据
+{
+  "seq": 88,
+  "time": "2026-10-19T20:18:10.583Z",
+  "type": "response_guard_rejected",
+  "scope": "capability_language",
+  "issues": [
+    "用户询问的是夜间车辆鸣笛噪音投诉，但返回的两条记录分别是废弃车辆（INC-26-10-000001）和垃圾未清运（INC-26-10-000002），均不匹配该事项；不得将任一记录当作该投诉的进展。",
+    "case_guidance 为 not_found，应如实说明未找到与该噪音投诉匹配的记录，并保留澄清或未找到的边界，不得声称已查到进展。",
+    "如提及记录状态，只能引用实际返回的状态（InProgress/Resolved），不得推断受理、派单、上门或处理结果。"
+  ]
+}

@@ -1,0 +1,73 @@
+TAP version 13
+# Subtest: v19 a rejected location-to-goal association preserves only the real operation observation and cannot reassert the denied original-goal limitation in fallback
+not ok 1 - v19 a rejected location-to-goal association preserves only the real operation observation and cannot reassert the denied original-goal limitation in fallback
+  ---
+  duration_ms: 325.605489
+  type: 'test'
+  location: '/private/tmp/balady-v19-fallback-semantic-U4Npcb/tests/crm-integration.test.mjs:1058:1'
+  failureType: 'testCodeFailure'
+  error: 'A rejected goal association must not reappear as a final fact'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/balady-v19-fallback-semantic-U4Npcb/tests/crm-integration.test.mjs:1059:1228)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async Test.run (node:internal/test_runner/test:1069:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:332:3)
+  ...
+# Subtest: v19 an explicitly reused owned read is cited evidence rather than a new-turn retrieval when a sourced missing fact is rendered
+not ok 2 - v19 an explicitly reused owned read is cited evidence rather than a new-turn retrieval when a sourced missing fact is rendered
+  ---
+  duration_ms: 393.334624
+  type: 'test'
+  location: '/private/tmp/balady-v19-fallback-semantic-U4Npcb/tests/crm-integration.test.mjs:1062:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input did not match the regular expression /cited records/iu. Input:
+    
+    'Visible records:\n' +
+      '\n' +
+      '| Report number | Issue | Recorded status | Attachment flag |\n' +
+      '|---|---|---|---|\n' +
+      '| INC-42-08-000087 | Loose public bench at Test Hazel Walk | Open | Not returned |\n' +
+      '\n' +
+      'These are recorded statuses; they do not establish a repair, dispatch or handling time.\n' +
+      '\n' +
+      'These are local simulation records. They were not sent to government systems, and these local numbers cannot be used to look them up through official channels.\n' +
+      '\n' +
+      'The records obtained this turn have not established the information you asked about: “Was an inspection date returned in that record?”'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual: |-
+    Visible records:
+    
+    | Report number | Issue | Recorded status | Attachment flag |
+    |---|---|---|---|
+    | INC-42-08-000087 | Loose public bench at Test Hazel Walk | Open | Not returned |
+    
+    These are recorded statuses; they do not establish a repair, dispatch or handling time.
+    
+    These are local simulation records. They were not sent to government systems, and these local numbers cannot be used to look them up through official channels.
+    
+    The records obtained this turn have not established the information you asked about: “Was an inspection date returned in that record?”
+  operator: 'match'
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/balady-v19-fallback-semantic-U4Npcb/tests/crm-integration.test.mjs:1063:1234)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async Test.run (node:internal/test_runner/test:1069:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:752:7)
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 0
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1979.54166

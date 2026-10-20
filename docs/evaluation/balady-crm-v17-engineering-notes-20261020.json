@@ -1,0 +1,87 @@
+{
+  "phase": "v17 engineering only; no v17 full real-model run yet",
+  "final_engineering": {
+    "report": "docs/evaluation/balady-crm-v17-compatible-engineering-20261020.json",
+    "tests": 284,
+    "passed": 284,
+    "failed": 0,
+    "fingerprint_files": 67,
+    "source_changed": [],
+    "agent_sha": "52dd530fa1b37d45738e92a1f23f0c48e8dc783b16a74a6a825c81392622c386",
+    "guard_sha": "aafa4c8ada566d0d208ce4743ccbf3278d078c9740ed1cad326e961f50377640",
+    "presentation_sha": "62de557918e509568c1309fa826a2658b4c1e60b8187f4c1a2eb7d3030a2431a"
+  },
+  "preserved_runs": [
+    {
+      "report": "docs/evaluation/balady-crm-v17-explanation-repair-red-20261020.json",
+      "node_tests": 12,
+      "node_passed": 11,
+      "node_failed": 1,
+      "source_changed": [],
+      "agent_sha": "9986d86a1a5c7490551351d96f68b9f7170dcb389303e3d1fb5a39762ed14fcc",
+      "guard_sha": "cd818fd248f6d5c248c07786a353ff4593173996210ce7155a64f26e85e9ba32"
+    },
+    {
+      "report": "docs/evaluation/balady-crm-v17-case-review-bound-red-20261020.json",
+      "node_tests": 12,
+      "node_passed": 12,
+      "node_failed": 0,
+      "source_changed": [],
+      "agent_sha": "db25ea1edfd9e57e3d7fc6d7edb1a2e165648fb625268a5ab0239ab1c00d8973",
+      "guard_sha": "cd818fd248f6d5c248c07786a353ff4593173996210ce7155a64f26e85e9ba32"
+    },
+    {
+      "report": "docs/evaluation/balady-crm-v17-new-focused-20261020.json",
+      "node_tests": 17,
+      "node_passed": 16,
+      "node_failed": 1,
+      "source_changed": [],
+      "agent_sha": "0344b96341548c75b8ca9bc0ceef614e4d97144106d43d131c2e9b676c3e9ffc",
+      "guard_sha": "93612137ce322849a476d1ac1f378290a395b9ba2f7f08d2900390f606584176"
+    },
+    {
+      "report": "docs/evaluation/balady-crm-v17-new-focused-v2-20261020.json",
+      "node_tests": 17,
+      "node_passed": 17,
+      "node_failed": 0,
+      "source_changed": [],
+      "agent_sha": "0344b96341548c75b8ca9bc0ceef614e4d97144106d43d131c2e9b676c3e9ffc",
+      "guard_sha": "93612137ce322849a476d1ac1f378290a395b9ba2f7f08d2900390f606584176"
+    },
+    {
+      "report": "docs/evaluation/balady-crm-v17-initial-engineering-20261020.json",
+      "node_tests": 281,
+      "node_passed": 261,
+      "node_failed": 20,
+      "source_changed": [],
+      "agent_sha": "0344b96341548c75b8ca9bc0ceef614e4d97144106d43d131c2e9b676c3e9ffc",
+      "guard_sha": "93612137ce322849a476d1ac1f378290a395b9ba2f7f08d2900390f606584176"
+    },
+    {
+      "report": "docs/evaluation/balady-crm-v17-compatible-engineering-20261020.json",
+      "node_tests": 284,
+      "node_passed": 284,
+      "node_failed": 0,
+      "source_changed": [],
+      "agent_sha": "52dd530fa1b37d45738e92a1f23f0c48e8dc783b16a74a6a825c81392622c386",
+      "guard_sha": "aafa4c8ada566d0d208ce4743ccbf3278d078c9740ed1cad326e961f50377640"
+    }
+  ],
+  "interpretation": {
+    "explanation_red": "Genuine pre-fix public HTTP failure on stable v16 agent9986/guardcd818: the primary changed its supplemental explanation after rejection, but immutable host template suppressed it and the turn failed. Raw TAP retained.",
+    "case_bound_name_timing": "The file name contains red but the test executed after agentdb25 already included the bounded-rejection patch. It passed1 behavior then; no pre-fix red is claimed. Eleven additional Node empty-file containers are not behavioral coverage.",
+    "first_focused_failure": "Seven new behaviors:6 passed,1 failed because the engineering actor supplied message as an empty string. The optional field has minLength1 when present. The helper now omits the optional property for an empty desired explanation; this tests the intended interface without changing production schema.",
+    "initial_full_261_of_281": "Twenty retained failures reflect old host-only identity/fauxapprove assumptions that unsafe free explanations were silently discarded, obsolete review kinds/counters, or the older optional-only gate interface. Each original unsafe string and strict business assertion remains, with a real CrmResponseGuard controlled rejecting verdict and an actually executed author repair. No production semantic whitelist or test exemption was added.",
+    "controlled_review_helper": "rejectExplanations names explicit unsafe unit-test strings. It is an external-verdict fault input in engineering tests only; it is never used by production or the natural benchmark grader. These checks prove host behavior around verdicts, not reviewer semantic accuracy.",
+    "added_behavior_count": 10,
+    "added_scope": "4 HTTP+3 direct guard behaviors for the unified explanation/case seam, then3 more for sourced unavailable intent, no-host mandatory prose and cross-origin quote rejection. Language and guidance loops retain the same independent source/receipt/permission assertions.",
+    "preflight_failures": "The earlier v17 real-model host/case preflight5/6 and new unavailable-intent3/4 are parent-owned raw results. They remain failures; final284 scripted engineering is not a replacement or reinterpretation."
+  },
+  "frozen_inputs_references_fixtures_actor_grader_changed": false,
+  "previous_v16_result": {
+    "automatic": "30pass/9fail/1review;2deferred",
+    "independent_combined": "32/40",
+    "report": "docs/evaluation/balady-crm-final-v16-regression-20261020.json",
+    "not_released": true
+  }
+}

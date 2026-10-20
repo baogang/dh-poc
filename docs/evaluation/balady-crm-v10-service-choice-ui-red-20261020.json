@@ -1,0 +1,19 @@
+{
+  "stage": "native service-choice UI before implementation",
+  "command": [
+    "node",
+    "--test",
+    "--test-reporter=tap",
+    "--test-name-pattern=service choice",
+    "tests/crm-chat-ui.test.mjs"
+  ],
+  "exit_code": 1,
+  "source_sha256": {
+    "web/road/chat-ui.js": "ec9346262193ba58e8b87f1dd0ea5d85803c5ede95fb7df968f92a85a872c783",
+    "web/road/i18n.js": "478e9ffd3ea3566cb95c71052ecf05fcd305436b8be96dbca033be50fc38c727",
+    "web/road/style.css": "5a876cae64e95a1aa8f251294f47017c9176c119be129f3adb46cf620d55177e",
+    "tests/crm-chat-ui.test.mjs": "4f43b1ff5ee5066bd3938398afb24b60cbcd704d2a2514299383b65065fe71b2"
+  },
+  "expected": "Explicit readable native single selection, no default route or write approval, three languages, RTL, busy/double-click/history behavior",
+  "raw_tap": "docs/evaluation/balady-crm-v10-service-choice-ui-red-20261020.tap"
+}

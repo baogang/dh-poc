@@ -1,0 +1,2566 @@
+{
+  "stage": "separate single real-model public HTTP actual-file journey",
+  "phase": "regression",
+  "part_of_frozen_natural_40": false,
+  "browser_chooser_coverage": false,
+  "synthetic_data_only": true,
+  "started_at": "2026-10-19T23:53:04.907Z",
+  "candidate_commit": "60acc5791d561dbdd1144487af2d469378c3ebb5",
+  "source_sha256": {
+    "src/crm/agent.mjs": "563a4b91fb42e60fb84c29be385987e237bfabe0cdf73a742164562be51b8a23",
+    "src/crm/case-target.mjs": "a509e05b0d9514eb90d10229f5ce9f379dcf776d71e071b2c862366b94413109",
+    "src/crm/client.mjs": "a75c6d84ff2a94ad6d8d9d897b2a53754ef03405c39e0cfc3bdbc2363d3908bf",
+    "src/crm/contract.mjs": "650d3bc0abd54fca8d7a32c5a640a6bd8ee5a996254704f855f41a3d6b93d08a",
+    "src/crm/files.mjs": "7f5daecfbb5f387460b1eb0355e58f60d725553b2a6bf6d5c3fb89ece1e95a0c",
+    "src/crm/fixtures.mjs": "bb49919ba566f8c139e49d47fea8622a022a82417480e314365af03ad85659e2",
+    "src/crm/metrics.mjs": "c6a4e6dd931565ae24bbb60857421f7244523afaf7301b360241c4e2d45dec03",
+    "src/crm/openapi.mjs": "3074e84e8c4ac4ea75ef89dd34d277b10b9603310c37cdd3425e59a46bcd19b1",
+    "src/crm/plan-presentation.mjs": "081e6fbf801ac4ba31cf59a7d5ee6a3d944cb73986fc87dcf59d130d080ffa83",
+    "src/crm/policy.mjs": "d93301c23ee7ed91dbf0988da78f48c370480c1996673541ccb272eea5cce97b",
+    "src/crm/presentation.mjs": "16696d671f3e8704157015810eaab50001fe720ffe3db8f38d6a53786d51b7ee",
+    "src/crm/public-capabilities.mjs": "488582f8e1525d88d5feca596ef3cefaa2150970f22eefdfce910464791da2f4",
+    "src/crm/response-guard.mjs": "e0de1bc59900d672e20e2ec96f473870ed9a0092c17c8cffbe374ec6c7f1e315",
+    "src/crm/simulation.mjs": "9ab597aff7a79edf893b874f7732995fbd751f43ed09d45c48e8a96c8f4804ac",
+    "src/crm/text-source.mjs": "8ea62690d1c166a9a9fe222f5a763a22cce369f2376442a3afbc0092e61f272f",
+    "src/crm/validation.mjs": "15fdc1563381fb17c197abaf2c7447c407b8029fffa77a13556304a4f65de04a",
+    "src/road/agent.mjs": "e172127f97fa961acc3fd0908b022e527f475f4c686d1b5598842c23757e3459",
+    "src/road/database.mjs": "d4d3a9e3e804d305034fcf7a15874d8a2b60f880cb949a1c59c62aa8bdff924f",
+    "src/road/emotion.mjs": "66bc93477284b6a39f24695e492ba78dd7a31a435310a174446bc8a8d5aadd37",
+    "src/road/eval-metrics.mjs": "737dd9b789cd18bdc8d26fa4cea66bb7995c9ff911544127abcdd669af065eeb",
+    "src/road/feedback-context.mjs": "08ea20c60d57871b8a9e01816bcc47c2f26d856fc93801b6290bf1500f4eb993",
+    "src/road/feedback.mjs": "f82e820db72c305ec3a99c4faaa5b4f0b4c9c84a598ca53e997b329649bc029d",
+    "src/road/human.mjs": "222b6a2ec8ca11872f1c2cda3c13fd9671d58693722fa1b114277e1dc7c8830f",
+    "src/road/knowledge.mjs": "6460eafa44d68bc8d6023e2f05468392339c709b3066cea41117692dce7e3663",
+    "src/road/matters.mjs": "0908043bebd4d8d52dabb6208bcd237c983d71e4d2bf4ee4c5afe343a3e46a75",
+    "src/road/mocks.mjs": "883cf85bcd8cc23933366c3b01ab145033dd5a129e022627a4a599a904885ad4",
+    "src/road/neon-store.mjs": "742616c874ac739d7dff0eed3959981ddcd1578499647b14f487073c7a4ba2c9",
+    "src/road/policy.mjs": "c696f4e1e129cab7e90036cb0b02f7e1272a832958ebe3ddb7638da014d9cb8b",
+    "src/road/presentation.mjs": "e3045632164ace485d98cdb56728de876d53d75a15dd5b1d7ca8ceb3a07cdf1e",
+    "src/road/runtime.mjs": "8be144c62fba78f74326f771ff117020092a8aa6eacbf153dc925946a7acb371",
+    "src/road/server.mjs": "f8675619d785b4388c08bc1695cbb750d31cd7429da40dccaa07e582da173aa3",
+    "src/road/services.mjs": "f492608b82b2139ff86f0893a760c8bee3246052d44b293b581e20c04050ab19",
+    "src/road/store.mjs": "ba510253a00ab3584fc1d7e466d6005df75012fcd6ac7db4c6dcd10f45b19fb4",
+    "src/web-access.mjs": "cb34f380a781f70519354cfc8ca53a484d79bfd7436cb3d46fc500cdfa9e3373",
+    "src/knowledge/road-faq.json": "4c60e137e5b5176b32c09bd575f8082029eee3b1ee0415608be2cc7d2cd52054",
+    "package-lock.json": "b25c0c76bff5cc8be820904a17271e0d21587d4def8b775dd9e885e232a54c5d",
+    "/private/tmp/balady-crm-real-file-service-journey-20261020.mjs": "ffa3b3e88ba29cae249dde4c469781b9347210826eb7add65af8e7b7e9715cb5"
+  },
+  "initial_user_message": "I want to make a public complaint about the service experience at Test Cedar Municipal Service Hall. I waited in the queue for two hours and received no queue updates. Use the title “Long wait at Test Cedar Service Hall”. My name is Lina Citizen, my email is lina@example.test and my phone is 0501234567. I have one test image to attach and will select it when the file picker opens.",
+  "file": {
+    "name": "Test Evidence.png",
+    "media_type": "image/png",
+    "size": 68,
+    "sha256": "d78711356a9abac91b9d7e1c2477b8a2def3030702a16792173871c54c452a28"
+  },
+  "actor_policy": [
+    "Submit one fixed natural message with the complete synthetic contact details and complaint title.",
+    "Only when the model requests a real file, select the fixed PNG through the public file input.",
+    "Approve each exact upload/form card once, only if it matches the supplied file/contact/title and actual returned file ID.",
+    "Do not supply API ordering to the model, invent missing replies, change the actor input, or retry a failed case."
+  ],
+  "checks": {
+    "no_unscripted_missing_user_input": {
+      "pass": false,
+      "details": {
+        "kind": "name_roles",
+        "fields": [
+          "body.CustomerInformation.FirstName",
+          "body.CustomerInformation.LastName"
+        ]
+      }
+    }
+  },
+  "trace": [
+    {
+      "path": "/api/session",
+      "status": 201,
+      "input": {}
+    },
+    {
+      "path": "/api/chat",
+      "status": 202,
+      "input": {
+        "message": "I want to make a public complaint about the service experience at Test Cedar Municipal Service Hall. I waited in the queue for two hours and received no queue updates. Use the title “Long wait at Test Cedar Service Hall”. My name is Lina Citizen, my email is lina@example.test and my phone is 0501234567. I have one test image to attach and will select it when the file picker opens."
+      }
+    }
+  ],
+  "model_payload_audits": [
+    {
+      "kind": "faq",
+      "sha256": "d075f9795ca3cfefb541946a5b26ef9128836b4b7923836c0647716d40706578",
+      "contains_raw_file_bytes": false
+    },
+    {
+      "kind": "sentiment",
+      "sha256": "b9996963ff4345723217a0d35f4f3c31b0fb907bce2566ede74939195c85688b",
+      "contains_raw_file_bytes": false
+    },
+    {
+      "kind": "primary",
+      "sha256": "ce62188fdb5994b58ed10fecad13492b254ea842595c5586f2e31b2e4e008223",
+      "contains_raw_file_bytes": false
+    },
+    {
+      "kind": "primary",
+      "sha256": "9368c7fdc141fde0e75f041185d92930697bccba73c238f59ef42defb7626037",
+      "contains_raw_file_bytes": false
+    },
+    {
+      "kind": "verifier",
+      "sha256": "ef2845806dfee3d69d11696b2690492410d89be6f49a54691ceb46de41f09ef9",
+      "contains_raw_file_bytes": false
+    },
+    {
+      "kind": "verifier",
+      "sha256": "f03493c5db35142c0cb37ef9ddf60883ff71ebfc7b6d35afad6e14f902fca50a",
+      "contains_raw_file_bytes": false
+    },
+    {
+      "kind": "primary",
+      "sha256": "afa2327a3d8697fbc752a838e2479e5348de7aa32021abef38faac6690d8a1ce",
+      "contains_raw_file_bytes": false
+    }
+  ],
+  "states": [
+    {
+      "id": "session-472fec97-f912-4aad-afca-ee143cbcb507",
+      "createdAt": "2026-10-19T23:53:04.946Z",
+      "epoch": 0,
+      "running": false,
+      "status": "input",
+      "emotion": {
+        "status": "classified",
+        "sentiment": "neutral",
+        "message_id": "message-a6870aa9-301d-4f3b-a721-9c67a355a87f",
+        "evidence": null,
+        "version": "road-emotion-1.0.1",
+        "assessed_at": "2026-10-19T23:53:06.958Z"
+      },
+      "serviceContext": {
+        "scope": "balady-crm",
+        "origin": "business_plan"
+      },
+      "pendingKnowledge": null,
+      "pendingHelp": null,
+      "activeHandoffId": null,
+      "user": null,
+      "facts": {},
+      "messages": [
+        {
+          "id": "message-a6870aa9-301d-4f3b-a721-9c67a355a87f",
+          "role": "user",
+          "text": "I want to make a public complaint about the service experience at Test Cedar Municipal Service Hall. I waited in the queue for two hours and received no queue updates. Use the title “Long wait at Test Cedar Service Hall”. My name is Lina Citizen, my email is lina@example.test and my phone is 0501234567. I have one test image to attach and will select it when the file picker opens.",
+          "time": "2026-10-19T23:53:04.961Z",
+          "rateable": false
+        },
+        {
+          "id": "message-10bd3897-69e8-491a-887c-2038142a6cc9",
+          "role": "assistant",
+          "text": "These are the planned steps for your request. Queries run automatically; you will review exact details before a submission. A plan does not mean the request has been carried out.",
+          "time": "2026-10-19T23:53:10.899Z",
+          "kind": "plan",
+          "plan_id": "plan-5b09840d-0a4a-4f43-bc66-e5745a8667cc",
+          "rateable": false
+        },
+        {
+          "id": "message-78125fe7-f54f-4e0f-bf89-412073140f6b",
+          "role": "assistant",
+          "text": "Please enter your name in the labelled fields below. Your other supplied details will be kept.",
+          "time": "2026-10-19T23:53:12.380Z",
+          "kind": "input_request",
+          "input_id": "input-ce37afc6-5ab9-445a-82a9-e7efd84dbf35",
+          "plan_id": "plan-5b09840d-0a4a-4f43-bc66-e5745a8667cc",
+          "rateable": false
+        }
+      ],
+      "plans": [
+        {
+          "id": "plan-5b09840d-0a4a-4f43-bc66-e5745a8667cc",
+          "origin_message_id": "message-a6870aa9-301d-4f3b-a721-9c67a355a87f",
+          "version": 1,
+          "goal": "Plan for this request",
+          "summary": "These are the planned steps for your request. Queries run automatically; you will review exact details before a submission. A plan does not mean the request has been carried out.",
+          "steps": [
+            {
+              "id": "name_roles",
+              "capability": "input",
+              "depends_on": [],
+              "title": "Clarify necessary information",
+              "parameters": {},
+              "status": "waiting"
+            },
+            {
+              "id": "photo",
+              "capability": "input",
+              "depends_on": [],
+              "title": "Clarify necessary information",
+              "parameters": {},
+              "status": "pending"
+            },
+            {
+              "id": "upload",
+              "capability": "crm_upload_attachment",
+              "depends_on": [
+                "photo"
+              ],
+              "title": "Upload a form attachment",
+              "parameters": {},
+              "status": "pending"
+            },
+            {
+              "id": "submit",
+              "capability": "crm_create_form_request",
+              "depends_on": [
+                "name_roles",
+                "upload"
+              ],
+              "title": "Record an inquiry, suggestion or complaint",
+              "parameters": {},
+              "status": "pending"
+            },
+            {
+              "id": "respond",
+              "capability": "respond",
+              "depends_on": [
+                "submit"
+              ],
+              "title": "Explain the result and limits",
+              "parameters": {},
+              "status": "pending"
+            }
+          ],
+          "approved": true,
+          "status": "approved",
+          "created_at": "2026-10-19T23:53:10.899Z"
+        }
+      ],
+      "activePlanId": "plan-5b09840d-0a4a-4f43-bc66-e5745a8667cc",
+      "pendingInput": {
+        "id": "input-ce37afc6-5ab9-445a-82a9-e7efd84dbf35",
+        "plan_id": "plan-5b09840d-0a4a-4f43-bc66-e5745a8667cc",
+        "step_id": "name_roles",
+        "kind": "name_roles",
+        "operation": "crm_create_form_request",
+        "fields": [
+          "body.CustomerInformation.FirstName",
+          "body.CustomerInformation.LastName"
+        ],
+        "purpose": "missing",
+        "question": "Please enter your name in the labelled fields below. Your other supplied details will be kept.",
+        "known_parameters": {
+          "body": {
+            "Type": "T03",
+            "subject": "Long wait at Test Cedar Service Hall",
+            "CustomerInformation": {
+              "EmailAddress": "lina@example.test",
+              "MobileNumber": "0501234567"
+            }
+          }
+        },
+        "name_role_copy": {
+          "question": "Please enter your name in the labelled fields below. Your other supplied details will be kept.",
+          "FirstName": "Given name",
+          "LastName": "Family name",
+          "continue": "Save name and continue",
+          "cancel": "Cancel this request",
+          "note": "Only the name roles still unclear are shown. This is not identity verification.",
+          "retry": "Could not save. Please try again."
+        }
+      },
+      "pendingOperation": null,
+      "receipts": [],
+      "events": [
+        {
+          "seq": 1,
+          "time": "2026-10-19T23:53:04.961Z",
+          "type": "message",
+          "message": {
+            "id": "message-a6870aa9-301d-4f3b-a721-9c67a355a87f",
+            "role": "user",
+            "text": "I want to make a public complaint about the service experience at Test Cedar Municipal Service Hall. I waited in the queue for two hours and received no queue updates. Use the title “Long wait at Test Cedar Service Hall”. My name is Lina Citizen, my email is lina@example.test and my phone is 0501234567. I have one test image to attach and will select it when the file picker opens.",
+            "time": "2026-10-19T23:53:04.961Z"
+          }
+        },
+        {
+          "seq": 2,
+          "time": "2026-10-19T23:53:04.964Z",
+          "type": "turn_started",
+          "epoch": 0,
+          "route": "faq_then_balady_crm"
+        },
+        {
+          "seq": 3,
+          "time": "2026-10-19T23:53:04.968Z",
+          "type": "faq_lookup",
+          "entries": 9
+        },
+        {
+          "seq": 4,
+          "time": "2026-10-19T23:53:05.083Z",
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "seq": 5,
+          "time": "2026-10-19T23:53:06.252Z",
+          "type": "model_result",
+          "usage": {
+            "input": 2938,
+            "output": 124,
+            "cacheRead": 512,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 3574,
+            "cost": {
+              "input": 0.0008814,
+              "output": 0.00014879999999999998,
+              "cacheRead": 0.000003072,
+              "cacheWrite": 0,
+              "total": 0.001033272
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "select_faq",
+              "arguments": {
+                "entry_id": null,
+                "answerable": false,
+                "needs_clarification": false,
+                "reason": "The user is requesting a business action (filing a public complaint with personal details and an attachment), not asking a knowledge question. No FAQ entry covers complaint submission, so this is a miss."
+              }
+            }
+          ]
+        },
+        {
+          "seq": 6,
+          "time": "2026-10-19T23:53:06.258Z",
+          "type": "faq_miss",
+          "entry_id": null,
+          "method": "model"
+        },
+        {
+          "seq": 7,
+          "time": "2026-10-19T23:53:06.258Z",
+          "type": "emotion_started",
+          "message_id": "message-a6870aa9-301d-4f3b-a721-9c67a355a87f"
+        },
+        {
+          "seq": 8,
+          "time": "2026-10-19T23:53:06.265Z",
+          "type": "model_request",
+          "request": 1,
+          "stage": "emotion"
+        },
+        {
+          "seq": 9,
+          "time": "2026-10-19T23:53:06.956Z",
+          "type": "model_result",
+          "usage": {
+            "input": 216,
+            "output": 49,
+            "cacheRead": 896,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 1161,
+            "cost": {
+              "input": 0.0000648,
+              "output": 0.0000588,
+              "cacheRead": 0.000005376,
+              "cacheWrite": 0,
+              "total": 0.000128976
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "record_sentiment",
+              "arguments": {
+                "sentiment": "neutral",
+                "quote": ""
+              }
+            }
+          ],
+          "stage": "emotion"
+        },
+        {
+          "seq": 10,
+          "time": "2026-10-19T23:53:06.958Z",
+          "type": "emotion_assessed",
+          "emotion": {
+            "status": "classified",
+            "sentiment": "neutral",
+            "message_id": "message-a6870aa9-301d-4f3b-a721-9c67a355a87f",
+            "evidence": null,
+            "version": "road-emotion-1.0.1",
+            "assessed_at": "2026-10-19T23:53:06.958Z"
+          }
+        },
+        {
+          "seq": 11,
+          "time": "2026-10-19T23:53:06.972Z",
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "seq": 12,
+          "time": "2026-10-19T23:53:07.761Z",
+          "type": "model_result",
+          "usage": {
+            "input": 491,
+            "output": 73,
+            "cacheRead": 15360,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 15924,
+            "cost": {
+              "input": 0.0001473,
+              "output": 0.0000876,
+              "cacheRead": 0.00009216,
+              "cacheWrite": 0,
+              "total": 0.00032706
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "get_api_contract",
+              "arguments": {
+                "operation": "crm_create_form_request"
+              }
+            },
+            {
+              "name": "get_api_contract",
+              "arguments": {
+                "operation": "crm_upload_attachment"
+              }
+            }
+          ]
+        },
+        {
+          "seq": 13,
+          "time": "2026-10-19T23:53:07.762Z",
+          "type": "tool_start",
+          "call_id": "call_00_qR4X8uXyPfBCNhg0bcpo7376",
+          "name": "get_api_contract",
+          "arguments": {
+            "operation": "crm_create_form_request"
+          }
+        },
+        {
+          "seq": 14,
+          "time": "2026-10-19T23:53:07.762Z",
+          "type": "tool_end",
+          "call_id": "call_00_qR4X8uXyPfBCNhg0bcpo7376",
+          "name": "get_api_contract",
+          "result": {
+            "operation": "crm_create_form_request",
+            "summary": "Create public inquiry, suggestion or complaint form",
+            "description": "Submit a public contact form. Type T01 inquiry, T02 suggestion, T03 complaint. Attachments must use AttachmentID returned by crm_upload_attachment; do not invent IDs.",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "body": {
+                  "type": "object",
+                  "properties": {
+                    "CustomerInformation": {
+                      "type": "object",
+                      "properties": {
+                        "EmailAddress": {
+                          "type": "string",
+                          "description": "Requester email address"
+                        },
+                        "MobileNumber": {
+                          "type": "string",
+                          "description": "Requester mobile number"
+                        },
+                        "FirstName": {
+                          "type": "string",
+                          "description": "Requester first name"
+                        },
+                        "LastName": {
+                          "type": "string",
+                          "description": "Requester last name"
+                        }
+                      },
+                      "required": [
+                        "EmailAddress",
+                        "MobileNumber",
+                        "FirstName",
+                        "LastName"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "subject": {
+                      "type": "string",
+                      "description": "The property name is lowercase subject. The title VALUE may use any case: preserve the title supplied by the user exactly; never lowercase it."
+                    },
+                    "Description": {
+                      "type": "string",
+                      "description": "Request description"
+                    },
+                    "Type": {
+                      "type": "string",
+                      "description": "Request type: T01 Inquiry; T02 Suggestion; T03 Complain.",
+                      "enum": [
+                        "T01",
+                        "T02",
+                        "T03"
+                      ]
+                    },
+                    "Attachments": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "AttachmentID": {
+                            "type": "string",
+                            "description": "fileId returned by crm_upload_attachment"
+                          }
+                        },
+                        "required": [
+                          "AttachmentID"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "description": "Required attachment array; no minimum count specified in the guide."
+                    }
+                  },
+                  "required": [
+                    "CustomerInformation",
+                    "subject",
+                    "Description",
+                    "Type",
+                    "Attachments"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "body"
+              ],
+              "additionalProperties": false
+            },
+            "path_parameters": [],
+            "query_parameters": [],
+            "auth": "oauth",
+            "public_effect": {
+              "effect": "create_public_contact_record",
+              "produces": "A public inquiry, suggestion or complaint record. It is a separate chosen service, not execution of the subject of the complaint.",
+              "beneficiary_sign_in_required": false
+            },
+            "conditions": [],
+            "documentation_issues": [
+              "Request Type lookup says T01/T02/T03 but example uses Complain. Canonical spec follows lookup; real adapter requires provider-confirmed CRM_FORM_TYPE_STYLE=code|label."
+            ],
+            "source": {
+              "section": "3.31",
+              "page": 97
+            }
+          }
+        },
+        {
+          "seq": 15,
+          "time": "2026-10-19T23:53:07.762Z",
+          "type": "tool_start",
+          "call_id": "call_01_iL1qKVip88hUPZka7LCn4582",
+          "name": "get_api_contract",
+          "arguments": {
+            "operation": "crm_upload_attachment"
+          }
+        },
+        {
+          "seq": 16,
+          "time": "2026-10-19T23:53:07.762Z",
+          "type": "tool_end",
+          "call_id": "call_01_iL1qKVip88hUPZka7LCn4582",
+          "name": "get_api_contract",
+          "result": {
+            "operation": "crm_upload_attachment",
+            "summary": "Upload attachment for public form request",
+            "description": "Upload base64 file content and return fileId for a public form AttachmentID. Query sourceSystem is required; FileType is optional. Not the SSO existing-case upload.",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "FileType": {
+                  "type": "string",
+                  "description": "Optional file type; example JPG."
+                },
+                "sourceSystem": {
+                  "type": "string",
+                  "description": "Originating system name; example Balady 940. URL encode spaces."
+                },
+                "body": {
+                  "type": "object",
+                  "properties": {
+                    "AttachStream": {
+                      "type": "string",
+                      "description": "Base64 file content",
+                      "pattern": "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$",
+                      "x-validation-policy": "Base64 encoding required by table; nonempty enforced by local validator"
+                    },
+                    "Category": {
+                      "type": "string",
+                      "description": "Attachment category; example Initial"
+                    },
+                    "pxAttachName": {
+                      "type": "string",
+                      "description": "Attachment file name"
+                    },
+                    "pyMemo": {
+                      "type": "string",
+                      "description": "Required attachment memo"
+                    }
+                  },
+                  "required": [
+                    "AttachStream",
+                    "Category",
+                    "pxAttachName",
+                    "pyMemo"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "sourceSystem",
+                "body"
+              ],
+              "additionalProperties": false
+            },
+            "path_parameters": [],
+            "query_parameters": [
+              "FileType",
+              "sourceSystem"
+            ],
+            "auth": "oauth",
+            "public_effect": {
+              "effect": "upload_form_file",
+              "produces": "An attachment identifier for a later public form from actually selected bytes; not a submitted complaint.",
+              "beneficiary_sign_in_required": false
+            },
+            "conditions": [],
+            "documentation_issues": [],
+            "source": {
+              "section": "3.32",
+              "page": 100
+            }
+          }
+        },
+        {
+          "seq": 17,
+          "time": "2026-10-19T23:53:07.768Z",
+          "type": "model_request",
+          "request": 2
+        },
+        {
+          "seq": 18,
+          "time": "2026-10-19T23:53:09.547Z",
+          "type": "model_result",
+          "usage": {
+            "input": 933,
+            "output": 281,
+            "cacheRead": 15872,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 17086,
+            "cost": {
+              "input": 0.0002799,
+              "output": 0.0003372,
+              "cacheRead": 0.000095232,
+              "cacheWrite": 0,
+              "total": 0.000712332
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "propose_plan",
+              "arguments": {
+                "goal": "Submit a public complaint (T03) about the service experience at Test Cedar Municipal Service Hall, with one attached image.",
+                "summary": "Collect the name roles and the image, upload the image, then submit the complaint form.",
+                "steps": [
+                  {
+                    "id": "name_roles",
+                    "capability": "input",
+                    "depends_on": [],
+                    "title": "Ask which part of the name is the given name and which is the family name"
+                  },
+                  {
+                    "id": "photo",
+                    "capability": "input",
+                    "depends_on": [],
+                    "title": "Ask the person to select the image"
+                  },
+                  {
+                    "id": "upload",
+                    "capability": "crm_upload_attachment",
+                    "depends_on": [
+                      "photo"
+                    ],
+                    "title": "Upload the selected image"
+                  },
+                  {
+                    "id": "submit",
+                    "capability": "crm_create_form_request",
+                    "depends_on": [
+                      "name_roles",
+                      "upload"
+                    ],
+                    "title": "Submit the public complaint"
+                  },
+                  {
+                    "id": "respond",
+                    "capability": "respond",
+                    "depends_on": [
+                      "submit"
+                    ],
+                    "title": "Report the result"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "seq": 19,
+          "time": "2026-10-19T23:53:09.548Z",
+          "type": "tool_start",
+          "call_id": "call_00_zmsAIWbTIcr3vBIUKqVz5442",
+          "name": "propose_plan",
+          "arguments": {
+            "goal": "Submit a public complaint (T03) about the service experience at Test Cedar Municipal Service Hall, with one attached image.",
+            "summary": "Collect the name roles and the image, upload the image, then submit the complaint form.",
+            "steps": [
+              {
+                "id": "name_roles",
+                "capability": "input",
+                "depends_on": [],
+                "title": "Ask which part of the name is the given name and which is the family name"
+              },
+              {
+                "id": "photo",
+                "capability": "input",
+                "depends_on": [],
+                "title": "Ask the person to select the image"
+              },
+              {
+                "id": "upload",
+                "capability": "crm_upload_attachment",
+                "depends_on": [
+                  "photo"
+                ],
+                "title": "Upload the selected image"
+              },
+              {
+                "id": "submit",
+                "capability": "crm_create_form_request",
+                "depends_on": [
+                  "name_roles",
+                  "upload"
+                ],
+                "title": "Submit the public complaint"
+              },
+              {
+                "id": "respond",
+                "capability": "respond",
+                "depends_on": [
+                  "submit"
+                ],
+                "title": "Report the result"
+              }
+            ]
+          }
+        },
+        {
+          "seq": 20,
+          "time": "2026-10-19T23:53:09.549Z",
+          "type": "response_guard_started",
+          "message_count": 0
+        },
+        {
+          "seq": 21,
+          "time": "2026-10-19T23:53:09.557Z",
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "seq": 22,
+          "time": "2026-10-19T23:53:10.110Z",
+          "type": "model_result",
+          "usage": {
+            "input": 3560,
+            "output": 48,
+            "cacheRead": 1280,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 4888,
+            "cost": {
+              "input": 0.001068,
+              "output": 0.0000576,
+              "cacheRead": 0.00000768,
+              "cacheWrite": 0,
+              "total": 0.00113328
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": true,
+                "issues": []
+              }
+            }
+          ]
+        },
+        {
+          "seq": 23,
+          "time": "2026-10-19T23:53:10.111Z",
+          "type": "response_guard_passed",
+          "scope": "plan_intent"
+        },
+        {
+          "seq": 24,
+          "time": "2026-10-19T23:53:10.118Z",
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "seq": 25,
+          "time": "2026-10-19T23:53:10.897Z",
+          "type": "model_result",
+          "usage": {
+            "input": 3576,
+            "output": 48,
+            "cacheRead": 1280,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 4904,
+            "cost": {
+              "input": 0.0010728,
+              "output": 0.0000576,
+              "cacheRead": 0.00000768,
+              "cacheWrite": 0,
+              "total": 0.00113808
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": true,
+                "issues": []
+              }
+            }
+          ]
+        },
+        {
+          "seq": 26,
+          "time": "2026-10-19T23:53:10.898Z",
+          "type": "response_guard_passed",
+          "scope": "plan_feasibility"
+        },
+        {
+          "seq": 27,
+          "time": "2026-10-19T23:53:10.898Z",
+          "type": "response_guard_completed",
+          "corrected": false,
+          "issues": []
+        },
+        {
+          "seq": 28,
+          "time": "2026-10-19T23:53:10.899Z",
+          "type": "plan_proposed",
+          "plan": {
+            "id": "plan-5b09840d-0a4a-4f43-bc66-e5745a8667cc",
+            "origin_message_id": "message-a6870aa9-301d-4f3b-a721-9c67a355a87f",
+            "version": 1,
+            "goal": "Plan for this request",
+            "summary": "These are the planned steps for your request. Queries run automatically; you will review exact details before a submission. A plan does not mean the request has been carried out.",
+            "steps": [
+              {
+                "id": "name_roles",
+                "capability": "input",
+                "depends_on": [],
+                "title": "Clarify necessary information",
+                "parameters": {},
+                "status": "pending"
+              },
+              {
+                "id": "photo",
+                "capability": "input",
+                "depends_on": [],
+                "title": "Clarify necessary information",
+                "parameters": {},
+                "status": "pending"
+              },
+              {
+                "id": "upload",
+                "capability": "crm_upload_attachment",
+                "depends_on": [
+                  "photo"
+                ],
+                "title": "Upload a form attachment",
+                "parameters": {},
+                "status": "pending"
+              },
+              {
+                "id": "submit",
+                "capability": "crm_create_form_request",
+                "depends_on": [
+                  "name_roles",
+                  "upload"
+                ],
+                "title": "Record an inquiry, suggestion or complaint",
+                "parameters": {},
+                "status": "pending"
+              },
+              {
+                "id": "respond",
+                "capability": "respond",
+                "depends_on": [
+                  "submit"
+                ],
+                "title": "Explain the result and limits",
+                "parameters": {},
+                "status": "pending"
+              }
+            ],
+            "approved": true,
+            "status": "approved",
+            "created_at": "2026-10-19T23:53:10.899Z"
+          }
+        },
+        {
+          "seq": 29,
+          "time": "2026-10-19T23:53:10.899Z",
+          "type": "plan_auto_started",
+          "plan_id": "plan-5b09840d-0a4a-4f43-bc66-e5745a8667cc"
+        },
+        {
+          "seq": 30,
+          "time": "2026-10-19T23:53:10.899Z",
+          "type": "message",
+          "message": {
+            "id": "message-10bd3897-69e8-491a-887c-2038142a6cc9",
+            "role": "assistant",
+            "text": "These are the planned steps for your request. Queries run automatically; you will review exact details before a submission. A plan does not mean the request has been carried out.",
+            "time": "2026-10-19T23:53:10.899Z",
+            "kind": "plan",
+            "plan_id": "plan-5b09840d-0a4a-4f43-bc66-e5745a8667cc"
+          }
+        },
+        {
+          "seq": 31,
+          "time": "2026-10-19T23:53:10.899Z",
+          "type": "tool_end",
+          "call_id": "call_00_zmsAIWbTIcr3vBIUKqVz5442",
+          "name": "propose_plan",
+          "result": {
+            "plan": {
+              "id": "plan-5b09840d-0a4a-4f43-bc66-e5745a8667cc",
+              "origin_message_id": "message-a6870aa9-301d-4f3b-a721-9c67a355a87f",
+              "version": 1,
+              "goal": "Plan for this request",
+              "summary": "These are the planned steps for your request. Queries run automatically; you will review exact details before a submission. A plan does not mean the request has been carried out.",
+              "steps": [
+                {
+                  "id": "name_roles",
+                  "capability": "input",
+                  "depends_on": [],
+                  "title": "Clarify necessary information",
+                  "parameters": {},
+                  "status": "pending"
+                },
+                {
+                  "id": "photo",
+                  "capability": "input",
+                  "depends_on": [],
+                  "title": "Clarify necessary information",
+                  "parameters": {},
+                  "status": "pending"
+                },
+                {
+                  "id": "upload",
+                  "capability": "crm_upload_attachment",
+                  "depends_on": [
+                    "photo"
+                  ],
+                  "title": "Upload a form attachment",
+                  "parameters": {},
+                  "status": "pending"
+                },
+                {
+                  "id": "submit",
+                  "capability": "crm_create_form_request",
+                  "depends_on": [
+                    "name_roles",
+                    "upload"
+                  ],
+                  "title": "Record an inquiry, suggestion or complaint",
+                  "parameters": {},
+                  "status": "pending"
+                },
+                {
+                  "id": "respond",
+                  "capability": "respond",
+                  "depends_on": [
+                    "submit"
+                  ],
+                  "title": "Explain the result and limits",
+                  "parameters": {},
+                  "status": "pending"
+                }
+              ],
+              "approved": true,
+              "status": "approved",
+              "created_at": "2026-10-19T23:53:10.899Z"
+            },
+            "auto_execute": true
+          }
+        },
+        {
+          "seq": 32,
+          "time": "2026-10-19T23:53:10.904Z",
+          "type": "model_request",
+          "request": 3
+        },
+        {
+          "seq": 33,
+          "time": "2026-10-19T23:53:12.377Z",
+          "type": "model_result",
+          "usage": {
+            "input": 408,
+            "output": 235,
+            "cacheRead": 17024,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 17667,
+            "cost": {
+              "input": 0.0001224,
+              "output": 0.00028199999999999997,
+              "cacheRead": 0.000102144,
+              "cacheWrite": 0,
+              "total": 0.0005065439999999999
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "request_input",
+              "arguments": {
+                "step_id": "name_roles",
+                "kind": "text",
+                "operation": "crm_create_form_request",
+                "fields": [
+                  "body.CustomerInformation.FirstName",
+                  "body.CustomerInformation.LastName"
+                ],
+                "purpose": "missing",
+                "question": "Thanks, Lina. To fill in the complaint form, please tell me which part of your name is your first (given) name and which is your family (last) name.",
+                "known_parameters": {
+                  "body": {
+                    "Type": "T03",
+                    "subject": "Long wait at Test Cedar Service Hall",
+                    "CustomerInformation": {
+                      "EmailAddress": "lina@example.test",
+                      "MobileNumber": "0501234567"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "seq": 34,
+          "time": "2026-10-19T23:53:12.378Z",
+          "type": "tool_start",
+          "call_id": "call_00_pEYOjj30NrWFQrtzorTB6624",
+          "name": "request_input",
+          "arguments": {
+            "step_id": "name_roles",
+            "kind": "text",
+            "operation": "crm_create_form_request",
+            "fields": [
+              "body.CustomerInformation.FirstName",
+              "body.CustomerInformation.LastName"
+            ],
+            "purpose": "missing",
+            "question": "Thanks, Lina. To fill in the complaint form, please tell me which part of your name is your first (given) name and which is your family (last) name.",
+            "known_parameters": {
+              "body": {
+                "Type": "T03",
+                "subject": "Long wait at Test Cedar Service Hall",
+                "CustomerInformation": {
+                  "EmailAddress": "lina@example.test",
+                  "MobileNumber": "0501234567"
+                }
+              }
+            }
+          }
+        },
+        {
+          "seq": 35,
+          "time": "2026-10-19T23:53:12.380Z",
+          "type": "input_required",
+          "input": {
+            "id": "input-ce37afc6-5ab9-445a-82a9-e7efd84dbf35",
+            "plan_id": "plan-5b09840d-0a4a-4f43-bc66-e5745a8667cc",
+            "step_id": "name_roles",
+            "kind": "name_roles",
+            "operation": "crm_create_form_request",
+            "fields": [
+              "body.CustomerInformation.FirstName",
+              "body.CustomerInformation.LastName"
+            ],
+            "purpose": "missing",
+            "question": "Please enter your name in the labelled fields below. Your other supplied details will be kept.",
+            "known_parameters": {
+              "body": {
+                "Type": "T03",
+                "subject": "Long wait at Test Cedar Service Hall",
+                "CustomerInformation": {
+                  "EmailAddress": "lina@example.test",
+                  "MobileNumber": "0501234567"
+                }
+              }
+            },
+            "name_role_copy": {
+              "question": "Please enter your name in the labelled fields below. Your other supplied details will be kept.",
+              "FirstName": "Given name",
+              "LastName": "Family name",
+              "continue": "Save name and continue",
+              "cancel": "Cancel this request",
+              "note": "Only the name roles still unclear are shown. This is not identity verification.",
+              "retry": "Could not save. Please try again."
+            }
+          }
+        },
+        {
+          "seq": 36,
+          "time": "2026-10-19T23:53:12.380Z",
+          "type": "message",
+          "message": {
+            "id": "message-78125fe7-f54f-4e0f-bf89-412073140f6b",
+            "role": "assistant",
+            "text": "Please enter your name in the labelled fields below. Your other supplied details will be kept.",
+            "time": "2026-10-19T23:53:12.380Z",
+            "kind": "input_request",
+            "input_id": "input-ce37afc6-5ab9-445a-82a9-e7efd84dbf35",
+            "plan_id": "plan-5b09840d-0a4a-4f43-bc66-e5745a8667cc"
+          }
+        },
+        {
+          "seq": 37,
+          "time": "2026-10-19T23:53:12.380Z",
+          "type": "tool_end",
+          "call_id": "call_00_pEYOjj30NrWFQrtzorTB6624",
+          "name": "request_input",
+          "result": {
+            "end_turn": true,
+            "input": {
+              "id": "input-ce37afc6-5ab9-445a-82a9-e7efd84dbf35",
+              "plan_id": "plan-5b09840d-0a4a-4f43-bc66-e5745a8667cc",
+              "step_id": "name_roles",
+              "kind": "name_roles",
+              "operation": "crm_create_form_request",
+              "fields": [
+                "body.CustomerInformation.FirstName",
+                "body.CustomerInformation.LastName"
+              ],
+              "purpose": "missing",
+              "question": "Please enter your name in the labelled fields below. Your other supplied details will be kept.",
+              "known_parameters": {
+                "body": {
+                  "Type": "T03",
+                  "subject": "Long wait at Test Cedar Service Hall",
+                  "CustomerInformation": {
+                    "EmailAddress": "lina@example.test",
+                    "MobileNumber": "0501234567"
+                  }
+                }
+              },
+              "name_role_copy": {
+                "question": "Please enter your name in the labelled fields below. Your other supplied details will be kept.",
+                "FirstName": "Given name",
+                "LastName": "Family name",
+                "continue": "Save name and continue",
+                "cancel": "Cancel this request",
+                "note": "Only the name roles still unclear are shown. This is not identity verification.",
+                "retry": "Could not save. Please try again."
+              }
+            }
+          }
+        },
+        {
+          "seq": 38,
+          "time": "2026-10-19T23:53:12.381Z",
+          "type": "turn_finished",
+          "status": "input"
+        }
+      ],
+      "csrf": "csrf-f58bfc55-2cec-4cd9-b829-87d737c7c7d0",
+      "crm": {
+        "version": "1.13.0",
+        "calls": []
+      },
+      "crmPromptHash": "1331eea1ffbc39e8e6b6e0ab7d29b8b63e770426153ddcc1f2bc23d4e8809f8b",
+      "mock": {
+        "tickets": [],
+        "complaints": [],
+        "handoffs": [],
+        "calls": []
+      },
+      "api_mode": "simulation",
+      "tool_count": 20,
+      "contract_operation_count": 35,
+      "catalog": [
+        {
+          "id": "balady-crm",
+          "mode": "simulation",
+          "title": {
+            "zh": "BALADY CRM 综合服务",
+            "en": "BALADY CRM services",
+            "ar": "خدمات بلدي CRM"
+          },
+          "department": {
+            "zh": "BALADY 市政与客户服务",
+            "en": "BALADY municipal and customer services",
+            "ar": "الخدمات البلدية وخدمة العملاء"
+          },
+          "description": {
+            "zh": "查询本人事项、整理咨询建议与投诉、浏览市政分类和资产目录。当前为仿真；提交前确认。地点自动解析及机构后台处理未接入市民助手。",
+            "en": "View your reports, prepare inquiries, suggestions and complaints, and browse service classifications and asset references. Simulation with confirmation before submission. Automatic location resolution and organizational back-office actions are not connected to this citizen assistant.",
+            "ar": "متابعة بلاغاتك وإعداد الاستفسارات والمقترحات والشكاوى وتصفح التصنيفات والأصول. محاكاة مع تأكيد الإرسال. تحديد المواقع التلقائي وإجراءات الجهات الداخلية غير متاحة هنا."
+          },
+          "official_url": "https://balady.gov.sa/en",
+          "example": "What is happening with my waste collection report?"
+        },
+        {
+          "id": "infrastructure-permit",
+          "mode": "knowledge_only",
+          "title": {
+            "zh": "新开发规划区域基础设施施工许可",
+            "en": "Infrastructure works permit in a new development plan",
+            "ar": "تصريح أعمال البنية التحتية في مخطط تطوير جديد"
+          },
+          "department": {
+            "zh": "基础设施许可服务",
+            "en": "Infrastructure permit services",
+            "ar": "خدمات تصاريح البنية التحتية"
+          },
+          "description": {
+            "zh": "咨询服务定义、申请人、材料和费用；本助手未接入许可申请接口。",
+            "en": "FAQ consultation on the service, applicants, documents and fees. Permit applications are not connected here.",
+            "ar": "استشارات عن الخدمة والمتقدمين والمستندات والرسوم. تقديم الطلبات غير متصل هنا."
+          },
+          "official_url": "https://balady.gov.sa/en",
+          "example": "Who can apply for this service?"
+        },
+        {
+          "id": "civil-defense-fees",
+          "mode": "knowledge_only",
+          "title": {
+            "zh": "民防与市政费用咨询",
+            "en": "Civil Defense and municipal fee guidance",
+            "ar": "استفسارات رسوم الدفاع المدني والبلدية"
+          },
+          "department": {
+            "zh": "许可缴费相关咨询",
+            "en": "License payment guidance",
+            "ar": "استفسارات سداد رسوم التراخيص"
+          },
+          "description": {
+            "zh": "咨询已有问答中的费用与发票规则；本助手不支持缴费。",
+            "en": "FAQ guidance on fees and invoices. Payments are not connected here.",
+            "ar": "استشارات الأسئلة الشائعة عن الرسوم والفواتير. الدفع غير متصل هنا."
+          },
+          "official_url": "https://balady.gov.sa/en",
+          "example": "Is the municipal fees invoice the same as the Civil Defense fees invoice?"
+        },
+        {
+          "id": "balady-platform",
+          "mode": "knowledge_only",
+          "title": {
+            "zh": "Balady 平台咨询",
+            "en": "Balady platform guidance",
+            "ar": "استفسارات منصة بلدي"
+          },
+          "department": {
+            "zh": "平台服务咨询",
+            "en": "Platform service guidance",
+            "ar": "استفسارات خدمات المنصة"
+          },
+          "description": {
+            "zh": "当前仅有平台个性化服务相关问答；其他业务请通过官方平台查询。",
+            "en": "The current FAQ covers platform personalization. Use the official platform for other services.",
+            "ar": "تغطي الأسئلة الحالية تخصيص خدمات المنصة. للخدمات الأخرى يرجى زيارة المنصة الرسمية."
+          },
+          "official_url": "https://balady.gov.sa/en",
+          "example": "Does the Balady Platform personalize the services and content displayed to the beneficiary?"
+        }
+      ],
+      "human_support": {
+        "available": true,
+        "wait_limit_ms": 180000,
+        "mode": "simulated",
+        "hours_configured": false,
+        "official_url": "https://balady.gov.sa/en",
+        "wait_expired": false
+      },
+      "demo_ui": true,
+      "feedback": {
+        "enabled": false,
+        "items": {}
+      },
+      "faq": {
+        "name": "digital-human-faq",
+        "entry_count": 9,
+        "source_displayed_count": 26,
+        "migration_status": "verified-subset",
+        "quality": {
+          "version": "road-knowledge-v3",
+          "scope": "poc_only",
+          "policy_status": "pending_official_verification",
+          "missing_entries": 17,
+          "note": "The 9 complete source records were structurally reviewed. This does not verify their policy accuracy. No missing source records or official citations have been invented."
+        }
+      },
+      "model": "deepseek-flash",
+      "runtime": "PI SDK 1.1.0"
+    }
+  ],
+  "error": {
+    "code": "JOURNEY_ASSERTION",
+    "message": "Assertion failed: no_unscripted_missing_user_input"
+  },
+  "state": {
+    "id": "session-472fec97-f912-4aad-afca-ee143cbcb507",
+    "createdAt": "2026-10-19T23:53:04.946Z",
+    "epoch": 0,
+    "running": false,
+    "status": "input",
+    "emotion": {
+      "status": "classified",
+      "sentiment": "neutral",
+      "message_id": "message-a6870aa9-301d-4f3b-a721-9c67a355a87f",
+      "evidence": null,
+      "version": "road-emotion-1.0.1",
+      "assessed_at": "2026-10-19T23:53:06.958Z"
+    },
+    "serviceContext": {
+      "scope": "balady-crm",
+      "origin": "business_plan"
+    },
+    "pendingKnowledge": null,
+    "pendingHelp": null,
+    "activeHandoffId": null,
+    "user": null,
+    "facts": {},
+    "messages": [
+      {
+        "id": "message-a6870aa9-301d-4f3b-a721-9c67a355a87f",
+        "role": "user",
+        "text": "I want to make a public complaint about the service experience at Test Cedar Municipal Service Hall. I waited in the queue for two hours and received no queue updates. Use the title “Long wait at Test Cedar Service Hall”. My name is Lina Citizen, my email is lina@example.test and my phone is 0501234567. I have one test image to attach and will select it when the file picker opens.",
+        "time": "2026-10-19T23:53:04.961Z",
+        "rateable": false
+      },
+      {
+        "id": "message-10bd3897-69e8-491a-887c-2038142a6cc9",
+        "role": "assistant",
+        "text": "These are the planned steps for your request. Queries run automatically; you will review exact details before a submission. A plan does not mean the request has been carried out.",
+        "time": "2026-10-19T23:53:10.899Z",
+        "kind": "plan",
+        "plan_id": "plan-5b09840d-0a4a-4f43-bc66-e5745a8667cc",
+        "rateable": false
+      },
+      {
+        "id": "message-78125fe7-f54f-4e0f-bf89-412073140f6b",
+        "role": "assistant",
+        "text": "Please enter your name in the labelled fields below. Your other supplied details will be kept.",
+        "time": "2026-10-19T23:53:12.380Z",
+        "kind": "input_request",
+        "input_id": "input-ce37afc6-5ab9-445a-82a9-e7efd84dbf35",
+        "plan_id": "plan-5b09840d-0a4a-4f43-bc66-e5745a8667cc",
+        "rateable": false
+      }
+    ],
+    "plans": [
+      {
+        "id": "plan-5b09840d-0a4a-4f43-bc66-e5745a8667cc",
+        "origin_message_id": "message-a6870aa9-301d-4f3b-a721-9c67a355a87f",
+        "version": 1,
+        "goal": "Plan for this request",
+        "summary": "These are the planned steps for your request. Queries run automatically; you will review exact details before a submission. A plan does not mean the request has been carried out.",
+        "steps": [
+          {
+            "id": "name_roles",
+            "capability": "input",
+            "depends_on": [],
+            "title": "Clarify necessary information",
+            "parameters": {},
+            "status": "waiting"
+          },
+          {
+            "id": "photo",
+            "capability": "input",
+            "depends_on": [],
+            "title": "Clarify necessary information",
+            "parameters": {},
+            "status": "pending"
+          },
+          {
+            "id": "upload",
+            "capability": "crm_upload_attachment",
+            "depends_on": [
+              "photo"
+            ],
+            "title": "Upload a form attachment",
+            "parameters": {},
+            "status": "pending"
+          },
+          {
+            "id": "submit",
+            "capability": "crm_create_form_request",
+            "depends_on": [
+              "name_roles",
+              "upload"
+            ],
+            "title": "Record an inquiry, suggestion or complaint",
+            "parameters": {},
+            "status": "pending"
+          },
+          {
+            "id": "respond",
+            "capability": "respond",
+            "depends_on": [
+              "submit"
+            ],
+            "title": "Explain the result and limits",
+            "parameters": {},
+            "status": "pending"
+          }
+        ],
+        "approved": true,
+        "status": "approved",
+        "created_at": "2026-10-19T23:53:10.899Z"
+      }
+    ],
+    "activePlanId": "plan-5b09840d-0a4a-4f43-bc66-e5745a8667cc",
+    "pendingInput": {
+      "id": "input-ce37afc6-5ab9-445a-82a9-e7efd84dbf35",
+      "plan_id": "plan-5b09840d-0a4a-4f43-bc66-e5745a8667cc",
+      "step_id": "name_roles",
+      "kind": "name_roles",
+      "operation": "crm_create_form_request",
+      "fields": [
+        "body.CustomerInformation.FirstName",
+        "body.CustomerInformation.LastName"
+      ],
+      "purpose": "missing",
+      "question": "Please enter your name in the labelled fields below. Your other supplied details will be kept.",
+      "known_parameters": {
+        "body": {
+          "Type": "T03",
+          "subject": "Long wait at Test Cedar Service Hall",
+          "CustomerInformation": {
+            "EmailAddress": "lina@example.test",
+            "MobileNumber": "0501234567"
+          }
+        }
+      },
+      "name_role_copy": {
+        "question": "Please enter your name in the labelled fields below. Your other supplied details will be kept.",
+        "FirstName": "Given name",
+        "LastName": "Family name",
+        "continue": "Save name and continue",
+        "cancel": "Cancel this request",
+        "note": "Only the name roles still unclear are shown. This is not identity verification.",
+        "retry": "Could not save. Please try again."
+      }
+    },
+    "pendingOperation": null,
+    "receipts": [],
+    "events": [
+      {
+        "seq": 1,
+        "time": "2026-10-19T23:53:04.961Z",
+        "type": "message",
+        "message": {
+          "id": "message-a6870aa9-301d-4f3b-a721-9c67a355a87f",
+          "role": "user",
+          "text": "I want to make a public complaint about the service experience at Test Cedar Municipal Service Hall. I waited in the queue for two hours and received no queue updates. Use the title “Long wait at Test Cedar Service Hall”. My name is Lina Citizen, my email is lina@example.test and my phone is 0501234567. I have one test image to attach and will select it when the file picker opens.",
+          "time": "2026-10-19T23:53:04.961Z"
+        }
+      },
+      {
+        "seq": 2,
+        "time": "2026-10-19T23:53:04.964Z",
+        "type": "turn_started",
+        "epoch": 0,
+        "route": "faq_then_balady_crm"
+      },
+      {
+        "seq": 3,
+        "time": "2026-10-19T23:53:04.968Z",
+        "type": "faq_lookup",
+        "entries": 9
+      },
+      {
+        "seq": 4,
+        "time": "2026-10-19T23:53:05.083Z",
+        "type": "model_request",
+        "request": 1
+      },
+      {
+        "seq": 5,
+        "time": "2026-10-19T23:53:06.252Z",
+        "type": "model_result",
+        "usage": {
+          "input": 2938,
+          "output": 124,
+          "cacheRead": 512,
+          "cacheWrite": 0,
+          "reasoning": 0,
+          "totalTokens": 3574,
+          "cost": {
+            "input": 0.0008814,
+            "output": 0.00014879999999999998,
+            "cacheRead": 0.000003072,
+            "cacheWrite": 0,
+            "total": 0.001033272
+          }
+        },
+        "stop_reason": "toolUse",
+        "tool_calls": [
+          {
+            "name": "select_faq",
+            "arguments": {
+              "entry_id": null,
+              "answerable": false,
+              "needs_clarification": false,
+              "reason": "The user is requesting a business action (filing a public complaint with personal details and an attachment), not asking a knowledge question. No FAQ entry covers complaint submission, so this is a miss."
+            }
+          }
+        ]
+      },
+      {
+        "seq": 6,
+        "time": "2026-10-19T23:53:06.258Z",
+        "type": "faq_miss",
+        "entry_id": null,
+        "method": "model"
+      },
+      {
+        "seq": 7,
+        "time": "2026-10-19T23:53:06.258Z",
+        "type": "emotion_started",
+        "message_id": "message-a6870aa9-301d-4f3b-a721-9c67a355a87f"
+      },
+      {
+        "seq": 8,
+        "time": "2026-10-19T23:53:06.265Z",
+        "type": "model_request",
+        "request": 1,
+        "stage": "emotion"
+      },
+      {
+        "seq": 9,
+        "time": "2026-10-19T23:53:06.956Z",
+        "type": "model_result",
+        "usage": {
+          "input": 216,
+          "output": 49,
+          "cacheRead": 896,
+          "cacheWrite": 0,
+          "reasoning": 0,
+          "totalTokens": 1161,
+          "cost": {
+            "input": 0.0000648,
+            "output": 0.0000588,
+            "cacheRead": 0.000005376,
+            "cacheWrite": 0,
+            "total": 0.000128976
+          }
+        },
+        "stop_reason": "toolUse",
+        "tool_calls": [
+          {
+            "name": "record_sentiment",
+            "arguments": {
+              "sentiment": "neutral",
+              "quote": ""
+            }
+          }
+        ],
+        "stage": "emotion"
+      },
+      {
+        "seq": 10,
+        "time": "2026-10-19T23:53:06.958Z",
+        "type": "emotion_assessed",
+        "emotion": {
+          "status": "classified",
+          "sentiment": "neutral",
+          "message_id": "message-a6870aa9-301d-4f3b-a721-9c67a355a87f",
+          "evidence": null,
+          "version": "road-emotion-1.0.1",
+          "assessed_at": "2026-10-19T23:53:06.958Z"
+        }
+      },
+      {
+        "seq": 11,
+        "time": "2026-10-19T23:53:06.972Z",
+        "type": "model_request",
+        "request": 1
+      },
+      {
+        "seq": 12,
+        "time": "2026-10-19T23:53:07.761Z",
+        "type": "model_result",
+        "usage": {
+          "input": 491,
+          "output": 73,
+          "cacheRead": 15360,
+          "cacheWrite": 0,
+          "reasoning": 0,
+          "totalTokens": 15924,
+          "cost": {
+            "input": 0.0001473,
+            "output": 0.0000876,
+            "cacheRead": 0.00009216,
+            "cacheWrite": 0,
+            "total": 0.00032706
+          }
+        },
+        "stop_reason": "toolUse",
+        "tool_calls": [
+          {
+            "name": "get_api_contract",
+            "arguments": {
+              "operation": "crm_create_form_request"
+            }
+          },
+          {
+            "name": "get_api_contract",
+            "arguments": {
+              "operation": "crm_upload_attachment"
+            }
+          }
+        ]
+      },
+      {
+        "seq": 13,
+        "time": "2026-10-19T23:53:07.762Z",
+        "type": "tool_start",
+        "call_id": "call_00_qR4X8uXyPfBCNhg0bcpo7376",
+        "name": "get_api_contract",
+        "arguments": {
+          "operation": "crm_create_form_request"
+        }
+      },
+      {
+        "seq": 14,
+        "time": "2026-10-19T23:53:07.762Z",
+        "type": "tool_end",
+        "call_id": "call_00_qR4X8uXyPfBCNhg0bcpo7376",
+        "name": "get_api_contract",
+        "result": {
+          "operation": "crm_create_form_request",
+          "summary": "Create public inquiry, suggestion or complaint form",
+          "description": "Submit a public contact form. Type T01 inquiry, T02 suggestion, T03 complaint. Attachments must use AttachmentID returned by crm_upload_attachment; do not invent IDs.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "body": {
+                "type": "object",
+                "properties": {
+                  "CustomerInformation": {
+                    "type": "object",
+                    "properties": {
+                      "EmailAddress": {
+                        "type": "string",
+                        "description": "Requester email address"
+                      },
+                      "MobileNumber": {
+                        "type": "string",
+                        "description": "Requester mobile number"
+                      },
+                      "FirstName": {
+                        "type": "string",
+                        "description": "Requester first name"
+                      },
+                      "LastName": {
+                        "type": "string",
+                        "description": "Requester last name"
+                      }
+                    },
+                    "required": [
+                      "EmailAddress",
+                      "MobileNumber",
+                      "FirstName",
+                      "LastName"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "subject": {
+                    "type": "string",
+                    "description": "The property name is lowercase subject. The title VALUE may use any case: preserve the title supplied by the user exactly; never lowercase it."
+                  },
+                  "Description": {
+                    "type": "string",
+                    "description": "Request description"
+                  },
+                  "Type": {
+                    "type": "string",
+                    "description": "Request type: T01 Inquiry; T02 Suggestion; T03 Complain.",
+                    "enum": [
+                      "T01",
+                      "T02",
+                      "T03"
+                    ]
+                  },
+                  "Attachments": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "AttachmentID": {
+                          "type": "string",
+                          "description": "fileId returned by crm_upload_attachment"
+                        }
+                      },
+                      "required": [
+                        "AttachmentID"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "description": "Required attachment array; no minimum count specified in the guide."
+                  }
+                },
+                "required": [
+                  "CustomerInformation",
+                  "subject",
+                  "Description",
+                  "Type",
+                  "Attachments"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "body"
+            ],
+            "additionalProperties": false
+          },
+          "path_parameters": [],
+          "query_parameters": [],
+          "auth": "oauth",
+          "public_effect": {
+            "effect": "create_public_contact_record",
+            "produces": "A public inquiry, suggestion or complaint record. It is a separate chosen service, not execution of the subject of the complaint.",
+            "beneficiary_sign_in_required": false
+          },
+          "conditions": [],
+          "documentation_issues": [
+            "Request Type lookup says T01/T02/T03 but example uses Complain. Canonical spec follows lookup; real adapter requires provider-confirmed CRM_FORM_TYPE_STYLE=code|label."
+          ],
+          "source": {
+            "section": "3.31",
+            "page": 97
+          }
+        }
+      },
+      {
+        "seq": 15,
+        "time": "2026-10-19T23:53:07.762Z",
+        "type": "tool_start",
+        "call_id": "call_01_iL1qKVip88hUPZka7LCn4582",
+        "name": "get_api_contract",
+        "arguments": {
+          "operation": "crm_upload_attachment"
+        }
+      },
+      {
+        "seq": 16,
+        "time": "2026-10-19T23:53:07.762Z",
+        "type": "tool_end",
+        "call_id": "call_01_iL1qKVip88hUPZka7LCn4582",
+        "name": "get_api_contract",
+        "result": {
+          "operation": "crm_upload_attachment",
+          "summary": "Upload attachment for public form request",
+          "description": "Upload base64 file content and return fileId for a public form AttachmentID. Query sourceSystem is required; FileType is optional. Not the SSO existing-case upload.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "FileType": {
+                "type": "string",
+                "description": "Optional file type; example JPG."
+              },
+              "sourceSystem": {
+                "type": "string",
+                "description": "Originating system name; example Balady 940. URL encode spaces."
+              },
+              "body": {
+                "type": "object",
+                "properties": {
+                  "AttachStream": {
+                    "type": "string",
+                    "description": "Base64 file content",
+                    "pattern": "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$",
+                    "x-validation-policy": "Base64 encoding required by table; nonempty enforced by local validator"
+                  },
+                  "Category": {
+                    "type": "string",
+                    "description": "Attachment category; example Initial"
+                  },
+                  "pxAttachName": {
+                    "type": "string",
+                    "description": "Attachment file name"
+                  },
+                  "pyMemo": {
+                    "type": "string",
+                    "description": "Required attachment memo"
+                  }
+                },
+                "required": [
+                  "AttachStream",
+                  "Category",
+                  "pxAttachName",
+                  "pyMemo"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "sourceSystem",
+              "body"
+            ],
+            "additionalProperties": false
+          },
+          "path_parameters": [],
+          "query_parameters": [
+            "FileType",
+            "sourceSystem"
+          ],
+          "auth": "oauth",
+          "public_effect": {
+            "effect": "upload_form_file",
+            "produces": "An attachment identifier for a later public form from actually selected bytes; not a submitted complaint.",
+            "beneficiary_sign_in_required": false
+          },
+          "conditions": [],
+          "documentation_issues": [],
+          "source": {
+            "section": "3.32",
+            "page": 100
+          }
+        }
+      },
+      {
+        "seq": 17,
+        "time": "2026-10-19T23:53:07.768Z",
+        "type": "model_request",
+        "request": 2
+      },
+      {
+        "seq": 18,
+        "time": "2026-10-19T23:53:09.547Z",
+        "type": "model_result",
+        "usage": {
+          "input": 933,
+          "output": 281,
+          "cacheRead": 15872,
+          "cacheWrite": 0,
+          "reasoning": 0,
+          "totalTokens": 17086,
+          "cost": {
+            "input": 0.0002799,
+            "output": 0.0003372,
+            "cacheRead": 0.000095232,
+            "cacheWrite": 0,
+            "total": 0.000712332
+          }
+        },
+        "stop_reason": "toolUse",
+        "tool_calls": [
+          {
+            "name": "propose_plan",
+            "arguments": {
+              "goal": "Submit a public complaint (T03) about the service experience at Test Cedar Municipal Service Hall, with one attached image.",
+              "summary": "Collect the name roles and the image, upload the image, then submit the complaint form.",
+              "steps": [
+                {
+                  "id": "name_roles",
+                  "capability": "input",
+                  "depends_on": [],
+                  "title": "Ask which part of the name is the given name and which is the family name"
+                },
+                {
+                  "id": "photo",
+                  "capability": "input",
+                  "depends_on": [],
+                  "title": "Ask the person to select the image"
+                },
+                {
+                  "id": "upload",
+                  "capability": "crm_upload_attachment",
+                  "depends_on": [
+                    "photo"
+                  ],
+                  "title": "Upload the selected image"
+                },
+                {
+                  "id": "submit",
+                  "capability": "crm_create_form_request",
+                  "depends_on": [
+                    "name_roles",
+                    "upload"
+                  ],
+                  "title": "Submit the public complaint"
+                },
+                {
+                  "id": "respond",
+                  "capability": "respond",
+                  "depends_on": [
+                    "submit"
+                  ],
+                  "title": "Report the result"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "seq": 19,
+        "time": "2026-10-19T23:53:09.548Z",
+        "type": "tool_start",
+        "call_id": "call_00_zmsAIWbTIcr3vBIUKqVz5442",
+        "name": "propose_plan",
+        "arguments": {
+          "goal": "Submit a public complaint (T03) about the service experience at Test Cedar Municipal Service Hall, with one attached image.",
+          "summary": "Collect the name roles and the image, upload the image, then submit the complaint form.",
+          "steps": [
+            {
+              "id": "name_roles",
+              "capability": "input",
+              "depends_on": [],
+              "title": "Ask which part of the name is the given name and which is the family name"
+            },
+            {
+              "id": "photo",
+              "capability": "input",
+              "depends_on": [],
+              "title": "Ask the person to select the image"
+            },
+            {
+              "id": "upload",
+              "capability": "crm_upload_attachment",
+              "depends_on": [
+                "photo"
+              ],
+              "title": "Upload the selected image"
+            },
+            {
+              "id": "submit",
+              "capability": "crm_create_form_request",
+              "depends_on": [
+                "name_roles",
+                "upload"
+              ],
+              "title": "Submit the public complaint"
+            },
+            {
+              "id": "respond",
+              "capability": "respond",
+              "depends_on": [
+                "submit"
+              ],
+              "title": "Report the result"
+            }
+          ]
+        }
+      },
+      {
+        "seq": 20,
+        "time": "2026-10-19T23:53:09.549Z",
+        "type": "response_guard_started",
+        "message_count": 0
+      },
+      {
+        "seq": 21,
+        "time": "2026-10-19T23:53:09.557Z",
+        "type": "model_request",
+        "request": 1
+      },
+      {
+        "seq": 22,
+        "time": "2026-10-19T23:53:10.110Z",
+        "type": "model_result",
+        "usage": {
+          "input": 3560,
+          "output": 48,
+          "cacheRead": 1280,
+          "cacheWrite": 0,
+          "reasoning": 0,
+          "totalTokens": 4888,
+          "cost": {
+            "input": 0.001068,
+            "output": 0.0000576,
+            "cacheRead": 0.00000768,
+            "cacheWrite": 0,
+            "total": 0.00113328
+          }
+        },
+        "stop_reason": "toolUse",
+        "tool_calls": [
+          {
+            "name": "review_message",
+            "arguments": {
+              "approved": true,
+              "issues": []
+            }
+          }
+        ]
+      },
+      {
+        "seq": 23,
+        "time": "2026-10-19T23:53:10.111Z",
+        "type": "response_guard_passed",
+        "scope": "plan_intent"
+      },
+      {
+        "seq": 24,
+        "time": "2026-10-19T23:53:10.118Z",
+        "type": "model_request",
+        "request": 1
+      },
+      {
+        "seq": 25,
+        "time": "2026-10-19T23:53:10.897Z",
+        "type": "model_result",
+        "usage": {
+          "input": 3576,
+          "output": 48,
+          "cacheRead": 1280,
+          "cacheWrite": 0,
+          "reasoning": 0,
+          "totalTokens": 4904,
+          "cost": {
+            "input": 0.0010728,
+            "output": 0.0000576,
+            "cacheRead": 0.00000768,
+            "cacheWrite": 0,
+            "total": 0.00113808
+          }
+        },
+        "stop_reason": "toolUse",
+        "tool_calls": [
+          {
+            "name": "review_message",
+            "arguments": {
+              "approved": true,
+              "issues": []
+            }
+          }
+        ]
+      },
+      {
+        "seq": 26,
+        "time": "2026-10-19T23:53:10.898Z",
+        "type": "response_guard_passed",
+        "scope": "plan_feasibility"
+      },
+      {
+        "seq": 27,
+        "time": "2026-10-19T23:53:10.898Z",
+        "type": "response_guard_completed",
+        "corrected": false,
+        "issues": []
+      },
+      {
+        "seq": 28,
+        "time": "2026-10-19T23:53:10.899Z",
+        "type": "plan_proposed",
+        "plan": {
+          "id": "plan-5b09840d-0a4a-4f43-bc66-e5745a8667cc",
+          "origin_message_id": "message-a6870aa9-301d-4f3b-a721-9c67a355a87f",
+          "version": 1,
+          "goal": "Plan for this request",
+          "summary": "These are the planned steps for your request. Queries run automatically; you will review exact details before a submission. A plan does not mean the request has been carried out.",
+          "steps": [
+            {
+              "id": "name_roles",
+              "capability": "input",
+              "depends_on": [],
+              "title": "Clarify necessary information",
+              "parameters": {},
+              "status": "pending"
+            },
+            {
+              "id": "photo",
+              "capability": "input",
+              "depends_on": [],
+              "title": "Clarify necessary information",
+              "parameters": {},
+              "status": "pending"
+            },
+            {
+              "id": "upload",
+              "capability": "crm_upload_attachment",
+              "depends_on": [
+                "photo"
+              ],
+              "title": "Upload a form attachment",
+              "parameters": {},
+              "status": "pending"
+            },
+            {
+              "id": "submit",
+              "capability": "crm_create_form_request",
+              "depends_on": [
+                "name_roles",
+                "upload"
+              ],
+              "title": "Record an inquiry, suggestion or complaint",
+              "parameters": {},
+              "status": "pending"
+            },
+            {
+              "id": "respond",
+              "capability": "respond",
+              "depends_on": [
+                "submit"
+              ],
+              "title": "Explain the result and limits",
+              "parameters": {},
+              "status": "pending"
+            }
+          ],
+          "approved": true,
+          "status": "approved",
+          "created_at": "2026-10-19T23:53:10.899Z"
+        }
+      },
+      {
+        "seq": 29,
+        "time": "2026-10-19T23:53:10.899Z",
+        "type": "plan_auto_started",
+        "plan_id": "plan-5b09840d-0a4a-4f43-bc66-e5745a8667cc"
+      },
+      {
+        "seq": 30,
+        "time": "2026-10-19T23:53:10.899Z",
+        "type": "message",
+        "message": {
+          "id": "message-10bd3897-69e8-491a-887c-2038142a6cc9",
+          "role": "assistant",
+          "text": "These are the planned steps for your request. Queries run automatically; you will review exact details before a submission. A plan does not mean the request has been carried out.",
+          "time": "2026-10-19T23:53:10.899Z",
+          "kind": "plan",
+          "plan_id": "plan-5b09840d-0a4a-4f43-bc66-e5745a8667cc"
+        }
+      },
+      {
+        "seq": 31,
+        "time": "2026-10-19T23:53:10.899Z",
+        "type": "tool_end",
+        "call_id": "call_00_zmsAIWbTIcr3vBIUKqVz5442",
+        "name": "propose_plan",
+        "result": {
+          "plan": {
+            "id": "plan-5b09840d-0a4a-4f43-bc66-e5745a8667cc",
+            "origin_message_id": "message-a6870aa9-301d-4f3b-a721-9c67a355a87f",
+            "version": 1,
+            "goal": "Plan for this request",
+            "summary": "These are the planned steps for your request. Queries run automatically; you will review exact details before a submission. A plan does not mean the request has been carried out.",
+            "steps": [
+              {
+                "id": "name_roles",
+                "capability": "input",
+                "depends_on": [],
+                "title": "Clarify necessary information",
+                "parameters": {},
+                "status": "pending"
+              },
+              {
+                "id": "photo",
+                "capability": "input",
+                "depends_on": [],
+                "title": "Clarify necessary information",
+                "parameters": {},
+                "status": "pending"
+              },
+              {
+                "id": "upload",
+                "capability": "crm_upload_attachment",
+                "depends_on": [
+                  "photo"
+                ],
+                "title": "Upload a form attachment",
+                "parameters": {},
+                "status": "pending"
+              },
+              {
+                "id": "submit",
+                "capability": "crm_create_form_request",
+                "depends_on": [
+                  "name_roles",
+                  "upload"
+                ],
+                "title": "Record an inquiry, suggestion or complaint",
+                "parameters": {},
+                "status": "pending"
+              },
+              {
+                "id": "respond",
+                "capability": "respond",
+                "depends_on": [
+                  "submit"
+                ],
+                "title": "Explain the result and limits",
+                "parameters": {},
+                "status": "pending"
+              }
+            ],
+            "approved": true,
+            "status": "approved",
+            "created_at": "2026-10-19T23:53:10.899Z"
+          },
+          "auto_execute": true
+        }
+      },
+      {
+        "seq": 32,
+        "time": "2026-10-19T23:53:10.904Z",
+        "type": "model_request",
+        "request": 3
+      },
+      {
+        "seq": 33,
+        "time": "2026-10-19T23:53:12.377Z",
+        "type": "model_result",
+        "usage": {
+          "input": 408,
+          "output": 235,
+          "cacheRead": 17024,
+          "cacheWrite": 0,
+          "reasoning": 0,
+          "totalTokens": 17667,
+          "cost": {
+            "input": 0.0001224,
+            "output": 0.00028199999999999997,
+            "cacheRead": 0.000102144,
+            "cacheWrite": 0,
+            "total": 0.0005065439999999999
+          }
+        },
+        "stop_reason": "toolUse",
+        "tool_calls": [
+          {
+            "name": "request_input",
+            "arguments": {
+              "step_id": "name_roles",
+              "kind": "text",
+              "operation": "crm_create_form_request",
+              "fields": [
+                "body.CustomerInformation.FirstName",
+                "body.CustomerInformation.LastName"
+              ],
+              "purpose": "missing",
+              "question": "Thanks, Lina. To fill in the complaint form, please tell me which part of your name is your first (given) name and which is your family (last) name.",
+              "known_parameters": {
+                "body": {
+                  "Type": "T03",
+                  "subject": "Long wait at Test Cedar Service Hall",
+                  "CustomerInformation": {
+                    "EmailAddress": "lina@example.test",
+                    "MobileNumber": "0501234567"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "seq": 34,
+        "time": "2026-10-19T23:53:12.378Z",
+        "type": "tool_start",
+        "call_id": "call_00_pEYOjj30NrWFQrtzorTB6624",
+        "name": "request_input",
+        "arguments": {
+          "step_id": "name_roles",
+          "kind": "text",
+          "operation": "crm_create_form_request",
+          "fields": [
+            "body.CustomerInformation.FirstName",
+            "body.CustomerInformation.LastName"
+          ],
+          "purpose": "missing",
+          "question": "Thanks, Lina. To fill in the complaint form, please tell me which part of your name is your first (given) name and which is your family (last) name.",
+          "known_parameters": {
+            "body": {
+              "Type": "T03",
+              "subject": "Long wait at Test Cedar Service Hall",
+              "CustomerInformation": {
+                "EmailAddress": "lina@example.test",
+                "MobileNumber": "0501234567"
+              }
+            }
+          }
+        }
+      },
+      {
+        "seq": 35,
+        "time": "2026-10-19T23:53:12.380Z",
+        "type": "input_required",
+        "input": {
+          "id": "input-ce37afc6-5ab9-445a-82a9-e7efd84dbf35",
+          "plan_id": "plan-5b09840d-0a4a-4f43-bc66-e5745a8667cc",
+          "step_id": "name_roles",
+          "kind": "name_roles",
+          "operation": "crm_create_form_request",
+          "fields": [
+            "body.CustomerInformation.FirstName",
+            "body.CustomerInformation.LastName"
+          ],
+          "purpose": "missing",
+          "question": "Please enter your name in the labelled fields below. Your other supplied details will be kept.",
+          "known_parameters": {
+            "body": {
+              "Type": "T03",
+              "subject": "Long wait at Test Cedar Service Hall",
+              "CustomerInformation": {
+                "EmailAddress": "lina@example.test",
+                "MobileNumber": "0501234567"
+              }
+            }
+          },
+          "name_role_copy": {
+            "question": "Please enter your name in the labelled fields below. Your other supplied details will be kept.",
+            "FirstName": "Given name",
+            "LastName": "Family name",
+            "continue": "Save name and continue",
+            "cancel": "Cancel this request",
+            "note": "Only the name roles still unclear are shown. This is not identity verification.",
+            "retry": "Could not save. Please try again."
+          }
+        }
+      },
+      {
+        "seq": 36,
+        "time": "2026-10-19T23:53:12.380Z",
+        "type": "message",
+        "message": {
+          "id": "message-78125fe7-f54f-4e0f-bf89-412073140f6b",
+          "role": "assistant",
+          "text": "Please enter your name in the labelled fields below. Your other supplied details will be kept.",
+          "time": "2026-10-19T23:53:12.380Z",
+          "kind": "input_request",
+          "input_id": "input-ce37afc6-5ab9-445a-82a9-e7efd84dbf35",
+          "plan_id": "plan-5b09840d-0a4a-4f43-bc66-e5745a8667cc"
+        }
+      },
+      {
+        "seq": 37,
+        "time": "2026-10-19T23:53:12.380Z",
+        "type": "tool_end",
+        "call_id": "call_00_pEYOjj30NrWFQrtzorTB6624",
+        "name": "request_input",
+        "result": {
+          "end_turn": true,
+          "input": {
+            "id": "input-ce37afc6-5ab9-445a-82a9-e7efd84dbf35",
+            "plan_id": "plan-5b09840d-0a4a-4f43-bc66-e5745a8667cc",
+            "step_id": "name_roles",
+            "kind": "name_roles",
+            "operation": "crm_create_form_request",
+            "fields": [
+              "body.CustomerInformation.FirstName",
+              "body.CustomerInformation.LastName"
+            ],
+            "purpose": "missing",
+            "question": "Please enter your name in the labelled fields below. Your other supplied details will be kept.",
+            "known_parameters": {
+              "body": {
+                "Type": "T03",
+                "subject": "Long wait at Test Cedar Service Hall",
+                "CustomerInformation": {
+                  "EmailAddress": "lina@example.test",
+                  "MobileNumber": "0501234567"
+                }
+              }
+            },
+            "name_role_copy": {
+              "question": "Please enter your name in the labelled fields below. Your other supplied details will be kept.",
+              "FirstName": "Given name",
+              "LastName": "Family name",
+              "continue": "Save name and continue",
+              "cancel": "Cancel this request",
+              "note": "Only the name roles still unclear are shown. This is not identity verification.",
+              "retry": "Could not save. Please try again."
+            }
+          }
+        }
+      },
+      {
+        "seq": 38,
+        "time": "2026-10-19T23:53:12.381Z",
+        "type": "turn_finished",
+        "status": "input"
+      }
+    ],
+    "csrf": "csrf-f58bfc55-2cec-4cd9-b829-87d737c7c7d0",
+    "crm": {
+      "version": "1.13.0",
+      "calls": []
+    },
+    "crmPromptHash": "1331eea1ffbc39e8e6b6e0ab7d29b8b63e770426153ddcc1f2bc23d4e8809f8b",
+    "mock": {
+      "tickets": [],
+      "complaints": [],
+      "handoffs": [],
+      "calls": []
+    },
+    "api_mode": "simulation",
+    "tool_count": 20,
+    "contract_operation_count": 35,
+    "catalog": [
+      {
+        "id": "balady-crm",
+        "mode": "simulation",
+        "title": {
+          "zh": "BALADY CRM 综合服务",
+          "en": "BALADY CRM services",
+          "ar": "خدمات بلدي CRM"
+        },
+        "department": {
+          "zh": "BALADY 市政与客户服务",
+          "en": "BALADY municipal and customer services",
+          "ar": "الخدمات البلدية وخدمة العملاء"
+        },
+        "description": {
+          "zh": "查询本人事项、整理咨询建议与投诉、浏览市政分类和资产目录。当前为仿真；提交前确认。地点自动解析及机构后台处理未接入市民助手。",
+          "en": "View your reports, prepare inquiries, suggestions and complaints, and browse service classifications and asset references. Simulation with confirmation before submission. Automatic location resolution and organizational back-office actions are not connected to this citizen assistant.",
+          "ar": "متابعة بلاغاتك وإعداد الاستفسارات والمقترحات والشكاوى وتصفح التصنيفات والأصول. محاكاة مع تأكيد الإرسال. تحديد المواقع التلقائي وإجراءات الجهات الداخلية غير متاحة هنا."
+        },
+        "official_url": "https://balady.gov.sa/en",
+        "example": "What is happening with my waste collection report?"
+      },
+      {
+        "id": "infrastructure-permit",
+        "mode": "knowledge_only",
+        "title": {
+          "zh": "新开发规划区域基础设施施工许可",
+          "en": "Infrastructure works permit in a new development plan",
+          "ar": "تصريح أعمال البنية التحتية في مخطط تطوير جديد"
+        },
+        "department": {
+          "zh": "基础设施许可服务",
+          "en": "Infrastructure permit services",
+          "ar": "خدمات تصاريح البنية التحتية"
+        },
+        "description": {
+          "zh": "咨询服务定义、申请人、材料和费用；本助手未接入许可申请接口。",
+          "en": "FAQ consultation on the service, applicants, documents and fees. Permit applications are not connected here.",
+          "ar": "استشارات عن الخدمة والمتقدمين والمستندات والرسوم. تقديم الطلبات غير متصل هنا."
+        },
+        "official_url": "https://balady.gov.sa/en",
+        "example": "Who can apply for this service?"
+      },
+      {
+        "id": "civil-defense-fees",
+        "mode": "knowledge_only",
+        "title": {
+          "zh": "民防与市政费用咨询",
+          "en": "Civil Defense and municipal fee guidance",
+          "ar": "استفسارات رسوم الدفاع المدني والبلدية"
+        },
+        "department": {
+          "zh": "许可缴费相关咨询",
+          "en": "License payment guidance",
+          "ar": "استفسارات سداد رسوم التراخيص"
+        },
+        "description": {
+          "zh": "咨询已有问答中的费用与发票规则；本助手不支持缴费。",
+          "en": "FAQ guidance on fees and invoices. Payments are not connected here.",
+          "ar": "استشارات الأسئلة الشائعة عن الرسوم والفواتير. الدفع غير متصل هنا."
+        },
+        "official_url": "https://balady.gov.sa/en",
+        "example": "Is the municipal fees invoice the same as the Civil Defense fees invoice?"
+      },
+      {
+        "id": "balady-platform",
+        "mode": "knowledge_only",
+        "title": {
+          "zh": "Balady 平台咨询",
+          "en": "Balady platform guidance",
+          "ar": "استفسارات منصة بلدي"
+        },
+        "department": {
+          "zh": "平台服务咨询",
+          "en": "Platform service guidance",
+          "ar": "استفسارات خدمات المنصة"
+        },
+        "description": {
+          "zh": "当前仅有平台个性化服务相关问答；其他业务请通过官方平台查询。",
+          "en": "The current FAQ covers platform personalization. Use the official platform for other services.",
+          "ar": "تغطي الأسئلة الحالية تخصيص خدمات المنصة. للخدمات الأخرى يرجى زيارة المنصة الرسمية."
+        },
+        "official_url": "https://balady.gov.sa/en",
+        "example": "Does the Balady Platform personalize the services and content displayed to the beneficiary?"
+      }
+    ],
+    "human_support": {
+      "available": true,
+      "wait_limit_ms": 180000,
+      "mode": "simulated",
+      "hours_configured": false,
+      "official_url": "https://balady.gov.sa/en",
+      "wait_expired": false
+    },
+    "demo_ui": true,
+    "feedback": {
+      "enabled": false,
+      "items": {}
+    },
+    "faq": {
+      "name": "digital-human-faq",
+      "entry_count": 9,
+      "source_displayed_count": 26,
+      "migration_status": "verified-subset",
+      "quality": {
+        "version": "road-knowledge-v3",
+        "scope": "poc_only",
+        "policy_status": "pending_official_verification",
+        "missing_entries": 17,
+        "note": "The 9 complete source records were structurally reviewed. This does not verify their policy accuracy. No missing source records or official citations have been invented."
+      }
+    },
+    "model": "deepseek-flash",
+    "runtime": "PI SDK 1.1.0"
+  },
+  "completed_at": "2026-10-19T23:53:12.453Z",
+  "source_changed_during_run": [],
+  "post_run_git_commit": "60acc5791d561dbdd1144487af2d469378c3ebb5",
+  "candidate_commit_unchanged": true,
+  "model_request_counts": {
+    "primary": 3,
+    "verifier": 2,
+    "faq": 1,
+    "sentiment": 1
+  },
+  "observable_tool_error_counts": {},
+  "pass": false,
+  "limitations": [
+    "A separate single synthetic actual-file journey, excluded from frozen 40-case scores.",
+    "Public HTTP and actual bytes were exercised; no browser file chooser was automated.",
+    "Host final facts are deterministic; semantic absence of broader unsupported claims needs independent review.",
+    "No selective retry, revised actor input or replacement score."
+  ]
+}

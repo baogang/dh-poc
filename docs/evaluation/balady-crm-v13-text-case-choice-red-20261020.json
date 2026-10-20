@@ -1,0 +1,28 @@
+{
+  "stage": "v13 public HTTP textual case-reference choice before native conversion repair",
+  "command": [
+    "node",
+    "--test",
+    "--test-reporter=tap",
+    "--test-name-pattern=textual case-number choice|actual case selection is not asked again",
+    "tests/crm-integration.test.mjs"
+  ],
+  "tests": 2,
+  "passed": 0,
+  "failed": 2,
+  "exit_code": 1,
+  "source_sha256": {
+    "src/crm/agent.mjs": "22892b24cedc53e9c90a7907b1b22629acf99d631c358dad49ee48fd677ee7c6",
+    "src/crm/case-target.mjs": "a509e05b0d9514eb90d10229f5ce9f379dcf776d71e071b2c862366b94413109",
+    "src/crm/response-guard.mjs": "aa678770eab93d4d8fb44c0481ec1b137dfe99b93f20d0d05f51f0599ce57792",
+    "tests/crm-integration.test.mjs": "3ee9c23d5f966932fe60b410484aaef70e402c614b9e703dff4bd9cdc2f669d3"
+  },
+  "source_sha256_end": {
+    "src/crm/agent.mjs": "22892b24cedc53e9c90a7907b1b22629acf99d631c358dad49ee48fd677ee7c6",
+    "src/crm/case-target.mjs": "a509e05b0d9514eb90d10229f5ce9f379dcf776d71e071b2c862366b94413109",
+    "src/crm/response-guard.mjs": "aa678770eab93d4d8fb44c0481ec1b137dfe99b93f20d0d05f51f0599ce57792",
+    "tests/crm-integration.test.mjs": "3ee9c23d5f966932fe60b410484aaef70e402c614b9e703dff4bd9cdc2f669d3"
+  },
+  "source_changed_during_run": [],
+  "raw_tap": "docs/evaluation/balady-crm-v13-text-case-choice-red-20261020.tap"
+}

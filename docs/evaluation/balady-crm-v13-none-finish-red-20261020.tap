@@ -1,0 +1,33 @@
+TAP version 13
+# Subtest: HTTP a valid none selection overrides a mistaken history-only needs-choice finish and does not offer excluded records again
+not ok 1 - HTTP a valid none selection overrides a mistaken history-only needs-choice finish and does not offer excluded records again
+  ---
+  duration_ms: 269.511386
+  type: 'test'
+  location: '/Users/baogang/git/momah-poc/tests/crm-integration.test.mjs:837:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The expression evaluated to a falsy value:
+    
+      assert.ok(final.case_guidance.includes('not_found'))
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/baogang/git/momah-poc/tests/crm-integration.test.mjs:838:827)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async Test.run (node:internal/test_runner/test:1069:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:332:3)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1421.872119

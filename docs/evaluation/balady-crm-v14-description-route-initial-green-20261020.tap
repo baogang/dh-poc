@@ -1,0 +1,69 @@
+TAP version 13
+# Subtest: HTTP an actual unavailable location route cannot be offered directly or as an additional service even when prose verifiers approve
+ok 1 - HTTP an actual unavailable location route cannot be offered directly or as an additional service even when prose verifiers approve
+  ---
+  duration_ms: 276.227804
+  type: 'test'
+  ...
+# Subtest: HTTP public complaint descriptions cannot add unsupported duration cause or visit-count facts before a confirmation card
+ok 2 - HTTP public complaint descriptions cannot add unsupported duration cause or visit-count facts before a confirmation card
+  ---
+  duration_ms: 245.016106
+  type: 'test'
+  ...
+# Subtest: HTTP a partial complaint with unsupported descriptive facts cannot collect more contacts before correcting its source
+ok 3 - HTTP a partial complaint with unsupported descriptive facts cannot collect more contacts before correcting its source
+  ---
+  duration_ms: 59.1117
+  type: 'test'
+  ...
+# Subtest: HTTP delivered description quotations allow exact formatting or explicit multi-quote joining and control metadata never reaches CRM
+ok 4 - HTTP delivered description quotations allow exact formatting or explicit multi-quote joining and control metadata never reaches CRM
+  ---
+  duration_ms: 212.899159
+  type: 'test'
+  ...
+# Subtest: HTTP forged description quote metadata is rejected and a valid partial description can continue with its previously validated source
+ok 5 - HTTP forged description quote metadata is rejected and a valid partial description can continue with its previously validated source
+  ---
+  duration_ms: 151.639694
+  type: 'test'
+  ...
+# Subtest: HTTP an actual native description edit is a trusted source that survives a later title-only correction and one exact approval
+ok 6 - HTTP an actual native description edit is a trusted source that survives a later title-only correction and one exact approval
+  ---
+  duration_ms: 186.791305
+  type: 'test'
+  ...
+# Subtest: HTTP a title-only edit of an unverified restored description cannot launder that description into trusted UI evidence
+not ok 7 - HTTP a title-only edit of an unverified restored description cannot launder that description into trusted UI evidence
+  ---
+  duration_ms: 57.677406
+  type: 'test'
+  location: '/Users/baogang/git/momah-poc/tests/crm-integration.test.mjs:895:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    200 !== 400
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 400
+  actual: 200
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/baogang/git/momah-poc/tests/crm-integration.test.mjs:896:1079)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async Test.run (node:internal/test_runner/test:1069:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:752:7)
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 6
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3162.834132

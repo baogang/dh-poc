@@ -1,0 +1,159 @@
+TAP version 13
+1..0
+# Subtest: tests/crm-agent.test.mjs
+ok 1 - tests/crm-agent.test.mjs
+  ---
+  duration_ms: 2375.208327
+  type: 'test'
+  ...
+1..0
+# Subtest: tests/crm-audience.test.mjs
+ok 2 - tests/crm-audience.test.mjs
+  ---
+  duration_ms: 2349.421921
+  type: 'test'
+  ...
+1..0
+# Subtest: tests/crm-chat-ui.test.mjs
+ok 3 - tests/crm-chat-ui.test.mjs
+  ---
+  duration_ms: 308.612782
+  type: 'test'
+  ...
+1..0
+# Subtest: tests/crm-contract.test.mjs
+ok 4 - tests/crm-contract.test.mjs
+  ---
+  duration_ms: 648.086506
+  type: 'test'
+  ...
+1..0
+# Subtest: tests/crm-files.test.mjs
+ok 5 - tests/crm-files.test.mjs
+  ---
+  duration_ms: 408.480368
+  type: 'test'
+  ...
+1..0
+# Subtest: tests/crm-http.test.mjs
+ok 6 - tests/crm-http.test.mjs
+  ---
+  duration_ms: 2535.01829
+  type: 'test'
+  ...
+# Subtest: v22 physical-only intent cannot publish a public-form DAG or collect form contacts before a real native service choice
+ok 7 - v22 physical-only intent cannot publish a public-form DAG or collect form contacts before a real native service choice
+  ---
+  duration_ms: 364.365503
+  type: 'test'
+  ...
+# Subtest: v22 an explicit public component mixed with another goal and its title-only continuation retain the chosen route without another route question
+ok 8 - v22 an explicit public component mixed with another goal and its title-only continuation retain the chosen route without another route question
+  ---
+  duration_ms: 368.618305
+  type: 'test'
+  ...
+# Subtest: v22 a real current-origin native public-service choice establishes routing but never substitutes for exact write approval
+ok 9 - v22 a real current-origin native public-service choice establishes routing but never substitutes for exact write approval
+  ---
+  duration_ms: 368.631902
+  type: 'test'
+  ...
+# Subtest: v22 restored authorization and raw form calls cannot bypass current intent when an old card lacks a valid route proof
+ok 10 - v22 restored authorization and raw form calls cannot bypass current intent when an old card lacks a valid route proof
+  ---
+  duration_ms: 602.530594
+  type: 'test'
+  ...
+# Subtest: v22 an information question about a genuinely unconnected service receives a sourced normal outcome without verification rejection loops
+not ok 11 - v22 an information question about a genuinely unconnected service receives a sourced normal outcome without verification rejection loops
+  ---
+  duration_ms: 156.1797
+  type: 'test'
+  location: '/Users/baogang/git/momah-poc/tests/crm-integration.test.mjs:1190:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + 'completed'
+    - 'answered'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'answered'
+  actual: 'completed'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/baogang/git/momah-poc/tests/crm-integration.test.mjs:1191:374)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async Test.run (node:internal/test_runner/test:1069:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:752:7)
+  ...
+1..0
+# Subtest: tests/crm-journey-choice.test.mjs
+ok 8 - tests/crm-journey-choice.test.mjs
+  ---
+  duration_ms: 433.592131
+  type: 'test'
+  ...
+1..0
+# Subtest: tests/crm-journey-metrics.test.mjs
+ok 9 - tests/crm-journey-metrics.test.mjs
+  ---
+  duration_ms: 472.348293
+  type: 'test'
+  ...
+1..0
+# Subtest: tests/crm-knowledge-routing.test.mjs
+ok 10 - tests/crm-knowledge-routing.test.mjs
+  ---
+  duration_ms: 2537.604273
+  type: 'test'
+  ...
+# Subtest: v22 unavailable classification accepts an information request for an unconnected product through two fresh category-only scopes
+ok 15 - v22 unavailable classification accepts an information request for an unconnected product through two fresh category-only scopes
+  ---
+  duration_ms: 113.965634
+  type: 'test'
+  ...
+# Subtest: v22 available reads missing input unknown facts failed retrieval and unclear intent use normal classification routing rather than three rejection failures
+ok 16 - v22 available reads missing input unknown facts failed retrieval and unclear intent use normal classification routing rather than three rejection failures
+  ---
+  duration_ms: 323.318837
+  type: 'test'
+  ...
+# Subtest: v22 invalid missing or advisory classification verdicts fail closed instead of interpreting affirmative issues as routing advice
+ok 17 - v22 invalid missing or advisory classification verdicts fail closed instead of interpreting affirmative issues as routing advice
+  ---
+  duration_ms: 78.251785
+  type: 'test'
+  ...
+# Subtest: v22 form-route scopes inspect only delivered user intent and genuine host-choice sources while preserving a mixed or same-request public component
+ok 18 - v22 form-route scopes inspect only delivered user intent and genuine host-choice sources while preserving a mixed or same-request public component
+  ---
+  duration_ms: 44.49857
+  type: 'test'
+  ...
+# Subtest: v22 form alternatives unrelated prior choices and physical-only requests return a denied route without manufacturing a verifier failure
+ok 19 - v22 form alternatives unrelated prior choices and physical-only requests return a denied route without manufacturing a verifier failure
+  ---
+  duration_ms: 119.440169
+  type: 'test'
+  ...
+1..0
+# Subtest: tests/crm-smoke.test.mjs
+ok 12 - tests/crm-smoke.test.mjs
+  ---
+  duration_ms: 2296.245627
+  type: 'test'
+  ...
+1..20
+# tests 20
+# suites 0
+# pass 19
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 4480.38733

@@ -1,0 +1,954 @@
+{
+  "stage": "Independent synthetic real-model categorical routing preflight; not frozen natural40 or journey score; no writes or API calls",
+  "started_at": "2026-10-20T00:30:19.661Z",
+  "source_sha256": {
+    "src/crm/agent.mjs": "ffb297ba77bcb0a3f6ab0c224a8263a75ab6c0e63c92cc92952a3c59d51eb244",
+    "src/crm/response-guard.mjs": "d63debb7321d591a28edde8da46577ca309bcfc8017170f62c2a54edc0e76c5a",
+    "src/crm/public-capabilities.mjs": "550cbb06fc3d636e862835e1a052f94ae61507e345943381358376f7c6ee2001",
+    "web/road/chat-ui.js": "e56725f26533218df2b5f8cdb98d8970702c71e4d70e386008a3240f3639e146"
+  },
+  "cases": [
+    {
+      "id": "unconnected_physical_action",
+      "kind": "unavailable_intent",
+      "texts": [
+        "Please send a municipal crew to repair the footbridge railing today."
+      ],
+      "quote": "send a municipal crew to repair the footbridge railing today",
+      "expected": true,
+      "actual": true,
+      "pass": true,
+      "events": [
+        {
+          "type": "response_guard_started",
+          "message_count": 0
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 3783,
+            "output": 33,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 3816,
+            "cost": {
+              "input": 0.0011348999999999999,
+              "output": 0.0000396,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "total": 0.0011745
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "classification": "action_request"
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_classified",
+          "kind": "unavailable_intent",
+          "scope": "request_intent",
+          "classification": "action_request"
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 2957,
+            "output": 33,
+            "cacheRead": 896,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 3886,
+            "cost": {
+              "input": 0.0008870999999999999,
+              "output": 0.0000396,
+              "cacheRead": 0.000005376,
+              "cacheWrite": 0,
+              "total": 0.0009320759999999999
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "classification": "unconnected"
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_classified",
+          "kind": "unavailable_intent",
+          "scope": "unavailable_capability",
+          "classification": "unconnected"
+        },
+        {
+          "type": "response_guard_completed",
+          "corrected": false,
+          "issues": [],
+          "classification_only": true,
+          "applicable": true,
+          "classifications": {
+            "request_intent": "action_request",
+            "unavailable_capability": "unconnected"
+          }
+        }
+      ]
+    },
+    {
+      "id": "unconnected_place_information",
+      "kind": "unavailable_intent",
+      "texts": [
+        "Which nearby municipal swimming pool is open this evening?"
+      ],
+      "quote": "Which nearby municipal swimming pool is open this evening?",
+      "expected": true,
+      "actual": true,
+      "pass": true,
+      "events": [
+        {
+          "type": "response_guard_started",
+          "message_count": 0
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 2363,
+            "output": 33,
+            "cacheRead": 1408,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 3804,
+            "cost": {
+              "input": 0.0007088999999999999,
+              "output": 0.0000396,
+              "cacheRead": 0.000008448,
+              "cacheWrite": 0,
+              "total": 0.0007569479999999999
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "classification": "information_request"
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_classified",
+          "kind": "unavailable_intent",
+          "scope": "request_intent",
+          "classification": "information_request"
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 2433,
+            "output": 33,
+            "cacheRead": 1408,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 3874,
+            "cost": {
+              "input": 0.0007299,
+              "output": 0.0000396,
+              "cacheRead": 0.000008448,
+              "cacheWrite": 0,
+              "total": 0.000777948
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "classification": "unconnected"
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_classified",
+          "kind": "unavailable_intent",
+          "scope": "unavailable_capability",
+          "classification": "unconnected"
+        },
+        {
+          "type": "response_guard_completed",
+          "corrected": false,
+          "issues": [],
+          "classification_only": true,
+          "applicable": true,
+          "classifications": {
+            "request_intent": "information_request",
+            "unavailable_capability": "unconnected"
+          }
+        }
+      ]
+    },
+    {
+      "id": "available_personal_history_query",
+      "kind": "unavailable_intent",
+      "texts": [
+        "Show the status of my reports."
+      ],
+      "quote": "Show the status of my reports",
+      "expected": false,
+      "signedIn": true,
+      "actual": false,
+      "pass": true,
+      "error": {
+        "code": "CAPABILITY_GUIDANCE_NOT_APPLICABLE",
+        "message": "The classifications do not establish an unconnected requested service: {\"request_intent\":\"information_request\",\"unavailable_capability\":\"available\"}. Preserve the original request and evidence; continue the matching available route or clarify the unknown fact."
+      },
+      "events": [
+        {
+          "type": "response_guard_started",
+          "message_count": 0
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 2349,
+            "output": 33,
+            "cacheRead": 1408,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 3790,
+            "cost": {
+              "input": 0.0007046999999999999,
+              "output": 0.0000396,
+              "cacheRead": 0.000008448,
+              "cacheWrite": 0,
+              "total": 0.0007527479999999999
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "classification": "information_request"
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_classified",
+          "kind": "unavailable_intent",
+          "scope": "request_intent",
+          "classification": "information_request"
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 2419,
+            "output": 32,
+            "cacheRead": 1408,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 3859,
+            "cost": {
+              "input": 0.0007257,
+              "output": 0.0000384,
+              "cacheRead": 0.000008448,
+              "cacheWrite": 0,
+              "total": 0.000772548
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "classification": "available"
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_classified",
+          "kind": "unavailable_intent",
+          "scope": "unavailable_capability",
+          "classification": "available"
+        },
+        {
+          "type": "response_guard_completed",
+          "corrected": false,
+          "issues": [],
+          "classification_only": true,
+          "applicable": false,
+          "classifications": {
+            "request_intent": "information_request",
+            "unavailable_capability": "available"
+          }
+        }
+      ]
+    },
+    {
+      "id": "unestablished_arrival_fact",
+      "kind": "unavailable_intent",
+      "texts": [
+        "When will the repair crew arrive for my report?"
+      ],
+      "quote": "When will the repair crew arrive for my report?",
+      "expected": false,
+      "receipts": [
+        {
+          "id": "actual-history",
+          "operation": "crm_get_incidents",
+          "parameters": {},
+          "result": {
+            "responseCode": "1",
+            "responseMessage": "success",
+            "result": [
+              {
+                "pyID": "REP-DEMO-30",
+                "pzInsKey": "DEMO-CASE REP-DEMO-30",
+                "IncidentDescription": "A footbridge railing is loose.",
+                "IncidentStatus": "InProgress"
+              }
+            ]
+          }
+        }
+      ],
+      "actual": true,
+      "pass": false,
+      "events": [
+        {
+          "type": "response_guard_started",
+          "message_count": 0
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 2454,
+            "output": 33,
+            "cacheRead": 1408,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 3895,
+            "cost": {
+              "input": 0.0007362,
+              "output": 0.0000396,
+              "cacheRead": 0.000008448,
+              "cacheWrite": 0,
+              "total": 0.000784248
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "classification": "information_request"
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_classified",
+          "kind": "unavailable_intent",
+          "scope": "request_intent",
+          "classification": "information_request"
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 2524,
+            "output": 33,
+            "cacheRead": 1408,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 3965,
+            "cost": {
+              "input": 0.0007572,
+              "output": 0.0000396,
+              "cacheRead": 0.000008448,
+              "cacheWrite": 0,
+              "total": 0.0008052479999999999
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "classification": "unconnected"
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_classified",
+          "kind": "unavailable_intent",
+          "scope": "unavailable_capability",
+          "classification": "unconnected"
+        },
+        {
+          "type": "response_guard_completed",
+          "corrected": false,
+          "issues": [],
+          "classification_only": true,
+          "applicable": true,
+          "classifications": {
+            "request_intent": "information_request",
+            "unavailable_capability": "unconnected"
+          }
+        }
+      ]
+    },
+    {
+      "id": "explicit_public_suggestion",
+      "kind": "form_route",
+      "texts": [
+        "I want to submit a suggestion about the information displayed at the service counter. The opening times should be easier to read."
+      ],
+      "expected": true,
+      "actual": true,
+      "pass": true,
+      "events": [
+        {
+          "type": "response_guard_started",
+          "message_count": 0
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 1734,
+            "output": 36,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 1770,
+            "cost": {
+              "input": 0.0005202,
+              "output": 0.0000432,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "total": 0.0005633999999999999
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "classification": "public_contact_requested"
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_classified",
+          "kind": "form_route",
+          "scope": "requested_component",
+          "classification": "public_contact_requested"
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 693,
+            "output": 34,
+            "cacheRead": 1024,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 1751,
+            "cost": {
+              "input": 0.00020789999999999998,
+              "output": 0.000040799999999999996,
+              "cacheRead": 0.000006144,
+              "cacheWrite": 0,
+              "total": 0.00025484399999999995
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "classification": "current_user_request"
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_classified",
+          "kind": "form_route",
+          "scope": "route_basis",
+          "classification": "current_user_request"
+        },
+        {
+          "type": "response_guard_completed",
+          "corrected": false,
+          "issues": [],
+          "classification_only": true,
+          "applicable": true,
+          "classifications": {
+            "requested_component": "public_contact_requested",
+            "route_basis": "current_user_request"
+          }
+        }
+      ]
+    },
+    {
+      "id": "physical_action_without_contact_choice",
+      "kind": "form_route",
+      "texts": [
+        "The footbridge railing is loose. Please arrange for it to be repaired."
+      ],
+      "expected": false,
+      "actual": false,
+      "pass": true,
+      "events": [
+        {
+          "type": "response_guard_started",
+          "message_count": 0
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 310,
+            "output": 37,
+            "cacheRead": 1408,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 1755,
+            "cost": {
+              "input": 0.000093,
+              "output": 0.000044399999999999995,
+              "cacheRead": 0.000008448,
+              "cacheWrite": 0,
+              "total": 0.000145848
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "classification": "no_public_contact_request"
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_classified",
+          "kind": "form_route",
+          "scope": "requested_component",
+          "classification": "no_public_contact_request"
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 293,
+            "output": 33,
+            "cacheRead": 1408,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 1734,
+            "cost": {
+              "input": 0.0000879,
+              "output": 0.0000396,
+              "cacheRead": 0.000008448,
+              "cacheWrite": 0,
+              "total": 0.00013594800000000002
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "classification": "unclear"
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_classified",
+          "kind": "form_route",
+          "scope": "route_basis",
+          "classification": "unclear"
+        },
+        {
+          "type": "response_guard_completed",
+          "corrected": false,
+          "issues": [],
+          "classification_only": true,
+          "applicable": false,
+          "classifications": {
+            "requested_component": "no_public_contact_request",
+            "route_basis": "unclear"
+          }
+        }
+      ]
+    },
+    {
+      "id": "mixed_explicit_public_feedback_and_physical_goal",
+      "kind": "form_route",
+      "texts": [
+        "Please arrange repair of the footbridge railing. Separately, I want to submit a suggestion about the unclear notices at the service counter."
+      ],
+      "expected": true,
+      "actual": true,
+      "pass": true,
+      "events": [
+        {
+          "type": "response_guard_started",
+          "message_count": 0
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 334,
+            "output": 36,
+            "cacheRead": 1408,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 1778,
+            "cost": {
+              "input": 0.0001002,
+              "output": 0.0000432,
+              "cacheRead": 0.000008448,
+              "cacheWrite": 0,
+              "total": 0.000151848
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "classification": "public_contact_requested"
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_classified",
+          "kind": "form_route",
+          "scope": "requested_component",
+          "classification": "public_contact_requested"
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 317,
+            "output": 34,
+            "cacheRead": 1408,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 1759,
+            "cost": {
+              "input": 0.0000951,
+              "output": 0.000040799999999999996,
+              "cacheRead": 0.000008448,
+              "cacheWrite": 0,
+              "total": 0.000144348
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "classification": "current_user_request"
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_classified",
+          "kind": "form_route",
+          "scope": "route_basis",
+          "classification": "current_user_request"
+        },
+        {
+          "type": "response_guard_completed",
+          "corrected": false,
+          "issues": [],
+          "classification_only": true,
+          "applicable": true,
+          "classifications": {
+            "requested_component": "public_contact_requested",
+            "route_basis": "current_user_request"
+          }
+        }
+      ]
+    },
+    {
+      "id": "real_public_request_title_only_continuation",
+      "kind": "form_route",
+      "texts": [
+        "I want to submit a public suggestion about the unclear notices at the service counter.",
+        "Change only the title of that suggestion to Clearer notices."
+      ],
+      "expected": true,
+      "actual": true,
+      "pass": true,
+      "events": [
+        {
+          "type": "response_guard_started",
+          "message_count": 0
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 331,
+            "output": 37,
+            "cacheRead": 1408,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 1776,
+            "cost": {
+              "input": 0.0000993,
+              "output": 0.000044399999999999995,
+              "cacheRead": 0.000008448,
+              "cacheWrite": 0,
+              "total": 0.000152148
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "classification": "public_contact_continuation"
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_classified",
+          "kind": "form_route",
+          "scope": "requested_component",
+          "classification": "public_contact_continuation"
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 314,
+            "output": 37,
+            "cacheRead": 1408,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 1759,
+            "cost": {
+              "input": 0.0000942,
+              "output": 0.000044399999999999995,
+              "cacheRead": 0.000008448,
+              "cacheWrite": 0,
+              "total": 0.00014704800000000002
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "classification": "same_request_user_continuation"
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_classified",
+          "kind": "form_route",
+          "scope": "route_basis",
+          "classification": "same_request_user_continuation"
+        },
+        {
+          "type": "response_guard_completed",
+          "corrected": false,
+          "issues": [],
+          "classification_only": true,
+          "applicable": true,
+          "classifications": {
+            "requested_component": "public_contact_continuation",
+            "route_basis": "same_request_user_continuation"
+          }
+        }
+      ]
+    },
+    {
+      "id": "assistant_draft_cannot_create_service_intent",
+      "kind": "form_route",
+      "texts": [
+        "Please arrange for the loose footbridge railing to be repaired."
+      ],
+      "assistant": "I have drafted a public complaint form and would like your contact details.",
+      "expected": false,
+      "actual": false,
+      "pass": true,
+      "events": [
+        {
+          "type": "response_guard_started",
+          "message_count": 0
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 304,
+            "output": 37,
+            "cacheRead": 1408,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 1749,
+            "cost": {
+              "input": 0.0000912,
+              "output": 0.000044399999999999995,
+              "cacheRead": 0.000008448,
+              "cacheWrite": 0,
+              "total": 0.000144048
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "classification": "no_public_contact_request"
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_classified",
+          "kind": "form_route",
+          "scope": "requested_component",
+          "classification": "no_public_contact_request"
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 287,
+            "output": 33,
+            "cacheRead": 1408,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 1728,
+            "cost": {
+              "input": 0.00008609999999999999,
+              "output": 0.0000396,
+              "cacheRead": 0.000008448,
+              "cacheWrite": 0,
+              "total": 0.000134148
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "classification": "unclear"
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_classified",
+          "kind": "form_route",
+          "scope": "route_basis",
+          "classification": "unclear"
+        },
+        {
+          "type": "response_guard_completed",
+          "corrected": false,
+          "issues": [],
+          "classification_only": true,
+          "applicable": false,
+          "classifications": {
+            "requested_component": "no_public_contact_request",
+            "route_basis": "unclear"
+          }
+        }
+      ]
+    }
+  ],
+  "completed_at": "2026-10-20T00:30:33.465Z",
+  "pass": false,
+  "source_changed_during_run": []
+}

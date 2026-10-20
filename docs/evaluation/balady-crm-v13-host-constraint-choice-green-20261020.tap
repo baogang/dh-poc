@@ -1,0 +1,102 @@
+TAP version 13
+# Subtest: blocked input steps show an ordinary status in Chinese English and Arabic without claiming completion
+ok 1 - blocked input steps show an ordinary status in Chinese English and Arabic without claiming completion
+  ---
+  duration_ms: 7.513173
+  type: 'test'
+  ...
+# Subtest: HTTP a real host location constraint is reference evidence for both fresh reviewers and permits an honest blocked outcome without collecting more data
+ok 2 - HTTP a real host location constraint is reference evidence for both fresh reviewers and permits an honest blocked outcome without collecting more data
+  ---
+  duration_ms: 340.411599
+  type: 'test'
+  ...
+# Subtest: HTTP a textual case-number choice is converted to actual owned native candidates and none never fetches an arbitrary record
+ok 3 - HTTP a textual case-number choice is converted to actual owned native candidates and none never fetches an arbitrary record
+  ---
+  duration_ms: 150.382494
+  type: 'test'
+  ...
+# Subtest: HTTP an actual case selection is not asked again through a textual parameter choice
+ok 4 - HTTP an actual case selection is not asked again through a textual parameter choice
+  ---
+  duration_ms: 133.14929
+  type: 'test'
+  ...
+# Subtest: HTTP a valid none selection overrides a mistaken history-only needs-choice finish and does not offer excluded records again
+not ok 5 - HTTP a valid none selection overrides a mistaken history-only needs-choice finish and does not offer excluded records again
+  ---
+  duration_ms: 109.760305
+  type: 'test'
+  location: '/Users/baogang/git/momah-poc/tests/crm-integration.test.mjs:837:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input was expected to not match the regular expression /please choose|which report|select.*(?:report|record)/iu. Input:
+    
+    'Part of the request is incomplete. Only the records already obtained are shown; this is not completion of the whole request.\n' +
+      '\n' +
+      'You selected “None of these”. The requested matter was not found in the records shown. The rows below have been excluded for this query; no record was selected.\n' +
+      '\n' +
+      'Visible records excluded for this query:\n' +
+      '\n' +
+      '| Report number | Issue | Recorded status | Attachment flag |\n' +
+      '|---|---|---|---|\n' +
+      '| INC-34-03-000042 | Noise at Elm School · 2034-03-03 | Resolved | Not returned |\n' +
+      '| INC-34-03-000085 | Noise at Birch Square · 2034-03-07 | Open | Not returned |\n' +
+      '\n' +
+      'These are recorded statuses; they do not establish a repair, dispatch or handling time.\n' +
+      '\n' +
+      'These are local simulation records. They were not sent to government systems, and these local numbers cannot be used to look them up through official channels.'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual: |-
+    Part of the request is incomplete. Only the records already obtained are shown; this is not completion of the whole request.
+    
+    You selected “None of these”. The requested matter was not found in the records shown. The rows below have been excluded for this query; no record was selected.
+    
+    Visible records excluded for this query:
+    
+    | Report number | Issue | Recorded status | Attachment flag |
+    |---|---|---|---|
+    | INC-34-03-000042 | Noise at Elm School · 2034-03-03 | Resolved | Not returned |
+    | INC-34-03-000085 | Noise at Birch Square · 2034-03-07 | Open | Not returned |
+    
+    These are recorded statuses; they do not establish a repair, dispatch or handling time.
+    
+    These are local simulation records. They were not sent to government systems, and these local numbers cannot be used to look them up through official channels.
+  operator: 'doesNotMatch'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/baogang/git/momah-poc/tests/crm-integration.test.mjs:838:1016)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async Test.run (node:internal/test_runner/test:1069:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:752:7)
+  ...
+# Subtest: HTTP a real administrative-location block ends the existing unfinished plan honestly in three languages without publishing an internal field question
+ok 6 - HTTP a real administrative-location block ends the existing unfinished plan honestly in three languages without publishing an internal field question
+  ---
+  duration_ms: 244.491517
+  type: 'test'
+  ...
+# Subtest: HTTP location guidance cannot be invented or inherited by a different original request and reviewers receive only current constraints
+ok 7 - HTTP location guidance cannot be invented or inherited by a different original request and reviewers receive only current constraints
+  ---
+  duration_ms: 299.340941
+  type: 'test'
+  ...
+# Subtest: HTTP newly supplied valid administrative metadata clears the old block and an exact approved write is not described as still unregistered
+ok 8 - HTTP newly supplied valid administrative metadata clears the old block and an exact approved write is not described as still unregistered
+  ---
+  duration_ms: 233.571434
+  type: 'test'
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 7
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3732.158443

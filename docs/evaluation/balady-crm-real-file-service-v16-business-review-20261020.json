@@ -1,0 +1,134 @@
+{
+  "date": "2026-10-20",
+  "stage": "Independent v16 same-candidate clear service-hall complaint with actual PNG public HTTP journey",
+  "phase": "separate regression case, not blind, excluded from40",
+  "source_report": "docs/evaluation/balady-crm-real-file-service-v16-journey-20261020.json",
+  "candidate_commit": "4a838ce575db6a34a32ca235239e3a61a4985d34",
+  "source_changed_during_run": [],
+  "candidate_commit_unchanged": true,
+  "automatic_original": {
+    "passed": 23,
+    "total": 23,
+    "modified": false
+  },
+  "independent_verdicts": {
+    "goal_adequacy_at_observed_boundary": "pass: actual selected image attached to explicit local service-experience complaint",
+    "action_graph": "pass: primary chose input -> upload -> form -> respond; correct data/authorization dependencies, no unrelated lookup or physical service switch",
+    "business_route": "pass: explicit public complaint about hall queue experience",
+    "strict_facts_and_language_including_public_drafts": "pass",
+    "delivered_final_facts_and_language": "pass",
+    "presentation_readability": "pass",
+    "combined_quality": "pass within local simulation scope"
+  },
+  "actual_outcomes": {
+    "actual_file_uploads": 1,
+    "actual_local_form_submissions": 1,
+    "actual_successful_write_receipts": 2,
+    "actual_physical_service_requests": 0,
+    "actual_official_government_submissions": 0,
+    "actual_department_handling_or_notification": 0,
+    "browser_chooser_coverage": false
+  },
+  "business_assessment": [
+    "Independently inspected raw primary action graph, not merely fixed host labels. File selection, upload, form and response have correct dependencies for the actual stated goal. No omitted write authorization or unnecessary API.",
+    "Host public plan states planned not completed, labels contain no invented dates/case facts. Actual file question precedes selection and both independent approval cards.",
+    "Actual Description is a contiguous source quote of user intent and queue facts, preserving two-hour wait/no queue updates and synthetic hall. No added visit/frequency/cause/department qualifier. Exact supplied title/name/contact parts preserved.",
+    "Extractive Description is a local assistant integrity policy; it deliberately limits polishing/translation, not an official API string-field restriction. Real user editing remains separate source; this case does not test the editor.",
+    "File memo describes attachment purpose without visual-content inference. Form uses real upload-returned fileId. Host final reports only actual local upload/form receipts and no official app/SMS/email/refund.",
+    "No observable tool errors in this single journey; does not prove general first-attempt model accuracy."
+  ],
+  "independent_byte_evidence": {
+    "filename": "Test Evidence.png",
+    "media_type": "image/png",
+    "size_bytes": 68,
+    "sha256": "d78711356a9abac91b9d7e1c2477b8a2def3030702a16792173871c54c452a28",
+    "png_signature_matches": true,
+    "returned_file_id": "FILE-DEMO-000003",
+    "form_references_actual_returned_file_id": true,
+    "recomputed_from_retained_receipt_bytes": true
+  },
+  "independent_authorization_evidence": {
+    "crm_upload_attachment": {
+      "parameters_exact": true,
+      "proposal_seq": 55,
+      "approval_seq": 60,
+      "dispatch_seq": 66
+    },
+    "crm_create_form_request": {
+      "parameters_exact": true,
+      "proposal_seq": 81,
+      "approval_seq": 86,
+      "dispatch_seq": 92
+    }
+  },
+  "write_count_evidence": {
+    "upload_receipts": 1,
+    "form_receipts": 1,
+    "approvals": 2,
+    "confirmation_cards": 2
+  },
+  "description_source_evidence": {
+    "actual_description": "I want to make a public complaint about the service experience at Test Cedar Municipal Service Hall. I waited in the queue for two hours and received no queue updates.",
+    "contiguous_in_delivered_initial_user_message": true,
+    "local_control_metadata_absent_from_crm_parameters": true
+  },
+  "raw_primary_plans": [
+    {
+      "steps": [
+        {
+          "id": "s1",
+          "capability": "input",
+          "depends_on": [],
+          "title": "Select the test image to attach"
+        },
+        {
+          "id": "s2",
+          "capability": "crm_upload_attachment",
+          "depends_on": [
+            "s1"
+          ],
+          "title": "Upload the selected image"
+        },
+        {
+          "id": "s3",
+          "capability": "crm_create_form_request",
+          "depends_on": [
+            "s2"
+          ],
+          "title": "Submit the public complaint with the attachment"
+        },
+        {
+          "id": "s4",
+          "capability": "respond",
+          "depends_on": [
+            "s3"
+          ],
+          "title": "Report the outcome"
+        }
+      ]
+    }
+  ],
+  "model_payload_audit": {
+    "requests_by_kind": {
+      "primary": 7,
+      "verifier": 10,
+      "faq": 1,
+      "sentiment": 1
+    },
+    "instrumented_audit_count": 19,
+    "all_instrumented_audits_report_no_raw_selected_base64": true,
+    "source_instrumentation_sha256": "ffa3b3e88ba29cae249dde4c469781b9347210826eb7add65af8e7b7e9715cb5",
+    "limitation": "No-raw-bytes finding is exact-base64 onPayload instrumented assertion retained as19SHA/boolean audits; full model requests not retained, so cannot independently recompute absence from hashes. Actual68PNGbytes SHA independently recalculated from retained receipt base64. No browser chooser or pixel-content interpretation evidence."
+  },
+  "observable_tool_errors_preserved": {},
+  "final_customer_text": "This local simulated submission is complete.\n\n- Attachment uploaded: Test Evidence.png\n- Record number: PUB-DEMO-000005\n- Title: Long wait at Test Cedar Service Hall\n\nThis record exists only in this simulated conversation. It was not sent to a government system, cannot be tracked in the official app, and triggers no real SMS, email or refund.",
+  "presentation_origin": "host_submission",
+  "findings": [],
+  "coverage_limits": [
+    "One fixed actor once outside40; cannot override8 actual failed natural turns or32/40 score.",
+    "Start/endsourceandHEAD4a838ce same candidate; no old result borrowed.",
+    "Public HTTP actual bytes and2exact authorization gates; native browser chooser not automated.",
+    "No government handling, queue improvement, department handoff, notification or dispatch."
+  ],
+  "no_actor_reference_fixture_runner_production_or_original_report_edits": true
+}

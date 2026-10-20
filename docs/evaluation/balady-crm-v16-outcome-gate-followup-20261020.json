@@ -1,0 +1,26 @@
+{
+  "reports": [
+    {
+      "path": "docs/evaluation/balady-crm-v16-final-engineering-20261020.json",
+      "tests": 274,
+      "passed": 272,
+      "failed": 2,
+      "agent_sha": "1423d87348efbea82462d94755ed3d38ca0c0d13274cf789db952a9b68124715",
+      "source_changed": []
+    },
+    {
+      "path": "docs/evaluation/balady-crm-v16-final-outcome-focused-20261020.json",
+      "tests": 14,
+      "passed": 14,
+      "failed": 0,
+      "agent_sha": "1423d87348efbea82462d94755ed3d38ca0c0d13274cf789db952a9b68124715",
+      "source_changed": []
+    }
+  ],
+  "final_engineering_272_of_274": {
+    "genuine_host_boundary_regression": "A successfully exact-approved form write followed by a real crm_get_assets 503 is rejected by PRIMARY_OUTCOME_REQUIRED solely because state=blocked and a host write acknowledgement exists. The task ends failed instead of acknowledging the actual partial write and remaining failed lookup. The strict existing test is retained unchanged; parent has been notified.",
+    "old_test_adaptation": "The old catalog-only case accepted an optional-only host guidance that drops the true unselected-category reason. It now explicitly asserts rejection, then omits the optional-only typed code and sends the complete original unregistered/category-selection explanation through both real final verifier gates in Chinese, English and Arabic.",
+    "focused_count": "3 real behaviors passed; 11 additional Node file containers contain no matching test and are not claimed as test coverage."
+  },
+  "benchmark_data_actor_grader_changed": false
+}

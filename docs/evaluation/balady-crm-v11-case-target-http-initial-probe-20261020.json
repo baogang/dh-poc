@@ -1,0 +1,22 @@
+{
+  "stage": "v11 unconfirmed case target public HTTP initial green probe",
+  "command": [
+    "node",
+    "--test",
+    "--test-reporter=tap",
+    "--test-name-pattern=clean model verdicts cannot silently select",
+    "tests/crm-integration.test.mjs"
+  ],
+  "exit_code": 0,
+  "expected_behavior": "Several actual similar records require explicit selection before a detail lookup; clean model verdicts must not select the newer or first record on behalf of the user.",
+  "source_sha256": {
+    "src/crm/agent.mjs": "0f3b2edbea8b93166e933605f2dabb17b3e6462d17e12b519d59e041d6d9836f",
+    "src/crm/response-guard.mjs": "bed15e3a4cde4f4563d59be54e2fd9aeb220455c1852dae5a46ae82bdea0bba2",
+    "src/crm/presentation.mjs": "1889024466049dc70f1a59e3130f651a18bf636e375fdaaa19eae93b3974062a",
+    "tests/crm-integration.test.mjs": "645337330c7ff54a2062d32736ab99012437c91aba6e5147db7a9d9399766d09"
+  },
+  "raw_tap": "docs/evaluation/balady-crm-v11-case-target-http-initial-probe-20261020.tap",
+  "pre_fix_red_captured": false,
+  "note": "The parent production implementation had landed before this probe executed. The passing result is not claimed as a pre-fix red test.",
+  "source_fingerprint_timing": "post-run only; the final engineering run will capture start/end fingerprints"
+}

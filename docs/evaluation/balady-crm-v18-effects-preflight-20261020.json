@@ -1,0 +1,699 @@
+{
+  "stage": "v18 targeted shared capability-effect probes, not frozen journey benchmark",
+  "started_at": "2026-10-19T22:51:41.442Z",
+  "model": "deepseek-flash",
+  "source_sha256": {
+    "src/crm/agent.mjs": "e17942bfd2a09a19ed128565925d07286da67b8bb154c6af0453a37d023a9384",
+    "src/crm/response-guard.mjs": "9c00eb4f49ff7e6df6b085f76879e8103f606f0667bbdf9dfe0a8dd59b36b603",
+    "src/crm/presentation.mjs": "8c99c155653890a49d74cfe11ad0d00ff23dca17979b744a877ba54279d06708",
+    "src/crm/public-capabilities.mjs": "14c51a9aaec26f351a4b7a1dcf5a20cf58297c60a41d47b301dd5c65728d005a"
+  },
+  "cases": [
+    {
+      "id": "unsupported_state_mutation_is_not_a_read",
+      "language": "en",
+      "request": "Please move my finished report back into an open state.",
+      "expected": "approve",
+      "actual": "approve",
+      "pass": true,
+      "events": [
+        {
+          "type": "response_guard_started",
+          "message_count": 0
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 3170,
+            "output": 48,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 3218,
+            "cost": {
+              "input": 0.0009509999999999999,
+              "output": 0.0000576,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "total": 0.0010086
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": true,
+                "issues": []
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_passed",
+          "scope": "request_intent"
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 2807,
+            "output": 48,
+            "cacheRead": 384,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 3239,
+            "cost": {
+              "input": 0.0008420999999999999,
+              "output": 0.0000576,
+              "cacheRead": 0.000002304,
+              "cacheWrite": 0,
+              "total": 0.0009020039999999999
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": true,
+                "issues": []
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_passed",
+          "scope": "unavailable_capability"
+        },
+        {
+          "type": "response_guard_completed",
+          "corrected": false,
+          "issues": []
+        }
+      ]
+    },
+    {
+      "id": "new_permit_is_not_crm_record_creation",
+      "language": "en",
+      "request": "I need a new commercial permit for my kiosk.",
+      "expected": "approve",
+      "actual": "approve",
+      "pass": true,
+      "events": [
+        {
+          "type": "response_guard_started",
+          "message_count": 0
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 2406,
+            "output": 48,
+            "cacheRead": 768,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 3222,
+            "cost": {
+              "input": 0.0007218,
+              "output": 0.0000576,
+              "cacheRead": 0.000004608,
+              "cacheWrite": 0,
+              "total": 0.000784008
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": true,
+                "issues": []
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_passed",
+          "scope": "request_intent"
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 2427,
+            "output": 48,
+            "cacheRead": 768,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 3243,
+            "cost": {
+              "input": 0.0007281,
+              "output": 0.0000576,
+              "cacheRead": 0.000004608,
+              "cacheWrite": 0,
+              "total": 0.000790308
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": true,
+                "issues": []
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_passed",
+          "scope": "unavailable_capability"
+        },
+        {
+          "type": "response_guard_completed",
+          "corrected": false,
+          "issues": []
+        }
+      ]
+    },
+    {
+      "id": "history_read_is_connected",
+      "language": "zh",
+      "request": "我想看看自己以前反映的事情。",
+      "expected": "reject",
+      "actual": "reject",
+      "pass": true,
+      "error": {
+        "code": "UNVERIFIED_CUSTOMER_CLAIMS",
+        "message": "Regenerate the original unavailable_intent in zh using only supported facts and capabilities; then retry this tool. The quoted request — viewing one's own previously submitted reports — is served by connected operations: crm_get_incidents lists the signed-in beneficiary's incident/request history, and crm_fetch_incident / crm_fetch_municipal_service / crm_fetch_inquiry return the recorded details of an identified record. No unavailable action or service is requested.; No missing capability is implicated: the user asks only to view past submissions, which is a read of case history, not a mutation, dispatch, refund, permit or notification. The unavailable_intent label is therefore unsupported."
+      },
+      "events": [
+        {
+          "type": "response_guard_started",
+          "message_count": 0
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 2386,
+            "output": 171,
+            "cacheRead": 768,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 3325,
+            "cost": {
+              "input": 0.0007157999999999999,
+              "output": 0.0002052,
+              "cacheRead": 0.000004608,
+              "cacheWrite": 0,
+              "total": 0.000925608
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": false,
+                "issues": [
+                  "The quoted request — viewing one's own previously submitted reports — is served by connected operations: crm_get_incidents lists the signed-in beneficiary's incident/request history, and crm_fetch_incident / crm_fetch_municipal_service / crm_fetch_inquiry return the recorded details of an identified record. No unavailable action or service is requested.",
+                  "No missing capability is implicated: the user asks only to view past submissions, which is a read of case history, not a mutation, dispatch, refund, permit or notification. The unavailable_intent label is therefore unsupported."
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_rejected",
+          "scope": "request_intent",
+          "issues": [
+            "The quoted request — viewing one's own previously submitted reports — is served by connected operations: crm_get_incidents lists the signed-in beneficiary's incident/request history, and crm_fetch_incident / crm_fetch_municipal_service / crm_fetch_inquiry return the recorded details of an identified record. No unavailable action or service is requested.",
+            "No missing capability is implicated: the user asks only to view past submissions, which is a read of case history, not a mutation, dispatch, refund, permit or notification. The unavailable_intent label is therefore unsupported."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "public_question_cannot_deny_connected_status_reads",
+      "language": "en",
+      "session": {
+        "messages": [
+          {
+            "id": "origin",
+            "role": "user",
+            "text": "Can you show me the recorded progress of my earlier report?"
+          }
+        ],
+        "receipts": [
+          {
+            "id": "history-proof",
+            "beneficiary_id": "synthetic-test",
+            "operation": "crm_get_incidents",
+            "parameters": {},
+            "result": {
+              "data": {
+                "result": {
+                  "IncidentRequestList": [
+                    {
+                      "pyID": "INC-SYNTHETIC-61",
+                      "pzInsKey": "SYNTHETIC INC-SYNTHETIC-61",
+                      "Description": "A fallen sign",
+                      "pyStatusWork": "Open",
+                      "hasAttachments": true
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        ],
+        "facts": {},
+        "user": {
+          "user_id": "synthetic-test"
+        }
+      },
+      "texts": [
+        "I cannot look up the recorded status here, but I can record a different complaint. Which would you prefer?"
+      ],
+      "context": {
+        "kind": "service_choice",
+        "choices": [
+          {
+            "id": "contact",
+            "operation": "crm_create_form_request",
+            "label": "Make a separate public complaint"
+          },
+          {
+            "id": "stop",
+            "operation": "none",
+            "label": "Stop"
+          }
+        ]
+      },
+      "expected": "reject",
+      "actual": "reject",
+      "pass": true,
+      "error": {
+        "code": "UNVERIFIED_CUSTOMER_CLAIMS",
+        "message": "Regenerate the original service_choice in en using only supported facts and capabilities; then retry this tool. Contradicted claim: the assistant did retrieve the beneficiary's incident history (receipt history-proof returned INC-SYNTHETIC-61, 'A fallen sign', status Open), so 'I cannot look up the recorded status here' is false; it should present the recorded status or explain what remains unknown (e.g., physical progress)."
+      },
+      "events": [
+        {
+          "type": "response_guard_started",
+          "message_count": 1
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 3706,
+            "output": 118,
+            "cacheRead": 768,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 4592,
+            "cost": {
+              "input": 0.0011118,
+              "output": 0.0001416,
+              "cacheRead": 0.000004608,
+              "cacheWrite": 0,
+              "total": 0.001258008
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": false,
+                "issues": [
+                  "Contradicted claim: the assistant did retrieve the beneficiary's incident history (receipt history-proof returned INC-SYNTHETIC-61, 'A fallen sign', status Open), so 'I cannot look up the recorded status here' is false; it should present the recorded status or explain what remains unknown (e.g., physical progress)."
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_rejected",
+          "scope": "facts",
+          "issues": [
+            "Contradicted claim: the assistant did retrieve the beneficiary's incident history (receipt history-proof returned INC-SYNTHETIC-61, 'A fallen sign', status Open), so 'I cannot look up the recorded status here' is false; it should present the recorded status or explain what remains unknown (e.g., physical progress)."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "unretrieved_file_is_not_an_unconnected_download",
+      "language": "en",
+      "session": {
+        "messages": [
+          {
+            "id": "origin",
+            "role": "user",
+            "text": "Can you show me the recorded progress of my earlier report?"
+          }
+        ],
+        "receipts": [
+          {
+            "id": "history-proof",
+            "beneficiary_id": "synthetic-test",
+            "operation": "crm_get_incidents",
+            "parameters": {},
+            "result": {
+              "data": {
+                "result": {
+                  "IncidentRequestList": [
+                    {
+                      "pyID": "INC-SYNTHETIC-61",
+                      "pzInsKey": "SYNTHETIC INC-SYNTHETIC-61",
+                      "Description": "A fallen sign",
+                      "pyStatusWork": "Open",
+                      "hasAttachments": true
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        ],
+        "facts": {},
+        "user": {
+          "user_id": "synthetic-test"
+        }
+      },
+      "texts": [
+        "There is no attachment download or viewing capability connected here."
+      ],
+      "context": {
+        "kind": "host_outcome",
+        "host_text": "Visible records:\n\n| Report number | Issue | Recorded status | Attachment flag |\n|---|---|---|---|\n| INC-SYNTHETIC-61 | A fallen sign | Open | Marked as having attachments |\n\nThese are recorded statuses; they do not establish a repair, dispatch or handling time.\n\nThe attachment flag does not establish a count, file type or uploader. The cited receipts contain no file content, so a download is not currently available.\n\nThe requested file content has not been retrieved, so a download is not currently available. The requested file has not been recovered.\n\nThese are local simulation records. They were not sent to government systems, and these local numbers cannot be used to look them up through official channels.",
+        "case_guidance": [
+          "file_unavailable"
+        ],
+        "receipt_ids": [
+          "history-proof"
+        ],
+        "outcome": "answered"
+      },
+      "expected": "reject",
+      "actual": "reject",
+      "pass": true,
+      "error": {
+        "code": "UNVERIFIED_CUSTOMER_CLAIMS",
+        "message": "Regenerate the original host_outcome in en using only supported facts and capabilities; then retry this tool. The explanation asserts 'There is no attachment download or viewing capability connected here,' which contradicts the available operations: crm_download_file is a connected read capability. The actual evidence only shows no FileKey/file content was retrieved for this record, so the explanation must state that the file content was not retrieved (no key/bytes returned), not that no download capability exists."
+      },
+      "events": [
+        {
+          "type": "response_guard_started",
+          "message_count": 1
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 3704,
+            "output": 123,
+            "cacheRead": 256,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 4083,
+            "cost": {
+              "input": 0.0011112,
+              "output": 0.00014759999999999998,
+              "cacheRead": 0.000001536,
+              "cacheWrite": 0,
+              "total": 0.0012603359999999997
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": false,
+                "issues": [
+                  "The explanation asserts 'There is no attachment download or viewing capability connected here,' which contradicts the available operations: crm_download_file is a connected read capability. The actual evidence only shows no FileKey/file content was retrieved for this record, so the explanation must state that the file content was not retrieved (no key/bytes returned), not that no download capability exists."
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_rejected",
+          "scope": "explanation_facts",
+          "issues": [
+            "The explanation asserts 'There is no attachment download or viewing capability connected here,' which contradicts the available operations: crm_download_file is a connected read capability. The actual evidence only shows no FileKey/file content was retrieved for this record, so the explanation must state that the file content was not retrieved (no key/bytes returned), not that no download capability exists."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "missing_file_key_explained_as_current_evidence_limit",
+      "language": "en",
+      "session": {
+        "messages": [
+          {
+            "id": "origin",
+            "role": "user",
+            "text": "Can you show me the recorded progress of my earlier report?"
+          }
+        ],
+        "receipts": [
+          {
+            "id": "history-proof",
+            "beneficiary_id": "synthetic-test",
+            "operation": "crm_get_incidents",
+            "parameters": {},
+            "result": {
+              "data": {
+                "result": {
+                  "IncidentRequestList": [
+                    {
+                      "pyID": "INC-SYNTHETIC-61",
+                      "pzInsKey": "SYNTHETIC INC-SYNTHETIC-61",
+                      "Description": "A fallen sign",
+                      "pyStatusWork": "Open",
+                      "hasAttachments": true
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        ],
+        "facts": {},
+        "user": {
+          "user_id": "synthetic-test"
+        }
+      },
+      "texts": [
+        "The record indicates an attachment, but the returned data contains no file reference that can be used to retrieve it. No file content was obtained."
+      ],
+      "context": {
+        "kind": "host_outcome",
+        "host_text": "Visible records:\n\n| Report number | Issue | Recorded status | Attachment flag |\n|---|---|---|---|\n| INC-SYNTHETIC-61 | A fallen sign | Open | Marked as having attachments |\n\nThese are recorded statuses; they do not establish a repair, dispatch or handling time.\n\nThe attachment flag does not establish a count, file type or uploader. The cited receipts contain no file content, so a download is not currently available.\n\nThe requested file content has not been retrieved, so a download is not currently available. The requested file has not been recovered.\n\nThese are local simulation records. They were not sent to government systems, and these local numbers cannot be used to look them up through official channels.",
+        "case_guidance": [
+          "file_unavailable"
+        ],
+        "receipt_ids": [
+          "history-proof"
+        ],
+        "outcome": "answered"
+      },
+      "expected": "approve",
+      "actual": "approve",
+      "pass": true,
+      "events": [
+        {
+          "type": "response_guard_started",
+          "message_count": 1
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 2714,
+            "output": 48,
+            "cacheRead": 1280,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 4042,
+            "cost": {
+              "input": 0.0008142,
+              "output": 0.0000576,
+              "cacheRead": 0.00000768,
+              "cacheWrite": 0,
+              "total": 0.00087948
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": true,
+                "issues": []
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_passed",
+          "scope": "explanation_facts"
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 3384,
+            "output": 48,
+            "cacheRead": 640,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 4072,
+            "cost": {
+              "input": 0.0010152,
+              "output": 0.0000576,
+              "cacheRead": 0.00000384,
+              "cacheWrite": 0,
+              "total": 0.00107664
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": true,
+                "issues": []
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_passed",
+          "scope": "outcome_applicability_language"
+        },
+        {
+          "type": "response_guard_completed",
+          "corrected": false,
+          "issues": []
+        }
+      ]
+    },
+    {
+      "id": "public_contact_form_does_not_require_demo_sso",
+      "language": "en",
+      "session": {
+        "messages": [
+          {
+            "id": "origin",
+            "role": "user",
+            "text": "I would like to leave a public suggestion about opening hours."
+          }
+        ],
+        "receipts": [],
+        "facts": {},
+        "user": {
+          "user_id": "synthetic-test"
+        }
+      },
+      "texts": [
+        "First complete demo sign-in; it is required to submit the public suggestion form."
+      ],
+      "context": {
+        "kind": "missing_information",
+        "operation": "crm_create_form_request",
+        "known_parameters": {}
+      },
+      "expected": "reject",
+      "actual": "reject",
+      "pass": true,
+      "error": {
+        "code": "UNVERIFIED_CUSTOMER_CLAIMS",
+        "message": "Regenerate the original missing_information in en using only supported facts and capabilities; then retry this tool. Unsupported claim: crm_create_form_request requires oauth auth and beneficiary_sign_in_required=false; the text asserts demo sign-in is required to submit the public suggestion form, contradicting the capability metadata."
+      },
+      "events": [
+        {
+          "type": "response_guard_started",
+          "message_count": 1
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 3502,
+            "output": 91,
+            "cacheRead": 1024,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 4617,
+            "cost": {
+              "input": 0.0010506,
+              "output": 0.0001092,
+              "cacheRead": 0.000006144,
+              "cacheWrite": 0,
+              "total": 0.0011659440000000001
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": false,
+                "issues": [
+                  "Unsupported claim: crm_create_form_request requires oauth auth and beneficiary_sign_in_required=false; the text asserts demo sign-in is required to submit the public suggestion form, contradicting the capability metadata."
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_rejected",
+          "scope": "facts",
+          "issues": [
+            "Unsupported claim: crm_create_form_request requires oauth auth and beneficiary_sign_in_required=false; the text asserts demo sign-in is required to submit the public suggestion form, contradicting the capability metadata."
+          ]
+        }
+      ]
+    }
+  ],
+  "completed_at": "2026-10-19T22:51:50.059Z",
+  "pass": true,
+  "source_changed_during_run": []
+}

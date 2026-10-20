@@ -1,0 +1,32 @@
+[
+  {
+    "request": 1,
+    "seq": 4,
+    "time": "2026-10-19T23:57:24.368Z",
+    "type": "model_request"
+  },
+  {
+    "entries": 9,
+    "seq": 3,
+    "time": "2026-10-19T23:57:24.361Z",
+    "type": "faq_lookup"
+  },
+  {
+    "epoch": 0,
+    "route": "faq_then_balady_crm",
+    "seq": 2,
+    "time": "2026-10-19T23:57:24.361Z",
+    "type": "turn_started"
+  },
+  {
+    "message": {
+      "id": "message-d7b75a70-7de1-44c4-b50d-3e3a0ac4ccb8",
+      "role": "user",
+      "text": "我之前反映过路边那辆车一直没挪，想看看我的那件记录是否已经结案。",
+      "time": "2026-10-19T23:57:24.361Z"
+    },
+    "seq": 1,
+    "time": "2026-10-19T23:57:24.361Z",
+    "type": "message"
+  }
+]

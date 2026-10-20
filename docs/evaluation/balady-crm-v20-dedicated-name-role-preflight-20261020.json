@@ -1,0 +1,343 @@
+{
+  "stage": "v20 dedicated name-role gate probes after preserved generic submission_draft 3/4; synthetic self-report, separate from full journeys",
+  "started_at": "2026-10-19T23:41:55.386Z",
+  "source_sha256": {
+    "src/crm/agent.mjs": "2dabe66c0da12551b93d3c6e09bf5fbacb97362755787c9dac27f8dcfdbcfb63",
+    "src/crm/response-guard.mjs": "e0de1bc59900d672e20e2ec96f473870ed9a0092c17c8cffbe374ec6c7f1e315",
+    "src/crm/public-capabilities.mjs": "488582f8e1525d88d5feca596ef3cefaa2150970f22eefdfce910464791da2f4",
+    "web/road/chat-ui.js": "e56725f26533218df2b5f8cdb98d8970702c71e4d70e386008a3240f3639e146"
+  },
+  "cases": [
+    {
+      "id": "unlabelled_full_name_substrings_are_not_role_evidence",
+      "language": "en",
+      "name": "Cedar Citizen",
+      "given": "Cedar",
+      "family": "Citizen",
+      "given_quote": "My name is Cedar",
+      "family_quote": "Citizen",
+      "role_text": "My name is Cedar Citizen.",
+      "expected": "reject",
+      "actual": "reject",
+      "pass": true,
+      "error": {
+        "code": "UNVERIFIED_CUSTOMER_CLAIMS",
+        "message": "Regenerate the original name_roles in en using only supported facts and capabilities; then retry this tool. given_name_quote \"My name is Cedar\" does not explicitly label Cedar as the given/first name; it is only a fragment of the full name.; family_name_quote \"Citizen\" is a bare value with no explicit family/last-name role label.; The user's message only supplies an undifferentiated full name \"Cedar Citizen\"; no wording identifies which part is given or family, so both role values are unsupported. Request input for the unclear name roles."
+      },
+      "events": [
+        {
+          "type": "response_guard_started",
+          "message_count": 0
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 1293,
+            "output": 148,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 1441,
+            "cost": {
+              "input": 0.0003879,
+              "output": 0.00017759999999999998,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "total": 0.0005655
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": false,
+                "issues": [
+                  "given_name_quote \"My name is Cedar\" does not explicitly label Cedar as the given/first name; it is only a fragment of the full name.",
+                  "family_name_quote \"Citizen\" is a bare value with no explicit family/last-name role label.",
+                  "The user's message only supplies an undifferentiated full name \"Cedar Citizen\"; no wording identifies which part is given or family, so both role values are unsupported. Request input for the unclear name roles."
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_rejected",
+          "scope": "role_source",
+          "issues": [
+            "given_name_quote \"My name is Cedar\" does not explicitly label Cedar as the given/first name; it is only a fragment of the full name.",
+            "family_name_quote \"Citizen\" is a bare value with no explicit family/last-name role label.",
+            "The user's message only supplies an undifferentiated full name \"Cedar Citizen\"; no wording identifies which part is given or family, so both role values are unsupported. Request input for the unclear name roles."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "explicit_given_and_family_roles",
+      "language": "en",
+      "name": "Cedar Citizen",
+      "given": "Cedar",
+      "family": "Citizen",
+      "given_quote": "My given name is Cedar",
+      "family_quote": "my family name is Citizen",
+      "role_text": "My given name is Cedar and my family name is Citizen.",
+      "expected": "approve",
+      "actual": "approve",
+      "pass": true,
+      "events": [
+        {
+          "type": "response_guard_started",
+          "message_count": 0
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 279,
+            "output": 48,
+            "cacheRead": 1024,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 1351,
+            "cost": {
+              "input": 0.0000837,
+              "output": 0.0000576,
+              "cacheRead": 0.000006144,
+              "cacheWrite": 0,
+              "total": 0.000147444
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": true,
+                "issues": []
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_passed",
+          "scope": "role_source"
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 675,
+            "output": 48,
+            "cacheRead": 640,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 1363,
+            "cost": {
+              "input": 0.0002025,
+              "output": 0.0000576,
+              "cacheRead": 0.00000384,
+              "cacheWrite": 0,
+              "total": 0.00026394
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": true,
+                "issues": []
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_passed",
+          "scope": "role_assignment"
+        },
+        {
+          "type": "response_guard_completed",
+          "corrected": false,
+          "issues": []
+        }
+      ]
+    },
+    {
+      "id": "identical_roles_separately_stated_are_valid",
+      "language": "en",
+      "name": "Cedar Cedar",
+      "given": "Cedar",
+      "family": "Cedar",
+      "given_quote": "My given name is Cedar",
+      "family_quote": "my family name is Cedar",
+      "role_text": "My given name is Cedar and my family name is Cedar.",
+      "expected": "approve",
+      "actual": "approve",
+      "pass": true,
+      "events": [
+        {
+          "type": "response_guard_started",
+          "message_count": 0
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 279,
+            "output": 48,
+            "cacheRead": 1024,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 1351,
+            "cost": {
+              "input": 0.0000837,
+              "output": 0.0000576,
+              "cacheRead": 0.000006144,
+              "cacheWrite": 0,
+              "total": 0.000147444
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": true,
+                "issues": []
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_passed",
+          "scope": "role_source"
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 291,
+            "output": 48,
+            "cacheRead": 1024,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 1363,
+            "cost": {
+              "input": 0.0000873,
+              "output": 0.0000576,
+              "cacheRead": 0.000006144,
+              "cacheWrite": 0,
+              "total": 0.000151044
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": true,
+                "issues": []
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_passed",
+          "scope": "role_assignment"
+        },
+        {
+          "type": "response_guard_completed",
+          "corrected": false,
+          "issues": []
+        }
+      ]
+    },
+    {
+      "id": "role_label_in_quote_cannot_be_reversed",
+      "language": "zh",
+      "name": "星桥",
+      "given": "星",
+      "family": "桥",
+      "given_quote": "我的姓是星",
+      "family_quote": "我的名是桥",
+      "role_text": "我的姓是星，我的名是桥。",
+      "expected": "reject",
+      "actual": "reject",
+      "pass": true,
+      "error": {
+        "code": "UNVERIFIED_CUSTOMER_CLAIMS",
+        "message": "Regenerate the original name_roles in zh using only supported facts and capabilities; then retry this tool. given_name_quote \"我的姓是星\" explicitly labels 星 as the surname/family name (姓), not the given/first name; it cannot support FirstName=星.; family_name_quote \"我的名是桥\" explicitly labels 桥 as the given name (名), not the family/last name; it cannot support LastName=桥.; The two role labels appear swapped relative to the claimed FirstName/LastName values; require user wording that explicitly identifies each role correctly (or host-verified given_ui/family_ui field input)."
+      },
+      "events": [
+        {
+          "type": "response_guard_started",
+          "message_count": 0
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 267,
+            "output": 165,
+            "cacheRead": 1024,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 1456,
+            "cost": {
+              "input": 0.0000801,
+              "output": 0.000198,
+              "cacheRead": 0.000006144,
+              "cacheWrite": 0,
+              "total": 0.00028424399999999996
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": false,
+                "issues": [
+                  "given_name_quote \"我的姓是星\" explicitly labels 星 as the surname/family name (姓), not the given/first name; it cannot support FirstName=星.",
+                  "family_name_quote \"我的名是桥\" explicitly labels 桥 as the given name (名), not the family/last name; it cannot support LastName=桥.",
+                  "The two role labels appear swapped relative to the claimed FirstName/LastName values; require user wording that explicitly identifies each role correctly (or host-verified given_ui/family_ui field input)."
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_rejected",
+          "scope": "role_source",
+          "issues": [
+            "given_name_quote \"我的姓是星\" explicitly labels 星 as the surname/family name (姓), not the given/first name; it cannot support FirstName=星.",
+            "family_name_quote \"我的名是桥\" explicitly labels 桥 as the given name (名), not the family/last name; it cannot support LastName=桥.",
+            "The two role labels appear swapped relative to the claimed FirstName/LastName values; require user wording that explicitly identifies each role correctly (or host-verified given_ui/family_ui field input)."
+          ]
+        }
+      ]
+    }
+  ],
+  "completed_at": "2026-10-19T23:42:00.136Z",
+  "pass": true,
+  "source_changed_during_run": []
+}

@@ -1,0 +1,14 @@
+import fs from 'node:fs';import crypto from 'node:crypto';
+import {CrmResponseGuard} from '/Users/baogang/git/momah-poc/src/crm/response-guard.mjs';
+const root='/Users/baogang/git/momah-poc/';
+const target=root+'docs/evaluation/balady-crm-v17-unavailable-intent-preflight-20261020.json';
+if(fs.existsSync(target))throw Error('Refuse to overwrite original preflight');
+const cases=[
+{id:'supported_history_not_unavailable',language:'zh',messages:['请列出我过去反映的问题。'],quote:'请列出我过去反映的问题。',expected:'reject'},
+{id:'urgency_is_not_a_dispatch_request',language:'en',messages:['I am really worried. What is happening with my earlier report?'],quote:'I am really worried.',expected:'reject'},
+{id:'explicit_unconnected_refund',language:'ar',messages:['أريد استرداد المبلغ الذي دفعته.'],quote:'أريد استرداد المبلغ الذي دفعته.',expected:'approve'},
+{id:'clear_deictic_renewal_followup',language:'en',messages:['Can you renew my business licence?','Yes, please do that here.'],quote:'please do that here',expected:'approve'}
+];
+const report={stage:'v17 targeted real-model unavailable-intent source review, not journey benchmark or replacement of original 5/6 preflight',started_at:new Date().toISOString(),model:process.env.DEEPSEEK_MODEL??'deepseek-flash',source_sha256:Object.fromEntries(['src/crm/agent.mjs','src/crm/response-guard.mjs','src/crm/presentation.mjs'].map(p=>[p,crypto.createHash('sha256').update(fs.readFileSync(root+p)).digest('hex')])),cases:[]};
+for(const c of cases){const events=[];let error;const session={messages:c.messages.map((text,index)=>({id:index===0?'origin':'followup',role:'user',text})),receipts:[],facts:{},user:{user_id:'synthetic-test'}};try{await new CrmResponseGuard().review({texts:[],session,mode:'simulation',language:c.language,context:{kind:'unavailable_intent',origin_message_id:'origin',user_quote:c.quote},onEvent:event=>events.push(event)});}catch(e){error={code:e.code,message:e.message};}const actual=error?.code==='UNVERIFIED_CUSTOMER_CLAIMS'?'reject':error?'unavailable':'approve';report.cases.push({...c,actual,pass:actual===c.expected,error,events});fs.writeFileSync(target,JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({id:c.id,expected:c.expected,actual,pass:actual===c.expected,error}));}
+report.completed_at=new Date().toISOString();report.pass=report.cases.every(c=>c.pass);report.source_changed_during_run=Object.entries(report.source_sha256).filter(([p,h])=>crypto.createHash('sha256').update(fs.readFileSync(root+p)).digest('hex')!==h).map(([p])=>p);fs.writeFileSync(target,JSON.stringify(report,null,2)+'\n');

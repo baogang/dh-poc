@@ -1,0 +1,25 @@
+{
+  "stage": "v13 untranslated blocked UI status before display repair",
+  "command": [
+    "node",
+    "--test",
+    "--test-reporter=tap",
+    "--test-name-pattern=blocked input steps",
+    "tests/crm-chat-ui.test.mjs"
+  ],
+  "tests": 1,
+  "passed": 0,
+  "failed": 1,
+  "exit_code": 1,
+  "source_sha256": {
+    "web/road/chat-ui.js": "f040792e241a2b7426d01d04ce793e10af6218545762780f573acb4166aea874",
+    "web/road/i18n.js": "7c6664217454516420311608289d17870f3f21d2194464679235712898f5ca30",
+    "tests/crm-chat-ui.test.mjs": "6d3182ea20e8dc790f10152d8c42b3c47e7d463ce56084d60faa984cfca37bb4"
+  },
+  "source_sha256_end": {
+    "web/road/chat-ui.js": "f040792e241a2b7426d01d04ce793e10af6218545762780f573acb4166aea874",
+    "web/road/i18n.js": "7c6664217454516420311608289d17870f3f21d2194464679235712898f5ca30",
+    "tests/crm-chat-ui.test.mjs": "6d3182ea20e8dc790f10152d8c42b3c47e7d463ce56084d60faa984cfca37bb4"
+  },
+  "raw_tap": "docs/evaluation/balady-crm-v13-blocked-ui-red-20261020.tap"
+}

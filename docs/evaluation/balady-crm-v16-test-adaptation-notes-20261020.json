@@ -1,0 +1,84 @@
+{
+  "stage": "v16 engineering evidence interpretation; no benchmark or production change by integration agent",
+  "reports": [
+    {
+      "report": "docs/evaluation/balady-crm-v16-initial-focused-20261020.json",
+      "node_reported_tests": 9,
+      "node_reported_pass": 9,
+      "node_reported_fail": 0,
+      "source_changed": [],
+      "agent_sha": "b98c1e2d317ea15c43a8412271c060877f1a6852372f37b4e067136591e0384a"
+    },
+    {
+      "report": "docs/evaluation/balady-crm-v16-postwrite-focused-20261020.json",
+      "node_reported_tests": 12,
+      "node_reported_pass": 12,
+      "node_reported_fail": 0,
+      "source_changed": [],
+      "agent_sha": "1a58a2b3a4ee092594d63c88cdc017ce1e2675853ea19cfa8a66606966ad86db"
+    },
+    {
+      "report": "docs/evaluation/balady-crm-v16-initial-engineering-20261020.json",
+      "node_reported_tests": 272,
+      "node_reported_pass": 267,
+      "node_reported_fail": 5,
+      "source_changed": [],
+      "agent_sha": "1a58a2b3a4ee092594d63c88cdc017ce1e2675853ea19cfa8a66606966ad86db"
+    },
+    {
+      "report": "docs/evaluation/balady-crm-v16-compatible-focused-20261020.json",
+      "node_reported_tests": 21,
+      "node_reported_pass": 21,
+      "node_reported_fail": 0,
+      "source_changed": [],
+      "agent_sha": "1a58a2b3a4ee092594d63c88cdc017ce1e2675853ea19cfa8a66606966ad86db"
+    },
+    {
+      "report": "docs/evaluation/balady-crm-v16-primary-outcome-red-20261020.json",
+      "node_reported_tests": 12,
+      "node_reported_pass": 12,
+      "node_reported_fail": 0,
+      "source_changed": [],
+      "agent_sha": "1423d87348efbea82462d94755ed3d38ca0c0d13274cf789db952a9b68124715"
+    }
+  ],
+  "focused_behavior_counts": {
+    "initial": 9,
+    "postwrite": 1,
+    "compatibility": 10,
+    "primary_outcome": 1
+  },
+  "node_empty_file_containers": "The temporary capture wrapper used the full file list even for a name pattern. Node reports 11 empty-file containers in the 1-behavior postwrite/primary stages and 11 in compatibility. These are not additional behavioral checks.",
+  "initial_267_of_272": {
+    "compatibility_failures": [
+      {
+        "count": 3,
+        "reason": "Three old assertions expected answered after a location-only respond replan. New v16 intentionally preserves blocked and no retry."
+      },
+      {
+        "count": 1,
+        "reason": "The exact controlled verifier queue lacked the two new outcome_presentation gates. Both explicit clean verdicts and completion count were added."
+      },
+      {
+        "count": 1,
+        "reason": "The new pure-none host terminates without another primary call, so the old queued stale-history refresh never ran. The same real owner/source/history-fingerprint assertion now runs through a legitimately mixed asset-read request."
+      }
+    ],
+    "preserved_raw": "docs/evaluation/balady-crm-v16-initial-engineering-20261020.tap"
+  },
+  "none_tests": "Wrong-fetch probes now run in a mixed plan with separately requested asset categories; the adversarial needs_choice finish executes through an explicit same-origin retry after the first model-free host completion. Tests assert actual tool error events and consumed script turns. Pure none is separately verified in three conversation languages with zero primary calls and zero model calls in the answer feedback snapshot.",
+  "postwrite_initial_assertion": {
+    "command": "node --test --test-reporter=tap --test-name-pattern=post-write reviewer outage tests/crm-integration.test.mjs",
+    "observed": "The receipt, exact payload, single write, same-origin replan and readable acknowledgement assertions passed, then an instrumentation assertion expected response_guard_unavailable event count 1 but observed 0.",
+    "reason": "The faux provider error was normalized by the controlled runtime into a missing verdict, which correctly causes RESPONSE_GUARD_UNAVAILABLE at the tool boundary. This does not guarantee a separate guard_unavailable event. The regression now asserts the exact finish tool error and immediate terminal behavior instead.",
+    "claim": "Harness assertion correction, not a production bug or weakened business result."
+  },
+  "primary_outcome_timing": {
+    "artifact_name_contains_red": true,
+    "actual_phase": "already-fixed green",
+    "agent_sha": "1423d87348efbea82462d94755ed3d38ca0c0d13274cf789db952a9b68124715",
+    "reason": "Parent had implemented PRIMARY_OUTCOME_REQUIRED before this newly written HTTP probe executed. We did not roll production backward. The original evidence is the prior v15 browser omission and parent v16 real-verifier preflight miss (4/5).",
+    "actual_behavior": "Catalog read and optional-only blocked answer is rejected before publication, then a local readiness probe records the real unavailable resolver and the actual original report remains unregistered/blocked; 0 write, 0 input, 0 authorization."
+  },
+  "frozen_inputs_references_fixtures_actor_and_grader_changed": false
+}

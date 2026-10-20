@@ -1,0 +1,32 @@
+[
+  {
+    "request": 1,
+    "seq": 4,
+    "time": "2026-10-20T00:00:35.422Z",
+    "type": "model_request"
+  },
+  {
+    "entries": 9,
+    "seq": 3,
+    "time": "2026-10-20T00:00:35.414Z",
+    "type": "faq_lookup"
+  },
+  {
+    "epoch": 0,
+    "route": "faq_then_balady_crm",
+    "seq": 2,
+    "time": "2026-10-20T00:00:35.414Z",
+    "type": "turn_started"
+  },
+  {
+    "message": {
+      "id": "message-5c15f91b-f77f-421b-92a6-8a1da8cde88f",
+      "role": "user",
+      "text": "我有件以前反映的事，想看看现在的详细记录，标题和编号都不记得了。",
+      "time": "2026-10-20T00:00:35.414Z"
+    },
+    "seq": 1,
+    "time": "2026-10-20T00:00:35.414Z",
+    "type": "message"
+  }
+]

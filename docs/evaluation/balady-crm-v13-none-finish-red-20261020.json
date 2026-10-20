@@ -1,0 +1,28 @@
+{
+  "stage": "v13 native none-choice history-only finish before excluded-candidate repair",
+  "command": [
+    "node",
+    "--test",
+    "--test-reporter=tap",
+    "--test-name-pattern=valid none selection overrides",
+    "tests/crm-integration.test.mjs"
+  ],
+  "tests": 1,
+  "passed": 0,
+  "failed": 1,
+  "exit_code": 1,
+  "source_sha256": {
+    "src/crm/agent.mjs": "22892b24cedc53e9c90a7907b1b22629acf99d631c358dad49ee48fd677ee7c6",
+    "src/crm/case-target.mjs": "a509e05b0d9514eb90d10229f5ce9f379dcf776d71e071b2c862366b94413109",
+    "src/crm/presentation.mjs": "240aa257007a7ff598564fc4385bccff930a63a9b4876a9d73e2b3171871179e",
+    "tests/crm-integration.test.mjs": "4c8de55456af6616eb578bd3c5133b5e118711800244f352f3f36130eaec811b"
+  },
+  "source_sha256_end": {
+    "src/crm/agent.mjs": "22892b24cedc53e9c90a7907b1b22629acf99d631c358dad49ee48fd677ee7c6",
+    "src/crm/case-target.mjs": "a509e05b0d9514eb90d10229f5ce9f379dcf776d71e071b2c862366b94413109",
+    "src/crm/presentation.mjs": "240aa257007a7ff598564fc4385bccff930a63a9b4876a9d73e2b3171871179e",
+    "tests/crm-integration.test.mjs": "4c8de55456af6616eb578bd3c5133b5e118711800244f352f3f36130eaec811b"
+  },
+  "source_changed_during_run": [],
+  "raw_tap": "docs/evaluation/balady-crm-v13-none-finish-red-20261020.tap"
+}

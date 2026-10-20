@@ -1,0 +1,231 @@
+{
+  "stage": "Independent v22 original fixed actual-file actor review; honest incomplete role clarification",
+  "source_report": "docs/evaluation/balady-crm-real-file-service-v22-journey-20261020.json",
+  "candidate_commit": "5978237500a1cf57dd580955812bf94f0c16793d",
+  "source_changed_during_run": [],
+  "candidate_commit_unchanged": true,
+  "part_of_frozen_natural_40": false,
+  "actor_modified": false,
+  "automatic_original": {
+    "pass": false,
+    "passed": 0,
+    "total_executed_checks": 1,
+    "checks": {
+      "no_unscripted_missing_user_input": {
+        "pass": false,
+        "details": {
+          "kind": "name_roles",
+          "fields": [
+            "body.CustomerInformation.FirstName",
+            "body.CustomerInformation.LastName"
+          ]
+        }
+      }
+    },
+    "error": {
+      "code": "JOURNEY_ASSERTION",
+      "message": "Assertion failed: no_unscripted_missing_user_input"
+    },
+    "modified": false
+  },
+  "independent_result": {
+    "goal_adequacy_at_observed_boundary": "pass: genuine unknown given/family roles",
+    "strict_delivered_facts_and_language": "pass",
+    "actual_observed_DAG": "pass",
+    "application_runtime": "input, not failed",
+    "original_end_to_end_file_and_form_goal_completed": false,
+    "actual_file_selected": false,
+    "actual_file_uploads": 0,
+    "actual_form_writes": 0,
+    "official_government_actions": 0,
+    "composite_label": "honest_incomplete_waiting_not_end_to_end_pass"
+  },
+  "business_assessment": [
+    "Original undifferentiated fullname establishes no field roles under declared local policy. Native prompt asks only role fields and retains supplied contacts/title.",
+    "Actual DAG name-clarification and file-input precede form, upload depends on actual selected file, submission depends on role facts and upload. Appropriate at this boundary.",
+    "Actor has no predeclared role reply and correctly stops rather than being silently adapted. The no_unscripted_missing_user_input assertion remains failed.",
+    "No file selected/upload/card/form: this run does not prove bytes, consent order or end-to-endfile flow. Do not borrow v19 or role-awarev2 as if this original actor completed.",
+    "Actual direct public complaint passes routeclassification without redundant service choice; native roles are genuinely not established by fullname. No0/1automatic failure is hidden or relabelled end-to-endpass."
+  ],
+  "delivered_messages": [
+    {
+      "id": "message-0c611196-9ef8-4a45-825e-b196744c96aa",
+      "role": "user",
+      "text": "I want to make a public complaint about the service experience at Test Cedar Municipal Service Hall. I waited in the queue for two hours and received no queue updates. Use the title “Long wait at Test Cedar Service Hall”. My name is Lina Citizen, my email is lina@example.test and my phone is 0501234567. I have one test image to attach and will select it when the file picker opens.",
+      "time": "2026-10-20T00:34:32.872Z",
+      "rateable": false
+    },
+    {
+      "id": "message-ed0affff-de9b-471b-844d-2f560ce7f8bc",
+      "role": "assistant",
+      "text": "These are the planned steps for your request. Queries run automatically; you will review exact details before a submission. A plan does not mean the request has been carried out.",
+      "time": "2026-10-20T00:34:40.259Z",
+      "kind": "plan",
+      "plan_id": "plan-b1d099a5-4094-428f-ae25-6d1a1fb768e3",
+      "rateable": false
+    },
+    {
+      "id": "message-fc853fbc-f26f-4ab9-aaa5-ceb29a1cfb43",
+      "role": "assistant",
+      "text": "Please enter your name in the labelled fields below. Your other supplied details will be kept.",
+      "time": "2026-10-20T00:34:41.512Z",
+      "kind": "input_request",
+      "input_id": "input-a2897439-b49a-4754-95fd-6f21cd43693d",
+      "plan_id": "plan-b1d099a5-4094-428f-ae25-6d1a1fb768e3",
+      "rateable": false
+    }
+  ],
+  "actual_public_plans": [
+    {
+      "id": "plan-b1d099a5-4094-428f-ae25-6d1a1fb768e3",
+      "origin_message_id": "message-0c611196-9ef8-4a45-825e-b196744c96aa",
+      "version": 1,
+      "goal": "Plan for this request",
+      "summary": "These are the planned steps for your request. Queries run automatically; you will review exact details before a submission. A plan does not mean the request has been carried out.",
+      "steps": [
+        {
+          "id": "s1",
+          "capability": "input",
+          "depends_on": [],
+          "title": "Clarify necessary information",
+          "parameters": {},
+          "status": "waiting"
+        },
+        {
+          "id": "s2",
+          "capability": "input",
+          "depends_on": [],
+          "title": "Clarify necessary information",
+          "parameters": {},
+          "status": "pending"
+        },
+        {
+          "id": "s3",
+          "capability": "crm_upload_attachment",
+          "depends_on": [
+            "s2"
+          ],
+          "title": "Upload a form attachment",
+          "parameters": {},
+          "status": "pending"
+        },
+        {
+          "id": "s4",
+          "capability": "crm_create_form_request",
+          "depends_on": [
+            "s1",
+            "s3"
+          ],
+          "title": "Record an inquiry, suggestion or complaint",
+          "parameters": {},
+          "status": "pending"
+        },
+        {
+          "id": "s5",
+          "capability": "respond",
+          "depends_on": [
+            "s4"
+          ],
+          "title": "Explain the result and limits",
+          "parameters": {},
+          "status": "pending"
+        }
+      ],
+      "approved": true,
+      "status": "approved",
+      "created_at": "2026-10-20T00:34:40.259Z"
+    }
+  ],
+  "pending_input": {
+    "id": "input-a2897439-b49a-4754-95fd-6f21cd43693d",
+    "plan_id": "plan-b1d099a5-4094-428f-ae25-6d1a1fb768e3",
+    "step_id": "s1",
+    "kind": "name_roles",
+    "operation": "crm_create_form_request",
+    "fields": [
+      "body.CustomerInformation.FirstName",
+      "body.CustomerInformation.LastName"
+    ],
+    "question": "Please enter your name in the labelled fields below. Your other supplied details will be kept.",
+    "known_parameters": {
+      "body": {
+        "Type": "T03",
+        "subject": "Long wait at Test Cedar Service Hall",
+        "CustomerInformation": {
+          "EmailAddress": "lina@example.test",
+          "MobileNumber": "0501234567"
+        },
+        "Description": "I want to make a public complaint about the service experience at Test Cedar Municipal Service Hall. I waited in the queue for two hours and received no queue updates."
+      }
+    },
+    "name_role_copy": {
+      "question": "Please enter your name in the labelled fields below. Your other supplied details will be kept.",
+      "FirstName": "Given name",
+      "LastName": "Family name",
+      "continue": "Save name and continue",
+      "cancel": "Cancel this request",
+      "note": "Only the name roles still unclear are shown. This is not identity verification.",
+      "retry": "Could not save. Please try again."
+    }
+  },
+  "trace": [
+    {
+      "path": "/api/session",
+      "status": 201,
+      "input": {}
+    },
+    {
+      "path": "/api/chat",
+      "status": 202,
+      "input": {
+        "message": "I want to make a public complaint about the service experience at Test Cedar Municipal Service Hall. I waited in the queue for two hours and received no queue updates. Use the title “Long wait at Test Cedar Service Hall”. My name is Lina Citizen, my email is lina@example.test and my phone is 0501234567. I have one test image to attach and will select it when the file picker opens."
+      }
+    }
+  ],
+  "model_payload_audit": {
+    "requests_by_kind": {
+      "primary": 2,
+      "verifier": 4,
+      "faq": 1,
+      "sentiment": 1
+    },
+    "audit_count": 8,
+    "no_actual_file_selected": "No file byte-selection/upload coverage before actual selection."
+  },
+  "findings": [],
+  "coverage_limits": [
+    "One original fixed actor first result, outside40.",
+    "No browser chooser or image/content interpretation.",
+    "Local name-role integrity is not official schema/name uniqueness or legal identity validation."
+  ],
+  "run_integrity_evidence": "docs/evaluation/balady-crm-v22-run-integrity-20261020.json",
+  "independently_verified_source_provenance": {
+    "candidate": "5978237500a1cf57dd580955812bf94f0c16793d",
+    "repository_source_files_compared_to_git_blob": 36,
+    "mismatches": [],
+    "raw_report_sha256_verified": "b2d639673858337bcff068eae37041bf8f234b44f65c4374335f4f2db4cfddb2",
+    "external_actor_sources": [
+      {
+        "expected_sha256": "ffa3b3e88ba29cae249dde4c469781b9347210826eb7add65af8e7b7e9715cb5",
+        "preserved_source_copy": "docs/evaluation/balady-crm-real-file-service-journey-20261020.source.mjs.txt",
+        "copy_sha256": "ffa3b3e88ba29cae249dde4c469781b9347210826eb7add65af8e7b7e9715cb5",
+        "candidate_source_copy_present": false
+      }
+    ],
+    "note": "Actor source/copy hashes independently recomputed. An external actor copy not present in candidate Git is explicitly recorded as such; source evidence does not claim it was committed at launch."
+  },
+  "pre_execution_invocation_guard_disclosure": {
+    "report": "docs/evaluation/balady-crm-v22-file-launch-guard-20261020.json",
+    "sha256": "87fbf92eb096c775b77fd4120d108935cb2571574e49f40ec0979927df4bd21f",
+    "phase": "pre-execution invocation guard, not a journey outcome",
+    "supplied_candidate": "5978237a",
+    "actual_candidate": "5978237500a1cf57dd580955812bf94f0c16793d",
+    "error": "Candidate HEAD mismatch before run",
+    "exit_code": 1,
+    "http_app_started": false,
+    "model_requests": 0,
+    "business_calls": 0,
+    "correction": "Use the exact full candidate SHA; original actor/source/output unchanged.",
+    "corrected_exact_sha_launch": "docs/evaluation/balady-crm-real-file-service-v22-journey-20261020.json"
+  }
+}

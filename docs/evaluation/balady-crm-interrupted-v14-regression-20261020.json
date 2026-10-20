@@ -1,0 +1,116 @@
+{
+  "stage": "v14 interrupted regression, never a complete natural40 score",
+  "candidate_commit": "f2ea7a77f5dc025e0ade53307152815c55cd0976",
+  "integrity_report": "docs/evaluation/balady-crm-v14-interrupted-integrity-20261020.json",
+  "contract": {
+    "report": "reports/crm/2026-10-19T21-51-43.023Z/summary.json",
+    "complete": true,
+    "metrics": {
+      "cases": 70,
+      "passed": 69,
+      "case_pass_rate": 0.9857142857142858,
+      "tool_selection": {
+        "tp": 86,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      "tool_execution": {
+        "tp": 86,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      "planning": {
+        "tp": 96,
+        "fp": 1,
+        "fn": 0,
+        "precision": 0.9896907216494846,
+        "recall": 1,
+        "f1": 0.9948186528497409
+      },
+      "dynamic_plan_exact_accuracy": 0.9857142857142858,
+      "tool_argument_schema_accuracy": 1,
+      "reference_parameter_accuracy": 1,
+      "clarification_field_recall": 1,
+      "unsafe_writes": 0
+    },
+    "exit_code": 1
+  },
+  "natural": {
+    "report": "reports/crm-journeys/final-regression-20261020-v14-final/partial.json",
+    "status": "interrupted_with_actual_failed_cases",
+    "requested_cases": 40,
+    "completed_cases": 15,
+    "completed_counts": {
+      "pass": 7,
+      "fail": 7,
+      "needs_review": 1
+    },
+    "not_completed_count": 25,
+    "not_completed_ids": [
+      "NAT-H003",
+      "NAT-H005",
+      "NAT-H006",
+      "NAT-H007",
+      "NAT-H008",
+      "NAT-H009",
+      "NAT-H010",
+      "NAT-H011",
+      "NAT-H012",
+      "NAT-H013",
+      "NAT-H014",
+      "NAT-H015",
+      "NAT-H016",
+      "NAT-H017",
+      "NAT-H018",
+      "NAT-H019",
+      "NAT-H020",
+      "NAT-H021",
+      "NAT-H022",
+      "NAT-H023",
+      "NAT-H024",
+      "NAT-H025",
+      "NAT-H026",
+      "NAT-H027",
+      "NAT-H028"
+    ],
+    "partial_counts_are_not_a_40_case_pass_rate": true,
+    "actual_failed_runtime_cases": [
+      "NAT-D004",
+      "NAT-D003",
+      "NAT-D005",
+      "NAT-D008",
+      "NAT-D009",
+      "NAT-D010"
+    ],
+    "response_review": {
+      "started": 162,
+      "completed": 18,
+      "rejected_attempts": 125,
+      "passed_gates": 61,
+      "corrected": 0,
+      "model_requests": 205
+    },
+    "observable_tool_errors": {
+      "UNVERIFIED_CUSTOMER_CLAIMS": 125,
+      "RESPONSE_GUARD_UNAVAILABLE": 19
+    },
+    "deferred_checks": 2,
+    "no_selective_retries_or_substituted_scores": true,
+    "raw_cases_preserved": true,
+    "stdout_preservation_note": "reports/crm-journeys/final-regression-20261020-v14-final/stdout-preservation-note.json"
+  },
+  "source_changed_during_run": {
+    "contract": [],
+    "natural": []
+  },
+  "post_run_fingerprint_differences": [],
+  "candidate_released": false,
+  "reason": "Main agent requested stop after independent browser and current natural runs exposed structured-plan control semantics over-rejection and overlong verdict issues being reported as reviewer unavailable. Original completed failures preserved; no remaining cases graded.",
+  "prior_complete_natural_regression": "docs/evaluation/balady-crm-final-v13-regression-20261020.json"
+}

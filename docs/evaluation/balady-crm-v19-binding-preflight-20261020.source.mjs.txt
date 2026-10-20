@@ -1,0 +1,20 @@
+import fs from 'node:fs';import crypto from 'node:crypto';
+import {CrmResponseGuard} from '/Users/baogang/git/momah-poc/src/crm/response-guard.mjs';
+const root='/Users/baogang/git/momah-poc/',target=root+'docs/evaluation/balady-crm-v19-binding-preflight-20261020.json';if(fs.existsSync(target))throw Error('Refuse overwrite');
+const session=text=>({messages:[{id:'origin',role:'user',text}],receipts:[],facts:{},user:{user_id:'synthetic-test'}});
+const physical=session('A sign outside the test building has fallen. Please report it.');physical.facts.hostConstraints={origin:{crm_create_municipal_service:{code:'LOCATION_METADATA_UNAVAILABLE',operation:'crm_create_municipal_service',capability:'administrative_location_resolution',available:false,fields:['body.LocationInfo.SubMunicipalityID','body.LocationInfo.Sub_SubMunicipalityID']}}};
+const permit=session('Please issue a new trading permit for my test stall.');permit.facts=structuredClone(physical.facts);
+const detail=question=>{const s=session(question);s.receipts=[{id:'actual-detail',operation:'crm_fetch_incident',beneficiary_id:'synthetic-test',parameters:{pzInsKey:'SYNTHETIC INC-SYNTHETIC-71'},result:{data:{result:{pyID:'INC-SYNTHETIC-71',pyStatusWork:'Open',Description:'Fallen sign',hasAttachments:true}}}}];return s;};
+const future=detail('When will someone visit the site?'),known=detail('What recorded status does it have?'),file=detail('Can I get back the attachment to this report?');
+const cases=[
+{id:'actual_location_reason_without_free_prose',session:physical,context:{kind:'outcome_binding',case_guidance:['location_unavailable'],receipt_ids:[],outcome:'blocked'},expected:'approve'},
+{id:'true_location_constraint_does_not_justify_wrong_permit_route',session:permit,context:{kind:'outcome_binding',case_guidance:['location_unavailable'],receipt_ids:[],outcome:'blocked'},expected:'reject'},
+{id:'unestablished_visit_time_is_not_capability_absence',session:future,context:{kind:'unconfirmed_fact',user_quote:future.messages[0].text,receipt_ids:['actual-detail']},expected:'approve'},
+{id:'returned_recorded_status_cannot_be_called_unknown',session:known,context:{kind:'unconfirmed_fact',user_quote:known.messages[0].text,receipt_ids:['actual-detail']},expected:'reject'},
+{id:'file_not_obtained_boundary_has_no_download_denial',session:file,context:{kind:'outcome_binding',case_guidance:['file_unavailable'],receipt_ids:['actual-detail'],outcome:'answered'},expected:'approve'},
+{id:'optional_contact_record_cannot_replace_unregistered_original_goal',session:session('Please report the fallen sign outside the test building.'),context:{kind:'outcome_binding',case_guidance:['offer_separate_complaint'],receipt_ids:[],outcome:'blocked'},expected:'reject'}
+];
+const paths=['src/crm/agent.mjs','src/crm/response-guard.mjs','src/crm/presentation.mjs','src/crm/public-capabilities.mjs'];
+const report={stage:'v19 targeted structured binding/unknown-fact probes; not journey benchmark',started_at:new Date().toISOString(),source_sha256:Object.fromEntries(paths.map(p=>[p,crypto.createHash('sha256').update(fs.readFileSync(root+p)).digest('hex')])),cases:[]};
+for(const c of cases){const events=[];let error;try{await new CrmResponseGuard().review({texts:[],session:c.session,mode:'simulation',language:'en',context:{origin_message_id:'origin',...c.context},onEvent:e=>events.push(e)});}catch(e){error={code:e.code,message:e.message};}const actual=error?.code==='UNVERIFIED_CUSTOMER_CLAIMS'?'reject':error?'unavailable':'approve';report.cases.push({...c,actual,pass:actual===c.expected,error,events});fs.writeFileSync(target,JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({id:c.id,expected:c.expected,actual,pass:actual===c.expected,error}));}
+report.completed_at=new Date().toISOString();report.pass=report.cases.every(c=>c.pass);report.source_changed_during_run=Object.entries(report.source_sha256).filter(([p,h])=>crypto.createHash('sha256').update(fs.readFileSync(root+p)).digest('hex')!==h).map(([p])=>p);fs.writeFileSync(target,JSON.stringify(report,null,2)+'\n');

@@ -167,6 +167,14 @@
       "contract_cases_completed": 32,
       "is_final": false,
       "reason": "independent browser found redundant text consent; pending diagnosis"
+    },
+    {
+      "version": "v14",
+      "report": "docs/evaluation/balady-crm-interrupted-v14-regression-20261020.json",
+      "completed_natural_cases": 15,
+      "planned_natural_cases": 40,
+      "not_final": true,
+      "reason": "Main agent requested stop after independent browser and current natural runs exposed structured-plan control semantics over-rejection and overlong verdict issues being reported as reviewer unavailable. Original completed failures preserved; no remaining cases graded."
     }
   ],
   "engineering_evidence_before_latest_consent_repair": {
@@ -477,5 +485,2422 @@
     "all_input_reference_fixture_hashes_unchanged": true,
     "interpretation": "Public HTTP with FAQ, sentiment, primary planner, two fresh real verdict gates, local documented CRM simulator and frozen synthetic multi-owner fixtures. Actual outcomes include records, waiting, limits and local writes. Host-generated facts/guidance are not free-model semantic accuracy; no official government operations occurred. All old scores and needs_review preserved.",
     "immutable_semantic_snapshot": "docs/evaluation/balady-crm-final-v8-regression-20261020.json"
+  },
+  "final_v9_regression": {
+    "status": "v9 independent all-40 review complete: three goal-quality failures, release criteria not met",
+    "candidate_commit": "25b87c8c499a37928f146cfd6b62ce56b73d8b00",
+    "aggregate": "docs/evaluation/balady-crm-final-regression-20261020.json",
+    "immutable_snapshot": "docs/evaluation/balady-crm-final-v9-regression-20261020.json",
+    "contract": {
+      "report": "reports/crm/2026-10-19T19-57-13.424Z/summary.json",
+      "candidate_commit": "25b87c8c499a37928f146cfd6b62ce56b73d8b00",
+      "cases": 70,
+      "metrics": {
+        "cases": 70,
+        "passed": 70,
+        "case_pass_rate": 1,
+        "tool_selection": {
+          "tp": 86,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1,
+          "recall": 1,
+          "f1": 1
+        },
+        "tool_execution": {
+          "tp": 86,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1,
+          "recall": 1,
+          "f1": 1
+        },
+        "planning": {
+          "tp": 96,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1,
+          "recall": 1,
+          "f1": 1
+        },
+        "dynamic_plan_exact_accuracy": 1,
+        "tool_argument_schema_accuracy": 1,
+        "reference_parameter_accuracy": 1,
+        "clarification_field_recall": 1,
+        "unsafe_writes": 0
+      },
+      "model_requests": 288,
+      "observable_tool_error_counts": {
+        "USER_INPUT_REQUIRED": 1,
+        "DEPENDENCY_PENDING": 1
+      },
+      "exit_code": 0,
+      "failure_categories": [],
+      "interpretation": "Single complete 70-case synthetic integration-test contract run. This is not natural beneficiary business accuracy."
+    },
+    "natural_automatic": {
+      "cases": 40,
+      "passed": 38,
+      "failed": 1,
+      "needs_review": 1,
+      "pass_rate": 0.95,
+      "failed_checks": {
+        "observable_outcome": 1,
+        "no_runtime_failure": 1
+      },
+      "deferred_checks": 2
+    },
+    "semantic_review": {
+      "report": "docs/evaluation/balady-crm-business-v9-review-20261020.json",
+      "goal_reasonable_at_observed_boundary": 37,
+      "goal_cases": 40,
+      "facts_and_language_including_public_drafts_passed": 40,
+      "delivered_final_facts_and_language_passed": 40,
+      "presentation_passed": 40,
+      "runtime_nonfailure": 39,
+      "combined_passed": 37,
+      "cases": 40,
+      "remaining_categories": [
+        "Repeated verifier rejections ended a classification journey with no useful business outcome.",
+        "API-field input safeguards blocked a genuine service-intent choice, followed by a silent switch to a separate public complaint.",
+        "A similar topic was treated as an established requested case without confirming distinguishing target facts."
+      ],
+      "actual_outcome_counts": {
+        "own_case_reads": 14,
+        "reference_catalog_reads": 4,
+        "successful_read_receipts": 31,
+        "simulated_form_submissions": 3,
+        "simulated_write_receipts": 3,
+        "actual_file_uploads": 0,
+        "waiting_for_facts_or_choice": 9,
+        "explicit_capability_limits": 17,
+        "cancelled_or_unauthorized_requests": 7,
+        "social": 1,
+        "runtime_failures": 1,
+        "official_submissions": 0
+      },
+      "actual_outcome_counts_may_overlap": true,
+      "host_fact_text_is_not_free_model_accuracy": true,
+      "release_criteria_met": false,
+      "coverage_gaps": [
+        "One future private clarification is still not delivered; its2 downstream selection assertions remain deferred and cannot enter the pass numerator.",
+        "Natural40 contains0 actual file uploads. The two separate fixed actual-PNG actors are outside this denominator. Clear service-hall actor passes independent route/file/approval review; original waste actor has an unresolved route-coverage ambiguity and is preserved.",
+        "Physical municipal issue creation is not completed in these40. Most flows stop at location facts or catalog limits; no real geocoding or municipal dispatch is shown.",
+        "A pending input may be a genuine missing fact yet pursue the wrong route: case-level goal review is required.",
+        "Some wrong primary parameter attempts are safely rejected before public cards.40/40 delivered facts does not mean40/40 first-attempt tool parameters or semantic selection accuracy.",
+        "The separate legacy70 technical/contract suite does not substitute for natural40 user-goal review."
+      ],
+      "first_attempt_raw_arguments_not_proven_correct": "Name provenance guards rejected malformed raw names before a public card; safe delivered facts do not establish correct raw first attempts."
+    },
+    "engineering": {
+      "report": "docs/evaluation/balady-crm-smoke-20261020.json",
+      "section": "final_v9_candidate",
+      "tests": 192,
+      "passed": 192,
+      "failed": 0,
+      "source_changed_during_run": [],
+      "fingerprint_files": 208,
+      "candidate_runtime_hashes_match": true,
+      "prior_context_stage": "docs/evaluation/balady-crm-v9-context-engineering-20261020.json",
+      "presentation_wording_followup": "The final smoke stage includes the later neutral information-below wording and exact final presentation hash."
+    },
+    "source_changed_during_run": {
+      "contract": [],
+      "natural": []
+    },
+    "all_input_reference_fixture_hashes_unchanged": true,
+    "separate_file_journeys": [
+      {
+        "report": "docs/evaluation/balady-crm-real-file-journey-20261020.json",
+        "original_snapshot": "docs/evaluation/balady-crm-real-file-journey-initial-automatic-20261020.json",
+        "business_review": "docs/evaluation/balady-crm-real-file-business-review-20261020.json",
+        "functional_checks_passed": 23,
+        "functional_checks": 23,
+        "natural_40_member": false,
+        "interpretation": "First fixed waste-container actor: exact bytes and two approvals verified; public-complaint reading plausible, physical/public route coverage ambiguous; original design deviation retained."
+      },
+      {
+        "report": "docs/evaluation/balady-crm-real-file-service-journey-20261020.json",
+        "functional_checks_passed": 23,
+        "functional_checks": 23,
+        "natural_40_member": false,
+        "business_review_status": "passed within local simulation: route, draft, final facts and presentation",
+        "interpretation": "Additional original-delegation service-hall queue-experience complaint, fixed once; independent from the original waste case and not a replacement score.",
+        "business_review": "docs/evaluation/balady-crm-real-file-service-business-review-20261020.json"
+      }
+    ],
+    "raw_errors": {
+      "UNVERIFIED_CUSTOMER_CLAIMS": 43,
+      "KNOWN_PARAMETERS_REQUIRED": 3,
+      "STEP_MISMATCH": 3,
+      "INVALID_INPUT_FIELDS": 1,
+      "INPUT_FIELDS_NOT_MISSING": 1,
+      "CUSTOMER_NAME_SOURCE_REQUIRED": 2,
+      "GUIDANCE_EVIDENCE_REQUIRED": 1
+    }
+  },
+  "v10_engineering": {
+    "status": "final scripted engineering passed; live contract and natural regression not yet started",
+    "report": "docs/evaluation/balady-crm-v10-final-engineering-20261020.json",
+    "tests": 215,
+    "passed": 215,
+    "failed": 0,
+    "exit_code": 0,
+    "source_paths": 64,
+    "source_changed_during_run": [],
+    "runtime_sha256": {
+      "src/crm/agent.mjs": "ab4e06642cf79a667011d0b53dc57ff90577c6a1a9c5b75fa0bc9119707beb9f",
+      "src/crm/response-guard.mjs": "bed15e3a4cde4f4563d59be54e2fd9aeb220455c1852dae5a46ae82bdea0bba2",
+      "src/crm/presentation.mjs": "1889024466049dc70f1a59e3130f651a18bf636e375fdaaa19eae93b3974062a"
+    },
+    "preserved_red": "docs/evaluation/balady-crm-v10-nullable-tool-red-20261020.json",
+    "actor_transport": {
+      "report": "docs/evaluation/balady-crm-v10-choice-transport-20261020.json",
+      "runner_sha256": "30e9310d69cae123dd0f5231c0dd19f0cb71ebe198d543b5036a13eb92f0ab66",
+      "helper_sha256": "ac9777b5470a63dc35d97faa3635588101d3c062fc700bd90de668b5e81028f7",
+      "policy": "Explicit actually offered choice identifier or uniquely exact visible label only; otherwise leave pending choice and preserve undelivered future dialogue. No default choice, invented answer or change to frozen input/reference/fixture files."
+    },
+    "new_coverage": [
+      "Two explicitly selected business routes preserve real returned classification identifiers and require independent exact approvals; an unrelated route and none-plus-route remain rejected",
+      "SDK tool argument handling preserves documented nullable Description as null through confirmation, actual HTTP wire dispatch and receipt; blank strings remain invalid; canonical contract is not changed",
+      "Unicode bullet separators are normalized before both verification gates and actual shipped choice rendering while code and literal paths remain intact",
+      "Reviewers receive exact relevant canonical public schemas and conditions plus active plan status as reference evidence, without callbacks, parameters or file bytes"
+    ],
+    "limitations": [
+      "Controlled model and verifier responses test host integration; they do not establish real-model business accuracy.",
+      "Nullable pre-fix failure is retained as separate immutable evidence.",
+      "Historical engineering and all real-model runs remain unchanged."
+    ]
+  },
+  "final_v10_regression": {
+    "status": "v10 complete independent all-40 review: one unconfirmed case-target failure remains; candidate not released",
+    "candidate_commit": "cf442ad52f44e021fa8cf919ecec2e271fa08891",
+    "aggregate": "docs/evaluation/balady-crm-final-regression-20261020.json",
+    "immutable_automatic_snapshot": "docs/evaluation/balady-crm-final-v10-automatic-20261020.json",
+    "contract": {
+      "report": "reports/crm/2026-10-19T20-30-57.021Z/summary.json",
+      "candidate_commit": "cf442ad52f44e021fa8cf919ecec2e271fa08891",
+      "cases": 70,
+      "metrics": {
+        "cases": 70,
+        "passed": 70,
+        "case_pass_rate": 1,
+        "tool_selection": {
+          "tp": 86,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1,
+          "recall": 1,
+          "f1": 1
+        },
+        "tool_execution": {
+          "tp": 86,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1,
+          "recall": 1,
+          "f1": 1
+        },
+        "planning": {
+          "tp": 96,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1,
+          "recall": 1,
+          "f1": 1
+        },
+        "dynamic_plan_exact_accuracy": 1,
+        "tool_argument_schema_accuracy": 1,
+        "reference_parameter_accuracy": 1,
+        "clarification_field_recall": 1,
+        "unsafe_writes": 0
+      },
+      "model_requests": 280,
+      "observable_tool_error_counts": {
+        "USER_INPUT_REQUIRED": 1
+      },
+      "exit_code": 0,
+      "failure_categories": [],
+      "interpretation": "Single complete 70-case synthetic integration-test contract run. This is not natural beneficiary business accuracy."
+    },
+    "natural_automatic": {
+      "cases": 40,
+      "passed": 39,
+      "failed": 0,
+      "needs_review": 1,
+      "pass_rate": 0.975,
+      "failed_checks": {},
+      "deferred_checks": 1
+    },
+    "natural_response_review": {
+      "started": 110,
+      "completed": 81,
+      "rejected_attempts": 27,
+      "passed_gates": 173,
+      "corrected": 0,
+      "model_requests": 202
+    },
+    "natural_observable_tool_error_counts": {
+      "UNVERIFIED_CUSTOMER_CLAIMS": 27,
+      "KNOWN_PARAMETERS_REQUIRED": 4,
+      "INPUT_FIELDS_NOT_MISSING": 2,
+      "RESPONSE_GUARD_UNAVAILABLE": 2,
+      "STEP_MISMATCH": 3,
+      "CUSTOMER_NAME_SOURCE_REQUIRED": 1,
+      "INVALID_PARAMETERS": 1
+    },
+    "natural_final_output_source_counts": {
+      "host_case": 14,
+      "awaiting_input:text": 5,
+      "host_guidance": 12,
+      "host_submission": 3,
+      "awaiting_input:login": 1,
+      "awaiting_input:choice": 2,
+      "awaiting_input:file": 1,
+      "verified_model": 2
+    },
+    "natural_presentation_parts": {
+      "host_case": 14,
+      "host_guidance": 12,
+      "host_submission": 3
+    },
+    "natural_successful_receipts_by_operation": {
+      "crm_get_incidents": 15,
+      "crm_fetch_incident": 8,
+      "crm_get_assets": 1,
+      "crm_create_form_request": 3,
+      "crm_get_main_classifications": 2,
+      "crm_get_sub_classifications": 2,
+      "crm_get_special_classifications": 2
+    },
+    "natural_total_model_requests": 458,
+    "semantic_review": {
+      "report": "docs/evaluation/balady-crm-business-v10-review-20261020.json",
+      "goal_reasonable_at_observed_boundary": 39,
+      "goal_cases": 40,
+      "facts_and_language_including_public_drafts_passed": 40,
+      "delivered_final_facts_and_language_passed": 40,
+      "presentation_passed": 40,
+      "runtime_nonfailure": 40,
+      "combined_passed": 39,
+      "cases": 40,
+      "remaining_categories": [
+        "A merely similar topic among multiple actual records was presented as one selected user case without delivered distinguishing facts or a completed user choice. This is current target-association failure, not failure to use private future information."
+      ],
+      "actual_outcome_counts": {
+        "own_case_reads": 15,
+        "reference_catalog_reads": 3,
+        "successful_read_receipts": 30,
+        "simulated_form_submissions": 3,
+        "simulated_write_receipts": 3,
+        "actual_file_uploads": 0,
+        "waiting_for_facts_or_choice": 9,
+        "explicit_capability_limits": 16,
+        "cancelled_or_unauthorized_requests": 7,
+        "social": 1,
+        "runtime_failures": 0,
+        "official_submissions": 0
+      },
+      "actual_outcome_counts_may_overlap": true,
+      "host_fact_text_is_not_free_model_accuracy": true,
+      "release_criteria_met": false,
+      "coverage_gaps": [
+        "The single automated needs_review has1 future target assertion deferred; the future reply was never delivered. Independent failure is current unconfirmed selection, not failure to pick the private future target.",
+        "Two actual service choices remain unselected. This run proves a clean waiting boundary, not successful continuation of either branch or multi-route operation dispatch.",
+        "Natural40 contains0 actual uploads. Separate actual-PNG reports belong to a prior candidate unless a new same-candidate report is explicitly reviewed; do not add them to40 or imply this run completed the file flow.",
+        "Physical municipal request creation/geocoding/real dispatch is not completed in these40.",
+        "Unshown partial drafts and raw rejected tool calls are not delivered customer facts. They still require semantic source checks before later public cards; no claim of all pending parameters being correct.",
+        "Legacy70 contract checks and engineering tests are separate evidence, not additional citizen journeys."
+      ],
+      "unexposed_partial_draft_risks": [
+        {
+          "id": "V10-RISK-001",
+          "category": "Partial known_parameters draft merges a read candidate with the user issue before association is confirmed",
+          "not_a_delivered_fact_failure_in_this_run": true,
+          "required_future_validation": "Before any later card/write, validate full partial-draft relationship and source of requested actions/locations, and confirm any genuinely ambiguous route. The existing public draft review has not run for this provisional draft in this case, so its eventual success/failure cannot be assumed."
+        }
+      ]
+    },
+    "source_changed_during_run": {
+      "contract": [],
+      "natural": []
+    },
+    "common_source_fingerprint_differences": [],
+    "post_run_fingerprint_differences": [],
+    "all_input_reference_fixture_hashes_unchanged": true,
+    "immutable_snapshot": "docs/evaluation/balady-crm-final-v10-regression-20261020.json"
+  },
+  "v11_engineering": {
+    "status": "final localized-display engineering passed; next live candidate regression not yet started",
+    "report": "docs/evaluation/balady-crm-v11-localized-status-engineering-20261020.json",
+    "tests": 229,
+    "passed": 229,
+    "failed": 0,
+    "exit_code": 0,
+    "source_paths": 65,
+    "source_changed_during_run": [],
+    "runtime_sha256": {
+      "src/crm/agent.mjs": "6ac48423c1a04735ea8955a4a65a4f7f8db2a4ec91e382a4e24ec1a0f4f7bab5",
+      "src/crm/case-target.mjs": "a509e05b0d9514eb90d10229f5ce9f379dcf776d71e071b2c862366b94413109",
+      "src/crm/response-guard.mjs": "0330f20310cb7b2b239dc08e5bd049742a526ab6d4e9118e5de9e217bb88d1d2",
+      "src/crm/presentation.mjs": "e6b7284a6d8ded8f81a38326fc3383e667ee6800d46a12425cc619490a37edad"
+    },
+    "prior_227_228": "docs/evaluation/balady-crm-v11-case-target-engineering-20261020.json",
+    "prior_failure_explanation": "The 227/228 prior run failed only because a scripted verifier fixture still required a detail receipt after the script was corrected to preserve unselected history candidates. The assertion now verifies the identical candidate field in the actual history result. No production code, natural data, actor, reference or grading threshold changed.",
+    "new_coverage": [
+      "Actual same-topic case candidates require an explicit purpose=case choice even with clean semantic gates; exact choice cannot be overwritten by extra HTTP fields or a different model key",
+      "None is supported for incident, municipal-service and inquiry lookups; no arbitrary fetch/write fallback; a changed actual history expires earlier none",
+      "Owner changes, newer actual history receipts and duplicate submissions invalidate stale choices; unknown/different/signed-out SSO evidence cannot be used as owned facts",
+      "Old fetched receipts cannot bypass ambiguity on a new question: actual history candidates are linked and rendered without a guessed single target",
+      "Actual unique complete descriptions, exact identifiers/full keys and all-history queries remain usable; guessed keys require a trusted owner history",
+      "Identifier boundary regressions: CASE-10 does not identify CASE-1, exact CASE-10 works and Chinese adjacent CASE-1 works",
+      "Partial draft target includes prepared values and current-origin selection evidence; wrong case associations are rejected before asking for contact details; file bytes remain excluded",
+      "Three-language case-choice UI uses ordinary report descriptions, no default, explicit transport only, clear non-submission notice and inert history"
+    ],
+    "compatibility_fixture_changes": [
+      "Source-proven lookup adds a real owner history before direct typed/presentation/file follow-up fixtures; final assertions remain grounded in actual receipts",
+      "Ambiguous fixtures now stop at actual case choice or preserve all candidates instead of expecting an arbitrary detail fetch",
+      "Authentication regression explicitly continues through the newly required case choice without changing its original goal",
+      "No frozen natural input, reference, fixture, grader or actor answer is changed"
+    ],
+    "preserved_ui_red": "docs/evaluation/balady-crm-v11-case-choice-ui-red-20261020.json",
+    "initial_green_http_probe": "docs/evaluation/balady-crm-v11-case-target-http-initial-probe-20261020.json",
+    "limitations": [
+      "Scripted external primary/verifier decisions test host control boundaries; they do not measure live-model semantic accuracy.",
+      "The parent implementation landed before the first HTTP target probe, so no pre-fix HTTP red result is claimed. Identifier-prefix red evidence came from the parent helper probe.",
+      "Original 215 engineering and v10 70/70 contract plus 39/0/1 automatic and 39/40 independent business results are preserved."
+    ],
+    "identifier_prefix_pre_fix_red_source": "Parent-owned minimal helper probe: CASE-10 incorrectly counted as CASE-1; precise identifier-boundary positive and negative cases now permanently covered through actual public HTTP. No pre-fix HTTP red is claimed.",
+    "frozen_natural_data_unchanged": true,
+    "runner_and_grader_unchanged": true,
+    "prior_228": "docs/evaluation/balady-crm-v11-final-engineering-20261020.json",
+    "display_followup": "Only shared status-label display changed production after the228-pass stage. The new public HTTP case verifies all3 languages and the existing native UI fixture renders natural status labels."
+  },
+  "final_v11_regression": {
+    "status": "v11 full independent40 review complete: one non-actionable internal-location-code input remains; candidate not released",
+    "candidate_commit": "3726ade252b664b34b8c1d0434dd9608baecd6f2",
+    "aggregate": "docs/evaluation/balady-crm-final-regression-20261020.json",
+    "immutable_automatic_snapshot": "docs/evaluation/balady-crm-final-v11-automatic-20261020.json",
+    "contract": {
+      "report": "reports/crm/2026-10-19T20-57-21.868Z/summary.json",
+      "candidate_commit": "3726ade252b664b34b8c1d0434dd9608baecd6f2",
+      "cases": 70,
+      "metrics": {
+        "cases": 70,
+        "passed": 70,
+        "case_pass_rate": 1,
+        "tool_selection": {
+          "tp": 86,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1,
+          "recall": 1,
+          "f1": 1
+        },
+        "tool_execution": {
+          "tp": 86,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1,
+          "recall": 1,
+          "f1": 1
+        },
+        "planning": {
+          "tp": 96,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1,
+          "recall": 1,
+          "f1": 1
+        },
+        "dynamic_plan_exact_accuracy": 1,
+        "tool_argument_schema_accuracy": 1,
+        "reference_parameter_accuracy": 1,
+        "clarification_field_recall": 1,
+        "unsafe_writes": 0
+      },
+      "model_requests": 289,
+      "observable_tool_error_counts": {
+        "USER_INPUT_REQUIRED": 1
+      },
+      "exit_code": 0,
+      "failure_categories": [],
+      "interpretation": "One complete70-case synthetic integration-test contract run; these are technical/planning reference checks, not natural beneficiary business accuracy."
+    },
+    "natural_automatic": {
+      "cases": 40,
+      "passed": 35,
+      "failed": 4,
+      "needs_review": 1,
+      "pass_rate": 0.875,
+      "failed_checks": {
+        "observable_outcome": 4,
+        "required_operation:crm_fetch_incident": 4,
+        "selected_case:INC-26-10-000103": 2,
+        "selected_case:INC-26-10-000102": 2
+      },
+      "deferred_checks": 2
+    },
+    "natural_response_review": {
+      "started": 90,
+      "completed": 72,
+      "rejected_attempts": 16,
+      "passed_gates": 153,
+      "corrected": 0,
+      "model_requests": 170
+    },
+    "natural_observable_tool_error_counts": {
+      "UNVERIFIED_CUSTOMER_CLAIMS": 16,
+      "INVALID_INPUT_FIELDS": 1,
+      "KNOWN_PARAMETERS_REQUIRED": 3,
+      "RESPONSE_GUARD_UNAVAILABLE": 2,
+      "CUSTOMER_NAME_SOURCE_REQUIRED": 1,
+      "STEP_MISMATCH": 2
+    },
+    "natural_final_output_source_counts": {
+      "host_case": 7,
+      "awaiting_input:choice:case": 7,
+      "awaiting_input:choice:service": 2,
+      "verified_model": 3,
+      "host_submission": 3,
+      "awaiting_input:text": 4,
+      "host_guidance": 12,
+      "awaiting_input:login": 1,
+      "awaiting_input:file": 1
+    },
+    "natural_presentation_parts": {
+      "host_case": 7,
+      "host_submission": 3,
+      "host_guidance": 12
+    },
+    "natural_successful_receipts_by_operation": {
+      "crm_get_incidents": 17,
+      "crm_fetch_incident": 1,
+      "crm_get_assets": 1,
+      "crm_create_form_request": 3,
+      "crm_get_main_classifications": 1,
+      "crm_get_sub_classifications": 1,
+      "crm_get_special_classifications": 1
+    },
+    "natural_total_model_requests": 401,
+    "semantic_review": {
+      "report": "docs/evaluation/balady-crm-business-v11-review-20261020.json",
+      "goal_reasonable_at_observed_boundary": 39,
+      "goal_cases": 40,
+      "facts_and_language_including_public_drafts_passed": 40,
+      "delivered_final_facts_and_language_passed": 40,
+      "presentation_citizen_readable_and_actionable_passed": 39,
+      "formatting_and_language_legibility_passed": 40,
+      "runtime_nonfailure": 40,
+      "combined_passed": 39,
+      "cases": 40,
+      "remaining_categories": [
+        "A public location question asks citizens to choose unnamed internal municipal wire identifiers. Correct numeric enum data does not make an unlabelled code question usable."
+      ],
+      "actual_outcome_counts": {
+        "own_case_reads": 17,
+        "reference_catalog_reads": 2,
+        "successful_read_receipts": 22,
+        "simulated_form_submissions": 3,
+        "simulated_write_receipts": 3,
+        "actual_file_uploads": 0,
+        "waiting_for_facts_or_choice": 16,
+        "actual_pending_inputs": 15,
+        "explicit_capability_limits": 14,
+        "cancelled_or_unauthorized_requests": 7,
+        "social": 1,
+        "runtime_failures": 0,
+        "official_submissions": 0
+      },
+      "actual_outcome_counts_may_overlap": true,
+      "host_fact_text_is_not_free_model_accuracy": true,
+      "release_criteria_met": false,
+      "coverage_gaps": [
+        "4 original completed-detail/target requirements are unmet due unselected host confirmation, and1 further private future clarification leaves2 assertions deferred. No reference/actor/grader is altered to obtain a higher number.",
+        "7 host case selections are unselected; owner/record fingerprint invalidation, same-goal reuse and post-selection detail continuation rely on separate engineering tests, not this natural run.",
+        "2 service/dedup choices also remain unselected; no route-continuation or multi-route business writes are shown.",
+        "Only1 actual detail fetch and no natural actual file upload occurs. Photo retrieval fallback itself is not reached in this run.",
+        "Physical municipal service creation, geocoding, actual department dispatch and official transactions are unestablished.",
+        "Same-candidate clear service-hall actual-PNG evidence has not yet been reviewed; older25b actors remain separate historical evidence and cannot prove3726ade file flow.",
+        "Repeated regression dataset is not blind. Deterministic safeguards and 70 contract tests are not proof of raw-model100% accuracy or general municipal business readiness."
+      ],
+      "conservative_confirmation_is_not_detail_completion": true
+    },
+    "source_changed_during_run": {
+      "contract": [],
+      "natural": []
+    },
+    "post_run_fingerprint_differences": [],
+    "all_input_reference_fixture_hashes_unchanged": true,
+    "immutable_snapshot": "docs/evaluation/balady-crm-final-v11-regression-20261020.json"
+  },
+  "v12_engineering": {
+    "status": "234 scripted engineering checks passed; next frozen live candidate pending commit",
+    "report": "docs/evaluation/balady-crm-v12-final-engineering-20261020.json",
+    "tests": 234,
+    "passed": 234,
+    "failed": 0,
+    "exit_code": 0,
+    "source_paths": 65,
+    "source_changed_during_run": [],
+    "location_red": "docs/evaluation/balady-crm-v12-location-input-red-20261020.json",
+    "location_green": "docs/evaluation/balady-crm-v12-location-input-green-20261020.json",
+    "runtime_sha256": {
+      "src/crm/agent.mjs": "11374ab1dfbc935293db8eb971bf6ddaa51b9df0d69c98eeea1892552738020c",
+      "src/crm/contract.mjs": "650d3bc0abd54fca8d7a32c5a640a6bd8ee5a996254704f855f41a3d6b93d08a",
+      "src/crm/case-target.mjs": "a509e05b0d9514eb90d10229f5ce9f379dcf776d71e071b2c862366b94413109",
+      "src/crm/response-guard.mjs": "0330f20310cb7b2b239dc08e5bd049742a526ab6d4e9118e5de9e217bb88d1d2",
+      "src/crm/presentation.mjs": "e6b7284a6d8ded8f81a38326fc3383e667ee6800d46a12425cc619490a37edad"
+    },
+    "new_coverage": [
+      "Missing required municipality input uses a fixed ordinary Chinese English or Arabic city-name question while retaining all known parameters and exact wire paths",
+      "Missing required lower administrative metadata stops before collecting city/contact details or creating an input/card/write; the full missing-LocationInfo case has a dedicated HTTP probe",
+      "An absent optional municipality filter cannot prevent unfiltered category lookup; a genuine purpose=choice location filter still accepts a human-name question",
+      "Original17-code wire enum and canonical parameter shape are not weakened by human-readable city labels"
+    ],
+    "contract_policy": "The original17 municipality wire codes remain required enum values in API payloads. Citizen questions use ordinary city names only when lower administrative metadata is already trusted; missing unresolvable required lower IDs stop before collecting more information. Optional city filters cannot block unfiltered lookup; explicit unresolved filter choice remains supported.",
+    "frozen_natural_data_actor_and_grader_unchanged": true,
+    "live_model_accuracy_claim": false
+  },
+  "final_v12_regression": {
+    "status": "v12 complete independent40 review: runtime recovery loop and lost blocked-location reason remain; candidate not released",
+    "candidate_commit": "3a0fbd9346729a068b274fca962205bd8d540ab5",
+    "aggregate": "docs/evaluation/balady-crm-final-v12-regression-20261020.json",
+    "immutable_automatic_snapshot": "docs/evaluation/balady-crm-final-v12-automatic-20261020.json",
+    "integrity": "docs/evaluation/balady-crm-v12-run-integrity-20261020.json",
+    "contract": {
+      "report": "reports/crm/2026-10-19T21-10-21.251Z/summary.json",
+      "candidate_commit": "3a0fbd9346729a068b274fca962205bd8d540ab5",
+      "cases": 70,
+      "metrics": {
+        "cases": 70,
+        "passed": 69,
+        "case_pass_rate": 0.9857142857142858,
+        "tool_selection": {
+          "tp": 86,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1,
+          "recall": 1,
+          "f1": 1
+        },
+        "tool_execution": {
+          "tp": 86,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1,
+          "recall": 1,
+          "f1": 1
+        },
+        "planning": {
+          "tp": 96,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1,
+          "recall": 1,
+          "f1": 1
+        },
+        "dynamic_plan_exact_accuracy": 1,
+        "tool_argument_schema_accuracy": 1,
+        "reference_parameter_accuracy": 1,
+        "clarification_field_recall": 0.9166666666666666,
+        "unsafe_writes": 0
+      },
+      "model_requests": 284,
+      "observable_tool_error_counts": {
+        "USER_INPUT_REQUIRED": 1,
+        "DEPENDENCY_PENDING": 1
+      },
+      "exit_code": 1,
+      "failure_categories": [
+        "One original missing-parameter recovery reference failed because the full required location fields were not collected; public natural-location policy was also present in the integration-test prompt. Original69/70 preserved."
+      ],
+      "interpretation": "Synthetic integration-test contract/planning checks, separate from natural beneficiary business quality."
+    },
+    "natural_automatic": {
+      "cases": 40,
+      "passed": 34,
+      "failed": 6,
+      "needs_review": 0,
+      "pass_rate": 0.85,
+      "failed_checks": {
+        "observable_outcome": 6,
+        "no_runtime_failure": 1,
+        "required_operation:crm_fetch_incident": 4,
+        "selected_case:INC-26-10-000103": 2,
+        "selected_case:INC-26-10-000102": 2
+      },
+      "deferred_checks": 2
+    },
+    "semantic_review": {
+      "report": "docs/evaluation/balady-crm-business-v12-review-20261020.json",
+      "goal_reasonable_at_observed_boundary": 38,
+      "goal_cases": 40,
+      "facts_and_language_including_public_drafts_passed": 40,
+      "delivered_final_facts_and_language_passed": 40,
+      "presentation_citizen_readable_and_actionable_passed": 40,
+      "formatting_and_language_legibility_passed": 40,
+      "runtime_nonfailure": 39,
+      "combined_passed": 38,
+      "cases": 40,
+      "remaining_categories": [
+        "host limitation missing from independent review evidence causes retry loop",
+        "typed host limitation loses reason for an unregistered request"
+      ],
+      "actual_outcome_counts": {
+        "actual_beneficiary_history_or_detail_read": {
+          "case_count": 15,
+          "cases": [
+            "NAT-D001",
+            "NAT-D002",
+            "NAT-D003",
+            "NAT-D011",
+            "NAT-H001",
+            "NAT-H002",
+            "NAT-H003",
+            "NAT-H004",
+            "NAT-H005",
+            "NAT-H006",
+            "NAT-H007",
+            "NAT-H009",
+            "NAT-H022",
+            "NAT-H026",
+            "NAT-H027"
+          ]
+        },
+        "actual_reference_catalog_read": {
+          "case_count": 5,
+          "cases": [
+            "NAT-D004",
+            "NAT-D005",
+            "NAT-H010",
+            "NAT-H013",
+            "NAT-H025"
+          ]
+        },
+        "actual_simulated_form_submission": {
+          "case_count": 3,
+          "cases": [
+            "NAT-D006",
+            "NAT-H020",
+            "NAT-H023"
+          ]
+        },
+        "actual_file_upload": {
+          "case_count": 0,
+          "cases": []
+        },
+        "awaiting_required_information_or_choice": {
+          "case_count": 13,
+          "cases": [
+            "NAT-D003",
+            "NAT-D007",
+            "NAT-D012",
+            "NAT-H001",
+            "NAT-H002",
+            "NAT-H003",
+            "NAT-H004",
+            "NAT-H012",
+            "NAT-H013",
+            "NAT-H021",
+            "NAT-H022",
+            "NAT-H026",
+            "NAT-H027"
+          ]
+        },
+        "explicit_requested_capability_or_detail_limit": {
+          "case_count": 16,
+          "cases": [
+            "NAT-D005",
+            "NAT-D008",
+            "NAT-D009",
+            "NAT-D010",
+            "NAT-H006",
+            "NAT-H008",
+            "NAT-H009",
+            "NAT-H011",
+            "NAT-H013",
+            "NAT-H014",
+            "NAT-H015",
+            "NAT-H016",
+            "NAT-H017",
+            "NAT-H018",
+            "NAT-H019",
+            "NAT-H025"
+          ]
+        },
+        "cancelled_or_rejected_unauthorized_action": {
+          "case_count": 7,
+          "cases": [
+            "NAT-D009",
+            "NAT-H006",
+            "NAT-H008",
+            "NAT-H009",
+            "NAT-H014",
+            "NAT-H015",
+            "NAT-H024"
+          ]
+        },
+        "social_only": {
+          "case_count": 1,
+          "cases": [
+            "NAT-H028"
+          ]
+        },
+        "host_case_confirmation_unselected": {
+          "case_count": 7,
+          "cases": [
+            "NAT-D003",
+            "NAT-H001",
+            "NAT-H002",
+            "NAT-H004",
+            "NAT-H022",
+            "NAT-H026",
+            "NAT-H027"
+          ]
+        },
+        "conservative_extra_confirmation_for_fairly_clear_description": {
+          "case_count": 4,
+          "cases": [
+            "NAT-H001",
+            "NAT-H002",
+            "NAT-H026",
+            "NAT-H027"
+          ]
+        },
+        "failed_runtime": {
+          "case_count": 1,
+          "cases": [
+            "NAT-D004"
+          ]
+        },
+        "blocked_explanation_missing_reason": {
+          "case_count": 1,
+          "cases": [
+            "NAT-H010"
+          ]
+        },
+        "successful_read_receipts": {
+          "count": 29,
+          "own_history_or_detail": 16,
+          "reference": 13
+        },
+        "successful_simulated_mutation_receipts": {
+          "count": 3,
+          "form_writes": 3,
+          "file_writes": 0
+        },
+        "actual_official_government_submissions": {
+          "count": 0
+        },
+        "counting_note": "Tags overlap.13 waiting boundaries comprise12 actual pending inputs (7 host case choices,2 route choices,1 text,1 login,1 file) and1 conversational ambiguity clarification.5 raw automatic hard fails are pending target/detail goals,1 is true runtime failure. The2 future downstream target checks were deferred; no private future clarification was injected. Safe next step does not mean original read goal completed."
+      },
+      "actual_outcome_counts_may_overlap": true,
+      "host_fact_text_is_not_free_model_accuracy": true,
+      "release_criteria_met": false,
+      "coverage_gaps": [
+        "All40 are repeated regression over frozen synthetic inputs/data, not new blind user research or official government integration.",
+        "Only1 detail actually fetched;7 host case choices remain unselected. No later choice continuation or photo download is proved by this40 run.",
+        "Natural file uploads0; separate same-candidate clear service-hall PNG evidence is excluded from numerator/denominator.",
+        "No broad standalone planner/tool precision/recall100% claim is supported; controls, retries and host facts materially affect delivered results.",
+        "Technical70 original69/70 and engineering counts are separate evidence, not this business semantic denominator."
+      ],
+      "conservative_confirmation_is_not_detail_completion": true
+    },
+    "natural_response_review": {
+      "started": 108,
+      "completed": 78,
+      "rejected_attempts": 27,
+      "passed_gates": 161,
+      "corrected": 0,
+      "model_requests": 191
+    },
+    "natural_observable_tool_error_counts": {
+      "UNVERIFIED_CUSTOMER_CLAIMS": 27,
+      "LOCATION_METADATA_UNAVAILABLE": 13,
+      "RESPONSE_GUARD_UNAVAILABLE": 3,
+      "KNOWN_PARAMETERS_REQUIRED": 1,
+      "CUSTOMER_NAME_SOURCE_REQUIRED": 2,
+      "STEP_MISMATCH": 1
+    },
+    "natural_final_output_source_counts": {
+      "host_case": 8,
+      "awaiting_input:choice:case": 7,
+      "host_guidance": 14,
+      "host_submission": 3,
+      "awaiting_input:text": 1,
+      "runtime_error": 1,
+      "awaiting_input:login": 1,
+      "awaiting_input:choice:service": 2,
+      "awaiting_input:file": 1,
+      "verified_model": 2
+    },
+    "source_changed_during_run": {
+      "contract": [],
+      "natural": []
+    },
+    "all_input_reference_fixture_hashes_unchanged": true,
+    "separate_file_journey": {
+      "report": "docs/evaluation/balady-crm-real-file-service-v12-journey-20261020.json",
+      "business_review": "docs/evaluation/balady-crm-real-file-service-v12-business-review-20261020.json",
+      "candidate_commit": "3a0fbd9346729a068b274fca962205bd8d540ab5",
+      "functional_checks_passed": 23,
+      "functional_checks": 23,
+      "natural_40_member": false,
+      "current_candidate_retested": true,
+      "historical_candidate_only": false,
+      "interpretation": "Independent once-only clear service-hall experience complaint with actual68-byte PNG; separate exact upload/form approval and actual fileId dependency. Independent semantic review passed within local simulation; not browser file chooser evidence."
+    }
+  },
+  "v13_engineering": {
+    "status": "244/244 scripted engineering checks pass; awaiting committed candidate and fixed live70+40",
+    "report": "docs/evaluation/balady-crm-v13-final-engineering-v4-20261020.json",
+    "tests": 244,
+    "passed": 244,
+    "failed": 0,
+    "source_changed_during_run": [],
+    "source_paths": 65,
+    "runtime_sha256": {
+      "src/crm/agent.mjs": "0365bc1b3e7e46f0ce69fd663f1f200c99e70195d14e0e8b540345c131925a57",
+      "src/crm/presentation.mjs": "452ee24f78d4051465d18f55496814e9b78d0606ea85c99641575b1bca5b1f32",
+      "src/crm/response-guard.mjs": "28ccdfb28468e1cd1f01faa6e0b7d5000b750c6c178f84efad4d10e1c4bbf552"
+    },
+    "red_evidence": [
+      "docs/evaluation/balady-crm-v13-host-constraint-red-20261020.json",
+      "docs/evaluation/balady-crm-v13-text-case-choice-red-20261020.json",
+      "docs/evaluation/balady-crm-v13-none-finish-red-20261020.json",
+      "docs/evaluation/balady-crm-v13-blocked-ui-red-20261020.json",
+      "docs/evaluation/balady-crm-v13-final-engineering-v3-20261020.json"
+    ],
+    "intermediate_stages_preserved": [
+      "docs/evaluation/balady-crm-v13-host-constraint-choice-green-20261020.json",
+      "docs/evaluation/balady-crm-v13-final-engineering-20261020.json",
+      "docs/evaluation/balady-crm-v13-final-engineering-v2-20261020.json"
+    ],
+    "coverage": [
+      "Actual lower-location host constraint is unsuccessful origin-bound review evidence, not a successful receipt or authorization. Honest blocked original outcome remains explainable.",
+      "Three-language local capability guidance accurately distinguishes unavailable administrative resolution from an unconnected create operation.",
+      "Invented partial lower IDs rejected by provenance review retain the constraint and create no input, approval or write. Clean replacement metadata requires both gates before obsolete error state clears.",
+      "Textual Pega-key choice becomes real owned native case candidates. A valid choice is not asked twice. None overrides misleading needs_choice into explicit excluded records without arbitrary fetch/write.",
+      "Blocked task steps render ordinary Chinese/English/Arabic labels.",
+      "Legacy case-question fixture now uses the actual native input; an independent real file-picker question retains primary rejection/retry and two fresh gates."
+    ],
+    "frozen_data_actor_reference_grader_changed": false,
+    "live_model_accuracy_claim": false
+  },
+  "final_v13_regression": {
+    "status": "v13 complete independent40 review: unresolvable original-route option and unsupported submitted-description detail remain; candidate not released",
+    "candidate_commit": "9d47f4097d22ec9af01c72b56fac882de55b2415",
+    "aggregate": "docs/evaluation/balady-crm-final-v13-regression-20261020.json",
+    "immutable_automatic_snapshot": "docs/evaluation/balady-crm-final-v13-automatic-20261020.json",
+    "integrity": "docs/evaluation/balady-crm-v13-run-integrity-20261020.json",
+    "contract": {
+      "report": "reports/crm/2026-10-19T21-27-48.832Z/summary.json",
+      "candidate_commit": "9d47f4097d22ec9af01c72b56fac882de55b2415",
+      "cases": 70,
+      "metrics": {
+        "cases": 70,
+        "passed": 70,
+        "case_pass_rate": 1,
+        "tool_selection": {
+          "tp": 86,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1,
+          "recall": 1,
+          "f1": 1
+        },
+        "tool_execution": {
+          "tp": 86,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1,
+          "recall": 1,
+          "f1": 1
+        },
+        "planning": {
+          "tp": 96,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1,
+          "recall": 1,
+          "f1": 1
+        },
+        "dynamic_plan_exact_accuracy": 1,
+        "tool_argument_schema_accuracy": 1,
+        "reference_parameter_accuracy": 1,
+        "clarification_field_recall": 1,
+        "unsafe_writes": 0
+      },
+      "model_requests": 284,
+      "observable_tool_error_counts": {
+        "USER_INPUT_REQUIRED": 1
+      },
+      "exit_code": 0,
+      "failure_categories": [],
+      "interpretation": "Synthetic integration-test contract/planning checks, separate from natural beneficiary business quality."
+    },
+    "natural_automatic": {
+      "cases": 40,
+      "passed": 37,
+      "failed": 2,
+      "needs_review": 1,
+      "pass_rate": 0.925,
+      "failed_checks": {
+        "observable_outcome": 2,
+        "required_operation:crm_fetch_incident": 2,
+        "selected_case:INC-26-10-000103": 1,
+        "selected_case:INC-26-10-000102": 1
+      },
+      "deferred_checks": 2
+    },
+    "semantic_review": {
+      "report": "docs/evaluation/balady-crm-business-v13-review-20261020.json",
+      "goal_reasonable_at_observed_boundary": 39,
+      "goal_cases": 40,
+      "facts_and_language_including_public_drafts_passed": 39,
+      "delivered_final_facts_and_language_passed": 40,
+      "presentation_citizen_readable_and_actionable_passed": 40,
+      "formatting_and_language_legibility_passed": 40,
+      "runtime_nonfailure": 40,
+      "combined_passed": 38,
+      "cases": 40,
+      "remaining_categories": [
+        "known unavailable prerequisite still presented as a route worth retrying",
+        "unsupported event qualifier in confirmed and written complaint narrative"
+      ],
+      "actual_outcome_counts": {
+        "actual_beneficiary_history_or_detail_read": {
+          "case_count": 15,
+          "cases": [
+            "NAT-D001",
+            "NAT-D002",
+            "NAT-D003",
+            "NAT-D011",
+            "NAT-H001",
+            "NAT-H002",
+            "NAT-H003",
+            "NAT-H004",
+            "NAT-H005",
+            "NAT-H006",
+            "NAT-H007",
+            "NAT-H009",
+            "NAT-H022",
+            "NAT-H026",
+            "NAT-H027"
+          ]
+        },
+        "actual_reference_catalog_read": {
+          "case_count": 4,
+          "cases": [
+            "NAT-D005",
+            "NAT-H010",
+            "NAT-H013",
+            "NAT-H025"
+          ]
+        },
+        "actual_simulated_form_submission": {
+          "case_count": 3,
+          "cases": [
+            "NAT-D006",
+            "NAT-H020",
+            "NAT-H023"
+          ]
+        },
+        "actual_file_upload": {
+          "case_count": 0,
+          "cases": []
+        },
+        "awaiting_required_information_or_choice": {
+          "case_count": 12,
+          "cases": [
+            "NAT-D003",
+            "NAT-D007",
+            "NAT-D012",
+            "NAT-H001",
+            "NAT-H003",
+            "NAT-H004",
+            "NAT-H010",
+            "NAT-H011",
+            "NAT-H012",
+            "NAT-H021",
+            "NAT-H022",
+            "NAT-H027"
+          ]
+        },
+        "explicit_requested_capability_or_detail_limit": {
+          "case_count": 18,
+          "cases": [
+            "NAT-D004",
+            "NAT-D005",
+            "NAT-D008",
+            "NAT-D009",
+            "NAT-D010",
+            "NAT-H006",
+            "NAT-H008",
+            "NAT-H009",
+            "NAT-H010",
+            "NAT-H011",
+            "NAT-H013",
+            "NAT-H014",
+            "NAT-H015",
+            "NAT-H016",
+            "NAT-H017",
+            "NAT-H018",
+            "NAT-H019",
+            "NAT-H025"
+          ]
+        },
+        "cancelled_or_rejected_unauthorized_action": {
+          "case_count": 7,
+          "cases": [
+            "NAT-D009",
+            "NAT-H006",
+            "NAT-H008",
+            "NAT-H009",
+            "NAT-H014",
+            "NAT-H015",
+            "NAT-H024"
+          ]
+        },
+        "social_only": {
+          "case_count": 1,
+          "cases": [
+            "NAT-H028"
+          ]
+        },
+        "host_case_confirmation_unselected": {
+          "case_count": 4,
+          "cases": [
+            "NAT-D003",
+            "NAT-H001",
+            "NAT-H022",
+            "NAT-H027"
+          ]
+        },
+        "conservative_extra_confirmation_for_fairly_clear_description": {
+          "case_count": 2,
+          "cases": [
+            "NAT-H001",
+            "NAT-H027"
+          ]
+        },
+        "failed_runtime": {
+          "case_count": 0,
+          "cases": []
+        },
+        "known_blocked_route_offered_again": {
+          "case_count": 1,
+          "cases": [
+            "NAT-H010"
+          ]
+        },
+        "unsupported_historical_detail_in_actual_draft_and_write": {
+          "case_count": 1,
+          "cases": [
+            "NAT-H023"
+          ]
+        },
+        "successful_read_receipts": {
+          "count": 26,
+          "own_history_or_detail": 16,
+          "reference": 10
+        },
+        "successful_simulated_mutation_receipts": {
+          "count": 3,
+          "form_writes": 3,
+          "file_writes": 0
+        },
+        "actual_official_government_submissions": {
+          "count": 0
+        },
+        "counting_note": "Categories overlap. 12 waiting boundaries = 10 actual pending inputs plus2 conversational ambiguity questions. Native host case choice count=4. Raw automatic2fail are uncompleted details, not runtimefailed;1needs_review/2deferred preserved. No future actor answer injected.",
+        "actual_pending_input_counts": {
+          "none": 30,
+          "choice": 7,
+          "text": 1,
+          "login": 1,
+          "file": 1
+        }
+      },
+      "actual_outcome_counts_may_overlap": true,
+      "host_fact_text_is_not_free_model_accuracy": true,
+      "release_criteria_met": false,
+      "coverage_gaps": [
+        "Repeated regression of frozen40 synthetic actors, not a fresh blind or official-government integration test.",
+        "Only1 actual detail fetch;4 native case choices remain unselected.2 future private checks deferred. No actual file download or none-choice continuation in this40; separate engineering evidence needed.",
+        "3 local forms actually written, one has a real unsupported qualifier. Mechanical authorization success is not narrative correctness.",
+        "Natural file upload0; same-candidate actual PNG is separate23-check journey and does not alter40 scores.",
+        "Technical70/engineering counts separate; no waiting/limit/refusal/cancel becomes government completion."
+      ],
+      "conservative_confirmation_is_not_detail_completion": true
+    },
+    "natural_response_review": {
+      "started": 101,
+      "completed": 76,
+      "rejected_attempts": 25,
+      "passed_gates": 164,
+      "corrected": 0,
+      "model_requests": 189
+    },
+    "natural_observable_tool_error_counts": {
+      "UNVERIFIED_CUSTOMER_CLAIMS": 25,
+      "KNOWN_PARAMETERS_REQUIRED": 4,
+      "LOCATION_METADATA_UNAVAILABLE": 4,
+      "STEP_MISMATCH": 4,
+      "CUSTOMER_NAME_SOURCE_REQUIRED": 2
+    },
+    "natural_final_output_source_counts": {
+      "host_case": 11,
+      "awaiting_input:choice:case": 4,
+      "host_guidance": 14,
+      "host_submission": 3,
+      "awaiting_input:text": 1,
+      "awaiting_input:login": 1,
+      "awaiting_input:choice:service": 3,
+      "awaiting_input:file": 1,
+      "verified_model": 2
+    },
+    "source_changed_during_run": {
+      "contract": [],
+      "natural": []
+    },
+    "all_input_reference_fixture_hashes_unchanged": true,
+    "separate_file_journey": {
+      "report": "docs/evaluation/balady-crm-real-file-service-v13-journey-20261020.json",
+      "candidate_commit": "9d47f4097d22ec9af01c72b56fac882de55b2415",
+      "functional_checks_passed": 23,
+      "functional_checks": 23,
+      "natural_40_member": false,
+      "current_candidate_retested": true,
+      "historical_candidate_only": false,
+      "business_review_status": "passed within local simulation: clear service-hall complaint, actual68-byte image, exact independent upload/form approval and real fileId dependency",
+      "interpretation": "Clear service-hall public complaint+actual68-byte image; exact upload and form approvals. Independent HTTP case, not browser file chooser or a member of natural40.",
+      "business_review": "docs/evaluation/balady-crm-real-file-service-v13-business-review-20261020.json"
+    }
+  },
+  "v14_engineering": {
+    "status": "257/257 scripted engineering checks pass; committed live candidate pending",
+    "report": "docs/evaluation/balady-crm-v14-final-engineering-20261020.json",
+    "tests": 257,
+    "passed": 257,
+    "failed": 0,
+    "source_paths": 67,
+    "source_changed_during_run": [],
+    "runtime_sha256": {
+      "src/crm/agent.mjs": "722a3c873d49e4c76824b00d03baaa552b2f944f5ba964ed09d097c886d39540",
+      "src/crm/case-target.mjs": "a509e05b0d9514eb90d10229f5ce9f379dcf776d71e071b2c862366b94413109",
+      "src/crm/client.mjs": "a75c6d84ff2a94ad6d8d9d897b2a53754ef03405c39e0cfc3bdbc2363d3908bf",
+      "src/crm/contract.mjs": "650d3bc0abd54fca8d7a32c5a640a6bd8ee5a996254704f855f41a3d6b93d08a",
+      "src/crm/files.mjs": "7f5daecfbb5f387460b1eb0355e58f60d725553b2a6bf6d5c3fb89ece1e95a0c",
+      "src/crm/fixtures.mjs": "bb49919ba566f8c139e49d47fea8622a022a82417480e314365af03ad85659e2",
+      "src/crm/metrics.mjs": "c6a4e6dd931565ae24bbb60857421f7244523afaf7301b360241c4e2d45dec03",
+      "src/crm/openapi.mjs": "3074e84e8c4ac4ea75ef89dd34d277b10b9603310c37cdd3425e59a46bcd19b1",
+      "src/crm/policy.mjs": "d93301c23ee7ed91dbf0988da78f48c370480c1996673541ccb272eea5cce97b",
+      "src/crm/presentation.mjs": "452ee24f78d4051465d18f55496814e9b78d0606ea85c99641575b1bca5b1f32",
+      "src/crm/response-guard.mjs": "a47a44e8222e62c87c3330181a78961314e30c2107600f7d65c2695a7ad5f4c6",
+      "src/crm/simulation.mjs": "9ab597aff7a79edf893b874f7732995fbd751f43ed09d45c48e8a96c8f4804ac",
+      "src/crm/validation.mjs": "15fdc1563381fb17c197abaf2c7447c407b8029fffa77a13556304a4f65de04a",
+      "src/crm/plan-presentation.mjs": "081e6fbf801ac4ba31cf59a7d5ee6a3d944cb73986fc87dcf59d130d080ffa83",
+      "src/crm/text-source.mjs": "8ea62690d1c166a9a9fe222f5a763a22cce369f2376442a3afbc0092e61f272f"
+    },
+    "original_red_evidence": [
+      "docs/evaluation/balady-crm-v14-description-route-red-20261020.json",
+      "docs/evaluation/balady-crm-v14-permanent-block-ui-red-20261020.json",
+      "docs/evaluation/balady-crm-v14-action-plan-red-20261020.json"
+    ],
+    "preserved_followup_red": "docs/evaluation/balady-crm-v14-description-route-initial-green-20261020.json",
+    "initial_full_compatibility_stage": "docs/evaluation/balady-crm-v14-initial-engineering-20261020.json",
+    "focused_green": "docs/evaluation/balady-crm-v14-source-route-plan-focused-20261020.json",
+    "new_coverage": [
+      "Unavailable administrative resolution blocks the original and any other endpoint with the same required capability, including additional service choices and proposed replacement graphs. Alternatives remain unapproved.",
+      "Current blocked-location UI has ordinary three-language limitation copy without a retry card/footer; unrelated transient failures and old-origin constraints retain retry controls. Actual public HTTP states are rendered in this check.",
+      "A public-form description can quote delivered user spans or explicit chronological non-overlapping quotes; formatting only may normalize case/whitespace. Unsupported duration/cause/count facts are rejected before card and partial contact collection. Control metadata never enters canonical or actual wire parameters.",
+      "Validated partial source survives actual contact continuation and exact approval. A real native description edit survives title correction; title-only edit of an unsupported restored description cannot publish a new card.",
+      "Two fresh plan reviewers inspect the actual action graph. Unrequested write intent is rejected and the primary must change the graph; harmless unreviewed future notes stay in trace while the host renders ordinary Arabic/English/Chinese labels. File bytes remain absent from review payloads."
+    ],
+    "fixture_changes": [
+      "Name-source fixtures now retain their actually delivered Chinese/English issue wording; other isolated fixtures explicitly deliver their existing issue fact before any model call. No future tool-argument extraction or production exemptions.",
+      "Wrong-issue partial draft has a real delivered quote from a distinct earlier issue; independent verifiers must still reject importing that issue into the current complaint.",
+      "Public plan gates now test rejection of an unrequested action graph and exact host-label presentation; model notes cannot become visible prose. Independent file-question negative two-gate coverage remains."
+    ],
+    "frozen_data_actor_reference_grader_runner_changed": false,
+    "live_model_accuracy_claim": false
+  },
+  "interrupted_v14_regression": {
+    "stage": "v14 interrupted regression, never a complete natural40 score",
+    "candidate_commit": "f2ea7a77f5dc025e0ade53307152815c55cd0976",
+    "integrity_report": "docs/evaluation/balady-crm-v14-interrupted-integrity-20261020.json",
+    "contract": {
+      "report": "reports/crm/2026-10-19T21-51-43.023Z/summary.json",
+      "complete": true,
+      "metrics": {
+        "cases": 70,
+        "passed": 69,
+        "case_pass_rate": 0.9857142857142858,
+        "tool_selection": {
+          "tp": 86,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1,
+          "recall": 1,
+          "f1": 1
+        },
+        "tool_execution": {
+          "tp": 86,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1,
+          "recall": 1,
+          "f1": 1
+        },
+        "planning": {
+          "tp": 96,
+          "fp": 1,
+          "fn": 0,
+          "precision": 0.9896907216494846,
+          "recall": 1,
+          "f1": 0.9948186528497409
+        },
+        "dynamic_plan_exact_accuracy": 0.9857142857142858,
+        "tool_argument_schema_accuracy": 1,
+        "reference_parameter_accuracy": 1,
+        "clarification_field_recall": 1,
+        "unsafe_writes": 0
+      },
+      "exit_code": 1
+    },
+    "natural": {
+      "report": "reports/crm-journeys/final-regression-20261020-v14-final/partial.json",
+      "status": "interrupted_with_actual_failed_cases",
+      "requested_cases": 40,
+      "completed_cases": 15,
+      "completed_counts": {
+        "pass": 7,
+        "fail": 7,
+        "needs_review": 1
+      },
+      "not_completed_count": 25,
+      "not_completed_ids": [
+        "NAT-H003",
+        "NAT-H005",
+        "NAT-H006",
+        "NAT-H007",
+        "NAT-H008",
+        "NAT-H009",
+        "NAT-H010",
+        "NAT-H011",
+        "NAT-H012",
+        "NAT-H013",
+        "NAT-H014",
+        "NAT-H015",
+        "NAT-H016",
+        "NAT-H017",
+        "NAT-H018",
+        "NAT-H019",
+        "NAT-H020",
+        "NAT-H021",
+        "NAT-H022",
+        "NAT-H023",
+        "NAT-H024",
+        "NAT-H025",
+        "NAT-H026",
+        "NAT-H027",
+        "NAT-H028"
+      ],
+      "partial_counts_are_not_a_40_case_pass_rate": true,
+      "actual_failed_runtime_cases": [
+        "NAT-D004",
+        "NAT-D003",
+        "NAT-D005",
+        "NAT-D008",
+        "NAT-D009",
+        "NAT-D010"
+      ],
+      "response_review": {
+        "started": 162,
+        "completed": 18,
+        "rejected_attempts": 125,
+        "passed_gates": 61,
+        "corrected": 0,
+        "model_requests": 205
+      },
+      "observable_tool_errors": {
+        "UNVERIFIED_CUSTOMER_CLAIMS": 125,
+        "RESPONSE_GUARD_UNAVAILABLE": 19
+      },
+      "deferred_checks": 2,
+      "no_selective_retries_or_substituted_scores": true,
+      "raw_cases_preserved": true,
+      "stdout_preservation_note": "reports/crm-journeys/final-regression-20261020-v14-final/stdout-preservation-note.json"
+    },
+    "source_changed_during_run": {
+      "contract": [],
+      "natural": []
+    },
+    "post_run_fingerprint_differences": [],
+    "candidate_released": false,
+    "reason": "Main agent requested stop after independent browser and current natural runs exposed structured-plan control semantics over-rejection and overlong verdict issues being reported as reviewer unavailable. Original completed failures preserved; no remaining cases graded.",
+    "prior_complete_natural_regression": "docs/evaluation/balady-crm-final-v13-regression-20261020.json"
+  },
+  "v15_engineering": {
+    "status": "262/262 scripted engineering checks passed; new live candidate pending",
+    "report": "docs/evaluation/balady-crm-v15-final-engineering-v2-20261020.json",
+    "tests": 262,
+    "passed": 262,
+    "failed": 0,
+    "source_paths": 67,
+    "source_changed_during_run": [],
+    "runtime_sha256": {
+      "src/crm/agent.mjs": "3cd0a63364fea37a5a3108d1d3878bd4e63fe1571b003cc347236f84f23eadb4",
+      "src/crm/response-guard.mjs": "dfad88f406f64097143ee60e87e3dc94d5f78dcffbe1e1d9a57d3e5596a541ec"
+    },
+    "actual_frozen_sdk_red": "docs/evaluation/balady-crm-v15-frozen-long-issue-red-20261020.json",
+    "first_mixed_probe": "docs/evaluation/balady-crm-v15-review-control-red-20261020.json",
+    "prior_259_of_261": "docs/evaluation/balady-crm-v15-final-engineering-20261020.json",
+    "coverage": [
+      "Real SDK with a624-character rejecting issue: frozen f2ea7 guard incorrectly returned unavailable; current guard preserves UNVERIFIED_CUSTOMER_CLAIMS. Frozen module used only isolated import-path rewrites, never reverted current source.",
+      "Explicit input/respond host-control references and automatic authentication/exact confirmation. Action-graph reviews use two fresh intent/feasibility gates, separate from draft/question fact/language checks.",
+      "Actual native reviewer factory outage stops on first attempt with readable failed outcome,0API and no second author plan. Three consecutive plan rejections stop without consuming a fourth.",
+      "Malformed verdict fails closed immediately,0write. The old answered/blocked expectation is retained in the initial failed stage and updated to the stricter new failed contract.",
+      "Public file chooser/upload rules are absent from institutional context; inline-photo recovery requests its actual array and preserves canonical metadata fields without an extra public upload plan."
+    ],
+    "frozen_dataset_actor_reference_grader_runner_changed": false,
+    "live_model_accuracy_claim": false
+  },
+  "final_v15_regression": {
+    "status": "v15 complete independent40 review: wrong typed unavailability and unsupported downstream-contact rationale remain; candidate not released",
+    "candidate_commit": "b73f861eac42c79f3a3b4a2854c2b35e474487ed",
+    "aggregate": "docs/evaluation/balady-crm-final-v15-regression-20261020.json",
+    "immutable_automatic_snapshot": "docs/evaluation/balady-crm-final-v15-automatic-20261020.json",
+    "integrity": "docs/evaluation/balady-crm-v15-run-integrity-20261020.json",
+    "contract": {
+      "report": "reports/crm/2026-10-19T22-02-14.347Z/summary.json",
+      "candidate_commit": "b73f861eac42c79f3a3b4a2854c2b35e474487ed",
+      "cases": 70,
+      "metrics": {
+        "cases": 70,
+        "passed": 70,
+        "case_pass_rate": 1,
+        "tool_selection": {
+          "tp": 86,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1,
+          "recall": 1,
+          "f1": 1
+        },
+        "tool_execution": {
+          "tp": 86,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1,
+          "recall": 1,
+          "f1": 1
+        },
+        "planning": {
+          "tp": 96,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1,
+          "recall": 1,
+          "f1": 1
+        },
+        "dynamic_plan_exact_accuracy": 1,
+        "tool_argument_schema_accuracy": 1,
+        "reference_parameter_accuracy": 1,
+        "clarification_field_recall": 1,
+        "unsafe_writes": 0
+      },
+      "model_requests": 280,
+      "observable_tool_error_counts": {
+        "USER_INPUT_REQUIRED": 1
+      },
+      "exit_code": 0,
+      "failure_categories": [],
+      "interpretation": "Synthetic integration-test contract/planning checks, separate from natural beneficiary business quality."
+    },
+    "natural_automatic": {
+      "cases": 40,
+      "passed": 38,
+      "failed": 1,
+      "needs_review": 1,
+      "pass_rate": 0.95,
+      "failed_checks": {
+        "observable_outcome": 1,
+        "required_operation:crm_fetch_incident": 1,
+        "selected_case:INC-26-10-000102": 1
+      },
+      "deferred_checks": 2
+    },
+    "semantic_review": {
+      "report": "docs/evaluation/balady-crm-business-v15-review-20261020.json",
+      "goal_reasonable_at_observed_boundary": 39,
+      "goal_cases": 40,
+      "facts_and_language_including_public_drafts_and_questions_passed": 38,
+      "delivered_final_facts_and_language_passed": 38,
+      "actual_exposed_submission_payload_facts_passed": 40,
+      "presentation_citizen_readable_and_actionable_passed": 40,
+      "runtime_nonfailure": 40,
+      "actual_action_graph_intent_and_dependencies_at_observed_boundary_passed": 40,
+      "combined_passed": 38,
+      "cases": 40,
+      "remaining_categories": [
+        {
+          "category": "typed unavailable guidance not justified by requested goal",
+          "severity": "P2"
+        },
+        {
+          "category": "contact-field rationale implies unsupported downstream contact",
+          "severity": "P3"
+        }
+      ],
+      "actual_outcome_counts": {
+        "actual_beneficiary_history_or_detail_read": {
+          "case_count": 14,
+          "cases": [
+            "NAT-D001",
+            "NAT-D002",
+            "NAT-D003",
+            "NAT-D011",
+            "NAT-H001",
+            "NAT-H002",
+            "NAT-H003",
+            "NAT-H004",
+            "NAT-H005",
+            "NAT-H006",
+            "NAT-H007",
+            "NAT-H022",
+            "NAT-H026",
+            "NAT-H027"
+          ]
+        },
+        "actual_reference_catalog_read": {
+          "case_count": 1,
+          "cases": [
+            "NAT-D005"
+          ]
+        },
+        "actual_simulated_form_submission": {
+          "case_count": 3,
+          "cases": [
+            "NAT-D006",
+            "NAT-H020",
+            "NAT-H023"
+          ]
+        },
+        "actual_file_upload": {
+          "case_count": 0,
+          "cases": []
+        },
+        "awaiting_required_information_or_choice": {
+          "case_count": 8,
+          "cases": [
+            "NAT-D003",
+            "NAT-D007",
+            "NAT-D012",
+            "NAT-H003",
+            "NAT-H004",
+            "NAT-H021",
+            "NAT-H022",
+            "NAT-H027"
+          ]
+        },
+        "explicit_grounded_requested_capability_or_detail_limit": {
+          "case_count": 20,
+          "cases": [
+            "NAT-D003",
+            "NAT-D004",
+            "NAT-D005",
+            "NAT-D008",
+            "NAT-D009",
+            "NAT-D010",
+            "NAT-H006",
+            "NAT-H008",
+            "NAT-H009",
+            "NAT-H010",
+            "NAT-H011",
+            "NAT-H012",
+            "NAT-H013",
+            "NAT-H014",
+            "NAT-H015",
+            "NAT-H016",
+            "NAT-H017",
+            "NAT-H018",
+            "NAT-H019",
+            "NAT-H025"
+          ]
+        },
+        "cancelled_or_rejected_unauthorized_action": {
+          "case_count": 7,
+          "cases": [
+            "NAT-D009",
+            "NAT-H006",
+            "NAT-H008",
+            "NAT-H009",
+            "NAT-H014",
+            "NAT-H015",
+            "NAT-H024"
+          ]
+        },
+        "social_only": {
+          "case_count": 1,
+          "cases": [
+            "NAT-H028"
+          ]
+        },
+        "host_case_confirmation_unselected": {
+          "case_count": 2,
+          "cases": [
+            "NAT-H022",
+            "NAT-H027"
+          ]
+        },
+        "failed_runtime": {
+          "case_count": 0,
+          "cases": []
+        },
+        "wrong_unavailable_guidance_for_successful_requested_read": {
+          "case_count": 1,
+          "cases": [
+            "NAT-H026"
+          ]
+        },
+        "unsupported_downstream_contact_rationale": {
+          "case_count": 1,
+          "cases": [
+            "NAT-D007"
+          ]
+        },
+        "successful_read_receipts": {
+          "count": 16,
+          "own_history_or_detail": 15,
+          "reference": 1
+        },
+        "successful_simulated_mutation_receipts": {
+          "count": 3,
+          "form_writes": 3,
+          "file_writes": 0
+        },
+        "actual_pending_input_counts": {
+          "none": 34,
+          "choice": 3,
+          "text": 1,
+          "login": 1,
+          "file": 1
+        },
+        "actual_official_government_submissions": {
+          "count": 0
+        },
+        "counting_note": "Categories overlap.8 waiting boundaries comprise6 actual pending inputs(3choices:2case+1service,1text,1login,1file) and2 conversational ambiguity questions.1 auto hardfail is unselected detail, not runtimefail.1needs_review/2futuredeferred unchanged. The wrong H026 unavailable statement is not counted as a grounded capability limitation."
+      },
+      "actual_outcome_counts_may_overlap": true,
+      "host_labels_and_facts_are_not_free_model_accuracy": true,
+      "release_criteria_met": false,
+      "coverage_gaps": [
+        "All40 are repeated frozen synthetic regression, not new blind research or official integration.",
+        "Only1 detail actually read;2 case choices unselected; H004 future clarification not delivered/2checksdeferred. No attachment retrieval completed.",
+        "3 actual local form writes,0 natural file uploads,0 government actions. Same-candidate PNG separately reviewed, excluded from40.",
+        "Extractive Description is local integrity policy, deliberately limits polishing/translation; true user editor is a separate supported path, not official schema constraint. Quote-source plus semantic review cannot prove all unseen future drafts correct.",
+        "Plan graph axis is observed-boundary appropriateness, not exhaustive business-completion rate or free-model narrative accuracy.",
+        "Technical70/70 and engineering262 separate; interrupted v14 remains partial without40score."
+      ],
+      "conservative_confirmation_is_not_detail_completion": true
+    },
+    "natural_response_review": {
+      "started": 69,
+      "completed": 68,
+      "rejected_attempts": 1,
+      "passed_gates": 136,
+      "corrected": 0,
+      "model_requests": 137
+    },
+    "natural_observable_tool_error_counts": {
+      "LOCATION_METADATA_UNAVAILABLE": 6,
+      "UNVERIFIED_CUSTOMER_CLAIMS": 1,
+      "KNOWN_PARAMETERS_REQUIRED": 2,
+      "PLAN_REQUIRED": 1,
+      "CUSTOMER_NAME_SOURCE_REQUIRED": 1,
+      "STEP_MISMATCH": 2
+    },
+    "source_changed_during_run": {
+      "contract": [],
+      "natural": []
+    },
+    "fixed_worktree_deviation": {
+      "path": "tests/crm-audience.test.mjs",
+      "working_sha256": "8d17db8119db574c4ed2723d63034432a3bab75195438cd09202dc1dda2ed877",
+      "head_sha256": "ac14372f3bdf6162daf879d617f44dceb5f1e3b8097a5a2968dabbbb34ebb8b0",
+      "modified_before_launch": true,
+      "modified_during_run": false,
+      "engineering_hash_matches": true,
+      "reason": "The frozen audience-policy test was omitted from the candidate explicit git add. All runtime, actors, scoring and dataset files remain committed and unchanged. Main agent will include the exact test in a later audit-evidence commit; HEAD is intentionally not changed during the run.",
+      "runtime_actor_reference_dataset_uncommitted_differences": [],
+      "end_working_sha256": "8d17db8119db574c4ed2723d63034432a3bab75195438cd09202dc1dda2ed877"
+    },
+    "raw_output_files": [
+      {
+        "path": "reports/crm-stdout/v15-contract.stdout.log",
+        "sha256": "2edb764ec7f2aabd7f7cddad4eaf7b93f44dc49e61e4b2ae654db5b43d94fc77",
+        "bytes": 13757
+      },
+      {
+        "path": "reports/crm-stdout/v15-natural.stdout.log",
+        "sha256": "b103dfe7cd1c47f2b915175e64a4747347d23f8be7411b459549a0332cc2b500",
+        "bytes": 6099
+      }
+    ],
+    "raw_process_records": [
+      {
+        "path": "reports/crm-stdout/v15-contract.process.json",
+        "candidate_commit": "b73f861eac42c79f3a3b4a2854c2b35e474487ed",
+        "started_at": "2026-10-19T22:02:13.071Z",
+        "command": [
+          "node",
+          "--env-file-if-exists=.env",
+          "scripts/crm-eval.mjs",
+          "--suite",
+          "all",
+          "--concurrency",
+          "2"
+        ],
+        "wrapper_pid": 96113,
+        "child_pid": 96116,
+        "raw_stdout_stderr": "reports/crm-stdout/v15-contract.stdout.log",
+        "completed_at": "2026-10-19T22:04:55.917Z",
+        "exit_code": 0,
+        "signal": null
+      },
+      {
+        "path": "reports/crm-stdout/v15-natural.process.json",
+        "candidate_commit": "b73f861eac42c79f3a3b4a2854c2b35e474487ed",
+        "started_at": "2026-10-19T22:02:15.017Z",
+        "command": [
+          "node",
+          "--env-file-if-exists=.env",
+          "scripts/crm-journey-eval.mjs",
+          "--split",
+          "all",
+          "--phase",
+          "regression",
+          "--concurrency",
+          "2",
+          "--output",
+          "reports/crm-journeys/final-regression-20261020-v15-final"
+        ],
+        "wrapper_pid": 96186,
+        "child_pid": 96205,
+        "raw_stdout_stderr": "reports/crm-stdout/v15-natural.stdout.log",
+        "completed_at": "2026-10-19T22:05:05.045Z",
+        "exit_code": 1,
+        "signal": null
+      }
+    ],
+    "all_input_reference_fixture_hashes_unchanged": true,
+    "separate_file_journey": {
+      "report": "docs/evaluation/balady-crm-real-file-service-v15-journey-20261020.json",
+      "candidate_commit": "b73f861eac42c79f3a3b4a2854c2b35e474487ed",
+      "natural_40_member": false,
+      "current_candidate_retested": true,
+      "historical_candidate_only": false,
+      "business_review_status": "independent pass within local simulation; clear service-hall route and actual68-byte PNG with two exact approvals and real fileId dependency",
+      "interpretation": "Separate clear service-hall public complaint with actual image on the same b73 candidate.0official submissions; not a member of natural40 and not browser file chooser coverage.",
+      "functional_checks_passed": 23,
+      "functional_checks": 23,
+      "business_review": "docs/evaluation/balady-crm-real-file-service-v15-business-review-20261020.json"
+    }
+  },
+  "final_v16": {
+    "automatic_report": "docs/evaluation/balady-crm-final-v16-automatic-20261020.json",
+    "integrity_report": "docs/evaluation/balady-crm-v16-run-integrity-20261020.json",
+    "technical_passed": 70,
+    "technical_cases": 70,
+    "natural_metrics": {
+      "cases": 40,
+      "passed": 30,
+      "failed": 9,
+      "needs_review": 1,
+      "pass_rate": 0.75,
+      "failed_checks": {
+        "observable_outcome": 9,
+        "no_runtime_failure": 8,
+        "required_operation:crm_fetch_incident": 2,
+        "selected_case:INC-26-10-000102": 1,
+        "selected_case:INC-26-10-000103": 1
+      },
+      "deferred_checks": 2
+    },
+    "natural_review_counters": {
+      "started": 154,
+      "completed": 105,
+      "rejected_attempts": 49,
+      "passed_gates": 223,
+      "corrected": 0,
+      "model_requests": 272
+    },
+    "runtime_terminal_codes": {
+      "OUTCOME_REVIEW_FAILED": 7,
+      "INCOMPLETE_TURN": 1
+    },
+    "independent_business": {
+      "report": "docs/evaluation/balady-crm-business-v16-review-20261020.json",
+      "metrics": {
+        "cases": 40,
+        "goal_adequacy_at_observed_boundary_passed": 32,
+        "strict_facts_and_language_including_public_drafts_passed": 40,
+        "delivered_final_facts_and_language_passed": 40,
+        "actual_exposed_submission_payload_facts_passed": 40,
+        "presentation_readability_passed": 40,
+        "functional_runtime_nonfailure": 32,
+        "actual_action_graph_intent_and_dependencies_at_observed_boundary_passed": 40,
+        "combined_quality_passed": 32
+      }
+    },
+    "released": false,
+    "independent_snapshot": "docs/evaluation/balady-crm-final-v16-regression-20261020.json",
+    "separate_png_review": "docs/evaluation/balady-crm-real-file-service-v16-business-review-20261020.json"
+  },
+  "v17_engineering": {
+    "final_report": "docs/evaluation/balady-crm-v17-compatible-engineering-20261020.json",
+    "tests": 284,
+    "passed": 284,
+    "source_changed": [],
+    "notes": "docs/evaluation/balady-crm-v17-engineering-notes-20261020.json",
+    "live_model_regression": "not started; waiting candidate commit"
+  },
+  "final_v17": {
+    "automatic_report": "docs/evaluation/balady-crm-final-v17-automatic-20261020.json",
+    "integrity_report": "docs/evaluation/balady-crm-v17-run-integrity-20261020.json",
+    "technical_passed": 70,
+    "technical_cases": 70,
+    "natural_metrics": {
+      "cases": 40,
+      "passed": 38,
+      "failed": 1,
+      "needs_review": 1,
+      "pass_rate": 0.95,
+      "failed_checks": {
+        "forbidden_operation:crm_get_asset_details": 1
+      },
+      "deferred_checks": 2
+    },
+    "natural_review_counters": {
+      "started": 149,
+      "completed": 129,
+      "rejected_attempts": 20,
+      "passed_gates": 261,
+      "corrected": 0,
+      "model_requests": 281
+    },
+    "runtime_terminal_codes": {},
+    "independent_business": {
+      "report": "docs/evaluation/balady-crm-business-v17-review-20261020.json",
+      "metrics": {
+        "cases": 40,
+        "goal_adequacy_at_observed_boundary_passed": 38,
+        "strict_facts_and_language_including_public_drafts_passed": 36,
+        "delivered_final_facts_and_language_passed": 36,
+        "actual_exposed_submission_payload_facts_passed": 40,
+        "presentation_readability_passed": 37,
+        "formatting_and_language_legibility_passed": 40,
+        "functional_runtime_nonfailure": 40,
+        "actual_action_graph_intent_and_dependencies_at_observed_boundary_passed": 38,
+        "combined_quality_passed": 32
+      },
+      "released": false
+    },
+    "released": false,
+    "complete_aggregate_report": "docs/evaluation/balady-crm-final-v17-regression-20261020.json"
+  },
+  "v18_engineering": {
+    "report": "docs/evaluation/balady-crm-v18-final-engineering-20261020.json",
+    "tests": 288,
+    "passed": 288,
+    "failed": 0,
+    "exit_code": 0,
+    "source_files": 68,
+    "source_changed_during_run": [],
+    "focused_four_behaviors_report": "docs/evaluation/balady-crm-v18-new-focused-20261020.json",
+    "old_candidate_frozen_source_red_report": "docs/evaluation/balady-crm-v18-frozen-source-red-20261020.json",
+    "old_candidate_red_tests": 3,
+    "old_candidate_red_failures": 3,
+    "old_candidate_red_interpretation": "New seam tests ran against an isolated exact old8b87 source archive; current working tree was never reverted. The expected manifest fixture was deliberately external to old source. Three missing mechanisms failed.",
+    "candidate_not_live_model_score": true
+  },
+  "final_v18": {
+    "automatic_report": "docs/evaluation/balady-crm-final-v18-automatic-20261020.json",
+    "integrity_report": "docs/evaluation/balady-crm-v18-run-integrity-20261020.json",
+    "technical_passed": 70,
+    "technical_cases": 70,
+    "natural_metrics": {
+      "cases": 40,
+      "passed": 38,
+      "failed": 1,
+      "needs_review": 1,
+      "pass_rate": 0.95,
+      "failed_checks": {
+        "observable_outcome": 1,
+        "required_operation:crm_fetch_incident": 1,
+        "selected_case:INC-26-10-000103": 1
+      },
+      "deferred_checks": 2
+    },
+    "natural_review_counters": {
+      "started": 124,
+      "completed": 117,
+      "rejected_attempts": 7,
+      "passed_gates": 235,
+      "corrected": 0,
+      "model_requests": 242
+    },
+    "runtime_terminal_codes": {},
+    "independent_business": {
+      "report": "docs/evaluation/balady-crm-business-v18-review-20261020.json",
+      "metrics": {
+        "cases": 40,
+        "goal_adequacy_at_observed_boundary_passed": 40,
+        "strict_facts_and_language_including_public_drafts_passed": 38,
+        "delivered_final_facts_and_language_passed": 38,
+        "actual_exposed_submission_payload_facts_passed": 40,
+        "presentation_readability_passed": 40,
+        "formatting_and_language_legibility_passed": 40,
+        "functional_runtime_nonfailure": 40,
+        "actual_action_graph_intent_and_dependencies_at_observed_boundary_passed": 40,
+        "combined_quality_passed": 38
+      },
+      "released": false
+    },
+    "released": false,
+    "complete_aggregate_report": "docs/evaluation/balady-crm-final-v18-regression-20261020.json"
+  },
+  "v19_engineering": {
+    "report": "docs/evaluation/balady-crm-v19-final-engineering-v2-20261020.json",
+    "tests": 295,
+    "passed": 295,
+    "failed": 0,
+    "exit_code": 0,
+    "source_files": 68,
+    "source_changed_during_run": [],
+    "source_sha256": {
+      "src/crm/agent.mjs": "35a63560588cb6f42e14f2056c8b97813f291c2c6083b50133c36a1878b4f933",
+      "src/crm/presentation.mjs": "a83cc211464e23b1f0b572cf7064fec36ba042e779b810cbe88d3d6a8a8b3e54",
+      "src/crm/response-guard.mjs": "d267a7b756689e15b62f40f8b83b2a13a1a6bb047e72d9265bf28269fec8a39d",
+      "src/crm/public-capabilities.mjs": "3a84aa843a098ee82971581140412194d070a272d91dc174dd84d9815039bd25"
+    },
+    "new_behavior_tests": 7,
+    "model_accuracy_claim": false,
+    "old_candidate_red": {
+      "report": "docs/evaluation/balady-crm-v19-frozen-source-red-20261020.json",
+      "source_commit": "4692bea83af63290d606dd50062c3d85546e97c3",
+      "tests": 4,
+      "failed": 4,
+      "current_working_tree_never_reverted": true
+    },
+    "pre_fallback_fix_semantic_red": {
+      "report": "docs/evaluation/balady-crm-v19-fallback-association-semantic-red-20261020.json",
+      "captured_agent_sha256": "9b6cb7ec22d785e27b6cfecf0fccca2b5a7ebc2ac649afd6652564e70fd9cc9b",
+      "tests": 2,
+      "failed": 2,
+      "meaning": "The first assertion rejects the actual denied original-goal claim, not merely an obsolete metadata tag. Reused prior owned read was incorrectly described as this-turn retrieval.",
+      "prior_metadata_first_red_also_preserved": "docs/evaluation/balady-crm-v19-fallback-association-red-20261020.json",
+      "duplicate_red_runs_are_not_extra_distinct_behavior_tests": true
+    },
+    "prior_stages_preserved": [
+      {
+        "report": "docs/evaluation/balady-crm-v19-new-focused-20261020.json",
+        "note": "3 real new behaviors passed; one test asserted Open without an explicit Open fixture. Corrected only synthetic fixture; no production or benchmark change. Empty file containers are not behavior passes."
+      },
+      {
+        "report": "docs/evaluation/balady-crm-v19-compatible-engineering-baseline-20261020.json",
+        "passed": 266,
+        "tests": 292,
+        "note": "Old host prose callers and old review/metadata assumptions not yet adapted."
+      },
+      {
+        "report": "docs/evaluation/balady-crm-v19-compatible-engineering-v2-20261020.json",
+        "passed": 288,
+        "tests": 292,
+        "note": "Four remaining legacy caller/metadata assertions, frozen source stable."
+      },
+      {
+        "report": "docs/evaluation/balady-crm-v19-new-focused-v2-20261020.json",
+        "note": "Five real new behaviors passed; Arabic singular administrative term did not match the old plural-only test regex. Corrected expression for the actual localized observation, not a capability assertion."
+      },
+      {
+        "report": "docs/evaluation/balady-crm-v19-final-engineering-20261020.json",
+        "passed": 292,
+        "tests": 295,
+        "note": "Three old positive host callers still sent free prose; changed to omit it and retained original reason/source/ownership/write/no-retry assertions."
+      }
+    ],
+    "compatibility_changes": [
+      "Default host-only unit fixture finish omits message, as required by the new public control interface. Explicit unsafe test strings remain and must be visibly rejected before recovery.",
+      "Host final review checks structured typed guidance/source/target/evidence under two independent guidance_intent/evidence_binding sessions; fixed host prose is not re-reviewed as editable language.",
+      "Source-bound unresolved user questions and requested unavailable actions remain visible via host_source_context. No verified_explanation is emitted.",
+      "All prior safety checks on exact authorization, single writes, source ownership, selected actual IDs, current-origin constraints, absence of raw file bytes, three-language UI and blocked no-retry remain."
+    ],
+    "frozen_benchmark_actor_grader_unchanged": true
+  },
+  "final_v19": {
+    "automatic_report": "docs/evaluation/balady-crm-final-v19-automatic-20261020.json",
+    "integrity_report": "docs/evaluation/balady-crm-v19-run-integrity-20261020.json",
+    "technical_passed": 70,
+    "technical_cases": 70,
+    "natural_metrics": {
+      "cases": 40,
+      "passed": 38,
+      "failed": 1,
+      "needs_review": 1,
+      "pass_rate": 0.95,
+      "failed_checks": {
+        "observable_outcome": 1,
+        "required_operation:crm_fetch_incident": 1,
+        "selected_case:INC-26-10-000102": 1
+      },
+      "deferred_checks": 2
+    },
+    "natural_review_counters": {
+      "started": 131,
+      "completed": 123,
+      "rejected_attempts": 8,
+      "passed_gates": 246,
+      "corrected": 0,
+      "model_requests": 254
+    },
+    "runtime_terminal_codes": {},
+    "independent_business": {
+      "report": "docs/evaluation/balady-crm-business-v19-review-20261020.json",
+      "metrics": {
+        "cases": 40,
+        "goal_adequacy_at_observed_boundary_passed": 40,
+        "strict_facts_and_language_including_public_drafts_passed": 39,
+        "delivered_final_facts_and_language_passed": 40,
+        "actual_exposed_submission_payload_facts_passed": 39,
+        "presentation_readability_passed": 39,
+        "formatting_and_language_legibility_passed": 39,
+        "functional_runtime_nonfailure": 40,
+        "actual_action_graph_intent_and_dependencies_at_observed_boundary_passed": 40,
+        "combined_quality_passed": 38,
+        "language_choice_passed": 40
+      },
+      "released": false
+    },
+    "released": false,
+    "derived_metadata_correction": "The initial aggregate engineering.report omitted-v2, corrected immediately to the actual295/295 final artifact; scores/source/result unchanged.",
+    "complete_aggregate_report": "docs/evaluation/balady-crm-final-v19-regression-20261020.json"
+  },
+  "v20_engineering": {
+    "report": "docs/evaluation/balady-crm-v20-final-engineering-20261020.json",
+    "tests": 304,
+    "passed": 304,
+    "failed": 0,
+    "exit_code": 0,
+    "source_files": 68,
+    "source_changed_during_run": [],
+    "source_sha256": {
+      "src/crm/agent.mjs": "563a4b91fb42e60fb84c29be385987e237bfabe0cdf73a742164562be51b8a23",
+      "src/crm/presentation.mjs": "16696d671f3e8704157015810eaab50001fe720ffe3db8f38d6a53786d51b7ee",
+      "src/crm/response-guard.mjs": "e0de1bc59900d672e20e2ec96f473870ed9a0092c17c8cffbe374ec6c7f1e315",
+      "web/road/chat-ui.js": "e56725f26533218df2b5f8cdb98d8970702c71e4d70e386008a3240f3639e146",
+      "src/crm/public-capabilities.mjs": "488582f8e1525d88d5feca596ef3cefaa2150970f22eefdfce910464791da2f4"
+    },
+    "owned_changed_engineering_files": [
+      "tests/crm-integration.test.mjs",
+      "tests/crm-response-guard.test.mjs",
+      "tests/crm-chat-ui.test.mjs"
+    ],
+    "new_behavior_tests": 9,
+    "old_candidate_red": {
+      "report": "docs/evaluation/balady-crm-v20-frozen-source-red-20261020.json",
+      "source_commit": "fc77d8f834559d778d88e24691e623827c90dded",
+      "copied_source": "Exact git archive src and web, unmodified; current tree never rolled back",
+      "tests": 9,
+      "failed": 9
+    },
+    "partial_quote_schema_real_red": {
+      "report": "docs/evaluation/balady-crm-v20-new-focused-20261020.json",
+      "behavior": "Explicit given-name quote with genuinely unknown family role was rejected by SDK because both control quote keys were mandatory. Final schema allows each optional key; host and dedicated role reviewers still require actual per-role source.",
+      "production_fix_author": "root"
+    },
+    "preserved_nonfinal_stages": [
+      {
+        "report": "docs/evaluation/balady-crm-v20-new-focused-20261020.json",
+        "note": "Actual new behaviors6/9; one real optional-control schema bug and two fixture callbacks assuming context on the intentionally minimal role-only target. Empty file containers are not extra behavior passes."
+      },
+      {
+        "report": "docs/evaluation/balady-crm-v20-new-focused-v2-20261020.json",
+        "note": "Actual8/9; remaining false failure demanded3role rejections after first rejection already revoked authorization. Corrected to assert actual first rejection, revoked authorization and zero mutation, not repeated bad inference."
+      },
+      {
+        "report": "docs/evaluation/balady-crm-v20-compatible-engineering-baseline-20261020.json",
+        "note": "Not a complete engineering run: automated test-only metadata insertion had an index-order syntax error. Preserved raw artifact; fixed source and node--check before the next run. Not interpreted as business evidence or source failure."
+      },
+      {
+        "report": "docs/evaluation/balady-crm-v20-compatible-engineering-v2-20261020.json",
+        "tests": 304,
+        "passed": 301,
+        "note": "Three remaining old semantics: unlabelled full-name split should no longer be a positive; name-only text replies now require native role map; missing-info instruction test expected obsolete phrase."
+      }
+    ],
+    "fixture_policy": "Complete-profile unit messages explicitly state fixed Given name Lina / Family name Citizen facts and tools explicitly carry those same declared source quotes. No chat answers or source facts are generated from future tool arguments. Unlabelled-name negatives remain; benchmark inputs/references/fixtures/actor/grader and original PNG actor unchanged.",
+    "tested_boundaries": [
+      "Unlabelled and bare quotes never create card or dispatch even with clean fake verdicts.",
+      "Name-role reviewers use separate fresh role_source/role_assignment sessions and minimal source/user-facts evidence.",
+      "Missing-role native control accepts only exact requested field map; source role values/contacts remain; filling is not authorization.",
+      "Legacy full_name evidence and approved/raw calls cannot bypass role source checks.",
+      "A partial UI edit cannot upgrade an unreviewed other-role quote; two actual UI roles or a current reviewed other-role quote may safely reuse proof.",
+      "Host presents both genuinely missing roles even when the model asks for only one; a genuinely known given role is not requested again.",
+      "Unicode list breaks are display-only DOM projection and preserve original messages, IDs, code, paths and submission parameters."
+    ],
+    "accuracy_interpretation": "Scripted HTTP engineering, not a free-model semantic accuracy or government-completion score. Original real-model role preflight3/4 remains failed as originally observed."
+  },
+  "final_v20": {
+    "automatic_report": "docs/evaluation/balady-crm-final-v20-automatic-20261020.json",
+    "integrity_report": "docs/evaluation/balady-crm-v20-run-integrity-20261020.json",
+    "technical_passed": 69,
+    "technical_cases": 70,
+    "natural_metrics": {
+      "cases": 40,
+      "passed": 32,
+      "failed": 7,
+      "needs_review": 1,
+      "pass_rate": 0.8,
+      "failed_checks": {
+        "observable_outcome": 7,
+        "required_operation:crm_create_form_request": 3,
+        "expected_parameters:crm_create_form_request": 3,
+        "required_operation:crm_fetch_incident": 4,
+        "selected_case:INC-26-10-000103": 2,
+        "selected_case:INC-26-10-000102": 2
+      },
+      "deferred_checks": 2
+    },
+    "natural_review_counters": {
+      "started": 101,
+      "completed": 98,
+      "rejected_attempts": 3,
+      "passed_gates": 196,
+      "corrected": 0,
+      "model_requests": 199
+    },
+    "runtime_terminal_codes": {},
+    "independent_business": {
+      "report": "docs/evaluation/balady-crm-business-v20-review-20261020.json",
+      "metrics": {
+        "cases": 40,
+        "goal_adequacy_at_observed_boundary_passed": 40,
+        "strict_facts_and_language_including_public_drafts_passed": 40,
+        "delivered_final_facts_and_language_passed": 40,
+        "actual_exposed_submission_payload_facts_passed": null,
+        "presentation_readability_passed": 39,
+        "formatting_and_language_legibility_passed": 40,
+        "functional_runtime_nonfailure": 40,
+        "actual_action_graph_intent_and_dependencies_at_observed_boundary_passed": 40,
+        "combined_quality_passed": 39,
+        "raw_customer_text_layout_passed": 40,
+        "language_choice_passed": 40,
+        "interaction_input_control_alignment_passed": 39
+      },
+      "public_cards": 0,
+      "actual_writes": 0,
+      "payload_accuracy_applicable": false,
+      "released": false
+    },
+    "released": false,
+    "automatic_scores_preserved": true,
+    "technical_clarification_failure_count": 1,
+    "natural_actual_runtime_failed": 0,
+    "natural_actual_writes": 0,
+    "natural_actual_cards": 0,
+    "png_journeys_separate": {
+      "original_frozen_actor": {
+        "raw_report": "docs/evaluation/balady-crm-real-file-service-v20-journey-20261020.json",
+        "candidate_commit": "60acc5791d561dbdd1144487af2d469378c3ebb5",
+        "original_pass_boolean": false,
+        "checks_passed": 0,
+        "checks_recorded": 1,
+        "status": "input",
+        "pending_input_kind": "name_roles",
+        "actual_receipts_by_operation": {},
+        "source_changed_during_run": [],
+        "commit_unchanged": true,
+        "independent_business_review": "pending",
+        "not_part_of_natural40": true,
+        "not_browser_chooser_coverage": true,
+        "interpretation": "Original unmodified actor stops honestly at name_roles. Only one failure check recorded; future checks were not executed. This is not a product runtime failure and is not replaced by the separate v2 actor."
+      },
+      "separate_predeclared_role_actor_v2": {
+        "raw_report": "docs/evaluation/balady-crm-real-file-role-clarification-v20-journey-20261020.json",
+        "candidate_commit": "60acc5791d561dbdd1144487af2d469378c3ebb5",
+        "original_pass_boolean": true,
+        "checks_passed": 28,
+        "checks_recorded": 28,
+        "status": "completed",
+        "pending_input_kind": null,
+        "actual_receipts_by_operation": {
+          "crm_create_form_request": 1,
+          "crm_upload_attachment": 1
+        },
+        "source_changed_during_run": [],
+        "commit_unchanged": true,
+        "independent_business_review": "pending",
+        "not_part_of_natural40": true,
+        "not_browser_chooser_coverage": true,
+        "interpretation": "Independent newly declared actor supplies real labelled name-role input when asked;28/28 checks. It does not replace or retry the frozen original actor, is not added to the natural40, and is not evidence that the original form completed."
+      }
+    },
+    "complete_aggregate_report": "docs/evaluation/balady-crm-final-v20-regression-20261020.json"
+  },
+  "v21_engineering": {
+    "report": "docs/evaluation/balady-crm-v21-final-engineering-v2-20261020.json",
+    "tests": 308,
+    "passed": 308,
+    "failed": 0,
+    "exit_code": 0,
+    "source_files": 68,
+    "source_changed_during_run": [],
+    "git_commit_start": "60acc5791d561dbdd1144487af2d469378c3ebb5",
+    "git_commit_end": "60acc5791d561dbdd1144487af2d469378c3ebb5",
+    "source_sha256": {
+      "src/crm/agent.mjs": "e0e3ff1dc75ab58f79c02a5677a39325116b598189e931955cd0feff62d3ed1e",
+      "src/crm/presentation.mjs": "16696d671f3e8704157015810eaab50001fe720ffe3db8f38d6a53786d51b7ee",
+      "src/crm/response-guard.mjs": "e0de1bc59900d672e20e2ec96f473870ed9a0092c17c8cffbe374ec6c7f1e315",
+      "web/road/chat-ui.js": "e56725f26533218df2b5f8cdb98d8970702c71e4d70e386008a3240f3639e146",
+      "src/crm/public-capabilities.mjs": "488582f8e1525d88d5feca596ef3cefaa2150970f22eefdfce910464791da2f4"
+    },
+    "owned_changed_engineering_files": [
+      "tests/crm-integration.test.mjs"
+    ],
+    "old_candidate_red": {
+      "report": "docs/evaluation/balady-crm-v21-frozen-source-red-20261020.json",
+      "source_commit": "60acc5791d561dbdd1144487af2d469378c3ebb5",
+      "method": "Exact git archive src and web in an isolated temporary copy; current working tree never reverted.",
+      "actual_behavior_tests": 2,
+      "actual_behavior_failed": 2,
+      "raw_tap_tests": 4,
+      "empty_file_containers": 2,
+      "note": "Native cross-origin name recovery and file-question mixed collection both fail against exact old source. Empty file containers are not behavior passes."
+    },
+    "focused": {
+      "report": "docs/evaluation/balady-crm-v21-new-focused-20261020.json",
+      "actual_behavior_tests": 4,
+      "passed": 4,
+      "raw_tap_tests": 15,
+      "empty_file_containers": 11
+    },
+    "preserved_nonfinal_stages": [
+      {
+        "report": "docs/evaluation/balady-crm-v21-final-engineering-20261020.json",
+        "tests": 308,
+        "passed": 307,
+        "failed": 1,
+        "note": "The only failure expected the old model-authored file question. Final test keeps the unsafe original authored question and explicit first reviewer rejection; verifies no public input until retry, then two fresh approvals of only the fixed host question. No production change was made to satisfy the old copy."
+      }
+    ],
+    "file_question_review_regression": {
+      "report": "docs/evaluation/balady-crm-v21-file-question-focused-20261020.json",
+      "actual_behavior_tests": 1,
+      "passed": 1,
+      "raw_tap_tests": 12,
+      "empty_file_containers": 11
+    },
+    "tested_boundaries": [
+      "Actual native name-role input survives actual Description edit and new-origin title-only revision, preserving contact/description and requiring one fresh exact card; old approvals and old input replay fail. Approve dispatches exactly once; cancellation dispatches zero times.",
+      "Latest actual per-field UI message is chosen before value comparison. An older matching native value cannot revive after a newer actual UI edit in another request.",
+      "Cached role evidence without the matching actual named-field user message, or with changed actual field value, cannot authorize a card or a write.",
+      "A file picker with a model question mixing name roles and guessed splits shows only fixed three-language file copy and AttachStream control, with zero role facts or write.",
+      "Fixed host file copy remains fail-closed under an injected real reviewer rejection; the primary receives rejection, no input is displayed, and retry requires two fresh successful gates.",
+      "Existing unreviewed chat-role quote plus partial native edit cannot wash a current-policy review proof; existing full regression remains green."
+    ],
+    "benchmark_policy": "Original natural inputs/references/fixtures, actor, grader and original PNG actor remain unchanged. No future tool arguments or unsent answers were injected as user facts.",
+    "frozen_data_sha256": {
+      "datasets/balady-crm-natural/inputs.jsonl": "813638de69a3fc58ac7b32e7fc35221ad150a50db560f2f9830b971e2a7859f8",
+      "datasets/balady-crm-natural/references.jsonl": "4f1568149ad3bed9e167df7b2a35ec036eecb732e38213b1bb0fd5c3d9c6615b",
+      "datasets/balady-crm-natural/fixtures.jsonl": "a9005e60764b782517241b67dc7db51cd6abfb1c886a2c027a02a851f551e9a4"
+    },
+    "accuracy_interpretation": "Scripted real HTTP and shipped DOM engineering regressions. This does not establish free-model business accuracy, browser chooser coverage, government submission, or completion of the fixed natural40."
+  },
+  "final_v21": {
+    "automatic_report": "docs/evaluation/balady-crm-final-v21-automatic-20261020.json",
+    "complete_independent_report": "docs/evaluation/balady-crm-final-v21-regression-20261020.json",
+    "integrity_report": "docs/evaluation/balady-crm-v21-run-integrity-20261020.json",
+    "technical_passed": 70,
+    "technical_cases": 70,
+    "natural_metrics": {
+      "cases": 40,
+      "passed": 32,
+      "failed": 7,
+      "needs_review": 1,
+      "pass_rate": 0.8,
+      "failed_checks": {
+        "observable_outcome": 7,
+        "required_operation:crm_create_form_request": 3,
+        "expected_parameters:crm_create_form_request": 3,
+        "no_runtime_failure": 2,
+        "required_operation:crm_fetch_incident": 2,
+        "selected_case:INC-26-10-000102": 1,
+        "selected_case:INC-26-10-000103": 1
+      },
+      "deferred_checks": 2
+    },
+    "natural_review_counters": {
+      "started": 115,
+      "completed": 102,
+      "rejected_attempts": 13,
+      "passed_gates": 207,
+      "corrected": 0,
+      "model_requests": 220
+    },
+    "actual_failed_runtime_count": 2,
+    "independent_metrics": {
+      "cases": 40,
+      "goal_adequacy_at_observed_boundary_passed": 37,
+      "strict_facts_and_language_including_public_drafts_passed": 40,
+      "delivered_final_facts_and_language_passed": 40,
+      "actual_exposed_submission_payload_facts_passed": null,
+      "presentation_readability_passed": 40,
+      "formatting_and_language_legibility_passed": 40,
+      "functional_runtime_nonfailure": 38,
+      "actual_action_graph_intent_and_dependencies_at_observed_boundary_passed": 39,
+      "combined_quality_passed": 37,
+      "raw_customer_text_layout_passed": 40,
+      "language_choice_passed": 40,
+      "interaction_input_control_alignment_passed": 40
+    },
+    "actual_confirmation_cards": 0,
+    "actual_writes": 0,
+    "released": false
+  },
+  "v22_engineering": {
+    "report": "docs/evaluation/balady-crm-v22-final-engineering-v2-20261020.json",
+    "tests": 320,
+    "passed": 320,
+    "failed": 0,
+    "exit_code": 0,
+    "source_files": 68,
+    "source_changed_during_run": [],
+    "git_commit_start": "2ed1a3c049409ecad1c5e98d7be529c3291bc40e",
+    "git_commit_end": "2ed1a3c049409ecad1c5e98d7be529c3291bc40e",
+    "source_sha256": {
+      "src/crm/agent.mjs": "ffb297ba77bcb0a3f6ab0c224a8263a75ab6c0e63c92cc92952a3c59d51eb244",
+      "src/crm/response-guard.mjs": "1a3fee7a9e7955599d3fc5cf53d3b06a5e419b5d006e3e83b98402c7b1ba8994",
+      "src/crm/public-capabilities.mjs": "ca1e3aed80aafcd7a48c6b520bbef983f74e74e428ff61a19acee8c49a88dcb1"
+    },
+    "owned_production_files": [
+      "src/crm/response-guard.mjs"
+    ],
+    "owned_engineering_files": [
+      "tests/crm-integration.test.mjs",
+      "tests/crm-response-guard.test.mjs"
+    ],
+    "new_behavior_tests": 12,
+    "old_candidate_red": {
+      "report": "docs/evaluation/balady-crm-v22-frozen-source-red-v2-20261020.json",
+      "source_commit": "2ed1a3c049409ecad1c5e98d7be529c3291bc40e",
+      "actual_behavior_tests": 3,
+      "failed": 3,
+      "method": "Exact isolated git archive src+web, pinned runtime and copied new engineering tests. Shared tree never reverted.",
+      "observed": "Old code publishes an unchosen form route, refreshes a restored form card despite denied route, and cannot accept the new category-only classifier protocol. Actual v21 real-model failures remain separate evidence."
+    },
+    "preserved_nonfinal_stages": [
+      {
+        "report": "docs/evaluation/balady-crm-v22-new-focused-20261020.json",
+        "note": "Actual9/10 new behaviors; only failure expected answered rather than the actual normal completed plan state. Preserved, corrected expectation while retaining sourced host result and zero mutations."
+      },
+      {
+        "report": "docs/evaluation/balady-crm-v22-compatible-engineering-baseline-20261020.json",
+        "tests": 318,
+        "passed": 312,
+        "failed": 6,
+        "note": "Old faux reviewer fixtures used bool/issues for the changed narrow classifier; one graph reviewer fixture needed an explicit service-intent classifier, and raw completed-event counts needed classification_only separation. Original unsafe prose and graph rejection assertions remain."
+      },
+      {
+        "report": "docs/evaluation/balady-crm-v22-new-focused-v2-20261020.json",
+        "note": "One remaining old event-count assertion included the newly completed typed classifier as if it were a generic prose review. Split the event categories rather than changing production."
+      },
+      {
+        "report": "docs/evaluation/balady-crm-v22-final-focused-20261020.json",
+        "note": "Native card admission was hardened before this run. Restored old authorization was now revoked before execute_confirmed_submission, correctly returning HOST_CONFIRMATION_REQUIRED; raw form still returns SERVICE_CHOICE_REQUIRED. Test updated to assert the stronger zero-authorization boundary."
+      },
+      {
+        "report": "docs/evaluation/balady-crm-v22-final-engineering-20261020.json",
+        "tests": 320,
+        "passed": 320,
+        "failed": 0,
+        "note": "Valid stable earlier engineering stage; not final after the independent real-model8/9 probe identified the record-fact versus dispatch-action classification gap. Final v2 adds that general distinction; original8/9 not replaced by engineering success."
+      }
+    ],
+    "fixture_policy": "Host-boundary unit fixtures explicitly declare only their known form-route classifications. Older mixed-action text/receipt safety fixtures declare their known unavailable-extra-action category. Every other generic negative reviewer remains active. New route admission and category negatives use the real guard and pinned SDK. No classifier category, source fact, user answer or input is derived from future model tool arguments.",
+    "tested_boundaries": [
+      "Two fresh special review scopes use review_message({classification:enum}) with no advisory approved/issues fields; bad/missing verdicts fail closed.",
+      "Action and information requests can both concern an unconnected product. Available reads, missing inputs, unestablished facts and failed reads complete normal category routing and CAPABILITY_GUIDANCE_NOT_APPLICABLE, not a three-verdict failure.",
+      "Form intent review receives only actual current request, all actual delivered user facts and source-validated native selections; no assistant plan, draft, receipt or approval is sent as proof of route intent.",
+      "Valid service choice requires matching actual non-case input_required event, plan original request, exact available option and actual selected message. Orphan, copied-origin, case-purpose and modified-option caches are not validated evidence.",
+      "Physical-only goals cannot publish a public-form DAG or collect form contacts before a real native choice. Explicit mixed public-contact components and grounded title-only continuations need no redundant choice.",
+      "A real current native service choice establishes the route without submitting a write; exact host approval is separately required once.",
+      "Raw business calls and restored approval cards cannot bypass route checks; invalid native edits withdraw the old card with no new card or write, while genuine edits remain possible.",
+      "Shared service-intent policy reaches all reviewer systems and promptHash. Typed classification events are distinct from prose approvals; classification_only/applicable is explicit in completed metadata."
+    ],
+    "frozen_data_sha256": {
+      "datasets/balady-crm-natural/inputs.jsonl": "813638de69a3fc58ac7b32e7fc35221ad150a50db560f2f9830b971e2a7859f8",
+      "datasets/balady-crm-natural/references.jsonl": "4f1568149ad3bed9e167df7b2a35ec036eecb732e38213b1bb0fd5c3d9c6615b",
+      "datasets/balady-crm-natural/fixtures.jsonl": "a9005e60764b782517241b67dc7db51cd6abfb1c886a2c027a02a851f551e9a4"
+    },
+    "accuracy_interpretation": "Deterministic synthetic real HTTP/SDK engineering. The independent real-model classification first8/9 and corrected-source9/9 are separate probes, not frozen40 accuracy or end-to-end completion. New70+40 and both unchanged distinct PNG actors still require their own first complete runs and independent review."
+  },
+  "final_v22": {
+    "automatic_report": "docs/evaluation/balady-crm-final-v22-automatic-20261020.json",
+    "integrity_report": "docs/evaluation/balady-crm-v22-run-integrity-20261020.json",
+    "technical_passed": 70,
+    "technical_cases": 70,
+    "natural_metrics": {
+      "cases": 40,
+      "passed": 32,
+      "failed": 7,
+      "needs_review": 1,
+      "pass_rate": 0.8,
+      "failed_checks": {
+        "observable_outcome": 7,
+        "required_operation:crm_create_form_request": 3,
+        "expected_parameters:crm_create_form_request": 3,
+        "required_operation:crm_fetch_incident": 4,
+        "selected_case:INC-26-10-000103": 2,
+        "selected_case:INC-26-10-000102": 2
+      },
+      "deferred_checks": 2
+    },
+    "natural_review_counters": {
+      "started": 121,
+      "completed": 118,
+      "rejected_attempts": 3,
+      "passed_gates": 196,
+      "corrected": 0,
+      "model_requests": 239
+    },
+    "actual_failed_runtime_count": 0,
+    "actual_confirmation_cards": 0,
+    "actual_writes": 0,
+    "independent_business": "pending formal report",
+    "released": false,
+    "complete_independent_report": "docs/evaluation/balady-crm-final-v22-regression-20261020.json",
+    "independent_business_report": "docs/evaluation/balady-crm-business-v22-review-20261020.json",
+    "independent_metrics": {
+      "cases": 40,
+      "goal_adequacy_at_observed_boundary_passed": 40,
+      "strict_facts_and_language_including_public_drafts_passed": 40,
+      "delivered_final_facts_and_language_passed": 40,
+      "actual_exposed_submission_payload_facts_passed": null,
+      "presentation_readability_passed": 40,
+      "formatting_and_language_legibility_passed": 40,
+      "functional_runtime_nonfailure": 40,
+      "actual_action_graph_intent_and_dependencies_at_observed_boundary_passed": 40,
+      "combined_quality_passed": 40,
+      "raw_customer_text_layout_passed": 40,
+      "language_choice_passed": 40,
+      "interaction_input_control_alignment_passed": 40
+    },
+    "actual_exposed_payload_accuracy": null,
+    "release_status": "Not yet released; separate browser/root decision",
+    "automatic_scores_changed": false
   }
 }

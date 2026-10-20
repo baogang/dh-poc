@@ -1,0 +1,61 @@
+TAP version 13
+# Subtest: HTTP three consecutive rejected plan reviews end the turn visibly without consuming a fourth plan or executing any API
+ok 1 - HTTP three consecutive rejected plan reviews end the turn visibly without consuming a fourth plan or executing any API
+  ---
+  duration_ms: 210.909116
+  type: 'test'
+  ...
+# Subtest: HTTP an unavailable plan reviewer ends at the first attempt with a readable failure and does not retry planning or execute an API
+not ok 2 - HTTP an unavailable plan reviewer ends at the first attempt with a readable failure and does not retry planning or execute an API
+  ---
+  duration_ms: 75.035682
+  type: 'test'
+  location: '/Users/baogang/git/momah-poc/tests/crm-integration.test.mjs:918:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    true !== false
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: false
+  actual: true
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/baogang/git/momah-poc/tests/crm-integration.test.mjs:919:471)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async Test.run (node:internal/test_runner/test:1069:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:752:7)
+  ...
+# Subtest: a genuine long rejecting issue survives SDK tool validation as an unverified claim instead of reviewer unavailability
+ok 3 - a genuine long rejecting issue survives SDK tool validation as an unverified claim instead of reviewer unavailability
+  ---
+  duration_ms: 51.151972
+  type: 'test'
+  ...
+# Subtest: plan reviewers receive host-control semantics for future input honest-limit replies authentication and exact write confirmation as reference evidence
+not ok 4 - plan reviewers receive host-control semantics for future input honest-limit replies authentication and exact write confirmation as reference evidence
+  ---
+  duration_ms: 30.227113
+  type: 'test'
+  location: '/Users/baogang/git/momah-poc/tests/crm-response-guard.test.mjs:130:1'
+  failureType: 'testCodeFailure'
+  error: 'The response could not be verified. Retry without adding claims.'
+  code: 'RESPONSE_GUARD_UNAVAILABLE'
+  stack: |-
+    failure (file:///Users/baogang/git/momah-poc/src/road/store.mjs:9:63)
+    CrmResponseGuard.review (file:///Users/baogang/git/momah-poc/src/crm/response-guard.mjs:85:27)
+    async TestContext.<anonymous> (file:///Users/baogang/git/momah-poc/tests/crm-response-guard.test.mjs:131:1114)
+    async Test.run (node:internal/test_runner/test:1069:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:752:7)
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 2
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2119.675163

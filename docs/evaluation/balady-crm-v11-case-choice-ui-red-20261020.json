@@ -1,0 +1,18 @@
+{
+  "stage": "v11 case-purpose UI copy before implementation",
+  "command": [
+    "node",
+    "--test",
+    "--test-reporter=tap",
+    "--test-name-pattern=case choice names actual readable reports",
+    "tests/crm-chat-ui.test.mjs"
+  ],
+  "exit_code": 1,
+  "expected_failure": "Case-purpose choice currently uses the service-route legend/notice/received text.",
+  "source_sha256": {
+    "web/road/chat-ui.js": "04b9a55b842992d073cc511e68ba992c86f42027012f169fd5f85081a4b73dca",
+    "web/road/i18n.js": "3403f77f2ac193b4332d54f4323dcbe654e623f2fb51fc9f57e967a452414832",
+    "tests/crm-chat-ui.test.mjs": "1434a88dac864f7e34bf583c4d2ac44d62695845416577bdb070cfac332f26b9"
+  },
+  "raw_tap": "docs/evaluation/balady-crm-v11-case-choice-ui-red-20261020.tap"
+}

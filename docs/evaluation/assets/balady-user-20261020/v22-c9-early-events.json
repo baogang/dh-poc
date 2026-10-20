@@ -1,0 +1,32 @@
+[
+  {
+    "request": 1,
+    "seq": 4,
+    "time": "2026-10-20T00:39:57.634Z",
+    "type": "model_request"
+  },
+  {
+    "entries": 9,
+    "seq": 3,
+    "time": "2026-10-20T00:39:57.630Z",
+    "type": "faq_lookup"
+  },
+  {
+    "epoch": 0,
+    "route": "faq_then_balady_crm",
+    "seq": 2,
+    "time": "2026-10-20T00:39:57.628Z",
+    "type": "turn_started"
+  },
+  {
+    "message": {
+      "id": "message-fdd116ca-334a-4b3a-bdd9-d42e3d04000e",
+      "role": "user",
+      "text": "我想投诉公园咨询窗口的指引不清。昨天问轮椅入口，工作人员只指向另一边，没讲明路线。标题写“公园入口指引建议改进”。我叫林舟，电话0500000175，邮箱linzhou.photo.test@example.com，我拍了一张窗口指示牌的照片，想一起附上。",
+      "time": "2026-10-20T00:39:57.627Z"
+    },
+    "seq": 1,
+    "time": "2026-10-20T00:39:57.627Z",
+    "type": "message"
+  }
+]

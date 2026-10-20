@@ -1,0 +1,146 @@
+TAP version 13
+# Subtest: HTTP a required city input uses a fixed ordinary three-language question and preserves mixed-field draft facts without exposing a code list
+not ok 1 - HTTP a required city input uses a fixed ordinary three-language question and preserves mixed-field draft facts without exposing a code list
+  ---
+  duration_ms: 198.26193
+  type: 'test'
+  location: '/Users/baogang/git/momah-poc/tests/crm-integration.test.mjs:791:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + 'Provide MunicipalityID: choose 002, 003, 004, 005, 006, 007, 008, 009, 010, 011, 012, 013, 014, 015, 016, 017, or 018, and give the address.'
+    - '问题地点在哪个城市或市政地区？直接告诉我名称即可，不需要编号。'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: '问题地点在哪个城市或市政地区？直接告诉我名称即可，不需要编号。'
+  actual: 'Provide MunicipalityID: choose 002, 003, 004, 005, 006, 007, 008, 009, 010, 011, 012, 013, 014, 015, 016, 017, or 018, and give the address.'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/baogang/git/momah-poc/tests/crm-integration.test.mjs:794:1257)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async Test.run (node:internal/test_runner/test:1069:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:332:3)
+  ...
+# Subtest: HTTP unresolved lower administrative identifiers cannot become a citizen input or silently submitted report
+not ok 2 - HTTP unresolved lower administrative identifiers cannot become a citizen input or silently submitted report
+  ---
+  duration_ms: 73.428289
+  type: 'test'
+  location: '/Users/baogang/git/momah-poc/tests/crm-integration.test.mjs:798:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + {
+    +   fields: [
+    +     'body.LocationInfo.SubMunicipalityID'
+    +   ],
+    +   id: 'input-e265a26d-6e56-4243-ad82-ecc4be83c487',
+    +   kind: 'text',
+    +   known_parameters: {
+    +     body: {
+    +       IncidentInformation: {
+    +         IssueDescription: 'Damaged pavement'
+    +       },
+    +       LocationInfo: {
+    +         MunicipalityID: '004',
+    +         StreetName: 'Test Birch Road'
+    +       }
+    +     }
+    +   },
+    +   operation: 'crm_create_municipal_service',
+    +   plan_id: 'plan-2c065726-0f1f-4a09-b84e-f664053f722e',
+    +   question: 'Please supply the internal body.LocationInfo.SubMunicipalityID so that I can continue.',
+    +   step_id: 'location'
+    + }
+    - null
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: ~
+  actual:
+    id: 'input-e265a26d-6e56-4243-ad82-ecc4be83c487'
+    plan_id: 'plan-2c065726-0f1f-4a09-b84e-f664053f722e'
+    step_id: 'location'
+    kind: 'text'
+    operation: 'crm_create_municipal_service'
+    fields:
+      0: 'body.LocationInfo.SubMunicipalityID'
+    known_parameters:
+      body:
+        LocationInfo:
+          MunicipalityID: '004'
+          StreetName: 'Test Birch Road'
+        IncidentInformation:
+          IssueDescription: 'Damaged pavement'
+    question: 'Please supply the internal body.LocationInfo.SubMunicipalityID so that I can continue.'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/baogang/git/momah-poc/tests/crm-integration.test.mjs:799:1096)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async Test.run (node:internal/test_runner/test:1069:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:752:7)
+  ...
+# Subtest: HTTP an omitted optional municipality filter cannot block reading classifications without that filter
+not ok 3 - HTTP an omitted optional municipality filter cannot block reading classifications without that filter
+  ---
+  duration_ms: 82.213592
+  type: 'test'
+  location: '/Users/baogang/git/momah-poc/tests/crm-integration.test.mjs:803:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + 'input'
+    - 'completed'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'completed'
+  actual: 'input'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/baogang/git/momah-poc/tests/crm-integration.test.mjs:804:800)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async Test.run (node:internal/test_runner/test:1069:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:752:7)
+  ...
+# Subtest: HTTP an explicitly unresolved optional city-filter choice asks for a human place name while retaining the classification type
+not ok 4 - HTTP an explicitly unresolved optional city-filter choice asks for a human place name while retaining the classification type
+  ---
+  duration_ms: 71.558066
+  type: 'test'
+  location: '/Users/baogang/git/momah-poc/tests/crm-integration.test.mjs:808:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + 'Which municipalityID do you want: 002, 003, 004, or 018?'
+    - 'Which city or municipality is the location in? Please give its name; no internal code is needed.'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'Which city or municipality is the location in? Please give its name; no internal code is needed.'
+  actual: 'Which municipalityID do you want: 002, 003, 004, or 018?'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/baogang/git/momah-poc/tests/crm-integration.test.mjs:809:587)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async Test.run (node:internal/test_runner/test:1069:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:752:7)
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 0
+# fail 4
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2359.744829

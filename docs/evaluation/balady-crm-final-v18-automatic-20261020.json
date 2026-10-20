@@ -1,0 +1,445 @@
+{
+  "date": "2026-10-20",
+  "version": "v18-final",
+  "phase": "regression",
+  "is_blind": false,
+  "status": "Complete automatic70+40 run; full independent40 review pending; not released",
+  "candidate_commit": "4692bea83af63290d606dd50062c3d85546e97c3",
+  "natural_grader_version": 2,
+  "source_changed_during_run": {
+    "contract": [],
+    "natural": [],
+    "merged70": []
+  },
+  "source_sha256": {
+    "technical": {
+      "src/crm/agent.mjs": "e17942bfd2a09a19ed128565925d07286da67b8bb154c6af0453a37d023a9384",
+      "src/crm/case-target.mjs": "a509e05b0d9514eb90d10229f5ce9f379dcf776d71e071b2c862366b94413109",
+      "src/crm/client.mjs": "a75c6d84ff2a94ad6d8d9d897b2a53754ef03405c39e0cfc3bdbc2363d3908bf",
+      "src/crm/contract.mjs": "650d3bc0abd54fca8d7a32c5a640a6bd8ee5a996254704f855f41a3d6b93d08a",
+      "src/crm/files.mjs": "7f5daecfbb5f387460b1eb0355e58f60d725553b2a6bf6d5c3fb89ece1e95a0c",
+      "src/crm/fixtures.mjs": "bb49919ba566f8c139e49d47fea8622a022a82417480e314365af03ad85659e2",
+      "src/crm/metrics.mjs": "c6a4e6dd931565ae24bbb60857421f7244523afaf7301b360241c4e2d45dec03",
+      "src/crm/openapi.mjs": "3074e84e8c4ac4ea75ef89dd34d277b10b9603310c37cdd3425e59a46bcd19b1",
+      "src/crm/plan-presentation.mjs": "081e6fbf801ac4ba31cf59a7d5ee6a3d944cb73986fc87dcf59d130d080ffa83",
+      "src/crm/policy.mjs": "d93301c23ee7ed91dbf0988da78f48c370480c1996673541ccb272eea5cce97b",
+      "src/crm/presentation.mjs": "8c99c155653890a49d74cfe11ad0d00ff23dca17979b744a877ba54279d06708",
+      "src/crm/public-capabilities.mjs": "3a84aa843a098ee82971581140412194d070a272d91dc174dd84d9815039bd25",
+      "src/crm/response-guard.mjs": "9c00eb4f49ff7e6df6b085f76879e8103f606f0667bbdf9dfe0a8dd59b36b603",
+      "src/crm/simulation.mjs": "9ab597aff7a79edf893b874f7732995fbd751f43ed09d45c48e8a96c8f4804ac",
+      "src/crm/text-source.mjs": "8ea62690d1c166a9a9fe222f5a763a22cce369f2376442a3afbc0092e61f272f",
+      "src/crm/validation.mjs": "15fdc1563381fb17c197abaf2c7447c407b8029fffa77a13556304a4f65de04a",
+      "src/road/agent.mjs": "e172127f97fa961acc3fd0908b022e527f475f4c686d1b5598842c23757e3459",
+      "src/road/database.mjs": "d4d3a9e3e804d305034fcf7a15874d8a2b60f880cb949a1c59c62aa8bdff924f",
+      "src/road/emotion.mjs": "66bc93477284b6a39f24695e492ba78dd7a31a435310a174446bc8a8d5aadd37",
+      "src/road/eval-metrics.mjs": "737dd9b789cd18bdc8d26fa4cea66bb7995c9ff911544127abcdd669af065eeb",
+      "src/road/feedback-context.mjs": "08ea20c60d57871b8a9e01816bcc47c2f26d856fc93801b6290bf1500f4eb993",
+      "src/road/feedback.mjs": "f82e820db72c305ec3a99c4faaa5b4f0b4c9c84a598ca53e997b329649bc029d",
+      "src/road/human.mjs": "222b6a2ec8ca11872f1c2cda3c13fd9671d58693722fa1b114277e1dc7c8830f",
+      "src/road/knowledge.mjs": "6460eafa44d68bc8d6023e2f05468392339c709b3066cea41117692dce7e3663",
+      "src/road/matters.mjs": "0908043bebd4d8d52dabb6208bcd237c983d71e4d2bf4ee4c5afe343a3e46a75",
+      "src/road/mocks.mjs": "883cf85bcd8cc23933366c3b01ab145033dd5a129e022627a4a599a904885ad4",
+      "src/road/neon-store.mjs": "742616c874ac739d7dff0eed3959981ddcd1578499647b14f487073c7a4ba2c9",
+      "src/road/policy.mjs": "c696f4e1e129cab7e90036cb0b02f7e1272a832958ebe3ddb7638da014d9cb8b",
+      "src/road/presentation.mjs": "e3045632164ace485d98cdb56728de876d53d75a15dd5b1d7ca8ceb3a07cdf1e",
+      "src/road/runtime.mjs": "8be144c62fba78f74326f771ff117020092a8aa6eacbf153dc925946a7acb371",
+      "src/road/server.mjs": "f8675619d785b4388c08bc1695cbb750d31cd7429da40dccaa07e582da173aa3",
+      "src/road/services.mjs": "f492608b82b2139ff86f0893a760c8bee3246052d44b293b581e20c04050ab19",
+      "src/road/store.mjs": "ba510253a00ab3584fc1d7e466d6005df75012fcd6ac7db4c6dcd10f45b19fb4",
+      "scripts/crm-eval.mjs": "70057358aac420fa8e65d063312f40ec4226481635f7e38708d736ec8a8b0e78",
+      "src/web-access.mjs": "cb34f380a781f70519354cfc8ca53a484d79bfd7436cb3d46fc500cdfa9e3373",
+      "package-lock.json": "b25c0c76bff5cc8be820904a17271e0d21587d4def8b775dd9e885e232a54c5d",
+      "datasets/balady-crm/tool-cases.jsonl": "9d533410ceb6210aedef4baabecaa5236030510bfde6ac8cc25debeffc5f050f",
+      "datasets/balady-crm/planning-cases.jsonl": "d64af1b9f95f911a317786c26ff35a499bbf58be4474f5d04d24daccc0182881"
+    },
+    "natural": {
+      "scripts/crm-journey-eval.mjs": "30e9310d69cae123dd0f5231c0dd19f0cb71ebe198d543b5036a13eb92f0ab66",
+      "scripts/lib/crm-journey-grade.mjs": "140877b1a254d940447bff5ccd0b5ef1a886ce5824c0df940f3e8c41a29357a4",
+      "scripts/lib/crm-journey-choice.mjs": "ac9777b5470a63dc35d97faa3635588101d3c062fc700bd90de668b5e81028f7",
+      "docs/evaluation/balady-crm-grader-policy-20261020.json": "2ba322b825fd8ccc7993a260087a3d689ebba2e65465f0bf904f3c700a103747",
+      "src/crm/agent.mjs": "e17942bfd2a09a19ed128565925d07286da67b8bb154c6af0453a37d023a9384",
+      "src/crm/case-target.mjs": "a509e05b0d9514eb90d10229f5ce9f379dcf776d71e071b2c862366b94413109",
+      "src/crm/client.mjs": "a75c6d84ff2a94ad6d8d9d897b2a53754ef03405c39e0cfc3bdbc2363d3908bf",
+      "src/crm/contract.mjs": "650d3bc0abd54fca8d7a32c5a640a6bd8ee5a996254704f855f41a3d6b93d08a",
+      "src/crm/files.mjs": "7f5daecfbb5f387460b1eb0355e58f60d725553b2a6bf6d5c3fb89ece1e95a0c",
+      "src/crm/fixtures.mjs": "bb49919ba566f8c139e49d47fea8622a022a82417480e314365af03ad85659e2",
+      "src/crm/metrics.mjs": "c6a4e6dd931565ae24bbb60857421f7244523afaf7301b360241c4e2d45dec03",
+      "src/crm/openapi.mjs": "3074e84e8c4ac4ea75ef89dd34d277b10b9603310c37cdd3425e59a46bcd19b1",
+      "src/crm/plan-presentation.mjs": "081e6fbf801ac4ba31cf59a7d5ee6a3d944cb73986fc87dcf59d130d080ffa83",
+      "src/crm/policy.mjs": "d93301c23ee7ed91dbf0988da78f48c370480c1996673541ccb272eea5cce97b",
+      "src/crm/presentation.mjs": "8c99c155653890a49d74cfe11ad0d00ff23dca17979b744a877ba54279d06708",
+      "src/crm/public-capabilities.mjs": "3a84aa843a098ee82971581140412194d070a272d91dc174dd84d9815039bd25",
+      "src/crm/response-guard.mjs": "9c00eb4f49ff7e6df6b085f76879e8103f606f0667bbdf9dfe0a8dd59b36b603",
+      "src/crm/simulation.mjs": "9ab597aff7a79edf893b874f7732995fbd751f43ed09d45c48e8a96c8f4804ac",
+      "src/crm/text-source.mjs": "8ea62690d1c166a9a9fe222f5a763a22cce369f2376442a3afbc0092e61f272f",
+      "src/crm/validation.mjs": "15fdc1563381fb17c197abaf2c7447c407b8029fffa77a13556304a4f65de04a",
+      "src/road/agent.mjs": "e172127f97fa961acc3fd0908b022e527f475f4c686d1b5598842c23757e3459",
+      "src/road/database.mjs": "d4d3a9e3e804d305034fcf7a15874d8a2b60f880cb949a1c59c62aa8bdff924f",
+      "src/road/emotion.mjs": "66bc93477284b6a39f24695e492ba78dd7a31a435310a174446bc8a8d5aadd37",
+      "src/road/eval-metrics.mjs": "737dd9b789cd18bdc8d26fa4cea66bb7995c9ff911544127abcdd669af065eeb",
+      "src/road/feedback-context.mjs": "08ea20c60d57871b8a9e01816bcc47c2f26d856fc93801b6290bf1500f4eb993",
+      "src/road/feedback.mjs": "f82e820db72c305ec3a99c4faaa5b4f0b4c9c84a598ca53e997b329649bc029d",
+      "src/road/human.mjs": "222b6a2ec8ca11872f1c2cda3c13fd9671d58693722fa1b114277e1dc7c8830f",
+      "src/road/knowledge.mjs": "6460eafa44d68bc8d6023e2f05468392339c709b3066cea41117692dce7e3663",
+      "src/road/matters.mjs": "0908043bebd4d8d52dabb6208bcd237c983d71e4d2bf4ee4c5afe343a3e46a75",
+      "src/road/mocks.mjs": "883cf85bcd8cc23933366c3b01ab145033dd5a129e022627a4a599a904885ad4",
+      "src/road/neon-store.mjs": "742616c874ac739d7dff0eed3959981ddcd1578499647b14f487073c7a4ba2c9",
+      "src/road/policy.mjs": "c696f4e1e129cab7e90036cb0b02f7e1272a832958ebe3ddb7638da014d9cb8b",
+      "src/road/presentation.mjs": "e3045632164ace485d98cdb56728de876d53d75a15dd5b1d7ca8ceb3a07cdf1e",
+      "src/road/runtime.mjs": "8be144c62fba78f74326f771ff117020092a8aa6eacbf153dc925946a7acb371",
+      "src/road/server.mjs": "f8675619d785b4388c08bc1695cbb750d31cd7429da40dccaa07e582da173aa3",
+      "src/road/services.mjs": "f492608b82b2139ff86f0893a760c8bee3246052d44b293b581e20c04050ab19",
+      "src/road/store.mjs": "ba510253a00ab3584fc1d7e466d6005df75012fcd6ac7db4c6dcd10f45b19fb4",
+      "src/web-access.mjs": "cb34f380a781f70519354cfc8ca53a484d79bfd7436cb3d46fc500cdfa9e3373",
+      "src/knowledge/road-faq.json": "4c60e137e5b5176b32c09bd575f8082029eee3b1ee0415608be2cc7d2cd52054",
+      "package-lock.json": "b25c0c76bff5cc8be820904a17271e0d21587d4def8b775dd9e885e232a54c5d",
+      "datasets/balady-crm-natural/inputs.jsonl": "813638de69a3fc58ac7b32e7fc35221ad150a50db560f2f9830b971e2a7859f8",
+      "datasets/balady-crm-natural/references.jsonl": "4f1568149ad3bed9e167df7b2a35ec036eecb732e38213b1bb0fd5c3d9c6615b",
+      "datasets/balady-crm-natural/fixtures.jsonl": "a9005e60764b782517241b67dc7db51cd6abfb1c886a2c027a02a851f551e9a4"
+    }
+  },
+  "run_integrity_report": "docs/evaluation/balady-crm-v18-run-integrity-20261020.json",
+  "core_worktree_clean_at_end": true,
+  "frozen_natural_dataset": {
+    "datasets/balady-crm-natural/inputs.jsonl": {
+      "frozen_original_sha256": "813638de69a3fc58ac7b32e7fc35221ad150a50db560f2f9830b971e2a7859f8",
+      "run_start_sha256": "813638de69a3fc58ac7b32e7fc35221ad150a50db560f2f9830b971e2a7859f8",
+      "run_end_sha256": "813638de69a3fc58ac7b32e7fc35221ad150a50db560f2f9830b971e2a7859f8",
+      "unchanged": true
+    },
+    "datasets/balady-crm-natural/references.jsonl": {
+      "frozen_original_sha256": "4f1568149ad3bed9e167df7b2a35ec036eecb732e38213b1bb0fd5c3d9c6615b",
+      "run_start_sha256": "4f1568149ad3bed9e167df7b2a35ec036eecb732e38213b1bb0fd5c3d9c6615b",
+      "run_end_sha256": "4f1568149ad3bed9e167df7b2a35ec036eecb732e38213b1bb0fd5c3d9c6615b",
+      "unchanged": true
+    },
+    "datasets/balady-crm-natural/fixtures.jsonl": {
+      "frozen_original_sha256": "a9005e60764b782517241b67dc7db51cd6abfb1c886a2c027a02a851f551e9a4",
+      "run_start_sha256": "a9005e60764b782517241b67dc7db51cd6abfb1c886a2c027a02a851f551e9a4",
+      "run_end_sha256": "a9005e60764b782517241b67dc7db51cd6abfb1c886a2c027a02a851f551e9a4",
+      "unchanged": true
+    }
+  },
+  "all_input_reference_fixture_hashes_unchanged": true,
+  "actor_grader_sha_unchanged": true,
+  "contract": {
+    "report": "reports/crm/2026-10-19T22-58-01.473Z/summary.json",
+    "candidate_commit": "4692bea83af63290d606dd50062c3d85546e97c3",
+    "metrics": {
+      "cases": 70,
+      "passed": 70,
+      "case_pass_rate": 1,
+      "tool_selection": {
+        "tp": 86,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      "tool_execution": {
+        "tp": 86,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      "planning": {
+        "tp": 96,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      "dynamic_plan_exact_accuracy": 1,
+      "tool_argument_schema_accuracy": 1,
+      "reference_parameter_accuracy": 1,
+      "clarification_field_recall": 1,
+      "unsafe_writes": 0
+    },
+    "model_requests": 280,
+    "observable_tool_error_counts": {
+      "USER_INPUT_REQUIRED": 1,
+      "DEPENDENCY_PENDING": 1
+    },
+    "exit_code": 0,
+    "interpretation": "Synthetic institutional contract/planning suite; separate from public beneficiary business quality."
+  },
+  "natural": {
+    "report": "reports/crm-journeys/final-regression-20261020-v18-final/summary.json",
+    "metrics": {
+      "cases": 40,
+      "passed": 38,
+      "failed": 1,
+      "needs_review": 1,
+      "pass_rate": 0.95,
+      "failed_checks": {
+        "observable_outcome": 1,
+        "required_operation:crm_fetch_incident": 1,
+        "selected_case:INC-26-10-000103": 1
+      },
+      "deferred_checks": 2
+    },
+    "by_split": {
+      "dev": {
+        "cases": 12,
+        "passed": 12,
+        "failed": 0,
+        "needs_review": 0,
+        "pass_rate": 1,
+        "failed_checks": {},
+        "deferred_checks": 0
+      },
+      "holdout": {
+        "cases": 28,
+        "passed": 26,
+        "failed": 1,
+        "needs_review": 1,
+        "pass_rate": 0.9285714285714286,
+        "failed_checks": {
+          "observable_outcome": 1,
+          "required_operation:crm_fetch_incident": 1,
+          "selected_case:INC-26-10-000103": 1
+        },
+        "deferred_checks": 2
+      }
+    },
+    "response_review": {
+      "started": 124,
+      "completed": 117,
+      "rejected_attempts": 7,
+      "passed_gates": 235,
+      "corrected": 0,
+      "model_requests": 242
+    },
+    "response_review_interpretation": "Numeric sums across actual rows; author repairs reject. corrected is the legacy reviewer-rewrite counter, not primary regeneration. Host facts, verified explanations, controls and modelDAG are separate evidence sources, not free-primary accuracy.",
+    "observable_tool_error_counts": {
+      "EXPLANATION_TABLE_NOT_ALLOWED": 3,
+      "STEP_MISMATCH": 3,
+      "LOCATION_METADATA_UNAVAILABLE": 5,
+      "UNVERIFIED_CUSTOMER_CLAIMS": 7,
+      "USER_INPUT_REQUIRED": 1,
+      "KNOWN_PARAMETERS_REQUIRED": 2,
+      "FINAL_RESPONSE_REQUIRED": 1,
+      "PLAN_REQUIRED": 1,
+      "CUSTOMER_NAME_SOURCE_REQUIRED": 1
+    },
+    "runtime_terminal_code_counts": {},
+    "actual_status_counts": {
+      "completed": 18,
+      "input": 8,
+      "blocked": 5,
+      "answered": 9
+    },
+    "final_output_source_counts": {
+      "host_case": 10,
+      "awaiting_input:choice:none": 2,
+      "host_guidance": 15,
+      "verified_model": 4,
+      "awaiting_input:text:none": 1,
+      "host_submission": 3,
+      "awaiting_input:login:none": 1,
+      "awaiting_input:choice:case": 3,
+      "awaiting_input:file:none": 1
+    },
+    "actual_pending_input_counts": {
+      "none": 32,
+      "choice:none": 2,
+      "text:none": 1,
+      "login:none": 1,
+      "choice:case": 3,
+      "file:none": 1
+    },
+    "presentation_parts_combination_counts": {
+      "host_case+verified_explanation": 10,
+      "host_guidance+verified_explanation": 15,
+      "host_submission+verified_explanation": 3
+    },
+    "presentation_part_component_counts": {
+      "host_case": 10,
+      "verified_explanation": 28,
+      "host_guidance": 15,
+      "host_submission": 3
+    },
+    "successful_receipts_by_operation": {
+      "crm_get_incidents": 14,
+      "crm_fetch_incident": 1,
+      "crm_get_assets": 1,
+      "crm_create_form_request": 3
+    },
+    "total_model_requests": 464,
+    "actual_write_count": 3,
+    "actual_file_upload_count": 0,
+    "exit_code": 1,
+    "automatic_failure_evidence": [
+      {
+        "id": "NAT-H004",
+        "verdict": "needs_review",
+        "status": "completed",
+        "pending_kind": null,
+        "pending_purpose": null,
+        "runtime_error": null,
+        "failed_checks": []
+      },
+      {
+        "id": "NAT-H026",
+        "verdict": "fail",
+        "status": "input",
+        "pending_kind": "choice",
+        "pending_purpose": "case",
+        "runtime_error": null,
+        "failed_checks": [
+          "observable_outcome",
+          "required_operation:crm_fetch_incident",
+          "selected_case:INC-26-10-000103"
+        ]
+      }
+    ],
+    "semantic_review": {
+      "status": "pending",
+      "cases": 40,
+      "release_criteria_met": false
+    }
+  },
+  "engineering": {
+    "report": "docs/evaluation/balady-crm-v18-final-engineering-20261020.json",
+    "passed": 288,
+    "cases": 288,
+    "source_files": 68,
+    "source_changed_during_run": []
+  },
+  "preflight_disclosure": "All earlier full and interrupted reports remain. v18 effects7/7 used earlier manifest14c51, directory2/2 used final3a84. Neither is a replacement for this nonblind complete fixed regression.",
+  "preserved_history": {
+    "initial_contract": "68/70; original report retained",
+    "first_natural_automatic": "37/40 under grader version 1",
+    "first_independent_semantic": "33/40 (11/12 dev; 22/28 first holdout)",
+    "v4_aggregate": "docs/evaluation/balady-crm-final-v4-regression-20261020.json",
+    "v4_automatic": "39 pass, 0 fail, 1 needs_review",
+    "v4_independent_semantic": "34/40; release criteria not met",
+    "interrupted_stages": [
+      "v2",
+      "v3",
+      "v5"
+    ],
+    "interrupted_runs_are_final": false,
+    "v6_aggregate": "docs/evaluation/balady-crm-final-v6-regression-20261020.json",
+    "v6_contract": "68/70",
+    "v6_natural_automatic": "39 pass / 0 fail / 1 needs_review",
+    "v6_independent_semantic": "38/40 facts+language; 39/40 presentation; 37/40 combined; not released",
+    "v7_aggregate": "docs/evaluation/balady-crm-final-v7-regression-20261020.json",
+    "v7_contract": "70/70",
+    "v7_natural_automatic": "39 pass / 0 fail / 1 needs_review",
+    "v7_independent_semantic": "40/40 goal boundary; 39/40 strict facts+language; 40/40 presentation; 39/40 combined; not released",
+    "v8_aggregate": "docs/evaluation/balady-crm-final-v8-regression-20261020.json",
+    "v8_contract": "70/70",
+    "v8_natural_automatic": "39 pass / 0 fail / 1 needs_review",
+    "v8_independent_semantic": "39/40 goal boundary; 39/40 strict facts+language including public drafts; 40/40 delivered final facts and presentation; 38/40 combined; not released",
+    "v9_aggregate": "docs/evaluation/balady-crm-final-v9-regression-20261020.json",
+    "v9_contract": "70/70",
+    "v9_natural_automatic": "38 pass / 1 hard fail / 1 needs_review",
+    "v9_independent_semantic": "37/40 goal boundary and combined; 40/40 strict delivered facts/language including public drafts and readability; 39/40 runtime nonfailure; not released",
+    "v10_aggregate": "docs/evaluation/balady-crm-final-v10-regression-20261020.json",
+    "v10_contract": "70/70",
+    "v10_natural_automatic": "39 pass /0 fail /1 needs_review",
+    "v10_independent_semantic": "39/40 goal/combined,40/40 delivered facts/language including public drafts, readability and runtime nonfailure; unconfirmed target failure prevented release",
+    "v11_aggregate": "docs/evaluation/balady-crm-final-v11-regression-20261020.json",
+    "v11_contract": "70/70",
+    "v11_natural_automatic": "35pass/4fail/1review;2deferred",
+    "v11_independent_semantic": "39/40 observed-boundary goal and combined;40/40 facts including drafts;39/40 actionable readability; not released",
+    "v12_aggregate": "docs/evaluation/balady-crm-final-v12-regression-20261020.json",
+    "v12_contract": "69/70",
+    "v12_natural_automatic": "34pass/6fail/0review;2deferred",
+    "v12_independent_semantic": "38/40 observed-boundary goal and combined;40/40 actually delivered facts/readability;39/40 runtime nonfailure; not released",
+    "v13_aggregate": "docs/evaluation/balady-crm-final-v13-regression-20261020.json",
+    "v13_contract": "70/70",
+    "v13_natural_automatic": "37pass/2fail/1review;2deferred",
+    "v13_independent_semantic": "39/40 observed-boundary goal and draft-inclusive facts;40/40 final facts/readability/runtime;38/40 combined;not released",
+    "v14_interrupted": "docs/evaluation/balady-crm-interrupted-v14-regression-20261020.json",
+    "v14_contract": "69/70 complete",
+    "v14_natural": "15/40 completed then explicitly stopped:7pass/7fail/1review;25 not graded;not a final40-case run",
+    "v15_aggregate": "docs/evaluation/balady-crm-final-v15-regression-20261020.json",
+    "v15_contract": "70/70",
+    "v15_natural_automatic": "38pass/1hardfail/1needs_review;2deferred",
+    "v15_independent_semantic": "goal39/facts including public questions38/combined38 of40; runtime40; not released",
+    "v16_aggregate": "docs/evaluation/balady-crm-final-v16-regression-20261020.json",
+    "v16_contract": "70/70",
+    "v16_natural_automatic": "30pass/9hardfail/1needs_review;2deferred;8runtimefailed",
+    "v16_independent_semantic": "32/40 goal/runtime/combined;40/40 delivered facts including drafts/readability/DAG at observed boundary;not released",
+    "v17_aggregate": "docs/evaluation/balady-crm-final-v17-regression-20261020.json",
+    "v17_contract": "70/70",
+    "v17_natural_automatic": "38pass/1hardfail/1needs_review;2deferred",
+    "v17_independent_semantic": "goal38/facts36/readability37/runtime40/DAG38/combined32 of40; not released"
+  },
+  "limitations": [
+    "Only synthetic fixtures, memory-store sessions and the documented local CRM simulator; no real government requests or personal information.",
+    "Database feedback and durable restart are separately covered by HTTP tests; this run is not a production Neon regression.",
+    "Automatic checks and verifier verdicts are not an independent semantic correctness measurement.",
+    "Frozen inputs, references and fixtures were never altered for scores. All subsequent uses of the original holdout are regressions.",
+    "Strict failures and needs_review are preserved; no selective retries replace them."
+  ],
+  "separate_real_file_journeys": {
+    "candidate_commit": "4692bea83af63290d606dd50062c3d85546e97c3",
+    "raw_report": "docs/evaluation/balady-crm-real-file-service-v18-journey-20261020.json",
+    "independent_business_review": "pending",
+    "not_part_of_natural40": true,
+    "not_browser_file_chooser_coverage": true
+  },
+  "raw_process_records": {
+    "contract": "reports/crm-stdout/v18-contract.process.json",
+    "natural": "reports/crm-stdout/v18-natural.process.json"
+  },
+  "raw_output_files": {
+    "contract": {
+      "path": "reports/crm-stdout/v18-contract.stdout.log",
+      "bytes": 13757,
+      "sha256": "c81465009fec505c3253dd78bd07c563e36639c495ee7de866559604a58f6fe6",
+      "process": {
+        "command": [
+          "node",
+          "--env-file-if-exists=.env",
+          "scripts/crm-eval.mjs",
+          "--suite",
+          "all",
+          "--concurrency",
+          "2"
+        ],
+        "started_at": "2026-10-19T22:58:00.314Z",
+        "wrapper_pid": 4815,
+        "stdout": "reports/crm-stdout/v18-contract.stdout.log",
+        "child_pid": 4816,
+        "exit_code": 0,
+        "signal": null,
+        "ended_at": "2026-10-19T23:00:34.296Z"
+      }
+    },
+    "natural": {
+      "path": "reports/crm-stdout/v18-natural.stdout.log",
+      "bytes": 6104,
+      "sha256": "0b719da6c5af67da14884afbf73dcac66063d236a0b977a177fd4a0d4fa4c628",
+      "process": {
+        "command": [
+          "node",
+          "--env-file-if-exists=.env",
+          "scripts/crm-journey-eval.mjs",
+          "--split",
+          "all",
+          "--phase",
+          "regression",
+          "--concurrency",
+          "2",
+          "--output",
+          "reports/crm-journeys/final-regression-20261020-v18-final"
+        ],
+        "started_at": "2026-10-19T22:58:01.250Z",
+        "wrapper_pid": 4817,
+        "stdout": "reports/crm-stdout/v18-natural.stdout.log",
+        "child_pid": 4818,
+        "exit_code": 1,
+        "signal": null,
+        "ended_at": "2026-10-19T23:01:33.866Z"
+      }
+    }
+  }
+}

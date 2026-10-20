@@ -1,0 +1,32 @@
+{
+  "stage": "v15 long-verdict SDK validation, host control evidence and bounded plan-review failure before production repair",
+  "command": [
+    "node",
+    "--test",
+    "--test-reporter=tap",
+    "--test-name-pattern=genuine long rejecting issue|plan reviewers receive host-control semantics|three consecutive rejected plan reviews|unavailable plan reviewer ends",
+    "tests/crm-response-guard.test.mjs",
+    "tests/crm-integration.test.mjs"
+  ],
+  "tests": 4,
+  "passed": 2,
+  "failed": 2,
+  "exit_code": 1,
+  "source_sha256": {
+    "src/crm/agent.mjs": "10c01b2b0ad79b3138b934a6663e229b9183c895a1ad954da016584d480726fa",
+    "src/crm/response-guard.mjs": "21a8e6cf965f70e334387f44f65e13c55b8d4bfcb568173319c4576225435640",
+    "tests/crm-integration.test.mjs": "447984d5bdd5141d90343a35ce1fb5f6e2e4579158294a8ce08470dc48195fad",
+    "tests/crm-response-guard.test.mjs": "0aa2b246c4d5516124a9ee5cdf059b2b731eea9cb4cf4f14107ecbd635f5a252"
+  },
+  "source_sha256_end": {
+    "src/crm/agent.mjs": "10c01b2b0ad79b3138b934a6663e229b9183c895a1ad954da016584d480726fa",
+    "src/crm/response-guard.mjs": "21a8e6cf965f70e334387f44f65e13c55b8d4bfcb568173319c4576225435640",
+    "tests/crm-integration.test.mjs": "447984d5bdd5141d90343a35ce1fb5f6e2e4579158294a8ce08470dc48195fad",
+    "tests/crm-response-guard.test.mjs": "0aa2b246c4d5516124a9ee5cdf059b2b731eea9cb4cf4f14107ecbd635f5a252"
+  },
+  "source_changed_during_run": [],
+  "raw_tap": "docs/evaluation/balady-crm-v15-review-control-red-20261020.tap",
+  "frozen_actor_reference_grader_changed": false,
+  "timing_note": "Production patching had already started before this first four-test probe. Long-issue validation and three-reject bound were green at first measurement, so they are not claimed as pre-fix red. The unavailable-reviewer retry was actual red. The plan-control field failure used a proposed interface before the final host_control_capabilities/host_automatic_steps interface was communicated, so it is an interface test adjustment rather than proof of a production bug. Frozen f2ea7 guard long-issue bug is separately reproduced through real SDK in an isolated temporary module.",
+  "frozen_long_issue_red": "docs/evaluation/balady-crm-v15-frozen-long-issue-red-20261020.json"
+}

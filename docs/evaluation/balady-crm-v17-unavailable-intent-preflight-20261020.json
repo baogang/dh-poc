@@ -1,0 +1,338 @@
+{
+  "stage": "v17 targeted real-model unavailable-intent source review, not journey benchmark or replacement of original 5/6 preflight",
+  "started_at": "2026-10-19T22:42:36.414Z",
+  "model": "deepseek-flash",
+  "source_sha256": {
+    "src/crm/agent.mjs": "52dd530fa1b37d45738e92a1f23f0c48e8dc783b16a74a6a825c81392622c386",
+    "src/crm/response-guard.mjs": "aafa4c8ada566d0d208ce4743ccbf3278d078c9740ed1cad326e961f50377640",
+    "src/crm/presentation.mjs": "62de557918e509568c1309fa826a2658b4c1e60b8187f4c1a2eb7d3030a2431a"
+  },
+  "cases": [
+    {
+      "id": "supported_history_not_unavailable",
+      "language": "zh",
+      "messages": [
+        "请列出我过去反映的问题。"
+      ],
+      "quote": "请列出我过去反映的问题。",
+      "expected": "reject",
+      "actual": "reject",
+      "pass": true,
+      "error": {
+        "code": "UNVERIFIED_CUSTOMER_CLAIMS",
+        "message": "Regenerate the original unavailable_intent in zh using only supported facts and capabilities; then retry this tool. The quoted request \"请列出我过去反映的问题\" (list my past reported issues) is a read of the beneficiary's own incident/request history, which is directly served by the connected read operation crm_get_incidents (and crm_fetch_incident for details). No unavailable service or action is requested, so the unavailable_intent label is unsupported."
+      },
+      "events": [
+        {
+          "type": "response_guard_started",
+          "message_count": 0
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 1901,
+            "output": 125,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 2026,
+            "cost": {
+              "input": 0.0005702999999999999,
+              "output": 0.00015,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "total": 0.0007202999999999999
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": false,
+                "issues": [
+                  "The quoted request \"请列出我过去反映的问题\" (list my past reported issues) is a read of the beneficiary's own incident/request history, which is directly served by the connected read operation crm_get_incidents (and crm_fetch_incident for details). No unavailable service or action is requested, so the unavailable_intent label is unsupported."
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_rejected",
+          "scope": "request_intent",
+          "issues": [
+            "The quoted request \"请列出我过去反映的问题\" (list my past reported issues) is a read of the beneficiary's own incident/request history, which is directly served by the connected read operation crm_get_incidents (and crm_fetch_incident for details). No unavailable service or action is requested, so the unavailable_intent label is unsupported."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "urgency_is_not_a_dispatch_request",
+      "language": "en",
+      "messages": [
+        "I am really worried. What is happening with my earlier report?"
+      ],
+      "quote": "I am really worried.",
+      "expected": "reject",
+      "actual": "reject",
+      "pass": true,
+      "error": {
+        "code": "UNVERIFIED_CUSTOMER_CLAIMS",
+        "message": "Regenerate the original unavailable_intent in en using only supported facts and capabilities; then retry this tool. The quoted span \"I am really worried.\" expresses emotion only; it does not request any specific action or service.; The actual request in context (\"What is happening with my earlier report?\") is a status/progress check, which is served by the connected read operations (crm_get_incidents, crm_fetch_incident); no unavailable service is requested.; Worry/urgency alone does not constitute a request for priority change, dispatch, staff contact, or any other unavailable capability."
+      },
+      "events": [
+        {
+          "type": "response_guard_started",
+          "message_count": 0
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 1525,
+            "output": 153,
+            "cacheRead": 384,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 2062,
+            "cost": {
+              "input": 0.00045749999999999995,
+              "output": 0.0001836,
+              "cacheRead": 0.000002304,
+              "cacheWrite": 0,
+              "total": 0.0006434039999999999
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": false,
+                "issues": [
+                  "The quoted span \"I am really worried.\" expresses emotion only; it does not request any specific action or service.",
+                  "The actual request in context (\"What is happening with my earlier report?\") is a status/progress check, which is served by the connected read operations (crm_get_incidents, crm_fetch_incident); no unavailable service is requested.",
+                  "Worry/urgency alone does not constitute a request for priority change, dispatch, staff contact, or any other unavailable capability."
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_rejected",
+          "scope": "request_intent",
+          "issues": [
+            "The quoted span \"I am really worried.\" expresses emotion only; it does not request any specific action or service.",
+            "The actual request in context (\"What is happening with my earlier report?\") is a status/progress check, which is served by the connected read operations (crm_get_incidents, crm_fetch_incident); no unavailable service is requested.",
+            "Worry/urgency alone does not constitute a request for priority change, dispatch, staff contact, or any other unavailable capability."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "explicit_unconnected_refund",
+      "language": "ar",
+      "messages": [
+        "أريد استرداد المبلغ الذي دفعته."
+      ],
+      "quote": "أريد استرداد المبلغ الذي دفعته.",
+      "expected": "approve",
+      "actual": "approve",
+      "pass": true,
+      "events": [
+        {
+          "type": "response_guard_started",
+          "message_count": 0
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 1537,
+            "output": 48,
+            "cacheRead": 384,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 1969,
+            "cost": {
+              "input": 0.0004611,
+              "output": 0.0000576,
+              "cacheRead": 0.000002304,
+              "cacheWrite": 0,
+              "total": 0.0005210039999999999
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": true,
+                "issues": []
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_passed",
+          "scope": "request_intent"
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 1942,
+            "output": 48,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 1990,
+            "cost": {
+              "input": 0.0005826,
+              "output": 0.0000576,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "total": 0.0006402
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": true,
+                "issues": []
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_passed",
+          "scope": "unavailable_capability"
+        },
+        {
+          "type": "response_guard_completed",
+          "corrected": false,
+          "issues": []
+        }
+      ]
+    },
+    {
+      "id": "clear_deictic_renewal_followup",
+      "language": "en",
+      "messages": [
+        "Can you renew my business licence?",
+        "Yes, please do that here."
+      ],
+      "quote": "please do that here",
+      "expected": "approve",
+      "actual": "reject",
+      "pass": false,
+      "error": {
+        "code": "UNVERIFIED_CUSTOMER_CLAIMS",
+        "message": "Regenerate the original unavailable_intent in en using only supported facts and capabilities; then retry this tool. The quoted follow-up \"please do that here\" refers to the prior request \"Can you renew my business licence?\" — a licence renewal. No connected operation performs licence renewal (no renewal/issuance service exists in available_operations; capabilities show no external_processing or institutional_callbacks). The requested action is genuinely absent from the connected catalogue, so the unavailable-intent label is correct and the target should not be rejected on that basis.; However, the review target provides no evidence of the actual service goal beyond the bare quote; the verdict here is limited to confirming that licence renewal is unconnected. No write or routing permission is granted."
+      },
+      "events": [
+        {
+          "type": "response_guard_started",
+          "message_count": 0
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 1525,
+            "output": 48,
+            "cacheRead": 384,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 1957,
+            "cost": {
+              "input": 0.00045749999999999995,
+              "output": 0.0000576,
+              "cacheRead": 0.000002304,
+              "cacheWrite": 0,
+              "total": 0.000517404
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": true,
+                "issues": []
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_passed",
+          "scope": "request_intent"
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 1546,
+            "output": 180,
+            "cacheRead": 384,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 2110,
+            "cost": {
+              "input": 0.0004638,
+              "output": 0.000216,
+              "cacheRead": 0.000002304,
+              "cacheWrite": 0,
+              "total": 0.0006821039999999999
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": false,
+                "issues": [
+                  "The quoted follow-up \"please do that here\" refers to the prior request \"Can you renew my business licence?\" — a licence renewal. No connected operation performs licence renewal (no renewal/issuance service exists in available_operations; capabilities show no external_processing or institutional_callbacks). The requested action is genuinely absent from the connected catalogue, so the unavailable-intent label is correct and the target should not be rejected on that basis.",
+                  "However, the review target provides no evidence of the actual service goal beyond the bare quote; the verdict here is limited to confirming that licence renewal is unconnected. No write or routing permission is granted."
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_rejected",
+          "scope": "unavailable_capability",
+          "issues": [
+            "The quoted follow-up \"please do that here\" refers to the prior request \"Can you renew my business licence?\" — a licence renewal. No connected operation performs licence renewal (no renewal/issuance service exists in available_operations; capabilities show no external_processing or institutional_callbacks). The requested action is genuinely absent from the connected catalogue, so the unavailable-intent label is correct and the target should not be rejected on that basis.",
+            "However, the review target provides no evidence of the actual service goal beyond the bare quote; the verdict here is limited to confirming that licence renewal is unconnected. No write or routing permission is granted."
+          ]
+        }
+      ]
+    }
+  ],
+  "completed_at": "2026-10-19T22:42:41.840Z",
+  "pass": false,
+  "source_changed_during_run": []
+}

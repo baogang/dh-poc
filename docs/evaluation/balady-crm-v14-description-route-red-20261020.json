@@ -1,0 +1,29 @@
+{
+  "stage": "v14 actual unavailable-route and descriptive-fact provenance HTTP red before production repair",
+  "command": [
+    "node",
+    "--test",
+    "--test-reporter=tap",
+    "--test-name-pattern=actual unavailable location route|public complaint descriptions cannot add|partial complaint with unsupported",
+    "tests/crm-integration.test.mjs"
+  ],
+  "tests": 3,
+  "passed": 0,
+  "failed": 3,
+  "exit_code": 1,
+  "source_sha256": {
+    "src/crm/agent.mjs": "0365bc1b3e7e46f0ce69fd663f1f200c99e70195d14e0e8b540345c131925a57",
+    "src/crm/response-guard.mjs": "28ccdfb28468e1cd1f01faa6e0b7d5000b750c6c178f84efad4d10e1c4bbf552",
+    "src/crm/contract.mjs": "650d3bc0abd54fca8d7a32c5a640a6bd8ee5a996254704f855f41a3d6b93d08a",
+    "tests/crm-integration.test.mjs": "304477f2ca0d582ac8c0153c0a67508c7fd36cc22e1304375f0a65be99964c30"
+  },
+  "source_sha256_end": {
+    "src/crm/agent.mjs": "0365bc1b3e7e46f0ce69fd663f1f200c99e70195d14e0e8b540345c131925a57",
+    "src/crm/response-guard.mjs": "28ccdfb28468e1cd1f01faa6e0b7d5000b750c6c178f84efad4d10e1c4bbf552",
+    "src/crm/contract.mjs": "650d3bc0abd54fca8d7a32c5a640a6bd8ee5a996254704f855f41a3d6b93d08a",
+    "tests/crm-integration.test.mjs": "304477f2ca0d582ac8c0153c0a67508c7fd36cc22e1304375f0a65be99964c30"
+  },
+  "source_changed_during_run": [],
+  "raw_tap": "docs/evaluation/balady-crm-v14-description-route-red-20261020.tap",
+  "frozen_data_actor_references_grader_changed": false
+}

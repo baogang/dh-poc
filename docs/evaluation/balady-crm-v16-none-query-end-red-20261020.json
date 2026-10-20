@@ -1,0 +1,30 @@
+{
+  "stage": "v16 real validated none selection terminates a pure case query without model or remaining-detail retry",
+  "command": [
+    "node",
+    "--test",
+    "--test-reporter=tap",
+    "--test-name-pattern=validated none selection completes a pure case query",
+    "tests/crm-integration.test.mjs"
+  ],
+  "tests": 1,
+  "passed": 0,
+  "failed": 1,
+  "exit_code": 1,
+  "source_sha256": {
+    "src/crm/agent.mjs": "f72c40ca96482fa3157612029adf443f9326ace1db4d00b8cd56a21085710991",
+    "src/crm/case-target.mjs": "a509e05b0d9514eb90d10229f5ce9f379dcf776d71e071b2c862366b94413109",
+    "src/crm/presentation.mjs": "452ee24f78d4051465d18f55496814e9b78d0606ea85c99641575b1bca5b1f32",
+    "tests/crm-integration.test.mjs": "abea3edc5abe9001676a3c746f31fa7457bd6f83009bc27a1a54298cfd198a23"
+  },
+  "source_sha256_end": {
+    "src/crm/agent.mjs": "c8b30b7b270e699876627a0096902ac9bf9e80da8a0bc897588a9249722e758a",
+    "src/crm/case-target.mjs": "a509e05b0d9514eb90d10229f5ce9f379dcf776d71e071b2c862366b94413109",
+    "src/crm/presentation.mjs": "452ee24f78d4051465d18f55496814e9b78d0606ea85c99641575b1bca5b1f32",
+    "tests/crm-integration.test.mjs": "abea3edc5abe9001676a3c746f31fa7457bd6f83009bc27a1a54298cfd198a23"
+  },
+  "source_changed_during_run": [
+    "src/crm/agent.mjs"
+  ],
+  "raw_tap": "docs/evaluation/balady-crm-v16-none-query-end-red-20261020.tap"
+}

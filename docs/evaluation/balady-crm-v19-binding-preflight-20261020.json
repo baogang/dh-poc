@@ -1,0 +1,678 @@
+{
+  "stage": "v19 targeted structured binding/unknown-fact probes; not journey benchmark",
+  "started_at": "2026-10-19T23:10:33.490Z",
+  "source_sha256": {
+    "src/crm/agent.mjs": "9b6cb7ec22d785e27b6cfecf0fccca2b5a7ebc2ac649afd6652564e70fd9cc9b",
+    "src/crm/response-guard.mjs": "d267a7b756689e15b62f40f8b83b2a13a1a6bb047e72d9265bf28269fec8a39d",
+    "src/crm/presentation.mjs": "236892c0d30b9f2477685d3220bcd6bdd6d8b41ce2bc51944f21ea6e2b14bf9c",
+    "src/crm/public-capabilities.mjs": "3a84aa843a098ee82971581140412194d070a272d91dc174dd84d9815039bd25"
+  },
+  "cases": [
+    {
+      "id": "actual_location_reason_without_free_prose",
+      "session": {
+        "messages": [
+          {
+            "id": "origin",
+            "role": "user",
+            "text": "A sign outside the test building has fallen. Please report it."
+          }
+        ],
+        "receipts": [],
+        "facts": {
+          "hostConstraints": {
+            "origin": {
+              "crm_create_municipal_service": {
+                "code": "LOCATION_METADATA_UNAVAILABLE",
+                "operation": "crm_create_municipal_service",
+                "capability": "administrative_location_resolution",
+                "available": false,
+                "fields": [
+                  "body.LocationInfo.SubMunicipalityID",
+                  "body.LocationInfo.Sub_SubMunicipalityID"
+                ]
+              }
+            }
+          }
+        },
+        "user": {
+          "user_id": "synthetic-test"
+        }
+      },
+      "context": {
+        "kind": "outcome_binding",
+        "case_guidance": [
+          "location_unavailable"
+        ],
+        "receipt_ids": [],
+        "outcome": "blocked"
+      },
+      "expected": "approve",
+      "actual": "approve",
+      "pass": true,
+      "events": [
+        {
+          "type": "response_guard_started",
+          "message_count": 0
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 3347,
+            "output": 48,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 3395,
+            "cost": {
+              "input": 0.0010041,
+              "output": 0.0000576,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "total": 0.0010617
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": true,
+                "issues": []
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_passed",
+          "scope": "guidance_intent"
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 2853,
+            "output": 48,
+            "cacheRead": 512,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 3413,
+            "cost": {
+              "input": 0.0008558999999999999,
+              "output": 0.0000576,
+              "cacheRead": 0.000003072,
+              "cacheWrite": 0,
+              "total": 0.0009165719999999999
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": true,
+                "issues": []
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_passed",
+          "scope": "evidence_binding"
+        },
+        {
+          "type": "response_guard_completed",
+          "corrected": false,
+          "issues": []
+        }
+      ]
+    },
+    {
+      "id": "true_location_constraint_does_not_justify_wrong_permit_route",
+      "session": {
+        "messages": [
+          {
+            "id": "origin",
+            "role": "user",
+            "text": "Please issue a new trading permit for my test stall."
+          }
+        ],
+        "receipts": [],
+        "facts": {
+          "hostConstraints": {
+            "origin": {
+              "crm_create_municipal_service": {
+                "code": "LOCATION_METADATA_UNAVAILABLE",
+                "operation": "crm_create_municipal_service",
+                "capability": "administrative_location_resolution",
+                "available": false,
+                "fields": [
+                  "body.LocationInfo.SubMunicipalityID",
+                  "body.LocationInfo.Sub_SubMunicipalityID"
+                ]
+              }
+            }
+          }
+        },
+        "user": {
+          "user_id": "synthetic-test"
+        }
+      },
+      "context": {
+        "kind": "outcome_binding",
+        "case_guidance": [
+          "location_unavailable"
+        ],
+        "receipt_ids": [],
+        "outcome": "blocked"
+      },
+      "expected": "reject",
+      "actual": "reject",
+      "pass": true,
+      "error": {
+        "code": "UNVERIFIED_CUSTOMER_CLAIMS",
+        "message": "Regenerate the original outcome_binding in en using only supported facts and capabilities; then retry this tool. Guidance intent mismatch: the user asked to issue a new trading permit, but the selected guidance 'location_unavailable' is tied to crm_create_municipal_service (a CRM request record), which cannot issue a permit. No connected operation grants or issues permits, so the blocker should be stated as an unsupported transaction, not as a missing-location prerequisite for a permit.; The host constraint LOCATION_METADATA_UNAVAILABLE applies only to the municipal service request creation path; presenting it as the reason the permit request is blocked misattributes the failure. The permit request fails because no connected capability issues permits, independent of location metadata.; No receipts are cited and no operation was attempted, so the outcome 'blocked' must not be explained by a location-metadata observation that was never reached."
+      },
+      "events": [
+        {
+          "type": "response_guard_started",
+          "message_count": 0
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 2319,
+            "output": 214,
+            "cacheRead": 1024,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 3557,
+            "cost": {
+              "input": 0.0006956999999999999,
+              "output": 0.0002568,
+              "cacheRead": 0.000006144,
+              "cacheWrite": 0,
+              "total": 0.000958644
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": false,
+                "issues": [
+                  "Guidance intent mismatch: the user asked to issue a new trading permit, but the selected guidance 'location_unavailable' is tied to crm_create_municipal_service (a CRM request record), which cannot issue a permit. No connected operation grants or issues permits, so the blocker should be stated as an unsupported transaction, not as a missing-location prerequisite for a permit.",
+                  "The host constraint LOCATION_METADATA_UNAVAILABLE applies only to the municipal service request creation path; presenting it as the reason the permit request is blocked misattributes the failure. The permit request fails because no connected capability issues permits, independent of location metadata.",
+                  "No receipts are cited and no operation was attempted, so the outcome 'blocked' must not be explained by a location-metadata observation that was never reached."
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_rejected",
+          "scope": "guidance_intent",
+          "issues": [
+            "Guidance intent mismatch: the user asked to issue a new trading permit, but the selected guidance 'location_unavailable' is tied to crm_create_municipal_service (a CRM request record), which cannot issue a permit. No connected operation grants or issues permits, so the blocker should be stated as an unsupported transaction, not as a missing-location prerequisite for a permit.",
+            "The host constraint LOCATION_METADATA_UNAVAILABLE applies only to the municipal service request creation path; presenting it as the reason the permit request is blocked misattributes the failure. The permit request fails because no connected capability issues permits, independent of location metadata.",
+            "No receipts are cited and no operation was attempted, so the outcome 'blocked' must not be explained by a location-metadata observation that was never reached."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "unestablished_visit_time_is_not_capability_absence",
+      "session": {
+        "messages": [
+          {
+            "id": "origin",
+            "role": "user",
+            "text": "When will someone visit the site?"
+          }
+        ],
+        "receipts": [
+          {
+            "id": "actual-detail",
+            "operation": "crm_fetch_incident",
+            "beneficiary_id": "synthetic-test",
+            "parameters": {
+              "pzInsKey": "SYNTHETIC INC-SYNTHETIC-71"
+            },
+            "result": {
+              "data": {
+                "result": {
+                  "pyID": "INC-SYNTHETIC-71",
+                  "pyStatusWork": "Open",
+                  "Description": "Fallen sign",
+                  "hasAttachments": true
+                }
+              }
+            }
+          }
+        ],
+        "facts": {},
+        "user": {
+          "user_id": "synthetic-test"
+        }
+      },
+      "context": {
+        "kind": "unconfirmed_fact",
+        "user_quote": "When will someone visit the site?",
+        "receipt_ids": [
+          "actual-detail"
+        ]
+      },
+      "expected": "approve",
+      "actual": "approve",
+      "pass": true,
+      "events": [
+        {
+          "type": "response_guard_started",
+          "message_count": 0
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 3275,
+            "output": 48,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 3323,
+            "cost": {
+              "input": 0.0009824999999999999,
+              "output": 0.0000576,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "total": 0.0010401
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": true,
+                "issues": []
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_passed",
+          "scope": "fact_presence"
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 2904,
+            "output": 48,
+            "cacheRead": 384,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 3336,
+            "cost": {
+              "input": 0.0008711999999999999,
+              "output": 0.0000576,
+              "cacheRead": 0.000002304,
+              "cacheWrite": 0,
+              "total": 0.0009311039999999999
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": true,
+                "issues": []
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_passed",
+          "scope": "evidence_boundary"
+        },
+        {
+          "type": "response_guard_completed",
+          "corrected": false,
+          "issues": []
+        }
+      ]
+    },
+    {
+      "id": "returned_recorded_status_cannot_be_called_unknown",
+      "session": {
+        "messages": [
+          {
+            "id": "origin",
+            "role": "user",
+            "text": "What recorded status does it have?"
+          }
+        ],
+        "receipts": [
+          {
+            "id": "actual-detail",
+            "operation": "crm_fetch_incident",
+            "beneficiary_id": "synthetic-test",
+            "parameters": {
+              "pzInsKey": "SYNTHETIC INC-SYNTHETIC-71"
+            },
+            "result": {
+              "data": {
+                "result": {
+                  "pyID": "INC-SYNTHETIC-71",
+                  "pyStatusWork": "Open",
+                  "Description": "Fallen sign",
+                  "hasAttachments": true
+                }
+              }
+            }
+          }
+        ],
+        "facts": {},
+        "user": {
+          "user_id": "synthetic-test"
+        }
+      },
+      "context": {
+        "kind": "unconfirmed_fact",
+        "user_quote": "What recorded status does it have?",
+        "receipt_ids": [
+          "actual-detail"
+        ]
+      },
+      "expected": "reject",
+      "actual": "reject",
+      "pass": true,
+      "error": {
+        "code": "UNVERIFIED_CUSTOMER_CLAIMS",
+        "message": "Regenerate the original unconfirmed_fact in en using only supported facts and capabilities; then retry this tool. The cited receipt (crm_fetch_incident on INC-SYNTHETIC-71) already returns the recorded status field pyStatusWork = \"Open\". The requested recorded status is therefore established by the actual evidence, so labeling it an unconfirmed/unknown fact is dishonest. The answer should report the recorded status \"Open\" (noting it is a recorded status, not proof of physical progress)."
+      },
+      "events": [
+        {
+          "type": "response_guard_started",
+          "message_count": 0
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 2507,
+            "output": 133,
+            "cacheRead": 768,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 3408,
+            "cost": {
+              "input": 0.0007521,
+              "output": 0.0001596,
+              "cacheRead": 0.000004608,
+              "cacheWrite": 0,
+              "total": 0.000916308
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": false,
+                "issues": [
+                  "The cited receipt (crm_fetch_incident on INC-SYNTHETIC-71) already returns the recorded status field pyStatusWork = \"Open\". The requested recorded status is therefore established by the actual evidence, so labeling it an unconfirmed/unknown fact is dishonest. The answer should report the recorded status \"Open\" (noting it is a recorded status, not proof of physical progress)."
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_rejected",
+          "scope": "fact_presence",
+          "issues": [
+            "The cited receipt (crm_fetch_incident on INC-SYNTHETIC-71) already returns the recorded status field pyStatusWork = \"Open\". The requested recorded status is therefore established by the actual evidence, so labeling it an unconfirmed/unknown fact is dishonest. The answer should report the recorded status \"Open\" (noting it is a recorded status, not proof of physical progress)."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "file_not_obtained_boundary_has_no_download_denial",
+      "session": {
+        "messages": [
+          {
+            "id": "origin",
+            "role": "user",
+            "text": "Can I get back the attachment to this report?"
+          }
+        ],
+        "receipts": [
+          {
+            "id": "actual-detail",
+            "operation": "crm_fetch_incident",
+            "beneficiary_id": "synthetic-test",
+            "parameters": {
+              "pzInsKey": "SYNTHETIC INC-SYNTHETIC-71"
+            },
+            "result": {
+              "data": {
+                "result": {
+                  "pyID": "INC-SYNTHETIC-71",
+                  "pyStatusWork": "Open",
+                  "Description": "Fallen sign",
+                  "hasAttachments": true
+                }
+              }
+            }
+          }
+        ],
+        "facts": {},
+        "user": {
+          "user_id": "synthetic-test"
+        }
+      },
+      "context": {
+        "kind": "outcome_binding",
+        "case_guidance": [
+          "file_unavailable"
+        ],
+        "receipt_ids": [
+          "actual-detail"
+        ],
+        "outcome": "answered"
+      },
+      "expected": "approve",
+      "actual": "approve",
+      "pass": true,
+      "events": [
+        {
+          "type": "response_guard_started",
+          "message_count": 0
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 2465,
+            "output": 48,
+            "cacheRead": 896,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 3409,
+            "cost": {
+              "input": 0.0007394999999999999,
+              "output": 0.0000576,
+              "cacheRead": 0.000005376,
+              "cacheWrite": 0,
+              "total": 0.0008024759999999999
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": true,
+                "issues": []
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_passed",
+          "scope": "guidance_intent"
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 2483,
+            "output": 48,
+            "cacheRead": 896,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 3427,
+            "cost": {
+              "input": 0.0007449,
+              "output": 0.0000576,
+              "cacheRead": 0.000005376,
+              "cacheWrite": 0,
+              "total": 0.0008078759999999999
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": true,
+                "issues": []
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_passed",
+          "scope": "evidence_binding"
+        },
+        {
+          "type": "response_guard_completed",
+          "corrected": false,
+          "issues": []
+        }
+      ]
+    },
+    {
+      "id": "optional_contact_record_cannot_replace_unregistered_original_goal",
+      "session": {
+        "messages": [
+          {
+            "id": "origin",
+            "role": "user",
+            "text": "Please report the fallen sign outside the test building."
+          }
+        ],
+        "receipts": [],
+        "facts": {},
+        "user": {
+          "user_id": "synthetic-test"
+        }
+      },
+      "context": {
+        "kind": "outcome_binding",
+        "case_guidance": [
+          "offer_separate_complaint"
+        ],
+        "receipt_ids": [],
+        "outcome": "blocked"
+      },
+      "expected": "reject",
+      "actual": "reject",
+      "pass": true,
+      "error": {
+        "code": "UNVERIFIED_CUSTOMER_CLAIMS",
+        "message": "Regenerate the original outcome_binding in en using only supported facts and capabilities; then retry this tool. Guidance intent mismatch: the user asked to report a fallen sign (a municipal service request / incident report), but the only selected guidance is offer_separate_complaint, which frames the outcome as a separate public complaint record rather than the requested report. No receipt or constraint supports redirecting to a complaint; either bind guidance to the actual report path (e.g., municipal service request creation with location/classification) or explain the concrete blocker for that path.; outcome 'blocked' is asserted with zero receipts and no host_constraints, so nothing evidences why the requested report could not be recorded; a blocked outcome needs an actual attempted call result or a stated constraint."
+      },
+      "events": [
+        {
+          "type": "response_guard_started",
+          "message_count": 0
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 2393,
+            "output": 186,
+            "cacheRead": 896,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 3475,
+            "cost": {
+              "input": 0.0007178999999999999,
+              "output": 0.00022319999999999998,
+              "cacheRead": 0.000005376,
+              "cacheWrite": 0,
+              "total": 0.0009464759999999999
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": false,
+                "issues": [
+                  "Guidance intent mismatch: the user asked to report a fallen sign (a municipal service request / incident report), but the only selected guidance is offer_separate_complaint, which frames the outcome as a separate public complaint record rather than the requested report. No receipt or constraint supports redirecting to a complaint; either bind guidance to the actual report path (e.g., municipal service request creation with location/classification) or explain the concrete blocker for that path.",
+                  "outcome 'blocked' is asserted with zero receipts and no host_constraints, so nothing evidences why the requested report could not be recorded; a blocked outcome needs an actual attempted call result or a stated constraint."
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_rejected",
+          "scope": "guidance_intent",
+          "issues": [
+            "Guidance intent mismatch: the user asked to report a fallen sign (a municipal service request / incident report), but the only selected guidance is offer_separate_complaint, which frames the outcome as a separate public complaint record rather than the requested report. No receipt or constraint supports redirecting to a complaint; either bind guidance to the actual report path (e.g., municipal service request creation with location/classification) or explain the concrete blocker for that path.",
+            "outcome 'blocked' is asserted with zero receipts and no host_constraints, so nothing evidences why the requested report could not be recorded; a blocked outcome needs an actual attempted call result or a stated constraint."
+          ]
+        }
+      ]
+    }
+  ],
+  "completed_at": "2026-10-19T23:10:42.355Z",
+  "pass": true,
+  "source_changed_during_run": []
+}

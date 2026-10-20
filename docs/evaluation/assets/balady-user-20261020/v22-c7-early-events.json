@@ -1,0 +1,32 @@
+[
+  {
+    "request": 1,
+    "seq": 4,
+    "time": "2026-10-20T00:37:35.476Z",
+    "type": "model_request"
+  },
+  {
+    "entries": 9,
+    "seq": 3,
+    "time": "2026-10-20T00:37:35.467Z",
+    "type": "faq_lookup"
+  },
+  {
+    "epoch": 0,
+    "route": "faq_then_balady_crm",
+    "seq": 2,
+    "time": "2026-10-20T00:37:35.465Z",
+    "type": "turn_started"
+  },
+  {
+    "message": {
+      "id": "message-fb919997-375c-44cc-a86a-e67e23f67ed8",
+      "role": "user",
+      "text": "我为门店多交了一笔费用，能帮我把这笔钱退回来吗？",
+      "time": "2026-10-20T00:37:35.464Z"
+    },
+    "seq": 1,
+    "time": "2026-10-20T00:37:35.464Z",
+    "type": "message"
+  }
+]

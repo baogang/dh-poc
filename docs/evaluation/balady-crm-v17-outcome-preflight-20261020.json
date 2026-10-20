@@ -1,0 +1,827 @@
+{
+  "stage": "v17 targeted real-model host outcome and target-association preflight, not a full journey benchmark",
+  "started_at": "2026-10-19T22:36:31.647Z",
+  "model": "deepseek-flash",
+  "source_sha256": {
+    "src/crm/agent.mjs": "0344b96341548c75b8ca9bc0ceef614e4d97144106d43d131c2e9b676c3e9ffc",
+    "src/crm/response-guard.mjs": "93612137ce322849a476d1ac1f378290a395b9ba2f7f08d2900390f606584176",
+    "src/crm/presentation.mjs": "62de557918e509568c1309fa826a2658b4c1e60b8187f4c1a2eb7d3030a2431a"
+  },
+  "cases": [
+    {
+      "id": "canonical_open_label",
+      "snapshot": {
+        "messages": [
+          {
+            "id": "origin",
+            "role": "user",
+            "text": "请列出我过去反映的问题。"
+          }
+        ],
+        "receipts": [
+          {
+            "id": "owned-history",
+            "beneficiary_id": "synthetic-test",
+            "operation": "crm_get_incidents",
+            "parameters": {},
+            "result": {
+              "data": {
+                "result": {
+                  "IncidentRequestList": [
+                    {
+                      "pyID": "INC-SYNTHETIC-41",
+                      "pzInsKey": "SYNTHETIC INC-SYNTHETIC-41",
+                      "Description": "Broken bench",
+                      "pyStatusWork": "Open"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        ],
+        "facts": {},
+        "user": {
+          "user_id": "synthetic-test"
+        }
+      },
+      "language": "zh",
+      "texts": [],
+      "context": {
+        "kind": "host_outcome",
+        "origin_message_id": "origin",
+        "host_text": "可见记录如下：\n\n| 记录编号 | 问题描述 | 记录状态 | 附件标记 |\n|---|---|---|---|\n| INC-SYNTHETIC-41 | Broken bench | 未结案 | 未返回 |\n\n以上是记录中的状态，不能据此确定现场修复、派工或处理时间。\n\n这些是本地仿真记录，未发送至政府系统，不能用这些本地编号在官方渠道查询。",
+        "case_guidance": [],
+        "case_target_state": {
+          "origin_message_id": "origin",
+          "history_scope": "signed_in_beneficiary_only",
+          "history_receipt_id": "owned-history",
+          "selection_state": "not_selected",
+          "detail_targets": []
+        },
+        "outcome": "completed",
+        "receipt_ids": [
+          "owned-history"
+        ],
+        "host_checks": {
+          "receipt_ownership_checked": true,
+          "receipt_fields_immutable": true
+        }
+      },
+      "expected": "approve",
+      "actual": "approve",
+      "pass": true,
+      "events": [
+        {
+          "type": "response_guard_started",
+          "message_count": 0
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 2660,
+            "output": 48,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 2708,
+            "cost": {
+              "input": 0.000798,
+              "output": 0.0000576,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "total": 0.0008556
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": true,
+                "issues": []
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_passed",
+          "scope": "explanation_facts"
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 2434,
+            "output": 48,
+            "cacheRead": 256,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 2738,
+            "cost": {
+              "input": 0.0007302,
+              "output": 0.0000576,
+              "cacheRead": 0.000001536,
+              "cacheWrite": 0,
+              "total": 0.000789336
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": true,
+                "issues": []
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_passed",
+          "scope": "outcome_applicability_language"
+        },
+        {
+          "type": "response_guard_completed",
+          "corrected": false,
+          "issues": []
+        }
+      ]
+    },
+    {
+      "id": "specific_capability_explanation",
+      "snapshot": {
+        "messages": [
+          {
+            "id": "origin",
+            "role": "user",
+            "text": "Where is the nearest playground?"
+          }
+        ],
+        "receipts": [
+          {
+            "id": "asset-categories",
+            "operation": "crm_get_assets",
+            "parameters": {},
+            "result": {
+              "data": {
+                "result": [
+                  {
+                    "MainAssetsID": "CAT-SYNTHETIC-1",
+                    "MainAssetsName": "Community facilities"
+                  }
+                ]
+              }
+            }
+          }
+        ],
+        "facts": {},
+        "user": {
+          "user_id": "synthetic-test"
+        }
+      },
+      "language": "en",
+      "texts": [
+        "The returned data lists facility categories, not locations of individual playgrounds. Nearby place search and map directions are not connected here, so it cannot identify the nearest playground."
+      ],
+      "context": {
+        "kind": "host_outcome",
+        "origin_message_id": "origin",
+        "host_text": "The requested operation is not connected to this assistant and was not performed.\n\nThis environment keeps local simulation records only. Nothing is forwarded to a government body, department or staff for verification or handling; no real refund, payment, permit or notification is performed. Real transactions require a separate official channel, where local numbers cannot be used for tracking.",
+        "case_guidance": [
+          "action_unavailable"
+        ],
+        "outcome": "answered",
+        "receipt_ids": [
+          "asset-categories"
+        ],
+        "host_checks": {
+          "receipt_ownership_checked": true,
+          "receipt_fields_immutable": true
+        }
+      },
+      "expected": "approve",
+      "actual": "approve",
+      "pass": true,
+      "events": [
+        {
+          "type": "response_guard_started",
+          "message_count": 1
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 1787,
+            "output": 48,
+            "cacheRead": 768,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 2603,
+            "cost": {
+              "input": 0.0005361,
+              "output": 0.0000576,
+              "cacheRead": 0.000004608,
+              "cacheWrite": 0,
+              "total": 0.000598308
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": true,
+                "issues": []
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_passed",
+          "scope": "explanation_facts"
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 1817,
+            "output": 48,
+            "cacheRead": 768,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 2633,
+            "cost": {
+              "input": 0.0005451,
+              "output": 0.0000576,
+              "cacheRead": 0.000004608,
+              "cacheWrite": 0,
+              "total": 0.000607308
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": true,
+                "issues": []
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_passed",
+          "scope": "outcome_applicability_language"
+        },
+        {
+          "type": "response_guard_completed",
+          "corrected": false,
+          "issues": []
+        }
+      ]
+    },
+    {
+      "id": "conditional_external_handoff_rejected",
+      "snapshot": {
+        "messages": [
+          {
+            "id": "origin",
+            "role": "user",
+            "text": "Record my complaint about the slow service counter."
+          }
+        ],
+        "receipts": [
+          {
+            "id": "submitted",
+            "operation": "crm_create_form_request",
+            "parameters": {
+              "body": {
+                "subject": "Slow counter",
+                "Description": "Slow service at the counter"
+              }
+            },
+            "result": {
+              "data": {
+                "result": {
+                  "id": "FORM-SYNTHETIC-41"
+                }
+              }
+            }
+          }
+        ],
+        "facts": {},
+        "user": {
+          "user_id": "synthetic-test"
+        }
+      },
+      "language": "en",
+      "texts": [
+        "This local complaint will be sent to the department for verification and they will contact you after reviewing it."
+      ],
+      "context": {
+        "kind": "host_outcome",
+        "origin_message_id": "origin",
+        "host_text": "This local simulated submission is complete.\n\n- Record number: FORM-SYNTHETIC-41\n- Title: Slow counter\n\nThis record exists only in this simulated conversation. It was not sent to a government system, cannot be tracked in the official app, and triggers no real SMS, email or refund.",
+        "case_guidance": [],
+        "outcome": "completed",
+        "receipt_ids": [
+          "submitted"
+        ],
+        "host_checks": {
+          "receipt_ownership_checked": true,
+          "receipt_fields_immutable": true
+        }
+      },
+      "expected": "reject",
+      "actual": "reject",
+      "pass": true,
+      "error": {
+        "code": "UNVERIFIED_CUSTOMER_CLAIMS",
+        "message": "Regenerate the original host_outcome in en using only supported facts and capabilities; then retry this tool. The explanation claims the complaint \"will be sent to the department for verification\" and that \"they will contact you after reviewing it\" — this contradicts the host_text and capabilities (department_handoff, institutional_callbacks, notifications, external_processing all false; the record exists only in this simulated conversation). Remove the promised forwarding, verification and contact; state that the local record was created and is not sent to any government system."
+      },
+      "events": [
+        {
+          "type": "response_guard_started",
+          "message_count": 1
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 1753,
+            "output": 135,
+            "cacheRead": 768,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 2656,
+            "cost": {
+              "input": 0.0005258999999999999,
+              "output": 0.00016199999999999998,
+              "cacheRead": 0.000004608,
+              "cacheWrite": 0,
+              "total": 0.000692508
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": false,
+                "issues": [
+                  "The explanation claims the complaint \"will be sent to the department for verification\" and that \"they will contact you after reviewing it\" — this contradicts the host_text and capabilities (department_handoff, institutional_callbacks, notifications, external_processing all false; the record exists only in this simulated conversation). Remove the promised forwarding, verification and contact; state that the local record was created and is not sent to any government system."
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_rejected",
+          "scope": "explanation_facts",
+          "issues": [
+            "The explanation claims the complaint \"will be sent to the department for verification\" and that \"they will contact you after reviewing it\" — this contradicts the host_text and capabilities (department_handoff, institutional_callbacks, notifications, external_processing all false; the record exists only in this simulated conversation). Remove the promised forwarding, verification and contact; state that the local record was created and is not sent to any government system."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "history_receipt_is_not_a_selected_case",
+      "snapshot": {
+        "messages": [
+          {
+            "id": "origin",
+            "role": "user",
+            "text": "I cannot find my earlier report number INC-SYNTHETIC-99 in this list."
+          }
+        ],
+        "receipts": [
+          {
+            "id": "owned-history",
+            "beneficiary_id": "synthetic-test",
+            "operation": "crm_get_incidents",
+            "parameters": {},
+            "result": {
+              "data": {
+                "result": {
+                  "IncidentRequestList": [
+                    {
+                      "pyID": "INC-SYNTHETIC-41",
+                      "pzInsKey": "SYNTHETIC INC-SYNTHETIC-41",
+                      "Description": "Broken bench",
+                      "pyStatusWork": "Open"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        ],
+        "facts": {},
+        "user": {
+          "user_id": "synthetic-test"
+        }
+      },
+      "language": "en",
+      "texts": [],
+      "context": {
+        "kind": "case_selection",
+        "origin_message_id": "origin",
+        "receipt_ids": [
+          "owned-history"
+        ],
+        "case_guidance": [
+          "not_found"
+        ],
+        "case_target_state": {
+          "origin_message_id": "origin",
+          "history_scope": "signed_in_beneficiary_only",
+          "history_receipt_id": "owned-history",
+          "selection_state": "not_selected",
+          "detail_targets": []
+        },
+        "host_checks": {
+          "receipt_ownership_checked": true
+        },
+        "outcome": "blocked"
+      },
+      "expected": "approve",
+      "actual": "approve",
+      "pass": true,
+      "events": [
+        {
+          "type": "response_guard_started",
+          "message_count": 0
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 2232,
+            "output": 48,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 2280,
+            "cost": {
+              "input": 0.0006696,
+              "output": 0.0000576,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "total": 0.0007272
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": true,
+                "issues": []
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_passed",
+          "scope": "target_association"
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 2120,
+            "output": 48,
+            "cacheRead": 128,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 2296,
+            "cost": {
+              "input": 0.000636,
+              "output": 0.0000576,
+              "cacheRead": 7.68e-7,
+              "cacheWrite": 0,
+              "total": 0.0006943679999999999
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": true,
+                "issues": []
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_passed",
+          "scope": "evidence_boundary"
+        },
+        {
+          "type": "response_guard_completed",
+          "corrected": false,
+          "issues": []
+        }
+      ]
+    },
+    {
+      "id": "unrequested_unavailable_action_rejected",
+      "snapshot": {
+        "messages": [
+          {
+            "id": "origin",
+            "role": "user",
+            "text": "请列出我过去反映的问题。"
+          }
+        ],
+        "receipts": [
+          {
+            "id": "owned-history",
+            "beneficiary_id": "synthetic-test",
+            "operation": "crm_get_incidents",
+            "parameters": {},
+            "result": {
+              "data": {
+                "result": {
+                  "IncidentRequestList": [
+                    {
+                      "pyID": "INC-SYNTHETIC-41",
+                      "pzInsKey": "SYNTHETIC INC-SYNTHETIC-41",
+                      "Description": "Broken bench",
+                      "pyStatusWork": "Open"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        ],
+        "facts": {},
+        "user": {
+          "user_id": "synthetic-test"
+        }
+      },
+      "language": "zh",
+      "texts": [
+        "下面是你可见记录中的状态。"
+      ],
+      "context": {
+        "kind": "host_outcome",
+        "origin_message_id": "origin",
+        "host_text": "可见记录如下：\n\n| 记录编号 | 问题描述 | 记录状态 | 附件标记 |\n|---|---|---|---|\n| INC-SYNTHETIC-41 | Broken bench | 未结案 | 未返回 |\n\n以上是记录中的状态，不能据此确定现场修复、派工或处理时间。\n\n你请求的这项操作当前未接入，本次没有执行该操作。\n\n这些是本地仿真记录，未发送至政府系统，不能用这些本地编号在官方渠道查询。",
+        "case_guidance": [
+          "action_unavailable"
+        ],
+        "case_target_state": {
+          "origin_message_id": "origin",
+          "history_scope": "signed_in_beneficiary_only",
+          "history_receipt_id": "owned-history",
+          "selection_state": "not_selected",
+          "detail_targets": []
+        },
+        "outcome": "completed",
+        "receipt_ids": [
+          "owned-history"
+        ],
+        "host_checks": {
+          "receipt_ownership_checked": true,
+          "receipt_fields_immutable": true
+        }
+      },
+      "expected": "reject",
+      "actual": "approve",
+      "pass": false,
+      "events": [
+        {
+          "type": "response_guard_started",
+          "message_count": 1
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 1822,
+            "output": 48,
+            "cacheRead": 896,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 2766,
+            "cost": {
+              "input": 0.0005466,
+              "output": 0.0000576,
+              "cacheRead": 0.000005376,
+              "cacheWrite": 0,
+              "total": 0.0006095759999999999
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": true,
+                "issues": []
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_passed",
+          "scope": "explanation_facts"
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 1852,
+            "output": 48,
+            "cacheRead": 896,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 2796,
+            "cost": {
+              "input": 0.0005556,
+              "output": 0.0000576,
+              "cacheRead": 0.000005376,
+              "cacheWrite": 0,
+              "total": 0.0006185759999999999
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": true,
+                "issues": []
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_passed",
+          "scope": "outcome_applicability_language"
+        },
+        {
+          "type": "response_guard_completed",
+          "corrected": false,
+          "issues": []
+        }
+      ]
+    },
+    {
+      "id": "positive_mismatched_target_rejected",
+      "snapshot": {
+        "messages": [
+          {
+            "id": "origin",
+            "role": "user",
+            "text": "I cannot find my earlier report number INC-SYNTHETIC-99 in this list."
+          }
+        ],
+        "receipts": [
+          {
+            "id": "owned-history",
+            "beneficiary_id": "synthetic-test",
+            "operation": "crm_get_incidents",
+            "parameters": {},
+            "result": {
+              "data": {
+                "result": {
+                  "IncidentRequestList": [
+                    {
+                      "pyID": "INC-SYNTHETIC-41",
+                      "pzInsKey": "SYNTHETIC INC-SYNTHETIC-41",
+                      "Description": "Broken bench",
+                      "pyStatusWork": "Open"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        ],
+        "facts": {},
+        "user": {
+          "user_id": "synthetic-test"
+        }
+      },
+      "language": "en",
+      "texts": [],
+      "context": {
+        "kind": "case_selection",
+        "origin_message_id": "origin",
+        "receipt_ids": [
+          "owned-history"
+        ],
+        "case_guidance": [],
+        "case_target_state": {
+          "origin_message_id": "origin",
+          "history_scope": "signed_in_beneficiary_only",
+          "history_receipt_id": "owned-history",
+          "selection_state": "selected",
+          "detail_targets": [
+            {
+              "operation": "crm_fetch_incident",
+              "record_key": "SYNTHETIC INC-SYNTHETIC-41",
+              "association": "mismatch"
+            }
+          ]
+        },
+        "host_checks": {
+          "receipt_ownership_checked": true
+        },
+        "outcome": "completed"
+      },
+      "expected": "reject",
+      "actual": "reject",
+      "pass": true,
+      "error": {
+        "code": "UNVERIFIED_CUSTOMER_CLAIMS",
+        "message": "Regenerate the original case_selection in en using only supported facts and capabilities; then retry this tool. Positive target association is invalid: the user asked about INC-SYNTHETIC-99, but the only fetched/selected detail target is INC-SYNTHETIC-41 (association marked mismatch). The history receipt lists INC-SYNTHETIC-41 only, so it cannot establish INC-SYNTHETIC-99 as a match.; The outcome is reported as completed with a selected target, but no target matching the requested report number was positively identified; the correct boundary is not_found (or candidate/exclusion presentation of the visible history), not an established selection."
+      },
+      "events": [
+        {
+          "type": "response_guard_started",
+          "message_count": 0
+        },
+        {
+          "type": "model_request",
+          "request": 1
+        },
+        {
+          "type": "model_result",
+          "usage": {
+            "input": 1774,
+            "output": 167,
+            "cacheRead": 512,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 2453,
+            "cost": {
+              "input": 0.0005321999999999999,
+              "output": 0.0002004,
+              "cacheRead": 0.000003072,
+              "cacheWrite": 0,
+              "total": 0.0007356719999999999
+            }
+          },
+          "stop_reason": "toolUse",
+          "tool_calls": [
+            {
+              "name": "review_message",
+              "arguments": {
+                "approved": false,
+                "issues": [
+                  "Positive target association is invalid: the user asked about INC-SYNTHETIC-99, but the only fetched/selected detail target is INC-SYNTHETIC-41 (association marked mismatch). The history receipt lists INC-SYNTHETIC-41 only, so it cannot establish INC-SYNTHETIC-99 as a match.",
+                  "The outcome is reported as completed with a selected target, but no target matching the requested report number was positively identified; the correct boundary is not_found (or candidate/exclusion presentation of the visible history), not an established selection."
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "response_guard_rejected",
+          "scope": "target_association",
+          "issues": [
+            "Positive target association is invalid: the user asked about INC-SYNTHETIC-99, but the only fetched/selected detail target is INC-SYNTHETIC-41 (association marked mismatch). The history receipt lists INC-SYNTHETIC-41 only, so it cannot establish INC-SYNTHETIC-99 as a match.",
+            "The outcome is reported as completed with a selected target, but no target matching the requested report number was positively identified; the correct boundary is not_found (or candidate/exclusion presentation of the visible history), not an established selection."
+          ]
+        }
+      ]
+    }
+  ],
+  "completed_at": "2026-10-19T22:36:40.727Z",
+  "pass": false,
+  "source_changed_during_run": []
+}
