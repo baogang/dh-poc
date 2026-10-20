@@ -2,6 +2,8 @@
 
 Final result: **blocked**. Implementation and business interaction regression are complete. Final Apps and Profile recaptures remain blocked by Chrome returning `Debugger unattached`, including after the user reconnected the extension and the browser tool session was reset. This is not a claim that all screens are pixel-perfect.
 
+Deployment exception: the user explicitly chose “先发布，保留未验证标记”. Commit `52d67220059fe9256d57abc4f3d072e04dcabf4f` is live on the existing Render service through deployment `dep-dbbh2ae7bikc73amdv4g` (finished 2026-10-20 06:59:42 UTC). The visual gate remains blocked; this authorization does not convert missing evidence into a pass.
+
 ## Visual truth and normalization
 
 Source: <https://dhv2.momah.net/mobile.html>. Original captures are in `docs/evaluation/assets/mobile-client-reference/`.
@@ -46,6 +48,6 @@ Automatic file selection remains unverified. The browser tool blocks `chrome://e
 
 - Restore an attached Chrome debugger and recapture Apps/Profile at verified 390×844 geometry.
 - Compare those final captures with the reference and record `final result: passed` only after no actionable P0/P1/P2 differences remain.
-- Push the tested source to `balady-crm`, let the existing Render service auto-deploy, and verify the deployed commit, health and browser entry.
+- Completed under the explicit user exception: pushed `52d6722` to `balady-crm` and verified the exact Render deployment is live. The post-release mobile browser recapture remains unverified.
 
 final result: blocked

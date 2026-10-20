@@ -1,9 +1,10 @@
 import {createChatRenderer} from './chat-ui.js';
 import {deviceTemplate,mobileTemplate} from './mobile-template.js';
+import {locationText} from './location-data.js';
 
 // Presentation adapter only. The host owns the session, requests and event stream.
 export function createMobileClient(document,actions){
-  let dialog,root,chat,opener,current,view,toastTimer,loginTarget=false,lastSession;
+  let dialog,root,chat,opener,current,view,toastTimer,loginTarget=false,lastSession,selectedLocation=null;
   const $=id=>root.getElementById(id);
   const link=href=>{const n=document.createElement('link');n.rel='stylesheet';n.href=href;return n;};
   const toast=text=>{const n=$('toast');n.textContent=text;n.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>n.classList.remove('show'),4200);};
@@ -36,6 +37,9 @@ export function createMobileClient(document,actions){
     const copy={nationalIdLabel:'Username',passwordLabel:'Password',forgotPassword:'Forgot password?',loginButton:'Login',quickAccess:'Quick access',nafath:'Login via Nafath',noAccount:"Don't have an account?",createAccount:'Create account',beneficiaryName:'Guest',quickLoginTitle:'You cannot log in using quick access',quickLoginBody:'Municipal services require logging in via Nafath or using your Balady account',quickLoginNo:'Not now',quickLoginGo:'Login',title:'Balady Assistant',digitalHuman:'Digital Human'};
     for(const n of root.querySelectorAll('[data-i18n]'))n.textContent=copy[n.dataset.i18n]??'';
     $('credGreet').textContent='Good morning';$('topbarLive').textContent='Online';$('message').placeholder='Type your question...';$('message').setAttribute('aria-label','Message');
+    const locationButton=document.createElement('button');locationButton.type='button';locationButton.id='mobileLocation';locationButton.className='icon-btn';locationButton.setAttribute('aria-label','Choose issue location');locationButton.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 11-8 11S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>';$('message').before(locationButton);
+    const locationChip=document.createElement('div');locationChip.id='mobileLocationPreview';locationChip.className='mobile-location-preview';locationChip.hidden=true;const locationCopy=document.createElement('span');locationCopy.id='mobileLocationCopy';const clearLocation=document.createElement('button');clearLocation.type='button';clearLocation.textContent='×';clearLocation.setAttribute('aria-label','Remove location');clearLocation.addEventListener('click',()=>{selectedLocation=null;render();});locationChip.append(locationCopy,clearLocation);$('composer').before(locationChip);
+    locationButton.addEventListener('click',async()=>{const owner=current?.id,point=await actions.pickLocation?.({locale:view?.locale??'en',initial:selectedLocation});if(point&&current?.id===owner){selectedLocation=point;render();$('message').focus({preventScroll:true});}});
     $('loginForm').noValidate=false;$('loginUsername').required=true;$('loginPassword').required=true;
     $('loginPassword').autocomplete='current-password';
     const hint=document.createElement('p');hint.className='mobile-demo-hint';hint.textContent='POC simulation · demo / demo or sara / demo';$('loginError').before(hint);
@@ -62,8 +66,8 @@ export function createMobileClient(document,actions){
     });
     $('composer').addEventListener('submit',async e=>{
       e.preventDefault();if(view?.busy||current?.running)return;
-      const message=$('message').value.trim();if(!message)return;$('message').value='';
-      await actions.action('/api/chat',{message});if(view?.error&&!$('message').value)$('message').value=message;
+      const message=$('message').value.trim(),location=selectedLocation;if(!message&&!location)return;$('message').value='';selectedLocation=null;
+      await actions.action('/api/chat',{message,...(location?{location,location_locale:view?.locale??'en'}:{})});if(view?.error){if(!$('message').value)$('message').value=message;if(location&&!selectedLocation)selectedLocation=location;render();}
     });
     $('micBtn').addEventListener('click',()=>toast('Voice input is not connected to this POC. Please type your question.'));
     $('uploadBtn').addEventListener('click',()=>{
@@ -88,10 +92,11 @@ export function createMobileClient(document,actions){
   }
   function render(){
     if(!root||!current)return;
-    if(lastSession&&lastSession!==current.id){$('message').value='';overlay('loginScreen',false);overlay('quickSheet',false);loginTarget=false;}
+    if(lastSession&&lastSession!==current.id){$('message').value='';selectedLocation=null;overlay('loginScreen',false);overlay('quickSheet',false);loginTarget=false;}
     lastSession=current.id;
     const busy=view?.busy||current.running;
     $('sendBtn').disabled=!!busy;$('loginSubmit').disabled=!!view?.busy;$('profileSignOut').disabled=!!view?.busy;
+    $('mobileLocation').disabled=!!busy;$('mobileLocationPreview').hidden=!selectedLocation;$('mobileLocationCopy').textContent=selectedLocation?locationText(selectedLocation,view?.locale??'en'):'';
     $('topbarLive').textContent=view?.connecting?'Connecting':view?.error?'Reconnect':current.running?'Working':'Online';$('topbarLive').classList.toggle('off',!!view?.error);
     $('mobileStop').hidden=!current.running&&!current.pendingInput&&!current.pendingOperation;
     const name=current.user?.name??current.user?.username??(current.user?'Beneficiary':'Guest');

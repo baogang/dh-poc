@@ -45,5 +45,6 @@
 .chat-screen .composer{border:0;border-top:1px solid #dfe8e5;border-radius:0}
 .chat-screen .chat>.row,.chat-screen .chat>.day,.native-messages{flex-shrink:0}
 .toast{z-index:100;pointer-events:none}
+.mobile-location-preview{flex:0 0 auto;max-height:110px;overflow:auto;padding:8px 12px;background:#edf5f0;border-top:1px solid #d5e5dc;display:flex;align-items:start;gap:8px;font-size:10px;line-height:1.5}.mobile-location-preview span{flex:1;min-width:0;white-space:pre-line;overflow-wrap:anywhere}.mobile-location-preview button{flex-shrink:0;min-height:32px;min-width:32px;padding:3px;border:1px solid #cbded2;border-radius:7px;color:#176844;background:white;font-size:18px}
 @media(max-width:480px){.mobile-dismiss-small{display:grid}.mobile-page{height:100dvh}.native-messages>.bubble{padding:10px 12px}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}

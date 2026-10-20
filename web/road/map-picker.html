@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Choose issue location</title><link rel="stylesheet" href="/map-frame.css" nonce="__MAP_NONCE__"><style nonce="__MAP_NONCE__"></style><script type="module" src="/map-frame.js" nonce="__MAP_NONCE__"></script></head>
+<body><main>
+<p id="hint">Choose the location of the issue. Your current position may be different.</p>
+<div class="map-tools"><button id="current" type="button">Use my current location</button><button id="retry" type="button" hidden>Retry map</button></div>
+<form id="search-form" hidden><label id="search-label" for="search">Find an address</label><div class="search-line"><input id="search" maxlength="1000"><button id="search-button">Search</button></div></form>
+<p id="status" role="status" aria-live="polite">Loading Google Maps…</p>
+<div id="map" role="region" aria-label="Google Maps location picker"></div>
+<p id="accuracy" class="hint" hidden></p>
+<form id="location-form">
+<div class="coordinates"><label><span id="latitude-label">Latitude</span><input id="latitude" type="number" min="-90" max="90" step="any" required></label><label><span id="longitude-label">Longitude</span><input id="longitude" type="number" min="-180" max="180" step="any" required></label></div>
+<label><span id="address-label">Issue address / landmark</span><input id="address" maxlength="2000" autocomplete="street-address"></label>
+<div class="coordinates"><label><span id="city-label">City</span><input id="city" maxlength="200" autocomplete="address-level2"></label><label><span id="district-label">District</span><input id="district" maxlength="400"></label></div>
+<label><span id="street-label">Street</span><input id="street" maxlength="400" autocomplete="address-line1"></label>
+<button id="lookup" type="button" hidden>Find address for pin</button><p id="error" role="alert"></p>
+<p id="review-note" class="hint">Check the pin and address before continuing. This selects a location; it does not submit a complaint.</p>
+<button id="choose" type="submit">Use this issue location</button>
+</form>
+<p class="hint"><a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Privacy</a> · <a href="https://maps.google.com/help/terms_maps/" target="_blank" rel="noopener noreferrer">Google Maps Terms</a></p>
+</main></body></html>

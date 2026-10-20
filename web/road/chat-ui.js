@@ -1,4 +1,5 @@
 import {translator,serviceChoiceCopy,blockedStepLabel,locationLimitLabel} from './i18n.js';
+import {locationInput,locationText} from './location-data.js';
 import {markdown} from './markdown.js';
 import {crmReview,crmEditor} from './crm-review.js';
 const special=new Set(['plan','input_request','operation_confirmation']);
@@ -221,6 +222,13 @@ export function createChatRenderer(document,container,actions,{scrollContainer=c
         const match=el('label',t('确认这是我要跟进的工单'),'check'),checkbox=el('input');checkbox.type='checkbox';checkbox.name='matched';checkbox.required=true;match.prepend(checkbox);f.append(match,el('p',t('这个问题现在是否仍未解决？'),'input-label'));
         for(const [value,label]of[['yes',t('是，仍未解决')],['no',t('否，已经解决')]]){const l=el('label',label,'check'),radio=el('input');radio.type='radio';radio.name='unresolved';radio.value=value;radio.required=true;l.prepend(radio);f.append(l);}
       }else field(f,t('补充信息'),'text','textarea');
+      if(actions.pickLocation&&locationInput(x)){
+        const pick=button(t('在地图选择问题位置'),async()=>{
+          const selection=await actions.pickLocation({locale:uiLocale,fields:x.fields});if(!selection||!f.isConnected)return;
+          if(x.kind==='address'){for(const input of f.querySelectorAll('input'))if(['city','street'].includes(input.name)&&selection[input.name])input.value=selection[input.name];}
+          else{const input=f.querySelector('textarea');if(input){if((x.fields??[]).length===1&&['MunicipalityID','municipalityID'].includes(x.fields[0].split('.').at(-1))){if(selection.city)input.value=selection.city;}else{const previousLocation=input.dataset.selectedLocation??'',retained=previousLocation?input.value.replace(previousLocation,'').trim():input.value.trim();input.dataset.selectedLocation=locationText(selection,uiLocale);input.value=[retained,input.dataset.selectedLocation].filter(Boolean).join('\n\n');}}}
+        },busy);pick.className='secondary';f.append(pick);
+      }
       const b=el('button',t('提交信息并继续'));b.disabled=busy;f.append(b);f.addEventListener('submit',e=>{e.preventDefault();if(busy)return;const fd=new FormData(f),value=Object.fromEntries(fd);if(x.kind==='ticket'){if(!['yes','no'].includes(fd.get('unresolved')))return;value.matched=fd.has('matched');value.unresolved=fd.get('unresolved')==='yes';}actions.action('/api/input',{input_id:x.id,value});});n.append(f);
     }else if(item.kind==='human_desk'){
       const h=item.handoff,labels={CANCELLED:t('已取消人工交接'),WAITING:t('排队中，尚未受理'),ACCEPTED:t('模拟人工已受理'),ESCALATED:t('已升级至模拟主管'),COMPLETED:t('模拟人工处理已结束')};
@@ -257,12 +265,12 @@ export function createChatRenderer(document,container,actions,{scrollContainer=c
   }
   function remember(node){
     const details=[...node.querySelectorAll('details[data-key]')].map(d=>[d.dataset.key,d.open]);const values=[];
-    for(const form of node.querySelectorAll('form[data-form-key]'))for(const f of form.querySelectorAll('input,select,textarea'))if(f.type!=='file')values.push({form:form.dataset.formKey,name:f.name,type:f.type,value:f.value,checked:f.checked});
+    for(const form of node.querySelectorAll('form[data-form-key]'))for(const f of form.querySelectorAll('input,select,textarea'))if(f.type!=='file')values.push({form:form.dataset.formKey,name:f.name,type:f.type,value:f.value,checked:f.checked,selectedLocation:f.dataset.selectedLocation});
     const focus=container.getRootNode?.()?.activeElement??document.activeElement;return {details,values,focus:focus&&[...node.querySelectorAll('input,select,textarea')].includes(focus)?{name:focus.name,type:focus.type,value:focus.value,form:focus.closest('form')?.dataset.formKey,start:focus.selectionStart,end:focus.selectionEnd}:null};
   }
   function restore(node,memory){
     for(const d of node.querySelectorAll('details[data-key]')){const entry=memory.details.find(x=>x[0]===d.dataset.key);if(entry)d.open=entry[1];}
-    for(const form of node.querySelectorAll('form[data-form-key]'))for(const f of form.querySelectorAll('input,select,textarea')){const old=memory.values.find(v=>v.form===form.dataset.formKey&&v.name===f.name&&(!(f.type==='radio')||v.value===f.value));if(old){if(f.type==='radio'||f.type==='checkbox')f.checked=old.checked;else f.value=old.value;}if(memory.focus?.form===form.dataset.formKey&&memory.focus.name===f.name&&(f.type!=='radio'||f.value===memory.focus.value)){f.focus({preventScroll:true});if(typeof memory.focus.start==='number'&&f.setSelectionRange&&f.type!=='select-one')f.setSelectionRange(memory.focus.start,memory.focus.end);}}
+    for(const form of node.querySelectorAll('form[data-form-key]'))for(const f of form.querySelectorAll('input,select,textarea')){const old=memory.values.find(v=>v.form===form.dataset.formKey&&v.name===f.name&&(!(f.type==='radio')||v.value===f.value));if(old){if(f.type==='radio'||f.type==='checkbox')f.checked=old.checked;else f.value=old.value;if(old.selectedLocation)f.dataset.selectedLocation=old.selectedLocation;}if(memory.focus?.form===form.dataset.formKey&&memory.focus.name===f.name&&(f.type!=='radio'||f.value===memory.focus.value)){f.focus({preventScroll:true});if(typeof memory.focus.start==='number'&&f.setSelectionRange&&f.type!=='select-one')f.setSelectionRange(memory.focus.start,memory.focus.end);}}
   }
   return {render(state,{showTasks=true,busy=false,pendingMessage,error,connecting=false,locale='zh',feedback={enabled:false,items:{}}}={}){
     t=translator(locale);uiLocale=locale;

@@ -1,0 +1,86 @@
+{
+  "date": "2026-10-20",
+  "branch": "balady-crm",
+  "status": "implemented; authorized Google key and live Google verification pending",
+  "scope": {
+    "desktop": "Choose issue location opens a reusable same-origin map dialog and previews a draft before sending",
+    "mobile": "location icon and draft preview use the same picker and existing backend session",
+    "native_inputs": "map action appears for actual geographic field paths; selecting does not submit the input",
+    "backend": "typed geographic validation and public browser-key configuration; existing CRM contracts and write approval remain intact"
+  },
+  "engineering": {
+    "initial_full_run": {"passed": 339, "failed": 0},
+    "additional_picker_lifecycle_tests": {"passed": 2, "failed": 0},
+    "final_full_run": {"passed": 341, "failed": 0, "skipped": 0, "duration_ms": 163014.057327},
+    "log": "docs/evaluation/assets/google-maps-20261020/engineering-regression.log",
+    "openapi": "passed; 36 operations unchanged",
+    "source_checks": "passed; source syntax and credential scan"
+  },
+  "new_test_boundaries": [
+    "coordinate type/range validation including valid zero and forbidden administrative ID fields",
+    "readable multilingual location projection",
+    "exact same-origin frame window and channel validation",
+    "configuration, opt-in geocoding and per-response nonce CSP",
+    "geographic native inputs and municipality-name-only projection",
+    "reselection across renderer rebuilds retains other typed facts and removes obsolete coordinates",
+    "cancelled or stale input cards are not filled",
+    "authenticated HTTP map configuration and key exclusion from conversation state",
+    "HTTP location validation before dispatch and preserved CSRF requirements",
+    "no automatic GPS request or preselected default center",
+    "GPS denial and reopen context clearing",
+    "GPS accuracy and stale callback protection",
+    "SDK click/drag adapter and no automatic geocoding on pin changes",
+    "late geocoder responses and obsolete resolved-address clearing",
+    "SDK/configuration failure preserves manual entry",
+    "shared picker select/close/reopen across entry contexts",
+    "forged or malformed frame messages cannot resolve the picker"
+  ],
+  "browser_observed": [
+    "desktop map dialog and honest missing-key state",
+    "manual synthetic coordinates and address accepted into a readable location draft",
+    "selecting a location does not send a chat or submit a complaint",
+    "reopen restores the selected coordinates and close retains the original draft",
+    "explicit chat send includes the selected coordinates and address",
+    "real configured model explains the unavailable lower administrative resolver without claiming the streetlight report was registered",
+    "existing mobile demo login and shared conversation remain visible",
+    "mobile location icon is present"
+  ],
+  "real_model_case": {
+    "user_request": "这个位置的路灯连续三天不亮，我想报修。",
+    "location": {"latitude": 24.7136, "longitude": 46.6753, "address": "Test location: library entrance", "city": "Riyadh"},
+    "environment": "local in-memory CRM simulation with real configured model",
+    "outcome": "original repair remains unregistered because lower administrative resolution is unavailable",
+    "government_submission": false
+  },
+  "credential_status": {
+    "local_key_configured": false,
+    "official_demo_key_acquisition": "provider denied access from current region; no bypass attempted",
+    "user_reply": "有，稍后配置可用 Key",
+    "configuration_variable": "GOOGLE_MAPS_BROWSER_KEY",
+    "new_project_or_billing_created": false
+  },
+  "unverified": [
+    "live Google rendering and actual restricted browser-key acceptance",
+    "real device geolocation success and permission UI; GPS tests use stubs",
+    "live Google address search/reverse geocoding; SDK tests use stubs",
+    "mobile map activation, selection, send and final 390x844 screenshot; browser control stopped delivering input and a fresh tab failed at Page.enable",
+    "earlier final mobile Apps/Profile visual captures and automatic file selection remain unverified"
+  ],
+  "browser_diagnosis": {
+    "observation": "After viewport testing, activation failed on the mobile pin and previously working desktop controls; no click probe event or console exception was captured.",
+    "conclusion": "Automation failure prevents a live mobile verdict; it is not evidence that the mobile implementation passed or that an application bug was fixed.",
+    "temporary_instrumentation": "removed"
+  },
+  "evidence": [
+    "01-desktop-location-draft.png",
+    "02-desktop-picker-without-key.png",
+    "03-real-model-location-boundary.png",
+    "key-region-unavailable.png"
+  ],
+  "deployment": {
+    "workspace": "tea-db5ogtd9fdbs73ditg1g",
+    "service": "srv-db7p0lbbc2fs73fvlkhg",
+    "url": "https://road-pothole-pi-poc.onrender.com",
+    "state": "ready for publication; final full regression passed"
+  }
+}

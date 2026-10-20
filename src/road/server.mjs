@@ -1,5 +1,7 @@
 import { createServer } from 'node:http';
 import {mobileStaticFiles,staticContentType} from './mobile-static.mjs';
+import {mapsConfiguration,mapsPage} from './maps.mjs';
+import {normalizeLocation,locationText} from '../../web/road/location-data.js';
 import { createHash,randomBytes,timingSafeEqual } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
@@ -29,7 +31,7 @@ async function body(req){
   if(!value||typeof value!=='object'||Array.isArray(value))throw failure('JSON_OBJECT_REQUIRED','Use a JSON object request body');
   return value;
 }
-export async function createRoadServer({store,knowledge,agentFactory,feedback=new FeedbackRepository(),config=webConfigFromEnv(),mockKey=randomBytes(32).toString('hex'),demoUI=process.env.ROAD_DEMO_UI!=='false',highRiskReads=parseHighRiskReads(process.env.ROAD_HIGH_RISK_READS??''),humanSupport={available:process.env.ROAD_HUMAN_AVAILABLE!=='false',wait_limit_ms:Number(process.env.ROAD_HUMAN_WAIT_LIMIT_MS??180000)},maxTurns=Number(process.env.ROAD_MAX_INFLIGHT_TURNS??8),maxStreams=Number(process.env.ROAD_MAX_EVENT_STREAMS??500)}={}){
+export async function createRoadServer({store,knowledge,agentFactory,feedback=new FeedbackRepository(),maps=mapsConfiguration(),config=webConfigFromEnv(),mockKey=randomBytes(32).toString('hex'),demoUI=process.env.ROAD_DEMO_UI!=='false',highRiskReads=parseHighRiskReads(process.env.ROAD_HIGH_RISK_READS??''),humanSupport={available:process.env.ROAD_HUMAN_AVAILABLE!=='false',wait_limit_ms:Number(process.env.ROAD_HUMAN_WAIT_LIMIT_MS??180000)},maxTurns=Number(process.env.ROAD_MAX_INFLIGHT_TURNS??8),maxStreams=Number(process.env.ROAD_MAX_EVENT_STREAMS??500)}={}){
   if(typeof humanSupport.available!=='boolean'||!Number.isInteger(humanSupport.wait_limit_ms)||humanSupport.wait_limit_ms<1)throw Error('Invalid simulated human support configuration');
   if(!Number.isInteger(maxTurns)||maxTurns<1||!Number.isInteger(maxStreams)||maxStreams<1)throw Error('Road concurrency limits must be positive integers');
   const injectedStore=!!store;store??=NeonRoadStore.fromEnv();await store.initialize();
@@ -70,6 +72,7 @@ export async function createRoadServer({store,knowledge,agentFactory,feedback=ne
       }
       if(url.pathname.startsWith('/api/')){
         const sid=sessionId(req);let s=await store.load(sid);
+        if(req.method==='GET'&&url.pathname==='/api/maps/config')return send(res,200,maps);
         if(req.method==='GET'&&url.pathname==='/api/state'){if(s.user&&s.mattersView)s.mattersView=await agent.matters.list(s);feedback.load(s.id).catch(()=>{});return send(res,200,view(s));}
         if(req.method==='GET'&&url.pathname==='/api/feedback'){
           if(!feedback.enabled)return send(res,200,{records:[]});
@@ -144,7 +147,12 @@ export async function createRoadServer({store,knowledge,agentFactory,feedback=ne
         if(url.pathname==='/api/service')run=agent.selectService(s,input.scope,input.clarification_id);
         else if(url.pathname==='/api/help')run=agent.helpChoice(s,input.request_id,'continue');
         else if(url.pathname==='/api/chat'){
-          if(typeof input.message!=='string'||!input.message.trim()||input.message.length>12000)throw failure('INVALID_MESSAGE','Message must be 1–12000 characters');run=agent.chat(s,input.message);
+          let selected;
+          if(input.location!==undefined){try{selected=normalizeLocation(input.location);}catch{throw failure('INVALID_LOCATION','Choose valid geographic coordinates and address fields. Internal administrative IDs cannot be supplied through the map.');}}
+          if(typeof input.message!=='string'||(!input.message.trim()&&!selected)||input.message.length>12000)throw failure('INVALID_MESSAGE','Message must be 1–12000 characters');
+          const language=['zh','en','ar'].includes(input.location_locale)?input.location_locale:/\p{Script=Arabic}/u.test(input.message)?'ar':/\p{Script=Han}/u.test(input.message)?'zh':'en';
+          const message=[input.message.trim(),selected?locationText(selected,language):''].filter(Boolean).join('\n\n');
+          if(message.length>12000)throw failure('INVALID_MESSAGE','Message and selected location must fit within 12000 characters');run=agent.chat(s,message);
         }else if(url.pathname==='/api/approve-plan'){
           const p=agent.active(s);if(!p||p.id!==input.plan_id||p.status!=='review')throw failure('STALE_PLAN','Plan is no longer awaiting review',409);run=agent.approvePlan(s,input.plan_id);
         }else if(url.pathname==='/api/input'){
@@ -165,6 +173,11 @@ export async function createRoadServer({store,knowledge,agentFactory,feedback=ne
         res.writeHead(200,{'content-type':'text/html; charset=utf-8','cache-control':'no-store'});return res.end(html);
       }
       if(req.method!=='GET')throw failure('NOT_FOUND','Not found',404);
+      if(url.pathname==='/map-picker.html'){
+        const page=mapsPage(await readFile(new URL('../../web/road/map-picker.html',import.meta.url),'utf8'));
+        res.setHeader('content-security-policy',page.csp);res.setHeader('referrer-policy','strict-origin-when-cross-origin');
+        res.writeHead(200,{'content-type':'text/html; charset=utf-8','cache-control':'no-store'});return res.end(page.html);
+      }
       const files={...mobileStaticFiles,'/':'index.html','/app.js':'app.js','/chat-ui.js':'chat-ui.js','/markdown.js':'markdown.js','/crm-review.js':'crm-review.js','/vendor/marked.js':'vendor/marked.js','/i18n.js':'i18n.js','/feedback-ui.js':'feedback-ui.js','/feedback-data.js':'feedback-data.js','/style.css':'style.css'};
       if(!files[url.pathname])throw failure('NOT_FOUND','Not found',404);
       const data=await readFile(new URL(`../../web/road/${files[url.pathname]}`,import.meta.url));res.writeHead(200,{'content-type':staticContentType(url.pathname),'cache-control':'no-store'});res.end(data);

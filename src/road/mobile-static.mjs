@@ -1,5 +1,9 @@
 // Exact allowlist: visual assets only, no wildcard filesystem access.
 export const mobileStaticFiles={
+  "/map-picker.js": "map-picker.js",
+  "/map-frame.js": "map-frame.js",
+  "/map-frame.css": "map-frame.css",
+  "/location-data.js": "location-data.js",
   "/balady-homepage-2026-07-15.png": "balady-homepage-2026-07-15.png",
   "/citizen-before.png": "citizen-before.png",
   "/mobile-adapter.css": "mobile-adapter.css",

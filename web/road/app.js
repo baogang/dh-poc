@@ -1,11 +1,14 @@
 import {createChatRenderer} from './chat-ui.js';
 import {createMobileClient} from './mobile-client.js';
+import {createMapPicker} from './map-picker.js';
+import {locationText} from './location-data.js';
 import {translator,resolveLocale,uiError} from './i18n.js';
 import {createFeedbackController,downloadFeedback} from './feedback-ui.js';
 let state={id:null,running:false,status:'idle',user:null,messages:[],plans:[],activePlanId:null,pendingInput:null,pendingOperation:null,events:[],receipts:[],mock:{handoffs:[],calls:[]}},stream,generation=0,pollTimer,refreshing,refreshAgain=false;
 const $=id=>document.getElementById(id);
 const client={busy:false,connecting:true,pendingMessage:null,error:null,expired:false};
 const ratings=createFeedbackController({request,onChange:()=>render()});
+const mapPicker=createMapPicker(document);let selectedLocation=null;
 let preferredLocale;try{preferredLocale=localStorage.getItem('road:locale');}catch{}
 let locale=resolveLocale(preferredLocale,globalThis.navigator?.language),t=translator(locale);
 const labels={clarification:'请选择服务',human_offer:'请选择帮助方式',idle:'准备就绪',expired:'会话已过期',running:'正在处理',review:'等待你确认计划',input:'等待你补充信息',confirmation:'等待你确认提交',completed:'本轮已答复',answered:'已回答',blocked:'需要调整任务',failed:'本轮未完成',interrupted:'已中断',paused:'已暂停',approved:'已确认计划',human_waiting:'等待人工受理',human_active:'模拟人工处理中',human_completed:'人工处理已结束'};
@@ -47,8 +50,8 @@ async function signIn(credentials,continuation){
   if(continuation?.kind==='plan'&&state.activePlanId===continuation.id)await act('/api/approve-plan',{plan_id:continuation.id});
   if(continuation?.kind==='input'&&state.pendingInput?.id===continuation.id)await act('/api/input',{input_id:continuation.id,value:{}});
 }
-const chat=createChatRenderer(document,$('messages'),{action:act,login:signIn,rate:(id,rating)=>ratings.choose(state,id,rating),example:text=>{$('chat-message').value=text;$('chat-message').focus();},reconnect:()=>{client.error=null;client.connecting=true;render();start();}});
-const mobile=createMobileClient(document,{action:act,login:signIn,rate:(id,rating)=>ratings.choose(state,id,rating),reconnect:()=>{client.error=null;client.connecting=true;render();start();},newSession});
+const chat=createChatRenderer(document,$('messages'),{action:act,login:signIn,pickLocation:options=>mapPicker.open(options),rate:(id,rating)=>ratings.choose(state,id,rating),example:text=>{$('chat-message').value=text;$('chat-message').focus();},reconnect:()=>{client.error=null;client.connecting=true;render();start();}});
+const mobile=createMobileClient(document,{action:act,login:signIn,pickLocation:options=>mapPicker.open(options),rate:(id,rating)=>ratings.choose(state,id,rating),reconnect:()=>{client.error=null;client.connecting=true;render();start();},newSession});
 function connect(){
   stream?.close();clearInterval(pollTimer);const owner=generation;
   stream=new EventSource('/api/events?after='+(state.events.at(-1)?.seq??0));
@@ -85,6 +88,8 @@ function render(){
   $('human-section').hidden=!showTasks;
   $('service-catalog').disabled=busy||state.running||client.expired;$('my-matters').disabled=busy||state.running||client.expired;$('human-help').disabled=busy||state.running||client.expired;
   $('show-tasks').checked=showTasks;$('send').disabled=busy||state.running||client.expired;$('new-session').disabled=busy;
+  $('choose-location').textContent=t('选择问题位置');$('choose-location').disabled=busy||state.running||client.expired;
+  $('selected-location').hidden=!selectedLocation;$('selected-location-text').textContent=selectedLocation?locationText(selectedLocation,locale):'';$('clear-location').textContent=t('移除位置');
   $('stop').disabled=busy||client.expired||!state.running&&!state.pendingInput&&!state.pendingOperation&&(!p||['completed','superseded','paused'].includes(p.status));
   const chatView={showTasks,busy:busy||client.expired,locale,feedback:ratings.view(state),pendingMessage:client.pendingMessage&&state.messages.at(-1)?.text!==client.pendingMessage?client.pendingMessage:null,error:uiError(client.error,locale),connecting:client.connecting};
   chat.render(state,chatView);mobile.update(state,chatView);
@@ -101,7 +106,9 @@ function render(){
   $('knowledge').replaceChildren(el('p',state.faq?t('{name} · 已加载 {count} 条原始问答，政策待复核',{name:state.faq.name,count:state.faq.entry_count}):t('正在加载问答库信息')));
   for(const d of panels.querySelectorAll('details[data-key]'))if(openKeys.has(d.dataset.key))d.open=true;
 }
-$('chat-form').addEventListener('submit',e=>{e.preventDefault();if(client.busy||client.expired||state.running)return;const message=$('chat-message').value.trim();if(!message)return;$('chat-message').value='';act('/api/chat',{message});});
+$('chat-form').addEventListener('submit',async e=>{e.preventDefault();if(client.busy||client.expired||state.running)return;const message=$('chat-message').value.trim(),location=selectedLocation;if(!message&&!location)return;$('chat-message').value='';selectedLocation=null;await act('/api/chat',{message,...(location?{location,location_locale:locale}:{})});if(client.error&&location&&!selectedLocation){selectedLocation=location;render();}});
+$('choose-location').addEventListener('click',async()=>{const owner=generation,point=await mapPicker.open({locale,initial:selectedLocation});if(point&&owner===generation){selectedLocation=point;render();$('chat-message').focus();}});
+$('clear-location').addEventListener('click',()=>{selectedLocation=null;render();});
 $('chat-message').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey&&!e.altKey&&!e.isComposing&&e.keyCode!==229){e.preventDefault();if(!e.repeat&&!$('send').disabled)$('chat-form').requestSubmit();}});
 $('ui-language').addEventListener('change',()=>{locale=resolveLocale($('ui-language').value);try{localStorage.setItem('road:locale',locale);}catch{}render();});
 $('show-tasks').addEventListener('change',()=>{showTasks=$('show-tasks').checked;try{localStorage.setItem('road:showTasks',String(showTasks));}catch{}render();});
@@ -111,7 +118,7 @@ $('my-matters').addEventListener('click',()=>act('/api/matters',{action:'list'})
 $('service-catalog').addEventListener('click',()=>act('/api/catalog',{}));
 $('human-help').addEventListener('click',()=>act('/api/help',{action:'offer'}));
 $('stop').addEventListener('click',()=>act('/api/cancel',{}));
-async function newSession(){if(client.busy)return;if(state.running)await act('/api/cancel',{});generation++;stream?.close();clearInterval(pollTimer);client.error=null;client.connecting=true;client.pendingMessage=null;render();try{accept(await request('/api/session',{}),generation);connect();}catch(e){client.connecting=false;client.error={key:'请求未能完成',code:e.code,detail:e.message};render();}}
+async function newSession(){if(client.busy)return;if(state.running)await act('/api/cancel',{});generation++;selectedLocation=null;stream?.close();clearInterval(pollTimer);client.error=null;client.connecting=true;client.pendingMessage=null;render();try{accept(await request('/api/session',{}),generation);connect();}catch(e){client.connecting=false;client.error={key:'请求未能完成',code:e.code,detail:e.message};render();}}
 $('new-session').addEventListener('click',newSession);
 $('mobile-client').addEventListener('click',()=>mobile.open($('mobile-client')));
 start().catch(e=>{client.error={key:'请求未能完成',code:e.code,detail:e.message};client.connecting=false;render();});
