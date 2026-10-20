@@ -1,7 +1,7 @@
 {
   "date": "2026-10-21",
   "branch": "balady-crm",
-  "status": "implemented and verified locally; deployment pending",
+  "status": "live; original saved report responses verified in the authenticated browser",
   "bug": "Incident descriptions squeezed to approximately 56px in a 228px phone message area, despite horizontal scrolling.",
   "root_cause": [
     "360px minimum table width plus nonwrapping headings force a narrow description column.",
@@ -48,7 +48,19 @@
       "arabic_direction_and_latin_id_direction_verified": true,
       "root_scrollbar_does_not_reduce_mobile_viewport": true,
       "viewport_override_reset": true,
-      "metrics": "docs/evaluation/assets/mobile-table-20261021/layout-metrics.json"
+      "metrics": "docs/evaluation/assets/mobile-table-20261021/layout-metrics.json",
+      "live_saved_history": {
+        "passed": true,
+        "tables": 2,
+        "rows_per_table": 2,
+        "desktop_phone_issue_value_width": 198.265625,
+        "phone_390_issue_value_width": 255,
+        "record_horizontal_overflow": false,
+        "state_and_attachment_text_preserved": true,
+        "api_receipt_controls_preserved": true,
+        "new_business_operations_requested": false,
+        "viewport_override_reset": true
+      }
     }
   },
   "evidence": {
@@ -58,7 +70,8 @@
     "after_320": "docs/evaluation/assets/mobile-table-20261021/04-after-320.jpg",
     "chinese_320": "docs/evaluation/assets/mobile-table-20261021/05-chinese-320.jpg",
     "arabic_390": "docs/evaluation/assets/mobile-table-20261021/06-arabic-390.jpg",
-    "matrix_390": "docs/evaluation/assets/mobile-table-20261021/07-matrix-390.jpg"
+    "matrix_390": "docs/evaluation/assets/mobile-table-20261021/07-matrix-390.jpg",
+    "live_history_390": "docs/evaluation/assets/mobile-table-20261021/08-live-history-390.jpg"
   },
   "limits": [
     "DOM/security regression runs in the Node test suite; actual CSS layout was checked through Chrome, not a CI browser runner.",
@@ -69,6 +82,11 @@
     "workspace": "tea-db5ogtd9fdbs73ditg1g",
     "service": "srv-db7p0lbbc2fs73fvlkhg",
     "url": "https://road-pothole-pi-poc.onrender.com",
-    "state": "ready for publication"
+    "state": "live; public health and authenticated saved-history layout verified",
+    "source_commit": "bdb7be1da246005f9a2e71e4bd7b6ed373d3e45a",
+    "deploy_id": "dep-dbbpgb1srm7s7393clog",
+    "finished_at": "2026-10-20T16:35:57.362513Z",
+    "health_status": 200,
+    "release_matches": true
   }
 }
