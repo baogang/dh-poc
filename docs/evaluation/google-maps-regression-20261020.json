@@ -9,9 +9,20 @@
     "backend": "typed geographic validation and public browser-key configuration; existing CRM contracts and write approval remain intact"
   },
   "engineering": {
-    "initial_full_run": {"passed": 339, "failed": 0},
-    "additional_picker_lifecycle_tests": {"passed": 2, "failed": 0},
-    "final_full_run": {"passed": 341, "failed": 0, "skipped": 0, "duration_ms": 163014.057327},
+    "initial_full_run": {
+      "passed": 339,
+      "failed": 0
+    },
+    "additional_picker_lifecycle_tests": {
+      "passed": 2,
+      "failed": 0
+    },
+    "final_full_run": {
+      "passed": 341,
+      "failed": 0,
+      "skipped": 0,
+      "duration_ms": 163014.057327
+    },
     "log": "docs/evaluation/assets/google-maps-20261020/engineering-regression.log",
     "openapi": "passed; 36 operations unchanged",
     "source_checks": "passed; source syntax and credential scan"
@@ -47,7 +58,12 @@
   ],
   "real_model_case": {
     "user_request": "这个位置的路灯连续三天不亮，我想报修。",
-    "location": {"latitude": 24.7136, "longitude": 46.6753, "address": "Test location: library entrance", "city": "Riyadh"},
+    "location": {
+      "latitude": 24.7136,
+      "longitude": 46.6753,
+      "address": "Test location: library entrance",
+      "city": "Riyadh"
+    },
     "environment": "local in-memory CRM simulation with real configured model",
     "outcome": "original repair remains unregistered because lower administrative resolution is unavailable",
     "government_submission": false
@@ -64,7 +80,8 @@
     "real device geolocation success and permission UI; GPS tests use stubs",
     "live Google address search/reverse geocoding; SDK tests use stubs",
     "mobile map activation, selection, send and final 390x844 screenshot; browser control stopped delivering input and a fresh tab failed at Page.enable",
-    "earlier final mobile Apps/Profile visual captures and automatic file selection remain unverified"
+    "earlier final mobile Apps/Profile visual captures and automatic file selection remain unverified",
+    "authenticated post-release map configuration/assets check; local site password is unavailable and browser automation did not recover"
   ],
   "browser_diagnosis": {
     "observation": "After viewport testing, activation failed on the mobile pin and previously working desktop controls; no click probe event or console exception was captured.",
@@ -81,6 +98,14 @@
     "workspace": "tea-db5ogtd9fdbs73ditg1g",
     "service": "srv-db7p0lbbc2fs73fvlkhg",
     "url": "https://road-pothole-pi-poc.onrender.com",
-    "state": "ready for publication; final full regression passed"
+    "state": "live; public health and anonymous access protection verified",
+    "source_commit": "7545b85c817d75d6c6266024c28ec8af8787c245",
+    "deploy_id": "dep-dbbi2euk1f9s73bs9jog",
+    "finished_at": "2026-10-20T08:08:17.561482Z",
+    "health_status": 200,
+    "health_release_matches": true,
+    "anonymous_maps_resources_status": 401,
+    "authenticated_release_checks": "not completed; local site password is not configured and browser control unavailable",
+    "evidence": "docs/evaluation/google-maps-release-20261020.json"
   }
 }

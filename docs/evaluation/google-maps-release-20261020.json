@@ -1,0 +1,21 @@
+{
+  "url": "https://road-pothole-pi-poc.onrender.com",
+  "health_status": 200,
+  "health": {
+    "ok": true,
+    "service": "balady-crm",
+    "contract_version": "1.13.0",
+    "tools": 35,
+    "api_mode": "simulation",
+    "release": "7545b85c817d75d6c6266024c28ec8af8787c245",
+    "session_storage": "neon",
+    "model_configured": true
+  },
+  "expected_commit": "7545b85c817d75d6c6266024c28ec8af8787c245",
+  "anonymous_access": {
+    "/api/maps/config": 401,
+    "/map-picker.html": 401,
+    "/map-frame.js": 401
+  },
+  "authenticated_checks": "unavailable; local site password is not configured"
+}
