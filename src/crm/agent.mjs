@@ -32,6 +32,7 @@ const anyObject={type:'object',additionalProperties:true};
 const publicDescriptionPolicy='\nPublic form description integrity: body.Description must quote an already delivered user issue span without adding or rewriting events. Capitalization/whitespace formatting is allowed. For multiple user spans, supply description_source.quotes in their delivered order and join them with newlines in Description. Preserve negation, subjects and qualifiers; do not assemble fragments into a new meaning. Reuse the original description for a title/contact edit. This extractive rule is local assistant policy, not an official API field restriction. Do not ask for new contacts or text consent to repair DESCRIPTION_SOURCE_REQUIRED; copy the actual issue words instead. The person can genuinely edit the description in the exact UI card. Source control metadata is never sent to CRM.';
 const publicLocationPolicy='\nPublic location recovery: ask for a city/municipality NAME, never a geographic code; reuse an already delivered matching name through the documented municipality directory in the operation schema. This directory is not a street/city-to-jurisdiction geocoder. A missing optional municipality filter does not prevent a general classification lookup. An explicitly requested but unspecified city filter may use purpose=choice. No lower administrative-location resolver is connected. Use check_operation_readiness with the intended operation and every known parameter to check a missing configured prerequisite without a fake input question or business call. A real host LOCATION_METADATA_UNAVAILABLE constraint is not a successful receipt. Finish with state=blocked and location_unavailable, citing any actual read receipts, instead of repeating input or requiring a failed write. Explain the original report is unregistered; do not collect more contacts or invent IDs. A different service requires a separate user choice.';
 const cityQuestion={zh:'问题地点在哪个城市或市政地区？直接告诉我名称即可，不需要编号。',en:'Which city or municipality is the location in? Please give its name; no internal code is needed.',ar:'في أي مدينة أو أمانة يقع الموقع؟ اذكر الاسم فقط؛ لا تحتاج إلى أي رمز داخلي.'};
+const fileQuestion={zh:'请选择本次要附加的文件。文件只用于本地仿真记录。',en:'Please select the file to attach. It will be used only for this local simulation record.',ar:'اختر الملف المراد إرفاقه. سيُستخدم فقط في سجل المحاكاة المحلية هذا.'};
 function clearLocationConstraint(session,plan,operation,complete=false){
   const constraints=session.facts.hostConstraints?.[plan.origin_message_id],constraint=constraints?.[operation];
   if(constraint?.code!=='LOCATION_METADATA_UNAVAILABLE')return;
@@ -77,9 +78,16 @@ function currentUserSpan(session,origin,quote){
 function customerNameSource(parameters,session,supplied){
   const customer=parameters.body?.CustomerInformation??{};
   const messages=session.messages.filter(message=>message.role==='user').map(message=>message.text);
-  const origin=session.plans?.find(plan=>plan.id===session.activePlanId)?.origin_message_id,edit=session.facts.customerNameRoleEdits?.[origin];
+  const edits=Object.values(session.facts.customerNameRoleEdits??{}),uiSources={};
+  // Named UI facts survive a title-only replan like delivered chat facts.
+  // Select the latest real field source first; an older matching value cannot
+  // override a later explicit UI change. Authorization remains plan-specific.
+  for(const field of ['FirstName','LastName']){
+    const message=session.messages.findLast(message=>message.role==='user'&&['name_role_edit','name_role_input'].includes(message.kind)&&typeof message.value?.[field]==='string'&&edits.some(edit=>edit?.[field]?.source_message_id===message.id&&edit[field].value===message.value[field]));
+    if(message&&message.value[field]===customer[field])uiSources[field]={value:message.value[field],source_message_id:message.id};
+  }
   const evidence=supplied??session.facts.customerNameSource;
-  const uiRole=field=>typeof customer[field]==='string'&&edit?.[field]?.value===customer[field]&&session.messages.some(message=>message.id===edit[field].source_message_id&&message.role==='user'&&['name_role_edit','name_role_input'].includes(message.kind)&&message.value?.[field]===customer[field]);
+  const uiRole=field=>!!uiSources[field];
   const occurrences=quote=>typeof quote!=='string'||!quote?[]:messages.flatMap((message,index)=>{const positions=[];for(let start=message.indexOf(quote);start!==-1;start=message.indexOf(quote,start+1))positions.push({index,start,end:start+quote.length});return positions;});
   const normalized=value=>value.normalize('NFKC').replace(/\p{White_Space}+/gu,' ').trim();
   const roleQuote=(quote,value)=>typeof quote==='string'&&typeof value==='string'&&normalized(quote)!==normalized(value)&&quote.includes(value)?occurrences(quote):[];
@@ -87,7 +95,7 @@ function customerNameSource(parameters,session,supplied){
   let givenKnown=uiRole('FirstName')||given.length>0,familyKnown=uiRole('LastName')||family.length>0;
   if(!uiRole('FirstName')&&!uiRole('LastName')&&givenKnown&&familyKnown&&!given.some(g=>family.some(f=>g.index!==f.index||g.end<=f.start||f.end<=g.start))){givenKnown=false;familyKnown=false;}
   if(givenKnown&&familyKnown){
-    return {valid:true,source:{kind:'explicit_name_roles',FirstName:customer.FirstName,LastName:customer.LastName,...(uiRole('FirstName')?{given_ui:edit.FirstName}:{given_name_quote:evidence.given_name_quote}),...(uiRole('LastName')?{family_ui:edit.LastName}:{family_name_quote:evidence.family_name_quote})}};
+    return {valid:true,source:{kind:'explicit_name_roles',FirstName:customer.FirstName,LastName:customer.LastName,...(uiRole('FirstName')?{given_ui:uiSources.FirstName}:{given_name_quote:evidence.given_name_quote}),...(uiRole('LastName')?{family_ui:uiSources.LastName}:{family_name_quote:evidence.family_name_quote})}};
   }
   return {valid:false,error:'CUSTOMER_NAME_ROLES_REQUIRED',message:'A full name alone does not establish given/FirstName and family/LastName roles. Never infer them from string position, script, spacing or a surname list. Use actual customer_name_source quotes explicitly identifying each role, or a trusted edit of that named UI field. An unchanged field gains no new role source from an unrelated edit. If roles were already delivered, supply their source quotes without asking again. Otherwise clarify only the role fields listed in errors, retain the full name and contacts, and omit unknown role values from known_parameters. Do not ask for consent or repeat unrelated information.',errors:[...(!givenKnown?['FirstName']:[]),...(!familyKnown?['LastName']:[])].map(field=>({path:'/body/CustomerInformation/'+field,message:'This given/family-name role needs explicit user evidence; full-name characters alone are insufficient.'}))};
 }
@@ -412,6 +420,7 @@ export class CrmAgent extends RoadAgent{
               const normalizePath=path=>path.replace(/^\//u,'').replaceAll('/','.').split('.').map(part=>/^\d+$/u.test(part)?'*':part).join('.');
               if(!check.valid&&fields.some(field=>!check.errors.some(issue=>{const requested=normalizePath(field),missing=normalizePath(issue.path);return requested===missing||requested.startsWith(missing+'.')||missing.startsWith(requested+'.');})))return {error:'INPUT_FIELDS_NOT_MISSING',validation:check,message:'Ask only for fields identified by validation as missing or invalid. Reuse other supplied facts; optional facts cannot block submission.'};
             }
+            if(args.kind==='file')args.question=fileQuestion[languageOf(session)];
             if(args.kind==='text'){
               const cityField=fields.find(path=>['MunicipalityID','municipalityID'].includes(path.split('.').at(-1)));
               // A human supplies a place name; the model maps it using the
