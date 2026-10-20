@@ -1,0 +1,96 @@
+{
+  "date": "2026-10-20",
+  "branch": "balady-crm",
+  "reference": "https://dhv2.momah.net/mobile.html",
+  "status": "implemented; final visual recapture blocked by Chrome debugger connection",
+  "scope": {
+    "existing_chatbot": "preserved; additional header button opens native dialog",
+    "session": "same host controller, action callbacks, state and EventSource",
+    "backend_changes": "static file allowlist and MIME support only; no agent, contract, policy, simulation or model changes"
+  },
+  "checks": {
+    "engineering": {
+      "passed": 324,
+      "failed": 0,
+      "log": "docs/evaluation/assets/mobile-client-20261020/engineering-regression.log"
+    },
+    "post_css_static_security": {
+      "passed": 2,
+      "failed": 0,
+      "log": "docs/evaluation/assets/mobile-client-20261020/static-assets-regression.log"
+    },
+    "source_check": "passed",
+    "openapi": "OpenAPI 3.0.3 schema/references passed; 36 operations unchanged"
+  },
+  "browser_observed_passes": [
+    "additional mobile entry and source phone frame",
+    "guest quick-access login sheet after .on fix",
+    "existing demo account login opens shared conversation",
+    "Apps, Profile and Explore navigation",
+    "real-model Chinese asset query returns three categories and an API receipt",
+    "natural general municipal service complaint asks only native name-role fields",
+    "native name-role submission retains supplied description and contacts",
+    "edit title invalidates the old confirmation and displays a fresh exact confirmation",
+    "explicit submit produces PUB-DEMO-000003 with edited title and one displayed receipt",
+    "Escape closes dialog and returns focus to the entry",
+    "main Chatbot shows the same submitted receipt",
+    "reopen preserves unsent mobile draft"
+  ],
+  "natural_submission": {
+    "environment": "local in-memory CRM simulation with real configured model",
+    "scenario": "poor communication at municipal service desk",
+    "provided_name": "Lina Said",
+    "native_roles": {
+      "given": "Lina",
+      "family": "Said"
+    },
+    "edited_title": "Complaint about service desk communication",
+    "record": "PUB-DEMO-000003",
+    "government_submission": false
+  },
+  "visual_evidence": {
+    "accepted": [
+      "02-desktop-home.png",
+      "05-login-fixed.png",
+      "08-final-chat-desktop.png",
+      "09-final-apps-mobile.png",
+      "11-final-home-mobile.png",
+      "14-chat-native-input-mobile.png",
+      "18-profile-final-mobile.png"
+    ],
+    "historical_failures": [
+      "03-quick-login-gate.png",
+      "04-login.png",
+      "06-mobile-chat.png",
+      "07-assets-mobile.png",
+      "10-final-profile-mobile.png"
+    ],
+    "rejected_capture_geometry": [
+      "12-profile-fixed-mobile.png",
+      "13-apps-fixed-mobile.png",
+      "17-apps-final-mobile.png"
+    ],
+    "remaining": [
+      "final Apps mobile recapture after hiding its floating avatar",
+      "final Profile mobile recapture after 4px header correction"
+    ]
+  },
+  "unverified": [
+    "native automatic local-file chooser: extension setting could not be opened because chrome:// URLs are blocked by tool policy",
+    "final 2 visual recaptures and post-release browser test: Debugger unattached persists after user reconnect and fresh tool session"
+  ],
+  "expected_differences": [
+    "POC demo authentication instead of original reference-site credentials or OTP",
+    "current POC user name rather than hard-coded Khalid",
+    "original POC plan/input/edit/approval/receipt cards in chat",
+    "close control for modal",
+    "voice/navigation/unconnected services explain their capability boundary"
+  ],
+  "deployment": {
+    "workspace": "tea-db5ogtd9fdbs73ditg1g",
+    "service": "srv-db7p0lbbc2fs73fvlkhg",
+    "url": "https://road-pothole-pi-poc.onrender.com",
+    "state": "not triggered; waiting for visual gate or explicit user override",
+    "previous_live_commit": "5978237500a1cf57dd580955812bf94f0c16793d"
+  }
+}

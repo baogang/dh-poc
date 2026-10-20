@@ -90,3 +90,11 @@
   .chat-heading h1{font-size:18px;margin-bottom:6px}.app-layout>.chat-shell{padding-top:8px}.chat-toolbar{padding-bottom:8px}
   .feedback-vote{min-width:44px;min-height:44px}.composer textarea{min-height:44px}.composer .hint{display:none}
 }
+
+
+/* The additional mobile surface shares the host session and occupies the top layer. */
+.mobile-client-dialog{position:fixed;inset:0;width:100vw;height:100dvh;max-width:none;max-height:none;margin:0;padding:0;border:0;overflow:hidden;background:#e8f0ed}
+.mobile-client-dialog::backdrop{background:#10241dd9}
+.mobile-client-dialog>div{width:100%;height:100%}
+#mobile-client{border-color:#176844;color:#176844}
+@media(max-width:600px){.header-actions{flex-wrap:wrap;justify-content:flex-start;gap:5px}.header-actions button{padding:6px 7px}body>header{height:146px}.app-layout{height:calc(100dvh - 146px)}.chat-shell{height:calc(100dvh - 146px)}}

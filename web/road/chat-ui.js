@@ -42,7 +42,7 @@ export function progressText(s,locale='zh'){
   return t('收到，正在查看是否有能直接回答你的问答内容…');
 }
 
-export function createChatRenderer(document,container,actions){
+export function createChatRenderer(document,container,actions,{scrollContainer=container}={}){
   const cached=new Map();let t=translator(),uiLocale='zh';
   const el=(tag,text,className)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(className)n.className=className;return n;};
   const button=(text,fn,busy=false)=>{const n=el('button',text);n.type='button';n.disabled=busy;n.addEventListener('click',fn);return n;};
@@ -258,7 +258,7 @@ export function createChatRenderer(document,container,actions){
   function remember(node){
     const details=[...node.querySelectorAll('details[data-key]')].map(d=>[d.dataset.key,d.open]);const values=[];
     for(const form of node.querySelectorAll('form[data-form-key]'))for(const f of form.querySelectorAll('input,select,textarea'))if(f.type!=='file')values.push({form:form.dataset.formKey,name:f.name,type:f.type,value:f.value,checked:f.checked});
-    const focus=document.activeElement;return {details,values,focus:focus&&[...node.querySelectorAll('input,select,textarea')].includes(focus)?{name:focus.name,type:focus.type,value:focus.value,form:focus.closest('form')?.dataset.formKey,start:focus.selectionStart,end:focus.selectionEnd}:null};
+    const focus=container.getRootNode?.()?.activeElement??document.activeElement;return {details,values,focus:focus&&[...node.querySelectorAll('input,select,textarea')].includes(focus)?{name:focus.name,type:focus.type,value:focus.value,form:focus.closest('form')?.dataset.formKey,start:focus.selectionStart,end:focus.selectionEnd}:null};
   }
   function restore(node,memory){
     for(const d of node.querySelectorAll('details[data-key]')){const entry=memory.details.find(x=>x[0]===d.dataset.key);if(entry)d.open=entry[1];}
@@ -266,7 +266,7 @@ export function createChatRenderer(document,container,actions){
   }
   return {render(state,{showTasks=true,busy=false,pendingMessage,error,connecting=false,locale='zh',feedback={enabled:false,items:{}}}={}){
     t=translator(locale);uiLocale=locale;
-    const atBottom=container.scrollHeight-container.scrollTop-container.clientHeight<70,scroll=container.scrollTop;
+    const atBottom=scrollContainer.scrollHeight-scrollContainer.scrollTop-scrollContainer.clientHeight<70,scroll=scrollContainer.scrollTop;
     const rows=[{id:'welcome',kind:'welcome',loggedIn:!!state.user},...conversationItems(state)];
     for(const item of rows)if(item.kind==='plan')item.locationLimit=item.active&&hasLocationLimit(state,item.plan);
     for(const item of rows){item.loggedIn=!!state.user;item.matters=state.mattersView;item.demoUI=state.demo_ui===true;item.latestMatters=item.message?.id===state.messages.findLast(m=>m.kind==='matters')?.id;item.catalog=state.catalog??[];item.humanSupport=state.human_support??{};item.helpActive=!!state.pendingHelp&&item.message?.request_id===state.pendingHelp.id;item.clarificationId=state.pendingKnowledge?.id;item.choiceActive=item.message?.kind==='knowledge_clarification'?state.pendingKnowledge?.id===item.message.clarification.id:true;}
@@ -283,6 +283,6 @@ export function createChatRenderer(document,container,actions){
       if(memory)restore(node,memory);
     }
     for(const [id,item]of cached)if(!keep.has(id)){item.node.remove();cached.delete(id);}
-    if(atBottom)container.scrollTop=container.scrollHeight;else container.scrollTop=scroll;
+    if(atBottom)scrollContainer.scrollTop=scrollContainer.scrollHeight;else scrollContainer.scrollTop=scroll;
   }};
 }

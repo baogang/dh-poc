@@ -1,0 +1,49 @@
+/* Current POC controls inside the reference presentation. */
+:host{--green:#176844;--line:#dce7e1;--muted:#70837d;display:block;width:100%;height:100%;font-family:'IBM Plex Sans','Segoe UI',Arial,sans-serif;color:#172522;background:#e8f0ed}
+.mobile-page{height:100%;margin:0;overflow:clip}
+#homeScreen{overflow:clip}
+.section-top{height:auto;border-bottom:0}
+.mobile-dismiss{width:30px;height:30px;padding:0;border:1px solid #ffffff55;border-radius:50%;color:#fff;background:#ffffff14;font:22px/1 Arial,sans-serif;display:grid;place-items:center;cursor:pointer}
+.mobile-dismiss-small{display:none;position:absolute;z-index:60;top:6px;right:8px;width:28px;height:28px;color:#176844;background:#fffffff0;border-color:#d6e6df;box-shadow:0 1px 6px #0001}
+.mobile-demo-hint{color:#5f7380;font-size:10px;line-height:1.4;margin:10px 0 0}
+.native-messages{display:flex;flex-direction:column;gap:12px;min-width:0}
+.native-messages:empty{display:none}
+.native-messages>.welcome-card{display:none!important}
+.native-messages>.bubble{position:relative;margin:0 0 0 36px;flex-shrink:0;max-width:calc(100% - 36px);align-self:flex-start;white-space:normal;text-align:start}
+.native-messages>.bubble.assistant{inset:auto;display:block;min-width:0}
+.native-messages>.bubble.assistant::before{content:'';position:absolute;width:29px;height:29px;left:-37px;top:0;border:2px solid white;border-radius:50%;background:#d5e5df url('/mobile-reference/ai.jpg') center 18%/cover;box-shadow:0 1px 5px #0d3f3424}
+.native-messages>.bubble.user{margin:0;max-width:85%;align-self:flex-end;color:#fff;background:#08705b;border-color:#08705b}
+.native-messages>.bubble.user .message-text{white-space:pre-wrap}
+.native-messages>.bubble:not(.user){color:#172522;background:#fff}
+.native-messages>.bubble p{margin:7px 0;line-height:1.5;opacity:1}
+.native-messages>.bubble p:first-child{margin-top:0}
+.native-messages>.bubble p:last-child{margin-bottom:0}
+.native-messages .inline-form{gap:9px;margin-top:12px;display:flex;flex-wrap:wrap;min-width:0}
+.native-messages .inline-form label{display:flex;flex-direction:column;gap:5px;min-width:0;width:100%;font-size:12px}
+.native-messages input,.native-messages select,.native-messages textarea{min-width:0;max-width:100%;padding:9px;border:1px solid #cddcd6;border-radius:8px;background:#fff;color:#172522;box-sizing:border-box}
+.native-messages .inline-form input:not([type=radio]):not([type=checkbox]),.native-messages .inline-form select,.native-messages .inline-form textarea{width:100%}
+.native-messages button{min-height:36px;max-width:100%;padding:8px 11px;margin:5px 5px 0 0;border-radius:8px;font-size:12px;white-space:normal;overflow-wrap:anywhere;cursor:pointer}
+.native-messages .secondary{border:1px solid #cadbd3;color:#176844;background:#f6faf8}
+.native-messages button:disabled{cursor:default;opacity:.55}
+.native-messages summary{font-size:12px;cursor:pointer;overflow-wrap:anywhere}
+.native-messages .payload{grid-template-columns:1fr;gap:3px}
+.native-messages .payload dd{margin:0 0 8px;overflow-wrap:anywhere}
+.native-messages pre{max-width:100%;font-size:10px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere}
+.native-messages .markdown-table-scroll{max-width:100%;overflow-x:auto}
+.native-messages table{font-size:11px}
+.native-messages .task{grid-template-columns:18px 1fr}
+.native-messages .task-state{grid-column:2}
+.native-messages .task-list{margin-top:9px}
+.native-messages .service-choice-option{display:grid;grid-template-columns:20px 1fr;padding:10px}
+.native-messages .service-choice-actions{display:flex;flex-wrap:wrap}
+.native-messages .service-option{padding:10px}
+.native-messages .answer-feedback{margin-top:10px}
+.native-messages .hint,.native-messages small{font-size:10px;line-height:1.5}
+.native-messages .working-card{font-size:12px}
+.mobile-stop{position:absolute;z-index:15;right:14px;top:114px;padding:3px 10px;border-radius:20px;background:#fff;color:#176844;border:1px solid #cddfd5;font-size:10px}
+.chat-screen .composer input{min-width:0}
+.chat-screen .composer{border:0;border-top:1px solid #dfe8e5;border-radius:0}
+.chat-screen .chat>.row,.chat-screen .chat>.day,.native-messages{flex-shrink:0}
+.toast{z-index:100;pointer-events:none}
+@media(max-width:480px){.mobile-dismiss-small{display:grid}.mobile-page{height:100dvh}.native-messages>.bubble{padding:10px 12px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}

@@ -10,6 +10,19 @@ const narrative='已查询市政主资产列表，共 1 条：\n\n| 主资产 ID
 const receipt={id:'r-assets',operation:'crm_get_assets',time:'2026-10-20T02:00:00Z',result:{statusDetails:{code:200,message:'success'},data:{responseCode:'1',responseMessage:'success',result:[{MainAssetsID:'MA-DEMO-1',MainAssetsName:'Simulated municipal infrastructure'}]}}};
 const state=()=>({user:{name:'demo'},status:'completed',running:false,messages:[{id:'answer',role:'assistant',kind:'result',text:narrative,receipt_ids:[receipt.id],time:'2026-10-20T02:00:01Z'}],plans:[],events:[],receipts:[receipt],mock:{handoffs:[]}});
 function fixture(value=state(),options={},actions={}){const document=createDocument(),container=document.createElement('div'),renderer=createChatRenderer(document,container,actions);renderer.render(value,options);return {container,renderer,value};}
+test('mobile conversation rendering follows its outer scroller and preserves a user reading earlier content',()=>{
+  const document=createDocument(),container=document.createElement('div'),scroller={clientHeight:500,scrollHeight:900,scrollTop:380};
+  const renderer=createChatRenderer(document,container,{},{scrollContainer:scroller});renderer.render(state());assert.equal(scroller.scrollTop,900);
+  scroller.scrollTop=40;renderer.render(state());assert.equal(scroller.scrollTop,40);
+});
+test('input focus and password text survive an update inside the mobile shadow root',()=>{
+  const document=createDocument(),container=document.createElement('div'),renderer=createChatRenderer(document,container,{}),value={...state(),user:null,messages:[]};renderer.render(value);
+  const form=container.querySelector('form'),input=form.querySelectorAll('input').find(n=>n.name==='password');input.value='typed-demo-password';input.closest=()=>form;
+  document.activeElement={tagName:'DIV'};container.getRootNode=()=>({activeElement:input});
+  let focused=0;const create=document.createElement;document.createElement=tag=>{const n=create(tag);n.focus=()=>focused++;return n;};
+  renderer.render(value,{busy:true});const next=container.querySelector('form').querySelectorAll('input').find(n=>n.name==='password');
+  assert.equal(next.value,'typed-demo-password');assert.equal(focused,1);
+});
 const answer=container=>container.children.find(n=>n.dataset.chatId==='message:answer');
 
 const choiceState=(question='How would you like to continue?')=>({...state(),messages:[],receipts:[],status:'input',pendingInput:{id:'service-route-input',kind:'choice',question,choices:[{id:'public-route-id',label:'General service complaint',description:'Record a separate local complaint about the service experience.',operation:'crm_create_form_request'},{id:'no-submission-id',label:'Keep the original request',description:'Explain what is still needed without registering a different service.',operation:'none'}]}});

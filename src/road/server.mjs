@@ -1,4 +1,5 @@
 import { createServer } from 'node:http';
+import {mobileStaticFiles,staticContentType} from './mobile-static.mjs';
 import { createHash,randomBytes,timingSafeEqual } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
@@ -164,9 +165,9 @@ export async function createRoadServer({store,knowledge,agentFactory,feedback=ne
         res.writeHead(200,{'content-type':'text/html; charset=utf-8','cache-control':'no-store'});return res.end(html);
       }
       if(req.method!=='GET')throw failure('NOT_FOUND','Not found',404);
-      const files={'/':'index.html','/app.js':'app.js','/chat-ui.js':'chat-ui.js','/markdown.js':'markdown.js','/crm-review.js':'crm-review.js','/vendor/marked.js':'vendor/marked.js','/i18n.js':'i18n.js','/feedback-ui.js':'feedback-ui.js','/feedback-data.js':'feedback-data.js','/style.css':'style.css'};
+      const files={...mobileStaticFiles,'/':'index.html','/app.js':'app.js','/chat-ui.js':'chat-ui.js','/markdown.js':'markdown.js','/crm-review.js':'crm-review.js','/vendor/marked.js':'vendor/marked.js','/i18n.js':'i18n.js','/feedback-ui.js':'feedback-ui.js','/feedback-data.js':'feedback-data.js','/style.css':'style.css'};
       if(!files[url.pathname])throw failure('NOT_FOUND','Not found',404);
-      const data=await readFile(new URL(`../../web/road/${files[url.pathname]}`,import.meta.url));res.writeHead(200,{'content-type':url.pathname.endsWith('.js')?'text/javascript; charset=utf-8':url.pathname.endsWith('.css')?'text/css; charset=utf-8':'text/html; charset=utf-8','cache-control':'no-store'});res.end(data);
+      const data=await readFile(new URL(`../../web/road/${files[url.pathname]}`,import.meta.url));res.writeHead(200,{'content-type':staticContentType(url.pathname),'cache-control':'no-store'});res.end(data);
     }catch(error){if(error.status===429)res.setHeader('retry-after','2');if(!res.headersSent)send(res,error.status??500,{error:{code:error.code??'SERVER_ERROR',message:error.status?error.message:'Internal server error',...(error.current?{current:error.current}:{})}});else res.end();}
     finally{turnPermit?.();await unlock().catch(()=>{});}
   });

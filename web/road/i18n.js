@@ -20,6 +20,7 @@ const en={
 "PI SDK · BALADY CRM · 本地仿真":"PI SDK · BALADY CRM · Local simulation",
 "已恢复报单草稿，请核对下方信息。":"Report draft restored. Please review the details below.",
 "当前模拟账号已登录。":"The current demo account is signed in.",
+"移动端体验":"Mobile client",
 "我的事项":"My matters",
 "请查看下方最新的事项列表。":"See the latest matters list below.",
 "仅显示当前模拟账号的事项；所有办理和提醒均为演示。":"Only this demo account’s matters appear here. Transactions and notifications are simulated.",

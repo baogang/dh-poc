@@ -1,0 +1,31 @@
+// Exact allowlist: visual assets only, no wildcard filesystem access.
+export const mobileStaticFiles={
+  "/balady-homepage-2026-07-15.png": "balady-homepage-2026-07-15.png",
+  "/citizen-before.png": "citizen-before.png",
+  "/mobile-adapter.css": "mobile-adapter.css",
+  "/mobile-client.js": "mobile-client.js",
+  "/mobile-device.css": "mobile-device.css",
+  "/mobile-fonts.css": "mobile-fonts.css",
+  "/mobile-reference/ai.jpg": "mobile-reference/ai.jpg",
+  "/mobile-reference/balady-login-logo.png": "mobile-reference/balady-login-logo.png",
+  "/mobile-reference/cat-assistance.png": "mobile-reference/cat-assistance.png",
+  "/mobile-reference/cat-business.png": "mobile-reference/cat-business.png",
+  "/mobile-reference/cat-individual.png": "mobile-reference/cat-individual.png",
+  "/mobile-reference/compliance-banner.svg": "mobile-reference/compliance-banner.svg",
+  "/mobile-reference/contribute.jpg": "mobile-reference/contribute.jpg",
+  "/mobile-reference/drive-home.jpg": "mobile-reference/drive-home.jpg",
+  "/mobile-reference/explore-map.jpg": "mobile-reference/explore-map.jpg",
+  "/mobile-reference/fonts/ibm-plex-sans-latin-400-normal.woff2": "mobile-reference/fonts/ibm-plex-sans-latin-400-normal.woff2",
+  "/mobile-reference/fonts/ibm-plex-sans-latin-500-normal.woff2": "mobile-reference/fonts/ibm-plex-sans-latin-500-normal.woff2",
+  "/mobile-reference/fonts/ibm-plex-sans-latin-600-normal.woff2": "mobile-reference/fonts/ibm-plex-sans-latin-600-normal.woff2",
+  "/mobile-reference/fonts/ibm-plex-sans-latin-700-normal.woff2": "mobile-reference/fonts/ibm-plex-sans-latin-700-normal.woff2",
+  "/mobile-reference/home.jpg": "mobile-reference/home.jpg",
+  "/mobile-reference/places-strip.jpg": "mobile-reference/places-strip.jpg",
+  "/mobile-reference/road_after.jpg": "mobile-reference/road_after.jpg",
+  "/mobile-reference/story-strip.jpg": "mobile-reference/story-strip.jpg",
+  "/mobile-reference/used-license-check.png": "mobile-reference/used-license-check.png",
+  "/mobile-reference/used-license-search.png": "mobile-reference/used-license-search.png",
+  "/mobile-template.js": "mobile-template.js",
+  "/mobile-ui.css": "mobile-ui.css"
+};
+export function staticContentType(path){return ({js:"text/javascript; charset=utf-8",css:"text/css; charset=utf-8",png:"image/png",jpg:"image/jpeg",svg:"image/svg+xml",woff2:"font/woff2"})[path.split(".").at(-1)]??"text/html; charset=utf-8";}

@@ -1,4 +1,5 @@
 import {createChatRenderer} from './chat-ui.js';
+import {createMobileClient} from './mobile-client.js';
 import {translator,resolveLocale,uiError} from './i18n.js';
 import {createFeedbackController,downloadFeedback} from './feedback-ui.js';
 let state={id:null,running:false,status:'idle',user:null,messages:[],plans:[],activePlanId:null,pendingInput:null,pendingOperation:null,events:[],receipts:[],mock:{handoffs:[],calls:[]}},stream,generation=0,pollTimer,refreshing,refreshAgain=false;
@@ -47,6 +48,7 @@ async function signIn(credentials,continuation){
   if(continuation?.kind==='input'&&state.pendingInput?.id===continuation.id)await act('/api/input',{input_id:continuation.id,value:{}});
 }
 const chat=createChatRenderer(document,$('messages'),{action:act,login:signIn,rate:(id,rating)=>ratings.choose(state,id,rating),example:text=>{$('chat-message').value=text;$('chat-message').focus();},reconnect:()=>{client.error=null;client.connecting=true;render();start();}});
+const mobile=createMobileClient(document,{action:act,login:signIn,rate:(id,rating)=>ratings.choose(state,id,rating),reconnect:()=>{client.error=null;client.connecting=true;render();start();},newSession});
 function connect(){
   stream?.close();clearInterval(pollTimer);const owner=generation;
   stream=new EventSource('/api/events?after='+(state.events.at(-1)?.seq??0));
@@ -60,7 +62,7 @@ async function start(){
   try{const r=await fetch('/api/state',{signal:AbortSignal.timeout(20000)});if(r.status===401||r.status===404||r.status===410)accept(await request('/api/session',{}),owner);else{const v=await r.json();if(!r.ok)throw Object.assign(new Error(v.error?.message??t('连接失败')),{code:v.error?.code});accept(v,owner);}if(owner===generation)connect();}
   catch(e){if(owner===generation){client.connecting=false;client.error={key:'无法连接政务服务助手：',code:e.code,detail:e.message};render();}}
 }
-const shellCopy={'my-matters':'我的事项','service-catalog':'服务目录','human-help':'人工帮助','brand-title':'BALADY','brand-meta':'PI SDK · BALADY CRM · 本地仿真','new-session':'新对话','app-title':'BALADY 助理','locale-caption':'界面语言','show-tasks-label':'显示任务列表','toolbar-hint':'计划与操作确认都在聊天中','message-label':'消息','composer-hint':'Enter 发送 · Shift+Enter 换行 · 中文 / English / العربية','stop':'停止','send':'发送','test-tools-label':'测试工具与运行记录','test-tools-hint':'仅用于测试查看；工单处理所需的操作均在聊天中。','human-title':'模拟人工工作台','knowledge-title':'问答库','receipts-title':'实际 API 回执','events-title':'执行记录','feedback-tools-title':'回答反馈数据','feedback-export-csv':'导出 CSV','feedback-export-jsonl':'导出 JSONL','feedback-tools-hint':'统计与导出当前浏览器收集的反馈；集中数据已保存在云端。'};
+const shellCopy={'mobile-client':'移动端体验','my-matters':'我的事项','service-catalog':'服务目录','human-help':'人工帮助','brand-title':'BALADY','brand-meta':'PI SDK · BALADY CRM · 本地仿真','new-session':'新对话','app-title':'BALADY 助理','locale-caption':'界面语言','show-tasks-label':'显示任务列表','toolbar-hint':'计划与操作确认都在聊天中','message-label':'消息','composer-hint':'Enter 发送 · Shift+Enter 换行 · 中文 / English / العربية','stop':'停止','send':'发送','test-tools-label':'测试工具与运行记录','test-tools-hint':'仅用于测试查看；工单处理所需的操作均在聊天中。','human-title':'模拟人工工作台','knowledge-title':'问答库','receipts-title':'实际 API 回执','events-title':'执行记录','feedback-tools-title':'回答反馈数据','feedback-export-csv':'导出 CSV','feedback-export-jsonl':'导出 JSONL','feedback-tools-hint':'统计与导出当前浏览器收集的反馈；集中数据已保存在云端。'};
 function render(){
   t=translator(locale);document.documentElement.setAttribute('lang',locale==='en'?'en':'zh-CN');document.title=t('BALADY 助理');
   for(const [id,key]of Object.entries(shellCopy))$(id).textContent=t(key);
@@ -84,7 +86,8 @@ function render(){
   $('service-catalog').disabled=busy||state.running||client.expired;$('my-matters').disabled=busy||state.running||client.expired;$('human-help').disabled=busy||state.running||client.expired;
   $('show-tasks').checked=showTasks;$('send').disabled=busy||state.running||client.expired;$('new-session').disabled=busy;
   $('stop').disabled=busy||client.expired||!state.running&&!state.pendingInput&&!state.pendingOperation&&(!p||['completed','superseded','paused'].includes(p.status));
-  chat.render(state,{showTasks,busy:busy||client.expired,locale,feedback:ratings.view(state),pendingMessage:client.pendingMessage&&state.messages.at(-1)?.text!==client.pendingMessage?client.pendingMessage:null,error:uiError(client.error,locale),connecting:client.connecting});
+  const chatView={showTasks,busy:busy||client.expired,locale,feedback:ratings.view(state),pendingMessage:client.pendingMessage&&state.messages.at(-1)?.text!==client.pendingMessage?client.pendingMessage:null,error:uiError(client.error,locale),connecting:client.connecting};
+  chat.render(state,chatView);mobile.update(state,chatView);
   $('feedback-tools').hidden=!state.feedback?.enabled;
   const feedbackSummary=ratings.summary();
   $('feedback-count').textContent=t('已收集 {total} 条 · 满意 {yes} · 不满意 {no} · 满意率 {rate}',{total:feedbackSummary.total,yes:feedbackSummary.satisfied,no:feedbackSummary.unsatisfied,rate:feedbackSummary.rate===null?'—':feedbackSummary.rate+'%'});
@@ -108,5 +111,7 @@ $('my-matters').addEventListener('click',()=>act('/api/matters',{action:'list'})
 $('service-catalog').addEventListener('click',()=>act('/api/catalog',{}));
 $('human-help').addEventListener('click',()=>act('/api/help',{action:'offer'}));
 $('stop').addEventListener('click',()=>act('/api/cancel',{}));
-$('new-session').addEventListener('click',async()=>{if(client.busy)return;if(state.running)await act('/api/cancel',{});generation++;stream?.close();clearInterval(pollTimer);client.error=null;client.connecting=true;client.pendingMessage=null;render();try{accept(await request('/api/session',{}),generation);connect();}catch(e){client.connecting=false;client.error={key:'请求未能完成',code:e.code,detail:e.message};render();}});
+async function newSession(){if(client.busy)return;if(state.running)await act('/api/cancel',{});generation++;stream?.close();clearInterval(pollTimer);client.error=null;client.connecting=true;client.pendingMessage=null;render();try{accept(await request('/api/session',{}),generation);connect();}catch(e){client.connecting=false;client.error={key:'请求未能完成',code:e.code,detail:e.message};render();}}
+$('new-session').addEventListener('click',newSession);
+$('mobile-client').addEventListener('click',()=>mobile.open($('mobile-client')));
 start().catch(e=>{client.error={key:'请求未能完成',code:e.code,detail:e.message};client.connecting=false;render();});
