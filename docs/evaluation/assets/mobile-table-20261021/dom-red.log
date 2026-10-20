@@ -1,0 +1,66 @@
+✖ compact record tables preserve column semantics and expose each field label separately from its complete value (19.736991ms)
+✖ larger comparison tables remain matrix tables with all values and column headings (5.351387ms)
+✖ responsive labels retain decoded Markdown text while values preserve safe formatting and reject executable HTML or links (8.620977ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 0
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 260.729241
+
+✖ failing tests:
+
+test at tests/crm-responsive-table.test.mjs:6:1
+✖ compact record tables preserve column semantics and expose each field label separately from its complete value (19.736991ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+
+  + undefined
+  - 'records'
+
+      at TestContext.<anonymous> (file:///Users/baogang/git/momah-poc/tests/crm-responsive-table.test.mjs:10:12)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.start (node:internal/test_runner/test:959:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:332:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 'records',
+    operator: 'strictEqual'
+  }
+
+test at tests/crm-responsive-table.test.mjs:15:1
+✖ larger comparison tables remain matrix tables with all values and column headings (5.351387ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+
+  + undefined
+  - 'matrix'
+
+      at TestContext.<anonymous> (file:///Users/baogang/git/momah-poc/tests/crm-responsive-table.test.mjs:16:170)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+      at Test.postRun (node:internal/test_runner/test:1191:19)
+      at Test.run (node:internal/test_runner/test:1119:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:332:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 'matrix',
+    operator: 'strictEqual'
+  }
+
+test at tests/crm-responsive-table.test.mjs:18:1
+✖ responsive labels retain decoded Markdown text while values preserve safe formatting and reject executable HTML or links (8.620977ms)
+  TypeError [Error]: Cannot read properties of undefined (reading 'textContent')
+      at TestContext.<anonymous> (file:///Users/baogang/git/momah-poc/tests/crm-responsive-table.test.mjs:19:351)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+      at Test.postRun (node:internal/test_runner/test:1191:19)
+      at Test.run (node:internal/test_runner/test:1119:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7)

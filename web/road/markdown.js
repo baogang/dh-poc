@@ -31,7 +31,18 @@ export function markdown(document,text,{tableLabel='Data table'}={}){
       if(token.type==='table'){
         const wrap=el('div'),table=el('table'),head=el('thead'),body=el('tbody');
         wrap.className='markdown-table';wrap.tabIndex=0;wrap.setAttribute('role','region');wrap.setAttribute('aria-label',tableLabel);
-        const row=(cells,header)=>{const tr=el('tr');for(const cell of cells){const td=el(header?'th':'td');if(header)td.setAttribute('scope','col');if(cell.align)td.className='align-'+cell.align;inline(td,cell.tokens);tr.append(td);}return tr;};
+        // Explicit roles retain table semantics when narrow containers stack rows.
+        table.dataset.layout=token.header.length<=4?'records':'matrix';table.setAttribute('role','table');head.setAttribute('role','rowgroup');body.setAttribute('role','rowgroup');
+        let labels=[];
+        const row=(cells,header)=>{const tr=el('tr');tr.setAttribute('role','row');for(const [index,cell]of cells.entries()){
+          const td=el(header?'th':'td');td.setAttribute('role',header?'columnheader':'cell');if(header)td.setAttribute('scope','col');if(cell.align)td.className='align-'+cell.align;
+          if(header)inline(td,cell.tokens);
+          else{
+            if(table.dataset.layout==='records'){const label=el('span',labels[index]??'');label.className='table-cell-label';label.dataset.cellLabel='';label.dir='auto';label.setAttribute('aria-hidden','true');td.append(label);}
+            const value=el('div');value.className='table-cell-value';value.dataset.cellValue='';value.dir='auto';inline(value,cell.tokens);td.append(value);
+          }
+          tr.append(td);
+        }if(header)labels=[...tr.children].map(cell=>cell.textContent);return tr;};
         head.append(row(token.header,true));for(const cells of token.rows)body.append(row(cells,false));table.append(head,body);wrap.append(table);parent.append(wrap);
       }else if(token.type==='code'){const pre=el('pre');pre.append(el('code',token.text));parent.append(pre);}
       else if(token.type==='list'){

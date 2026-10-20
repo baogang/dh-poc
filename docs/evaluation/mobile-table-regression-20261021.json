@@ -1,0 +1,74 @@
+{
+  "date": "2026-10-21",
+  "branch": "balady-crm",
+  "status": "implemented and verified locally; deployment pending",
+  "bug": "Incident descriptions squeezed to approximately 56px in a 228px phone message area, despite horizontal scrolling.",
+  "root_cause": [
+    "360px minimum table width plus nonwrapping headings force a narrow description column.",
+    "overflow-wrap:anywhere allows words to be split into very short fragments.",
+    "The mobile override named markdown-table-scroll does not match the shipped markdown-table wrapper; the generic wrapper already scrolls."
+  ],
+  "changes": [
+    "Tables with up to four columns stack as labelled records at message-container widths up to 560px; wide desktop messages retain tables.",
+    "Five or more columns retain a scrollable matrix with a minimum readable value width.",
+    "Explicit table roles, column headings and aria-hidden repeated visual labels preserve reading structure; each value keeps independent text direction.",
+    "Safe Markdown formatting and full source values are retained. No model prompt, API contract, recorded status or receipt data is changed.",
+    "Lock background root scrolling while the mobile dialog is open so the outer scrollbar does not reduce the phone viewport."
+  ],
+  "checks": {
+    "initial_dom_regression": {
+      "passed": 0,
+      "failed": 3,
+      "log": "docs/evaluation/assets/mobile-table-20261021/dom-red.log"
+    },
+    "engineering_final": {
+      "passed": 344,
+      "failed": 0,
+      "skipped": 0,
+      "duration_ms": 117653.927369,
+      "log": "docs/evaluation/assets/mobile-table-20261021/engineering-regression.log"
+    },
+    "source_checks": "passed; syntax and credential scan",
+    "openapi": "passed; 36 operations unchanged",
+    "browser": {
+      "before": "Actual existing English/Arabic report responses in the authenticated live mobile chat.",
+      "after": "Same real POC UI with isolated fixed English/Chinese/Arabic records, 2/3/4-column record tables and a 5-column comparison; no model or CRM operation requested.",
+      "viewports": [
+        "default desktop 1636x848 with narrow phone preview",
+        "390x844",
+        "320x844"
+      ],
+      "before_english_issue_cell_width": 56.453125,
+      "after_default_phone_issue_value_width": 198.265625,
+      "after_390_issue_value_width": 255,
+      "after_320_issue_value_width": 185,
+      "record_horizontal_overflow": false,
+      "desktop_table_preserved": true,
+      "matrix_keyboard_scroll_verified": true,
+      "arabic_direction_and_latin_id_direction_verified": true,
+      "root_scrollbar_does_not_reduce_mobile_viewport": true,
+      "viewport_override_reset": true,
+      "metrics": "docs/evaluation/assets/mobile-table-20261021/layout-metrics.json"
+    }
+  },
+  "evidence": {
+    "before": "docs/evaluation/assets/mobile-table-20261021/01-before-live.jpg",
+    "after_desktop_phone": "docs/evaluation/assets/mobile-table-20261021/02-after-desktop-phone.jpg",
+    "after_390": "docs/evaluation/assets/mobile-table-20261021/03-after-390.jpg",
+    "after_320": "docs/evaluation/assets/mobile-table-20261021/04-after-320.jpg",
+    "chinese_320": "docs/evaluation/assets/mobile-table-20261021/05-chinese-320.jpg",
+    "arabic_390": "docs/evaluation/assets/mobile-table-20261021/06-arabic-390.jpg",
+    "matrix_390": "docs/evaluation/assets/mobile-table-20261021/07-matrix-390.jpg"
+  },
+  "limits": [
+    "DOM/security regression runs in the Node test suite; actual CSS layout was checked through Chrome, not a CI browser runner.",
+    "No iOS Safari/VoiceOver or Android physical-device run was performed.",
+    "Previously documented Google Maps key-dependent checks and file chooser checks are unchanged."
+  ],
+  "deployment": {
+    "workspace": "tea-db5ogtd9fdbs73ditg1g",
+    "service": "srv-db7p0lbbc2fs73fvlkhg",
+    "url": "https://road-pothole-pi-poc.onrender.com",
+    "state": "ready for publication"
+  }
+}

@@ -62,7 +62,7 @@
 .markdown-body a{color:var(--green);text-decoration:underline;text-underline-offset:3px}
 .markdown-body hr{border:0;border-top:1px solid var(--line);margin:16px 0}
 .bubble.assistant:has(.markdown-table){width:94%;min-width:0}
-.markdown-table{max-width:100%;overflow-x:auto;overscroll-behavior-inline:contain;border:1px solid var(--line);border-radius:9px;margin:14px 0 16px}
+.markdown-table{container-type:inline-size;max-width:100%;overflow-x:auto;overscroll-behavior-inline:contain;border:1px solid var(--line);border-radius:9px;margin:14px 0 16px}
 .markdown-table:focus-visible{outline:2px solid var(--green);outline-offset:3px}
 .markdown-table table{width:100%;min-width:360px;border-collapse:separate;border-spacing:0;font-size:13px;line-height:1.65}
 .markdown-table th,.markdown-table td{text-align:start;padding:11px 14px;vertical-align:top;overflow-wrap:anywhere}
@@ -72,6 +72,20 @@
 .markdown-table tbody tr:nth-child(even){background:#f9fbf9}
 .markdown-table .align-center{text-align:center}
 .markdown-table .align-right{text-align:right}
+.table-cell-label{display:none}
+.table-cell-value{min-inline-size:8rem;overflow-wrap:anywhere;word-break:normal}
+/* Query the message width: the phone preview can be narrow on a wide desktop. */
+@container (max-width:560px){
+  .markdown-table table[data-layout=records]{display:block;width:100%;min-width:0;font-size:13px;line-height:1.6}
+  .markdown-table table[data-layout=records] thead{position:absolute;inline-size:1px;block-size:1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+  .markdown-table table[data-layout=records] tbody{display:block}
+  .markdown-table table[data-layout=records] tbody tr{display:block;padding:12px 14px;border-bottom:1px solid #dce7e1}
+  .markdown-table table[data-layout=records] tbody tr:last-child{border-bottom:0}
+  .markdown-table table[data-layout=records] td{display:block;min-width:0;border:0;padding:0;text-align:start}
+  .markdown-table table[data-layout=records] td+td{margin-top:9px}
+  .markdown-table table[data-layout=records] .table-cell-label{display:block;font-size:11px;font-weight:650;line-height:1.4;color:#526e60;margin-bottom:3px}
+  .markdown-table table[data-layout=records] .table-cell-value{min-inline-size:0;max-inline-size:100%}
+}
 .api-evidence{margin-top:16px;padding-top:11px;border-top:1px solid #e8efea}
 .api-evidence>summary{font-size:11px;color:var(--muted);font-weight:500}
 .api-evidence section{min-width:0}
@@ -93,6 +107,7 @@
 
 
 /* The additional mobile surface shares the host session and occupies the top layer. */
+html:has(.mobile-client-dialog[open]){overflow:hidden}
 .mobile-client-dialog{position:fixed;inset:0;width:100vw;height:100dvh;max-width:none;max-height:none;margin:0;padding:0;border:0;overflow:hidden;background:#e8f0ed}
 .mobile-client-dialog::backdrop{background:#10241dd9}
 .mobile-client-dialog>div{width:100%;height:100%}
